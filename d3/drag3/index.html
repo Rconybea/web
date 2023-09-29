@@ -1,0 +1,813 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-09-29 Fri 13:35 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>d3 draggable object example #3 &#x2013; parametric</title>
+<meta name="author" content="roly-desktop-23" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script type="text/javascript" src="/ext/d3/d3.v3.min.js"></script>
+<script type="text/javascript" src="point.js"></script>
+<script type="text/javascript" src="fx.js"></script>
+<script type="text/javascript" src="fx_view.js"></script>
+<script type="text/javascript" src="parametric-drag-example.js"></script>
+<link rel="stylesheet" type="text/css" href="../../css/notebook.css" />
+
+<script src="/ext/orginfo/org-info.js">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license-end
+</script>
+
+<script>
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+org_html_manager.set("TOC_DEPTH", "3");
+org_html_manager.set("LINK_HOME", "../../index.html");
+org_html_manager.set("LINK_UP", "../../index.html");
+org_html_manager.set("LOCAL_TOC", "0");
+org_html_manager.set("VIEW_BUTTONS", "0");
+org_html_manager.set("MOUSE_HINT", "#ffc0c0");
+org_html_manager.set("FIXED_TOC", "0");
+org_html_manager.set("TOC", "0");
+org_html_manager.set("VIEW", "showall");
+org_html_manager.setup();  // activate after the parameters are set
+// @license-end
+</script>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../../index.html"> UP </a>
+ |
+ <a accesskey="H" href="../../index.html"> HOME </a>
+</div><div id="content" class="content">
+<h1 class="title">d3 draggable object example #3 &#x2013; parametric</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orga603009">1. Introduction</a></li>
+<li><a href="#org6078828">2. Prerequisites</a></li>
+<li><a href="#orgba6bcc4">3. Demo</a></li>
+<li><a href="#org18f26fb">4. Procedure</a>
+<ul>
+<li><a href="#orga840d16">4.1. Create javascript file <code>point.js</code></a></li>
+<li><a href="#org9bc8d0a">4.2. Create javascript file <code>fx.js</code></a></li>
+<li><a href="#orgc532484">4.3. Create javascript file <code>fx_view.js</code></a></li>
+<li><a href="#org52b9c1f">4.4. Create javascript file <code>parametric-drag-example.js</code>:</a></li>
+<li><a href="#orgbc9759b">4.5. Load <code>.js</code> files in html header</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga603009" class="outline-2">
+<h2 id="orga603009"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+This page uses the same technique as example <i>#2</i> (<a href="../drag2/index.html">../drag2/index.html</a>),
+except we demonstrate parametric dragging along a curve
+</p>
+
+<dl class="org-dl">
+<dt>source</dt><dd>org-mode source for this page is here: <a href="index-src.html">index-src.html</a></dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-org6078828" class="outline-2">
+<h2 id="org6078828"><span class="section-number-2">2.</span> Prerequisites</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+As for example <i>#1</i> (<a href="../drag1/index.html">../drag1/index.html</a>)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgba6bcc4" class="outline-2">
+<h2 id="orgba6bcc4"><span class="section-number-2">3.</span> Demo</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+(box appears below if-and-only-if publishing to html)
+</p>
+<div id="frame" style="border: 1px solid blue; max-width: 60em"></div>
+<script type="text/javascript">
+  window.onload = function() { ex.start(this); }
+</script>
+</div>
+</div>
+
+<div id="outline-container-org18f26fb" class="outline-2">
+<h2 id="org18f26fb"><span class="section-number-2">4.</span> Procedure</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-orga840d16" class="outline-3">
+<h3 id="orga840d16"><span class="section-number-3">4.1.</span> Create javascript file <code>point.js</code></h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+This file contains convenience subroutines for working with (x,y) coordinates
+</p>
+<ul class="org-ul">
+<li>pt.scale_pt</li>
+<li>pt.add_pt</li>
+<li>pt.distance_squared</li>
+<li>pt.find_closest</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-js"><span class="linenr">  1: </span>!function() {
+<span class="linenr">  2: </span>    var pt = {};
+<span class="linenr">  3: </span>
+<span class="linenr">  4: </span>    /* module for working with 2-dimensional coordinates */
+<span class="linenr">  5: </span>
+<span class="linenr">  6: </span>    /* scale coordinates p.x, p.y by a factor of k */
+<span class="linenr">  7: </span>    pt.scale_pt = function(k, p)
+<span class="linenr">  8: </span>    {
+<span class="linenr">  9: </span>    return {x: k*p.x, y: k*p.y};
+<span class="linenr"> 10: </span>    } /*scale_pt*/
+<span class="linenr"> 11: </span>
+<span class="linenr"> 12: </span>    /* returns cordinate-wise sum of points p1 and p2 */
+<span class="linenr"> 13: </span>    pt.add_pt = function(p1, p2)
+<span class="linenr"> 14: </span>    {
+<span class="linenr"> 15: </span>    return {x: p1.x+p2.x, y: p1.y+p2.y};
+<span class="linenr"> 16: </span>    } /*add_pt*/
+<span class="linenr"> 17: </span>
+<span class="linenr"> 18: </span>    pt.sub_pt = function(p1, p2)
+<span class="linenr"> 19: </span>    {
+<span class="linenr"> 20: </span>    return {x: p1.x-p2.x, y: p1.y-p2.y};
+<span class="linenr"> 21: </span>    } /*sub_pt*/
+<span class="linenr"> 22: </span>
+<span class="linenr"> 23: </span>    /* returns true iff the rectangle with corners (0,0), and box_pt
+<span class="linenr"> 24: </span>     * contains the point p;  false otherwise
+<span class="linenr"> 25: </span>     *
+<span class="linenr"> 26: </span>     * box :: Point
+<span class="linenr"> 27: </span>     * p :: Point
+<span class="linenr"> 28: </span>     */
+<span class="linenr"> 29: </span>    pt.box_contains = function(box, p)
+<span class="linenr"> 30: </span>    {
+<span class="linenr"> 31: </span>    return ((0 &lt;= p.x)
+<span class="linenr"> 32: </span>        &amp;&amp; (p.x &lt;= box.x)
+<span class="linenr"> 33: </span>        &amp;&amp; (0 &lt;= p.y)
+<span class="linenr"> 34: </span>        &amp;&amp; (p.y &lt;= box.y));
+<span class="linenr"> 35: </span>    } /*box_contains*/
+<span class="linenr"> 36: </span>
+<span class="linenr"> 37: </span>    /* find squared distance between two points
+<span class="linenr"> 38: </span>     * p1 and p2.
+<span class="linenr"> 39: </span>     * 
+<span class="linenr"> 40: </span>     * Point = {x,y}
+<span class="linenr"> 41: </span>     * p1, p2 :: Point
+<span class="linenr"> 42: </span>     */
+<span class="linenr"> 43: </span>    pt.distance_squared = function(p1, p2)
+<span class="linenr"> 44: </span>    {
+<span class="linenr"> 45: </span>    var dpt = pt.sub_pt(p1, p2);
+<span class="linenr"> 46: </span>
+<span class="linenr"> 47: </span>    return dpt.x*dpt.x + dpt.y*dpt.y;
+<span class="linenr"> 48: </span>    } /*distance_squared*/
+<span class="linenr"> 49: </span>
+<span class="linenr"> 50: </span>    /* given a set of points, 
+<span class="linenr"> 51: </span>     * find the point that's closest to a particular target point.
+<span class="linenr"> 52: </span>     * O(n) in n=fn_pt_v.length
+<span class="linenr"> 53: </span>     * 
+<span class="linenr"> 54: </span>     * point = {x,y}
+<span class="linenr"> 55: </span>     * fn_pt_v :: array(point)
+<span class="linenr"> 56: </span>     * target_fn :: point
+<span class="linenr"> 57: </span>     * return :: point | null
+<span class="linenr"> 58: </span>     */
+<span class="linenr"> 59: </span>    pt.find_closest_ix = function(target_pt, fn_pt_v)
+<span class="linenr"> 60: </span>    {
+<span class="linenr"> 61: </span>    var best_ix = -1;
+<span class="linenr"> 62: </span>    var best_d2 = null;
+<span class="linenr"> 63: </span>    var best_pt = null;
+<span class="linenr"> 64: </span>    var i = 0;
+<span class="linenr"> 65: </span>
+<span class="linenr"> 66: </span>    for(var n=fn_pt_v.length; i&lt;n; ++i) {
+<span class="linenr"> 67: </span>        var fn_pt = fn_pt_v[i];
+<span class="linenr"> 68: </span>        var d2 = pt.distance_squared(target_pt, fn_pt);
+<span class="linenr"> 69: </span>        if(best_ix === -1 || d2 &lt; best_d2) {
+<span class="linenr"> 70: </span>        best_ix = i;
+<span class="linenr"> 71: </span>        best_d2 = d2;
+<span class="linenr"> 72: </span>        best_pt = fn_pt;
+<span class="linenr"> 73: </span>        }
+<span class="linenr"> 74: </span>    }
+<span class="linenr"> 75: </span>
+<span class="linenr"> 76: </span>    return best_ix;
+<span class="linenr"> 77: </span>    } /*find_closest_ix*/
+<span class="linenr"> 78: </span>
+<span class="linenr"> 79: </span>    /* like find_closest_ix(), but returns the closest
+<span class="linenr"> 80: </span>     * point,  instead of its index in fn_pt_v.
+<span class="linenr"> 81: </span>     * 
+<span class="linenr"> 82: </span>     * Equivalent to fn_pt_v[find_closest_ix(target_pt, fn_pt_v)]
+<span class="linenr"> 83: </span>     */
+<span class="linenr"> 84: </span>    pt.find_closest = function(target_pt, fn_pt_v)
+<span class="linenr"> 85: </span>    {
+<span class="linenr"> 86: </span>    var best_ix = pt.find_closest_ix(target_pt, fn_pt_v);
+<span class="linenr"> 87: </span>    return fn_pt_v[best_ix];
+<span class="linenr"> 88: </span>    } /*find_closest*/
+<span class="linenr"> 89: </span>
+<span class="linenr"> 90: </span>    /* given a line segment L defined by endpoints p, p_ref,  and a bounding rectange r
+<span class="linenr"> 91: </span>     * defined by points (0,0) and b
+<span class="linenr"> 92: </span>     * where p_ref is assumed ot be inside r:
+<span class="linenr"> 93: </span>     * - if p is also inside r,  return p
+<span class="linenr"> 94: </span>     * - otherwise return the point pl on L that intesects the boundary of r
+<span class="linenr"> 95: </span>     */
+<span class="linenr"> 96: </span>    pt.clip_line = function(p, p_ref, box)
+<span class="linenr"> 97: </span>    {
+<span class="linenr"> 98: </span>    /* if clipping occurs,  it's for higher values of t */
+<span class="linenr"> 99: </span>    var t_min = 1.0;
+<span class="linenr">100: </span>    var t1 = 1.0;
+<span class="linenr">101: </span>    var t2 = 1.0;
+<span class="linenr">102: </span>    var t3 = 1.0;
+<span class="linenr">103: </span>    var t4 = 1.0;
+<span class="linenr">104: </span>
+<span class="linenr">105: </span>    if(pt.box_contains(box, p)) {
+<span class="linenr">106: </span>        return p;
+<span class="linenr">107: </span>    } else {
+<span class="linenr">108: </span>        /* parametrize L by t in [0,1]:
+<span class="linenr">109: </span>         *   L(t) = p_ref + t * (p - p_ref)
+<span class="linenr">110: </span>         * note that when we assign to p,  we replace L with a sub-segment of itself
+<span class="linenr">111: </span>         */
+<span class="linenr">112: </span>        if(p.x &lt; 0.0) {
+<span class="linenr">113: </span>        /* p on LHS of r */
+<span class="linenr">114: </span>        t1 = (0.0 - p_ref.x) / (p.x - p_ref.x);
+<span class="linenr">115: </span>        }
+<span class="linenr">116: </span>
+<span class="linenr">117: </span>        if(p.x &gt; box.x) {
+<span class="linenr">118: </span>        /* p on RHS or r */
+<span class="linenr">119: </span>        t2 = (box.x - p_ref.x) / (p.x - p_ref.x);
+<span class="linenr">120: </span>        }
+<span class="linenr">121: </span>
+<span class="linenr">122: </span>        if(p.y &lt; 0.0) {
+<span class="linenr">123: </span>        /* p above r */
+<span class="linenr">124: </span>        t3 = (0.0 - p_ref.y) / (p.y - p_ref.y);
+<span class="linenr">125: </span>        }
+<span class="linenr">126: </span>
+<span class="linenr">127: </span>        if(p.y &gt; box.y) {
+<span class="linenr">128: </span>        /* p below r */
+<span class="linenr">129: </span>        t4 = (box.y - p_ref.y) / (p.y - p_ref.y);
+<span class="linenr">130: </span>        }
+<span class="linenr">131: </span>
+<span class="linenr">132: </span>        t_min = Math.min(t1,t2,t3,t4);
+<span class="linenr">133: </span>
+<span class="linenr">134: </span>        /* clip p: p &lt;- p_ref + t * (p - p_ref) */
+<span class="linenr">135: </span>        p = pt.add_pt(p_ref, pt.scale_pt(t_min, pt.sub_pt(p, p_ref)));
+<span class="linenr">136: </span>
+<span class="linenr">137: </span>        return p;
+<span class="linenr">138: </span>    }
+<span class="linenr">139: </span>    } /*clip_line*/
+<span class="linenr">140: </span>
+<span class="linenr">141: </span>    this.pt = pt;
+<span class="linenr">142: </span>}();
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9bc8d0a" class="outline-3">
+<h3 id="org9bc8d0a"><span class="section-number-3">4.2.</span> Create javascript file <code>fx.js</code></h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+This contains some utility procedures for working with functions
+of one variable
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js"><span class="linenr"> 1: </span>!function() {
+<span class="linenr"> 2: </span>    /* module for working with a particular one-parameter function -- call it f(x) */
+<span class="linenr"> 3: </span>
+<span class="linenr"> 4: </span>    var fx
+<span class="linenr"> 5: </span>    = { /*procedure to evaluate f(x)*/
+<span class="linenr"> 6: </span>        target_fn: null,
+<span class="linenr"> 7: </span>        /* like target_fn(),  but returns a point */
+<span class="linenr"> 8: </span>        eval_fn: null
+<span class="linenr"> 9: </span>    };
+<span class="linenr">10: </span>
+<span class="linenr">11: </span>    /* target function f(x)
+<span class="linenr">12: </span>     * x :: number
+<span class="linenr">13: </span>     * returns :: number
+<span class="linenr">14: </span>     */
+<span class="linenr">15: </span>    fx.target_fn = function(x) {
+<span class="linenr">16: </span>    return x * x * (x - 0.6);
+<span class="linenr">17: </span>    } /*target_fn*/
+<span class="linenr">18: </span>
+<span class="linenr">19: </span>    /* f(x), returns a point
+<span class="linenr">20: </span>     * x :: number
+<span class="linenr">21: </span>     * returns :: Point
+<span class="linenr">22: </span>     */
+<span class="linenr">23: </span>    fx.eval_fn = function(x_arg)
+<span class="linenr">24: </span>    {
+<span class="linenr">25: </span>    return {x: x_arg, y: fx.target_fn(x_arg)};
+<span class="linenr">26: </span>    } /*eval_fn*/
+<span class="linenr">27: </span>
+<span class="linenr">28: </span>    /* given scale k, {offset_x, offset_y}
+<span class="linenr">29: </span>     * returns function
+<span class="linenr">30: </span>     *   f({x,y}) = {offset_x + scale*x, offset_y + scale*y}
+<span class="linenr">31: </span>     */
+<span class="linenr">32: </span>    fx.linear_fn = function(offset_pt, scale) {
+<span class="linenr">33: </span>    /* p :: Point */
+<span class="linenr">34: </span>    return function(p) {
+<span class="linenr">35: </span>        return pt.add_pt(offset_pt,
+<span class="linenr">36: </span>                 pt.scale_pt(scale, p));
+<span class="linenr">37: </span>    }
+<span class="linenr">38: </span>    } /*linear_fn*/
+<span class="linenr">39: </span>
+<span class="linenr">40: </span>    /* make an array of points, representing
+<span class="linenr">41: </span>     * fx evaluated at regularly-spaced intervals;
+<span class="linenr">42: </span>     * clip so that all points returned fall within the rectangle
+<span class="linenr">43: </span>     * defined by (0,0) and box_pt
+<span class="linenr">44: </span>     *
+<span class="linenr">45: </span>     * fx :: number -&gt; Point
+<span class="linenr">46: </span>     * lo_x, hi_x :: number
+<span class="linenr">47: </span>     * n_pt :: number
+<span class="linenr">48: </span>     * box_pt :: Point
+<span class="linenr">49: </span>     */
+<span class="linenr">50: </span>    fx.make_target_pt_v = function(fx, lo_x, hi_x, n_pt, pt2screen, box_pt)
+<span class="linenr">51: </span>    {
+<span class="linenr">52: </span>    var target_pt_v = [];
+<span class="linenr">53: </span>    var target_pt_i = 0;
+<span class="linenr">54: </span>    var p = null;
+<span class="linenr">55: </span>    var pm1 = null;
+<span class="linenr">56: </span>
+<span class="linenr">57: </span>    /* evaluate f(x) at regularly spaced x-coordinates on interval [lo_x, hi_x] 
+<span class="linenr">58: </span>     * keep only points with screen coords that fall inside the rectangle
+<span class="linenr">59: </span>     * with corners {(0,0), box_pt}, plus:
+<span class="linenr">60: </span>     * one point just before and one point just after
+<span class="linenr">61: </span>     */
+<span class="linenr">62: </span>    for(var i=0; i&lt;n_pt; ++i) {
+<span class="linenr">63: </span>        tmp = lo_x + (i * (hi_x - lo_x) / n_pt);
+<span class="linenr">64: </span>        pm1 = p;
+<span class="linenr">65: </span>        p = pt2screen(fx(tmp));
+<span class="linenr">66: </span>
+<span class="linenr">67: </span>        if(pt.box_contains(box_pt, p)) {
+<span class="linenr">68: </span>        if((pm1 !== null) &amp;&amp; !pt.box_contains(box_pt, pm1)) {
+<span class="linenr">69: </span>            /* pm1 outside box,  substitute clipped version */
+<span class="linenr">70: </span>            target_pt_v[target_pt_i++] = pt.clip_line(pm1, p, box_pt);
+<span class="linenr">71: </span>        }
+<span class="linenr">72: </span>        target_pt_v[target_pt_i++] = p;
+<span class="linenr">73: </span>        } else if((pm1 !== null) &amp;&amp; pt.box_contains(box_pt, pm1)) {
+<span class="linenr">74: </span>        /* if pm1 was inside the box,  then include p 
+<span class="linenr">75: </span>           after all */
+<span class="linenr">76: </span>        target_pt_v[target_pt_i++] = pt.clip_line(p, pm1, box_pt);
+<span class="linenr">77: </span>        }
+<span class="linenr">78: </span>    }
+<span class="linenr">79: </span>
+<span class="linenr">80: </span>    return target_pt_v;
+<span class="linenr">81: </span>    } /*make_target_pt_v*/
+<span class="linenr">82: </span>
+<span class="linenr">83: </span>    this.fx = fx;
+<span class="linenr">84: </span>}();
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc532484" class="outline-3">
+<h3 id="orgc532484"><span class="section-number-3">4.3.</span> Create javascript file <code>fx_view.js</code></h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+This file contains subroutines for managing svg elements (as d3 selections)
+that display a function f(x)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js"><span class="linenr">  1: </span>!function() {
+<span class="linenr">  2: </span>    /* module for displaying a function f(x) using svg,
+<span class="linenr">  3: </span>     * together with a draggable point that's constrained to lie on the function
+<span class="linenr">  4: </span>     *
+<span class="linenr">  5: </span>     * uses: module point.js
+<span class="linenr">  6: </span>     */
+<span class="linenr">  7: </span>
+<span class="linenr">  8: </span>    /* view elements - things we see on the screen */
+<span class="linenr">  9: </span>    var fx_view
+<span class="linenr"> 10: </span>    = { /* procedure to setup this view */
+<span class="linenr"> 11: </span>        draw: null,
+<span class="linenr"> 12: </span>        /* svg bounding box */
+<span class="linenr"> 13: </span>        box: null,
+<span class="linenr"> 14: </span>        /* svg path representing points {x,f(x)} */
+<span class="linenr"> 15: </span>        fx_path: null,
+<span class="linenr"> 16: </span>        /* function to generate a path from a vector of points */
+<span class="linenr"> 17: </span>        svg_line_fn: null,
+<span class="linenr"> 18: </span>        /* function to respond to a new selection point */
+<span class="linenr"> 19: </span>        fx_update_select_circle: null,
+<span class="linenr"> 20: </span>        /* svg element to display a selected point on f(x) */
+<span class="linenr"> 21: </span>        fx_select_circle: null,
+<span class="linenr"> 22: </span>        /* function to update selection given mouse coords */
+<span class="linenr"> 23: </span>        fx_update_select: null,
+<span class="linenr"> 24: </span>        /* function to invoke when a drag event occurs */
+<span class="linenr"> 25: </span>        drag_function : null
+<span class="linenr"> 26: </span>    };
+<span class="linenr"> 27: </span>
+<span class="linenr"> 28: </span>    /* function to create an SVG approximation to a parametric function 
+<span class="linenr"> 29: </span>     * using a series of straight line segments
+<span class="linenr"> 30: </span>     */
+<span class="linenr"> 31: </span>    fx_view.svg_line_fn = (d3.svg.line()
+<span class="linenr"> 32: </span>               .x(function(d) { return d.x; })
+<span class="linenr"> 33: </span>               .y(function(d) { return d.y; })
+<span class="linenr"> 34: </span>               .interpolate("linear"));
+<span class="linenr"> 35: </span>
+<span class="linenr"> 36: </span>    /* create/update selection circle - intended to mark
+<span class="linenr"> 37: </span>     * location of selected point pt
+<span class="linenr"> 38: </span>     */
+<span class="linenr"> 39: </span>    fx_view.fx_update_select_circle
+<span class="linenr"> 40: </span>    = function(pt)
+<span class="linenr"> 41: </span>    {
+<span class="linenr"> 42: </span>    var dd = [{center: pt, radius: 4}];
+<span class="linenr"> 43: </span>
+<span class="linenr"> 44: </span>    fx_view.fx_select_circle = (fx_view.box.selectAll(".fxselect")
+<span class="linenr"> 45: </span>                    .data(dd));
+<span class="linenr"> 46: </span>
+<span class="linenr"> 47: </span>    /* create draggable circle representing a selected point on f(x) */
+<span class="linenr"> 48: </span>    fx_view.fx_select_circle
+<span class="linenr"> 49: </span>        .enter()
+<span class="linenr"> 50: </span>        .append("svg:circle")
+<span class="linenr"> 51: </span>        .attr("class", "fxselect")
+<span class="linenr"> 52: </span>        .call(fx_view.drag_function)
+<span class="linenr"> 53: </span>        .attr("r", function(d) { return d.radius; })
+<span class="linenr"> 54: </span>        .style("fill", "black");
+<span class="linenr"> 55: </span>
+<span class="linenr"> 56: </span>    fx_view.fx_select_circle
+<span class="linenr"> 57: </span>        .attr("cx", function(d) { return d.center.x; })
+<span class="linenr"> 58: </span>        .attr("cy", function(d) { return d.center.y; });
+<span class="linenr"> 59: </span>    } /*fx_update_select_circle*/
+<span class="linenr"> 60: </span>
+<span class="linenr"> 61: </span>    /* parent_id :: string.  pass this to d3.select() to get selection for parent
+<span class="linenr"> 62: </span>     *   at which to attach svg box
+<span class="linenr"> 63: </span>     * box_pt :: Point.  size of svg bounding box
+<span class="linenr"> 64: </span>     */
+<span class="linenr"> 65: </span>    fx_view.draw = function(parent_id, box_pt, target_pt_v) {
+<span class="linenr"> 66: </span>    /* create an svg bounding box, to contain interactive drawing area */
+<span class="linenr"> 67: </span>    fx_view.box = (d3.select(parent_id)
+<span class="linenr"> 68: </span>               .append("svg")
+<span class="linenr"> 69: </span>               .attr("class", "box")
+<span class="linenr"> 70: </span>               .attr("width", box_pt.x)
+<span class="linenr"> 71: </span>               .attr("height", box_pt.y));
+<span class="linenr"> 72: </span>
+<span class="linenr"> 73: </span>    /* border, so bounding box is visible */
+<span class="linenr"> 74: </span>    fx_view.border = (fx_view.box.append("svg:rect")
+<span class="linenr"> 75: </span>              .attr("class", "border")
+<span class="linenr"> 76: </span>              .attr("x", 1)
+<span class="linenr"> 77: </span>              .attr("y", 1)
+<span class="linenr"> 78: </span>              .attr("width", box_pt.x - 2)
+<span class="linenr"> 79: </span>              .attr("height", box_pt.y - 2)
+<span class="linenr"> 80: </span>              .attr("stroke", "blue")
+<span class="linenr"> 81: </span>              .attr("stroke-width", 3)
+<span class="linenr"> 82: </span>              .style("fill", "none"));
+<span class="linenr"> 83: </span>
+<span class="linenr"> 84: </span>    /* create path representing our target function f(x) */
+<span class="linenr"> 85: </span>    fx_view.fx_path = (fx_view.box.append("path")
+<span class="linenr"> 86: </span>               .attr("d", fx_view.svg_line_fn(target_pt_v))
+<span class="linenr"> 87: </span>               .attr("stroke", "blue")
+<span class="linenr"> 88: </span>               .attr("stroke-width", 2)
+<span class="linenr"> 89: </span>               .attr("fill", "none")
+<span class="linenr"> 90: </span>              );
+<span class="linenr"> 91: </span>
+<span class="linenr"> 92: </span>    fx_view.fx_update_select_circle(pt.find_closest(pt.scale_pt(0.5, box_pt),
+<span class="linenr"> 93: </span>                            target_pt_v));
+<span class="linenr"> 94: </span>
+<span class="linenr"> 95: </span>    } /*draw*/
+<span class="linenr"> 96: </span>
+<span class="linenr"> 97: </span>    /* update selection circle
+<span class="linenr"> 98: </span>     * for an event at Point pt
+<span class="linenr"> 99: </span>     */
+<span class="linenr">100: </span>    fx_view.fx_update_select
+<span class="linenr">101: </span>    = function(p, target_pt_v)
+<span class="linenr">102: </span>    {
+<span class="linenr">103: </span>    /* find point on {x,f(x)} that's closest to 
+<span class="linenr">104: </span>     * mouse location (i.e. to d3.event)
+<span class="linenr">105: </span>     */
+<span class="linenr">106: </span>    var best_fx_pt = pt.find_closest(p, target_pt_v);
+<span class="linenr">107: </span>
+<span class="linenr">108: </span>    fx_view.fx_update_select_circle(best_fx_pt)
+<span class="linenr">109: </span>    } /*fx_update_select*/
+<span class="linenr">110: </span>
+<span class="linenr">111: </span>    fx_view.init_drag_function
+<span class="linenr">112: </span>    = (function(target_pt_v) {
+<span class="linenr">113: </span>        fx_view.drag_function
+<span class="linenr">114: </span>        = (d3.behavior.drag()
+<span class="linenr">115: </span>           .on("dragstart",
+<span class="linenr">116: </span>               function() {
+<span class="linenr">117: </span>               fx_view.fx_select_circle
+<span class="linenr">118: </span>                   .style("fill", "red")
+<span class="linenr">119: </span>                   .attr("r", 5);
+<span class="linenr">120: </span>               })
+<span class="linenr">121: </span>           .on("drag",
+<span class="linenr">122: </span>               function() {
+<span class="linenr">123: </span>               fx_view.fx_update_select(d3.event, ex.target_pt_v);
+<span class="linenr">124: </span>               })
+<span class="linenr">125: </span>           .on("dragend",
+<span class="linenr">126: </span>               function() {
+<span class="linenr">127: </span>               fx_view.fx_select_circle
+<span class="linenr">128: </span>                   .style("fill", "black")
+<span class="linenr">129: </span>                   .attr("r", 4);
+<span class="linenr">130: </span>               })
+<span class="linenr">131: </span>          );
+<span class="linenr">132: </span>    });
+<span class="linenr">133: </span>
+<span class="linenr">134: </span>    this.fx_view = fx_view;
+<span class="linenr">135: </span>}();
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org52b9c1f" class="outline-3">
+<h3 id="org52b9c1f"><span class="section-number-3">4.4.</span> Create javascript file <code>parametric-drag-example.js</code>:</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+This program:
+</p>
+<ul class="org-ul">
+<li>draws the cubic polynomial \(f(x) = x^2(x - 0.6)\)</li>
+<li>draws a draggable filled circle that's constrained to coordinates \((x,f(x))\)</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-js"><span class="linenr"> 1: </span>!function() {
+<span class="linenr"> 2: </span>    var ex = {};
+<span class="linenr"> 3: </span>
+<span class="linenr"> 4: </span>    /* Requires: 
+<span class="linenr"> 5: </span>     * - point.js
+<span class="linenr"> 6: </span>     * - fx.js
+<span class="linenr"> 7: </span>     * - fx_view.js
+<span class="linenr"> 8: </span>     */
+<span class="linenr"> 9: </span>    ex.box_pt = {x: 600, y: 400};
+<span class="linenr">10: </span>
+<span class="linenr">11: </span>    /* w :: Window */
+<span class="linenr">12: </span>    ex.start = function(w)
+<span class="linenr">13: </span>    {
+<span class="linenr">14: </span>    ex.pt2screen = fx.linear_fn(pt.sub_pt(pt.scale_pt(0.5, ex.box_pt),
+<span class="linenr">15: </span>                          fx.eval_fn(0.0) /*ctr_fx*/),
+<span class="linenr">16: </span>                    200.0 /*scale factor*/);
+<span class="linenr">17: </span>    ex.target_pt_v = fx.make_target_pt_v(fx.eval_fn,
+<span class="linenr">18: </span>                         -1.66, +5.0, 200.0 /*n_pt*/,
+<span class="linenr">19: </span>                         ex.pt2screen, ex.box_pt);
+<span class="linenr">20: </span>    fx_view.init_drag_function(ex.target_pt_v);
+<span class="linenr">21: </span>    fx_view.draw("#frame", ex.box_pt, ex.target_pt_v);
+<span class="linenr">22: </span>    }
+<span class="linenr">23: </span>
+<span class="linenr">24: </span>    this.ex = ex;
+<span class="linenr">25: </span>}();
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbc9759b" class="outline-3">
+<h3 id="orgbc9759b"><span class="section-number-3">4.5.</span> Load <code>.js</code> files in html header</h3>
+<div class="outline-text-3" id="text-4-5">
+<p>
+Tell org-mode's html generator to load <code>d3</code> and <code>parametric-drag-example.js</code>
+when it generates this page's html <code>&lt;head&gt;</code> element.
+We did the same thing in example <i>#2</i>.
+</p>
+
+<p>
+At the top of the <code>.org</code> file:
+</p>
+<pre class="example" id="org0ef8378">
+#+html_head: &lt;script type="text/javascript" src="/ext/d3/d3.js"&gt;&lt;/script&gt;
+#+html_head: &lt;script type="text/javascript" src="point.js"&gt;&lt;/script&gt;
+#+html_head: &lt;script type="text/javascript" src="fx.js"&gt;&lt;/script&gt;
+#+html_head: &lt;script type="text/javascript" src="fx_view.js"&gt;&lt;/script&gt;
+#+html_head: &lt;script type="text/javascript" src="parametric-drag-example.js"&gt;&lt;/script&gt;
+</pre>
+
+<p>
+then this embedded javascript runs (see browser dev console)..
+</p>
+<pre class="example" id="org05edc5b">
+#+begin_export html
+&lt;div id="frame" style="border: 1px solid blue; max-width: 60em"&gt;&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+  window.onload = function() { ex.start(this); }
+&lt;/script&gt;
+#+end_export
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: roly-desktop-23</p>
+<p class="date">Created: 2023-09-29 Fri 13:35</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
