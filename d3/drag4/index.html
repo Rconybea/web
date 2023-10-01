@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-09-29 Fri 13:35 -->
+<!-- 2023-10-01 Sun 16:17 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>d3 draggable object example #4 &#x2013; parametric + improved selection identification</title>
@@ -193,14 +193,14 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<script type="text/javascript" src="/ext/d3/d3.v3.min.js"></script>
+<script type="text/javascript" src="/web/ext/d3/d3.v3.min.js"></script>
 <script type="text/javascript" src="point.js"></script>
 <script type="text/javascript" src="fx.js"></script>
 <script type="text/javascript" src="fx_view.js"></script>
 <script type="text/javascript" src="parametric-drag-example.js"></script>
-<link rel="stylesheet" type="text/css" href="../../css/notebook.css" />
+<link rel="stylesheet" type="text/css" href="/web/css/notebook.css" />
 
-<script src="/ext/orginfo/org-info.js">
+<script src="/web/ext/orginfo/org-info.js">
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
 // @license-end
 </script>
@@ -304,7 +304,7 @@ such that the line through <i>p<sub>ref</sub></i> and <i>p<sub>tgt</sub></i> is 
 <i>p<sub>tgt</sub></i> is the point in <i>L</i> that's closest to <i>p<sub>ref</sub></i>
 </p>
 
-<pre class="example" id="org6caf52f">
+<pre class="example" id="orgd293a13">
 /* given a line L through points pt1,pt2,
  * find the point p on the line such that the line through p,target_pt
  * is perpendicular to L
@@ -394,7 +394,7 @@ return {x: xt, y: yt};
 <div id="outline-container-orgbd4cb27" class="outline-3">
 <h3 id="orgbd4cb27"><span class="section-number-3">4.2.</span> Upgrade <code>fx_view.update_select</code> to use a smoothly-varying function of mouse coordinates</h3>
 <div class="outline-text-3" id="text-4-2">
-<pre class="example" id="orgb2b685a">
+<pre class="example" id="org1aefe8d">
 /* update selection circle
  * for an event at Point pt
  */
@@ -476,7 +476,7 @@ fx_view.fx_select_circle
 This step is identical to the similar step in example <i>#3</i>
 At the top of the <code>.org</code> file:
 </p>
-<pre class="example" id="org46e267c">
+<pre class="example" id="org3a3a1ef">
 #+html_head: &lt;script type="text/javascript" src="/ext/d3/d3.js"&gt;&lt;/script&gt;
 #+html_head: &lt;script type="text/javascript" src="point.js"&gt;&lt;/script&gt;
 #+html_head: &lt;script type="text/javascript" src="fx.js"&gt;&lt;/script&gt;
@@ -492,7 +492,7 @@ At the top of the <code>.org</code> file:
 <p>
 This also follows the same model we used in example <i>#3</i>.
 </p>
-<pre class="example" id="org2bac8fe">
+<pre class="example" id="org1057cb8">
 #+begin_html
 &lt;div id="frame"&gt;&lt;/div&gt;
 &lt;script type="text/javascript"&gt;
@@ -506,7 +506,7 @@ This also follows the same model we used in example <i>#3</i>.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: roly-desktop-23</p>
-<p class="date">Created: 2023-09-29 Fri 13:35</p>
+<p class="date">Created: 2023-10-01 Sun 16:17</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-09-29 Fri 13:39 -->
+<!-- 2023-10-01 Sun 16:17 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>d3 draggable object example #5 &#x2013; parametric + tangent line</title>
@@ -193,14 +193,14 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<script type="text/javascript" src="/ext/d3/d3.v3.min.js"></script>
+<script type="text/javascript" src="/web/ext/d3/d3.v3.min.js"></script>
 <script type="text/javascript" src="point.js"></script>
 <script type="text/javascript" src="fx.js"></script>
 <script type="text/javascript" src="fx_view.js"></script>
 <script type="text/javascript" src="parametric-drag-example.js"></script>
-<link rel="stylesheet" type="text/css" href="../../css/notebook.css" />
+<link rel="stylesheet" type="text/css" href="/web/css/notebook.css" />
 
-<script src="/ext/orginfo/org-info.js">
+<script src="/web/ext/orginfo/org-info.js">
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
 // @license-end
 </script>
@@ -305,7 +305,7 @@ Add functions:
 <li><code>fx.linear_inverse_fn</code></li>
 </ul>
 
-<pre class="example" id="orgb3cd868">
+<pre class="example" id="org467a275">
 /* derivative f'(x) of fx.target_fn
  * x :: number
  * returns :: number
@@ -315,7 +315,7 @@ return x * (3 * x - 1.2);
 } /*target_deriv_fn*/
 </pre>
 
-<pre class="example" id="orgc431804">
+<pre class="example" id="orgae45c03">
 /* the (linear) function of (x) that is
  * tangent to fx.target_fn at x0
  */
@@ -327,7 +327,7 @@ return function(x) { return fx0 + (x - x0) * dfx0; }
 } /*make_target_tangent_fn*/
 </pre>
 
-<pre class="example" id="orge9dfb02">
+<pre class="example" id="org6c0550e">
 /* inverse of fx.linear_fn:
  * given scale k, {offset_x, offset_y}
  * return function
@@ -351,7 +351,7 @@ return function(p) {
 Extend <code>fx_view.draw</code> to draw tangent function:
 </p>
 
-<pre class="example" id="org99e34f0">
+<pre class="example" id="orgd0c7c6b">
 /* parent_id :: string.  pass this to d3.select() to get selection for parent
  *   at which to attach svg box
  * box_pt :: Point.  size of svg bounding box
@@ -404,7 +404,7 @@ fx_view.fx_update_select_circle(pt.find_closest(pt.scale_pt(0.5, box_pt),
 Extend <code>ex.start</code> to supply new conversion to <code>fx.draw</code>
 </p>
 
-<pre class="example" id="orgafec17d">
+<pre class="example" id="org167e21d">
 ex.screen2pt = fx.linear_inverse_fn(pt.sub_pt(pt.scale_pt(0.5, ex.box_pt),
                       fx.eval_fn(0.0) /*ctr_fx*/),
                 200.0 /*scale_factor*/);
@@ -423,7 +423,7 @@ fx_view.draw("#frame", ex.box_pt, ex.target_pt_v,
 This step is identical to the similar step in example <i>#3</i>, example <i>#4</i>
 At the top of the <code>.org</code> file:
 </p>
-<pre class="example" id="org1ba4685">
+<pre class="example" id="orgcff5d40">
 #+html_head: &lt;script type="text/javascript" src="/ext/d3/d3.js"&gt;&lt;/script&gt;
 #+html_head: &lt;script type="text/javascript" src="point.js"&gt;&lt;/script&gt;
 #+html_head: &lt;script type="text/javascript" src="fx.js"&gt;&lt;/script&gt;
@@ -439,7 +439,7 @@ At the top of the <code>.org</code> file:
 <p>
 This also follows the same model we used in example <i>#3</i>, example <i>#4</i>.
 </p>
-<pre class="example" id="org2fe46ea">
+<pre class="example" id="orga255b42">
 #+begin_html
 &lt;div id="frame"&gt;&lt;/div&gt;
 &lt;script type="text/javascript"&gt;
@@ -453,7 +453,7 @@ This also follows the same model we used in example <i>#3</i>, example <i>#4</i>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: roly-desktop-23</p>
-<p class="date">Created: 2023-09-29 Fri 13:39</p>
+<p class="date">Created: 2023-10-01 Sun 16:17</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
