@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-01 Sun 14:52 -->
+<!-- 2023-10-01 Sun 15:47 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>c++ development environment</title>
@@ -230,12 +230,12 @@ org_html_manager.setup();  // activate after the parameters are set
 <ul>
 <li><a href="#org4e64d63">1.1. Goals / Interests</a></li>
 <li><a href="#orgfa493de">1.2. Operating System Stack</a></li>
-<li><a href="#orgd418037">1.3. Build Stack</a></li>
-<li><a href="#org11e531c">1.4. C++ Library Stack</a></li>
+<li><a href="#org5897e9d">1.3. Build Stack</a></li>
+<li><a href="#orgf428c7c">1.4. C++ Library Stack</a></li>
 <li><a href="#org817ec17">1.5. Topics</a>
 <ul>
-<li><a href="#org5897e9d">1.5.1. Build Stack</a></li>
-<li><a href="#orgf428c7c">1.5.2. C++ Library Stack</a></li>
+<li><a href="#org55ce75b">1.5.1. Build Stack</a></li>
+<li><a href="#orgd734db0">1.5.2. C++ Library Stack</a></li>
 <li><a href="#org0566069">1.5.3. Publish Static HTML</a></li>
 </ul>
 </li>
@@ -336,8 +336,8 @@ with an arbitrarily elaborate dependecy graph</li>
 </div>
 </div>
 
-<div id="outline-container-orgd418037" class="outline-3">
-<h3 id="orgd418037"><span class="section-number-3">1.3.</span> Build Stack</h3>
+<div id="outline-container-org5897e9d" class="outline-3">
+<h3 id="org5897e9d"><span class="section-number-3">1.3.</span> Build Stack</h3>
 <div class="outline-text-3" id="text-1-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -377,8 +377,8 @@ with an arbitrarily elaborate dependecy graph</li>
 </div>
 </div>
 
-<div id="outline-container-org11e531c" class="outline-3">
-<h3 id="org11e531c"><span class="section-number-3">1.4.</span> C++ Library Stack</h3>
+<div id="outline-container-orgf428c7c" class="outline-3">
+<h3 id="orgf428c7c"><span class="section-number-3">1.4.</span> C++ Library Stack</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 using these c++ libraries 
@@ -426,8 +426,8 @@ using these c++ libraries
 <h3 id="org817ec17"><span class="section-number-3">1.5.</span> Topics</h3>
 <div class="outline-text-3" id="text-1-5">
 </div>
-<div id="outline-container-org5897e9d" class="outline-4">
-<h4 id="org5897e9d"><span class="section-number-4">1.5.1.</span> Build Stack</h4>
+<div id="outline-container-org55ce75b" class="outline-4">
+<h4 id="org55ce75b"><span class="section-number-4">1.5.1.</span> Build Stack</h4>
 <div class="outline-text-4" id="text-1-5-1">
 </div>
 <ol class="org-ol">
@@ -442,8 +442,8 @@ using these c++ libraries
 </ol>
 </div>
 
-<div id="outline-container-orgf428c7c" class="outline-4">
-<h4 id="orgf428c7c"><span class="section-number-4">1.5.2.</span> C++ Library Stack</h4>
+<div id="outline-container-orgd734db0" class="outline-4">
+<h4 id="orgd734db0"><span class="section-number-4">1.5.2.</span> C++ Library Stack</h4>
 <div class="outline-text-4" id="text-1-5-2">
 </div>
 <ol class="org-ol">
@@ -474,7 +474,7 @@ See also
 <p>
 <code>org-publish-project-alist</code> configures org trees for publishing:
 </p>
-<pre class="example" id="orgb96fa28">
+<pre class="example" id="org21e2a52">
 ;; ----------------------------------------------------------------
 ;; org-mode publishing
 ;;
@@ -514,7 +514,7 @@ See also
 <p>
 With this configuration
 </p>
-<pre class="example" id="org1c0df17">
+<pre class="example" id="org4f613df">
 ~M-x org-publish-project org-howto~
 </pre>
 
@@ -535,7 +535,7 @@ for example <code>graphviz</code>.
 <code>~/.emacs</code> Configuration for such adopted sources (as of 1oct2023 just graphviz):
 </p>
 
-<pre class="example" id="org3b3c653">
+<pre class="example" id="orge9371a4">
 ;; ----------------------------------------------------------------
 ;; org-mode babel setup
 ;; (execute dot/ditaa/bash/c++ etc. from .org code blocks)
@@ -593,7 +593,7 @@ for example <code>graphviz</code>.
 Example <code>.org</code> content using graphviz:
 </p>
 
-<pre class="example" id="org1a6859e">
+<pre class="example" id="org6b5e5d6">
 #+begin_src dot :file img/living-room-av/macmini.svg :exports results :cmdline -Tsvg
 digraph {
   size="4,4";
@@ -620,7 +620,7 @@ publishing (or using <code>C-c C-v b</code>) creates/updates file in <code>img/l
 <p>
 Once we have HTML in <code>~/proj/public_html/org-howto</code>,  can view it locally:
 </p>
-<pre class="example" id="org1937e9a">
+<pre class="example" id="org40ef857">
 $ python3 -m http.server --directory ~/proj/public_html/org-howto 8080
 </pre>
 
@@ -637,26 +637,31 @@ Caveat: builtin python webserver doesn't support https.
 <li><a id="org8fa00e7"></a>publish to github pages<br />
 <div class="outline-text-5" id="text-1-5-3-4">
 <p>
-Important:  need symlink:
+Note:  unsuccessfully tried this symlink:
 </p>
-<pre class="example" id="orgef3bbc2">
+<pre class="example" id="orgbff7e79">
 $ cd ~/proj/public_html/org-howto
 $ ln -s . docs
 </pre>
 
 <p>
-This is because git pages puts project root <code>.html</code> under <code>docs</code>.
+because git pages puts project root <code>.html</code> under <code>docs</code>.
 As of 1oct2023,  it seems to offer this as an optional feature;
-my experience was that it only works this way.
+my experience is that it only works this way.
+</p>
+
+<p>
+fails because apparently github expands symlinks when deploying;
+it complains of too much nesting, mentions <code>docs/docs/docs/...</code> 
 </p>
 
 <p>
 To update github pages:
-#+begin_example
+</p>
+<pre class="example" id="org1dd86da">
 $ cd ~/proj/public_html/org-howto
 $ git push
-#_end_example
-</p>
+</pre>
 </div>
 </li>
 </ol>
@@ -666,7 +671,7 @@ $ git push
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: roly-desktop-23</p>
-<p class="date">Created: 2023-10-01 Sun 14:52</p>
+<p class="date">Created: 2023-10-01 Sun 15:47</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
