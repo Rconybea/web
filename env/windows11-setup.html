@@ -6,7 +6,7 @@
 <!-- 2023-10-02 Mon 12:46 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>index.org source</title>
+<title>windows11 setup</title>
 <meta name="author" content="roly-desktop-23" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -193,9 +193,9 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="css/notebook.css" />
+<link rel="stylesheet" type="text/css" href="/web/css/notebook.css" />
 
-<script src="https://orgmode.org/org-info.js">
+<script src="/web/ext/orginfo/org-info.js">
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
 // @license-end
 </script>
@@ -203,71 +203,151 @@
 <script>
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
 org_html_manager.set("TOC_DEPTH", "3");
-org_html_manager.set("LINK_HOME", "");
-org_html_manager.set("LINK_UP", "index.html");
-org_html_manager.set("LOCAL_TOC", "1");
+org_html_manager.set("LINK_HOME", "index.html");
+org_html_manager.set("LINK_UP", "");
+org_html_manager.set("LOCAL_TOC", "0");
 org_html_manager.set("VIEW_BUTTONS", "0");
-org_html_manager.set("MOUSE_HINT", "underline");
+org_html_manager.set("MOUSE_HINT", "#ffc0c0");
 org_html_manager.set("FIXED_TOC", "0");
-org_html_manager.set("TOC", "1");
-org_html_manager.set("VIEW", "info");
+org_html_manager.set("TOC", "0");
+org_html_manager.set("VIEW", "showall");
 org_html_manager.setup();  // activate after the parameters are set
 // @license-end
 </script>
 </head>
 <body>
 <div id="org-div-home-and-up">
- <a accesskey="h" href="index.html"> UP </a>
+ <a accesskey="h" href=""> UP </a>
  |
- <a accesskey="H" href=""> HOME </a>
+ <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
-<h1 class="title">index.org source</h1>
-<pre class="example" id="orgfc4d157">
-#+title: miscellaneous how-tos
-#
-# org-publish options
-# H:2   controls section numbering.
-#       number top-level and second-level headings only
-# ^:{}  require a_{b} before assuming that b should be subscripted.
-#       without this option a_b will automatically subscript b.
-#+options: ^:{}
-#
-# options used exclusively by emacs
-#+startup: showall
-#
-# options used exclusively by the html exporter
-#+language: en
-#+infojs_opt: view:showall mouse:#ffc0c0 toc:nil ltoc:nil path:/web/ext/orginfo/org-info.js
-#+html_head: &lt;link rel="stylesheet" type="text/css" href="/web/css/notebook.css" /&gt;
-#+html_link_home: index.html
+<h1 class="title">windows11 setup</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgc2f99c2">1. Introduction</a>
+<ul>
+<li><a href="#org36d90e6">1.1. Remap Keyboard</a></li>
+<li><a href="#org125092a">1.2. Setup OpenSSH</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
 
-* Introduction
-  how-to articles published using ~org-publish~ to =$HOME/proj/public_html/org-howto=.
-  Serve on port =8080= with
-  #+begin_example
-  python3 -m http.server 8080 --directory ~/proj/public_html/org-howto
-  #+end_example
+<div id="outline-container-orgc2f99c2" class="outline-2">
+<h2 id="orgc2f99c2"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Notes on setup for my primary desktop
+</p>
+</div>
 
-* Contents
-  - [[file:env/development-environment.org][c++ development environment]]
-  - [[file:env/windows11-setup.org][windows11 setup]]
-  - org mode cookbook
-    - [[file:orgpub/org-examples.org][org-examples]] cookbook for org-mode publishing
-  - d3 examples
-    - [[file:d3/drag1/index.org][drag.1]] d3 draggable object example - standalone
-    - [[file:d3/drag2/index.org][drag.2]] d3 draggable object example - inline
-    - [[file:d3/drag3/index.org][drag.3]] d3 draggable object example - parametric
-    - [[file:d3/drag4/index.org][drag.4]] d3 draggable object example - parametric + smooth selection
-    - [[file:d3/drag5/index.org][drag.5]] d3 draggable object example - parametric + tangent
-    - [[file:d3/drag6/index.org][drag.6]] d3 draggable object example - parametric + axes
-    - [[file:d3/drag7/index.org][drag.7]] d3 draggable object example - parametric + tangent + quadratic *[WIP]*
-    - [[file:option/blackscholes/index.org][blackscholes]] interactive option pricing example *[WIP]*
-  - octave examples
-    - file:octave/octave-crib.org octave examples
+<div id="outline-container-org36d90e6" class="outline-3">
+<h3 id="org36d90e6"><span class="section-number-3">1.1.</span> Remap Keyboard</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Use PowerToys (free from MS)
+Keyboard Manager allows directly remapping keys
+</p>
 
-* .org source
-   ~org-mode~ source here: [[file:index-src.org][index-src.org]]
+<p>
+Remap:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">from</th>
+<th scope="col" class="org-left">to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">caps lock</td>
+<td class="org-left">ctrl (left)</td>
+</tr>
+
+<tr>
+<td class="org-left">ctrl (right)</td>
+<td class="org-left">caps lock</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+without the second mapping,  if caps lock gets enabled there's no easy way to cancel it.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org125092a" class="outline-3">
+<h3 id="org125092a"><span class="section-number-3">1.2.</span> Setup OpenSSH</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Enable windows ssh server from system settings.
+</p>
+
+<p>
+To verify running:
+</p>
+<ol class="org-ol">
+<li><p>
+open admin powershell
+</p>
+
+<pre class="example" id="org1094fc3">
+&gt; Get-WindowsCapability -Online | Where-Object Name -like 'OpenSSH*'
+
+Name  : OpenSSH.Client~~~~0.0.1.0
+State : Installed
+
+Name  : OpenSSH.Server~~~~0.0.1.0
+State : NotPresent
 </pre>
+
+<p>
+above shows SSH server <b>not</b> running.
+</p></li>
+
+<li><p>
+enable SSH server (this takes a few minutes):
+</p>
+
+<pre class="example" id="orgbe43c30">
+&gt; Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+
+Path          : 
+Online        : True
+RestartNeeded : False
+</pre></li>
+
+<li><p>
+Start SSH service
+</p>
+
+<pre class="example" id="org9d0247f">
+&gt; Start-Service sshd
+</pre></li>
+
+<li><p>
+configure to start automatically on boot
+</p>
+
+<pre class="example" id="org3f359d3">
+&gt; Set-Service -Name sshd -StartupType 'Automatic'
+</pre></li>
+</ol>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: roly-desktop-23</p>
