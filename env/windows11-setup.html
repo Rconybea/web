@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-02 Mon 14:42 -->
+<!-- 2023-10-02 Mon 15:32 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>windows11 setup</title>
@@ -233,6 +233,7 @@ org_html_manager.setup();  // activate after the parameters are set
 <ul>
 <li><a href="#org5bd5fca">1.2.1. SSH to windows</a></li>
 <li><a href="#orgefcf679">1.2.2. SSH to WSL2</a></li>
+<li><a href="#org41958a2">1.2.3. SSH from external host</a></li>
 </ul>
 </li>
 </ul>
@@ -312,7 +313,7 @@ To verify running:
 open admin powershell
 </p>
 
-<pre class="example" id="org398c5cc">
+<pre class="example" id="orgcd75fac">
 &gt; Get-WindowsCapability -Online | Where-Object Name -like 'OpenSSH*'
 
 Name  : OpenSSH.Client~~~~0.0.1.0
@@ -330,7 +331,7 @@ above shows SSH server <b>not</b> running.
 enable SSH server (this takes a few minutes):
 </p>
 
-<pre class="example" id="org899eb91">
+<pre class="example" id="org5478be4">
 &gt; Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
 
 Path          : 
@@ -342,7 +343,7 @@ RestartNeeded : False
 Start SSH service
 </p>
 
-<pre class="example" id="orge1b46b6">
+<pre class="example" id="orgadb0003">
 &gt; Start-Service sshd
 </pre></li>
 
@@ -350,7 +351,7 @@ Start SSH service
 configure to start automatically on boot
 </p>
 
-<pre class="example" id="orge2a759c">
+<pre class="example" id="orga70c035">
 &gt; Set-Service -Name sshd -StartupType 'Automatic'
 </pre></li>
 
@@ -358,7 +359,7 @@ configure to start automatically on boot
 <code>ssh-agent</code> also needs assistance
 </p>
 
-<pre class="example" id="org7df75f4">
+<pre class="example" id="orgd0b7870">
 &gt; Get-Service ssh-agent
 
 Status   Name                DisplayName
@@ -369,7 +370,7 @@ Stopped  ssh-agent           OpenSSH Authentication Agent
 <p>
 set it to start manually (whenever someone invokes <code>ssh-agent</code>)
 </p>
-<pre class="example" id="org4890f53">
+<pre class="example" id="org69a9158">
 &gt; Get-Service -Name ssh-agent | Set-Service -StartupType Manual
 </pre></li>
 </ol>
@@ -398,7 +399,7 @@ relax settings in
 <p>
 we want to uncomment a few disabled-by-default features:
 </p>
-<pre class="example" id="org3e86dd0">
+<pre class="example" id="org211cf1c">
 PubkeyAuthentication yes
 AllowAgentForwarding yes
 AllowTcpForwarding yes
@@ -421,7 +422,7 @@ in wsl2 shell:
 install openssh:
 </p>
 
-<pre class="example" id="orge1b4a9c">
+<pre class="example" id="org66ad217">
 $ sudo apt-get install openssh-server
 </pre></li>
 
@@ -429,7 +430,7 @@ $ sudo apt-get install openssh-server
 default config listens on port 22:
 </p>
 
-<pre class="example" id="org66780e4">
+<pre class="example" id="orga9a25c6">
 $ cat /etc/ssh/sshd_config | grep -i port
 #Port 22
 </pre>
@@ -439,7 +440,7 @@ listen on port 2022 instead,
 since <code>sshd</code> run by windows11 occupies port 22 already
 </p>
 
-<pre class="example" id="org482e673">
+<pre class="example" id="orgaf4e293">
 $ sudo sed -i -E 's:^#Port.*$:Port 2022:' /etc/ssh/sshd_config
 $ cat /etc/ssh/sshd_config | grep -i port
 #Port 2022
@@ -454,7 +455,7 @@ NOTE: relies on systemd.  older WSL2 (sometime before 2023) didn't have systemd,
 so might need to upgrade first
 </p>
 
-<pre class="example" id="orgb4885b0">
+<pre class="example" id="orge2280b0">
 $ sudo systemctl enable ssh
 Synchronizing state of ssh.service with SysV service script with /lib/systemd/systemd-sysv-install.
 $ sudo systemctl stop ssh    # in case already running,  perhaps on wrong port
@@ -464,7 +465,7 @@ $ sudo systemctl start ssh
 <p>
 should be able to see it running now
 </p>
-<pre class="example" id="orgaa19134">
+<pre class="example" id="orge72a1ef">
 $ ps -A | grep sshd
   20139 ?      00:00:00 sshd
 </pre>
@@ -472,7 +473,7 @@ $ ps -A | grep sshd
 <p>
 and verify listening on the right port
 </p>
-<pre class="example" id="org1181e24">
+<pre class="example" id="org2b65bfa">
 $ netstat -a -n | grep tcp
 tcp        0      0 0.0.0.0:2022            0.0.0.0:*               LISTEN
 tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN
@@ -482,10 +483,45 @@ tcp6       0      0 :::2022                 :::*                    LISTEN
 <p>
 verify wsl2 can ssh to itself
 </p>
-<pre class="example" id="orgc2a181b">
+<pre class="example" id="orgbbfdc96">
 $ ssh -p 2022 localhost
 </pre></li>
 </ol>
+</div>
+</div>
+
+<div id="outline-container-org41958a2" class="outline-4">
+<h4 id="org41958a2"><span class="section-number-4">1.2.3.</span> SSH from external host</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<p>
+in external host's <code>~/.ssh/ssh_config</code>:
+</p>
+
+<pre class="example" id="orgd547921">
+# my windows desktop
+Host roly-desktop-23
+  User Rcony
+  HostName 192.168.1.10
+
+# wsl hosted from windows
+Host roly-desktop-23-wsl
+  User roland
+  HostName localhost
+  Port 2022
+  ProxyJump roly-desktop-23
+</pre>
+
+<p>
+Then from external host:
+</p>
+
+<pre class="example" id="org9cc15e6">
+$ eval $(ssh-agent -s)
+$ ssh-add
+..passphrase..
+$ ssh roly-desktop-23-wsl
+roland@roly-desktop-23:~$
+</pre>
 </div>
 </div>
 </div>
@@ -493,7 +529,7 @@ $ ssh -p 2022 localhost
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: roly-desktop-23</p>
-<p class="date">Created: 2023-10-02 Mon 14:42</p>
+<p class="date">Created: 2023-10-02 Mon 15:32</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
