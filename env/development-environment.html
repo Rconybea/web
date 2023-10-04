@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-02 Mon 12:46 -->
+<!-- 2023-10-04 Wed 16:18 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>c++ development environment</title>
@@ -193,7 +193,7 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="/web/css/notebook.css" />
+<link rel="stylesheet" type="text/css" href="/web/css/primary.css" />
 
 <script src="/web/ext/orginfo/org-info.js">
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
@@ -230,12 +230,12 @@ org_html_manager.setup();  // activate after the parameters are set
 <ul>
 <li><a href="#org4e64d63">1.1. Goals / Interests</a></li>
 <li><a href="#orgfa493de">1.2. Operating System Stack</a></li>
-<li><a href="#org1443668">1.3. Build Stack</a></li>
-<li><a href="#orgbacfb22">1.4. C++ Library Stack</a></li>
+<li><a href="#orgecf69a1">1.3. Build Stack</a></li>
+<li><a href="#orgf33e9f6">1.4. C++ Library Stack</a></li>
 <li><a href="#org817ec17">1.5. Topics</a>
 <ul>
-<li><a href="#orgecf69a1">1.5.1. Build Stack</a></li>
-<li><a href="#orgf33e9f6">1.5.2. C++ Library Stack</a></li>
+<li><a href="#orgb8d6cdf">1.5.1. Build Stack</a></li>
+<li><a href="#org9704e0b">1.5.2. C++ Library Stack</a></li>
 <li><a href="#org0566069">1.5.3. Publish Static HTML</a></li>
 <li><a href="#orgab1a698">1.5.4. github + custom image + docker + github action</a></li>
 </ul>
@@ -337,8 +337,8 @@ with an arbitrarily elaborate dependecy graph</li>
 </div>
 </div>
 
-<div id="outline-container-org1443668" class="outline-3">
-<h3 id="org1443668"><span class="section-number-3">1.3.</span> Build Stack</h3>
+<div id="outline-container-orgecf69a1" class="outline-3">
+<h3 id="orgecf69a1"><span class="section-number-3">1.3.</span> Build Stack</h3>
 <div class="outline-text-3" id="text-1-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -378,11 +378,11 @@ with an arbitrarily elaborate dependecy graph</li>
 </div>
 </div>
 
-<div id="outline-container-orgbacfb22" class="outline-3">
-<h3 id="orgbacfb22"><span class="section-number-3">1.4.</span> C++ Library Stack</h3>
+<div id="outline-container-orgf33e9f6" class="outline-3">
+<h3 id="orgf33e9f6"><span class="section-number-3">1.4.</span> C++ Library Stack</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
-using these c++ libraries 
+using these c++ libraries
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -427,8 +427,8 @@ using these c++ libraries
 <h3 id="org817ec17"><span class="section-number-3">1.5.</span> Topics</h3>
 <div class="outline-text-3" id="text-1-5">
 </div>
-<div id="outline-container-orgecf69a1" class="outline-4">
-<h4 id="orgecf69a1"><span class="section-number-4">1.5.1.</span> Build Stack</h4>
+<div id="outline-container-orgb8d6cdf" class="outline-4">
+<h4 id="orgb8d6cdf"><span class="section-number-4">1.5.1.</span> Build Stack</h4>
 <div class="outline-text-4" id="text-1-5-1">
 </div>
 <ol class="org-ol">
@@ -443,8 +443,8 @@ using these c++ libraries
 </ol>
 </div>
 
-<div id="outline-container-orgf33e9f6" class="outline-4">
-<h4 id="orgf33e9f6"><span class="section-number-4">1.5.2.</span> C++ Library Stack</h4>
+<div id="outline-container-org9704e0b" class="outline-4">
+<h4 id="org9704e0b"><span class="section-number-4">1.5.2.</span> C++ Library Stack</h4>
 <div class="outline-text-4" id="text-1-5-2">
 </div>
 <ol class="org-ol">
@@ -475,7 +475,7 @@ See also
 <p>
 <code>org-publish-project-alist</code> configures org trees for publishing:
 </p>
-<pre class="example" id="org77d6db9">
+<pre class="example" id="org7bbc504">
 ;; ----------------------------------------------------------------
 ;; org-mode publishing
 ;;
@@ -515,7 +515,7 @@ See also
 <p>
 With this configuration
 </p>
-<pre class="example" id="org7007b2d">
+<pre class="example" id="orgc12cbf0">
 ~M-x org-publish-project org-howto~
 </pre>
 
@@ -536,7 +536,7 @@ for example <code>graphviz</code>.
 <code>~/.emacs</code> Configuration for such adopted sources (as of 1oct2023 just graphviz):
 </p>
 
-<pre class="example" id="org4e40b5a">
+<pre class="example" id="orgb9a3596">
 ;; ----------------------------------------------------------------
 ;; org-mode babel setup
 ;; (execute dot/ditaa/bash/c++ etc. from .org code blocks)
@@ -594,7 +594,7 @@ for example <code>graphviz</code>.
 Example <code>.org</code> content using graphviz:
 </p>
 
-<pre class="example" id="orge456a77">
+<pre class="example" id="org90d6935">
 #+begin_src dot :file img/living-room-av/macmini.svg :exports results :cmdline -Tsvg
 digraph {
   size="4,4";
@@ -603,7 +603,7 @@ digraph {
   r [label="receiver", shape="box"];
   m [label="monitor", shape="box"];
   sp [label="spkr", shape="ellipse"];
-  s -&gt; r[label="VDP",color="red"]; 
+  s -&gt; r[label="VDP",color="red"];
   s -&gt; m[label="input#2",color="blue"];
   r -&gt; sp[color="red"];
 }
@@ -621,7 +621,7 @@ publishing (or using <code>C-c C-v b</code>) creates/updates file in <code>img/l
 <p>
 Once we have HTML in <code>~/proj/public_html/org-howto</code>,  can view it locally:
 </p>
-<pre class="example" id="org6c5f196">
+<pre class="example" id="orgb9b8d7a">
 $ python3 -m http.server --directory ~/proj/public_html/org-howto 8080
 </pre>
 
@@ -640,7 +640,7 @@ Caveat: builtin python webserver doesn't support https.
 <p>
 To work with github pages,  We tweak the <code>.org</code> tree slightly:
 </p>
-<pre class="example" id="org072d0d3">
+<pre class="example" id="org51cfce0">
 $ cd ~/proj/org-howto
 $ ln -s ext web
 </pre>
@@ -653,7 +653,7 @@ When we publish <code>.org</code> tree to github pages, it appears at <a href="h
 <p>
 <code>.org</code> pages that want to use root-relative paths, prefix with <code>/web</code>:
 </p>
-<pre class="example" id="org5da5bea">
+<pre class="example" id="org3c6336c">
 #+infojs_opt: view:showall toc:nil ltoc:nil mouse:#ffc0c0 path:/web/ext/orginfo/org-info.js
 #+html_head: &lt;link rel="stylesheet" type="text/css" href="/web/css/notebook.css" /&gt;
 </pre>
@@ -676,7 +676,7 @@ We can snapshot and serve generated html in a dedicated docker container with th
 (in <code>~/proj/public_html</code>,  given html output written to <code>~/proj/public_html/org-howto</code>)
 </p>
 
-<pre class="example" id="orgf057319">
+<pre class="example" id="orgc307d1e">
 {
   description = "publish org-howto-derived html";
 
@@ -738,7 +738,7 @@ We can snapshot and serve generated html in a dedicated docker container with th
 <li><p>
 build docker container image using <code>~/proj/public_html/flake.nix</code>:
 </p>
-<pre class="example" id="orge6e9b1e">
+<pre class="example" id="org1bba4f7">
 $ cd ~/proj/public_html
 $ nix build
 $ ls -ld result
@@ -748,14 +748,14 @@ $ ls -ld result
 <li><p>
 load image into docker
 </p>
-<pre class="example" id="org78d4982">
+<pre class="example" id="orge80d8d0">
 $ docker load &lt;./result
 </pre>
 
 <p>
 or send to some other host:
 </p>
-<pre class="example" id="org651b1e4">
+<pre class="example" id="orga5188c8">
 $ mycloudhost=...
 $ scp /nix/store/dck2rix8n8sx6wi0d4is0fq17c72ddqx-serve-org-howto.tar.gz root@${mycloudhost}
 $ ssh ${mycloudhost}
@@ -811,7 +811,7 @@ github actions can refer to ${{ github.workspace }}
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: roly-desktop-23</p>
-<p class="date">Created: 2023-10-02 Mon 12:46</p>
+<p class="date">Created: 2023-10-04 Wed 16:18</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
