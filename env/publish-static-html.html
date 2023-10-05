@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-05 Thu 14:58 -->
+<!-- 2023-10-05 Thu 17:41 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>publishing static HTML</title>
@@ -15,6 +15,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style>pre.src{background:#343131;color:white;} </style>
+<style>pre.example{background:#343131;color:white;} </style>
+<style> #content{max-width:1800px;}</style>
+<style> p{max-width:1800px;}</style>
+<style> li{max-width:1800px;}</style>
 </head>
 <body>
 <div id="content" class="content">
@@ -62,39 +67,39 @@ See also
 <code>org-publish-project-alist</code> configures org trees for publishing:
 </p>
 <div class="org-src-container">
-<pre class="src src-elisp">;; ----------------------------------------------------------------
-;; org-mode publishing
-;;
-(require 'ox-publish)
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">----------------------------------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">org-mode publishing</span>
+<span style="color: #74af68;">;;</span>
+(<span style="color: #ffad29; font-weight: bold;">require</span> '<span style="color: #008b8b;">ox-publish</span>)
 
-;; publishing setup -- this is a kitchen sink -- it's intended to cover
-;; everything we want org-mode to publish
-;;
-(setq org-publish-project-alist
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">publishing setup -- this is a kitchen sink -- it's intended to cover</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">everything we want org-mode to publish</span>
+<span style="color: #74af68;">;;</span>
+(<span style="color: #ffad29; font-weight: bold;">setq</span> org-publish-project-alist
       '(
-        ("org-howto"
-         :components ("org-howto-notes" "org-howto-static"))
+        (<span style="color: #e67128;">"org-howto"</span>
+         <span style="color: #23d7d7;">:components</span> (<span style="color: #e67128;">"org-howto-notes"</span> <span style="color: #e67128;">"org-howto-static"</span>))
 
-        ("org-howto-notes"
-         :base-directory "~/proj/org-howto"
-         :base-extension "org"
-         :publishing-directory "~/proj/public_html/org-howto"
-         :recursive t
-         :publishing-function org-html-publish-to-html
-         :headling-levels 4
-         :auto-preamble t
+        (<span style="color: #e67128;">"org-howto-notes"</span>
+         <span style="color: #23d7d7;">:base-directory</span> <span style="color: #e67128;">"~/proj/org-howto"</span>
+         <span style="color: #23d7d7;">:base-extension</span> <span style="color: #e67128;">"org"</span>
+         <span style="color: #23d7d7;">:publishing-directory</span> <span style="color: #e67128;">"~/proj/public_html/org-howto"</span>
+         <span style="color: #23d7d7;">:recursive</span> t
+         <span style="color: #23d7d7;">:publishing-function</span> org-html-publish-to-html
+         <span style="color: #23d7d7;">:headling-levels</span> 4
+         <span style="color: #23d7d7;">:auto-preamble</span> t
          )
 
-        ("org-howto-static"
-         :base-directory "~/proj/org-howto"
-         :base-extension "css\\|html\\|js\\|svg\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-         :publishing-directory "~/proj/public_html/org-howto"
-         :recursive t
-         :publishing-function org-publish-attachment
+        (<span style="color: #e67128;">"org-howto-static"</span>
+         <span style="color: #23d7d7;">:base-directory</span> <span style="color: #e67128;">"~/proj/org-howto"</span>
+         <span style="color: #23d7d7;">:base-extension</span> <span style="color: #e67128;">"css</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">html</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">js</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">svg</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">png</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">jpg</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">gif</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">pdf</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">mp3</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">ogg</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">swf"</span>
+         <span style="color: #23d7d7;">:publishing-directory</span> <span style="color: #e67128;">"~/proj/public_html/org-howto"</span>
+         <span style="color: #23d7d7;">:recursive</span> t
+         <span style="color: #23d7d7;">:publishing-function</span> org-publish-attachment
          )
         )
 
-        ; ... additional org trees here ...
+        <span style="color: #74af68;">; </span><span style="color: #74af68;">... additional org trees here ...</span>
         )
 </pre>
 </div>
@@ -102,7 +107,7 @@ See also
 <p>
 With this configuration
 </p>
-<pre class="example" id="orgef16c27">
+<pre class="example" id="org2db5a19">
 ~M-x org-publish-project org-howto~
 </pre>
 
@@ -111,6 +116,7 @@ generates HTML content in <code>~/proj/public_html/org-howto~</code>.
 </p>
 </div>
 </div>
+
 
 <div id="outline-container-org99f210d" class="outline-3">
 <h3 id="org99f210d"><span class="section-number-3">1.2.</span> setup for literate programming</h3>
@@ -125,56 +131,56 @@ for example <code>graphviz</code>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-elisp">;; ----------------------------------------------------------------
-;; org-mode babel setup
-;; (execute dot/ditaa/bash/c++ etc. from .org code blocks)
-;;
-;; see
-;;   [[https://orgmode.org/worg/org-contrib/babel/intro.html]]
-;;   [[https://orgmode.org/worg/org-contrib/babel/languages/index.html]]
-;;
-;; code block:
-;;   #+begin_src ${language} ${switches} ${headerarguments}
-;;     ${body}
-;;   #+end_src
-;;
-;; use header argument
-;;   :results output
-;; to insert code-block output (i.e. contents of stdout) into .org file below code block
-;;
-;; use
-;;   :results value
-;; to just take value of last statement
-;;
-;; use
-;;   :session
-;; to share language sub-process across code-blocks.
-;;
-;; can use
-;;   #+name: foo
-;; to name an org-mode table;  then:
-;;   #+begin_src ... :var myfreevar=foo
-;;     ...
-;;   #+end_src
-;; with body mentioning myfreevar;  .org will substitute foo
-;;
-;; can do inline coode block with
-;;   src_&lt;${lang}&gt;{${code}} or src_&lt;${lang}[${args}]{${code}}
-;; e.g.
-;;   src_python[:session]{10*x}
-;;
-;; notes:
-;;   [C-c C-v] org-babel prefix
-;;   [C-c C-v b] -- evaluate code blocks in buffer
-;;   [C-c C-v s] -- evaluate code blocks in subtree
-;;   [C-c C-v e] -- evaluate code block at point
-;;   [C-c '] M-x org-edit-src-code -- puts code block in new buffer with appropriate mode activated
-;;   [C-c M-b p] M-x org-babel-expand-src-block -- show expanded code block prior to evaluation
-;;   (org-babel-lob-ingest "path/to/file.org") to share code blogs as 'library'
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">----------------------------------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">org-mode babel setup</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">(execute dot/ditaa/bash/c++ etc. from .org code blocks)</span>
+<span style="color: #74af68;">;;</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">see</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">[[https://orgmode.org/worg/org-contrib/babel/intro.html]]</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">[[https://orgmode.org/worg/org-contrib/babel/languages/index.html]]</span>
+<span style="color: #74af68;">;;</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">code block:</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">#+begin_src ${language} ${switches} ${headerarguments}</span>
+<span style="color: #74af68;">;;     </span><span style="color: #74af68;">${body}</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">#+end_src</span>
+<span style="color: #74af68;">;;</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">use header argument</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">:results output</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">to insert code-block output (i.e. contents of stdout) into .org file below code block</span>
+<span style="color: #74af68;">;;</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">use</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">:results value</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">to just take value of last statement</span>
+<span style="color: #74af68;">;;</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">use</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">:session</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">to share language sub-process across code-blocks.</span>
+<span style="color: #74af68;">;;</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">can use</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">#+name: foo</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">to name an org-mode table;  then:</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">#+begin_src ... :var myfreevar=foo</span>
+<span style="color: #74af68;">;;     </span><span style="color: #74af68;">...</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">#+end_src</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">with body mentioning myfreevar;  .org will substitute foo</span>
+<span style="color: #74af68;">;;</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">can do inline coode block with</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">src_&lt;${lang}&gt;{${code}} or src_&lt;${lang}[${args}]{${code}}</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">e.g.</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">src_python[:session]{10*x}</span>
+<span style="color: #74af68;">;;</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">notes:</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">[C-c C-v] org-babel prefix</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">[C-c C-v b] -- evaluate code blocks in buffer</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">[C-c C-v s] -- evaluate code blocks in subtree</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">[C-c C-v e] -- evaluate code block at point</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">[C-c '] M-x org-edit-src-code -- puts code block in new buffer with appropriate mode activated</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">[C-c M-b p] M-x org-babel-expand-src-block -- show expanded code block prior to evaluation</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">(org-babel-lob-ingest "path/to/file.org") to share code blogs as '</span><span style="color: #008b8b;">library</span><span style="color: #74af68;">'</span>
 
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((dot . t)  ; graphviz [[https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-dot.html]] see also graphviz-dot-mode
+ '((dot . t)  <span style="color: #74af68;">; </span><span style="color: #74af68;">graphviz [[https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-dot.html]] see also graphviz-dot-mode</span>
    ))
 </pre>
 </div>
@@ -183,7 +189,7 @@ for example <code>graphviz</code>.
 Example <code>.org</code> content using graphviz:
 </p>
 
-<pre class="example" id="org5e70581">
+<pre class="example" id="orge8c636f">
 #+begin_src dot :file img/living-room-av/macmini.svg :exports results :cmdline -Tsvg
 digraph {
   size="4,4";
@@ -215,8 +221,8 @@ Apply theme by including the following in each <code>.org</code> header:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-org"># options used exclusively by the html exporter
-#+setupfile: ext/fniessen/theme-readtheorg.setup
+<pre class="src src-org"><span style="color: #74af68;"># options used exclusively by the html exporter</span>
+<span style="color: #74af68;">#+setupfile: ext/fniessen/theme-readtheorg.setup</span>
 </pre>
 </div>
 </div>
@@ -250,7 +256,7 @@ Caveat: builtin python webserver doesn't support https.
 To work with github pages,  We tweak the <code>.org</code> tree slightly:
 </p>
 <div class="org-src-container">
-<pre class="src src-sh">cd ~/proj/org-howto
+<pre class="src src-sh"><span style="color: #23d7d7;">cd</span> ~/proj/org-howto
 ln -s ext web
 </pre>
 </div>
@@ -263,7 +269,7 @@ When we publish <code>.org</code> tree to github pages, it appears at <a href="h
 <p>
 <code>.org</code> pages that want to use root-relative paths, prefix with <code>/web</code>:
 </p>
-<pre class="example" id="org62ef73d">
+<pre class="example" id="orgdebcee6">
 #+infojs_opt: view:showall toc:nil ltoc:nil mouse:#ffc0c0 path:/web/ext/orginfo/org-info.js
 #+html_head: &lt;link rel="stylesheet" type="text/css" href="/web/css/notebook.css" /&gt;
 </pre>
@@ -288,58 +294,58 @@ We can snapshot and serve generated html in a dedicated docker container with th
 </p>
 
 <div class="org-src-container">
-<pre class="src src-yaml">{
-  description = "publish org-howto-derived html";
+<pre class="src src-nix">{
+  <span style="color: #dbdb95;">description</span> = <span style="color: #e67128;">"publish org-howto-derived html"</span>;
 
-  # dependencies of this flake
-  inputs = rec {
-    nixpkgs.url = "github:nixos/nixpkgs/23.05";
-    org_howto_path = {
-      url = "./org-howto";
-      flake = false;
+  <span style="color: #74af68;"># dependencies of this flake</span>
+  <span style="color: #dbdb95;">inputs</span> = <span style="color: #ffad29; font-weight: bold;">rec</span> {
+    <span style="color: #dbdb95;">nixpkgs.url</span> = <span style="color: #e67128;">"github:nixos/nixpkgs/23.05"</span>;
+    <span style="color: #dbdb95;">org_howto_path</span> = {
+      <span style="color: #dbdb95;">url</span> = <span style="color: #e67128;">"./org-howto"</span>;
+      <span style="color: #dbdb95;">flake</span> = <span style="color: #23d7d7;">false</span>;
     };
   };
 
-  outputs = { self, nixpkgs, org_howto_path } :
-    let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
+  <span style="color: #dbdb95;">outputs</span> = { self, nixpkgs, org_howto_path } :
+    <span style="color: #ffad29; font-weight: bold;">let</span>
+      <span style="color: #dbdb95;">system</span> = <span style="color: #e67128;">"x86_64-linux"</span>;
+      <span style="color: #dbdb95;">pkgs</span> = <span style="color: #23d7d7;">import</span> nixpkgs { <span style="color: #ffad29; font-weight: bold;">inherit</span> system; };
 
-      # creates shell script 'serve-org-howto'.
-      # to use:
-      #   $ cd ~/proj/public_html
-      # A.
-      #   $ nix build
-      #   $ ./result/bin/serve-org-howto
-      # B.
-      #   $ nix run
-      #
-      serve_org_howto_deriv = pkgs.writeShellScriptBin "serve-org-howto" ''
-        ${pkgs.python3}/bin/python3 -m http.server 8080 --directory ${org_howto_path}
-      '';
+      <span style="color: #74af68;"># creates shell script 'serve-org-howto'.</span>
+      <span style="color: #74af68;"># to use:</span>
+      <span style="color: #74af68;">#   $ cd ~/proj/public_html</span>
+      <span style="color: #74af68;"># A.</span>
+      <span style="color: #74af68;">#   $ nix build</span>
+      <span style="color: #74af68;">#   $ ./result/bin/serve-org-howto</span>
+      <span style="color: #74af68;"># B.</span>
+      <span style="color: #74af68;">#   $ nix run</span>
+      <span style="color: #74af68;">#</span>
+      <span style="color: #dbdb95;">serve_org_howto_deriv</span> = pkgs.writeShellScriptBin <span style="color: #e67128;">"serve-org-howto"</span> <span style="color: #e67128;">''</span>
+<span style="color: #e67128;">        </span><span style="color: #23d7d7;">${</span>pkgs.python3<span style="color: #23d7d7;">}</span><span style="color: #e67128;">/bin/python3 -m http.server 8080 --directory </span><span style="color: #23d7d7;">${</span>org_howto_path<span style="color: #23d7d7;">}</span>
+<span style="color: #e67128;">      ''</span>;
 
-      # builds custom docker image!
-      serve_org_howto_docker_deriv =
-        let
-          serve_org_howto = self.packages.${system}.serve_org_howto;
-        in
+      <span style="color: #74af68;"># builds custom docker image!</span>
+      <span style="color: #dbdb95;">serve_org_howto_docker_deriv</span> =
+        <span style="color: #ffad29; font-weight: bold;">let</span>
+          <span style="color: #dbdb95;">serve_org_howto</span> = self.packages.${system}.serve_org_howto;
+        <span style="color: #ffad29; font-weight: bold;">in</span>
           pkgs.dockerTools.buildLayeredImage {
-            name = serve_org_howto.name;
-            tag = "1.0";
-            contents = [ serve_org_howto ];
+            <span style="color: #dbdb95;">name</span> = serve_org_howto.name;
+            <span style="color: #dbdb95;">tag</span> = <span style="color: #e67128;">"1.0"</span>;
+            <span style="color: #dbdb95;">contents</span> = [ serve_org_howto ];
 
-            config = {
-              Cmd = [ "/bin/serve-org-howto" ];
-              WorkingDir = "/";
+            <span style="color: #dbdb95;">config</span> = {
+              <span style="color: #dbdb95;">Cmd</span> = [ <span style="color: #e67128;">"/bin/serve-org-howto"</span> ];
+              <span style="color: #dbdb95;">WorkingDir</span> = <span style="color: #e67128;">"/"</span>;
             };
           };
 
-    in rec {
+    <span style="color: #ffad29; font-weight: bold;">in</span> rec {
       packages.${system} = {
-        default = serve_org_howto_deriv;
+        <span style="color: #dbdb95;">default</span> = serve_org_howto_deriv;
 
-        serve_org_howto = serve_org_howto_deriv;
-        serve_org_howto_docker = serve_org_howto_docker_deriv;
+        <span style="color: #dbdb95;">serve_org_howto</span> = serve_org_howto_deriv;
+        <span style="color: #dbdb95;">serve_org_howto_docker</span> = serve_org_howto_docker_deriv;
       };
     };
 }
@@ -350,7 +356,7 @@ We can snapshot and serve generated html in a dedicated docker container with th
 <li><p>
 build docker container image using <code>~/proj/public_html/flake.nix</code>:
 </p>
-<pre class="example" id="orgd519be0">
+<pre class="example" id="orgc9d0626">
 $ cd ~/proj/public_html
 $ nix build
 $ ls -ld result
@@ -360,14 +366,14 @@ $ ls -ld result
 <li><p>
 load image into docker
 </p>
-<pre class="example" id="org905762f">
+<pre class="example" id="orgaa47ef3">
 $ docker load &lt;./result
 </pre>
 
 <p>
 or send to some other host:
 </p>
-<pre class="example" id="orgcebc326">
+<pre class="example" id="orgb842da9">
 $ mycloudhost=...
 $ scp /nix/store/dck2rix8n8sx6wi0d4is0fq17c72ddqx-serve-org-howto.tar.gz root@${mycloudhost}
 $ ssh ${mycloudhost}
@@ -393,7 +399,7 @@ Docker image contains only python and our html tree,  so much smaller than typic
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: roly-desktop-23</p>
-<p class="date">Created: 2023-10-05 Thu 14:58</p>
+<p class="date">Created: 2023-10-05 Thu 17:41</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
