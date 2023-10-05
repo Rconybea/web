@@ -6,7 +6,7 @@
 <!-- 2023-10-05 Thu 12:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>org-examples source</title>
+<title>github continuous integration</title>
 <meta name="author" content="roly-desktop-23" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -193,9 +193,9 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="css/notebook.css" />
+<link rel="stylesheet" type="text/css" href="/web/css/primary.css" />
 
-<script src="https://orgmode.org/org-info.js">
+<script src="/web/ext/orginfo/org-info.js">
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
 // @license-end
 </script>
@@ -203,110 +203,274 @@
 <script>
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
 org_html_manager.set("TOC_DEPTH", "3");
-org_html_manager.set("LINK_HOME", "../index.html");
-org_html_manager.set("LINK_UP", "org-examples.html");
-org_html_manager.set("LOCAL_TOC", "1");
+org_html_manager.set("LINK_HOME", "index.html");
+org_html_manager.set("LINK_UP", "development-environment.html");
+org_html_manager.set("LOCAL_TOC", "0");
 org_html_manager.set("VIEW_BUTTONS", "0");
-org_html_manager.set("MOUSE_HINT", "underline");
+org_html_manager.set("MOUSE_HINT", "#ffc0c0");
 org_html_manager.set("FIXED_TOC", "0");
-org_html_manager.set("TOC", "1");
-org_html_manager.set("VIEW", "info");
+org_html_manager.set("TOC", "0");
+org_html_manager.set("VIEW", "showall");
 org_html_manager.setup();  // activate after the parameters are set
 // @license-end
 </script>
 </head>
 <body>
 <div id="org-div-home-and-up">
- <a accesskey="h" href="org-examples.html"> UP </a>
+ <a accesskey="h" href="development-environment.html"> UP </a>
  |
- <a accesskey="H" href="../index.html"> HOME </a>
+ <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
-<h1 class="title">org-examples source</h1>
-<pre class="example" id="org5af98fc">
-#+title: org-mode examples / tutorial
-# H:2   controls section numbering.
-#       number top-level and second-level headings only
-# ^:{}  require a_{b} before assuming that b should be subscripted.
-#       without this option a_b will automatically subscript b.
-#+options: ^:{}
-#
-# options used exclusively by emacs
-#+startup: showall
-#
-# options used exclusively by the html exporter
-#+language: en
-#+infojs_opt: view:showall mouse:#ff8080 toc:nil path:/ext/org/org-info.js
-#+html_head: &lt;link rel="stylesheet" type="text/css" href="../css/notebook.css" /&gt;
-#+html_link_home: ../index.html
-#+html_link_up: ../index.html
+<h1 class="title">github continuous integration</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org7cb71fe">1. Motivation</a></li>
+<li><a href="#org4ec320d">2. Contents</a></li>
+<li><a href="#org0719f34">3. Progressive Implementation</a>
+<ul>
+<li><a href="#org1739d4e">3.1. Scheme 1</a>
+<ul>
+<li><a href="#orgd2cabd0">3.1.1. Preliminaries</a></li>
+<li><a href="#orgb761486">3.1.2. Continuous Integration with Github</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
 
-* Introduction
-  Eric Nielsen, Jr.  has a lovely document describing how to do various useful things with org-mode.
-  This is my attempt to follow in his footsteps.
-  You can read the original here: http://ehneilsen.net/notebook/orgExamples/org-examples.html
-* Links
-  Links I found useful here:
-  - https://writequit.org/denver-emacs/presentations/files/example.org.html
-    Denver emacs org-mode presentation
-  - http://ehneilsen.net/notebook/orgExamples/org-examples.html
-    Eric Nielsen, Jr.'s emacs org-mode tutorial (looks like it's been paywalled)
-  - http://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html
-    Sebastian Rose's tutorial on org-mode publishing
-* org-mode header
-  Lines that begin with #+ are treated as org-mode instructions.
+<div id="outline-container-org7cb71fe" class="outline-2">
+<h2 id="org7cb71fe"><span class="section-number-2">1.</span> Motivation</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+We want to use a custom (<code>docker</code>) container with <code>github</code> actions,  and prepare it using <code>nix</code>.
+</p>
 
-** org-publish
-   Several org-exporter options are gathered under the #+options tag.
-*** subscripts
-    : ,#+options: ^:{}
-    controls whether text like a_b is understood as a_b or a_{b}.
-    the brackets mean that we need to write
-    : a_{b}
-    to get the result a_{b}
-** html
-   The following options apply only to the html exporter:
-*** attach a stylesheet
-    #+begin_example
-     #+html_head: &lt;link rel="stylesheet" type="text/css" href="../css/notebook.css" /&gt;
-    #+end_example
-    This embeds the text
-    : &lt;link rel="stylesheet" type="text/css" href="../css/notebook.css" /&gt;
-    in the &lt;head&gt; section of the exported .html file
-    I'm using Eric Nielsen Jr.'s notebook.css file:
-#+include: ../css/notebook.css example
-*** use infojs (javascript texinfo-style navigation)
-    #+begin_example
-    #+INFOJS_OPT: view:showall toc:nil path:/ext/org/org-info.js
-    #+end_example
+<p>
+Several advantages:
+</p>
 
-    If you omit the ~path~ option,
-    then the generated html will get ~org-info.js~ from http://orgmode.org/orginfo.js
-    I like to copy the file locally (e.g. to ~$HOME/Dropbox/public_html/ext/org/orginfo.js~)
-    so that I can count on navigation working when my laptop isn't connected to the interwebs.
+<ol class="org-ol">
+<li>control over build software (e.g. gcc version).</li>
 
-  ...to be continued...
-* quoting literal text
-  See also: http://orgmode.org/manual/Literal-examples.html org-mode manual
-  Place text to be quoted between #+begin_example and #+end_example brackets:
-  #+begin_example
-    ,#+begin_example
-    To be, or not to be, that is the question.
-    ,#+end_example
-  #+end_example
-  displays as:
-  #+begin_example
-  To be, or not to be, that is the question.
-  #+end_example
-* embedding mathematics
+<li>reproducibility &#x2013; nix-to-container pipeline guarantees perfect reproducibility</li>
 
-  See reference here: http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference
+<li>flexibility &#x2013; container can include prepared software that isn't available on ubuntu</li>
 
-  Use ~$..$~ to bracket inline formulae:
+<li>size &#x2013; container with no excess baggage</li>
+</ol>
+</div>
+</div>
 
-  For example: $\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$ appears inline.
+<div id="outline-container-org4ec320d" class="outline-2">
+<h2 id="org4ec320d"><span class="section-number-2">2.</span> Contents</h2>
+<div class="outline-text-2" id="text-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
-  use ~$$..$$~ to bracket out-of-line formulae:
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">scheme</th>
+<th scope="col" class="org-left">builder</th>
+<th scope="col" class="org-left">docker</th>
+<th scope="col" class="org-left">repo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">ubuntu</td>
+<td class="org-left">n/a</td>
+<td class="org-left"><a href="https://github.com/Rconybea/hello-example">https://github.com/Rconybea/hello-example</a></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org0719f34" class="outline-2">
+<h2 id="org0719f34"><span class="section-number-2">3.</span> Progressive Implementation</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+We'll present several progressive CI-with-github examples,  that converge on goals above.
+</p>
+</div>
+
+<div id="outline-container-org1739d4e" class="outline-3">
+<h3 id="org1739d4e"><span class="section-number-3">3.1.</span> Scheme 1</h3>
+<div class="outline-text-3" id="text-3-1">
+</div>
+<div id="outline-container-orgd2cabd0" class="outline-4">
+<h4 id="orgd2cabd0"><span class="section-number-4">3.1.1.</span> Preliminaries</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+source for <code>Scheme 1</code> is on github here: <a href="https://github.com/Rconybea/hello-example">https://github.com/Rconybea/hello-example</a>
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org9aa8f5d"></a>Directory structure:<br />
+<div class="outline-text-5" id="text-3-1-1-1">
+<pre class="example" id="orgddb8948">
+hello-example
++- CMakeLists.txt
++- hello.cpp
 </pre>
+</div>
+</li>
+
+<li><a id="orgdd0ba7a"></a>Source<br />
+<div class="outline-text-5" id="text-3-1-1-2">
+<div class="org-src-container">
+<pre class="src src-c++">// hello.cpp
+
+#include &lt;iostream&gt;
+
+using namespace std;
+
+int
+main(int argc, char * argv[]) {
+    std::string subject = "World";
+
+    if (argc &gt; 1)
+        subject = argv[1];
+
+    cout &lt;&lt; "Hello, " &lt;&lt; subject &lt;&lt; "!" &lt;&lt; std::endl;
+} /*main*/
+
+</pre>
+</div>
+</div>
+</li>
+
+<li><a id="org0fdf124"></a>Cmake build files<br />
+<div class="outline-text-5" id="text-3-1-1-3">
+<div class="org-src-container">
+<pre class="src src-cmake"># CMakeLists.txt
+
+cmake_minimum_required(VERSION 3.10)
+
+project(hello-example VERSION 1.0)
+
+enable_language(CXX)
+
+# write compile_commands.json for LSP
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON CACHE INTERNAL "")
+
+set(SELF_EXE hello-example)
+set(SELF_SOURCE_FILES hello.cpp)
+
+add_executable(${SELF_EXE} ${SELF_SOURCE_FILES})
+
+install(TARGETS ${SELF_EXE} DESTINATION bin)
+
+if(CMAKE_EXPORT_COMPILE_COMMANDS)
+    # include otherwise-omitted system directories in compile_commands.json,
+    # so LSP knows exactly what compiler is using
+    set(CMAKE_CXX_STANDARD_INCLUDE_DIRECTORIES ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES})
+endif()
+</pre>
+</div>
+</div>
+</li>
+
+<li><a id="orgc3c54dc"></a>Build + Run<br />
+<div class="outline-text-5" id="text-3-1-1-4">
+<pre class="example" id="orgf841597">
+$ cd hello-example
+$ mkdir build
+$ cmake ..
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/roland/proj/hello-example/build
+$ make
+[ 50%] Building CXX object CMakeFiles/hello-example.dir/hello.cpp.o
+[100%] Linking CXX executable hello-example
+[100%] Built target hello-example
+$ ./hello-example
+Hello, World!
+</pre>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-orgb761486" class="outline-4">
+<h4 id="orgb761486"><span class="section-number-4">3.1.2.</span> Continuous Integration with Github</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<p>
+We need to do two things:
+</p>
+<ol class="org-ol">
+<li><p>
+setup a github repo holding our sources:
+</p>
+<pre class="example">
+$ cd hello-world
+$ git remote -v
+origin  git@github.com:rconybea/hello-example.git (fetch)
+origin  git@github.com:rconybea/hello-example.git (push)
+</pre></li>
+<li><p>
+configure github actions for that repo
+We add one more file, <code>hello-world/.github/workflows/main.yml</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-yaml">name: c++ build
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  build_job:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout self (hello-example)
+      run actions/checkout@v3
+
+    - name: configure self (hello-example)
+      run: cmake -B ${{github.workspace}/build -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/local -CMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+    - name: build self (hello-example)
+      run: cmake --build ${{github.workspace}}/build --verbose
+
+    - name: test self (hello-example)
+      working-directory: ${{github.workspace}}/build
+      run: ./hello-example
+</pre>
+</div></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: roly-desktop-23</p>
