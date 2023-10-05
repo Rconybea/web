@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-05 Thu 13:51 -->
+<!-- 2023-10-05 Thu 14:23 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>github continuous integration</title>
@@ -29,17 +29,17 @@
 <ul>
 <li><a href="#org1739d4e">3.1. Scheme 1</a>
 <ul>
-<li><a href="#orga2a1eed">3.1.1. Preliminaries</a></li>
+<li><a href="#org4ed1617">3.1.1. Preliminaries</a></li>
 </ul>
 </li>
 <li><a href="#orga8d4984">3.2. Scheme 2</a>
 <ul>
-<li><a href="#orgffb4a61">3.2.1. Preliminaries</a></li>
+<li><a href="#org0a2b9cc">3.2.1. Preliminaries</a></li>
 </ul>
 </li>
 <li><a href="#orgcce7bc7">3.3. Scheme 3</a>
 <ul>
-<li><a href="#org4ed1617">3.3.1. Preliminaries</a></li>
+<li><a href="#org7adeed3">3.3.1. Preliminaries</a></li>
 </ul>
 </li>
 </ul>
@@ -152,8 +152,8 @@ that converge on goals above.
 <h3 id="org1739d4e"><span class="section-number-3">3.1.</span> Scheme 1</h3>
 <div class="outline-text-3" id="text-3-1">
 </div>
-<div id="outline-container-orga2a1eed" class="outline-4">
-<h4 id="orga2a1eed"><span class="section-number-4">3.1.1.</span> Preliminaries</h4>
+<div id="outline-container-org4ed1617" class="outline-4">
+<h4 id="org4ed1617"><span class="section-number-4">3.1.1.</span> Preliminaries</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <p>
 source for <code>Scheme 1</code> is on github here: <a href="https://github.com/Rconybea/hello-example">https://github.com/Rconybea/hello-example</a>
@@ -161,9 +161,9 @@ source for <code>Scheme 1</code> is on github here: <a href="https://github.com/
 </div>
 
 <ol class="org-ol">
-<li><a id="org2ce1263"></a>Directory structure<br />
+<li><a id="org470db3e"></a>Directory structure<br />
 <div class="outline-text-5" id="text-3-1-1-1">
-<pre class="example" id="org38d3b09">
+<pre class="example" id="orgd69ac46">
 hello-example
 +- .github
 |  \- workflow
@@ -174,7 +174,7 @@ hello-example
 </div>
 </li>
 
-<li><a id="orgac35287"></a>Source<br />
+<li><a id="org3a371aa"></a>Source<br />
 <div class="outline-text-5" id="text-3-1-1-2">
 <div class="org-src-container">
 <pre class="src src-c++">// hello.cpp
@@ -231,7 +231,7 @@ endif()
 
 <li><a id="orgc3c54dc"></a>Build + Run<br />
 <div class="outline-text-5" id="text-3-1-1-4">
-<pre class="example" id="org00e74f4">
+<pre class="example" id="org52ab2f5">
 $ cd hello-example
 $ mkdir build
 $ cmake ..
@@ -248,7 +248,7 @@ Hello, World!
 </div>
 </li>
 
-<li><a id="orgb9997e7"></a>Continuous Integration with Github<br />
+<li><a id="orgaa1c54a"></a>Continuous Integration with Github<br />
 <div class="outline-text-5" id="text-3-1-1-5">
 <p>
 We need to do two things:
@@ -324,8 +324,8 @@ Initially replacing c++ program with shell script,  we'll restore it later.
 </p>
 </div>
 
-<div id="outline-container-orgffb4a61" class="outline-4">
-<h4 id="orgffb4a61"><span class="section-number-4">3.2.1.</span> Preliminaries</h4>
+<div id="outline-container-org0a2b9cc" class="outline-4">
+<h4 id="org0a2b9cc"><span class="section-number-4">3.2.1.</span> Preliminaries</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <p>
 source for <code>Scheme 2</code> is on github here: <a href="https://github.comt/Rconybea/docker-action-example">https://github.comt/Rconybea/docker-action-example</a>
@@ -344,7 +344,7 @@ Container:
 <ol class="org-ol">
 <li><a id="orgff6b8ec"></a>Directory Structure<br />
 <div class="outline-text-5" id="text-3-2-1-1">
-<pre class="example" id="org200cf98">
+<pre class="example" id="orgbf77f26">
 docker-action-example
 +- .github
 |  \- workflows
@@ -355,7 +355,7 @@ docker-action-example
 </div>
 </li>
 
-<li><a id="orgf293c62"></a>Source<br />
+<li><a id="org1939542"></a>Source<br />
 <div class="outline-text-5" id="text-3-2-1-2">
 <p>
 entrypoint.sh:
@@ -375,7 +375,7 @@ echo "time=$time" &gt;&gt; $GITHUB_OUTPUT
 <p>
 DockerFile:
 </p>
-<pre class="example" id="orgcef2c58">
+<pre class="example" id="org695a5a8">
 # base container image
 FROM ubuntu:22.04
 
@@ -426,7 +426,7 @@ runs:
 </div>
 </li>
 
-<li><a id="orgaa1c54a"></a>Continuous Integration with Github<br />
+<li><a id="org84861dc"></a>Continuous Integration with Github<br />
 <div class="outline-text-5" id="text-3-2-1-5">
 <p>
 Configure github actions for repo <a href="https://github.com/Rconybea/docker-action-example">https://github.com/Rconybea/docker-action-example</a>;
@@ -471,8 +471,8 @@ In <code>main.yml</code> here:
 <h3 id="orgcce7bc7"><span class="section-number-3">3.3.</span> Scheme 3</h3>
 <div class="outline-text-3" id="text-3-3">
 </div>
-<div id="outline-container-org4ed1617" class="outline-4">
-<h4 id="org4ed1617"><span class="section-number-4">3.3.1.</span> Preliminaries</h4>
+<div id="outline-container-org7adeed3" class="outline-4">
+<h4 id="org7adeed3"><span class="section-number-4">3.3.1.</span> Preliminaries</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <p>
 Source for <code>Scheme 3</code> uses two repos:
@@ -490,15 +490,15 @@ Prepare minimal custom docker container using a nix flake.
 </div>
 
 <ol class="org-ol">
-<li><a id="org470db3e"></a>Directory structure<br />
+<li><a id="orga429e12"></a>Directory structure<br />
 <div class="outline-text-5" id="text-3-3-1-1">
-<pre class="example" id="orgdf8063a">
+<pre class="example" id="org42208c5">
 docker-nix-hello
 +- flake.nix
 \- flake.lock    # automatically created by nix
 </pre>
 
-<pre class="example" id="orge796ef7">
+<pre class="example" id="org96e8835">
 docker-action-example2
 \- .github
    \- workflows
@@ -507,12 +507,12 @@ docker-action-example2
 </div>
 </li>
 
-<li><a id="org3a371aa"></a>Source<br />
+<li><a id="org6deb307"></a>Source<br />
 <div class="outline-text-5" id="text-3-3-1-2">
 <p>
 flake.nix:
 </p>
-<pre class="example" id="org78545f8">
+<pre class="example" id="org4cb2aaf">
 {
   description = "hello world";
 
@@ -661,7 +661,7 @@ jobs:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: roly-desktop-23</p>
-<p class="date">Created: 2023-10-05 Thu 13:51</p>
+<p class="date">Created: 2023-10-05 Thu 14:23</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
