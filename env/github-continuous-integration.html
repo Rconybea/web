@@ -3,217 +3,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-05 Thu 12:28 -->
+<!-- 2023-10-05 Thu 13:38 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>github continuous integration</title>
 <meta name="author" content="roly-desktop-23" />
 <meta name="generator" content="Org Mode" />
-<style>
-  #content { max-width: 60em; margin: auto; }
-  .title  { text-align: center;
-             margin-bottom: .2em; }
-  .subtitle { text-align: center;
-              font-size: medium;
-              font-weight: bold;
-              margin-top:0; }
-  .todo   { font-family: monospace; color: red; }
-  .done   { font-family: monospace; color: green; }
-  .priority { font-family: monospace; color: orange; }
-  .tag    { background-color: #eee; font-family: monospace;
-            padding: 2px; font-size: 80%; font-weight: normal; }
-  .timestamp { color: #bebebe; }
-  .timestamp-kwd { color: #5f9ea0; }
-  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
-  .underline { text-decoration: underline; }
-  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
-  p.verse { margin-left: 3%; }
-  pre {
-    border: 1px solid #e6e6e6;
-    border-radius: 3px;
-    background-color: #f2f2f2;
-    padding: 8pt;
-    font-family: monospace;
-    overflow: auto;
-    margin: 1.2em;
-  }
-  pre.src {
-    position: relative;
-    overflow: auto;
-  }
-  pre.src:before {
-    display: none;
-    position: absolute;
-    top: -8px;
-    right: 12px;
-    padding: 3px;
-    color: #555;
-    background-color: #f2f2f299;
-  }
-  pre.src:hover:before { display: inline; margin-top: 14px;}
-  /* Languages per Org manual */
-  pre.src-asymptote:before { content: 'Asymptote'; }
-  pre.src-awk:before { content: 'Awk'; }
-  pre.src-authinfo::before { content: 'Authinfo'; }
-  pre.src-C:before { content: 'C'; }
-  /* pre.src-C++ doesn't work in CSS */
-  pre.src-clojure:before { content: 'Clojure'; }
-  pre.src-css:before { content: 'CSS'; }
-  pre.src-D:before { content: 'D'; }
-  pre.src-ditaa:before { content: 'ditaa'; }
-  pre.src-dot:before { content: 'Graphviz'; }
-  pre.src-calc:before { content: 'Emacs Calc'; }
-  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-fortran:before { content: 'Fortran'; }
-  pre.src-gnuplot:before { content: 'gnuplot'; }
-  pre.src-haskell:before { content: 'Haskell'; }
-  pre.src-hledger:before { content: 'hledger'; }
-  pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
-  pre.src-latex:before { content: 'LaTeX'; }
-  pre.src-ledger:before { content: 'Ledger'; }
-  pre.src-lisp:before { content: 'Lisp'; }
-  pre.src-lilypond:before { content: 'Lilypond'; }
-  pre.src-lua:before { content: 'Lua'; }
-  pre.src-matlab:before { content: 'MATLAB'; }
-  pre.src-mscgen:before { content: 'Mscgen'; }
-  pre.src-ocaml:before { content: 'Objective Caml'; }
-  pre.src-octave:before { content: 'Octave'; }
-  pre.src-org:before { content: 'Org mode'; }
-  pre.src-oz:before { content: 'OZ'; }
-  pre.src-plantuml:before { content: 'Plantuml'; }
-  pre.src-processing:before { content: 'Processing.js'; }
-  pre.src-python:before { content: 'Python'; }
-  pre.src-R:before { content: 'R'; }
-  pre.src-ruby:before { content: 'Ruby'; }
-  pre.src-sass:before { content: 'Sass'; }
-  pre.src-scheme:before { content: 'Scheme'; }
-  pre.src-screen:before { content: 'Gnu Screen'; }
-  pre.src-sed:before { content: 'Sed'; }
-  pre.src-sh:before { content: 'shell'; }
-  pre.src-sql:before { content: 'SQL'; }
-  pre.src-sqlite:before { content: 'SQLite'; }
-  /* additional languages in org.el's org-babel-load-languages alist */
-  pre.src-forth:before { content: 'Forth'; }
-  pre.src-io:before { content: 'IO'; }
-  pre.src-J:before { content: 'J'; }
-  pre.src-makefile:before { content: 'Makefile'; }
-  pre.src-maxima:before { content: 'Maxima'; }
-  pre.src-perl:before { content: 'Perl'; }
-  pre.src-picolisp:before { content: 'Pico Lisp'; }
-  pre.src-scala:before { content: 'Scala'; }
-  pre.src-shell:before { content: 'Shell Script'; }
-  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
-  /* additional language identifiers per "defun org-babel-execute"
-       in ob-*.el */
-  pre.src-cpp:before  { content: 'C++'; }
-  pre.src-abc:before  { content: 'ABC'; }
-  pre.src-coq:before  { content: 'Coq'; }
-  pre.src-groovy:before  { content: 'Groovy'; }
-  /* additional language identifiers from org-babel-shell-names in
-     ob-shell.el: ob-shell is the only babel language using a lambda to put
-     the execution function name together. */
-  pre.src-bash:before  { content: 'bash'; }
-  pre.src-csh:before  { content: 'csh'; }
-  pre.src-ash:before  { content: 'ash'; }
-  pre.src-dash:before  { content: 'dash'; }
-  pre.src-ksh:before  { content: 'ksh'; }
-  pre.src-mksh:before  { content: 'mksh'; }
-  pre.src-posh:before  { content: 'posh'; }
-  /* Additional Emacs modes also supported by the LaTeX listings package */
-  pre.src-ada:before { content: 'Ada'; }
-  pre.src-asm:before { content: 'Assembler'; }
-  pre.src-caml:before { content: 'Caml'; }
-  pre.src-delphi:before { content: 'Delphi'; }
-  pre.src-html:before { content: 'HTML'; }
-  pre.src-idl:before { content: 'IDL'; }
-  pre.src-mercury:before { content: 'Mercury'; }
-  pre.src-metapost:before { content: 'MetaPost'; }
-  pre.src-modula-2:before { content: 'Modula-2'; }
-  pre.src-pascal:before { content: 'Pascal'; }
-  pre.src-ps:before { content: 'PostScript'; }
-  pre.src-prolog:before { content: 'Prolog'; }
-  pre.src-simula:before { content: 'Simula'; }
-  pre.src-tcl:before { content: 'tcl'; }
-  pre.src-tex:before { content: 'TeX'; }
-  pre.src-plain-tex:before { content: 'Plain TeX'; }
-  pre.src-verilog:before { content: 'Verilog'; }
-  pre.src-vhdl:before { content: 'VHDL'; }
-  pre.src-xml:before { content: 'XML'; }
-  pre.src-nxml:before { content: 'XML'; }
-  /* add a generic configuration mode; LaTeX export needs an additional
-     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
-  pre.src-conf:before { content: 'Configuration File'; }
-
-  table { border-collapse:collapse; }
-  caption.t-above { caption-side: top; }
-  caption.t-bottom { caption-side: bottom; }
-  td, th { vertical-align:top;  }
-  th.org-right  { text-align: center;  }
-  th.org-left   { text-align: center;   }
-  th.org-center { text-align: center; }
-  td.org-right  { text-align: right;  }
-  td.org-left   { text-align: left;   }
-  td.org-center { text-align: center; }
-  dt { font-weight: bold; }
-  .footpara { display: inline; }
-  .footdef  { margin-bottom: 1em; }
-  .figure { padding: 1em; }
-  .figure p { text-align: center; }
-  .equation-container {
-    display: table;
-    text-align: center;
-    width: 100%;
-  }
-  .equation {
-    vertical-align: middle;
-  }
-  .equation-label {
-    display: table-cell;
-    text-align: right;
-    vertical-align: middle;
-  }
-  .inlinetask {
-    padding: 10px;
-    border: 2px solid gray;
-    margin: 10px;
-    background: #ffffcc;
-  }
-  #org-div-home-and-up
-   { text-align: right; font-size: 70%; white-space: nowrap; }
-  textarea { overflow-x: auto; }
-  .linenr { font-size: smaller }
-  .code-highlighted { background-color: #ffff00; }
-  .org-info-js_info-navigation { border-style: none; }
-  #org-info-js_console-label
-    { font-size: 10px; font-weight: bold; white-space: nowrap; }
-  .org-info-js_search-highlight
-    { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { }
-</style>
-<link rel="stylesheet" type="text/css" href="/web/css/primary.css" />
-
-<script src="/web/ext/orginfo/org-info.js">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
-// @license-end
-</script>
-
-<script>
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
-org_html_manager.set("TOC_DEPTH", "3");
-org_html_manager.set("LINK_HOME", "index.html");
-org_html_manager.set("LINK_UP", "development-environment.html");
-org_html_manager.set("LOCAL_TOC", "0");
-org_html_manager.set("VIEW_BUTTONS", "0");
-org_html_manager.set("MOUSE_HINT", "#ffc0c0");
-org_html_manager.set("FIXED_TOC", "0");
-org_html_manager.set("TOC", "0");
-org_html_manager.set("VIEW", "showall");
-org_html_manager.setup();  // activate after the parameters are set
-// @license-end
-</script>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 </head>
 <body>
 <div id="org-div-home-and-up">
@@ -233,7 +34,16 @@ org_html_manager.setup();  // activate after the parameters are set
 <li><a href="#org1739d4e">3.1. Scheme 1</a>
 <ul>
 <li><a href="#orgd2cabd0">3.1.1. Preliminaries</a></li>
-<li><a href="#orgb761486">3.1.2. Continuous Integration with Github</a></li>
+</ul>
+</li>
+<li><a href="#orga8d4984">3.2. Scheme 2</a>
+<ul>
+<li><a href="#org4b346a6">3.2.1. Preliminaries</a></li>
+</ul>
+</li>
+<li><a href="#orgcce7bc7">3.3. Scheme 3</a>
+<ul>
+<li><a href="#orga2a1eed">3.3.1. Preliminaries</a></li>
 </ul>
 </li>
 </ul>
@@ -241,6 +51,10 @@ org_html_manager.setup();  // activate after the parameters are set
 </ul>
 </div>
 </div>
+<p>
+##+infojs_opt: view:showall mouse:#ffc0c0 toc:nil ltoc:nil path:/web/ext/orginfo/org-info.js
+##+html_head: &lt;link rel="stylesheet" type="text/css" href="/web/css/primary.css" /&gt;
+</p>
 
 <div id="outline-container-org7cb71fe" class="outline-2">
 <h2 id="org7cb71fe"><span class="section-number-2">1.</span> Motivation</h2>
@@ -268,11 +82,15 @@ Several advantages:
 <div id="outline-container-org4ec320d" class="outline-2">
 <h2 id="org4ec320d"><span class="section-number-2">2.</span> Contents</h2>
 <div class="outline-text-2" id="text-2">
+<p>
+repos under <a href="https://github.com/Rconybea">https://github.com/Rconybea</a>
+</p>
+
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="org-right" />
+<col  class="org-left" />
 
 <col  class="org-left" />
 
@@ -282,22 +100,43 @@ Several advantages:
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-right">scheme</th>
+<th scope="col" class="org-left">scheme</th>
 <th scope="col" class="org-left">builder</th>
-<th scope="col" class="org-left">docker</th>
-<th scope="col" class="org-left">repo</th>
+<th scope="col" class="org-left">src-repo</th>
+<th scope="col" class="org-left">action-repo</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="org-right">1</td>
+<td class="org-left">scheme 1</td>
 <td class="org-left">ubuntu</td>
-<td class="org-left">n/a</td>
-<td class="org-left"><a href="https://github.com/Rconybea/hello-example">https://github.com/Rconybea/hello-example</a></td>
+<td class="org-left"><a href="https://github.com/Rconybea/hello-example">hello-example</a></td>
+<td class="org-left">(same)</td>
 </tr>
 
 <tr>
-<td class="org-right">&#xa0;</td>
+<td class="org-left">scheme 2</td>
+<td class="org-left">ubuntu</td>
+<td class="org-left"><a href="https://github.com/Rconybea/docker-action-example">docker-action-example</a></td>
+<td class="org-left">(same)</td>
+</tr>
+
+<tr>
+<td class="org-left">scheme 3</td>
+<td class="org-left">container</td>
+<td class="org-left"><a href="https://github.com/Rconybea/docker-nix-hello">docker-nix-hello</a></td>
+<td class="org-left"><a href="https://github.com/Rconybea/docker-action-example2">docker-action-example2</a></td>
+</tr>
+
+<tr>
+<td class="org-left">scheme 4</td>
+<td class="org-left">container</td>
+<td class="org-left"><a href="https://github.com/Rconybea/docker-cpp-builder">docker-cpp-builder</a></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">&#xa0;</td>
 <td class="org-left">&#xa0;</td>
 <td class="org-left">&#xa0;</td>
@@ -307,11 +146,13 @@ Several advantages:
 </div>
 </div>
 
+
 <div id="outline-container-org0719f34" class="outline-2">
 <h2 id="org0719f34"><span class="section-number-2">3.</span> Progressive Implementation</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-We'll present several progressive CI-with-github examples,  that converge on goals above.
+We'll present several progressive CI-with-github examples,
+that converge on goals above.
 </p>
 </div>
 
@@ -328,12 +169,15 @@ source for <code>Scheme 1</code> is on github here: <a href="https://github.com/
 </div>
 
 <ol class="org-ol">
-<li><a id="org9aa8f5d"></a>Directory structure:<br />
+<li><a id="orgded8756"></a>Directory structure<br />
 <div class="outline-text-5" id="text-3-1-1-1">
-<pre class="example" id="orgddb8948">
+<pre class="example" id="orgb225f01">
 hello-example
++- .github
+|  \- workflow
+|     \- main.yml
 +- CMakeLists.txt
-+- hello.cpp
+\- hello.cpp
 </pre>
 </div>
 </li>
@@ -395,7 +239,7 @@ endif()
 
 <li><a id="orgc3c54dc"></a>Build + Run<br />
 <div class="outline-text-5" id="text-3-1-1-4">
-<pre class="example" id="orgf841597">
+<pre class="example" id="orgec30b0b">
 $ cd hello-example
 $ mkdir build
 $ cmake ..
@@ -411,12 +255,9 @@ Hello, World!
 </pre>
 </div>
 </li>
-</ol>
-</div>
 
-<div id="outline-container-orgb761486" class="outline-4">
-<h4 id="orgb761486"><span class="section-number-4">3.1.2.</span> Continuous Integration with Github</h4>
-<div class="outline-text-4" id="text-3-1-2">
+<li><a id="orgb761486"></a>Continuous Integration with Github<br />
+<div class="outline-text-5" id="text-3-1-1-5">
 <p>
 We need to do two things:
 </p>
@@ -432,11 +273,11 @@ origin  git@github.com:rconybea/hello-example.git (push)
 </pre></li>
 <li><p>
 configure github actions for that repo
-We add one more file, <code>hello-world/.github/workflows/main.yml</code>
+We add one file, <code>hello-world/.github/workflows/main.yml</code>
 </p>
 
 <div class="org-src-container">
-<pre class="src src-yaml">name: c++ build
+<pre class="src src-yaml">name: c++ build with cmake
 
 on:
   push:
@@ -453,10 +294,10 @@ jobs:
 
     steps:
     - name: checkout self (hello-example)
-      run actions/checkout@v3
+      uses: actions/checkout@v3
 
     - name: configure self (hello-example)
-      run: cmake -B ${{github.workspace}/build -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/local -CMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/local -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: build self (hello-example)
       run: cmake --build ${{github.workspace}}/build --verbose
@@ -465,16 +306,370 @@ jobs:
       working-directory: ${{github.workspace}}/build
       run: ./hello-example
 </pre>
-</div></li>
+</div>
+
+<p>
+github will automatically trigger a build whenever new sources are pushed.
+build will run the contents of <code>steps</code> in order.
+</p></li>
 </ol>
 </div>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orga8d4984" class="outline-3">
+<h3 id="orga8d4984"><span class="section-number-3">3.2.</span> Scheme 2</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Instead of building on github-provided base ubuntu platform,
+use github-built docker container.
+</p>
+
+<p>
+Initially replacing c++ program with shell script,  we'll restore it later.
+</p>
+</div>
+
+<div id="outline-container-org4b346a6" class="outline-4">
+<h4 id="org4b346a6"><span class="section-number-4">3.2.1.</span> Preliminaries</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+source for <code>Scheme 2</code> is on github here: <a href="https://github.comt/Rconybea/docker-action-example">https://github.comt/Rconybea/docker-action-example</a>
+</p>
+
+<p>
+Build docker container (using resources from ubuntu base platform).
+Container:
+</p>
+<ul class="org-ul">
+<li>invokes a shell script to say hello</li>
+<li>can be used as a github action</li>
+</ul>
+</div>
+
+<ol class="org-ol">
+<li><a id="orgff6b8ec"></a>Directory Structure<br />
+<div class="outline-text-5" id="text-3-2-1-1">
+<pre class="example" id="org4522d69">
+docker-action-example
++- .github
+|  \- workflows
+|     \- main.yml
++- action.yml
+\- entrypoint.sh
+</pre>
+</div>
+</li>
+
+<li><a id="org72a2f6f"></a>Source<br />
+<div class="outline-text-5" id="text-3-2-1-2">
+<p>
+entrypoint.sh:
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">#!/usr/bin/env bash
+echo "Hello $1"
+time=$(date)
+echo "time=$time" &gt;&gt; $GITHUB_OUTPUT
+</pre>
+</div>
+</div>
+</li>
+
+<li><a id="org22770ba"></a>Docker Container<br />
+<div class="outline-text-5" id="text-3-2-1-3">
+<p>
+DockerFile:
+</p>
+<pre class="example" id="orge01133b">
+# base container image
+FROM ubuntu:22.04
+
+# copy files from repo to container filesystem
+COPY entrypoint.sh /entrypoint.sh
+
+# default startup executable
+ENTRYPOINT ["/entrypoint.sh"]
+</pre>
+</div>
+</li>
+
+<li><a id="orgd256360"></a>Use Container as github action<br />
+<div class="outline-text-5" id="text-3-2-1-4">
+<p>
+toplevel <code>action.yml</code> describes a custom github action
+that operates by invoking docker image
+(automagically built from enclosed <code>DockerFile</code>)
+</p>
+
+<p>
+action.yml:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-yaml">name: 'Hello World'
+
+description: 'Greet someone + record the time'
+
+inputs:
+  who-to-greet:
+    description: 'Who to greet'
+    required: true
+    default: "World"
+
+outputs:
+  time:
+    description: "time when greeting made"
+
+runs:
+  using: 'docker'
+  image: 'DockerFile'
+  args:
+    - ${{ inputs.who-to-greet }}
+
+</pre>
+</div>
+</div>
+</li>
+
+<li><a id="orgb9997e7"></a>Continuous Integration with Github<br />
+<div class="outline-text-5" id="text-3-2-1-5">
+<p>
+Configure github actions for repo <a href="https://github.com/Rconybea/docker-action-example">https://github.com/Rconybea/docker-action-example</a>;
+</p>
+
+<p>
+File <code>.github/workflows/main.yml</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-yaml">on: [push]
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: a job to say hello, perhaps fiercely
+    steps:
+      - name: hello world action step
+        id: hello
+        uses: rconybea/docker-action-example@v1
+        with:
+          who-to-greet: 'Iffy!  What are you doing??'
+          # do something with output
+          - name: get output time
+            run: echo "The time was ${{ steps.hello.outputs.time }}"
+</pre>
+</div>
+
+<p>
+In <code>main.yml</code> here:
+</p>
+<ul class="org-ul">
+<li><code>rconybea/docker-action-example</code> is our github repo,</li>
+<li><code>v1</code> is target github tag</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgcce7bc7" class="outline-3">
+<h3 id="orgcce7bc7"><span class="section-number-3">3.3.</span> Scheme 3</h3>
+<div class="outline-text-3" id="text-3-3">
+</div>
+<div id="outline-container-orga2a1eed" class="outline-4">
+<h4 id="orga2a1eed"><span class="section-number-4">3.3.1.</span> Preliminaries</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<p>
+Source for <code>Scheme 3</code> uses two repos:
+</p>
+
+<p>
+Custom container build here: <a href="https:://github.com/Rconybea/docker-nix-hello">https:://github.com/Rconybea/docker-nix-hello</a>
+Workflow using container here: <a href="https://github.com/Rconybea/docker-action-example2">https://github.com/Rconybea/docker-action-example2</a>
+See also: <a href="https://blog.bitsrc.io/using-github-container-registry-in-practice-295677c6f65e">https://blog.bitsrc.io/using-github-container-registry-in-practice-295677c6f65e</a>]]
+</p>
+
+<p>
+Prepare minimal custom docker container using a nix flake.
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="org2ce1263"></a>Directory structure<br />
+<div class="outline-text-5" id="text-3-3-1-1">
+<pre class="example" id="org00f1bce">
+docker-nix-hello
++- flake.nix
+\- flake.lock    # automatically created by nix
+</pre>
+
+<pre class="example" id="orgf98f1cf">
+docker-action-example2
+\- .github
+   \- workflows
+      \- main.yml
+</pre>
+</div>
+</li>
+
+<li><a id="orgac35287"></a>Source<br />
+<div class="outline-text-5" id="text-3-3-1-2">
+<p>
+flake.nix:
+</p>
+<pre class="example" id="org82bc015">
+{
+  description = "hello world";
+
+  # dependencies
+  inputs = rec {
+    nixpkgs.url = "github:nixos/nixpkgs/23.05";
+  };
+
+  outputs = { self, nixpkgs } :
+    let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs { inherit system; };
+
+      hello_deriv = pkgs.writeShellScriptBin "entrypoint.sh" ''
+        echo "Hello $1"
+        time=$(date)
+        echo "time=$time" &gt;&gt; $GITHUB_OUTPUT
+      '';
+
+      docker_hello_deriv =
+        pkgs.dockerTools.buildLayeredImage {
+          name = "docker-nix-hello";
+          tag = "v1";
+          contents = [ self.packages.${system}.hello
+                       self.packages.${system}.bash
+                       # for /bin/tail,  assumed by github actions when invoking a docker container
+                       self.packages.${system}.coreutils ];
+
+          config = {
+            Cmd = [ "/bin/entrypoint.sh" ];
+            WorkingDir = "/";
+          };
+        };
+
+    in rec {
+      packages.${system} = {
+        default = docker_hello_deriv;
+
+        docker_hello = docker_hello_deriv;
+        hello = hello_deriv;
+
+        bash = pkgs.bash;
+        # for example,  github actions creates container with --entrypoint "tail",
+        # so container must provide executable with that name in $PATH
+        #
+        coreutils = pkgs.coreutils;
+      };
+    };
+}
+</pre>
+</div>
+</li>
+
+<li><a id="org9bf389e"></a>Build Container + Upload to github<br />
+<div class="outline-text-5" id="text-3-3-1-3">
+<p>
+Container will be <code>docker-nix-hello</code>.
+</p>
+
+<p>
+Steps:
+</p>
+<ol class="org-ol">
+<li>get github personal access token,
+so docker can send images to <code>ghcr.io</code>.
+on <a href="https://github.com/Rconybea">https://github.com/Rconybea</a>:
+<ul class="org-ul">
+<li>visit profile (upper rhs of <code>github</code> webpage)</li>
+<li>developer settings (bottom of sidebar)</li>
+<li>personal access token</li>
+<li>tokens (classic)</li>
+<li>generate personal access token with scopes:
+<code>read:packages</code> <code>write:packages</code> <code>delete:packages</code></li>
+</ul></li>
+<li><p>
+have docker login to github
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">export CR_PAT=${token}
+echo $CR_PAT | docker login ghcr.io -u rconybea --password-stdin
+</pre>
+</div></li>
+<li><p>
+nix builds custom image (using <code>docker-nix-hello/flake.nix</code>)
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">cd ~/proj/docker-nix-hello
+nix build
+</pre>
+</div></li>
+<li><p>
+load image into docker
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">docker load &lt;~/proj/docker-nix-hello/result
+</pre>
+</div></li>
+<li><p>
+tag image the way github expects: <code>ghcr.io/${username}/${imagename}:${tag}</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">docker image tag docker-nix-hello:v1 ghcr.io/rconybea/docker-nix-hello:v1
+</pre>
+</div></li>
+<li><p>
+push to github container registry
+(will show up at <a href="https://github.com/Rconybea?tab=packages">https://github.com/Rconybea?tab=packages</a>)
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">docker image push ghcr.io/rconybea/docker-nix-hello:v1
+</pre>
+</div></li>
+<li>make package public from package's settings link</li>
+</ol>
+</div>
+</li>
+
+<li><a id="org158f6fb"></a>Workflow Using Custom Container<br />
+<div class="outline-text-5" id="text-3-3-1-4">
+<p>
+in <code>docker-action-example2/.github/workflows/main.yml</code>:
+</p>
+<div class="org-src-container">
+<pre class="src src-yaml">on: [push]
+
+jobs:
+  hello_world_job:
+    name: a job to say hello,  using separate docker container
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/rconybea/docker-nix-hello:v1
+      steps:
+        - name: hello world action step
+          id: hello
+          run: /bin/entrypoint.sh 'Xioni!'
+          - name: get output time
+            run: echo "The time was ${{ steps.hello.outputs.time }}"
+</pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: roly-desktop-23</p>
-<p class="date">Created: 2023-10-05 Thu 12:28</p>
+<p class="date">Created: 2023-10-05 Thu 13:38</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

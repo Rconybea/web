@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-05 Thu 12:28 -->
+<!-- 2023-10-05 Thu 13:38 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>c++ development environment</title>
@@ -234,17 +234,31 @@ org_html_manager.setup();  // activate after the parameters are set
 <li><a href="#org426018d">2. Summary</a>
 <ul>
 <li><a href="#orgfa493de">2.1. Operating System Stack</a></li>
-<li><a href="#orgb8d6cdf">2.2. Build Stack</a></li>
-<li><a href="#org9704e0b">2.3. C++ Library Stack</a></li>
+<li><a href="#org9afbfbf">2.2. Build Stack</a></li>
+<li><a href="#org3bf1897">2.3. C++ Library Stack</a></li>
 </ul>
 </li>
 <li><a href="#org817ec17">3. Topics</a>
 <ul>
-<li><a href="#org9afbfbf">3.1. Build Stack</a></li>
-<li><a href="#org3bf1897">3.2. C++ Library Stack</a></li>
-<li><a href="#org0566069">3.3. Publish Static HTML</a>
+<li><a href="#org80579a8">3.1. Build Stack</a>
 <ul>
-<li><a href="#orgab1a698">3.3.1. github + custom image + docker + github action</a></li>
+<li><a href="#org9a7eba2">3.1.1. nix setup</a></li>
+<li><a href="#org281b01a">3.1.2. emacs setup</a></li>
+<li><a href="#org7343180">3.1.3. c++ build (cmake)</a></li>
+<li><a href="#org3702e41">3.1.4. c++ unit tests</a></li>
+<li><a href="#org7106a45">3.1.5. c++ code coverage</a></li>
+<li><a href="#orgd440d5c">3.1.6. reproducible build (nix + flakes)</a></li>
+<li><a href="#org6a019ed">3.1.7. file:github-continuous-integration.org - continuous integration: github+nix+docker</a></li>
+<li><a href="#orgc7837ea">3.1.8. containers (docker)</a></li>
+</ul>
+</li>
+<li><a href="#orgb9bce43">3.2. C++ Library Stack</a>
+<ul>
+<li><a href="#org47f0b93">3.2.1. catch2</a></li>
+<li><a href="#orgf694ec2">3.2.2. boost</a></li>
+<li><a href="#org6c86f4a">3.2.3. pybind11</a></li>
+<li><a href="#org1a1b30f">3.2.4. c++/browser communication</a></li>
+<li><a href="#orga6433a0">3.2.5. file:publish-static-html.org - publish org-mode content:</a></li>
 </ul>
 </li>
 </ul>
@@ -359,8 +373,8 @@ Will be using the following components
 </div>
 </div>
 
-<div id="outline-container-orgb8d6cdf" class="outline-3">
-<h3 id="orgb8d6cdf"><span class="section-number-3">2.2.</span> Build Stack</h3>
+<div id="outline-container-org9afbfbf" class="outline-3">
+<h3 id="org9afbfbf"><span class="section-number-3">2.2.</span> Build Stack</h3>
 <div class="outline-text-3" id="text-2-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -406,8 +420,8 @@ Will be using the following components
 </div>
 </div>
 
-<div id="outline-container-org9704e0b" class="outline-3">
-<h3 id="org9704e0b"><span class="section-number-3">2.3.</span> C++ Library Stack</h3>
+<div id="outline-container-org3bf1897" class="outline-3">
+<h3 id="org3bf1897"><span class="section-number-3">2.3.</span> C++ Library Stack</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 using these c++ libraries
@@ -447,11 +461,6 @@ using these c++ libraries
 <td class="org-left">c++/browser communication</td>
 <td class="org-left">websocket</td>
 </tr>
-
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -462,390 +471,61 @@ using these c++ libraries
 <h2 id="org817ec17"><span class="section-number-2">3.</span> Topics</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org9afbfbf" class="outline-3">
-<h3 id="org9afbfbf"><span class="section-number-3">3.1.</span> Build Stack</h3>
+<div id="outline-container-org80579a8" class="outline-3">
+<h3 id="org80579a8"><span class="section-number-3">3.1.</span> Build Stack</h3>
 <div class="outline-text-3" id="text-3-1">
 </div>
-<ol class="org-ol">
-<li><a id="org9a7eba2"></a>nix setup<br /></li>
-<li><a id="org281b01a"></a>emacs setup<br /></li>
-<li><a id="org7343180"></a>c++ build (cmake)<br /></li>
-<li><a id="org3702e41"></a>c++ unit tests<br /></li>
-<li><a id="org7106a45"></a>c++ code coverage<br /></li>
-<li><a id="orgd440d5c"></a>reproducible build (nix + flakes)<br /></li>
-<li><a id="orgd9e4c4e"></a>continuous integration (github actions)<br /></li>
-<li><a id="orgc7837ea"></a>containers (docker)<br /></li>
-</ol>
+<div id="outline-container-org9a7eba2" class="outline-4">
+<h4 id="org9a7eba2"><span class="section-number-4">3.1.1.</span> nix setup</h4>
+</div>
+<div id="outline-container-org281b01a" class="outline-4">
+<h4 id="org281b01a"><span class="section-number-4">3.1.2.</span> emacs setup</h4>
+</div>
+<div id="outline-container-org7343180" class="outline-4">
+<h4 id="org7343180"><span class="section-number-4">3.1.3.</span> c++ build (cmake)</h4>
+</div>
+<div id="outline-container-org3702e41" class="outline-4">
+<h4 id="org3702e41"><span class="section-number-4">3.1.4.</span> c++ unit tests</h4>
+</div>
+<div id="outline-container-org7106a45" class="outline-4">
+<h4 id="org7106a45"><span class="section-number-4">3.1.5.</span> c++ code coverage</h4>
+</div>
+<div id="outline-container-orgd440d5c" class="outline-4">
+<h4 id="orgd440d5c"><span class="section-number-4">3.1.6.</span> reproducible build (nix + flakes)</h4>
+</div>
+<div id="outline-container-org6a019ed" class="outline-4">
+<h4 id="org6a019ed"><span class="section-number-4">3.1.7.</span> <a href="github-continuous-integration.html">github-continuous-integration.html</a> - continuous integration: github+nix+docker</h4>
+</div>
+<div id="outline-container-orgc7837ea" class="outline-4">
+<h4 id="orgc7837ea"><span class="section-number-4">3.1.8.</span> containers (docker)</h4>
+</div>
 </div>
 
-<div id="outline-container-org3bf1897" class="outline-3">
-<h3 id="org3bf1897"><span class="section-number-3">3.2.</span> C++ Library Stack</h3>
+<div id="outline-container-orgb9bce43" class="outline-3">
+<h3 id="orgb9bce43"><span class="section-number-3">3.2.</span> C++ Library Stack</h3>
 <div class="outline-text-3" id="text-3-2">
 </div>
-<ol class="org-ol">
-<li><a id="org47f0b93"></a>catch2<br /></li>
-<li><a id="orgf694ec2"></a>boost<br /></li>
-<li><a id="org6c86f4a"></a>pybind11<br /></li>
-<li><a id="org1a1b30f"></a>c++/browser communication<br /></li>
-</ol>
+<div id="outline-container-org47f0b93" class="outline-4">
+<h4 id="org47f0b93"><span class="section-number-4">3.2.1.</span> catch2</h4>
 </div>
-
-<div id="outline-container-org0566069" class="outline-3">
-<h3 id="org0566069"><span class="section-number-3">3.3.</span> Publish Static HTML</h3>
-<div class="outline-text-3" id="text-3-3">
-<p>
-In particular,  including this content.
-Content formatted using <code>org-mode</code>.
-</p>
+<div id="outline-container-orgf694ec2" class="outline-4">
+<h4 id="orgf694ec2"><span class="section-number-4">3.2.2.</span> boost</h4>
 </div>
-
-<ol class="org-ol">
-<li><a id="org6c22a33"></a>base emacs configuration for publishing<br />
-<div class="outline-text-5" id="text-3-3-0-1">
-<p>
-See also
-<a href="https://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html">https://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html</a>
-</p>
-
-<p>
-<code>org-publish-project-alist</code> configures org trees for publishing:
-</p>
-<pre class="example" id="org02939c4">
-;; ----------------------------------------------------------------
-;; org-mode publishing
-;;
-(require 'ox-publish)
-
-;; publishing setup -- this is a kitchen sink -- it's intended to cover
-;; everything we want org-mode to publish
-;;
-(setq org-publish-project-alist
-      '(
-        ("org-howto"
-         :components ("org-howto-notes" "org-howto-static"))
-
-        ("org-howto-notes"
-         :base-directory "~/proj/org-howto"
-         :base-extension "org"
-         :publishing-directory "~/proj/public_html/org-howto"
-         :recursive t
-         :publishing-function org-html-publish-to-html
-         :headling-levels 4
-         :auto-preamble t
-         )
-
-        ("org-howto-static"
-         :base-directory "~/proj/org-howto"
-         :base-extension "css\\|html\\|js\\|svg\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-         :publishing-directory "~/proj/public_html/org-howto"
-         :recursive t
-         :publishing-function org-publish-attachment
-         )
-        )
-
-        ; ... additional org trees here ...
-        )
-</pre>
-
-<p>
-With this configuration
-</p>
-<pre class="example" id="orgb0c9d4a">
-~M-x org-publish-project org-howto~
-</pre>
-
-<p>
-generates HTML content in <code>~/proj/public_html/org-howto~</code>.
-</p>
+<div id="outline-container-org6c86f4a" class="outline-4">
+<h4 id="org6c86f4a"><span class="section-number-4">3.2.3.</span> pybind11</h4>
 </div>
-</li>
-
-<li><a id="orgf4eb456"></a>setup for literate programming<br />
-<div class="outline-text-5" id="text-3-3-0-2">
-<p>
-<code>org-mode</code> can automate weaving together content prepared by other programs,
-for example <code>graphviz</code>.
-</p>
-
-<p>
-<code>~/.emacs</code> Configuration for such adopted sources (as of 1oct2023 just graphviz):
-</p>
-
-<pre class="example" id="org7d63e80">
-;; ----------------------------------------------------------------
-;; org-mode babel setup
-;; (execute dot/ditaa/bash/c++ etc. from .org code blocks)
-;;
-;; see
-;;   [[https://orgmode.org/worg/org-contrib/babel/intro.html]]
-;;   [[https://orgmode.org/worg/org-contrib/babel/languages/index.html]]
-;;
-;; code block:
-;;   #+begin_src ${language} ${switches} ${headerarguments}
-;;     ${body}
-;;   #+end_src
-;;
-;; use header argument
-;;   :results output
-;; to insert code-block output (i.e. contents of stdout) into .org file below code block
-;;
-;; use
-;;   :results value
-;; to just take value of last statement
-;;
-;; use
-;;   :session
-;; to share language sub-process across code-blocks.
-;;
-;; can use
-;;   #+name: foo
-;; to name an org-mode table;  then:
-;;   #+begin_src ... :var myfreevar=foo
-;;     ...
-;;   #+end_src
-;; with body mentioning myfreevar;  .org will substitute foo
-;;
-;; can do inline coode block with
-;;   src_&lt;${lang}&gt;{${code}} or src_&lt;${lang}[${args}]{${code}}
-;; e.g.
-;;   src_python[:session]{10*x}
-;;
-;; notes:
-;;   [C-c C-v] org-babel prefix
-;;   [C-c C-v b] -- evaluate code blocks in buffer
-;;   [C-c C-v s] -- evaluate code blocks in subtree
-;;   [C-c C-v e] -- evaluate code block at point
-;;   [C-c '] M-x org-edit-src-code -- puts code block in new buffer with appropriate mode activated
-;;   [C-c M-b p] M-x org-babel-expand-src-block -- show expanded code block prior to evaluation
-;;   (org-babel-lob-ingest "path/to/file.org") to share code blogs as 'library'
-
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((dot . t)  ; graphviz [[https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-dot.html]] see also graphviz-dot-mode
-   ))
-</pre>
-
-<p>
-Example <code>.org</code> content using graphviz:
-</p>
-
-<pre class="example" id="orgf897bb7">
-#+begin_src dot :file img/living-room-av/macmini.svg :exports results :cmdline -Tsvg
-digraph {
-  size="4,4";
-  rankdir=LR;
-  s [label="mac mini", shape="box"];
-  r [label="receiver", shape="box"];
-  m [label="monitor", shape="box"];
-  sp [label="spkr", shape="ellipse"];
-  s -&gt; r[label="VDP",color="red"];
-  s -&gt; m[label="input#2",color="blue"];
-  r -&gt; sp[color="red"];
-}
-#+end_src
-</pre>
-
-<p>
-publishing (or using <code>C-c C-v b</code>) creates/updates file in <code>img/living-room-av/macmini.svg</code>
-</p>
+<div id="outline-container-org1a1b30f" class="outline-4">
+<h4 id="org1a1b30f"><span class="section-number-4">3.2.4.</span> c++/browser communication</h4>
 </div>
-</li>
-
-<li><a id="orgdb99782"></a>display HTML locally<br />
-<div class="outline-text-5" id="text-3-3-0-3">
-<p>
-Once we have HTML in <code>~/proj/public_html/org-howto</code>,  can view it locally:
-</p>
-<pre class="example" id="org9f4bf99">
-$ python3 -m http.server --directory ~/proj/public_html/org-howto 8080
-</pre>
-
-<p>
-then point browser to <code>localhost:8080</code> (or for the content you're reading now: <code>localhost:8080/env/development-environment.html</code>)
-</p>
-
-<p>
-Caveat: builtin python webserver doesn't support https.
-</p>
-</div>
-</li>
-
-<li><a id="org8fa00e7"></a>publish to github pages<br />
-<div class="outline-text-5" id="text-3-3-0-4">
-<p>
-To work with github pages,  We tweak the <code>.org</code> tree slightly:
-</p>
-<pre class="example" id="org508f95e">
-$ cd ~/proj/org-howto
-$ ln -s ext web
-</pre>
-
-<p>
-This is to match the github repo name <a href="https://github.com/Rconybea/web">https://github.com/Rconybea/web</a>.
-When we publish <code>.org</code> tree to github pages, it appears at <a href="https://rconybea.github.io/web">https://rconybea.github.io/web</a>
-</p>
-
-<p>
-<code>.org</code> pages that want to use root-relative paths, prefix with <code>/web</code>:
-</p>
-<pre class="example" id="org7aa159c">
-#+infojs_opt: view:showall toc:nil ltoc:nil mouse:#ffc0c0 path:/web/ext/orginfo/org-info.js
-#+html_head: &lt;link rel="stylesheet" type="text/css" href="/web/css/notebook.css" /&gt;
-</pre>
-
-<ol class="org-ol">
-<li>github pages: <code>/web/ext/orginfo/org-info.js</code> resolves via <code>ext/orginfo/org-info.js</code>..</li>
-<li>natively hosted: <code>/web/ext/orginfo/org-info.js</code> resolves via <code>web/ext/orginfo-org-info.js</code>.</li>
-</ol>
-
-<p>
-Note that <code>org-publish</code> expands the <code>web</code> symlink,  so everything under the <code>ext</code> tree will be duplicated
-</p>
-</div>
-</li>
-
-<li><a id="org9104fb2"></a>package as docker container<br />
-<div class="outline-text-5" id="text-3-3-0-5">
-<p>
-We can snapshot and serve generated html in a dedicated docker container with this <code>flake.nix</code>
-(in <code>~/proj/public_html</code>,  given html output written to <code>~/proj/public_html/org-howto</code>)
-</p>
-
-<pre class="example" id="orgeb469f1">
-{
-  description = "publish org-howto-derived html";
-
-  # dependencies of this flake
-  inputs = rec {
-    nixpkgs.url = "github:nixos/nixpkgs/23.05";
-    org_howto_path = {
-      url = "./org-howto";
-      flake = false;
-    };
-  };
-
-  outputs = { self, nixpkgs, org_howto_path } :
-    let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
-
-      # creates shell script 'serve-org-howto'.
-      # to use:
-      #   $ cd ~/proj/public_html
-      # A.
-      #   $ nix build
-      #   $ ./result/bin/serve-org-howto
-      # B.
-      #   $ nix run
-      #
-      serve_org_howto_deriv = pkgs.writeShellScriptBin "serve-org-howto" ''
-        ${pkgs.python3}/bin/python3 -m http.server 8080 --directory ${org_howto_path}
-      '';
-
-      # builds custom docker image!
-      serve_org_howto_docker_deriv =
-        let
-          serve_org_howto = self.packages.${system}.serve_org_howto;
-        in
-          pkgs.dockerTools.buildLayeredImage {
-            name = serve_org_howto.name;
-            tag = "1.0";
-            contents = [ serve_org_howto ];
-
-            config = {
-              Cmd = [ "/bin/serve-org-howto" ];
-              WorkingDir = "/";
-            };
-          };
-
-    in rec {
-      packages.${system} = {
-        default = serve_org_howto_deriv;
-
-        serve_org_howto = serve_org_howto_deriv;
-        serve_org_howto_docker = serve_org_howto_docker_deriv;
-      };
-    };
-}
-</pre>
-
-<ol class="org-ol">
-<li><p>
-build docker container image using <code>~/proj/public_html/flake.nix</code>:
-</p>
-<pre class="example" id="org95f6f2c">
-$ cd ~/proj/public_html
-$ nix build
-$ ls -ld result
-/nix/store/dck2rix8n8sx6wi0d4is0fq17c72ddqx-serve-org-howto.tar.gz
-</pre></li>
-
-<li><p>
-load image into docker
-</p>
-<pre class="example" id="orgf4edf1c">
-$ docker load &lt;./result
-</pre>
-
-<p>
-or send to some other host:
-</p>
-<pre class="example" id="orgf84267d">
-$ mycloudhost=...
-$ scp /nix/store/dck2rix8n8sx6wi0d4is0fq17c72ddqx-serve-org-howto.tar.gz root@${mycloudhost}
-$ ssh ${mycloudhost}
-
-mycloudhost$ docker load &lt; /nix/store/dck2rix8n8sx6wi0d4is0fq17c72ddqx-serve-org-howto.tar.gz
-mycloudhost$ docker images
-REPOSITORY        TAG       IMAGE ID       CREATED        SIZE
-serve-org-howto   1.0       113e8c1232fa   53 years ago   165MB
-mycloudhost$ docker run serve-org-howto
-</pre>
-
-<p>
-HTML tree now served from <code>${mycloudhost}:8080</code>
-</p>
-
-<p>
-Docker image contains only python and our html tree,  so much smaller than typical image.
-</p></li>
-</ol>
-</div>
-</li>
-</ol>
-
-<div id="outline-container-orgab1a698" class="outline-4">
-<h4 id="orgab1a698"><span class="section-number-4">3.3.1.</span> github + custom image + docker + github action</h4>
-<div class="outline-text-4" id="text-3-3-1">
-<p>
-see
-</p>
-<ul class="org-ul">
-<li><a href="https://blog.bitsrc.io/using-github-container-registry-in-practice-295677c6f65e">https://blog.bitsrc.io/using-github-container-registry-in-practice-295677c6f65e</a></li>
-<li><a href="https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry">https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry</a></li>
-<li><a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens">https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens</a></li>
-</ul>
-
-<p>
-plan:
-</p>
-<ol class="org-ol">
-<li>create docker-example repo</li>
-<li>hello world as docker container (using dockerfile)</li>
-</ol>
-
-<p>
-Note: github maps GITHUB_WORKSPACE on runner to /github/workspace directory within container.
-github actions can refer to ${{ github.workspace }}
-</p>
-</div>
+<div id="outline-container-orga6433a0" class="outline-4">
+<h4 id="orga6433a0"><span class="section-number-4">3.2.5.</span> <a href="publish-static-html.html">publish-static-html.html</a> - publish org-mode content:</h4>
 </div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: roly-desktop-23</p>
-<p class="date">Created: 2023-10-05 Thu 12:28</p>
+<p class="date">Created: 2023-10-05 Thu 13:38</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
