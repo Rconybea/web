@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-05 Thu 15:18 -->
+<!-- 2023-10-05 Thu 15:27 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>github continuous integration</title>
@@ -15,6 +15,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style>pre.src{background:#343131;color:white;} </style>
 <style> #content{max-width:1800px;}</style>
 <style> p{max-width:1800px;}</style>
 <style> li{max-width:1800px;}</style>
@@ -32,17 +33,17 @@
 <ul>
 <li><a href="#org1739d4e">3.1. Scheme 1</a>
 <ul>
-<li><a href="#org7adeed3">3.1.1. Preliminaries</a></li>
+<li><a href="#org6356bac">3.1.1. Preliminaries</a></li>
 </ul>
 </li>
 <li><a href="#orga8d4984">3.2. Scheme 2</a>
 <ul>
-<li><a href="#org4fd45d6">3.2.1. Preliminaries</a></li>
+<li><a href="#org36bfce0">3.2.1. Preliminaries</a></li>
 </ul>
 </li>
 <li><a href="#orgcce7bc7">3.3. Scheme 3</a>
 <ul>
-<li><a href="#org6356bac">3.3.1. Preliminaries</a></li>
+<li><a href="#orgc26779a">3.3.1. Preliminaries</a></li>
 </ul>
 </li>
 </ul>
@@ -155,8 +156,8 @@ that converge on goals above.
 <h3 id="org1739d4e"><span class="section-number-3">3.1.</span> Scheme 1</h3>
 <div class="outline-text-3" id="text-3-1">
 </div>
-<div id="outline-container-org7adeed3" class="outline-4">
-<h4 id="org7adeed3"><span class="section-number-4">3.1.1.</span> Preliminaries</h4>
+<div id="outline-container-org6356bac" class="outline-4">
+<h4 id="org6356bac"><span class="section-number-4">3.1.1.</span> Preliminaries</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <p>
 source for <code>Scheme 1</code> is on github here: <a href="https://github.com/Rconybea/hello-example">https://github.com/Rconybea/hello-example</a>
@@ -164,9 +165,9 @@ source for <code>Scheme 1</code> is on github here: <a href="https://github.com/
 </div>
 
 <ol class="org-ol">
-<li><a id="orga429e12"></a>Directory structure<br />
+<li><a id="org43e9922"></a>Directory structure<br />
 <div class="outline-text-5" id="text-3-1-1-1">
-<pre class="example" id="orgec2d587">
+<pre class="example" id="orge085937">
 hello-example
 +- .github
 |  \- workflow
@@ -177,7 +178,7 @@ hello-example
 </div>
 </li>
 
-<li><a id="org6deb307"></a>Source<br />
+<li><a id="org3ccc3c9"></a>Source<br />
 <div class="outline-text-5" id="text-3-1-1-2">
 <div class="org-src-container">
 <pre class="src src-c++"><span style="color: #74af68;">// </span><span style="color: #74af68;">hello.cpp</span>
@@ -234,7 +235,7 @@ hello-example
 
 <li><a id="orgc3c54dc"></a>Build + Run<br />
 <div class="outline-text-5" id="text-3-1-1-4">
-<pre class="example" id="org44d2b22">
+<pre class="example" id="orgee18860">
 $ cd hello-example
 $ mkdir build
 $ cmake ..
@@ -251,7 +252,7 @@ Hello, World!
 </div>
 </li>
 
-<li><a id="org84861dc"></a>Continuous Integration with Github<br />
+<li><a id="orge8cdc99"></a>Continuous Integration with Github<br />
 <div class="outline-text-5" id="text-3-1-1-5">
 <p>
 We need to do two things:
@@ -327,8 +328,8 @@ Initially replacing c++ program with shell script,  we'll restore it later.
 </p>
 </div>
 
-<div id="outline-container-org4fd45d6" class="outline-4">
-<h4 id="org4fd45d6"><span class="section-number-4">3.2.1.</span> Preliminaries</h4>
+<div id="outline-container-org36bfce0" class="outline-4">
+<h4 id="org36bfce0"><span class="section-number-4">3.2.1.</span> Preliminaries</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <p>
 source for <code>Scheme 2</code> is on github here: <a href="https://github.comt/Rconybea/docker-action-example">https://github.comt/Rconybea/docker-action-example</a>
@@ -347,7 +348,7 @@ Container:
 <ol class="org-ol">
 <li><a id="orgff6b8ec"></a>Directory Structure<br />
 <div class="outline-text-5" id="text-3-2-1-1">
-<pre class="example" id="orgb81e43f">
+<pre class="example" id="org5580177">
 docker-action-example
 +- .github
 |  \- workflows
@@ -358,7 +359,7 @@ docker-action-example
 </div>
 </li>
 
-<li><a id="org6305bea"></a>Source<br />
+<li><a id="orgd4566b2"></a>Source<br />
 <div class="outline-text-5" id="text-3-2-1-2">
 <p>
 entrypoint.sh:
@@ -378,7 +379,7 @@ entrypoint.sh:
 <p>
 DockerFile:
 </p>
-<pre class="example" id="org57328dd">
+<pre class="example" id="orga8b3e3c">
 # base container image
 FROM ubuntu:22.04
 
@@ -429,7 +430,7 @@ action.yml:
 </div>
 </li>
 
-<li><a id="orge8cdc99"></a>Continuous Integration with Github<br />
+<li><a id="orgc9d324d"></a>Continuous Integration with Github<br />
 <div class="outline-text-5" id="text-3-2-1-5">
 <p>
 Configure github actions for repo <a href="https://github.com/Rconybea/docker-action-example">https://github.com/Rconybea/docker-action-example</a>;
@@ -474,34 +475,30 @@ In <code>main.yml</code> here:
 <h3 id="orgcce7bc7"><span class="section-number-3">3.3.</span> Scheme 3</h3>
 <div class="outline-text-3" id="text-3-3">
 </div>
-<div id="outline-container-org6356bac" class="outline-4">
-<h4 id="org6356bac"><span class="section-number-4">3.3.1.</span> Preliminaries</h4>
+<div id="outline-container-orgc26779a" class="outline-4">
+<h4 id="orgc26779a"><span class="section-number-4">3.3.1.</span> Preliminaries</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <p>
 Source for <code>Scheme 3</code> uses two repos:
 </p>
 
-<p>
-Custom container build here: <a href="https:://github.com/Rconybea/docker-nix-hello">https:://github.com/Rconybea/docker-nix-hello</a>
-Workflow using container here: <a href="https://github.com/Rconybea/docker-action-example2">https://github.com/Rconybea/docker-action-example2</a>
-See also: <a href="https://blog.bitsrc.io/using-github-container-registry-in-practice-295677c6f65e">https://blog.bitsrc.io/using-github-container-registry-in-practice-295677c6f65e</a>]]
-</p>
-
-<p>
-Prepare minimal custom docker container using a nix flake.
-</p>
+<ul class="org-ul">
+<li>Custom container build here: <a href="https:://github.com/Rconybea/docker-nix-hello">https:://github.com/Rconybea/docker-nix-hello</a></li>
+<li>Workflow using container here: <a href="https://github.com/Rconybea/docker-action-example2">https://github.com/Rconybea/docker-action-example2</a></li>
+<li>See also: <a href="https://blog.bitsrc.io/using-github-container-registry-in-practice-295677c6f65e">https://blog.bitsrc.io/using-github-container-registry-in-practice-295677c6f65e</a>]]</li>
+</ul>
 </div>
 
 <ol class="org-ol">
-<li><a id="org43e9922"></a>Directory structure<br />
+<li><a id="org617e5eb"></a>Directory structure<br />
 <div class="outline-text-5" id="text-3-3-1-1">
-<pre class="example" id="org396c9b8">
+<pre class="example" id="org16fee20">
 docker-nix-hello
 +- flake.nix
 \- flake.lock    # automatically created by nix
 </pre>
 
-<pre class="example" id="org29eb77e">
+<pre class="example" id="org1f1deb7">
 docker-action-example2
 \- .github
    \- workflows
@@ -510,62 +507,67 @@ docker-action-example2
 </div>
 </li>
 
-<li><a id="org3ccc3c9"></a>Source<br />
+<li><a id="org2acc66e"></a>Source<br />
 <div class="outline-text-5" id="text-3-3-1-2">
+<p>
+Prepare minimal custom docker container using a nix flake.
+</p>
+
 <p>
 flake.nix:
 </p>
-<pre class="example" id="org3105c77">
-{
-  description = "hello world";
+<div class="org-src-container">
+<pre class="src src-nix">{
+  <span style="color: #dbdb95;">description</span> = <span style="color: #e67128;">"hello world"</span>;
 
-  # dependencies
-  inputs = rec {
-    nixpkgs.url = "github:nixos/nixpkgs/23.05";
+  <span style="color: #74af68;"># dependencies</span>
+  <span style="color: #dbdb95;">inputs</span> = <span style="color: #ffad29; font-weight: bold;">rec</span> {
+    <span style="color: #dbdb95;">nixpkgs.url</span> = <span style="color: #e67128;">"github:nixos/nixpkgs/23.05"</span>;
   };
 
-  outputs = { self, nixpkgs } :
-    let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
+  <span style="color: #dbdb95;">outputs</span> = { self, nixpkgs } :
+    <span style="color: #ffad29; font-weight: bold;">let</span>
+      <span style="color: #dbdb95;">system</span> = <span style="color: #e67128;">"x86_64-linux"</span>;
+      <span style="color: #dbdb95;">pkgs</span> = <span style="color: #23d7d7;">import</span> nixpkgs { <span style="color: #ffad29; font-weight: bold;">inherit</span> system; };
 
-      hello_deriv = pkgs.writeShellScriptBin "entrypoint.sh" ''
-        echo "Hello $1"
-        time=$(date)
-        echo "time=$time" &gt;&gt; $GITHUB_OUTPUT
-      '';
+      <span style="color: #dbdb95;">hello_deriv</span> = pkgs.writeShellScriptBin <span style="color: #e67128;">"entrypoint.sh"</span> <span style="color: #e67128;">''</span>
+<span style="color: #e67128;">        echo "Hello $1"</span>
+<span style="color: #e67128;">        time=$(date)</span>
+<span style="color: #e67128;">        echo "time=$time" &gt;&gt; $GITHUB_OUTPUT</span>
+<span style="color: #e67128;">      ''</span>;
 
-      docker_hello_deriv =
+      <span style="color: #dbdb95;">docker_hello_deriv</span> =
         pkgs.dockerTools.buildLayeredImage {
-          name = "docker-nix-hello";
-          tag = "v1";
-          contents = [ self.packages.${system}.hello
+          <span style="color: #dbdb95;">name</span> = <span style="color: #e67128;">"docker-nix-hello"</span>;
+          <span style="color: #dbdb95;">tag</span> = <span style="color: #e67128;">"v1"</span>;
+          <span style="color: #dbdb95;">contents</span> = [ self.packages.${system}.hello
                        self.packages.${system}.bash
-                       # for /bin/tail,  assumed by github actions when invoking a docker container
+                       <span style="color: #74af68;"># for /bin/tail,  assumed by github actions when invoking a docker container</span>
                        self.packages.${system}.coreutils ];
 
-          config = {
-            Cmd = [ "/bin/entrypoint.sh" ];
-            WorkingDir = "/";
+          <span style="color: #dbdb95;">config</span> = {
+            <span style="color: #dbdb95;">Cmd</span> = [ <span style="color: #e67128;">"/bin/entrypoint.sh"</span> ];
+            <span style="color: #dbdb95;">WorkingDir</span> = <span style="color: #e67128;">"/"</span>;
           };
         };
 
-    in rec {
+    <span style="color: #ffad29; font-weight: bold;">in</span> rec {
       packages.${system} = {
-        default = docker_hello_deriv;
+        <span style="color: #dbdb95;">default</span> = docker_hello_deriv;
 
-        docker_hello = docker_hello_deriv;
-        hello = hello_deriv;
+        <span style="color: #dbdb95;">docker_hello</span> = docker_hello_deriv;
+        <span style="color: #dbdb95;">hello</span> = hello_deriv;
 
-        bash = pkgs.bash;
-        # for example,  github actions creates container with --entrypoint "tail",
-        # so container must provide executable with that name in $PATH
-        #
-        coreutils = pkgs.coreutils;
+        <span style="color: #dbdb95;">bash</span> = pkgs.bash;
+        <span style="color: #74af68;"># for example,  github actions creates container with --entrypoint "tail",</span>
+        <span style="color: #74af68;"># so container must provide executable with that name in $PATH</span>
+        <span style="color: #74af68;">#</span>
+        <span style="color: #dbdb95;">coreutils</span> = pkgs.coreutils;
       };
     };
 }
 </pre>
+</div>
 </div>
 </li>
 
@@ -664,7 +666,7 @@ in <code>docker-action-example2/.github/workflows/main.yml</code>:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: roly-desktop-23</p>
-<p class="date">Created: 2023-10-05 Thu 15:18</p>
+<p class="date">Created: 2023-10-05 Thu 15:27</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
