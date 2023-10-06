@@ -1,0 +1,944 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-10-06 Fri 14:10 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>emacs setup</title>
+<meta name="author" content="roly-desktop-23" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style>pre.src{background:#343131;color:white;} </style>
+<style>pre.example{background:#343131;color:white;} </style>
+<style> #content{max-width:1800px;}</style>
+<style> p{max-width:1800px;}</style>
+<style> li{max-width:1800px;}</style>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="development-environment.org"> UP </a>
+ |
+ <a accesskey="H" href=""> HOME </a>
+</div><div id="content" class="content">
+<h1 class="title">emacs setup</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org11d2b1a">1. Introduction</a></li>
+<li><a href="#org50cd9c9">2. .emacs</a>
+<ul>
+<li><a href="#orgbd3cc90">2.1. misc</a></li>
+<li><a href="#org6a9313b">2.2. quality-of-life details</a>
+<ul>
+<li><a href="#org5679033">2.2.1. qol: display</a></li>
+<li><a href="#orgf9e7a7e">2.2.2. qol: yes-or-no</a></li>
+<li><a href="#orgaf09a2b">2.2.3. qol: nuke ctrl-Z</a></li>
+<li><a href="#org3cdf4e4">2.2.4. qol: navigation</a></li>
+<li><a href="#org01e04e5">2.2.5. qol: kill</a></li>
+<li><a href="#orgffe09a0">2.2.6. qol: query replace</a></li>
+<li><a href="#orgf47f3ab">2.2.7. qol: mouse-3 on macos</a></li>
+<li><a href="#org164b4ff">2.2.8. qol: mouse avoidance</a></li>
+<li><a href="#org6ff5650">2.2.9. qol: default font</a></li>
+<li><a href="#org9e0444e">2.2.10. qol: initial window height</a></li>
+</ul>
+</li>
+<li><a href="#orgf63869d">2.3. package: try</a></li>
+<li><a href="#orge3ea02c">2.4. package: which-key</a></li>
+<li><a href="#orgcd08050">2.5. backup file location</a></li>
+<li><a href="#org662ebc2">2.6. prefer ibuffer</a></li>
+<li><a href="#orga7e4dc2">2.7. dynamic abbreviations</a></li>
+<li><a href="#orga8faa8d">2.8. package: flycheck</a></li>
+<li><a href="#orgc9de211">2.9. completion assist</a>
+<ul>
+<li><a href="#org32c4054">2.9.1. completion: ivy</a></li>
+</ul>
+</li>
+<li><a href="#org1297487">2.10. C++</a>
+<ul>
+<li><a href="#org5070965">2.10.1. c++: indenting + tabs</a></li>
+<li><a href="#org60c950f">2.10.2. c++: whitespace</a></li>
+<li><a href="#org460732a">2.10.3. cmake editing</a></li>
+<li><a href="#org978b0eb">2.10.4. c++ completion</a></li>
+<li><a href="#org1bf5c25">2.10.5. <b>compilation</b> buffer</a></li>
+</ul>
+</li>
+<li><a href="#org0275da3">2.11. Development</a>
+<ul>
+<li><a href="#org38a31a0">2.11.1. dev: snippets</a></li>
+<li><a href="#org26712b6">2.11.2. dev: projectile</a></li>
+<li><a href="#org46f77c7">2.11.3. dev: language server protocol (LSP)</a></li>
+<li><a href="#org738e6f4">2.11.4. dev: git integration</a></li>
+<li><a href="#org69e495d">2.11.5. dev: nix mode</a></li>
+<li><a href="#orgc8856ef">2.11.6. dev: yaml mode</a></li>
+</ul>
+</li>
+<li><a href="#orgc1140a7">2.12. org-mode</a>
+<ul>
+<li><a href="#org7bd6425">2.12.1. org: publishing</a></li>
+<li><a href="#org2af347c">2.12.2. babel setup</a></li>
+</ul>
+</li>
+<li><a href="#org93ce5c7">2.13. emacsclient</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org11d2b1a" class="outline-2">
+<h2 id="org11d2b1a"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Roland Conybeare's curated emacs setup.
+As of 6oct2023 using emacs version <code>29.0.91</code>, installed via the <a href="https://nixos.org">nix</a> package manager.
+</p>
+
+<p>
+<code>~/.emacs</code> symlinks to <code>~/proj/env/dotfiles/emacs</code> from git repo <a href="https://github.com/Rconybea/env.git">https://github.com/Rconybea/env.git</a>;
+using this to streamline account setup on new hosts.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org50cd9c9" class="outline-2">
+<h2 id="org50cd9c9"><span class="section-number-2">2.</span> .emacs</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgbd3cc90" class="outline-3">
+<h3 id="orgbd3cc90"><span class="section-number-3">2.1.</span> misc</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Compatibility with some Common Lisp idioms
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">(<span style="color: #ffad29; font-weight: bold;">require</span> '<span style="color: #008b8b;">cl-loaddefs</span>)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6a9313b" class="outline-3">
+<h3 id="org6a9313b"><span class="section-number-3">2.2.</span> quality-of-life details</h3>
+<div class="outline-text-3" id="text-2-2">
+</div>
+<div id="outline-container-org5679033" class="outline-4">
+<h4 id="org5679033"><span class="section-number-4">2.2.1.</span> qol: display</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">grab a little bit of extra screen real estate</span>
+
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">disable scrollbars</span>
+(<span style="color: #ffad29; font-weight: bold;">if</span> (fboundp 'scroll-bar-mode)
+    (scroll-bar-mode -1))
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">disable toolbars</span>
+(<span style="color: #ffad29; font-weight: bold;">if</span> (fboundp 'tool-bar-mode)
+    (tool-bar-mode -1))
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">disable menu bar</span>
+(<span style="color: #ffad29; font-weight: bold;">if</span> (fboundp 'menu-bar-mode)
+    (menu-bar-mode -1))
+
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">prevent initial emacs splash screen</span>
+(<span style="color: #ffad29; font-weight: bold;">setq</span> inhibit-splash-screen t)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf9e7a7e" class="outline-4">
+<h4 id="orgf9e7a7e"><span class="section-number-4">2.2.2.</span> qol: yes-or-no</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">don't like having to type '</span><span style="color: #008b8b;">yes</span><span style="color: #74af68;">' or '</span><span style="color: #008b8b;">no</span><span style="color: #74af68;">';  '</span><span style="color: #008b8b;">y</span><span style="color: #74af68;">' or '</span><span style="color: #008b8b;">n</span><span style="color: #74af68;">' will do</span>
+
+(<span style="color: #ffad29; font-weight: bold;">defalias</span> '<span style="color: #00ede1; font-weight: bold;">yes-or-no-p</span> 'y-or-n-p)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgaf09a2b" class="outline-4">
+<h4 id="orgaf09a2b"><span class="section-number-4">2.2.3.</span> qol: nuke ctrl-Z</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">C-z bound to suspend frame is annoying,  because</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">it gets typed by accident too often.</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">C-x C-z remains available as an alternative binding</span>
+(global-unset-key (kbd <span style="color: #e67128;">"C-z"</span>))
+(global-unset-key (kbd <span style="color: #e67128;">"&lt;return&gt;"</span>))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3cdf4e4" class="outline-4">
+<h4 id="org3cdf4e4"><span class="section-number-4">2.2.4.</span> qol: navigation</h4>
+<div class="outline-text-4" id="text-2-2-4">
+<div class="org-src-container">
+<pre class="src src-elisp">(global-set-key (kbd <span style="color: #e67128;">"C-x t"</span>) 'beginning-of-buffer)
+(global-set-key (kbd <span style="color: #e67128;">"C-x e"</span>) 'end-of-buffer)
+
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">keeping window hopping to current frame allows for satellite frames that are</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">mostly display-only (e.g. magit status)</span>
+<span style="color: #74af68;">;;</span>
+(global-set-key (kbd <span style="color: #e67128;">"C-x o"</span>) 'other-window)
+(global-set-key (kbd <span style="color: #e67128;">"C-x p"</span>) (<span style="color: #ffad29; font-weight: bold;">lambda</span> () (<span style="color: #ffad29; font-weight: bold;">interactive</span>) (other-window -1)))
+<span style="color: #74af68;">;;</span><span style="color: #74af68;">(global-set-key "\C-xo" 'next-multiframe-window)</span>
+<span style="color: #74af68;">;;</span><span style="color: #74af68;">(global-set-key "\C-xp" 'previous-multiframe-window)</span>
+
+(global-set-key (kbd <span style="color: #e67128;">"S-&lt;left&gt;"</span>) 'windmove-left)
+(global-set-key (kbd <span style="color: #e67128;">"S-&lt;right&gt;"</span>) 'windmove-right)
+(global-set-key (kbd <span style="color: #e67128;">"S-&lt;up&gt;"</span>) 'windmove-up)
+(global-set-key (kbd <span style="color: #e67128;">"S-&lt;down&gt;"</span>) 'windmove-down)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org01e04e5" class="outline-4">
+<h4 id="org01e04e5"><span class="section-number-4">2.2.5.</span> qol: kill</h4>
+<div class="outline-text-4" id="text-2-2-5">
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">instead of kill-region,</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">prefer consistency with emacs-like keybindings e.g. gnu readline</span>
+(global-set-key (kbd <span style="color: #e67128;">"C-w"</span>) 'backward-kill-word)
+
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">instead of C-w..</span>
+(global-set-key (kbd <span style="color: #e67128;">"C-x C-k"</span>) 'kill-region)
+(global-set-key (kbd <span style="color: #e67128;">"C-c C-k"</span>) 'kill-region)
+</pre>
+</div>
+
+<p>
+This tweak allows using zap on necessary punctuation characters,
+without swallowing them.
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">use zap-up-to-char instead of zap-to-char</span>
+(autoload 'zap-up-to-char <span style="color: #e67128;">"misc"</span>
+  <span style="color: #e67128;">"kill up to, but not including ARG'th occurence of CHAR.</span>
+<span style="color: #e67128;">\(fn arg char)"</span>
+  'interactive)
+(global-set-key <span style="color: #e67128;">"\M-z"</span> 'zap-up-to-char)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgffe09a0" class="outline-4">
+<h4 id="orgffe09a0"><span class="section-number-4">2.2.6.</span> qol: query replace</h4>
+<div class="outline-text-4" id="text-2-2-6">
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">M-x qr --&gt; M-x query-replace</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">M-x qrr --&gt; M-x query-replace-regexp</span>
+
+(<span style="color: #ffad29; font-weight: bold;">defalias</span> '<span style="color: #00ede1; font-weight: bold;">qr</span> 'query-replace)
+(<span style="color: #ffad29; font-weight: bold;">defalias</span> '<span style="color: #00ede1; font-weight: bold;">qrr</span> 'query-replace-regexp)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf47f3ab" class="outline-4">
+<h4 id="orgf47f3ab"><span class="section-number-4">2.2.7.</span> qol: mouse-3 on macos</h4>
+<div class="outline-text-4" id="text-2-2-7">
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">mouse-3 annoying on macbook 11.3</span>
+
+(<span style="color: #ffad29; font-weight: bold;">if</span> (eq system-type 'darwin)
+    (global-unset-key [mouse-3]))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org164b4ff" class="outline-4">
+<h4 id="org164b4ff"><span class="section-number-4">2.2.8.</span> qol: mouse avoidance</h4>
+<div class="outline-text-4" id="text-2-2-8">
+<p>
+Don't let mouse icon obscure cursor
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(mouse-avoidance-mode 'animate)
+</pre>
+</div>
+
+<p>
+Make cursor and mouse easier to see
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(set-mouse-color <span style="color: #e67128;">"red"</span>)
+(set-cursor-color <span style="color: #e67128;">"red"</span>)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6ff5650" class="outline-4">
+<h4 id="org6ff5650"><span class="section-number-4">2.2.9.</span> qol: default font</h4>
+<div class="outline-text-4" id="text-2-2-9">
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">----------------------------------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">default font</span>
+
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">note:</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">C-x C-+             increase buffer text size</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">C-x C-=             something buffer text size</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">C-x C--             decrease buffer text size</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">C-x C-0             restore default buffer text size</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">M-x describe-font   display font canonical name + stats in a new buffer</span>
+<span style="color: #74af68;">;;</span>
+
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">to install inconsolata on ubuntu:</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">$ sudo apt-get -y install fonts-inconsolata</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">for nix,  can use package</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">nixpkgs.inconsolata-lgc</span>
+
+(add-to-list
+ 'default-frame-alist
+ '(font . <span style="color: #e67128;">"-PfEd-Inconsolata-medium-normal-normal-*-14-*-*-*-m-0-iso10646-1"</span>))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9e0444e" class="outline-4">
+<h4 id="org9e0444e"><span class="section-number-4">2.2.10.</span> qol: initial window height</h4>
+<div class="outline-text-4" id="text-2-2-10">
+<div class="org-src-container">
+<pre class="src src-elisp">(<span style="color: #ffad29; font-weight: bold;">defvar</span> <span style="color: #dbdb95;">target-frame-width</span> (+ 1 (* 2 135)))
+
+(<span style="color: #ffad29; font-weight: bold;">defun</span> <span style="color: #00ede1; font-weight: bold;">set-frame-size-from-screen-resolution</span> ()
+  <span style="color: #e67128;">"Infer suitable default frame size.</span>
+<span style="color: #e67128;">Reminder: no such thing as .Xresources under WSL."</span>
+  (<span style="color: #ffad29; font-weight: bold;">interactive</span>)
+  (<span style="color: #ffad29; font-weight: bold;">if</span> (display-graphic-p)
+      (<span style="color: #ffad29; font-weight: bold;">progn</span>
+        (<span style="color: #ffad29; font-weight: bold;">let*</span> ((horizontal-room (/ (x-display-pixel-width)
+                                   (frame-char-width)))
+               (using-width (min target-frame-width
+                                 horizontal-room)))
+          (set-frame-width (selected-frame)
+                           using-width)
+          <span style="color: #74af68;">;;</span><span style="color: #74af68;">(add-to-list 'default-frame-alist (cons 'width using-width))</span>
+          )
+        <span style="color: #74af68;">;; </span><span style="color: #74af68;">subtracting 200 pixels of vertical space</span>
+        (<span style="color: #ffad29; font-weight: bold;">let*</span> ((vertical-padding 100)
+               (vertical-room (/ (- (x-display-pixel-height)
+                                    vertical-padding)
+                                 (frame-char-height))))
+          (set-frame-height (selected-frame)
+                            vertical-room)
+          <span style="color: #74af68;">;;</span><span style="color: #74af68;">(add-to-list 'default-frame-alist (cons 'height vertical-room))</span>
+          ))))
+
+(set-frame-size-from-screen-resolution)
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf63869d" class="outline-3">
+<h3 id="orgf63869d"><span class="section-number-3">2.3.</span> package: try</h3>
+<div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">the '</span><span style="color: #008b8b;">try</span><span style="color: #74af68;">' package lets us try a package without permanently installing it.</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">use</span>
+<span style="color: #74af68;">;;  </span><span style="color: #74af68;">M-x try ${nameofpackage}</span>
+<span style="color: #74af68;">;;</span>
+(<span style="color: #ffad29; font-weight: bold;">use-package</span> <span style="color: #008b8b;">try</span> <span style="color: #23d7d7;">:ensure</span> t)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge3ea02c" class="outline-3">
+<h3 id="orge3ea02c"><span class="section-number-3">2.4.</span> package: which-key</h3>
+<div class="outline-text-3" id="text-2-4">
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">the '</span><span style="color: #008b8b;">which-key</span><span style="color: #74af68;">' package displays popup with key bindings following</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">currently entered incomplete command</span>
+<span style="color: #74af68;">;;</span>
+(<span style="color: #ffad29; font-weight: bold;">use-package</span> <span style="color: #008b8b;">which-key</span> <span style="color: #23d7d7;">:ensure</span> t <span style="color: #23d7d7;">:config</span> (which-key-mode))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcd08050" class="outline-3">
+<h3 id="orgcd08050"><span class="section-number-3">2.5.</span> backup file location</h3>
+<div class="outline-text-3" id="text-2-5">
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">backup location</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">(don't clutter filesystem with emacs backup files)</span>
+
+(<span style="color: #ffad29; font-weight: bold;">let</span> ((backup-dir <span style="color: #e67128;">"~/tmp/emacs/backups"</span>)
+      (auto-saves-dir <span style="color: #e67128;">"~/tmp/emacs/autosaves"</span>))
+  <span style="color: #74af68;">;; </span><span style="color: #74af68;">create dirs if needed</span>
+  (<span style="color: #ffad29; font-weight: bold;">dolist</span> (dir (list backup-dir auto-saves-dir))
+    (<span style="color: #ffad29; font-weight: bold;">when</span> (not (file-directory-p dir))
+      (make-directory dir t)))
+  (<span style="color: #ffad29; font-weight: bold;">setq</span> backup-directory-alist `((<span style="color: #e67128;">"."</span> . ,backup-dir))
+        auto-save-file-name-transforms `((<span style="color: #e67128;">".*"</span> ,auto-saves-dir t))
+        auto-save-list-file-prefix (concat auto-saves-dir <span style="color: #e67128;">".saves-"</span>)
+        <span style="color: #74af68;">;; </span><span style="color: #74af68;">tramp-backup-directory-alist `((".*" . ,backup-dir))</span>
+        <span style="color: #74af68;">;; </span><span style="color: #74af68;">tramp-auto-save-directory auto-saves-dir</span>
+        )
+  (<span style="color: #ffad29; font-weight: bold;">setq</span> backup-by-copying t
+        delete-old-versions t
+        version-control t
+        kept-new-versions 5
+        kept-old-versions 2)
+  )
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org662ebc2" class="outline-3">
+<h3 id="org662ebc2"><span class="section-number-3">2.6.</span> prefer ibuffer</h3>
+<div class="outline-text-3" id="text-2-6">
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">----------------------------------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">replace list-buffers (^x^b) with ibuffer</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">ibuffer is much better</span>
+
+(global-set-key <span style="color: #e67128;">"\C-x\C-b"</span> 'ibuffer)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga7e4dc2" class="outline-3">
+<h3 id="orga7e4dc2"><span class="section-number-3">2.7.</span> dynamic abbreviations</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+For consciously correcting typos
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">----------------------------------------------------------------</span>
+<span style="color: #74af68;">;;</span>
+(global-set-key (kbd <span style="color: #e67128;">"C-&lt;tab&gt;"</span>) #'dabbrev-expand)
+(define-key minibuffer-local-map (kbd <span style="color: #e67128;">"C-&lt;tab&gt;"</span>) #'dabbrev-expand)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga8faa8d" class="outline-3">
+<h3 id="orga8faa8d"><span class="section-number-3">2.8.</span> package: flycheck</h3>
+<div class="outline-text-3" id="text-2-8">
+<p>
+Flycheck runs in the background.  It automatically (and subtly) highlights syntax errors as you type.
+Preferred over built-in flyspell.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">enable flycheck</span>
+
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">see:</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">https://www.flycheck.org/en/latest/user/quickstart.html#flycheck-quickstart</span>
+<span style="color: #74af68;">;;</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">keybindings:</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">C-c ! v              show version + configuration info for this buffer</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">C-c ! n / C-c ! p    inspect errors on this line</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">C-c ! l              show errors for this buffer</span>
+
+(global-flycheck-mode)
+
+(<span style="color: #ffad29; font-weight: bold;">if</span> (eq system-type 'darwin)
+    <span style="color: #74af68;">;; </span><span style="color: #74af68;">need this for flycheck on macos only..</span>
+    (exec-path-from-shell-initialize))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc9de211" class="outline-3">
+<h3 id="orgc9de211"><span class="section-number-3">2.9.</span> completion assist</h3>
+<div class="outline-text-3" id="text-2-9">
+</div>
+<div id="outline-container-org32c4054" class="outline-4">
+<h4 id="org32c4054"><span class="section-number-4">2.9.1.</span> completion: ivy</h4>
+<div class="outline-text-4" id="text-2-9-1">
+<div class="org-src-container">
+<pre class="src src-elisp">(<span style="color: #ffad29; font-weight: bold;">use-package</span> <span style="color: #008b8b;">ivy</span>
+  <span style="color: #23d7d7;">:ensure</span> t
+  <span style="color: #23d7d7;">:init</span> (<span style="color: #ffad29; font-weight: bold;">progn</span>
+          (<span style="color: #ffad29; font-weight: bold;">setq</span> ivy-use-virtual-buffers t)
+          (<span style="color: #ffad29; font-weight: bold;">setq</span> ivy-count-format <span style="color: #e67128;">"%d/%d) "</span>)
+          (ivy-mode 1))
+  )
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1297487" class="outline-3">
+<h3 id="org1297487"><span class="section-number-3">2.10.</span> C++</h3>
+<div class="outline-text-3" id="text-2-10">
+</div>
+<div id="outline-container-org5070965" class="outline-4">
+<h4 id="org5070965"><span class="section-number-4">2.10.1.</span> c++: indenting + tabs</h4>
+<div class="outline-text-4" id="text-2-10-1">
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">in general want to expand tabs,  + use 4 characters</span>
+
+(<span style="color: #ffad29; font-weight: bold;">setq-default</span> indent-tabs-mode nil)
+(<span style="color: #ffad29; font-weight: bold;">setq-default</span> tab-width 4)
+
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">used in style-specific modes, e.g. c++-mode</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">other styles: gnu | k&amp;r | bsd | whitesmith | stroustrup | ellemtel | user</span>
+<span style="color: #74af68;">;;</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">C-c . &lt;style&gt;    choose predefined style</span>
+<span style="color: #74af68;">;;</span><span style="color: #74af68;">(defvar 'c-default-style)</span>
+<span style="color: #74af68;">;;</span><span style="color: #74af68;">(defvar 'c-basic-offset)</span>
+
+(<span style="color: #ffad29; font-weight: bold;">setq-default</span> c-default-style <span style="color: #e67128;">"linux"</span>)
+(<span style="color: #ffad29; font-weight: bold;">setq-default</span> c-basic-offset 4)
+
+(<span style="color: #ffad29; font-weight: bold;">defun</span> <span style="color: #00ede1; font-weight: bold;">disable-tabs</span> ()
+  <span style="color: #e67128;">"Function to disable tab insertion; intended to be attached via c++-mode-hook."</span>
+  (<span style="color: #ffad29; font-weight: bold;">if</span> (boundp 'indent-tabs-mode)
+      (<span style="color: #ffad29; font-weight: bold;">setq</span> indent-tabs-mode nil)
+    (<span style="color: #ff4242; font-weight: bold;">error</span> <span style="color: #e67128;">"Expected variable [indent-tabs-mode] to be defined"</span>)
+    ))
+
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">in general disable tabs (expand to spaces)</span>
+(add-hook 'c++-mode-hook 'disable-tabs)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org60c950f" class="outline-4">
+<h4 id="org60c950f"><span class="section-number-4">2.10.2.</span> c++: whitespace</h4>
+<div class="outline-text-4" id="text-2-10-2">
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">will be using customized whitespace mode,  that just highlights trailing spaces</span>
+<span style="color: #74af68;">;;</span>
+(add-hook 'c++-mode-hook 'whitespace-mode)
+
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">tabs:  visible tab characters</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">trailing: visible trailing whitespace</span>
+<span style="color: #74af68;">;;</span>
+(<span style="color: #ffad29; font-weight: bold;">setq-default</span> whitespace-style '(face tabs tab-mark trailing))
+
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">124 is | character</span>
+(<span style="color: #ffad29; font-weight: bold;">setq-default</span> whitespace-display-mappings
+          '((tab-mark 9 [124 9] [92 9])))
+
+(<span style="color: #ffad29; font-weight: bold;">defun</span> <span style="color: #00ede1; font-weight: bold;">untabify-except-makefiles</span> ()
+  <span style="color: #e67128;">"Replace tabs with spaces except in makefiles."</span>
+  (<span style="color: #ffad29; font-weight: bold;">unless</span> (derived-mode-p 'makefile-mode)
+    (<span style="color: #ffad29; font-weight: bold;">prog1</span> nil
+      (untabify (point-min) (point-max))
+      (delete-trailing-whitespace)
+      )))
+
+(add-hook 'c++-mode-hook
+          #'(<span style="color: #ffad29; font-weight: bold;">lambda</span> ()
+              (add-hook 'before-save-hook #'untabify-except-makefiles)))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org460732a" class="outline-4">
+<h4 id="org460732a"><span class="section-number-4">2.10.3.</span> cmake editing</h4>
+<div class="outline-text-4" id="text-2-10-3">
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">cmake mode</span>
+<span style="color: #74af68;">;;</span>
+(<span style="color: #ffad29; font-weight: bold;">use-package</span> <span style="color: #008b8b;">cmake-mode</span>
+  <span style="color: #23d7d7;">:ensure</span> t
+  <span style="color: #23d7d7;">:init</span> (<span style="color: #ffad29; font-weight: bold;">progn</span>
+          (<span style="color: #ffad29; font-weight: bold;">setq</span> cmake-tab-width 4)
+          )
+  )
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org978b0eb" class="outline-4">
+<h4 id="org978b0eb"><span class="section-number-4">2.10.4.</span> c++ completion</h4>
+<div class="outline-text-4" id="text-2-10-4">
+<div class="org-src-container">
+<pre class="src src-elisp">(<span style="color: #ffad29; font-weight: bold;">require</span> '<span style="color: #008b8b;">company</span>)
+(add-hook 'c++-mode-hook 'company-mode)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1bf5c25" class="outline-4">
+<h4 id="org1bf5c25"><span class="section-number-4">2.10.5.</span> <b>compilation</b> buffer</h4>
+<div class="outline-text-4" id="text-2-10-5">
+<p>
+For example,  to respond to <code>cmake</code> colored output
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">----------------------------------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">xterm-color</span>
+<span style="color: #74af68;">;;</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">more modern package relative to ansi-color</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">see [[https://stackoverflow.com/questions/3072648/cucumbers-ansi-colors-messing-up-emacs-compilation-buffer]]</span>
+<span style="color: #74af68;">;;</span>
+(<span style="color: #ffad29; font-weight: bold;">defun</span> <span style="color: #00ede1; font-weight: bold;">my/advice-compilation-filter</span> (f proc string)
+  <span style="color: #e67128;">"colorize buffer output"</span>
+  (funcall f proc (xterm-color-filter string)))
+
+(<span style="color: #ffad29; font-weight: bold;">defvar</span> <span style="color: #dbdb95;">compilation-environment</span>)
+
+(<span style="color: #ffad29; font-weight: bold;">use-package</span> <span style="color: #008b8b;">xterm-color</span>
+  <span style="color: #23d7d7;">:ensure</span> t
+  <span style="color: #23d7d7;">:init</span> (<span style="color: #ffad29; font-weight: bold;">progn</span> (<span style="color: #ffad29; font-weight: bold;">setq</span> compilation-environment '(<span style="color: #e67128;">"TERM=xterm-256color"</span>))
+               (advice-add 'compilation-filter <span style="color: #23d7d7;">:around</span> #'my/advice-compilation-filter))
+  )
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0275da3" class="outline-3">
+<h3 id="org0275da3"><span class="section-number-3">2.11.</span> Development</h3>
+<div class="outline-text-3" id="text-2-11">
+</div>
+<div id="outline-container-org38a31a0" class="outline-4">
+<h4 id="org38a31a0"><span class="section-number-4">2.11.1.</span> dev: snippets</h4>
+<div class="outline-text-4" id="text-2-11-1">
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">snippets!</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">(see http://capitaomorte.github.io/yasnippet,</span>
+<span style="color: #74af68;">;;  </span><span style="color: #74af68;">http://githib.com/capitaomorte/yasnippet)</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">snippets in ~/.emacs.d/elpa/yasnippet-20200604.246/snippets</span>
+<span style="color: #74af68;">;;</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">summary:</span>
+<span style="color: #74af68;">;;  </span><span style="color: #74af68;">M-x yas-expand -- try to expand snippet before point.  Usually TAB</span>
+<span style="color: #74af68;">;;  </span><span style="color: #74af68;">M-x yas-load-directory -- load a directory of snippets</span>
+<span style="color: #74af68;">;;  </span><span style="color: #74af68;">M-x yas-activate-extramode -- add snippets for a particular mode, in the current buffer</span>
+<span style="color: #74af68;">;;  </span><span style="color: #74af68;">M-x yas-insert-snippet -- insert snippet at point</span>
+<span style="color: #74af68;">;;  </span><span style="color: #74af68;">M-x yas-visit-snippet-file -- prompt for snippet expansion,  but go to definition</span>
+<span style="color: #74af68;">;;  </span><span style="color: #74af68;">M-x yas-new-snippet -- create a new snippet in ~/.emacs.d/snippets, function of major mode</span>
+<span style="color: #74af68;">;;  </span><span style="color: #74af68;">M-x yas-load-snippet-buffer -- load the snippet you are editing C-c C-c in snippet-mode</span>
+<span style="color: #74af68;">;;  </span><span style="color: #74af68;">M-x yas-tryout-snippet -- insert current snippet in a new empty buffer C-c C-t in snippet-mode</span>
+<span style="color: #74af68;">;;  </span><span style="color: #74af68;">M-x yas-describe-tables -- list known snippets</span>
+<span style="color: #74af68;">;;</span>
+
+(<span style="color: #ffad29; font-weight: bold;">use-package</span> <span style="color: #008b8b;">yasnippet</span>
+  <span style="color: #23d7d7;">:ensure</span> t
+  <span style="color: #23d7d7;">:config</span> (yas-global-mode 1))
+
+(add-hook 'c++-mode-hook 'yas-minor-mode)
+(add-hook 'cmake-mode-hook 'yas-minor-mode)
+(add-hook 'emacs-lisp-mode-hook 'yas-minor-mode)
+
+(global-set-key (kbd <span style="color: #e67128;">"C-&lt;return&gt;"</span>) 'yas-expand)
+(global-set-key (kbd <span style="color: #e67128;">"C-c &amp; C-n"</span>) 'yas-new-snippet)
+(global-set-key (kbd <span style="color: #e67128;">"C-c &amp; C-v"</span>) 'yas-visit-snippet-file)
+
+<span style="color: #74af68;">;;</span><span style="color: #74af68;">(yas-global-mode t)</span>
+<span style="color: #74af68;">;;;; </span><span style="color: #74af68;">yas-snippet-dirs</span>
+<span style="color: #74af68;">;;;; </span><span style="color: #74af68;">yas-installed-snippets-dir</span>
+<span style="color: #74af68;">;;;; </span><span style="color: #74af68;">(yas-reload-all)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org26712b6" class="outline-4">
+<h4 id="org26712b6"><span class="section-number-4">2.11.2.</span> dev: projectile</h4>
+<div class="outline-text-4" id="text-2-11-2">
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">projectile</span>
+
+(<span style="color: #ffad29; font-weight: bold;">defconst</span> <span style="color: #dbdb95;">modi/rg-arguments</span>
+  `(<span style="color: #e67128;">"--line-number"</span> <span style="color: #74af68;">; </span><span style="color: #74af68;">print line numbers</span>
+    <span style="color: #e67128;">"--smart-case"</span>
+    <span style="color: #e67128;">"--follow"</span>      <span style="color: #74af68;">; </span><span style="color: #74af68;">follow symlinks</span>
+    <span style="color: #e67128;">"--mmap"</span>        <span style="color: #74af68;">; </span><span style="color: #74af68;">use memory-map optimization where available</span>
+    )
+  <span style="color: #e67128;">"default rg args used in the `projectile` package."</span>)
+
+(<span style="color: #ffad29; font-weight: bold;">defun</span> <span style="color: #00ede1; font-weight: bold;">modi/advice-projectile-use-rg</span> (mode)
+  <span style="color: #e67128;">"always use `</span><span style="color: #008b8b;">rg</span><span style="color: #e67128;">' to establish project file list"</span>
+  (mapconcat 'identity
+             (append '(<span style="color: #e67128;">"\\rg"</span>) <span style="color: #74af68;">; </span><span style="color: #74af68;">unalised version of rg</span>
+                     modi/rg-arguments
+                     '(<span style="color: #e67128;">"--null"</span>   <span style="color: #74af68;">; </span><span style="color: #74af68;">null-separated results</span>
+                       <span style="color: #e67128;">"--files"</span>  <span style="color: #74af68;">; </span><span style="color: #74af68;">locate + print file names (don't search them)</span>
+                       ))
+             <span style="color: #e67128;">" "</span>))
+
+(<span style="color: #ffad29; font-weight: bold;">use-package</span> <span style="color: #008b8b;">projectile</span>
+  <span style="color: #23d7d7;">:ensure</span> t
+  <span style="color: #23d7d7;">:init</span> (<span style="color: #ffad29; font-weight: bold;">progn</span> (projectile-mode +1)
+               <span style="color: #74af68;">;;</span><span style="color: #74af68;">(setq projectile-indexing-method 'native) -- want to use rg below</span>
+               (<span style="color: #ffad29; font-weight: bold;">setq</span> projectile-project-compilation-dir <span style="color: #e67128;">""</span>)
+               (<span style="color: #ffad29; font-weight: bold;">setq</span> projectile-enable-caching t)
+               <span style="color: #74af68;">;; </span><span style="color: #74af68;">using rg to identify project source files:</span>
+               <span style="color: #74af68;">;; </span><span style="color: #74af68;">- honors .gitignore</span>
+               <span style="color: #74af68;">;; </span><span style="color: #74af68;">- fast, too!</span>
+               (<span style="color: #ffad29; font-weight: bold;">when</span> (executable-find <span style="color: #e67128;">"rg"</span>)
+                 (<span style="color: #ffad29; font-weight: bold;">progn</span>
+                   (advice-add 'projectile-get-ext-command
+                               <span style="color: #23d7d7;">:override</span> #'modi/advice-projectile-use-rg))))
+  <span style="color: #23d7d7;">:bind</span> (<span style="color: #23d7d7;">:map</span> projectile-mode-map
+              (<span style="color: #e67128;">"s-p"</span> . projectile-command-map)
+              (<span style="color: #e67128;">"C-c p"</span> . projectile-command-map)))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org46f77c7" class="outline-4">
+<h4 id="org46f77c7"><span class="section-number-4">2.11.3.</span> dev: language server protocol (LSP)</h4>
+<div class="outline-text-4" id="text-2-11-3">
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">----------------------------------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">language-server-protocol</span>
+
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">+format-with-lsp: provided by lsp-mode</span>
+(<span style="color: #ffad29; font-weight: bold;">defvar</span> <span style="color: #dbdb95;">+format-with-lsp</span>)
+(<span style="color: #ffad29; font-weight: bold;">defvar</span> <span style="color: #dbdb95;">lsp-clients-clangd-args</span>)
+
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">see:</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">https://emacs-lsp.github.io/lsp-mode</span>
+
+(<span style="color: #ffad29; font-weight: bold;">defun</span> <span style="color: #00ede1; font-weight: bold;">disable-lsp-format</span> ()
+  <span style="color: #e67128;">"Disable clang-driven formatting via lsp to prefer emacs-native formatting."</span>
+  (<span style="color: #ffad29; font-weight: bold;">setq</span> +format-with-lsp nil))
+
+(<span style="color: #ffad29; font-weight: bold;">use-package</span> <span style="color: #008b8b;">lsp-mode</span>
+  <span style="color: #23d7d7;">:config</span>
+  (<span style="color: #ffad29; font-weight: bold;">setq</span> lsp-enable-indentation nil) <span style="color: #74af68;">; </span><span style="color: #74af68;">disable clang indentation -- doesn't preserve newlines!</span>
+  (<span style="color: #ffad29; font-weight: bold;">setq</span> lsp-enable-on-type-formatting nil)
+  (<span style="color: #ffad29; font-weight: bold;">setq</span> lsp-modeline-diagnostics-enable t)
+  (add-hook 'c++-mode-hook #'lsp-deferred)
+  (add-hook 'c++-mode-hook #'disable-lsp-format)
+  (<span style="color: #ffad29; font-weight: bold;">setq</span> lsp-clients-clangd-args '(<span style="color: #e67128;">"-j=4"</span> <span style="color: #e67128;">"-background-index"</span> <span style="color: #e67128;">"-log=error"</span>))
+  <span style="color: #74af68;">;;</span><span style="color: #74af68;">(add-hook 'python-mode-hook #'lsp)</span>
+)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org738e6f4" class="outline-4">
+<h4 id="org738e6f4"><span class="section-number-4">2.11.4.</span> dev: git integration</h4>
+<div class="outline-text-4" id="text-2-11-4">
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">git integration</span>
+<span style="color: #74af68;">;;  </span><span style="color: #74af68;">C-x M-g</span>
+<span style="color: #74af68;">;;</span>
+(<span style="color: #ffad29; font-weight: bold;">use-package</span> <span style="color: #008b8b;">magit</span>
+         <span style="color: #23d7d7;">:ensure</span> t
+         <span style="color: #23d7d7;">:init</span> (<span style="color: #ffad29; font-weight: bold;">progn</span> (<span style="color: #ffad29; font-weight: bold;">bind-key</span> <span style="color: #e67128;">"C-x M-g j"</span> 'magit-status)))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org69e495d" class="outline-4">
+<h4 id="org69e495d"><span class="section-number-4">2.11.5.</span> dev: nix mode</h4>
+<div class="outline-text-4" id="text-2-11-5">
+<p>
+Syntax highlighting in nix files
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">----------------------------------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">nix mode (syntax highlighting etc for .nix files)</span>
+<span style="color: #74af68;">;;</span>
+(<span style="color: #ffad29; font-weight: bold;">use-package</span> <span style="color: #008b8b;">nix-mode</span> <span style="color: #23d7d7;">:ensure</span> t)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc8856ef" class="outline-4">
+<h4 id="orgc8856ef"><span class="section-number-4">2.11.6.</span> dev: yaml mode</h4>
+<div class="outline-text-4" id="text-2-11-6">
+<p>
+Syntax highlighting in yaml files
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">yaml mode (syntax highlighting etc for .yml, .yaml files)</span>
+<span style="color: #74af68;">;;</span>
+(<span style="color: #ffad29; font-weight: bold;">use-package</span> <span style="color: #008b8b;">yaml-mode</span> <span style="color: #23d7d7;">:ensure</span> t
+  <span style="color: #23d7d7;">:init</span> (<span style="color: #ffad29; font-weight: bold;">progn</span> (add-to-list 'auto-mode-alist '(<span style="color: #e67128;">"\\.yml\\'"</span> . yaml-mode))))
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc1140a7" class="outline-3">
+<h3 id="orgc1140a7"><span class="section-number-3">2.12.</span> org-mode</h3>
+<div class="outline-text-3" id="text-2-12">
+</div>
+<div id="outline-container-org7bd6425" class="outline-4">
+<h4 id="org7bd6425"><span class="section-number-4">2.12.1.</span> org: publishing</h4>
+<div class="outline-text-4" id="text-2-12-1">
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">org-mode publishing</span>
+<span style="color: #74af68;">;;</span>
+(<span style="color: #ffad29; font-weight: bold;">require</span> '<span style="color: #008b8b;">ox-publish</span>)
+
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">syntax highlighting in html exporter</span>
+<span style="color: #74af68;">;;</span>
+(<span style="color: #ffad29; font-weight: bold;">use-package</span> <span style="color: #008b8b;">htmlize</span> <span style="color: #23d7d7;">:ensure</span> t)
+
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">publishing setup -- this is a kitchen sink -- it's intended to cover</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">everything we want org-mode to publish</span>
+<span style="color: #74af68;">;;</span>
+(<span style="color: #ffad29; font-weight: bold;">setq</span> org-publish-project-alist
+      '(
+        (<span style="color: #e67128;">"org-howto"</span>
+         <span style="color: #23d7d7;">:components</span> (<span style="color: #e67128;">"org-howto-notes"</span> <span style="color: #e67128;">"org-howto-static"</span>))
+
+        (<span style="color: #e67128;">"org-howto-notes"</span>
+         <span style="color: #23d7d7;">:base-directory</span> <span style="color: #e67128;">"~/proj/org-howto"</span>
+         <span style="color: #23d7d7;">:base-extension</span> <span style="color: #e67128;">"org"</span>
+         <span style="color: #23d7d7;">:publishing-directory</span> <span style="color: #e67128;">"~/proj/public_html/org-howto"</span>
+         <span style="color: #23d7d7;">:recursive</span> t
+         <span style="color: #23d7d7;">:publishing-function</span> org-html-publish-to-html
+         <span style="color: #23d7d7;">:headling-levels</span> 4
+         <span style="color: #23d7d7;">:auto-preamble</span> t
+         )
+
+        (<span style="color: #e67128;">"org-howto-static"</span>
+         <span style="color: #23d7d7;">:base-directory</span> <span style="color: #e67128;">"~/proj/org-howto"</span>
+         <span style="color: #23d7d7;">:base-extension</span> <span style="color: #e67128;">"md</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">css</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">html</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">js</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">svg</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">png</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">jpg</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">gif</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">pdf</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">mp3</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">ogg</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">swf"</span>
+         <span style="color: #23d7d7;">:publishing-directory</span> <span style="color: #e67128;">"~/proj/public_html/org-howto"</span>
+         <span style="color: #23d7d7;">:recursive</span> t
+         <span style="color: #23d7d7;">:publishing-function</span> org-publish-attachment
+         )
+
+        <span style="color: #74af68;">;; </span><span style="color: #74af68;">----- non-public org stuff -----</span>
+
+        (<span style="color: #e67128;">"org-private"</span>
+         <span style="color: #23d7d7;">:components</span> (<span style="color: #e67128;">"org-private-notes"</span> <span style="color: #e67128;">"org-private-static"</span>))
+
+        (<span style="color: #e67128;">"org-private-notes"</span>
+         <span style="color: #23d7d7;">:base-directory</span> <span style="color: #e67128;">"~/proj/org-private"</span>
+         <span style="color: #23d7d7;">:base-extension</span> <span style="color: #e67128;">"org"</span>
+         <span style="color: #23d7d7;">:publishing-directory</span> <span style="color: #e67128;">"~/proj/private_html/org-private"</span>
+         <span style="color: #23d7d7;">:recursive</span> t
+         <span style="color: #23d7d7;">:publishing-function</span> org-html-publish-to-html
+         <span style="color: #23d7d7;">:headling-levels</span> 4
+         <span style="color: #23d7d7;">:auto-preamble</span> t
+         )
+
+        (<span style="color: #e67128;">"org-private-static"</span>
+         <span style="color: #23d7d7;">:base-directory</span> <span style="color: #e67128;">"~/proj/org-private"</span>
+         <span style="color: #23d7d7;">:base-extension</span> <span style="color: #e67128;">"md</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">css</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">html</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">js</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">svg</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">png</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">jpg</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">gif</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">pdf</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">mp3</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">ogg</span><span style="color: #e67128; font-weight: bold;">\\</span><span style="color: #e67128; font-weight: bold;">|</span><span style="color: #e67128;">swf"</span>
+         <span style="color: #23d7d7;">:publishing-directory</span> <span style="color: #e67128;">"~/proj/private_html/org-private"</span>
+         <span style="color: #23d7d7;">:recursive</span> t
+         <span style="color: #23d7d7;">:publishing-function</span> org-publish-attachment
+         )
+        ))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2af347c" class="outline-4">
+<h4 id="org2af347c"><span class="section-number-4">2.12.2.</span> babel setup</h4>
+<div class="outline-text-4" id="text-2-12-2">
+<p>
+For literate programming &#x2013; execute code blocks, written in various languages, embedded in <code>.org</code> files
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">----------------------------------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">org-mode babel setup</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">(execute dot/ditaa/bash/c++ etc. from .org code blocks)</span>
+<span style="color: #74af68;">;;</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">see</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">[[https://orgmode.org/worg/org-contrib/babel/intro.html]]</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">[[https://orgmode.org/worg/org-contrib/babel/languages/index.html]]</span>
+<span style="color: #74af68;">;;</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">code block:</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">#+begin_src ${language} ${switches} ${headerarguments}</span>
+<span style="color: #74af68;">;;     </span><span style="color: #74af68;">${body}</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">#+end_src</span>
+<span style="color: #74af68;">;;</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">use header argument</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">:results output</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">to insert code-block output (i.e. contents of stdout) into .org file below code block</span>
+<span style="color: #74af68;">;;</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">use</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">:results value</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">to just take value of last statement</span>
+<span style="color: #74af68;">;;</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">use</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">:session</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">to share language sub-process across code-blocks.</span>
+<span style="color: #74af68;">;;</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">can use</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">#+name: foo</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">to name an org-mode table;  then:</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">#+begin_src ... :var myfreevar=foo</span>
+<span style="color: #74af68;">;;     </span><span style="color: #74af68;">...</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">#+end_src</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">with body mentioning myfreevar;  .org will substitute foo</span>
+<span style="color: #74af68;">;;</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">can do inline coode block with</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">src_&lt;${lang}&gt;{${code}} or src_&lt;${lang}[${args}]{${code}}</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">e.g.</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">src_python[:session]{10*x}</span>
+<span style="color: #74af68;">;;</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">notes:</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">[C-c C-v] org-babel prefix</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">[C-c C-v b] -- evaluate code blocks in buffer</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">[C-c C-v s] -- evaluate code blocks in subtree</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">[C-c C-v e] -- evaluate code block at point</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">[C-c '] M-x org-edit-src-code -- puts code block in new buffer with appropriate mode activated</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">[C-c M-b p] M-x org-babel-expand-src-block -- show expanded code block prior to evaluation</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">(org-babel-lob-ingest "path/to/file.org") to share code blogs as '</span><span style="color: #008b8b;">library</span><span style="color: #74af68;">'</span>
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((dot . t)  <span style="color: #74af68;">; </span><span style="color: #74af68;">graphviz [[https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-dot.html]] see also graphviz-dot-mode</span>
+   ))
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org93ce5c7" class="outline-3">
+<h3 id="org93ce5c7"><span class="section-number-3">2.13.</span> emacsclient</h3>
+<div class="outline-text-3" id="text-2-13">
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">+ set EDITOR=emacsclient in shell</span>
+
+(server-start)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: roly-desktop-23</p>
+<p class="date">Created: 2023-10-06 Fri 14:10</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
