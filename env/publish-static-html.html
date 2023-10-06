@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-05 Thu 17:41 -->
+<!-- 2023-10-06 Fri 14:19 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>publishing static HTML</title>
@@ -107,7 +107,7 @@ See also
 <p>
 With this configuration
 </p>
-<pre class="example" id="org2db5a19">
+<pre class="example" id="org7444ae1">
 ~M-x org-publish-project org-howto~
 </pre>
 
@@ -189,7 +189,7 @@ for example <code>graphviz</code>.
 Example <code>.org</code> content using graphviz:
 </p>
 
-<pre class="example" id="orge8c636f">
+<pre class="example" id="orge39e00d">
 #+begin_src dot :file img/living-room-av/macmini.svg :exports results :cmdline -Tsvg
 digraph {
   size="4,4";
@@ -269,7 +269,7 @@ When we publish <code>.org</code> tree to github pages, it appears at <a href="h
 <p>
 <code>.org</code> pages that want to use root-relative paths, prefix with <code>/web</code>:
 </p>
-<pre class="example" id="orgdebcee6">
+<pre class="example" id="org4202f7c">
 #+infojs_opt: view:showall toc:nil ltoc:nil mouse:#ffc0c0 path:/web/ext/orginfo/org-info.js
 #+html_head: &lt;link rel="stylesheet" type="text/css" href="/web/css/notebook.css" /&gt;
 </pre>
@@ -356,7 +356,7 @@ We can snapshot and serve generated html in a dedicated docker container with th
 <li><p>
 build docker container image using <code>~/proj/public_html/flake.nix</code>:
 </p>
-<pre class="example" id="orgc9d0626">
+<pre class="example" id="orgf9bbf5b">
 $ cd ~/proj/public_html
 $ nix build
 $ ls -ld result
@@ -366,14 +366,14 @@ $ ls -ld result
 <li><p>
 load image into docker
 </p>
-<pre class="example" id="orgaa47ef3">
+<pre class="example" id="org06941dc">
 $ docker load &lt;./result
 </pre>
 
 <p>
 or send to some other host:
 </p>
-<pre class="example" id="orgb842da9">
+<pre class="example" id="org6c7597d">
 $ mycloudhost=...
 $ scp /nix/store/dck2rix8n8sx6wi0d4is0fq17c72ddqx-serve-org-howto.tar.gz root@${mycloudhost}
 $ ssh ${mycloudhost}
@@ -399,7 +399,7 @@ Docker image contains only python and our html tree,  so much smaller than typic
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: roly-desktop-23</p>
-<p class="date">Created: 2023-10-05 Thu 17:41</p>
+<p class="date">Created: 2023-10-06 Fri 14:19</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
