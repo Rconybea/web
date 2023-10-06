@@ -6,8 +6,8 @@
 <!-- 2023-10-06 Fri 12:30 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>index.org source</title>
-<meta name="author" content="roly-desktop-23" />
+<title>miscellaneous how-tos</title>
+<meta name="author" content="Roland Conybeare" />
 <meta name="generator" content="Org Mode" />
 <style>
   #content { max-width: 60em; margin: auto; }
@@ -193,82 +193,63 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="css/notebook.css" />
-
-<script src="https://orgmode.org/org-info.js">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
-// @license-end
-</script>
-
-<script>
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
-org_html_manager.set("TOC_DEPTH", "3");
-org_html_manager.set("LINK_HOME", "");
-org_html_manager.set("LINK_UP", "index.html");
-org_html_manager.set("LOCAL_TOC", "1");
-org_html_manager.set("VIEW_BUTTONS", "0");
-org_html_manager.set("MOUSE_HINT", "underline");
-org_html_manager.set("FIXED_TOC", "0");
-org_html_manager.set("TOC", "1");
-org_html_manager.set("VIEW", "info");
-org_html_manager.setup();  // activate after the parameters are set
-// @license-end
-</script>
 </head>
 <body>
 <div id="org-div-home-and-up">
- <a accesskey="h" href="index.html"> UP </a>
+ <a accesskey="h" href=""> UP </a>
  |
- <a accesskey="H" href=""> HOME </a>
+ <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
-<h1 class="title">index.org source</h1>
-<pre class="example" id="org245a359">
-#+title: miscellaneous how-tos
-#+author: Roland Conybeare
-#+email: git3ub@nym.hush.com
-#
-# org-publish options
-# H:2   controls section numbering.
-#       number top-level and second-level headings only
-# ^:{}  require a_{b} before assuming that b should be subscripted.
-#       without this option a_b will automatically subscript b.
-#+options: ^:{}
-#
-# options used exclusively by emacs
-#+startup: showall
-#
-# options used exclusively by the html exporter
-#+setupfile: ext/fniessen/theme-readtheorg.setup
-#+language: en
-# +infojs_opt: view:showall mouse:#ffc0c0 toc:nil ltoc:nil path:/web/ext/orginfo/org-info.js
-# +html_head: &lt;link rel="stylesheet" type="text/css" href="/web/css/primary.css" /&gt;
-# +html_link_home: index.html
+<h1 class="title">miscellaneous how-tos</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org52517c5">1. d3 Examples</a>
+<ul>
+<li><a href="#org7dedfcd">1.1. Drag Series</a></li>
+<li><a href="#orga6d71ea">1.2. Option Pricing</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
 
-* Introduction
-  How-to articles maintained at [[https://github.com/Rconybea/org-howto]]
+<div id="outline-container-org52517c5" class="outline-2">
+<h2 id="org52517c5"><span class="section-number-2">1.</span> d3 Examples</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org7dedfcd" class="outline-3">
+<h3 id="org7dedfcd"><span class="section-number-3">1.1.</span> Drag Series</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Progressive series of examples with draggable visual elements
+</p>
 
-  ~org-publish~ generates html tree in =$HOME/proj/public_html/org-howto=.
+<ul class="org-ul">
+<li><a href="drag1/index.html">drag.1</a> d3 draggable object example - standalone</li>
+<li><a href="drag2/index.html">drag.2</a> d3 draggable object example - inline</li>
+<li><a href="drag3/index.html">drag.3</a> d3 draggable object example - parametric</li>
+<li><a href="drag4/index.html">drag.4</a> d3 draggable object example - parametric + smooth selection</li>
+<li><a href="drag5/index.html">drag.5</a> d3 draggable object example - parametric + tangent</li>
+<li><a href="drag6/index.html">drag.6</a> d3 draggable object example - parametric + axes</li>
+<li><a href="drag7/index.html">drag.7</a> d3 draggable object example - parametric + tangent + quadratic</li>
+</ul>
+</div>
+</div>
 
-  Recent snapshots available from github pages: [[https://rconybea.github.io/web]]
-
-  Can for example serve locally on port =8080=:
-  #+begin_example
-  python3 -m http.server 8080 --directory ~/proj/public_html/org-howto
-  #+end_example
-
-* Contents
-  - [[file:env/development-environment.org][c++ development environment]]
-  - [[file:env/windows11-setup.org][windows11 setup]]
-  - [[file:orgpub/org-examples.org][org-examples]] cookbook for org-mode publishing
-  - file:d3/d3-examples.org d3 (javascript graphics library) examples
-  - file:octave/octave-crib.org octave examples
-
-* .org source
-   ~org-mode~ source here: [[file:index-src.org][index-src.org]]
-</pre>
+<div id="outline-container-orga6d71ea" class="outline-3">
+<h3 id="orga6d71ea"><span class="section-number-3">1.2.</span> Option Pricing</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li><a href="blackscholes/index.html">blackscholes</a> interactive option pricing example <b>[WIP]</b></li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: roly-desktop-23</p>
+<p class="author">Author: Roland Conybeare</p>
 <p class="date">Created: 2023-10-06 Fri 12:30</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
