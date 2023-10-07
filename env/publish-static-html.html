@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-06 Fri 14:19 -->
+<!-- 2023-10-07 Sat 18:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>publishing static HTML</title>
@@ -22,7 +22,11 @@
 <style> li{max-width:1800px;}</style>
 </head>
 <body>
-<div id="content" class="content">
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="development-environment.html"> UP </a>
+ |
+ <a accesskey="H" href="index.html"> HOME </a>
+</div><div id="content" class="content">
 <h1 class="title">publishing static HTML</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
@@ -107,7 +111,7 @@ See also
 <p>
 With this configuration
 </p>
-<pre class="example" id="org7444ae1">
+<pre class="example" id="orgeea0ccf">
 ~M-x org-publish-project org-howto~
 </pre>
 
@@ -189,7 +193,7 @@ for example <code>graphviz</code>.
 Example <code>.org</code> content using graphviz:
 </p>
 
-<pre class="example" id="orge39e00d">
+<pre class="example" id="org007dd92">
 #+begin_src dot :file img/living-room-av/macmini.svg :exports results :cmdline -Tsvg
 digraph {
   size="4,4";
@@ -269,7 +273,7 @@ When we publish <code>.org</code> tree to github pages, it appears at <a href="h
 <p>
 <code>.org</code> pages that want to use root-relative paths, prefix with <code>/web</code>:
 </p>
-<pre class="example" id="org4202f7c">
+<pre class="example" id="org1219051">
 #+infojs_opt: view:showall toc:nil ltoc:nil mouse:#ffc0c0 path:/web/ext/orginfo/org-info.js
 #+html_head: &lt;link rel="stylesheet" type="text/css" href="/web/css/notebook.css" /&gt;
 </pre>
@@ -356,7 +360,7 @@ We can snapshot and serve generated html in a dedicated docker container with th
 <li><p>
 build docker container image using <code>~/proj/public_html/flake.nix</code>:
 </p>
-<pre class="example" id="orgf9bbf5b">
+<pre class="example" id="org48e8c34">
 $ cd ~/proj/public_html
 $ nix build
 $ ls -ld result
@@ -366,14 +370,14 @@ $ ls -ld result
 <li><p>
 load image into docker
 </p>
-<pre class="example" id="org06941dc">
+<pre class="example" id="org8fc9645">
 $ docker load &lt;./result
 </pre>
 
 <p>
 or send to some other host:
 </p>
-<pre class="example" id="org6c7597d">
+<pre class="example" id="orgdf30586">
 $ mycloudhost=...
 $ scp /nix/store/dck2rix8n8sx6wi0d4is0fq17c72ddqx-serve-org-howto.tar.gz root@${mycloudhost}
 $ ssh ${mycloudhost}
@@ -399,7 +403,7 @@ Docker image contains only python and our html tree,  so much smaller than typic
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: roly-desktop-23</p>
-<p class="date">Created: 2023-10-06 Fri 14:19</p>
+<p class="date">Created: 2023-10-07 Sat 18:48</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
