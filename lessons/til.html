@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-10-07 Sat 14:11 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Today I Learned</title>
+<meta name="author" content="roly-desktop-23" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style>pre.src{background:#343131;color:white;} </style>
+<style>pre.example{background:#343131;color:white;} </style>
+<style> #content{max-width:1800px;}</style>
+<style> p{max-width:1800px;}</style>
+<style> li{max-width:1800px;}</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Today I Learned</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orge629ed7">1. cmake</a>
+<ul>
+<li><a href="#orgcd6dd5f">1.1. cmake handling of header-only library dependencies (7oct2023)</a></li>
+<li><a href="#org18712e9">1.2. Setup</a></li>
+<li><a href="#org90e8dc5">1.3. Problem</a></li>
+<li><a href="#org2c9401d">1.4. Workaround</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge629ed7" class="outline-2">
+<h2 id="orge629ed7"><span class="section-number-2">1.</span> cmake</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgcd6dd5f" class="outline-3">
+<h3 id="orgcd6dd5f"><span class="section-number-3">1.1.</span> cmake handling of header-only library dependencies (7oct2023)</h3>
+</div>
+
+<div id="outline-container-org18712e9" class="outline-3">
+<h3 id="org18712e9"><span class="section-number-3">1.2.</span> Setup</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>cmake version 3.25.3</li>
+
+<li><p>
+Must introduce a header-only library like this:
+</p>
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #00ede1; font-weight: bold;">add_library</span>(foo INTERFACE)
+</pre>
+</div>
+<p>
+(instead of <code>add_library(foo SHARED)</code> or <code>add_library(foo STATIC)</code>)
+</p></li>
+
+<li><p>
+Must specify include directories for a header-only library like this:
+</p>
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #00ede1; font-weight: bold;">target_include_directories</span>(
+    foo INTERFACE
+    $&lt;INSTALL_INTERFACE:path/to/include&gt;
+    $&lt;BUILD_INTERFACE:${<span style="color: #dbdb95;">PROJECT_SOURCE_DIR</span>}/path/to/include&gt;)
+</pre>
+</div>
+
+<p>
+cmake enforces this explicitly;   gives error
+</p>
+<pre class="example" id="org9afa231">
+target_include_directories may only set INTERFACE properties on INTERFACE targets
+</pre></li>
+
+<li><p>
+Must specify dependency on a header-only library like this:
+</p>
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #00ede1; font-weight: bold;">target_link_libraries</span>(bar INTERFACE foo))
+</pre>
+</div>
+<p>
+(instead of <code>target_link_libraries(bar PUBLIC foo)</code>)
+</p>
+
+<p>
+cmake enforces this explicitly;   gives error
+</p>
+<pre class="example" id="orgb1d310c">
+INTERFACE library can only be used with the INTERFACE keyword of target_link_libraries
+</pre></li>
+
+<li><p>
+Expected behavior:
+this is sufficient for compilation of <code>bar</code> to tell compiler about include paths for <code>foo</code>:
+</p>
+
+<pre class="example" id="org475912c">
+gcc -Ipath/to/foo bar.cpp
+</pre>
+
+<p>
+This expectation is satisfied for regular non-INTERFACE libraries.
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org90e8dc5" class="outline-3">
+<h3 id="org90e8dc5"><span class="section-number-3">1.3.</span> Problem</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>compilation fails to supply include paths for depended-on <code>foo</code> when compiling depending-on <code>bar</code>,
+if <code>bar</code> is a regular library</li>
+
+<li>predicted cause:
+<ol class="org-ol">
+<li>for an INTERFACE library,   cmake uses property <code>INTERFACE_INCLUDE_DIRECTORIES</code>;
+it does not populate <code>INCLUDE_DIRECTORIES</code>.</li>
+<li><code>target_link_libraries</code> when applied to a <code>STATIC</code> or <code>SHARED</code> target,  picks up
+the <code>INCLUDE_DIRECTORIES</code> property for the depended-on target,
+while ignoring the <code>INTERFACE_INCLUDE_DIRECTORIES</code> property.</li>
+</ol></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2c9401d" class="outline-3">
+<h3 id="org2c9401d"><span class="section-number-3">1.4.</span> Workaround</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li><p>
+when depending on a header-only library,  explictly incorporate depended-on <code>INTERFACE_INCLUDE_DIRECTORIES</code>
+to <code>INCLUDE_DIRECTORIES</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #ffad29; font-weight: bold;">macro</span>(dependency_headeronly target dep)
+    <span style="color: #00ede1; font-weight: bold;">target_link_libraries</span>(${<span style="color: #dbdb95;">target</span>} INTERFACE ${<span style="color: #dbdb95;">dep</span>})
+
+    <span style="color: #00ede1; font-weight: bold;">get_target_property</span>(dependency_headeronly__tmp ${<span style="color: #dbdb95;">dep</span>} INTERFACE_INCLUDE_DIRECTORIES)
+    <span style="color: #00ede1; font-weight: bold;">set_property</span>(
+        TARGET ${<span style="color: #dbdb95;">target</span>}
+        APPEND PROPERTY INCLUDE_DIRECTORIES ${<span style="color: #dbdb95;">dependency_headeronly__tmp</span>})
+<span style="color: #ffad29; font-weight: bold;">endmacro</span>()
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: roly-desktop-23</p>
+<p class="date">Created: 2023-10-07 Sat 14:11</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
