@@ -3,11 +3,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-07 Sat 18:48 -->
+<!-- 2023-10-24 Tue 15:53 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Today I Learned</title>
-<meta name="author" content="roly-desktop-23" />
+<title>Today I Learned - lessons from building a C++ development stack</title>
+<meta name="keywords" content="c++ cmake git submodule pybind11 eigen transitive-library-dependency" />
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
 <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
@@ -27,25 +27,34 @@
  |
  <a accesskey="H" href="index.html"> HOME </a>
 </div><div id="content" class="content">
-<h1 class="title">Today I Learned</h1>
+<h1 class="title">Today I Learned - lessons from building a C++ development stack</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
 <li><a href="#orge629ed7">1. cmake</a>
 <ul>
-<li><a href="#orgcd6dd5f">1.1. cmake handling of header-only library dependencies (7oct2023)</a>
+<li><a href="#org3905932">1.1. inconsistent eigen package (25oct2023)</a>
 <ul>
-<li><a href="#orgf8d28e6">1.1.1. Setup</a></li>
-<li><a href="#orgefc9bb4">1.1.2. Problem</a></li>
-<li><a href="#orgd1ad5a8">1.1.3. Workaround</a></li>
+<li><a href="#org700efa1">1.1.1. Setup</a></li>
+<li><a href="#org1d7ad7b">1.1.2. Problem</a></li>
+<li><a href="#org0b22133">1.1.3. Details</a></li>
+<li><a href="#orgecd4352">1.1.4. Workaround</a></li>
 </ul>
 </li>
-<li><a href="#org2fa01e9">1.2. pybind11 link difficulties with transitive library dependencies (7oct2023)</a>
+<li><a href="#orgcd6dd5f">1.2. cmake handling of header-only library dependencies (7oct2023)</a>
 <ul>
-<li><a href="#org6d38542">1.2.1. Setup</a></li>
-<li><a href="#org228226f">1.2.2. Problem</a></li>
-<li><a href="#org4e18e8c">1.2.3. Workaround</a></li>
+<li><a href="#org22a0d6c">1.2.1. Update</a></li>
+<li><a href="#orgf58ca60">1.2.2. Setup</a></li>
+<li><a href="#org7d38f15">1.2.3. Problem</a></li>
+<li><a href="#org4924e68">1.2.4. Workaround</a></li>
+</ul>
+</li>
+<li><a href="#org2fa01e9">1.3. pybind11 link difficulties with transitive library dependencies (7oct2023)</a>
+<ul>
+<li><a href="#org34119c9">1.3.1. Setup</a></li>
+<li><a href="#org4c78ab3">1.3.2. Problem</a></li>
+<li><a href="#org484b95a">1.3.3. Workaround</a></li>
 </ul>
 </li>
 </ul>
@@ -58,13 +67,202 @@
 <h2 id="orge629ed7"><span class="section-number-2">1.</span> cmake</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgcd6dd5f" class="outline-3">
-<h3 id="orgcd6dd5f"><span class="section-number-3">1.1.</span> cmake handling of header-only library dependencies (7oct2023)</h3>
+<div id="outline-container-org3905932" class="outline-3">
+<h3 id="org3905932"><span class="section-number-3">1.1.</span> inconsistent eigen package (25oct2023)</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-orgf8d28e6" class="outline-4">
-<h4 id="orgf8d28e6"><span class="section-number-4">1.1.1.</span> Setup</h4>
+<div id="outline-container-org700efa1" class="outline-4">
+<h4 id="org700efa1"><span class="section-number-4">1.1.1.</span> Setup</h4>
 <div class="outline-text-4" id="text-1-1-1">
+<ul class="org-ul">
+<li>library <a href="https://github.com:rconybea/xo-kalmanfilter">xo-kalmanfilter</a> depends on eigen</li>
+<li>library <a href="https://github.com:rconybea/xo-pykalmanfilter">xo-pykalmanfilter</a> depends on <code>xo-kalmanfilter</code></li>
+<li>the project <a href="https://github.com:rconybea/xo">xo</a> incorporates both codebases (along with others) into single umbrella source tree.</li>
+<li>alternatively, can build+install libraries independently (in bottom-up dependency order),
+using cmake <code>find_package()</code> support provided by each library build.
+Labeling this a 'vanilla build', since it follows standard (cmake-centric) practice for installing independent libraries.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1d7ad7b" class="outline-4">
+<h4 id="org1d7ad7b"><span class="section-number-4">1.1.2.</span> Problem</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<ul class="org-ul">
+<li><p>
+submodule build works as expected;   compile flags include required <code>-Ipath/to/eigen/eigen3</code>,
+so c++ code like this compiles
+</p>
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #23d7d7;">#include</span> <span style="color: #e67128;">&lt;Eigen/Dense&gt;</span>
+</pre>
+</div></li>
+
+<li>vanilla build fails:
+when compiling xo-pykalmanfilter,  the header path for eigen is given as <code>-Ipath/to/eigen</code>
+instead of <code>-Ipath/to/eigen/eigen3</code>.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0b22133" class="outline-4">
+<h4 id="org0b22133"><span class="section-number-4">1.1.3.</span> Details</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<ul class="org-ul">
+<li><p>
+<code>xo-kalmanfilter</code> specifies eigen dependency in the approved manner:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #74af68;"># </span><span style="color: #74af68;">xo-kalmanfilter/src/kalmanfilter/CMakeLists.txt</span>
+<span style="color: #00ede1; font-weight: bold;">set</span>(SELF_LIB xo_kalmanfilter)
+..
+<span style="color: #00ede1; font-weight: bold;">xo_external_target_dependency</span>(${<span style="color: #dbdb95;">SELF_LIB</span>} Eigen3 Eigen3::Eigen)
+</pre>
+</div>
+
+<p>
+which expands as if we had written:
+</p>
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #00ede1; font-weight: bold;">find_package</span>(Eigen3 CONFIG REQUIRED)
+<span style="color: #00ede1; font-weight: bold;">target_link_libraries</span>(${<span style="color: #dbdb95;">SELF_LIB</span>} PUBLIC Eigen3::Eigen)
+</pre>
+</div>
+
+<p>
+This works as expected in submodule build.
+In submodule build, codebases <code>xo-kalmanfilter</code> and <code>xo-pykalmanfilter</code> (amongst others) are incorporated
+into a single source tree:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #74af68;"># </span><span style="color: #74af68;">xo-sm2/CMakeLists.txt</span>
+<span style="color: #00ede1; font-weight: bold;">set</span>(XO_SUBMODULE_BUILD True)
+..
+<span style="color: #00ede1; font-weight: bold;">add_subdirectory</span>(repo/xo-kalmanfilter)
+<span style="color: #00ede1; font-weight: bold;">add_subdirectory</span>(repo/xo-pykalmanfilter)
+</pre>
+</div></li>
+
+<li><p>
+<code>xo-pykalmanfilter</code> specifies <code>xo-kalmanfilter</code> dependency:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #74af68;"># </span><span style="color: #74af68;">xo-pykalmanfilter/src/pykalmanfilter/CMakeLists.txt</span>
+<span style="color: #00ede1; font-weight: bold;">set</span>(SELF_LIB pykalmanfilter)
+..
+<span style="color: #00ede1; font-weight: bold;">xo_pybind11_dependency</span>(${<span style="color: #dbdb95;">SELF_LIB</span>} xo_kalmanfilter)
+</pre>
+</div>
+
+<p>
+which expands differently,  depending on build type.
+In submodule build,  as if we had written:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #00ede1; font-weight: bold;">target_include_directories</span>(${<span style="color: #dbdb95;">SELF_LIB</span>} PUBLIC $&lt;BUILD_INTERFACE:${<span style="color: #dbdb95;">CMAKE_SOURCE_DIR</span>}/repo/xo_kalmanfilter/include&gt;)
+<span style="color: #00ede1; font-weight: bold;">target_include_directories</span>(${<span style="color: #dbdb95;">SELF_LIB</span>} PUBLIC $&lt;BUILD_INTERFACE:${<span style="color: #dbdb95;">CMAKE_BINARY_DIR</span>}/repo/xo_kalmanfilter/include&gt;)
+<span style="color: #00ede1; font-weight: bold;">target_link_libraries</span>(${<span style="color: #dbdb95;">SELF_LIB</span>} PUBLIC xo_kalmanfilter)
+</pre>
+</div>
+
+<p>
+In vanilla build,  <code>xo_pybind11_dependency()</code> expands differently:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #00ede1; font-weight: bold;">find_package</span>(xo_kalmanfilter CONFIG REQUIRED)
+..
+<span style="color: #00ede1; font-weight: bold;">target_link_libraries</span>(${<span style="color: #dbdb95;">SELF_LIB</span>} PUBLIC xo_kalmanfilter)
+</pre>
+</div></li>
+
+<li><p>
+<code>xo-kalmanfilter</code> provides support for cmake <code>find_package()</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #74af68;"># </span><span style="color: #74af68;">xo-kalmanfilter/cmake/xo_kalmanfilterConfig.cmake.in</span>
+
+@PACKAGE_INIT@
+
+<span style="color: #00ede1; font-weight: bold;">include</span>(CMakeFindDependencyMacro)
+<span style="color: #00ede1; font-weight: bold;">find_dependency</span>(reactor)
+<span style="color: #00ede1; font-weight: bold;">find_dependency</span>(eigen3)
+
+<span style="color: #00ede1; font-weight: bold;">include</span>(<span style="color: #e67128;">"${</span><span style="color: #dbdb95;">CMAKE_CURRENT_LIST_DIR</span><span style="color: #e67128;">}/@PROJECT_NAME@Targets.cmake"</span>)
+<span style="color: #00ede1; font-weight: bold;">check_required_components</span>(<span style="color: #e67128;">"@PROJECT_NAME@"</span>)
+</pre>
+</div>
+
+<p>
+and generated <code>xo_kalmanfilterTargets.cmake</code> file contains:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #74af68;"># </span><span style="color: #74af68;">Create imported target xo_kalmanfilter</span>
+<span style="color: #00ede1; font-weight: bold;">add_library</span>(xo_kalmanfilter SHARED IMPORTED)
+
+<span style="color: #00ede1; font-weight: bold;">set_target_properties</span>(xo_kalmanfilter PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES <span style="color: #e67128;">"${</span><span style="color: #dbdb95;">_IMPORT_PREFIX</span><span style="color: #e67128;">}/include;${</span><span style="color: #dbdb95;">_IMPORT_PREFIX</span><span style="color: #e67128;">}/include/xo/kalmanfilter"</span>
+  INTERFACE_LINK_LIBRARIES <span style="color: #e67128;">"reactor;Eigen3::Eigen"</span>
+)
+</pre>
+</div>
+
+<p>
+which.. doesn't look wrong :)
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgecd4352" class="outline-4">
+<h4 id="orgecd4352"><span class="section-number-4">1.1.4.</span> Workaround</h4>
+<div class="outline-text-4" id="text-1-1-4">
+<p>
+Sufficient to restate the eigen dependency in <code>xo-pykalmanfilter</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #74af68;"># </span><span style="color: #74af68;">xo_pykalmanfilter/src/pykalmanfilter/CMakeLists.txt</span>
+<span style="color: #00ede1; font-weight: bold;">set</span>(SELF_LIB pykalmanfilter)
+...
+<span style="color: #00ede1; font-weight: bold;">xo_external_target_dependency</span>(${<span style="color: #dbdb95;">SELF_LIB</span>} Eigen3 Eigen3::Eigen)
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcd6dd5f" class="outline-3">
+<h3 id="orgcd6dd5f"><span class="section-number-3">1.2.</span> cmake handling of header-only library dependencies (7oct2023)</h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+<div id="outline-container-org22a0d6c" class="outline-4">
+<h4 id="org22a0d6c"><span class="section-number-4">1.2.1.</span> Update</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+My original investigation mistaken.
+It turns out I didn't understand that cmake error from <code>target_link_libraries()</code>:
+</p>
+
+<pre class="example" id="org77a67a8">
+INTERFACE library can only be used with the INTERFACE keyword of target_link_libraries
+</pre>
+
+<p>
+applies to the <i>depended-on</i> library (3rd argument),  not the <i>depending</i> library (1st argument).
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf58ca60" class="outline-4">
+<h4 id="orgf58ca60"><span class="section-number-4">1.2.2.</span> Setup</h4>
+<div class="outline-text-4" id="text-1-2-2">
 <ul class="org-ul">
 <li>NOTE: also asked on stack overflow <a href="https://stackoverflow.com/questions/77251201/cmake-regular-shared-library-depending-on-a-header-only-interface-library">here</a></li>
 
@@ -95,7 +293,7 @@ Must specify include directories for a header-only library like this:
 <p>
 cmake enforces this explicitly;   gives error
 </p>
-<pre class="example" id="orgb0874b7">
+<pre class="example" id="orga2fe9c6">
 target_include_directories may only set INTERFACE properties on INTERFACE targets
 </pre></li>
 
@@ -113,7 +311,7 @@ Must specify dependency on a header-only library like this:
 <p>
 cmake enforces this explicitly;   gives error
 </p>
-<pre class="example" id="org7480d3e">
+<pre class="example" id="orgb5084bf">
 INTERFACE library can only be used with the INTERFACE keyword of target_link_libraries
 </pre></li>
 
@@ -122,7 +320,7 @@ Expected behavior:
 this is sufficient for compilation of <code>bar</code> to tell compiler about include paths for <code>foo</code>:
 </p>
 
-<pre class="example" id="orgd8c885c">
+<pre class="example" id="org6be6469">
 gcc -Ipath/to/foo bar.cpp
 </pre>
 
@@ -133,9 +331,9 @@ This expectation is satisfied for regular non-INTERFACE libraries.
 </div>
 </div>
 
-<div id="outline-container-orgefc9bb4" class="outline-4">
-<h4 id="orgefc9bb4"><span class="section-number-4">1.1.2.</span> Problem</h4>
-<div class="outline-text-4" id="text-1-1-2">
+<div id="outline-container-org7d38f15" class="outline-4">
+<h4 id="org7d38f15"><span class="section-number-4">1.2.3.</span> Problem</h4>
+<div class="outline-text-4" id="text-1-2-3">
 <ul class="org-ul">
 <li>compilation fails to supply include paths for depended-on <code>foo</code> when compiling depending-on <code>bar</code>,
 if <code>bar</code> is a regular library</li>
@@ -152,9 +350,9 @@ while ignoring the <code>INTERFACE_INCLUDE_DIRECTORIES</code> property.</li>
 </div>
 </div>
 
-<div id="outline-container-orgd1ad5a8" class="outline-4">
-<h4 id="orgd1ad5a8"><span class="section-number-4">1.1.3.</span> Workaround</h4>
-<div class="outline-text-4" id="text-1-1-3">
+<div id="outline-container-org4924e68" class="outline-4">
+<h4 id="org4924e68"><span class="section-number-4">1.2.4.</span> Workaround</h4>
+<div class="outline-text-4" id="text-1-2-4">
 <ul class="org-ul">
 <li><p>
 when depending on a header-only library,  explictly incorporate depended-on <code>INTERFACE_INCLUDE_DIRECTORIES</code>
@@ -178,12 +376,12 @@ to <code>INCLUDE_DIRECTORIES</code>:
 </div>
 
 <div id="outline-container-org2fa01e9" class="outline-3">
-<h3 id="org2fa01e9"><span class="section-number-3">1.2.</span> pybind11 link difficulties with transitive library dependencies (7oct2023)</h3>
-<div class="outline-text-3" id="text-1-2">
+<h3 id="org2fa01e9"><span class="section-number-3">1.3.</span> pybind11 link difficulties with transitive library dependencies (7oct2023)</h3>
+<div class="outline-text-3" id="text-1-3">
 </div>
-<div id="outline-container-org6d38542" class="outline-4">
-<h4 id="org6d38542"><span class="section-number-4">1.2.1.</span> Setup</h4>
-<div class="outline-text-4" id="text-1-2-1">
+<div id="outline-container-org34119c9" class="outline-4">
+<h4 id="org34119c9"><span class="section-number-4">1.3.1.</span> Setup</h4>
+<div class="outline-text-4" id="text-1-3-1">
 <ul class="org-ul">
 <li>cmake version 3.25.3</li>
 <li>pybind11 version ???</li>
@@ -214,14 +412,14 @@ Expect this cmake script to work:
 </div>
 </div>
 
-<div id="outline-container-org228226f" class="outline-4">
-<h4 id="org228226f"><span class="section-number-4">1.2.2.</span> Problem</h4>
-<div class="outline-text-4" id="text-1-2-2">
+<div id="outline-container-org4c78ab3" class="outline-4">
+<h4 id="org4c78ab3"><span class="section-number-4">1.3.2.</span> Problem</h4>
+<div class="outline-text-4" id="text-1-3-2">
 <ul class="org-ul">
 <li><p>
 Instead, link fails.   Link line something like:
 </p>
-<pre class="example" id="orge0597a3">
+<pre class="example" id="org8b4dee7">
 g++ -fPIC ... -o pyreflect.cpython-311-x86_64-linux-gnu.so /path/to/libreflect.so -lrefcnt -lindentlog
 </pre>
 
@@ -251,16 +449,16 @@ It's not obvious how <code>xo_pyreflect</code> can know that <code>indentlog</co
 </div>
 </div>
 
-<div id="outline-container-org4e18e8c" class="outline-4">
-<h4 id="org4e18e8c"><span class="section-number-4">1.2.3.</span> Workaround</h4>
-<div class="outline-text-4" id="text-1-2-3">
+<div id="outline-container-org484b95a" class="outline-4">
+<h4 id="org484b95a"><span class="section-number-4">1.3.3.</span> Workaround</h4>
+<div class="outline-text-4" id="text-1-3-3">
 <ul class="org-ul">
 <li><p>
 Recognize that <code>pyreflect</code> link shouldn't need <code>refcnt</code> on the link line,
 since <code>libreflect.so</code> has a <code>DT_NEEDED</code> entry for it.
 </p>
 
-<pre class="example" id="orgb0c9771">
+<pre class="example" id="orgba0c95b">
 $ readelf -d /path/to/libreflect.so
 
 Dynamic section at offset 0x17860 contains 34 entries:
@@ -300,8 +498,7 @@ Then in <code>.cmake</code> for <code>pyreflect</code>,  something equivalent to
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: roly-desktop-23</p>
-<p class="date">Created: 2023-10-07 Sat 18:48</p>
+<p class="date">Created: 2023-10-24 Tue 15:53</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
