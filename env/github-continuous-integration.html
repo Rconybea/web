@@ -134,7 +134,7 @@ repos under <a href="https://github.com/Rconybea">https://github.com/Rconybea</a
 <td class="org-left">scheme 4</td>
 <td class="org-left">container</td>
 <td class="org-left"><a href="https://github.com/Rconybea/docker-cpp-builder">docker-cpp-builder</a></td>
-<td class="org-left"><a href="https://github.com/rconybea/docker-action-example3">docker-action-example3</a></td>
+<td class="org-left"><a href="https://github.com/Rconybea/docker-action-example3">docker-action-example3</a></td>
 </tr>
 </tbody>
 </table>
@@ -798,7 +798,7 @@ in <code>docker-action-example3/.github/workflows/main.yml</code>:
       - <span style="color: #dbdb95;">name</span>: checkout
         <span style="color: #dbdb95;">run</span>:
           <span style="color: #74af68;"># </span><span style="color: #74af68;">not using usual checkout action: bc complications from within container</span>
-          GIT_SSL_NO_VERIFY=true git clone https://${{env.GIT_USER}}:${{env.GIT_TOKEN}}@github.com/rconybea/docker-action-example3.git
+          GIT_SSL_NO_VERIFY=true git clone https://${{env.GIT_USER}}:${{env.GIT_TOKEN}}@github.com/Rconybea/docker-action-example3.git
 
       - <span style="color: #dbdb95;">name</span>: compile
         <span style="color: #dbdb95;">run</span>:

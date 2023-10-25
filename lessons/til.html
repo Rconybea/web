@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-24 Tue 15:53 -->
+<!-- 2023-10-24 Tue 16:04 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Today I Learned - lessons from building a C++ development stack</title>
@@ -36,25 +36,25 @@
 <ul>
 <li><a href="#org3905932">1.1. inconsistent eigen package (25oct2023)</a>
 <ul>
-<li><a href="#org700efa1">1.1.1. Setup</a></li>
-<li><a href="#org1d7ad7b">1.1.2. Problem</a></li>
+<li><a href="#orga6d78e6">1.1.1. Setup</a></li>
+<li><a href="#orgeab173b">1.1.2. Problem</a></li>
 <li><a href="#org0b22133">1.1.3. Details</a></li>
-<li><a href="#orgecd4352">1.1.4. Workaround</a></li>
+<li><a href="#org4b08eb5">1.1.4. Workaround</a></li>
 </ul>
 </li>
 <li><a href="#orgcd6dd5f">1.2. cmake handling of header-only library dependencies (7oct2023)</a>
 <ul>
 <li><a href="#org22a0d6c">1.2.1. Update</a></li>
-<li><a href="#orgf58ca60">1.2.2. Setup</a></li>
-<li><a href="#org7d38f15">1.2.3. Problem</a></li>
-<li><a href="#org4924e68">1.2.4. Workaround</a></li>
+<li><a href="#org6fe4703">1.2.2. Setup</a></li>
+<li><a href="#org614ec29">1.2.3. Problem</a></li>
+<li><a href="#org1f44cb7">1.2.4. Workaround</a></li>
 </ul>
 </li>
 <li><a href="#org2fa01e9">1.3. pybind11 link difficulties with transitive library dependencies (7oct2023)</a>
 <ul>
-<li><a href="#org34119c9">1.3.1. Setup</a></li>
-<li><a href="#org4c78ab3">1.3.2. Problem</a></li>
-<li><a href="#org484b95a">1.3.3. Workaround</a></li>
+<li><a href="#org4821ba7">1.3.1. Setup</a></li>
+<li><a href="#org6f289e2">1.3.2. Problem</a></li>
+<li><a href="#org0bb1e02">1.3.3. Workaround</a></li>
 </ul>
 </li>
 </ul>
@@ -71,11 +71,11 @@
 <h3 id="org3905932"><span class="section-number-3">1.1.</span> inconsistent eigen package (25oct2023)</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-org700efa1" class="outline-4">
-<h4 id="org700efa1"><span class="section-number-4">1.1.1.</span> Setup</h4>
+<div id="outline-container-orga6d78e6" class="outline-4">
+<h4 id="orga6d78e6"><span class="section-number-4">1.1.1.</span> Setup</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <ul class="org-ul">
-<li>library <a href="https://github.com:rconybea/xo-kalmanfilter">xo-kalmanfilter</a> depends on eigen</li>
+<li>library xo-kalmanfilter <a href="https://github.com:rconybea/xo-kalmanfilter">https://github.com:rconybea/xo-kalmanfilter</a> depends on eigen</li>
 <li>library <a href="https://github.com:rconybea/xo-pykalmanfilter">xo-pykalmanfilter</a> depends on <code>xo-kalmanfilter</code></li>
 <li>the project <a href="https://github.com:rconybea/xo">xo</a> incorporates both codebases (along with others) into single umbrella source tree.</li>
 <li>alternatively, can build+install libraries independently (in bottom-up dependency order),
@@ -85,8 +85,8 @@ Labeling this a 'vanilla build', since it follows standard (cmake-centric) pract
 </div>
 </div>
 
-<div id="outline-container-org1d7ad7b" class="outline-4">
-<h4 id="org1d7ad7b"><span class="section-number-4">1.1.2.</span> Problem</h4>
+<div id="outline-container-orgeab173b" class="outline-4">
+<h4 id="orgeab173b"><span class="section-number-4">1.1.2.</span> Problem</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <ul class="org-ul">
 <li><p>
@@ -220,8 +220,8 @@ which.. doesn't look wrong :)
 </div>
 </div>
 
-<div id="outline-container-orgecd4352" class="outline-4">
-<h4 id="orgecd4352"><span class="section-number-4">1.1.4.</span> Workaround</h4>
+<div id="outline-container-org4b08eb5" class="outline-4">
+<h4 id="org4b08eb5"><span class="section-number-4">1.1.4.</span> Workaround</h4>
 <div class="outline-text-4" id="text-1-1-4">
 <p>
 Sufficient to restate the eigen dependency in <code>xo-pykalmanfilter</code>:
@@ -250,7 +250,7 @@ My original investigation mistaken.
 It turns out I didn't understand that cmake error from <code>target_link_libraries()</code>:
 </p>
 
-<pre class="example" id="org77a67a8">
+<pre class="example" id="org7a64a93">
 INTERFACE library can only be used with the INTERFACE keyword of target_link_libraries
 </pre>
 
@@ -260,8 +260,8 @@ applies to the <i>depended-on</i> library (3rd argument),  not the <i>depending<
 </div>
 </div>
 
-<div id="outline-container-orgf58ca60" class="outline-4">
-<h4 id="orgf58ca60"><span class="section-number-4">1.2.2.</span> Setup</h4>
+<div id="outline-container-org6fe4703" class="outline-4">
+<h4 id="org6fe4703"><span class="section-number-4">1.2.2.</span> Setup</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <ul class="org-ul">
 <li>NOTE: also asked on stack overflow <a href="https://stackoverflow.com/questions/77251201/cmake-regular-shared-library-depending-on-a-header-only-interface-library">here</a></li>
@@ -293,7 +293,7 @@ Must specify include directories for a header-only library like this:
 <p>
 cmake enforces this explicitly;   gives error
 </p>
-<pre class="example" id="orga2fe9c6">
+<pre class="example" id="org0b505d1">
 target_include_directories may only set INTERFACE properties on INTERFACE targets
 </pre></li>
 
@@ -311,7 +311,7 @@ Must specify dependency on a header-only library like this:
 <p>
 cmake enforces this explicitly;   gives error
 </p>
-<pre class="example" id="orgb5084bf">
+<pre class="example" id="org6f2e778">
 INTERFACE library can only be used with the INTERFACE keyword of target_link_libraries
 </pre></li>
 
@@ -320,7 +320,7 @@ Expected behavior:
 this is sufficient for compilation of <code>bar</code> to tell compiler about include paths for <code>foo</code>:
 </p>
 
-<pre class="example" id="org6be6469">
+<pre class="example" id="orgcce7f21">
 gcc -Ipath/to/foo bar.cpp
 </pre>
 
@@ -331,8 +331,8 @@ This expectation is satisfied for regular non-INTERFACE libraries.
 </div>
 </div>
 
-<div id="outline-container-org7d38f15" class="outline-4">
-<h4 id="org7d38f15"><span class="section-number-4">1.2.3.</span> Problem</h4>
+<div id="outline-container-org614ec29" class="outline-4">
+<h4 id="org614ec29"><span class="section-number-4">1.2.3.</span> Problem</h4>
 <div class="outline-text-4" id="text-1-2-3">
 <ul class="org-ul">
 <li>compilation fails to supply include paths for depended-on <code>foo</code> when compiling depending-on <code>bar</code>,
@@ -350,8 +350,8 @@ while ignoring the <code>INTERFACE_INCLUDE_DIRECTORIES</code> property.</li>
 </div>
 </div>
 
-<div id="outline-container-org4924e68" class="outline-4">
-<h4 id="org4924e68"><span class="section-number-4">1.2.4.</span> Workaround</h4>
+<div id="outline-container-org1f44cb7" class="outline-4">
+<h4 id="org1f44cb7"><span class="section-number-4">1.2.4.</span> Workaround</h4>
 <div class="outline-text-4" id="text-1-2-4">
 <ul class="org-ul">
 <li><p>
@@ -379,8 +379,8 @@ to <code>INCLUDE_DIRECTORIES</code>:
 <h3 id="org2fa01e9"><span class="section-number-3">1.3.</span> pybind11 link difficulties with transitive library dependencies (7oct2023)</h3>
 <div class="outline-text-3" id="text-1-3">
 </div>
-<div id="outline-container-org34119c9" class="outline-4">
-<h4 id="org34119c9"><span class="section-number-4">1.3.1.</span> Setup</h4>
+<div id="outline-container-org4821ba7" class="outline-4">
+<h4 id="org4821ba7"><span class="section-number-4">1.3.1.</span> Setup</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <ul class="org-ul">
 <li>cmake version 3.25.3</li>
@@ -412,14 +412,14 @@ Expect this cmake script to work:
 </div>
 </div>
 
-<div id="outline-container-org4c78ab3" class="outline-4">
-<h4 id="org4c78ab3"><span class="section-number-4">1.3.2.</span> Problem</h4>
+<div id="outline-container-org6f289e2" class="outline-4">
+<h4 id="org6f289e2"><span class="section-number-4">1.3.2.</span> Problem</h4>
 <div class="outline-text-4" id="text-1-3-2">
 <ul class="org-ul">
 <li><p>
 Instead, link fails.   Link line something like:
 </p>
-<pre class="example" id="org8b4dee7">
+<pre class="example" id="org21f1a8b">
 g++ -fPIC ... -o pyreflect.cpython-311-x86_64-linux-gnu.so /path/to/libreflect.so -lrefcnt -lindentlog
 </pre>
 
@@ -449,8 +449,8 @@ It's not obvious how <code>xo_pyreflect</code> can know that <code>indentlog</co
 </div>
 </div>
 
-<div id="outline-container-org484b95a" class="outline-4">
-<h4 id="org484b95a"><span class="section-number-4">1.3.3.</span> Workaround</h4>
+<div id="outline-container-org0bb1e02" class="outline-4">
+<h4 id="org0bb1e02"><span class="section-number-4">1.3.3.</span> Workaround</h4>
 <div class="outline-text-4" id="text-1-3-3">
 <ul class="org-ul">
 <li><p>
@@ -458,7 +458,7 @@ Recognize that <code>pyreflect</code> link shouldn't need <code>refcnt</code> on
 since <code>libreflect.so</code> has a <code>DT_NEEDED</code> entry for it.
 </p>
 
-<pre class="example" id="orgba0c95b">
+<pre class="example" id="orgbe46e55">
 $ readelf -d /path/to/libreflect.so
 
 Dynamic section at offset 0x17860 contains 34 entries:
@@ -498,7 +498,7 @@ Then in <code>.cmake</code> for <code>pyreflect</code>,  something equivalent to
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2023-10-24 Tue 15:53</p>
+<p class="date">Created: 2023-10-24 Tue 16:04</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
