@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-25 Wed 13:58 -->
+<!-- 2023-11-18 Sat 12:25 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Today I Learned - lessons from building a C++ development stack</title>
@@ -33,29 +33,41 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge629ed7">1. cmake</a>
+<li><a href="#orgbaf75df">1. wsl (windows services for linux)</a>
 <ul>
-<li><a href="#org3905932">1.1. inconsistent eigen package (25oct2023)</a>
+<li><a href="#org79d5d4d">1.1. x11 linux apps wedged after WSL update 2.0.9.0</a>
 <ul>
-<li><a href="#org4821ba7">1.1.1. Setup</a></li>
-<li><a href="#org6f289e2">1.1.2. Problem</a></li>
+<li><a href="#org0f1e831">1.1.1. Setup</a></li>
+<li><a href="#org4989243">1.1.2. Problem</a></li>
 <li><a href="#org0b22133">1.1.3. Details</a></li>
-<li><a href="#org0bb1e02">1.1.4. Workaround</a></li>
+<li><a href="#org2769324">1.1.4. Solution</a></li>
 </ul>
 </li>
-<li><a href="#orgcd6dd5f">1.2. cmake handling of header-only library dependencies (7oct2023)</a>
-<ul>
-<li><a href="#org22a0d6c">1.2.1. Update</a></li>
-<li><a href="#org4735022">1.2.2. Setup</a></li>
-<li><a href="#orgab2583a">1.2.3. Problem</a></li>
-<li><a href="#orgd2239cf">1.2.4. Workaround</a></li>
 </ul>
 </li>
-<li><a href="#org2fa01e9">1.3. pybind11 link difficulties with transitive library dependencies (7oct2023)</a>
+<li><a href="#orge629ed7">2. cmake</a>
 <ul>
-<li><a href="#org0f1e831">1.3.1. Setup</a></li>
-<li><a href="#org4989243">1.3.2. Problem</a></li>
-<li><a href="#orgb37923f">1.3.3. Workaround</a></li>
+<li><a href="#org3905932">2.1. inconsistent eigen package (25oct2023)</a>
+<ul>
+<li><a href="#org937375e">2.1.1. Setup</a></li>
+<li><a href="#org07e0ff9">2.1.2. Problem</a></li>
+<li><a href="#org8139c40">2.1.3. Details</a></li>
+<li><a href="#orgb37923f">2.1.4. Workaround</a></li>
+</ul>
+</li>
+<li><a href="#orgcd6dd5f">2.2. cmake handling of header-only library dependencies (7oct2023)</a>
+<ul>
+<li><a href="#org22a0d6c">2.2.1. Update</a></li>
+<li><a href="#org2e25fca">2.2.2. Setup</a></li>
+<li><a href="#orga5a8de3">2.2.3. Problem</a></li>
+<li><a href="#org708c18a">2.2.4. Workaround</a></li>
+</ul>
+</li>
+<li><a href="#org2fa01e9">2.3. pybind11 link difficulties with transitive library dependencies (7oct2023)</a>
+<ul>
+<li><a href="#orgbeaabbf">2.3.1. Setup</a></li>
+<li><a href="#org0f48b0b">2.3.2. Problem</a></li>
+<li><a href="#orgaa23e42">2.3.3. Workaround</a></li>
 </ul>
 </li>
 </ul>
@@ -64,17 +76,78 @@
 </div>
 </div>
 
-<div id="outline-container-orge629ed7" class="outline-2">
-<h2 id="orge629ed7"><span class="section-number-2">1.</span> cmake</h2>
+<div id="outline-container-orgbaf75df" class="outline-2">
+<h2 id="orgbaf75df"><span class="section-number-2">1.</span> wsl (windows services for linux)</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org3905932" class="outline-3">
-<h3 id="org3905932"><span class="section-number-3">1.1.</span> inconsistent eigen package (25oct2023)</h3>
+<div id="outline-container-org79d5d4d" class="outline-3">
+<h3 id="org79d5d4d"><span class="section-number-3">1.1.</span> x11 linux apps wedged after WSL update 2.0.9.0</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-org4821ba7" class="outline-4">
-<h4 id="org4821ba7"><span class="section-number-4">1.1.1.</span> Setup</h4>
+<div id="outline-container-org0f1e831" class="outline-4">
+<h4 id="org0f1e831"><span class="section-number-4">1.1.1.</span> Setup</h4>
 <div class="outline-text-4" id="text-1-1-1">
+<ul class="org-ul">
+<li>PC rebooted overnight;   found it had installed WSL 2.0.9.0</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4989243" class="outline-4">
+<h4 id="org4989243"><span class="section-number-4">1.1.2.</span> Problem</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<ul class="org-ul">
+<li>linux x11 apps unusable;  all seem to draw trash on screen in response to mouse events.
+<ul class="org-ul">
+<li>writeup here: <a href="https://answers.microsoft.com/en-us/windows/forum/all/linux-x11-apps-wedged-after-wsl-update-2090/8b659f22-16d6-4d37-94a2-b4e9521fb82e">linux-x11-appws-wedged-after-wsl-update-2090</a></li>
+<li>30sec youtube video here: <a href="https://youtu.be/ZSu0HNnf00g">windows11: WSL 16nov23 update breaks x11 apps</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0b22133" class="outline-4">
+<h4 id="org0b22133"><span class="section-number-4">1.1.3.</span> Details</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<ul class="org-ul">
+<li>can see update history:
+<ul class="org-ul">
+<li><code>Control Panel|Programs|Programs and Features|(sort on Installed On)</code></li>
+<li><code>Settings|Windows Update|Update History</code> (windows updates only - not sortable by date afaict)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2769324" class="outline-4">
+<h4 id="org2769324"><span class="section-number-4">1.1.4.</span> Solution</h4>
+<div class="outline-text-4" id="text-1-1-4">
+<ul class="org-ul">
+<li><p>
+force WSL vm to shutdown + restart
+</p>
+
+<pre class="example" id="org884d80a">
+PS C:\Users\Rcony&gt; wsl --shutdown
+PS C:\Users\Rcony&gt; wsl --user roland
+</pre></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge629ed7" class="outline-2">
+<h2 id="orge629ed7"><span class="section-number-2">2.</span> cmake</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org3905932" class="outline-3">
+<h3 id="org3905932"><span class="section-number-3">2.1.</span> inconsistent eigen package (25oct2023)</h3>
+<div class="outline-text-3" id="text-2-1">
+</div>
+<div id="outline-container-org937375e" class="outline-4">
+<h4 id="org937375e"><span class="section-number-4">2.1.1.</span> Setup</h4>
+<div class="outline-text-4" id="text-2-1-1">
 <ul class="org-ul">
 <li>library <a href="https://github.com/Rconybea/xo-kalmanfilter">xo-kalmanfilter</a> depends on eigen</li>
 <li>library <a href="https://github.com/Rconybea/xo-pykalmanfilter">xo-pykalmanfilter</a> depends on <code>xo-kalmanfilter</code></li>
@@ -86,9 +159,9 @@ Labeling this a 'vanilla build', since it follows standard (cmake-centric) pract
 </div>
 </div>
 
-<div id="outline-container-org6f289e2" class="outline-4">
-<h4 id="org6f289e2"><span class="section-number-4">1.1.2.</span> Problem</h4>
-<div class="outline-text-4" id="text-1-1-2">
+<div id="outline-container-org07e0ff9" class="outline-4">
+<h4 id="org07e0ff9"><span class="section-number-4">2.1.2.</span> Problem</h4>
+<div class="outline-text-4" id="text-2-1-2">
 <ul class="org-ul">
 <li><p>
 submodule build works as expected;   compile flags include required <code>-Ipath/to/eigen/eigen3</code>,
@@ -106,9 +179,9 @@ instead of <code>-Ipath/to/eigen/eigen3</code>.</li>
 </div>
 </div>
 
-<div id="outline-container-org0b22133" class="outline-4">
-<h4 id="org0b22133"><span class="section-number-4">1.1.3.</span> Details</h4>
-<div class="outline-text-4" id="text-1-1-3">
+<div id="outline-container-org8139c40" class="outline-4">
+<h4 id="org8139c40"><span class="section-number-4">2.1.3.</span> Details</h4>
+<div class="outline-text-4" id="text-2-1-3">
 <ul class="org-ul">
 <li><p>
 <code>xo-kalmanfilter</code> specifies eigen dependency in the approved manner:
@@ -221,9 +294,9 @@ which.. doesn't look wrong :)
 </div>
 </div>
 
-<div id="outline-container-org0bb1e02" class="outline-4">
-<h4 id="org0bb1e02"><span class="section-number-4">1.1.4.</span> Workaround</h4>
-<div class="outline-text-4" id="text-1-1-4">
+<div id="outline-container-orgb37923f" class="outline-4">
+<h4 id="orgb37923f"><span class="section-number-4">2.1.4.</span> Workaround</h4>
+<div class="outline-text-4" id="text-2-1-4">
 <p>
 Sufficient to restate the eigen dependency in <code>xo-pykalmanfilter</code>:
 </p>
@@ -240,18 +313,18 @@ Sufficient to restate the eigen dependency in <code>xo-pykalmanfilter</code>:
 </div>
 
 <div id="outline-container-orgcd6dd5f" class="outline-3">
-<h3 id="orgcd6dd5f"><span class="section-number-3">1.2.</span> cmake handling of header-only library dependencies (7oct2023)</h3>
-<div class="outline-text-3" id="text-1-2">
+<h3 id="orgcd6dd5f"><span class="section-number-3">2.2.</span> cmake handling of header-only library dependencies (7oct2023)</h3>
+<div class="outline-text-3" id="text-2-2">
 </div>
 <div id="outline-container-org22a0d6c" class="outline-4">
-<h4 id="org22a0d6c"><span class="section-number-4">1.2.1.</span> Update</h4>
-<div class="outline-text-4" id="text-1-2-1">
+<h4 id="org22a0d6c"><span class="section-number-4">2.2.1.</span> Update</h4>
+<div class="outline-text-4" id="text-2-2-1">
 <p>
 My original investigation mistaken.
 It turns out I didn't understand that cmake error from <code>target_link_libraries()</code>:
 </p>
 
-<pre class="example" id="orga1be094">
+<pre class="example" id="org603752d">
 INTERFACE library can only be used with the INTERFACE keyword of target_link_libraries
 </pre>
 
@@ -261,9 +334,9 @@ applies to the <i>depended-on</i> library (3rd argument),  not the <i>depending<
 </div>
 </div>
 
-<div id="outline-container-org4735022" class="outline-4">
-<h4 id="org4735022"><span class="section-number-4">1.2.2.</span> Setup</h4>
-<div class="outline-text-4" id="text-1-2-2">
+<div id="outline-container-org2e25fca" class="outline-4">
+<h4 id="org2e25fca"><span class="section-number-4">2.2.2.</span> Setup</h4>
+<div class="outline-text-4" id="text-2-2-2">
 <ul class="org-ul">
 <li>NOTE: also asked on stack overflow <a href="https://stackoverflow.com/questions/77251201/cmake-regular-shared-library-depending-on-a-header-only-interface-library">here</a></li>
 
@@ -294,7 +367,7 @@ Must specify include directories for a header-only library like this:
 <p>
 cmake enforces this explicitly;   gives error
 </p>
-<pre class="example" id="org595ecd6">
+<pre class="example" id="orgfed04f6">
 target_include_directories may only set INTERFACE properties on INTERFACE targets
 </pre></li>
 
@@ -312,7 +385,7 @@ Must specify dependency on a header-only library like this:
 <p>
 cmake enforces this explicitly;   gives error
 </p>
-<pre class="example" id="org2f07c07">
+<pre class="example" id="org9de074b">
 INTERFACE library can only be used with the INTERFACE keyword of target_link_libraries
 </pre></li>
 
@@ -321,7 +394,7 @@ Expected behavior:
 this is sufficient for compilation of <code>bar</code> to tell compiler about include paths for <code>foo</code>:
 </p>
 
-<pre class="example" id="orgae64907">
+<pre class="example" id="org52e88e4">
 gcc -Ipath/to/foo bar.cpp
 </pre>
 
@@ -332,9 +405,9 @@ This expectation is satisfied for regular non-INTERFACE libraries.
 </div>
 </div>
 
-<div id="outline-container-orgab2583a" class="outline-4">
-<h4 id="orgab2583a"><span class="section-number-4">1.2.3.</span> Problem</h4>
-<div class="outline-text-4" id="text-1-2-3">
+<div id="outline-container-orga5a8de3" class="outline-4">
+<h4 id="orga5a8de3"><span class="section-number-4">2.2.3.</span> Problem</h4>
+<div class="outline-text-4" id="text-2-2-3">
 <ul class="org-ul">
 <li>compilation fails to supply include paths for depended-on <code>foo</code> when compiling depending-on <code>bar</code>,
 if <code>bar</code> is a regular library</li>
@@ -351,9 +424,9 @@ while ignoring the <code>INTERFACE_INCLUDE_DIRECTORIES</code> property.</li>
 </div>
 </div>
 
-<div id="outline-container-orgd2239cf" class="outline-4">
-<h4 id="orgd2239cf"><span class="section-number-4">1.2.4.</span> Workaround</h4>
-<div class="outline-text-4" id="text-1-2-4">
+<div id="outline-container-org708c18a" class="outline-4">
+<h4 id="org708c18a"><span class="section-number-4">2.2.4.</span> Workaround</h4>
+<div class="outline-text-4" id="text-2-2-4">
 <ul class="org-ul">
 <li><p>
 when depending on a header-only library,  explictly incorporate depended-on <code>INTERFACE_INCLUDE_DIRECTORIES</code>
@@ -377,16 +450,16 @@ to <code>INCLUDE_DIRECTORIES</code>:
 </div>
 
 <div id="outline-container-org2fa01e9" class="outline-3">
-<h3 id="org2fa01e9"><span class="section-number-3">1.3.</span> pybind11 link difficulties with transitive library dependencies (7oct2023)</h3>
-<div class="outline-text-3" id="text-1-3">
+<h3 id="org2fa01e9"><span class="section-number-3">2.3.</span> pybind11 link difficulties with transitive library dependencies (7oct2023)</h3>
+<div class="outline-text-3" id="text-2-3">
 </div>
-<div id="outline-container-org0f1e831" class="outline-4">
-<h4 id="org0f1e831"><span class="section-number-4">1.3.1.</span> Setup</h4>
-<div class="outline-text-4" id="text-1-3-1">
+<div id="outline-container-orgbeaabbf" class="outline-4">
+<h4 id="orgbeaabbf"><span class="section-number-4">2.3.1.</span> Setup</h4>
+<div class="outline-text-4" id="text-2-3-1">
 <ul class="org-ul">
 <li>cmake version 3.25.3</li>
 <li>pybind11 version ???</li>
-<li>nix build (see <a href="https://github.com:Rconybea/xo-nix2">https://github.com:Rconybea/xo-nix2</a>)
+<li>nix build (see <a href="https://github.com:rconybea/xo-nix2">https://github.com:rconybea/xo-nix2</a>)
 Consequences of nix build:
 <ul class="org-ul">
 <li>Each package installed to a separate directory &#x2013; no "common swimming pool" like <code>/usr/lib</code></li>
@@ -413,14 +486,14 @@ Expect this cmake script to work:
 </div>
 </div>
 
-<div id="outline-container-org4989243" class="outline-4">
-<h4 id="org4989243"><span class="section-number-4">1.3.2.</span> Problem</h4>
-<div class="outline-text-4" id="text-1-3-2">
+<div id="outline-container-org0f48b0b" class="outline-4">
+<h4 id="org0f48b0b"><span class="section-number-4">2.3.2.</span> Problem</h4>
+<div class="outline-text-4" id="text-2-3-2">
 <ul class="org-ul">
 <li><p>
 Instead, link fails.   Link line something like:
 </p>
-<pre class="example" id="orgef7d20b">
+<pre class="example" id="org9dfbe9d">
 g++ -fPIC ... -o pyreflect.cpython-311-x86_64-linux-gnu.so /path/to/libreflect.so -lrefcnt -lindentlog
 </pre>
 
@@ -450,16 +523,16 @@ It's not obvious how <code>xo_pyreflect</code> can know that <code>indentlog</co
 </div>
 </div>
 
-<div id="outline-container-orgb37923f" class="outline-4">
-<h4 id="orgb37923f"><span class="section-number-4">1.3.3.</span> Workaround</h4>
-<div class="outline-text-4" id="text-1-3-3">
+<div id="outline-container-orgaa23e42" class="outline-4">
+<h4 id="orgaa23e42"><span class="section-number-4">2.3.3.</span> Workaround</h4>
+<div class="outline-text-4" id="text-2-3-3">
 <ul class="org-ul">
 <li><p>
 Recognize that <code>pyreflect</code> link shouldn't need <code>refcnt</code> on the link line,
 since <code>libreflect.so</code> has a <code>DT_NEEDED</code> entry for it.
 </p>
 
-<pre class="example" id="org3f51f98">
+<pre class="example" id="orgfde7391">
 $ readelf -d /path/to/libreflect.so
 
 Dynamic section at offset 0x17860 contains 34 entries:
@@ -499,7 +572,7 @@ Then in <code>.cmake</code> for <code>pyreflect</code>,  something equivalent to
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2023-10-25 Wed 13:58</p>
+<p class="date">Created: 2023-11-18 Sat 12:25</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
