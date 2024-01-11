@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-01-11 Thu 14:38 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>gpg setup</title>
+<meta name="author" content="Roland Conybeare" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style>pre.src{background:#343131;color:white;} </style>
+<style>pre.example{background:#343131;color:white;} </style>
+<style> #content{max-width:1800px;}</style>
+<style> p{max-width:1800px;}</style>
+<style> li{max-width:1800px;}</style>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href=""> UP </a>
+ |
+ <a accesskey="H" href="/web/index.html"> HOME </a>
+</div><div id="content" class="content">
+<h1 class="title">gpg setup</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org5f7f7ab">1. Introduction</a></li>
+<li><a href="#org131fb28">2. Generate Keypair</a></li>
+<li><a href="#orga3eaa03">3. Encrypt Secret</a></li>
+<li><a href="#org9e1424a">4. Decrypt Secret</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org5f7f7ab" class="outline-2">
+<h2 id="org5f7f7ab"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Setting up GPG to avoid needing plaintext passwords in certain configuration files.
+Originally introduced this when configuring <code>mbsync</code> for email setup.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org131fb28" class="outline-2">
+<h2 id="org131fb28"><span class="section-number-2">2.</span> Generate Keypair</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Here (afaict) email address is the key-name for a signing authority
+</p>
+
+<pre class="example" id="org300769b">
+$ gpg --gen-key
+Real username: Roland Conybeare
+Email address: replacewithsomething@somewhere.com
+</pre>
+
+<p>
+This will populate files under <code>~/.gnupg</code>
+</p>
+
+<p>
+View public keys:
+</p>
+
+<pre class="example" id="orgb50c7c4">
+$ gpg -k
+/home/roland/.gnupg/pubring.kbx
+-------------------------------
+pub   rsa3072 2024-01-11 [SC] [expires: 2026-01-10]
+      158495DF3E604E65D12B85D4F1C0105549B5F0D1
+uid           [ultimate] Roland Conybeare &lt;replacewithsomething@somewhere.com&gt;
+sub   rsa3072 2024-01-11 [E] [expires: 2026-01-10]
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orga3eaa03" class="outline-2">
+<h2 id="orga3eaa03"><span class="section-number-2">3.</span> Encrypt Secret</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Using this to encrypt an email server password:
+</p>
+
+<pre class="example" id="orgf35d736">
+$ gpg --recipient replacewithsomething@somewhere.com -a -o .hushmail.gpg --encrypt
+replacewithpassword
+</pre>
+
+<p>
+Resulting in encrypted file like:
+</p>
+
+<pre class="example" id="orgc276bf3">
+$ cat .hushmail.gpg
+-----BEGIN PGP MESSAGE-----
+
+hQGMA47kE/R9+tnNAQwA0EHQ11186CQ6tPPhQTidm4i1XBa2hdYi1xsh13jcJsod
+...
+OlLUNkVxGMF3y2hM8sHNOtFKOW9I3qoViqCEufGJD8m/x9Ev9whgx59c20xSkGg=
+=9dw5
+-----END PGP MESSAGE-----
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org9e1424a" class="outline-2">
+<h2 id="org9e1424a"><span class="section-number-2">4.</span> Decrypt Secret</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Recover secret like this:
+</p>
+
+<pre class="example" id="org4634339">
+$ gpg -q --for-your-eyes-only --no-tty -d .hushmail.gpg
+replacewithpassword
+</pre>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Roland Conybeare</p>
+<p class="date">Created: 2024-01-11 Thu 14:38</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

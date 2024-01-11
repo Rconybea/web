@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-01-11 Thu 14:38 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>email setup</title>
+<meta name="author" content="Roland Conybeare" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style>pre.src{background:#343131;color:white;} </style>
+<style>pre.example{background:#343131;color:white;} </style>
+<style> #content{max-width:1800px;}</style>
+<style> p{max-width:1800px;}</style>
+<style> li{max-width:1800px;}</style>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href=""> UP </a>
+ |
+ <a accesskey="H" href="/web/index.html"> HOME </a>
+</div><div id="content" class="content">
+<h1 class="title">email setup</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org6ee25f1">1. Introduction</a>
+<ul>
+<li><a href="#orgd18ef65">1.1. Links</a></li>
+</ul>
+</li>
+<li><a href="#orgc5258b2">2. Scaffold Maildir Tree</a></li>
+<li><a href="#org3e8bb4d">3. Isync Setup</a></li>
+<li><a href="#orgb1651a8">4. Isync Use</a></li>
+<li><a href="#org52f4c3a">5. Mu Setup</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6ee25f1" class="outline-2">
+<h2 id="org6ee25f1"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Setting up email automation on my primary desktop.
+</p>
+
+<p>
+After some investigation settled on:
+</p>
+<dl class="org-dl">
+<dt>isync</dt><dd>to synchronize provider email with a maildir tree</dd>
+<dt>mu</dt><dd>for offline email indexing</dd>
+<dt>mu4e</dt><dd>emacs integration with <code>mu</code> (provided along with <code>mu</code>)</dd>
+</dl>
+
+<p>
+All of these available from nixpkgs.
+</p>
+</div>
+
+<div id="outline-container-orgd18ef65" class="outline-3">
+<h3 id="orgd18ef65"><span class="section-number-3">1.1.</span> Links</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li><a href="https://anarc.at/blog/2021-11-21-mbsync-vs-offlineimap/">https://anarc.at/blog/2021-11-21-mbsync-vs-offlineimap/</a></li>
+<li><a href="https://wiredspace.de/blog/mbsync/">https://wiredspace.de/blog/mbsync/</a></li>
+<li><a href="https://wiki.archlinux.org/title/Isync">https://wiki.archlinux.org/title/Isync</a></li>
+<li><a href="https://www.djcbsoftware.nl/code/mu">https://www.djcbsoftware.nl/code/mu</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc5258b2" class="outline-2">
+<h2 id="orgc5258b2"><span class="section-number-2">2.</span> Scaffold Maildir Tree</h2>
+<div class="outline-text-2" id="text-2">
+<pre class="example" id="org3998e67">
+$ mkdir -p ~/.mail/hushmail
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org3e8bb4d" class="outline-2">
+<h2 id="org3e8bb4d"><span class="section-number-2">3.</span> Isync Setup</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Install isync into shell environment;  may want to later set this up to poll periodically.
+</p>
+
+<pre class="example" id="orgb472119">
+$ nix-env -i isync
+</pre>
+
+<p>
+configuration file (anonymized):
+</p>
+
+<pre class="example" id="org57434d4">
+# ~/.mbsyncrc
+
+IMAPAccount hushmail
+# address to connect
+Host imap.hushmail.com
+User replacewithuser@hushmail.com
+#Pass replacewithpassword
+# encrypted with something like
+# $ echo replacewithpassword | gpg --recipient mygpgusername -a -o ~/.hushmail.gpg --encrypt
+PassCmd "gpg --no-tty --for-your-eyes-only -dq ~/.hushmail.gpg"
+# enable TLS
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+# remote
+IMAPStore hushmail-remote
+Account hushmail
+
+# local
+MaildirStore hushmail-local
+Subfolders Verbatim
+# must have trailing /
+Path ~/.mail/hushmail/
+Inbox ~/.mail/hushmail/Inbox
+
+Channel hushmail
+Far :hushmail-remote:
+Near :hushmail-local:
+# include everything for now
+Patterns *
+# auto-create missing mailboxes
+Create Both
+# delete messages (enable after seeing sync work)
+Expunge Both
+# save synchronization state
+SyncState *
+# propagate mailbox deletion (enable after seeing sync work)
+Remove both
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgb1651a8" class="outline-2">
+<h2 id="orgb1651a8"><span class="section-number-2">4.</span> Isync Use</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+sync email folders:
+</p>
+
+<pre class="example" id="org2e2eb91">
+$ mbsync -a    # of mbsync hushmail
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org52f4c3a" class="outline-2">
+<h2 id="org52f4c3a"><span class="section-number-2">5.</span> Mu Setup</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Installed <code>mu</code> via nix flake for my project <code>xo-nix2</code>.
+See <a href="https://github.com/Rconybea/xo-nix2/blob/main/flake.nix">https://github.com/Rconybea/xo-nix2/blob/main/flake.nix</a>.
+</p>
+
+<p>
+This accomplished by adding <code>mu</code>, <code>mu4easy</code> to <code>devShells.packages</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nix"><span style="color: #dbdb95;">devShells</span> = {
+  <span style="color: #dbdb95;">default</span> = pkgs.mkShell.override
+    { <span style="color: #dbdb95;">stdenv</span> = env; }
+    { <span style="color: #dbdb95;">packages</span> = [ ...
+                   pkgs.mu
+                   pkgs.mu4easy
+                   ...
+                   ];
+      };
+  };
+</pre>
+</div>
+
+<p>
+Installing this way ensures coordinated mu,mu4easy versions
+</p>
+
+<p>
+Then in <code>~/.emacs</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">----------------------------------------------------------------</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">email reading/sending</span>
+<span style="color: #74af68;">;;</span>
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">sync email with</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">$ mbsync -a</span>
+
+(<span style="color: #ffad29; font-weight: bold;">require</span> '<span style="color: #008b8b;">mu4e</span>)
+
+(<span style="color: #ffad29; font-weight: bold;">setq</span> mail-user-agent 'mu4e-user-agent)
+(<span style="color: #ffad29; font-weight: bold;">setq</span> mu4e-sent-folder <span style="color: #e67128;">"/sent"</span>)
+(<span style="color: #ffad29; font-weight: bold;">setq</span> mu4e-drafts-folder <span style="color: #e67128;">"/drafts"</span>)
+(<span style="color: #ffad29; font-weight: bold;">setq</span> mu4e-trash-folder <span style="color: #e67128;">"/trash"</span>)
+</pre>
+</div>
+
+<p>
+Now can browse local email folders from emacs with <code>M-x mu4e</code>
+</p>
+
+<p>
+Sending email requires additional configuration in <code>~/.emacs</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #ffad29; font-weight: bold;">require</span> '<span style="color: #008b8b;">smtpmail</span>)
+
+(<span style="color: #ffad29; font-weight: bold;">setq</span> user-mail-address <span style="color: #e67128;">"replacewithuser@gmail.com"</span>
+      user-full-name <span style="color: #e67128;">"Roland Conybeare"</span>)
+
+(<span style="color: #ffad29; font-weight: bold;">setq</span> message-send-mail-function 'smtpmail-send-it)
+
+(<span style="color: #ffad29; font-weight: bold;">setq</span> smtpmail-stream-type 'starttls
+      <span style="color: #74af68;">;;</span><span style="color: #74af68;">smtpmail-default-smtp-server "smtp.hushmail.com"</span>
+      smtpmail-smtp-server <span style="color: #e67128;">"smtp.gmail.com"</span>
+      smtpmail-smtp-service 587
+      )
+
+(<span style="color: #ffad29; font-weight: bold;">setq</span> message-kill-buffer-on-exit t)
+</pre>
+</div>
+
+<p>
+We also need <code>~/.authinfo</code> to provide login credentials
+</p>
+<pre class="example" id="orgc89bf3b">
+machine smtp.gmail.com login replacewithuser@gmail.com port 587 password replacewithpassword
+</pre>
+
+<p>
+Here <code>replacewithpassword</code> needs to be a "google app password".
+</p>
+
+<p>
+Obtain this from gmail.com -&gt; account settings -&gt; security -&gt; 2-step verification -&gt; app passwords
+</p>
+
+<p>
+Now can send email with <code>C-x m</code>
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Roland Conybeare</p>
+<p class="date">Created: 2024-01-11 Thu 14:38</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
