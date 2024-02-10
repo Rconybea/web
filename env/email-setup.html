@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-02-09 Fri 19:43 -->
+<!-- 2024-02-09 Fri 19:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>email setup</title>
@@ -68,7 +68,7 @@ Setting up email automation on my primary desktop.
 To tidy emails:
 </p>
 
-<pre class="example" id="org2eb9d5e">
+<pre class="example" id="orgabe0d7f">
 $ mbsync -a --pull  # fetch new emails from providers
 $ cleanupmbox       # apply automatic rules (on local copy)
 $ mbsync -a --push  # propagate deletes/moves back to providers
@@ -83,7 +83,7 @@ and/or enjoy tidied email on provider's system (e.g. gmail in browser)
 <p>
 Alternatively can search from command line:
 </p>
-<pre class="example" id="org9868da3">
+<pre class="example" id="orgf3b6310">
 $ notmuch search sometext
 </pre>
 </div>
@@ -157,7 +157,7 @@ will provide an up-to-date view.</li>
 <div id="outline-container-orgc5258b2" class="outline-4">
 <h4 id="orgc5258b2"><span class="section-number-4">1.5.1.</span> Scaffold Maildir Tree</h4>
 <div class="outline-text-4" id="text-1-5-1">
-<pre class="example" id="orgc09fa5b">
+<pre class="example" id="org5f374dd">
 $ mkdir -p ~/.mail/gmail
 $ mkdir -p ~/.mail/hushmail
 </pre>
@@ -170,7 +170,7 @@ $ mkdir -p ~/.mail/hushmail
 Install isync into shell environment;  may want to later set this up to poll periodically.
 </p>
 
-<pre class="example" id="orgb0ebd75">
+<pre class="example" id="org4280e56">
 $ nix-env -i isync
 </pre>
 
@@ -182,7 +182,7 @@ Anonymized configuration file:
 hushmail part:
 </p>
 
-<pre class="example" id="org81cb5f6">
+<pre class="example" id="org6d68434">
 # ~/.mbsyncrc
 
 IMAPAccount hushmail
@@ -229,7 +229,7 @@ Remove both
 gmail part:
 </p>
 
-<pre class="example" id="orgcf22ec1">
+<pre class="example" id="orgaf70a4c">
 IMAPAccount gmail
 Host imap.gmail.com
 User replacewithuser@gmail.com
@@ -277,24 +277,28 @@ Remove both
 <p>
 sync email folders from all providers:
 </p>
+<pre class="example" id="orgfc2447f">
+$ mbsync -a   
+</pre>
 
-<pre class="example" id="orgd4fbb89">
-$ mbsync -a    # of mbsync hushmail
+<p>
+or to just sync with hushmail provider
+</p>
+<pre class="example" id="orgd1ab80d">
+$ mbsync hushmail
 </pre>
 
 <p>
 To just propagate changes from gmail to local:
 </p>
-
-<pre class="example" id="org803f55e">
+<pre class="example" id="org1f73c2c">
 $ mbsync gmail --pull
 </pre>
 
 <p>
 Similarly,  to just propagate changes to hushmail:
 </p>
-
-<pre class="example" id="org1a5ea05">
+<pre class="example" id="org1d35bcb">
 $ mbsync hushmail --push
 </pre>
 </div>
@@ -334,7 +338,7 @@ Installing this way ensures that <code>emacs</code>, <code>notmuch</code> and <c
 <code>notmuch</code> gets setup interactively:
 </p>
 
-<pre class="example" id="org04e4f85">
+<pre class="example" id="orgfe08094">
 $ notmuch setup
 Your full name: 
 Your primary email address: alice@gmail.com
@@ -351,7 +355,7 @@ This creates empty tag database in <code>MAILDIR=/.notmuch</code> (<code>/home/a
 <p>
 Populate tag database with contents of MAILDIR:
 </p>
-<pre class="example" id="orgfea233f">
+<pre class="example" id="orgaefcca4">
 $ notmuch new
 </pre>
 
@@ -401,9 +405,9 @@ in <code>~/.emacs</code>:
 </div>
 
 <p>
-We also need <code>~/.authinfo</code> to provide login credentials
+For <code>smtpmail</code>, We also need <code>~/.authinfo</code> to provide login credentials
 </p>
-<pre class="example" id="org6623bec">
+<pre class="example" id="org5efbf61">
 machine smtp.gmail.com login replacewithuser@gmail.com port 587 password replacewithpassword
 </pre>
 
@@ -435,7 +439,7 @@ gmail eventually cuts off (or maybe times out) socket connections when trying to
 Settled on 15k message cap for the gmail channel
 </p>
 
-<pre class="example" id="org99f00dd">
+<pre class="example" id="orga33a268">
 # .mbsyncrc
 
 Channel gmail
@@ -453,16 +457,23 @@ Python has a builtin library (<code>mailbox</code>) that's simple to use,  and t
 
 <p>
 It does come with a constraint:  as far as I can tell,  it expects email to be stored in the <code>maildir++</code> format,
-rather than regular <code>maildir</code>.  In <code>maildir++</code>,  folder-&gt;filesystem structure is flattened.
+rather than regular <code>maildir</code>.
+</p>
+
+<p>
+In <code>maildir++</code>,  folder-&gt;filesystem structure is flattened.
 A folder <code>foo/bar</code> will be stored in a directory <code>.foo.bar</code>,  so typically would have all folders in a single directory.
 </p>
 
 <p>
-Multiple channels muddies the filesystem picture,  since different channels will map to sibling filesystem directories,
-for example:
+Multiple channels muddies the filesystem picture,  since different channels will map to sibling filesystem directories.
 </p>
 
-<pre class="example" id="org7dae4ea">
+<p>
+For example:
+</p>
+
+<pre class="example" id="org8a28666">
 ${MAILDIR}
 +- gmail
 |  +- .receipts
@@ -483,7 +494,7 @@ Fortunately,  <code>notmuch</code> accomodates this,  since it just needs a path
 For example to look at emails in <code>gmail/.receipts</code>,  use <code>folder:gmail/.receipts</code> in a <code>notmuch</code> search
 </p></li>
 
-<li>Needed a detour to setup PGP,  to circumvent having plaintext passwords in configuration files.</li>
+<li>Needed a detour to setup PGP (see <a href="gpg-setup.html">gpg-setup.html</a>),  to circumvent having plaintext passwords in configuration files.</li>
 </ol>
 </div>
 </div>
@@ -491,7 +502,7 @@ For example to look at emails in <code>gmail/.receipts</code>,  use <code>folder
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-02-09 Fri 19:43</p>
+<p class="date">Created: 2024-02-09 Fri 19:54</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
