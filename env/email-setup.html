@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-01-11 Thu 14:38 -->
+<!-- 2024-02-09 Fri 19:43 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>email setup</title>
@@ -34,13 +34,21 @@
 <ul>
 <li><a href="#org6ee25f1">1. Introduction</a>
 <ul>
-<li><a href="#orgd18ef65">1.1. Links</a></li>
+<li><a href="#orgf5a0416">1.1. TL;DR</a></li>
+<li><a href="#org5e49901">1.2. Overview</a></li>
+<li><a href="#org9ceec62">1.3. Goals</a></li>
+<li><a href="#orgd18ef65">1.4. Links</a></li>
+<li><a href="#org78eee96">1.5. Setup Instructions</a>
+<ul>
+<li><a href="#orgc5258b2">1.5.1. Scaffold Maildir Tree</a></li>
+<li><a href="#orgb1651a8">1.5.2. Isync Use</a></li>
+<li><a href="#org2b77d57">1.5.3. Notmuch Setup</a></li>
+<li><a href="#orge1e0c7c">1.5.4. Outgoing Mail Setup</a></li>
 </ul>
 </li>
-<li><a href="#orgc5258b2">2. Scaffold Maildir Tree</a></li>
-<li><a href="#org3e8bb4d">3. Isync Setup</a></li>
-<li><a href="#orgb1651a8">4. Isync Use</a></li>
-<li><a href="#org52f4c3a">5. Mu Setup</a></li>
+<li><a href="#org4e1a731">1.6. Lessons and Tradeoffs</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -51,67 +59,140 @@
 <p>
 Setting up email automation on my primary desktop.
 </p>
+</div>
 
+<div id="outline-container-orgf5a0416" class="outline-3">
+<h3 id="orgf5a0416"><span class="section-number-3">1.1.</span> TL;DR</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+To tidy emails:
+</p>
+
+<pre class="example" id="org2eb9d5e">
+$ mbsync -a --pull  # fetch new emails from providers
+$ cleanupmbox       # apply automatic rules (on local copy)
+$ mbsync -a --push  # propagate deletes/moves back to providers
+$ notmuch new       # recognize new mail
+</pre>
+
+<p>
+Read email locally (with favored <code>maildir++</code>-compliant reader),
+and/or enjoy tidied email on provider's system (e.g. gmail in browser)
+</p>
+
+<p>
+Alternatively can search from command line:
+</p>
+<pre class="example" id="org9868da3">
+$ notmuch search sometext
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org5e49901" class="outline-3">
+<h3 id="org5e49901"><span class="section-number-3">1.2.</span> Overview</h3>
+<div class="outline-text-3" id="text-1-2">
 <p>
 After some investigation settled on:
 </p>
 <dl class="org-dl">
-<dt>isync</dt><dd>to synchronize provider email with a maildir tree</dd>
-<dt>mu</dt><dd>for offline email indexing</dd>
-<dt>mu4e</dt><dd>emacs integration with <code>mu</code> (provided along with <code>mu</code>)</dd>
+<dt>isync</dt><dd>(aka <code>mbsync</code>) to synchronize provider email with a maildir tree</dd>
+<dt>notmuch</dt><dd>for offline email indexing/search.</dd>
+<dt>notmuch-emacs</dt><dd>emacs module for local email reading</dd>
 </dl>
 
 <p>
-All of these available from nixpkgs.
+Wrote a custom python script <code>cleanupmbox</code> to operate programatically
+on the local <code>MAILDIR</code> tree.   Script has enough content to deserve its own page,
+next after this one.
+</p>
+
+
+<div id="org46262ba" class="figure">
+<p><img src="img/email-overview.png" alt="email-overview.png" />
 </p>
 </div>
 
-<div id="outline-container-orgd18ef65" class="outline-3">
-<h3 id="orgd18ef65"><span class="section-number-3">1.1.</span> Links</h3>
-<div class="outline-text-3" id="text-1-1">
+<p>
+Notes:
+</p>
 <ul class="org-ul">
-<li><a href="https://anarc.at/blog/2021-11-21-mbsync-vs-offlineimap/">https://anarc.at/blog/2021-11-21-mbsync-vs-offlineimap/</a></li>
-<li><a href="https://wiredspace.de/blog/mbsync/">https://wiredspace.de/blog/mbsync/</a></li>
-<li><a href="https://wiki.archlinux.org/title/Isync">https://wiki.archlinux.org/title/Isync</a></li>
-<li><a href="https://www.djcbsoftware.nl/code/mu">https://www.djcbsoftware.nl/code/mu</a></li>
+<li><code>mbsync</code> configuration in <code>~/.mbsyncrc</code></li>
+<li>emails kept under <code>~/.mail</code></li>
+<li><code>cleanupmbox</code> symlinks to <code>~/proj/env/bin/cleanupmbox.py</code></li>
 </ul>
 </div>
 </div>
+
+<div id="outline-container-org9ceec62" class="outline-3">
+<h3 id="org9ceec62"><span class="section-number-3">1.3.</span> Goals</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+I had the following goals:
+</p>
+<ul class="org-ul">
+<li>automate email handling: want ability to move emails into folders based on pattern-matching rules</li>
+<li>fetch email from multiple providers (gmail, hushmail),  browse from the same filesystem tree.</li>
+<li>synchronize email disposition with providers, so that using browser on their site (especially from phone)
+will provide an up-to-date view.</li>
+</ul>
+</div>
 </div>
 
-<div id="outline-container-orgc5258b2" class="outline-2">
-<h2 id="orgc5258b2"><span class="section-number-2">2.</span> Scaffold Maildir Tree</h2>
-<div class="outline-text-2" id="text-2">
-<pre class="example" id="org3998e67">
+<div id="outline-container-orgd18ef65" class="outline-3">
+<h3 id="orgd18ef65"><span class="section-number-3">1.4.</span> Links</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li><a href="https://anarc.at/blog/2021-11-21-mbsync-vs-offlineimap/">https://anarc.at/blog/2021-11-21-mbsync-vs-offlineimap/</a>  isync vs offlineimap,  plus useful example configuration.</li>
+<li><a href="https://wiredspace.de/blog/mbsync/">https://wiredspace.de/blog/mbsync/</a></li>
+<li><a href="https://wiki.archlinux.org/title/Isync">https://wiki.archlinux.org/title/Isync</a> lovely isync configuration examples</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org78eee96" class="outline-3">
+<h3 id="org78eee96"><span class="section-number-3">1.5.</span> Setup Instructions</h3>
+<div class="outline-text-3" id="text-1-5">
+</div>
+<div id="outline-container-orgc5258b2" class="outline-4">
+<h4 id="orgc5258b2"><span class="section-number-4">1.5.1.</span> Scaffold Maildir Tree</h4>
+<div class="outline-text-4" id="text-1-5-1">
+<pre class="example" id="orgc09fa5b">
+$ mkdir -p ~/.mail/gmail
 $ mkdir -p ~/.mail/hushmail
 </pre>
 </div>
-</div>
 
-<div id="outline-container-org3e8bb4d" class="outline-2">
-<h2 id="org3e8bb4d"><span class="section-number-2">3.</span> Isync Setup</h2>
-<div class="outline-text-2" id="text-3">
+<ol class="org-ol">
+<li><a id="org3e8bb4d"></a>Isync Setup<br />
+<div class="outline-text-5" id="text-1-5-1-1">
 <p>
 Install isync into shell environment;  may want to later set this up to poll periodically.
 </p>
 
-<pre class="example" id="orgb472119">
+<pre class="example" id="orgb0ebd75">
 $ nix-env -i isync
 </pre>
 
 <p>
-configuration file (anonymized):
+Anonymized configuration file:
 </p>
 
-<pre class="example" id="org57434d4">
+<p>
+hushmail part:
+</p>
+
+<pre class="example" id="org81cb5f6">
 # ~/.mbsyncrc
 
 IMAPAccount hushmail
 # address to connect
 Host imap.hushmail.com
 User replacewithuser@hushmail.com
+# if you're comfortable with plaintext:
 #Pass replacewithpassword
-# encrypted with something like
+#
+# PassCmd value encrypted with something like
 # $ echo replacewithpassword | gpg --recipient mygpgusername -a -o ~/.hushmail.gpg --encrypt
 PassCmd "gpg --no-tty --for-your-eyes-only -dq ~/.hushmail.gpg"
 # enable TLS
@@ -143,32 +224,92 @@ SyncState *
 # propagate mailbox deletion (enable after seeing sync work)
 Remove both
 </pre>
-</div>
-</div>
 
-<div id="outline-container-orgb1651a8" class="outline-2">
-<h2 id="orgb1651a8"><span class="section-number-2">4.</span> Isync Use</h2>
-<div class="outline-text-2" id="text-4">
 <p>
-sync email folders:
+gmail part:
 </p>
 
-<pre class="example" id="org2e2eb91">
+<pre class="example" id="orgcf22ec1">
+IMAPAccount gmail
+Host imap.gmail.com
+User replacewithuser@gmail.com
+# encrypted with something like
+# $ echo replacewithpassword | gpg --recipient mygpgusername -a -o ~/.gmail.gpg --encrypt
+PassCmd "gpg --no-tty --for-your-eyes-only -dq ~/.gmail.gpg"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+# remote
+IMAPstore gmail-remote
+Account gmail
+
+# local
+MaildirStore gmail-local
+Subfolders Maildir++
+Inbox ~/.mail/gmail
+
+Channel gmail
+Far :gmail-remote:
+Near :gmail-local:
+MaxMessages 15000
+ExpireUnread yes
+#
+# in particular,  excluding:
+#  [Gmail]/Drafts, [Gmail]/Spam, [Gmail]/Trash
+#
+Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Important" "[Gmail]/Starred" "[GMail]/All Mail"
+#Patterns *
+Sync all
+Create Both
+Expunge Both
+SyncState *
+Remove both
+
+</pre>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-orgb1651a8" class="outline-4">
+<h4 id="orgb1651a8"><span class="section-number-4">1.5.2.</span> Isync Use</h4>
+<div class="outline-text-4" id="text-1-5-2">
+<p>
+sync email folders from all providers:
+</p>
+
+<pre class="example" id="orgd4fbb89">
 $ mbsync -a    # of mbsync hushmail
+</pre>
+
+<p>
+To just propagate changes from gmail to local:
+</p>
+
+<pre class="example" id="org803f55e">
+$ mbsync gmail --pull
+</pre>
+
+<p>
+Similarly,  to just propagate changes to hushmail:
+</p>
+
+<pre class="example" id="org1a5ea05">
+$ mbsync hushmail --push
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org52f4c3a" class="outline-2">
-<h2 id="org52f4c3a"><span class="section-number-2">5.</span> Mu Setup</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-org2b77d57" class="outline-4">
+<h4 id="org2b77d57"><span class="section-number-4">1.5.3.</span> Notmuch Setup</h4>
+<div class="outline-text-4" id="text-1-5-3">
 <p>
-Installed <code>mu</code> via nix flake for my project <code>xo-nix2</code>.
-See <a href="https://github.com/Rconybea/xo-nix2/blob/main/flake.nix">https://github.com/Rconybea/xo-nix2/blob/main/flake.nix</a>.
+Installed <code>notmuch</code> via nix flake in my project <code>xo-nix2</code>.
+see <a href="https://github.com/rconybea/xo-nix2/blob/mail/flake.nix">https://github.com/rconybea/xo-nix2/blob/mail/flake.nix</a>
 </p>
 
 <p>
-This accomplished by adding <code>mu</code>, <code>mu4easy</code> to <code>devShells.packages</code>:
+Accomplished this by adding <code>notmuch</code>, <code>emacsPackages.notmuch</code> to <code>devShells.packages</code>:
 </p>
 
 <div class="org-src-container">
@@ -176,8 +317,8 @@ This accomplished by adding <code>mu</code>, <code>mu4easy</code> to <code>devSh
   <span style="color: #dbdb95;">default</span> = pkgs.mkShell.override
     { <span style="color: #dbdb95;">stdenv</span> = env; }
     { <span style="color: #dbdb95;">packages</span> = [ ...
-                   pkgs.mu
-                   pkgs.mu4easy
+                   pkgs.notmuch
+                   pkgs.emacsPackages.notmuch
                    ...
                    ];
       };
@@ -186,42 +327,66 @@ This accomplished by adding <code>mu</code>, <code>mu4easy</code> to <code>devSh
 </div>
 
 <p>
-Installing this way ensures coordinated mu,mu4easy versions
+Installing this way ensures that <code>emacs</code>, <code>notmuch</code> and <code>notmuch-emacs</code> versions are coordinated.
 </p>
 
 <p>
-Then in <code>~/.emacs</code>:
+<code>notmuch</code> gets setup interactively:
+</p>
+
+<pre class="example" id="org04e4f85">
+$ notmuch setup
+Your full name: 
+Your primary email address: alice@gmail.com
+Additional email address [Press 'Enter' if none]:
+Top-level directory of your email archive:/home/alice/.mail
+Tags to apply to all new messages (separated by spaces) [ unread inbox]:
+Tags to exclude when searching messages (separated by spaces) [ junk]:
+</pre>
+
+<p>
+This creates empty tag database in <code>MAILDIR=/.notmuch</code> (<code>/home/alice/.mail/.notmuch</code> here)
+</p>
+
+<p>
+Populate tag database with contents of MAILDIR:
+</p>
+<pre class="example" id="orgfea233f">
+$ notmuch new
+</pre>
+
+<p>
+Default <code>notmuch-emacs</code> setup is almost trivial.
+In <code>~/.emacs</code>:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">----------------------------------------------------------------</span>
-<span style="color: #74af68;">;; </span><span style="color: #74af68;">email reading/sending</span>
-<span style="color: #74af68;">;;</span>
-<span style="color: #74af68;">;; </span><span style="color: #74af68;">sync email with</span>
-<span style="color: #74af68;">;;   </span><span style="color: #74af68;">$ mbsync -a</span>
-
-(<span style="color: #ffad29; font-weight: bold;">require</span> '<span style="color: #008b8b;">mu4e</span>)
-
-(<span style="color: #ffad29; font-weight: bold;">setq</span> mail-user-agent 'mu4e-user-agent)
-(<span style="color: #ffad29; font-weight: bold;">setq</span> mu4e-sent-folder <span style="color: #e67128;">"/sent"</span>)
-(<span style="color: #ffad29; font-weight: bold;">setq</span> mu4e-drafts-folder <span style="color: #e67128;">"/drafts"</span>)
-(<span style="color: #ffad29; font-weight: bold;">setq</span> mu4e-trash-folder <span style="color: #e67128;">"/trash"</span>)
+<pre class="src src-emacs-lisp">(<span style="color: #ffad29; font-weight: bold;">require</span> '<span style="color: #008b8b;">notmuch</span>)
 </pre>
 </div>
 
 <p>
-Now can browse local email folders from emacs with <code>M-x mu4e</code>
+(but also see <code>M-x customize-group RET notmuch RET</code>)
 </p>
 
 <p>
-Sending email requires additional configuration in <code>~/.emacs</code>:
+Now can browse email from emacs with <code>M-x notmuch</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge1e0c7c" class="outline-4">
+<h4 id="orge1e0c7c"><span class="section-number-4">1.5.4.</span> Outgoing Mail Setup</h4>
+<div class="outline-text-4" id="text-1-5-4">
+<p>
+in <code>~/.emacs</code>:
 </p>
 
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="color: #ffad29; font-weight: bold;">require</span> '<span style="color: #008b8b;">smtpmail</span>)
 
 (<span style="color: #ffad29; font-weight: bold;">setq</span> user-mail-address <span style="color: #e67128;">"replacewithuser@gmail.com"</span>
-      user-full-name <span style="color: #e67128;">"Roland Conybeare"</span>)
+      user-full-name <span style="color: #e67128;">"Alice Exampleton"</span>)
 
 (<span style="color: #ffad29; font-weight: bold;">setq</span> message-send-mail-function 'smtpmail-send-it)
 
@@ -238,7 +403,7 @@ Sending email requires additional configuration in <code>~/.emacs</code>:
 <p>
 We also need <code>~/.authinfo</code> to provide login credentials
 </p>
-<pre class="example" id="orgc89bf3b">
+<pre class="example" id="org6623bec">
 machine smtp.gmail.com login replacewithuser@gmail.com port 587 password replacewithpassword
 </pre>
 
@@ -256,9 +421,77 @@ Now can send email with <code>C-x m</code>
 </div>
 </div>
 </div>
+
+<div id="outline-container-org4e1a731" class="outline-3">
+<h3 id="org4e1a731"><span class="section-number-3">1.6.</span> Lessons and Tradeoffs</h3>
+<div class="outline-text-3" id="text-1-6">
+<ol class="org-ol">
+<li>for email syncing,  I looked at <code>offlineimap</code> and <code>isync</code>.   Chose <code>isync</code> because it's reported to be faster,
+and I had a large (100k+) backlog of email to deal with.   This seems to have worked out well.
+<code>isync</code> is designed to work with multiple email providers (what <code>isync</code> calls 'channels').</li>
+
+<li><p>
+gmail eventually cuts off (or maybe times out) socket connections when trying to sync a large number of messages.
+Settled on 15k message cap for the gmail channel
+</p>
+
+<pre class="example" id="org99f00dd">
+# .mbsyncrc
+
+Channel gmail
+...
+MaxMessages 15000
+...
+</pre></li>
+
+<li><p>
+Scripting email-moving between <code>maildir</code> directories is non-trivial.
+To do this correctly you need to update embedded email identifiers,
+otherwise synchronization won't be able to tell the difference between copy and move.
+Python has a builtin library (<code>mailbox</code>) that's simple to use,  and takes care of this.
+</p>
+
+<p>
+It does come with a constraint:  as far as I can tell,  it expects email to be stored in the <code>maildir++</code> format,
+rather than regular <code>maildir</code>.  In <code>maildir++</code>,  folder-&gt;filesystem structure is flattened.
+A folder <code>foo/bar</code> will be stored in a directory <code>.foo.bar</code>,  so typically would have all folders in a single directory.
+</p>
+
+<p>
+Multiple channels muddies the filesystem picture,  since different channels will map to sibling filesystem directories,
+for example:
+</p>
+
+<pre class="example" id="org7dae4ea">
+${MAILDIR}
++- gmail
+|  +- .receipts
+|  +- .travel
+|  ..
++- hushmail
+   +- .policy
+   ..
+</pre>
+
+<p>
+I originally looked at <code>mu</code> for indexing (along with <code>mu4e</code> for email reading in emacs);
+however that project doesn't seem to handle <code>maildir++</code> with multiple providers in separate directories like above.
+</p>
+
+<p>
+Fortunately,  <code>notmuch</code> accomodates this,  since it just needs a path under <code>${MAILDIR}</code>.
+For example to look at emails in <code>gmail/.receipts</code>,  use <code>folder:gmail/.receipts</code> in a <code>notmuch</code> search
+</p></li>
+
+<li>Needed a detour to setup PGP,  to circumvent having plaintext passwords in configuration files.</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-01-11 Thu 14:38</p>
+<p class="date">Created: 2024-02-09 Fri 19:43</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
