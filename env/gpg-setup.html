@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-01-11 Thu 14:38 -->
+<!-- 2024-02-09 Fri 19:58 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>gpg setup</title>
@@ -57,9 +57,9 @@ Originally introduced this when configuring <code>mbsync</code> for email setup.
 Here (afaict) email address is the key-name for a signing authority
 </p>
 
-<pre class="example" id="org300769b">
+<pre class="example" id="orgd4b3284">
 $ gpg --gen-key
-Real username: Roland Conybeare
+Real username: Alice Exampleton
 Email address: replacewithsomething@somewhere.com
 </pre>
 
@@ -71,13 +71,13 @@ This will populate files under <code>~/.gnupg</code>
 View public keys:
 </p>
 
-<pre class="example" id="orgb50c7c4">
+<pre class="example" id="orgbe039d8">
 $ gpg -k
 /home/roland/.gnupg/pubring.kbx
 -------------------------------
 pub   rsa3072 2024-01-11 [SC] [expires: 2026-01-10]
       158495DF3E604E65D12B85D4F1C0105549B5F0D1
-uid           [ultimate] Roland Conybeare &lt;replacewithsomething@somewhere.com&gt;
+uid           [ultimate] Alice Exampleton &lt;replacewithsomething@somewhere.com&gt;
 sub   rsa3072 2024-01-11 [E] [expires: 2026-01-10]
 </pre>
 </div>
@@ -90,7 +90,7 @@ sub   rsa3072 2024-01-11 [E] [expires: 2026-01-10]
 Using this to encrypt an email server password:
 </p>
 
-<pre class="example" id="orgf35d736">
+<pre class="example" id="org6676f92">
 $ gpg --recipient replacewithsomething@somewhere.com -a -o .hushmail.gpg --encrypt
 replacewithpassword
 </pre>
@@ -99,7 +99,7 @@ replacewithpassword
 Resulting in encrypted file like:
 </p>
 
-<pre class="example" id="orgc276bf3">
+<pre class="example" id="org92e4180">
 $ cat .hushmail.gpg
 -----BEGIN PGP MESSAGE-----
 
@@ -119,7 +119,7 @@ OlLUNkVxGMF3y2hM8sHNOtFKOW9I3qoViqCEufGJD8m/x9Ev9whgx59c20xSkGg=
 Recover secret like this:
 </p>
 
-<pre class="example" id="org4634339">
+<pre class="example" id="org660349d">
 $ gpg -q --for-your-eyes-only --no-tty -d .hushmail.gpg
 replacewithpassword
 </pre>
@@ -128,7 +128,7 @@ replacewithpassword
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-01-11 Thu 14:38</p>
+<p class="date">Created: 2024-02-09 Fri 19:58</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
