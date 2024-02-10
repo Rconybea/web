@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-02-09 Fri 19:56 -->
+<!-- 2024-02-09 Fri 20:29 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>email setup</title>
@@ -68,7 +68,7 @@ Setting up email automation on my primary desktop.
 To tidy emails:
 </p>
 
-<pre class="example" id="orgb918192">
+<pre class="example" id="orgc5ebb05">
 $ mbsync -a --pull  # fetch new emails from providers
 $ cleanupmbox       # apply automatic rules (on local copy)
 $ mbsync -a --push  # propagate deletes/moves back to providers
@@ -83,7 +83,7 @@ and/or enjoy tidied email on provider's system (e.g. gmail in browser)
 <p>
 Alternatively can search from command line:
 </p>
-<pre class="example" id="orgfdbb68c">
+<pre class="example" id="org1c33486">
 $ notmuch search sometext
 </pre>
 </div>
@@ -119,7 +119,8 @@ Notes:
 <ul class="org-ul">
 <li><code>mbsync</code> configuration in <code>~/.mbsyncrc</code></li>
 <li>emails kept under <code>~/.mail</code></li>
-<li><code>cleanupmbox</code> symlinks to <code>~/proj/env/bin/cleanupmbox.py</code></li>
+<li><code>cleanmbox</code> symlinks to <code>~/proj/env/bin/cleanupmbox.py</code></li>
+<li><code>cleanmbox</code> rules in <code>~/.config/cleanmbox/rules.csv</code></li>
 </ul>
 </div>
 </div>
@@ -157,7 +158,7 @@ will provide an up-to-date view.</li>
 <div id="outline-container-orgc5258b2" class="outline-4">
 <h4 id="orgc5258b2"><span class="section-number-4">1.5.1.</span> Scaffold Maildir Tree</h4>
 <div class="outline-text-4" id="text-1-5-1">
-<pre class="example" id="orgfd1aa0c">
+<pre class="example" id="org8f7b0d4">
 $ mkdir -p ~/.mail/gmail
 $ mkdir -p ~/.mail/hushmail
 </pre>
@@ -170,7 +171,7 @@ $ mkdir -p ~/.mail/hushmail
 Install isync into shell environment;  may want to later set this up to poll periodically.
 </p>
 
-<pre class="example" id="org9e00c9d">
+<pre class="example" id="org29f6a20">
 $ nix-env -i isync
 </pre>
 
@@ -182,7 +183,7 @@ Anonymized configuration file:
 hushmail part:
 </p>
 
-<pre class="example" id="org6750ae5">
+<pre class="example" id="org87d3dbc">
 # ~/.mbsyncrc
 
 IMAPAccount hushmail
@@ -229,7 +230,7 @@ Remove both
 gmail part:
 </p>
 
-<pre class="example" id="orgfbe8ece">
+<pre class="example" id="orge9c7b16">
 IMAPAccount gmail
 Host imap.gmail.com
 User replacewithuser@gmail.com
@@ -277,28 +278,28 @@ Remove both
 <p>
 sync email folders from all providers:
 </p>
-<pre class="example" id="orge9796cd">
-$ mbsync -a   
+<pre class="example" id="org0e02ab5">
+$ mbsync -a
 </pre>
 
 <p>
 or to just sync with hushmail provider
 </p>
-<pre class="example" id="org608be23">
+<pre class="example" id="org0c4c003">
 $ mbsync hushmail
 </pre>
 
 <p>
 To just propagate changes from gmail to local:
 </p>
-<pre class="example" id="orgececedf">
+<pre class="example" id="orgb495f8f">
 $ mbsync gmail --pull
 </pre>
 
 <p>
 Similarly,  to just propagate changes to hushmail:
 </p>
-<pre class="example" id="orgdd58278">
+<pre class="example" id="org0edfa18">
 $ mbsync hushmail --push
 </pre>
 </div>
@@ -338,9 +339,9 @@ Installing this way ensures that <code>emacs</code>, <code>notmuch</code> and <c
 <code>notmuch</code> gets setup interactively:
 </p>
 
-<pre class="example" id="org06b758e">
+<pre class="example" id="org00035cf">
 $ notmuch setup
-Your full name: 
+Your full name:
 Your primary email address: alice@gmail.com
 Additional email address [Press 'Enter' if none]:
 Top-level directory of your email archive:/home/alice/.mail
@@ -355,7 +356,7 @@ This creates empty tag database in <code>MAILDIR=/.notmuch</code> (<code>/home/a
 <p>
 Populate tag database with contents of MAILDIR:
 </p>
-<pre class="example" id="org58b14f0">
+<pre class="example" id="orgb24ec06">
 $ notmuch new
 </pre>
 
@@ -407,7 +408,7 @@ in <code>~/.emacs</code>:
 <p>
 For <code>smtpmail</code>, We also need <code>~/.authinfo</code> to provide login credentials
 </p>
-<pre class="example" id="orgaac99f6">
+<pre class="example" id="org8329612">
 machine smtp.gmail.com login replacewithuser@gmail.com port 587 password replacewithpassword
 </pre>
 
@@ -439,7 +440,7 @@ gmail eventually cuts off (or maybe times out) socket connections when trying to
 Settled on 15k message cap for the gmail channel
 </p>
 
-<pre class="example" id="org23657ad">
+<pre class="example" id="org670ce99">
 # .mbsyncrc
 
 Channel gmail
@@ -473,7 +474,7 @@ Multiple channels muddies the filesystem picture,  since different channels will
 For example:
 </p>
 
-<pre class="example" id="org29fee88">
+<pre class="example" id="org6b56c06">
 ${MAILDIR}
 +- gmail
 |  +- .receipts
@@ -502,7 +503,7 @@ For example: to look at emails in <code>gmail/.receipts</code>,  use <code>folde
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-02-09 Fri 19:56</p>
+<p class="date">Created: 2024-02-09 Fri 20:29</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-02-09 Fri 19:58 -->
+<!-- 2024-02-09 Fri 20:29 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>gpg setup</title>
@@ -33,9 +33,11 @@
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
 <li><a href="#org5f7f7ab">1. Introduction</a></li>
-<li><a href="#org131fb28">2. Generate Keypair</a></li>
-<li><a href="#orga3eaa03">3. Encrypt Secret</a></li>
-<li><a href="#org9e1424a">4. Decrypt Secret</a></li>
+<li><a href="#org47a376f">2. Links</a></li>
+<li><a href="#org3011019">3. Install GPG via Nix</a></li>
+<li><a href="#org131fb28">4. Generate Keypair</a></li>
+<li><a href="#orga3eaa03">5. Encrypt Secret</a></li>
+<li><a href="#org9e1424a">6. Decrypt Secret</a></li>
 </ul>
 </div>
 </div>
@@ -50,14 +52,32 @@ Originally introduced this when configuring <code>mbsync</code> for email setup.
 </div>
 </div>
 
-<div id="outline-container-org131fb28" class="outline-2">
-<h2 id="org131fb28"><span class="section-number-2">2.</span> Generate Keypair</h2>
+<div id="outline-container-org47a376f" class="outline-2">
+<h2 id="org47a376f"><span class="section-number-2">2.</span> Links</h2>
 <div class="outline-text-2" id="text-2">
+<p>
+<a href="https://rzetterberg.github.io/yubikey-gpg-nixos.html">https://rzetterberg.github.io/yubikey-gpg-nixos.html</a> GPG+nixos setup with a Yubikey
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3011019" class="outline-2">
+<h2 id="org3011019"><span class="section-number-2">3.</span> Install GPG via Nix</h2>
+<div class="outline-text-2" id="text-3">
+<pre class="example" id="orgf36ca16">
+$ nix-env -i gnupg
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org131fb28" class="outline-2">
+<h2 id="org131fb28"><span class="section-number-2">4.</span> Generate Keypair</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 Here (afaict) email address is the key-name for a signing authority
 </p>
 
-<pre class="example" id="orgd4b3284">
+<pre class="example" id="orge98de1a">
 $ gpg --gen-key
 Real username: Alice Exampleton
 Email address: replacewithsomething@somewhere.com
@@ -71,7 +91,7 @@ This will populate files under <code>~/.gnupg</code>
 View public keys:
 </p>
 
-<pre class="example" id="orgbe039d8">
+<pre class="example" id="org4fe47bc">
 $ gpg -k
 /home/roland/.gnupg/pubring.kbx
 -------------------------------
@@ -84,13 +104,13 @@ sub   rsa3072 2024-01-11 [E] [expires: 2026-01-10]
 </div>
 
 <div id="outline-container-orga3eaa03" class="outline-2">
-<h2 id="orga3eaa03"><span class="section-number-2">3.</span> Encrypt Secret</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="orga3eaa03"><span class="section-number-2">5.</span> Encrypt Secret</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 Using this to encrypt an email server password:
 </p>
 
-<pre class="example" id="org6676f92">
+<pre class="example" id="orga33ad59">
 $ gpg --recipient replacewithsomething@somewhere.com -a -o .hushmail.gpg --encrypt
 replacewithpassword
 </pre>
@@ -99,7 +119,7 @@ replacewithpassword
 Resulting in encrypted file like:
 </p>
 
-<pre class="example" id="org92e4180">
+<pre class="example" id="org4692200">
 $ cat .hushmail.gpg
 -----BEGIN PGP MESSAGE-----
 
@@ -113,13 +133,13 @@ OlLUNkVxGMF3y2hM8sHNOtFKOW9I3qoViqCEufGJD8m/x9Ev9whgx59c20xSkGg=
 </div>
 
 <div id="outline-container-org9e1424a" class="outline-2">
-<h2 id="org9e1424a"><span class="section-number-2">4.</span> Decrypt Secret</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="org9e1424a"><span class="section-number-2">6.</span> Decrypt Secret</h2>
+<div class="outline-text-2" id="text-6">
 <p>
 Recover secret like this:
 </p>
 
-<pre class="example" id="org660349d">
+<pre class="example" id="orge7b7b94">
 $ gpg -q --for-your-eyes-only --no-tty -d .hushmail.gpg
 replacewithpassword
 </pre>
@@ -128,7 +148,7 @@ replacewithpassword
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-02-09 Fri 19:58</p>
+<p class="date">Created: 2024-02-09 Fri 20:29</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
