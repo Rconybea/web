@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-02-11 Sun 15:46 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>maildir tidying</title>
+<meta name="author" content="Roland Conybeare" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style>pre.src{background:#343131;color:white;} </style>
+<style>pre.example{background:#343131;color:white;} </style>
+<style> #content{max-width:1800px;}</style>
+<style> p{max-width:1800px;}</style>
+<style> li{max-width:1800px;}</style>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href=""> UP </a>
+ |
+ <a accesskey="H" href="/web/index.html"> HOME </a>
+</div><div id="content" class="content">
+<h1 class="title">maildir tidying</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orga25d5b5">1. Introduction</a>
+<ul>
+<li><a href="#org102cb9d">1.1. Usage</a></li>
+<li><a href="#orgbe859f4">1.2. Environment Variables</a></li>
+<li><a href="#orgecb6549">1.3. Rules</a></li>
+<li><a href="#orga197feb">1.4. Script</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga25d5b5" class="outline-2">
+<h2 id="orga25d5b5"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<code>cleanmbox</code> applies stored email pattern-directed rules to mail in local maildir storage.
+Requires directory tree follow <code>maildir++</code> structure.
+</p>
+
+<p>
+Features:
+</p>
+<ul class="org-ul">
+<li>match on regex for sender, subject</li>
+<li>patterns for email more than n-days old</li>
+<li>handles utf-8 encoded subject text</li>
+</ul>
+
+<p>
+Rules supplied from separate text file, default location <code>~/.config/cleanmbox/rules.csv</code>:
+</p>
+</div>
+
+<div id="outline-container-org102cb9d" class="outline-3">
+<h3 id="org102cb9d"><span class="section-number-3">1.1.</span> Usage</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="org-src-container">
+<pre class="src src-example">$ cleanmbox
+</pre>
+</div>
+
+<p>
+apply email handling rules from CLEANMBOX_RULES_FILE to mail in MAILDIR
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbe859f4" class="outline-3">
+<h3 id="orgbe859f4"><span class="section-number-3">1.2.</span> Environment Variables</h3>
+<div class="outline-text-3" id="text-1-2">
+<dl class="org-dl">
+<dt>MAILDIR</dt><dd>local mail storage directory [=~/.mail=]</dd>
+<dt>XDG_CONFIG_HOME</dt><dd>root directory for configuration files [=~/.config=]</dd>
+<dt>CLEANMBOX_CONFIG_DIR</dt><dd>directory containing rules file [=XDG_CONFIG_HOME/cleanmbox=]</dd>
+<dt>CLEANMBOX_RULES_FILE</dt><dd>rules file [=rules.csv=]</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-orgecb6549" class="outline-3">
+<h3 id="orgecb6549"><span class="section-number-3">1.3.</span> Rules</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Each rule has six ordered space-separated fields.  Rule matches if and only if all clauses match
+</p>
+<dl class="org-dl">
+<dt>channel</dt><dd>clause identifies an email channel (a top-level subdirectory of <code>MAILDIR</code>)</dd>
+<dt>from-regex</dt><dd>clause applies this regex to email <code>from</code> header.  "-" matches unconditionally</dd>
+<dt>subject-regex</dt><dd>clause applies this regex to email <code>subject</code> header.  "-" matches unconditionally</dd>
+<dt>timetolivedays</dt><dd>clause accepts email with <code>date</code> header more than this many days old</dd>
+<dt>disposition</dt><dd>direct handling of a message matching <code>channel</code>, <code>from-regex</code>, <code>subject-regex</code> and <code>timetolivedays</code>.
+<dl class="org-dl">
+<dt>keep</dt><dd>accept message and continue</dd>
+<dt>move</dt><dd>move message to folder <code>dest-folder</code></dd>
+<dt>delete</dt><dd>permanently delete message</dd>
+</dl></dd>
+<dt>dest-folder</dt><dd>destination folder when <code>disposition</code> is <code>move</code></dd>
+</dl>
+
+<div class="org-src-container">
+<pre class="src src-csv"># --------------------------------------------------------------------------------
+# columns:
+#   channel from-regex subject-regex timetolivedays disposition dest-folder
+#
+# '-' ignores field
+#
+# within each channel,  rules are evaluated in the order they appear here
+# --------------------------------------------------------------------------------
+
+# security (alerts + confirmations)
+gmail noreply@github.com 'your account' 0 move security
+
+# travel
+gmail jetblueairways@info.jetblue.com 'booking confirmation' 0 move travel
+
+# junk
+gmail no-reply@marketing.lyftmail.com - 0 delete
+hushmail loreleyr0@b.mail-zr.com - 0 delete
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga197feb" class="outline-3">
+<h3 id="orga197feb"><span class="section-number-3">1.4.</span> Script</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+<code>cleanmbox.py</code> script (written for python 3.10.3):
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #74af68;">#</span><span style="color: #74af68;">!/usr/bin/env python</span>
+
+<span style="color: #ffad29; font-weight: bold;">import</span> mailbox
+<span style="color: #ffad29; font-weight: bold;">import</span> email.utils
+<span style="color: #ffad29; font-weight: bold;">import</span> email.header
+<span style="color: #ffad29; font-weight: bold;">import</span> pathlib
+<span style="color: #ffad29; font-weight: bold;">import</span> datetime
+<span style="color: #ffad29; font-weight: bold;">import</span> re
+<span style="color: #ffad29; font-weight: bold;">import</span> csv
+<span style="color: #ffad29; font-weight: bold;">import</span> base64
+<span style="color: #ffad29; font-weight: bold;">import</span> codecs
+<span style="color: #ffad29; font-weight: bold;">import</span> os
+<span style="color: #ffad29; font-weight: bold;">import</span> sys
+<span style="color: #ffad29; font-weight: bold;">from</span> collections <span style="color: #ffad29; font-weight: bold;">import</span> namedtuple
+
+<span style="color: #74af68;"># </span><span style="color: #74af68;">rule fields:</span>
+<span style="color: #74af68;">## </span><span style="color: #74af68;">(not yet) - mbox           path (relative to MAILDIR) to mailbox  e.g. hushmail for ~/.mail/hushmail</span>
+<span style="color: #74af68;"># </span><span style="color: #74af68;">- from_regex     (optional) regex for email 'from' address (rule ignores messages that don't match)</span>
+<span style="color: #74af68;"># </span><span style="color: #74af68;">- subject_regex  (optional) regex to apply to message subject (rule ignores messages that don't match)</span>
+<span style="color: #74af68;"># </span><span style="color: #74af68;">- age_days       (optional) act when this many days old (rule ignores messages less than this many days old)</span>
+<span style="color: #74af68;"># </span><span style="color: #74af68;">- disposition    delete|move</span>
+<span style="color: #74af68;"># </span><span style="color: #74af68;">- dest_folder    (optional) destination folder when .disposition=move e.g. 'travel' for ${mbox}/.travel</span>
+<span style="color: #74af68;">#</span>
+<span style="color: #dbdb95;">Rule</span> = namedtuple(<span style="color: #e67128;">'Rule'</span>, <span style="color: #e67128;">'from_regex subject_regex age_days disposition dest_folder'</span>)
+
+<span style="color: #dbdb95;">epoch_tm</span> = datetime.datetime.utcfromtimestamp(0)
+<span style="color: #dbdb95;">d30_sec</span> = 30 * 24 * 3600
+<span style="color: #dbdb95;">d120_sec</span> = 4 * d30_sec
+
+<span style="color: #ffad29; font-weight: bold;">def</span> <span style="color: #00ede1; font-weight: bold;">datetime2float</span>(tm):
+    <span style="color: #dbdb95;">epoch_sec</span> = (tm - epoch_tm).total_seconds()
+
+    <span style="color: #ffad29; font-weight: bold;">return</span> epoch_sec
+
+
+<span style="color: #ffad29; font-weight: bold;">def</span> <span style="color: #00ede1; font-weight: bold;">channel_apply_rules</span>(channel, mbox, ruleset, asof_sec, verbose_flag):
+    <span style="color: #dbdb95;">cut_tm</span> = datetime.datetime.fromtimestamp(asof_sec - d30_sec)
+
+    <span style="color: #dbdb95;">max_email</span> = 99999
+    <span style="color: #dbdb95;">i_email</span> = 0
+
+    <span style="color: #74af68;"># </span><span style="color: #74af68;">loop over first {max_email} emails in inbox</span>
+    <span style="color: #ffad29; font-weight: bold;">for</span> key <span style="color: #ffad29; font-weight: bold;">in</span> mbox.iterkeys():
+        <span style="color: #dbdb95;">i_email</span> += 1
+
+        <span style="color: #ffad29; font-weight: bold;">if</span> i_email &gt;= max_email:
+            <span style="color: #ffad29; font-weight: bold;">break</span>
+
+        <span style="color: #ffad29; font-weight: bold;">try</span>:
+            <span style="color: #dbdb95;">msg</span> = mbox[key]
+        <span style="color: #ffad29; font-weight: bold;">except</span> email.errors.MessageParseError:
+            <span style="color: #ffad29; font-weight: bold;">continue</span>  <span style="color: #74af68;"># </span><span style="color: #74af68;">ignoring malformed message</span>
+
+        <span style="color: #dbdb95;">from_parsed</span> = email.utils.parseaddr(msg[<span style="color: #e67128;">'from'</span>])
+        <span style="color: #dbdb95;">from_displayname</span> = from_parsed[0]
+        <span style="color: #dbdb95;">from_email</span> = from_parsed[1]
+        <span style="color: #dbdb95;">msg_tm</span> = email.utils.parsedate_tz(msg[<span style="color: #e67128;">'date'</span>])
+        <span style="color: #dbdb95;">msg_sec</span> = email.utils.mktime_tz(msg_tm)
+
+        <span style="color: #dbdb95;">msg_subject</span> = msg[<span style="color: #e67128;">'subject'</span>]
+
+        <span style="color: #74af68;"># </span><span style="color: #74af68;">deal with utf-8 base64-encoded subjects</span>
+        <span style="color: #dbdb95;">utf8_prefix_uc</span> = <span style="color: #e67128;">'=?UTF-8?'</span>
+        <span style="color: #dbdb95;">utf8_prefix_lc</span> = <span style="color: #e67128;">'=?utf-8?'</span>
+
+        <span style="color: #ffad29; font-weight: bold;">if</span> ((msg_subject[:<span style="color: #23d7d7;">len</span>(utf8_prefix_lc)] == utf8_prefix_lc)
+            <span style="color: #ffad29; font-weight: bold;">or</span> (msg_subject[:<span style="color: #23d7d7;">len</span>(utf8_prefix_uc)] == utf8_prefix_uc)):
+
+            <span style="color: #dbdb95;">dh</span> = email.header.decode_header(msg_subject)
+            <span style="color: #dbdb95;">default_charset</span> = <span style="color: #e67128;">'ASCII'</span>
+
+            <span style="color: #dbdb95;">msg_subject</span> = <span style="color: #e67128;">''</span>.join([ <span style="color: #23d7d7;">str</span>(t[0],
+                                        t[1] <span style="color: #ffad29; font-weight: bold;">or</span> default_charset)
+                                    <span style="color: #ffad29; font-weight: bold;">for</span> t <span style="color: #ffad29; font-weight: bold;">in</span> dh ])
+
+        <span style="color: #dbdb95;">matched_some_rule</span> = <span style="color: #008b8b;">False</span>
+
+        <span style="color: #ffad29; font-weight: bold;">for</span> rule <span style="color: #ffad29; font-weight: bold;">in</span> ruleset:
+            <span style="color: #74af68;"># </span><span style="color: #74af68;">.from_regex</span>
+            <span style="color: #74af68;"># </span><span style="color: #74af68;">.subject_regex</span>
+            <span style="color: #74af68;"># </span><span style="color: #74af68;">.age_days</span>
+            <span style="color: #74af68;"># </span><span style="color: #74af68;">.disposition</span>
+            <span style="color: #74af68;"># </span><span style="color: #74af68;">.dest_folder</span>
+
+            <span style="color: #dbdb95;">rule_match_flag</span> = <span style="color: #008b8b;">True</span>
+
+            <span style="color: #ffad29; font-weight: bold;">if</span> ((rule.from_regex != <span style="color: #008b8b;">None</span>) <span style="color: #ffad29; font-weight: bold;">and</span> <span style="color: #ffad29; font-weight: bold;">not</span> re.search(rule.from_regex, from_email, re.IGNORECASE)):
+                <span style="color: #dbdb95;">rule_match_flag</span> = <span style="color: #008b8b;">False</span>
+            <span style="color: #ffad29; font-weight: bold;">elif</span> ((rule.subject_regex != <span style="color: #008b8b;">None</span>) <span style="color: #ffad29; font-weight: bold;">and</span> <span style="color: #ffad29; font-weight: bold;">not</span> re.search(rule.subject_regex, msg_subject, re.IGNORECASE)):
+                <span style="color: #dbdb95;">rule_match_flag</span> = <span style="color: #008b8b;">False</span>
+            <span style="color: #ffad29; font-weight: bold;">elif</span> ((rule.age_days != <span style="color: #008b8b;">None</span>) <span style="color: #ffad29; font-weight: bold;">and</span> (msg_sec + 60 &gt;= asof_sec - rule.age_days * 24 * 3600)):
+                <span style="color: #dbdb95;">rule_match_flag</span> = <span style="color: #008b8b;">False</span>
+
+            <span style="color: #ffad29; font-weight: bold;">if</span> rule_match_flag:
+                <span style="color: #dbdb95;">matched_some_rule</span> = <span style="color: #008b8b;">True</span>
+
+            <span style="color: #ffad29; font-weight: bold;">if</span> rule_match_flag <span style="color: #ffad29; font-weight: bold;">or</span> verbose_flag:
+                <span style="color: #ffad29; font-weight: bold;">if</span> rule_match_flag:
+                    <span style="color: #74af68;">#</span><span style="color: #74af68;">print (":i {i_email} :key {key} matched rule {rule}".format(i_email=i_email,</span>
+                    <span style="color: #74af68;">#                                                            </span><span style="color: #74af68;">key=key,</span>
+                    <span style="color: #74af68;">#                                                            </span><span style="color: #74af68;">rule=rule))</span>
+
+                    <span style="color: #23d7d7;">print</span> (<span style="color: #e67128;">":channel {channel} :i {i_email} :key {key} :from {from_email} :when {when} :subject [{subject}] -&gt; {disposition} [{dest_folder}]"</span>
+                           .<span style="color: #23d7d7;">format</span>(channel=channel,
+                                   i_email=i_email,
+                                   key=key,
+                                   from_email=from_email,
+                                   when=msg[<span style="color: #e67128;">'date'</span>],
+                                   subject=msg_subject,
+                                   disposition=rule.disposition,
+                                   dest_folder=rule.dest_folder))
+                <span style="color: #ffad29; font-weight: bold;">else</span>:
+                    <span style="color: #ffad29; font-weight: bold;">if</span> <span style="color: #008b8b;">False</span>:  <span style="color: #74af68;"># </span><span style="color: #74af68;">super verbose</span>
+                        <span style="color: #23d7d7;">print</span> (<span style="color: #e67128;">":i {i_email} :key {key} :from {from_email} :when {when} :subject [{subject}] -/-&gt; rule {rule}"</span>
+                               .<span style="color: #23d7d7;">format</span>(i_email=i_email,
+                                       key=key,
+                                       from_email=from_email,
+                                       when=msg[<span style="color: #e67128;">'date'</span>],
+                                       subject=msg_subject,
+                                       rule=rule))
+
+
+            <span style="color: #74af68;"># </span><span style="color: #74af68;">act on matched rule</span>
+            <span style="color: #ffad29; font-weight: bold;">if</span> rule_match_flag:
+                <span style="color: #ffad29; font-weight: bold;">if</span> rule.disposition == <span style="color: #e67128;">'keep'</span>:
+                    <span style="color: #74af68;"># </span><span style="color: #74af68;">prevents attempting legacy sequence</span>
+                    <span style="color: #ffad29; font-weight: bold;">pass</span>
+                <span style="color: #ffad29; font-weight: bold;">elif</span> rule.disposition == <span style="color: #e67128;">'move'</span>:
+                    <span style="color: #dbdb95;">dest_mdir</span> = <span style="color: #008b8b;">None</span>
+
+                    <span style="color: #ffad29; font-weight: bold;">if</span> rule.dest_folder:
+                        <span style="color: #dbdb95;">dest_mdir</span> = establish_folder(mbox, rule.dest_folder)
+                    <span style="color: #ffad29; font-weight: bold;">else</span>:
+                        <span style="color: #ffad29; font-weight: bold;">raise</span> <span style="color: #34cae2;">Exception</span>(<span style="color: #e67128;">"expected non-null rule.dest_folder with rule.disposition='move'"</span>)
+
+                    <span style="color: #ffad29; font-weight: bold;">if</span> dest_mdir == <span style="color: #008b8b;">None</span>:
+                        <span style="color: #ffad29; font-weight: bold;">raise</span> <span style="color: #34cae2;">Exception</span>(<span style="color: #e67128;">"failed to establish maildir object [{mdir}] for folder [{folder}]"</span>.<span style="color: #23d7d7;">format</span>(mdir=dest_mdir, folder=rule.dest_folder))
+
+                    dest_mdir.lock()
+                    dest_mdir.add(msg)
+                    dest_mdir.flush()
+                    dest_mdir.unlock()
+
+                    <span style="color: #74af68;"># </span><span style="color: #74af68;">also delete message from original location</span>
+                    mbox.lock()
+                    mbox.discard(key)
+                    mbox.flush()
+                    mbox.unlock()
+                <span style="color: #ffad29; font-weight: bold;">elif</span> rule.disposition == <span style="color: #e67128;">'delete'</span>:
+                    mbox.lock()
+                    mbox.discard(key)
+                    mbox.flush()
+                    mbox.unlock()
+
+                    <span style="color: #74af68;"># </span><span style="color: #74af68;">deleted message can't be the target of any other rules</span>
+                    <span style="color: #ffad29; font-weight: bold;">break</span>
+
+        <span style="color: #ffad29; font-weight: bold;">if</span> verbose_flag <span style="color: #ffad29; font-weight: bold;">and</span> (<span style="color: #ffad29; font-weight: bold;">not</span> matched_some_rule):
+            <span style="color: #23d7d7;">print</span> (<span style="color: #e67128;">":channel {channel} :i {i_email} :key {key} :from {from_email} :when {when} :subject [{subject}] -&gt; no rule"</span>
+                   .<span style="color: #23d7d7;">format</span>(channel=channel,
+                           i_email=i_email,
+                           key=key,
+                           from_email=from_email,
+                           when=msg[<span style="color: #e67128;">'date'</span>],
+                           subject=msg_subject,
+                           disposition=rule.disposition,
+                           dest_folder=rule.dest_folder))
+
+
+<span style="color: #ffad29; font-weight: bold;">def</span> <span style="color: #00ede1; font-weight: bold;">establish_folder</span>(mbox, folder_name):
+    <span style="color: #dbdb95;">mdir</span> = <span style="color: #008b8b;">None</span>
+    <span style="color: #ffad29; font-weight: bold;">try</span>:
+        <span style="color: #dbdb95;">mdir</span> = mbox.get_folder(folder_name)
+    <span style="color: #ffad29; font-weight: bold;">except</span> mailbox.NoSuchMailboxError:
+        <span style="color: #dbdb95;">mdir</span> = mbox.add_folder(folder_name)
+
+    <span style="color: #ffad29; font-weight: bold;">return</span> mdir
+
+<span style="color: #74af68;"># </span><span style="color: #74af68;">usage:</span>
+<span style="color: #74af68;">#   </span><span style="color: #74af68;">reader = csv.reader(strip_comments(open('/foo/bar.csv')))</span>
+<span style="color: #74af68;">#</span>
+<span style="color: #ffad29; font-weight: bold;">def</span> <span style="color: #00ede1; font-weight: bold;">strip_comments</span> (ix):
+    <span style="color: #ffad29; font-weight: bold;">for</span> line <span style="color: #ffad29; font-weight: bold;">in</span> ix:
+        <span style="color: #ffad29; font-weight: bold;">if</span> line[:1] == <span style="color: #e67128;">'#'</span>:
+            <span style="color: #ffad29; font-weight: bold;">continue</span>   <span style="color: #74af68;"># </span><span style="color: #74af68;">ignore lines beginning with '#'</span>
+        <span style="color: #ffad29; font-weight: bold;">if</span> <span style="color: #ffad29; font-weight: bold;">not</span> line.strip ():
+            <span style="color: #ffad29; font-weight: bold;">continue</span>   <span style="color: #74af68;"># </span><span style="color: #74af68;">ignore blank lines</span>
+        <span style="color: #ffad29; font-weight: bold;">yield</span> line
+
+<span style="color: #ffad29; font-weight: bold;">def</span> <span style="color: #00ede1; font-weight: bold;">load_rules</span>(rulesfile):
+    <span style="color: #23d7d7;">print</span> (<span style="color: #e67128;">"cleanmbox: loading rules from [{rulesfile}]"</span>.<span style="color: #23d7d7;">format</span>(rulesfile=rulesfile))
+
+    <span style="color: #74af68;"># </span><span style="color: #74af68;">dict: channel -&gt; [Rule]</span>
+    <span style="color: #dbdb95;">allrules_dict</span> = {}
+
+    <span style="color: #74af68;"># </span><span style="color: #74af68;">e.g.</span>
+    <span style="color: #74af68;">#   </span><span style="color: #74af68;">gmail no-reply@foo.com - 0 move bar</span>
+    <span style="color: #74af68;"># </span><span style="color: #74af68;">moves:</span>
+    <span style="color: #74af68;"># </span><span style="color: #74af68;">- any email with from field matching no-reply@foo.com (treated as regex),</span>
+    <span style="color: #74af68;"># </span><span style="color: #74af68;">- with any subject ('-' treated as '.*')</span>
+    <span style="color: #74af68;"># </span><span style="color: #74af68;">- to folder bar</span>
+    <span style="color: #74af68;">#</span>
+    <span style="color: #74af68;"># </span><span style="color: #74af68;">see [[https://docs.python.org/3/library/csv.html]]</span>
+    <span style="color: #74af68;">#</span>
+    <span style="color: #ffad29; font-weight: bold;">with</span> <span style="color: #23d7d7;">open</span>(rulesfile, <span style="color: #e67128;">'r'</span>, newline=<span style="color: #e67128;">''</span>) <span style="color: #ffad29; font-weight: bold;">as</span> csvrulefile:
+        <span style="color: #dbdb95;">reader</span> = csv.DictReader(strip_comments(csvrulefile),
+                                fieldnames=[<span style="color: #e67128;">'channel'</span>, <span style="color: #e67128;">'from_regex'</span>, <span style="color: #e67128;">'subject_regex'</span>, <span style="color: #e67128;">'daystolive'</span>, <span style="color: #e67128;">'disposition'</span>, <span style="color: #e67128;">'dest_folder'</span>],
+                                delimiter = <span style="color: #e67128;">' '</span>,
+                                quotechar = <span style="color: #e67128;">'</span><span style="color: #008b8b;">\'</span><span style="color: #e67128;">'</span>,
+                                doublequote = <span style="color: #008b8b;">False</span>,
+                                skipinitialspace = <span style="color: #008b8b;">True</span>,
+                                quoting = csv.QUOTE_MINIMAL)
+
+        <span style="color: #ffad29; font-weight: bold;">for</span> row <span style="color: #ffad29; font-weight: bold;">in</span> reader:
+            <span style="color: #dbdb95;">channel</span> = row[<span style="color: #e67128;">'channel'</span>]
+
+            <span style="color: #ffad29; font-weight: bold;">if</span> <span style="color: #ffad29; font-weight: bold;">not</span> channel <span style="color: #ffad29; font-weight: bold;">in</span> allrules_dict:
+                <span style="color: #dbdb95;">allrules_dict</span>[channel] = []
+
+            <span style="color: #74af68;"># </span><span style="color: #74af68;">TODO: do something with row['channel']</span>
+            <span style="color: #dbdb95;">from_regex</span> = <span style="color: #008b8b;">None</span> <span style="color: #ffad29; font-weight: bold;">if</span> row[<span style="color: #e67128;">'from_regex'</span>] == <span style="color: #e67128;">'-'</span> <span style="color: #ffad29; font-weight: bold;">else</span> row[<span style="color: #e67128;">'from_regex'</span>]
+            <span style="color: #dbdb95;">subject_regex</span> = <span style="color: #008b8b;">None</span> <span style="color: #ffad29; font-weight: bold;">if</span> row[<span style="color: #e67128;">'subject_regex'</span>] == <span style="color: #e67128;">'-'</span> <span style="color: #ffad29; font-weight: bold;">else</span> row[<span style="color: #e67128;">'subject_regex'</span>]
+
+            <span style="color: #ffad29; font-weight: bold;">if</span> row[<span style="color: #e67128;">'daystolive'</span>] == <span style="color: #e67128;">'-'</span> <span style="color: #ffad29; font-weight: bold;">or</span> row[<span style="color: #e67128;">'daystolive'</span>] == <span style="color: #008b8b;">None</span>:
+                <span style="color: #23d7d7;">print</span>(Rule(from_regex, subject_regex, row[<span style="color: #e67128;">'daystolive'</span>], row[<span style="color: #e67128;">'disposition'</span>], row[<span style="color: #e67128;">'dest_folder'</span>]))
+
+            <span style="color: #dbdb95;">daystolive</span> = <span style="color: #23d7d7;">int</span>(row[<span style="color: #e67128;">'daystolive'</span>])
+
+            <span style="color: #dbdb95;">rule</span> = Rule(from_regex, subject_regex, daystolive, row[<span style="color: #e67128;">'disposition'</span>], row[<span style="color: #e67128;">'dest_folder'</span>])
+
+            allrules_dict[channel].append(rule)
+
+    <span style="color: #ffad29; font-weight: bold;">return</span> allrules_dict
+
+<span style="color: #ffad29; font-weight: bold;">def</span> <span style="color: #00ede1; font-weight: bold;">check_rules</span>(allrules_dict):
+    <span style="color: #ffad29; font-weight: bold;">for</span> channel, ruleset <span style="color: #ffad29; font-weight: bold;">in</span> allrules_dict.items():
+        <span style="color: #ffad29; font-weight: bold;">for</span> rule <span style="color: #ffad29; font-weight: bold;">in</span> ruleset:
+            <span style="color: #ffad29; font-weight: bold;">if</span> <span style="color: #ffad29; font-weight: bold;">not</span> ((rule.disposition == <span style="color: #e67128;">'keep'</span>)
+                    <span style="color: #ffad29; font-weight: bold;">or</span> (rule.disposition == <span style="color: #e67128;">'move'</span>)
+                    <span style="color: #ffad29; font-weight: bold;">or</span> (rule.disposition == <span style="color: #e67128;">'delete'</span>)):
+                <span style="color: #ffad29; font-weight: bold;">raise</span> <span style="color: #34cae2;">Exception</span>(<span style="color: #e67128;">"expected disposition keep|move|delete with rule [{rule}]"</span>.<span style="color: #23d7d7;">format</span>(rule=rule))
+
+<span style="color: #ffad29; font-weight: bold;">def</span> <span style="color: #00ede1; font-weight: bold;">print_rules</span>(allrules_dict):
+    <span style="color: #ffad29; font-weight: bold;">for</span> channel, ruleset <span style="color: #ffad29; font-weight: bold;">in</span> allrules_dict.items():
+        <span style="color: #23d7d7;">print</span>(<span style="color: #e67128;">'rules:'</span>)
+        <span style="color: #ffad29; font-weight: bold;">for</span> rule <span style="color: #ffad29; font-weight: bold;">in</span> ruleset:
+            <span style="color: #23d7d7;">print</span>(<span style="color: #e67128;">'channel={channel}, rule={rule}'</span>.<span style="color: #23d7d7;">format</span>(channel=channel, rule=rule))
+
+<span style="color: #ffad29; font-weight: bold;">def</span> <span style="color: #00ede1; font-weight: bold;">main</span>():
+    <span style="color: #dbdb95;">homedir</span> = pathlib.Path.home()
+    <span style="color: #dbdb95;">asof_sec</span> = datetime2float(datetime.datetime.now())
+
+    <span style="color: #dbdb95;">maildir</span> = <span style="color: #008b8b;">None</span>
+
+    <span style="color: #ffad29; font-weight: bold;">if</span> <span style="color: #e67128;">'MAILDIR'</span> <span style="color: #ffad29; font-weight: bold;">in</span> os.environ:
+        <span style="color: #dbdb95;">maildir</span> = os.environ[<span style="color: #e67128;">'MAILDIR'</span>]
+    <span style="color: #ffad29; font-weight: bold;">else</span>:
+        <span style="color: #dbdb95;">maildir</span> = os.path.join(homedir, <span style="color: #e67128;">".mail"</span>)
+
+    <span style="color: #74af68;">#</span><span style="color: #74af68;">print("cleanmbox: maildir={maildir}".format(maildir=maildir))</span>
+
+    <span style="color: #dbdb95;">confighomedir</span> = <span style="color: #008b8b;">None</span>
+
+    <span style="color: #ffad29; font-weight: bold;">if</span> <span style="color: #e67128;">'XDG_CONFIG_HOME'</span> <span style="color: #ffad29; font-weight: bold;">in</span> os.environ:
+        <span style="color: #dbdb95;">confighomedir</span> = os.environ[<span style="color: #e67128;">'XDG_CONFIG_HOME'</span>]
+    <span style="color: #ffad29; font-weight: bold;">else</span>:
+        <span style="color: #dbdb95;">confighomedir</span> = os.path.join(homedir, <span style="color: #e67128;">".config"</span>)
+
+    <span style="color: #74af68;">#</span><span style="color: #74af68;">print("cleanmbox: confighomedir={confighomedir}".format(confighomedir=confighomedir))</span>
+
+    <span style="color: #dbdb95;">configdir</span> = <span style="color: #008b8b;">None</span>
+
+    <span style="color: #ffad29; font-weight: bold;">if</span> <span style="color: #e67128;">'CLEANMBOX_CONFIG_DIR'</span> <span style="color: #ffad29; font-weight: bold;">in</span> os.environ:
+        <span style="color: #dbdb95;">configdir</span> = os.environ[<span style="color: #e67128;">'CLEANMBOX_CONFIG_DIR'</span>]
+    <span style="color: #ffad29; font-weight: bold;">else</span>:
+        <span style="color: #dbdb95;">configdir</span> = os.path.join(confighomedir, <span style="color: #e67128;">"cleanmbox"</span>)
+
+    <span style="color: #74af68;">#</span><span style="color: #74af68;">print("cleanmbox: configdir={configdir}".format(configdir=configdir))</span>
+
+    <span style="color: #dbdb95;">rulesfile</span> = <span style="color: #008b8b;">None</span>
+
+    <span style="color: #ffad29; font-weight: bold;">if</span> <span style="color: #e67128;">'CLEANMBOX_RULES_FILE'</span> <span style="color: #ffad29; font-weight: bold;">in</span> os.environ:
+        <span style="color: #dbdb95;">rulesfile</span> = os.environ[<span style="color: #e67128;">'CLEANMBOX_RULES_FILE'</span>]
+    <span style="color: #ffad29; font-weight: bold;">else</span>:
+        <span style="color: #dbdb95;">rulesfile</span> = <span style="color: #e67128;">"rules.csv"</span>
+
+    <span style="color: #74af68;">#</span><span style="color: #74af68;">print("cleanmbox: rulesfile={rulesfile}".format(rulesfile=rulesfile))</span>
+
+    <span style="color: #dbdb95;">rulespath</span> = <span style="color: #008b8b;">None</span>
+
+    <span style="color: #74af68;"># </span><span style="color: #74af68;">1. check CLEANMBOX_CONFIG_DIR</span>
+    <span style="color: #dbdb95;">rulespath1</span> = os.path.join(configdir, rulesfile)
+
+    <span style="color: #ffad29; font-weight: bold;">if</span> os.path.exists(rulespath1) <span style="color: #ffad29; font-weight: bold;">and</span> os.path.isfile(rulespath1):
+        <span style="color: #dbdb95;">rulespath</span> = rulespath1
+    <span style="color: #ffad29; font-weight: bold;">elif</span> os.path.exists(rulesfile) <span style="color: #ffad29; font-weight: bold;">and</span> os.path.isfile(rulesfile):
+        <span style="color: #dbdb95;">rulespath</span> = rulesfile
+    <span style="color: #ffad29; font-weight: bold;">else</span>:
+        <span style="color: #ffad29; font-weight: bold;">raise</span> <span style="color: #34cae2;">Exception</span>(<span style="color: #e67128;">"failed to read rules file (searched [{rulespath1}], [{rulespath}]). See XDG_CONFIG_HOME|CLEANMBOX_CONFIG_DIR|CLEANMBOX_RULES_FILE"</span>.<span style="color: #23d7d7;">format</span>(rulespath1=rulespath1, rulespath=rulespath))
+
+    <span style="color: #74af68;"># </span><span style="color: #74af68;">read rules</span>
+    <span style="color: #dbdb95;">allrules_dict</span> = load_rules(rulespath)
+
+    <span style="color: #74af68;"># </span><span style="color: #74af68;">simple sanity checks</span>
+    check_rules(allrules_dict)
+
+    <span style="color: #74af68;">#</span><span style="color: #74af68;">print_rules (allrules_dict)</span>
+
+    <span style="color: #ffad29; font-weight: bold;">for</span> channel, ruleset <span style="color: #ffad29; font-weight: bold;">in</span> allrules_dict.items():
+        <span style="color: #dbdb95;">mbox</span> = mailbox.Maildir(os.path.join(maildir, channel))
+
+        <span style="color: #74af68;">#</span><span style="color: #74af68;">print('ruleset={ruleset}'.format(ruleset=ruleset))</span>
+
+        channel_apply_rules(channel,
+                            mbox,
+                            ruleset,
+                            asof_sec,
+                            verbose_flag=<span style="color: #008b8b;">True</span>)
+
+main()
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Roland Conybeare</p>
+<p class="date">Created: 2024-02-11 Sun 15:46</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

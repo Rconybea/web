@@ -3,11 +3,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-07 Sat 18:54 -->
+<!-- 2024-02-11 Sun 15:46 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>emacs setup</title>
-<meta name="author" content="roly-desktop-23" />
+<meta name="author" content="Roland Conybeare" />
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
 <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
@@ -86,7 +86,13 @@
 <li><a href="#org2af347c">2.12.2. babel setup</a></li>
 </ul>
 </li>
-<li><a href="#org93ce5c7">2.13. emacsclient</a></li>
+<li><a href="#orgbb7f02b">2.13. email</a>
+<ul>
+<li><a href="#org8a0e497">2.13.1. incoming mail</a></li>
+<li><a href="#org762ad69">2.13.2. outgoing mail</a></li>
+</ul>
+</li>
+<li><a href="#org93ce5c7">2.14. emacsclient</a></li>
 </ul>
 </li>
 </ul>
@@ -914,17 +920,108 @@ For literate programming &#x2013; execute code blocks, written in various langua
 
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((dot . t)  <span style="color: #74af68;">; </span><span style="color: #74af68;">graphviz [[https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-dot.html]] see also graphviz-dot-mode</span>
+ '(
+   (ditaa .t) <span style="color: #74af68;">; </span><span style="color: #74af68;">"diagrams throug ascii art"</span>
+   (dot . t)  <span style="color: #74af68;">; </span><span style="color: #74af68;">graphviz [[https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-dot.html]] see also graphviz-dot-mode</span>
    ))
+</pre>
+</div>
+
+<p>
+For <code>ditaa</code>, need some paths.  Nix makes these obscure, which makes fixing the hacky setup here inconvenient.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">extracted from</span>
+<span style="color: #74af68;">;;   </span><span style="color: #74af68;">cat $(which ditaa)</span>
+<span style="color: #74af68;">;; </span>
+<span style="color: #74af68;">;;</span>
+(<span style="color: #ffad29; font-weight: bold;">setq</span> org-babel-ditaa-java-cmd <span style="color: #e67128;">"/nix/store/chcmn5mpj3l5jzxfs2krqximz3276i8v-openjdk-19.0.2+7/bin/java"</span>)
+(<span style="color: #ffad29; font-weight: bold;">setq</span> org-ditaa-jar-path <span style="color: #e67128;">"/nix/store/gmfa1zjmn0gjgl04kd5fvs1fj49x6dj4-ditaa-0.11.0/lib/ditaa.jar"</span>)
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">(setq org-ditaa-eps-jar-path "path/to/related/jar") ;; not using, but if so would need:</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org93ce5c7" class="outline-3">
-<h3 id="org93ce5c7"><span class="section-number-3">2.13.</span> emacsclient</h3>
+<div id="outline-container-orgbb7f02b" class="outline-3">
+<h3 id="orgbb7f02b"><span class="section-number-3">2.13.</span> email</h3>
 <div class="outline-text-3" id="text-2-13">
+</div>
+<div id="outline-container-org8a0e497" class="outline-4">
+<h4 id="org8a0e497"><span class="section-number-4">2.13.1.</span> incoming mail</h4>
+<div class="outline-text-4" id="text-2-13-1">
+<p>
+Using <code>notmuch</code> for incoming mail (<code>notmuch</code> configured using <code>notmuch setup</code>)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs_lisp">;; ----------------------------------------------------------------
+;; local email storage
+;;
+;; 1. sync email (e.g. fetch remote emails) with
+;;   $ mbsync -a
+;;
+;; 2. apply rules locally (move emails to folders etc.)  with
+;;   $ cleanmbox
+;;
+;; 3. sync email again (e.g. propagate changes back to remote mailboxes)
+;;   $ mbsync -a
+;;
+;; 4. to read email from local copy,  use
+;;   M-x notmuch
+;;
+;;   show       ;; to see everything
+;;
+;; use [M-x customize-group RET notmuch RET] to customize
+;; use [M-x notmuch] to invoke
+;; in a [*notmuch-hello*] buffer,  use
+;;   folder:gmail/.health
+;; to see messages in
+;;   ${MAILDIR}/gmail/.health
+
+(require 'notmuch)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org762ad69" class="outline-4">
+<h4 id="org762ad69"><span class="section-number-4">2.13.2.</span> outgoing mail</h4>
+<div class="outline-text-4" id="text-2-13-2">
+<div class="org-src-container">
+<pre class="src src-emacs_lisp">(require 'smtpmail)
+
+(setq user-mail-address "alice@gmail.com"
+      user-full-name "Alice Exampleton")
+
+(setq message-send-mail-function 'smtpmail-send-it)
+
+(setq smtpmail-stream-type 'starttls
+      smtpmail-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-service 587
+      )
+
+;; prevent send buffers accumulating
+(setq message-kill-buffer-on-exit t)
+</pre>
+</div>
+
+<p>
+Note: <code>smtpmail</code> also requires credentials in <code>~/.authinfo</code>:
+</p>
+
+<pre class="example" id="orgdd0e92b">
+machine smtp.gmail.com login rconybeare@gmail.com port 587 password somegoogleapppassword
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org93ce5c7" class="outline-3">
+<h3 id="org93ce5c7"><span class="section-number-3">2.14.</span> emacsclient</h3>
+<div class="outline-text-3" id="text-2-14">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">+ set EDITOR=emacsclient in shell</span>
 
@@ -936,8 +1033,8 @@ For literate programming &#x2013; execute code blocks, written in various langua
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: roly-desktop-23</p>
-<p class="date">Created: 2023-10-07 Sat 18:54</p>
+<p class="author">Author: Roland Conybeare</p>
+<p class="date">Created: 2024-02-11 Sun 15:46</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
