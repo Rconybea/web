@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-02-25 Sun 19:07 -->
+<!-- 2024-02-25 Sun 19:21 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Today I Learned - lessons from building a C++ development stack</title>
@@ -38,10 +38,10 @@
 <ul>
 <li><a href="#org79d5d4d">1.1. x11 linux apps wedged after WSL update 2.0.9.0</a>
 <ul>
-<li><a href="#orga761f55">1.1.1. Setup</a></li>
-<li><a href="#org3c6ee00">1.1.2. Problem</a></li>
-<li><a href="#org68c083e">1.1.3. Details</a></li>
-<li><a href="#org2769324">1.1.4. Solution</a></li>
+<li><a href="#orgb016aea">1.1.1. Setup</a></li>
+<li><a href="#org51b357d">1.1.2. Problem</a></li>
+<li><a href="#org15e86e7">1.1.3. Details</a></li>
+<li><a href="#org984ec72">1.1.4. Solution</a></li>
 </ul>
 </li>
 </ul>
@@ -50,25 +50,25 @@
 <ul>
 <li><a href="#org3905932">2.1. inconsistent eigen package (25oct2023)</a>
 <ul>
-<li><a href="#org514d2eb">2.1.1. Setup</a></li>
-<li><a href="#orgfef84b5">2.1.2. Problem</a></li>
-<li><a href="#org15e86e7">2.1.3. Details</a></li>
-<li><a href="#org351ab15">2.1.4. Workaround</a></li>
+<li><a href="#org60147d7">2.1.1. Setup</a></li>
+<li><a href="#org04de98b">2.1.2. Problem</a></li>
+<li><a href="#orgd3ee712">2.1.3. Details</a></li>
+<li><a href="#org6b39150">2.1.4. Workaround</a></li>
 </ul>
 </li>
 <li><a href="#orgcd6dd5f">2.2. cmake handling of header-only library dependencies (7oct2023)</a>
 <ul>
 <li><a href="#org22a0d6c">2.2.1. Update</a></li>
-<li><a href="#orgef0b05c">2.2.2. Setup</a></li>
-<li><a href="#org038ab2a">2.2.3. Problem</a></li>
-<li><a href="#orga84be5f">2.2.4. Workaround</a></li>
+<li><a href="#org95b1082">2.2.2. Setup</a></li>
+<li><a href="#org11012ff">2.2.3. Problem</a></li>
+<li><a href="#orge7e8f80">2.2.4. Workaround</a></li>
 </ul>
 </li>
 <li><a href="#org2fa01e9">2.3. pybind11 link difficulties with transitive library dependencies (7oct2023)</a>
 <ul>
-<li><a href="#org5f8134c">2.3.1. Setup</a></li>
-<li><a href="#org95a356f">2.3.2. Problem</a></li>
-<li><a href="#org6b39150">2.3.3. Workaround</a></li>
+<li><a href="#org043fe7c">2.3.1. Setup</a></li>
+<li><a href="#orgfb2c36a">2.3.2. Problem</a></li>
+<li><a href="#org0c40cfc">2.3.3. Workaround</a></li>
 </ul>
 </li>
 </ul>
@@ -77,16 +77,16 @@
 <ul>
 <li><a href="#org45c6c79">3.1. mysterious lsp complaints about iostream headers (22feb2024)</a>
 <ul>
-<li><a href="#org1adc13c">3.1.1. Setup</a></li>
-<li><a href="#org51b357d">3.1.2. Problem</a></li>
-<li><a href="#org42bd1f8">3.1.3. Solution</a></li>
+<li><a href="#orgb107fd7">3.1.1. Setup</a></li>
+<li><a href="#org116c3a3">3.1.2. Problem</a></li>
+<li><a href="#org1f9392e">3.1.3. Solution</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#org37bc209">4. iostream</a>
 <ul>
-<li><a href="#org62dd94e">4.1. general api rant</a>
+<li><a href="#org896f8a2">4.1. general api rant (25feb2024)</a>
 <ul>
 <li><a href="#org24734f8">4.1.1. Complaints</a></li>
 </ul>
@@ -97,9 +97,9 @@
 <ul>
 <li><a href="#org55a30dd">5.1. zstreambuf errors after move assignment</a>
 <ul>
-<li><a href="#orgb016aea">5.1.1. Setup</a></li>
+<li><a href="#org05174d3">5.1.1. Setup</a></li>
 <li><a href="#org011c2af">5.1.2. Problem + Diagnosis</a></li>
-<li><a href="#org984ec72">5.1.3. Solution</a></li>
+<li><a href="#orgc6d9b3d">5.1.3. Solution</a></li>
 </ul>
 </li>
 </ul>
@@ -116,8 +116,8 @@
 <h3 id="org79d5d4d"><span class="section-number-3">1.1.</span> x11 linux apps wedged after WSL update 2.0.9.0</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-orga761f55" class="outline-4">
-<h4 id="orga761f55"><span class="section-number-4">1.1.1.</span> Setup</h4>
+<div id="outline-container-orgb016aea" class="outline-4">
+<h4 id="orgb016aea"><span class="section-number-4">1.1.1.</span> Setup</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <ul class="org-ul">
 <li>PC rebooted overnight;   found it had installed WSL 2.0.9.0</li>
@@ -125,8 +125,8 @@
 </div>
 </div>
 
-<div id="outline-container-org3c6ee00" class="outline-4">
-<h4 id="org3c6ee00"><span class="section-number-4">1.1.2.</span> Problem</h4>
+<div id="outline-container-org51b357d" class="outline-4">
+<h4 id="org51b357d"><span class="section-number-4">1.1.2.</span> Problem</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <ul class="org-ul">
 <li>linux x11 apps unusable;  all seem to draw trash on screen in response to mouse events.
@@ -138,8 +138,8 @@
 </div>
 </div>
 
-<div id="outline-container-org68c083e" class="outline-4">
-<h4 id="org68c083e"><span class="section-number-4">1.1.3.</span> Details</h4>
+<div id="outline-container-org15e86e7" class="outline-4">
+<h4 id="org15e86e7"><span class="section-number-4">1.1.3.</span> Details</h4>
 <div class="outline-text-4" id="text-1-1-3">
 <ul class="org-ul">
 <li>can see update history:
@@ -151,15 +151,15 @@
 </div>
 </div>
 
-<div id="outline-container-org2769324" class="outline-4">
-<h4 id="org2769324"><span class="section-number-4">1.1.4.</span> Solution</h4>
+<div id="outline-container-org984ec72" class="outline-4">
+<h4 id="org984ec72"><span class="section-number-4">1.1.4.</span> Solution</h4>
 <div class="outline-text-4" id="text-1-1-4">
 <ul class="org-ul">
 <li><p>
 force WSL vm to shutdown + restart
 </p>
 
-<pre class="example" id="org8e9c269">
+<pre class="example" id="orgd345240">
 PS C:\Users\Rcony&gt; wsl --shutdown
 PS C:\Users\Rcony&gt; wsl --user roland
 </pre>
@@ -181,8 +181,8 @@ Note: presumably wsl VM state is preserved across reboot,   since rebooting PC h
 <h3 id="org3905932"><span class="section-number-3">2.1.</span> inconsistent eigen package (25oct2023)</h3>
 <div class="outline-text-3" id="text-2-1">
 </div>
-<div id="outline-container-org514d2eb" class="outline-4">
-<h4 id="org514d2eb"><span class="section-number-4">2.1.1.</span> Setup</h4>
+<div id="outline-container-org60147d7" class="outline-4">
+<h4 id="org60147d7"><span class="section-number-4">2.1.1.</span> Setup</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <ul class="org-ul">
 <li>library <a href="https://github.com/Rconybea/xo-kalmanfilter">xo-kalmanfilter</a> depends on eigen</li>
@@ -195,8 +195,8 @@ Labeling this a 'vanilla build', since it follows standard (cmake-centric) pract
 </div>
 </div>
 
-<div id="outline-container-orgfef84b5" class="outline-4">
-<h4 id="orgfef84b5"><span class="section-number-4">2.1.2.</span> Problem</h4>
+<div id="outline-container-org04de98b" class="outline-4">
+<h4 id="org04de98b"><span class="section-number-4">2.1.2.</span> Problem</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <ul class="org-ul">
 <li><p>
@@ -215,8 +215,8 @@ instead of <code>-Ipath/to/eigen/eigen3</code>.</li>
 </div>
 </div>
 
-<div id="outline-container-org15e86e7" class="outline-4">
-<h4 id="org15e86e7"><span class="section-number-4">2.1.3.</span> Details</h4>
+<div id="outline-container-orgd3ee712" class="outline-4">
+<h4 id="orgd3ee712"><span class="section-number-4">2.1.3.</span> Details</h4>
 <div class="outline-text-4" id="text-2-1-3">
 <ul class="org-ul">
 <li><p>
@@ -330,8 +330,8 @@ which.. doesn't look wrong :)
 </div>
 </div>
 
-<div id="outline-container-org351ab15" class="outline-4">
-<h4 id="org351ab15"><span class="section-number-4">2.1.4.</span> Workaround</h4>
+<div id="outline-container-org6b39150" class="outline-4">
+<h4 id="org6b39150"><span class="section-number-4">2.1.4.</span> Workaround</h4>
 <div class="outline-text-4" id="text-2-1-4">
 <p>
 Sufficient to restate the eigen dependency in <code>xo-pykalmanfilter</code>:
@@ -360,7 +360,7 @@ My original investigation mistaken.
 It turns out I didn't understand that cmake error from <code>target_link_libraries()</code>:
 </p>
 
-<pre class="example" id="orgd994b81">
+<pre class="example" id="org6943893">
 INTERFACE library can only be used with the INTERFACE keyword of target_link_libraries
 </pre>
 
@@ -370,8 +370,8 @@ applies to the <i>depended-on</i> library (3rd argument),  not the <i>depending<
 </div>
 </div>
 
-<div id="outline-container-orgef0b05c" class="outline-4">
-<h4 id="orgef0b05c"><span class="section-number-4">2.2.2.</span> Setup</h4>
+<div id="outline-container-org95b1082" class="outline-4">
+<h4 id="org95b1082"><span class="section-number-4">2.2.2.</span> Setup</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <ul class="org-ul">
 <li>NOTE: also asked on stack overflow <a href="https://stackoverflow.com/questions/77251201/cmake-regular-shared-library-depending-on-a-header-only-interface-library">here</a></li>
@@ -403,7 +403,7 @@ Must specify include directories for a header-only library like this:
 <p>
 cmake enforces this explicitly;   gives error
 </p>
-<pre class="example" id="orgcec3641">
+<pre class="example" id="orgeb653bf">
 target_include_directories may only set INTERFACE properties on INTERFACE targets
 </pre></li>
 
@@ -421,7 +421,7 @@ Must specify dependency on a header-only library like this:
 <p>
 cmake enforces this explicitly;   gives error
 </p>
-<pre class="example" id="org3ba5de7">
+<pre class="example" id="orgf950974">
 INTERFACE library can only be used with the INTERFACE keyword of target_link_libraries
 </pre></li>
 
@@ -430,7 +430,7 @@ Expected behavior:
 this is sufficient for compilation of <code>bar</code> to tell compiler about include paths for <code>foo</code>:
 </p>
 
-<pre class="example" id="org26f8b8f">
+<pre class="example" id="org794dd2b">
 gcc -Ipath/to/foo bar.cpp
 </pre>
 
@@ -441,8 +441,8 @@ This expectation is satisfied for regular non-INTERFACE libraries.
 </div>
 </div>
 
-<div id="outline-container-org038ab2a" class="outline-4">
-<h4 id="org038ab2a"><span class="section-number-4">2.2.3.</span> Problem</h4>
+<div id="outline-container-org11012ff" class="outline-4">
+<h4 id="org11012ff"><span class="section-number-4">2.2.3.</span> Problem</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <ul class="org-ul">
 <li>compilation fails to supply include paths for depended-on <code>foo</code> when compiling depending-on <code>bar</code>,
@@ -460,8 +460,8 @@ while ignoring the <code>INTERFACE_INCLUDE_DIRECTORIES</code> property.</li>
 </div>
 </div>
 
-<div id="outline-container-orga84be5f" class="outline-4">
-<h4 id="orga84be5f"><span class="section-number-4">2.2.4.</span> Workaround</h4>
+<div id="outline-container-orge7e8f80" class="outline-4">
+<h4 id="orge7e8f80"><span class="section-number-4">2.2.4.</span> Workaround</h4>
 <div class="outline-text-4" id="text-2-2-4">
 <ul class="org-ul">
 <li><p>
@@ -489,8 +489,8 @@ to <code>INCLUDE_DIRECTORIES</code>:
 <h3 id="org2fa01e9"><span class="section-number-3">2.3.</span> pybind11 link difficulties with transitive library dependencies (7oct2023)</h3>
 <div class="outline-text-3" id="text-2-3">
 </div>
-<div id="outline-container-org5f8134c" class="outline-4">
-<h4 id="org5f8134c"><span class="section-number-4">2.3.1.</span> Setup</h4>
+<div id="outline-container-org043fe7c" class="outline-4">
+<h4 id="org043fe7c"><span class="section-number-4">2.3.1.</span> Setup</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <ul class="org-ul">
 <li>cmake version 3.25.3</li>
@@ -522,14 +522,14 @@ Expect this cmake script to work:
 </div>
 </div>
 
-<div id="outline-container-org95a356f" class="outline-4">
-<h4 id="org95a356f"><span class="section-number-4">2.3.2.</span> Problem</h4>
+<div id="outline-container-orgfb2c36a" class="outline-4">
+<h4 id="orgfb2c36a"><span class="section-number-4">2.3.2.</span> Problem</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <ul class="org-ul">
 <li><p>
 Instead, link fails.   Link line something like:
 </p>
-<pre class="example" id="orgf28be32">
+<pre class="example" id="orgb15a5be">
 g++ -fPIC ... -o pyreflect.cpython-311-x86_64-linux-gnu.so /path/to/libreflect.so -lrefcnt -lindentlog
 </pre>
 
@@ -559,8 +559,8 @@ It's not obvious how <code>xo_pyreflect</code> can know that <code>indentlog</co
 </div>
 </div>
 
-<div id="outline-container-org6b39150" class="outline-4">
-<h4 id="org6b39150"><span class="section-number-4">2.3.3.</span> Workaround</h4>
+<div id="outline-container-org0c40cfc" class="outline-4">
+<h4 id="org0c40cfc"><span class="section-number-4">2.3.3.</span> Workaround</h4>
 <div class="outline-text-4" id="text-2-3-3">
 <ul class="org-ul">
 <li><p>
@@ -568,7 +568,7 @@ Recognize that <code>pyreflect</code> link shouldn't need <code>refcnt</code> on
 since <code>libreflect.so</code> has a <code>DT_NEEDED</code> entry for it.
 </p>
 
-<pre class="example" id="org795cb47">
+<pre class="example" id="orgb195be9">
 $ readelf -d /path/to/libreflect.so
 
 Dynamic section at offset 0x17860 contains 34 entries:
@@ -615,8 +615,8 @@ Then in <code>.cmake</code> for <code>pyreflect</code>,  something equivalent to
 <h3 id="org45c6c79"><span class="section-number-3">3.1.</span> mysterious lsp complaints about iostream headers (22feb2024)</h3>
 <div class="outline-text-3" id="text-3-1">
 </div>
-<div id="outline-container-org1adc13c" class="outline-4">
-<h4 id="org1adc13c"><span class="section-number-4">3.1.1.</span> Setup</h4>
+<div id="outline-container-orgb107fd7" class="outline-4">
+<h4 id="orgb107fd7"><span class="section-number-4">3.1.1.</span> Setup</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <ul class="org-ul">
 <li>working on bespoke streambuf implementation (cmake-examples/zstream/include/zstream/zstreambuf.hpp)</li>
@@ -624,8 +624,8 @@ Then in <code>.cmake</code> for <code>pyreflect</code>,  something equivalent to
 </div>
 </div>
 
-<div id="outline-container-org51b357d" class="outline-4">
-<h4 id="org51b357d"><span class="section-number-4">3.1.2.</span> Problem</h4>
+<div id="outline-container-org116c3a3" class="outline-4">
+<h4 id="org116c3a3"><span class="section-number-4">3.1.2.</span> Problem</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <ul class="org-ul">
 <li>getting mysterious errors from flymake + emacs,  e.g. message "&lt;fstream&gt; not found"</li>
@@ -633,8 +633,8 @@ Then in <code>.cmake</code> for <code>pyreflect</code>,  something equivalent to
 </div>
 </div>
 
-<div id="outline-container-org42bd1f8" class="outline-4">
-<h4 id="org42bd1f8"><span class="section-number-4">3.1.3.</span> Solution</h4>
+<div id="outline-container-org1f9392e" class="outline-4">
+<h4 id="org1f9392e"><span class="section-number-4">3.1.3.</span> Solution</h4>
 <div class="outline-text-4" id="text-3-1-3">
 <ul class="org-ul">
 <li>Had discarded <code>cmake-examples/build</code> directory,  using <code>cmake-examples/.build</code> instead.
@@ -655,20 +655,22 @@ This was to prevent build tree showing up when running <code>tree</code> in the 
 <h2 id="org37bc209"><span class="section-number-2">4.</span> iostream</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org62dd94e" class="outline-3">
-<h3 id="org62dd94e"><span class="section-number-3">4.1.</span> general api rant</h3>
+<div id="outline-container-org896f8a2" class="outline-3">
+<h3 id="org896f8a2"><span class="section-number-3">4.1.</span> general api rant (25feb2024)</h3>
 <div class="outline-text-3" id="text-4-1">
 </div>
 <div id="outline-container-org24734f8" class="outline-4">
 <h4 id="org24734f8"><span class="section-number-4">4.1.1.</span> Complaints</h4>
 <div class="outline-text-4" id="text-4-1-1">
+</div>
 <ol class="org-ol">
-<li><p>
-<code>istream.read()</code> doesn't report the number of bytes/chars read.
+<li><a id="orgd97da04"></a><code>istream.read()</code> doesn't report the number of bytes/chars read.<br />
+<div class="outline-text-5" id="text-4-1-1-1">
+<p>
 Instead of:
 </p>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #34cae2;">istream</span> &amp; <span style="color: #00ede1; font-weight: bold;">read</span> (<span style="color: #34cae2;">char_type</span> * <span style="color: #dbdb95;">s</span>, <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">count</span>);
+<pre class="src src-c++"><span style="color: #34cae2;">istream</span> &amp; <span style="color: #008b8b;">istream</span>::<span style="color: #00ede1; font-weight: bold;">read</span> (<span style="color: #34cae2;">char_type</span> * <span style="color: #dbdb95;">s</span>, <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">count</span>);
 </pre>
 </div>
 
@@ -676,12 +678,28 @@ Instead of:
 I'd prefer signature
 </p>
 <div class="org-src-container">
-<pre class="src src-c++"><span style="color: #34cae2;">istream</span> &amp; <span style="color: #00ede1; font-weight: bold;">read</span> (<span style="color: #34cae2;">char_type</span> * <span style="color: #dbdb95;">s</span>, <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">count</span>, <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> * <span style="color: #dbdb95;">p_gcount</span>);
+<pre class="src src-c++"><span style="color: #34cae2;">istream</span> &amp; <span style="color: #008b8b;">istream</span>::<span style="color: #00ede1; font-weight: bold;">read</span> (<span style="color: #34cae2;">char_type</span> * <span style="color: #dbdb95;">s</span>, <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">count</span>, <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> * <span style="color: #dbdb95;">p_gcount</span>);
 </pre>
-</div></li>
+</div>
 
-<li><p>
-<code>istream.read(s, n)</code> expects always to read n chars.
+<p>
+Developers are expected to use.
+</p>
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #008b8b;">istream</span>::<span style="color: #00ede1; font-weight: bold;">gcount</span> () <span style="color: #ffad29; font-weight: bold;">const</span>;
+</pre>
+</div>
+
+<p>
+I think this is inferior,  since relies on state held by <code>istream</code>,
+that will be discarded on next read operation.
+</p>
+</div>
+</li>
+
+<li><a id="orga618d86"></a><code>istream.read(s, n)</code> expects always to read n chars.<br />
+<div class="outline-text-5" id="text-4-1-1-2">
+<p>
 It sets <code>failbit</code> if less than <code>n</code> chars read.
 </p>
 
@@ -888,10 +906,13 @@ Let's imagine we've done this,  calling the result <code>altsentry</code>; then 
     <span style="color: #ffad29; font-weight: bold;">return</span> n_read;
 }
 </pre>
-</div></li>
+</div>
+</div>
+</li>
 
-<li><p>
-<code>iostream.tellg()</code> and <code>iostream.putg()</code> report current position w.r.t.
+<li><a id="org5fd03f1"></a><code>iostream.tellg()</code> and <code>iostream.putg()</code> report current position w.r.t.<br />
+<div class="outline-text-5" id="text-4-1-1-3">
+<p>
 beginning of stream for input (get) and output (put) respectively.
 </p>
 
@@ -941,13 +962,29 @@ n_read += input.gcount();
 input &gt;&gt; part2;
 n_read += input.gcount();
 </pre>
-</div></li>
-
-<li><code>istream.eofbit</code> probably belongs in <code>streambuf</code>.
-<code>streambuf</code> has to recognize end-of-file anyway,  since it's responsible for physical I/O.
-It might as well record and report it.</li>
-</ol>
 </div>
+</div>
+</li>
+
+<li><a id="orga97df2a"></a><code>istream.eofbit</code> probably belongs in <code>streambuf</code>.<br />
+<div class="outline-text-5" id="text-4-1-1-4">
+<p>
+<code>streambuf</code> has to recognize end-of-file anyway,  since it's responsible for physical I/O.
+It might as well record and report it.
+</p>
+</div>
+</li>
+
+<li><a id="org9807f54"></a>Simpler for <code>streambuf</code> to support <code>istream::tellg()</code> and <code>istream::tellp()</code> directly instead of relying on <code>streambuf::seekoff()</code>.<br />
+<div class="outline-text-5" id="text-4-1-1-5">
+<p>
+Argument here is that even for a non-seekable stream buffer,  it still makes sense to support <code>tellg()</code> and <code>tellp()</code>.
+This requires streambuf author to implement at least a restricted version of <code>streambuf::seekoff()</code>,
+which muddies the waters.
+</p>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -960,8 +997,8 @@ It might as well record and report it.</li>
 <h3 id="org55a30dd"><span class="section-number-3">5.1.</span> zstreambuf errors after move assignment</h3>
 <div class="outline-text-3" id="text-5-1">
 </div>
-<div id="outline-container-orgb016aea" class="outline-4">
-<h4 id="orgb016aea"><span class="section-number-4">5.1.1.</span> Setup</h4>
+<div id="outline-container-org05174d3" class="outline-4">
+<h4 id="org05174d3"><span class="section-number-4">5.1.1.</span> Setup</h4>
 <div class="outline-text-4" id="text-5-1-1">
 <ul class="org-ul">
 <li>Making <code>zstreambuf.open()</code> work with a <code>zstreambuf</code> that's already been used for i/o.</li>
@@ -986,8 +1023,8 @@ address-dependent computation involving one or more <code>z_stream</code> member
 </div>
 </div>
 
-<div id="outline-container-org984ec72" class="outline-4">
-<h4 id="org984ec72"><span class="section-number-4">5.1.3.</span> Solution</h4>
+<div id="outline-container-orgc6d9b3d" class="outline-4">
+<h4 id="orgc6d9b3d"><span class="section-number-4">5.1.3.</span> Solution</h4>
 <div class="outline-text-4" id="text-5-1-3">
 <ul class="org-ul">
 <li><p>
@@ -1039,7 +1076,7 @@ Then implement <code>::swap()</code> etc by swapping pointers.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-02-25 Sun 19:07</p>
+<p class="date">Created: 2024-02-25 Sun 19:21</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
