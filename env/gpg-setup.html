@@ -3,11 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-02-09 Fri 20:29 -->
+<!-- 2024-02-25 Sun 19:07 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>gpg setup</title>
 <meta name="author" content="Roland Conybeare" />
+<meta name="keywords" content="gpg2" />
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
 <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
@@ -23,7 +24,7 @@
 </head>
 <body>
 <div id="org-div-home-and-up">
- <a accesskey="h" href=""> UP </a>
+ <a accesskey="h" href="/web/index.html"> UP </a>
  |
  <a accesskey="H" href="/web/index.html"> HOME </a>
 </div><div id="content" class="content">
@@ -64,7 +65,7 @@ Originally introduced this when configuring <code>mbsync</code> for email setup.
 <div id="outline-container-org3011019" class="outline-2">
 <h2 id="org3011019"><span class="section-number-2">3.</span> Install GPG via Nix</h2>
 <div class="outline-text-2" id="text-3">
-<pre class="example" id="orgf36ca16">
+<pre class="example" id="org0b70759">
 $ nix-env -i gnupg
 </pre>
 </div>
@@ -77,7 +78,7 @@ $ nix-env -i gnupg
 Here (afaict) email address is the key-name for a signing authority
 </p>
 
-<pre class="example" id="orge98de1a">
+<pre class="example" id="org81784af">
 $ gpg --gen-key
 Real username: Alice Exampleton
 Email address: replacewithsomething@somewhere.com
@@ -91,7 +92,7 @@ This will populate files under <code>~/.gnupg</code>
 View public keys:
 </p>
 
-<pre class="example" id="org4fe47bc">
+<pre class="example" id="org96fe990">
 $ gpg -k
 /home/roland/.gnupg/pubring.kbx
 -------------------------------
@@ -110,7 +111,7 @@ sub   rsa3072 2024-01-11 [E] [expires: 2026-01-10]
 Using this to encrypt an email server password:
 </p>
 
-<pre class="example" id="orga33ad59">
+<pre class="example" id="org5d2b180">
 $ gpg --recipient replacewithsomething@somewhere.com -a -o .hushmail.gpg --encrypt
 replacewithpassword
 </pre>
@@ -119,7 +120,7 @@ replacewithpassword
 Resulting in encrypted file like:
 </p>
 
-<pre class="example" id="org4692200">
+<pre class="example" id="org9828110">
 $ cat .hushmail.gpg
 -----BEGIN PGP MESSAGE-----
 
@@ -139,7 +140,7 @@ OlLUNkVxGMF3y2hM8sHNOtFKOW9I3qoViqCEufGJD8m/x9Ev9whgx59c20xSkGg=
 Recover secret like this:
 </p>
 
-<pre class="example" id="orge7b7b94">
+<pre class="example" id="org85d51f7">
 $ gpg -q --for-your-eyes-only --no-tty -d .hushmail.gpg
 replacewithpassword
 </pre>
@@ -148,7 +149,7 @@ replacewithpassword
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-02-09 Fri 20:29</p>
+<p class="date">Created: 2024-02-25 Sun 19:07</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
