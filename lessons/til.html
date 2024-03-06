@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-02-25 Sun 19:47 -->
+<!-- 2024-03-06 Wed 18:24 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Today I Learned - lessons from building a C++ development stack</title>
@@ -38,10 +38,10 @@
 <ul>
 <li><a href="#org79d5d4d">1.1. x11 linux apps wedged after WSL update 2.0.9.0</a>
 <ul>
-<li><a href="#org9553ed0">1.1.1. Setup</a></li>
-<li><a href="#org2f57845">1.1.2. Problem</a></li>
-<li><a href="#orgcfe1296">1.1.3. Details</a></li>
-<li><a href="#orgda5ba87">1.1.4. Solution</a></li>
+<li><a href="#org1618096">1.1.1. Setup</a></li>
+<li><a href="#org26e6bcb">1.1.2. Problem</a></li>
+<li><a href="#orgdee41aa">1.1.3. Details</a></li>
+<li><a href="#org98394cf">1.1.4. Solution</a></li>
 </ul>
 </li>
 </ul>
@@ -50,25 +50,25 @@
 <ul>
 <li><a href="#org3905932">2.1. inconsistent eigen package (25oct2023)</a>
 <ul>
-<li><a href="#orga064f28">2.1.1. Setup</a></li>
-<li><a href="#orge4cbdcd">2.1.2. Problem</a></li>
-<li><a href="#orgdee41aa">2.1.3. Details</a></li>
-<li><a href="#org93971a5">2.1.4. Workaround</a></li>
+<li><a href="#org1f19a62">2.1.1. Setup</a></li>
+<li><a href="#org0378f92">2.1.2. Problem</a></li>
+<li><a href="#orgec32ae3">2.1.3. Details</a></li>
+<li><a href="#org029c0be">2.1.4. Workaround</a></li>
 </ul>
 </li>
 <li><a href="#orgcd6dd5f">2.2. cmake handling of header-only library dependencies (7oct2023)</a>
 <ul>
 <li><a href="#org22a0d6c">2.2.1. Update</a></li>
-<li><a href="#orgaac5bad">2.2.2. Setup</a></li>
-<li><a href="#org8260719">2.2.3. Problem</a></li>
-<li><a href="#org33cd2a2">2.2.4. Workaround</a></li>
+<li><a href="#org1c0acdd">2.2.2. Setup</a></li>
+<li><a href="#orgbff3ac3">2.2.3. Problem</a></li>
+<li><a href="#orgfa56820">2.2.4. Workaround</a></li>
 </ul>
 </li>
 <li><a href="#org2fa01e9">2.3. pybind11 link difficulties with transitive library dependencies (7oct2023)</a>
 <ul>
-<li><a href="#orgf1ff2a3">2.3.1. Setup</a></li>
-<li><a href="#orgc4935ff">2.3.2. Problem</a></li>
-<li><a href="#org029c0be">2.3.3. Workaround</a></li>
+<li><a href="#orgc79f3c3">2.3.1. Setup</a></li>
+<li><a href="#orgedc438c">2.3.2. Problem</a></li>
+<li><a href="#org4d08eb0">2.3.3. Workaround</a></li>
 </ul>
 </li>
 </ul>
@@ -77,9 +77,9 @@
 <ul>
 <li><a href="#org45c6c79">3.1. mysterious lsp complaints about iostream headers (22feb2024)</a>
 <ul>
-<li><a href="#orga531d76">3.1.1. Setup</a></li>
-<li><a href="#org26e6bcb">3.1.2. Problem</a></li>
-<li><a href="#orgca92204">3.1.3. Solution</a></li>
+<li><a href="#org8551d76">3.1.1. Setup</a></li>
+<li><a href="#org0a02a79">3.1.2. Problem</a></li>
+<li><a href="#org3f7bc18">3.1.3. Solution</a></li>
 </ul>
 </li>
 </ul>
@@ -90,9 +90,10 @@
 <ul>
 <li><a href="#orgd97da04">4.1.1. <code>istream.read()</code> doesn't report the number of bytes/chars read.</a></li>
 <li><a href="#orga618d86">4.1.2. <code>istream.read(s, n)</code> expects always to read n chars.</a></li>
-<li><a href="#org1089ec7">4.1.3. Iostream position reporting isn't monotonic.</a></li>
-<li><a href="#orgae7b0b6">4.1.4. Streambuf not responsible for eofbit.</a></li>
-<li><a href="#org7d4a702">4.1.5. Stream position reporting from streambuf</a></li>
+<li><a href="#org91f7e75">4.1.3. Iostream get isn't monotonic</a></li>
+<li><a href="#org1089ec7">4.1.4. Iostream position reporting isn't monotonic.</a></li>
+<li><a href="#orgae7b0b6">4.1.5. Streambuf not responsible for eofbit.</a></li>
+<li><a href="#org7d4a702">4.1.6. Stream position reporting from streambuf</a></li>
 </ul>
 </li>
 </ul>
@@ -101,9 +102,9 @@
 <ul>
 <li><a href="#org55a30dd">5.1. zstreambuf errors after move assignment</a>
 <ul>
-<li><a href="#org1618096">5.1.1. Setup</a></li>
+<li><a href="#orgfae0236">5.1.1. Setup</a></li>
 <li><a href="#org011c2af">5.1.2. Problem + Diagnosis</a></li>
-<li><a href="#org98394cf">5.1.3. Solution</a></li>
+<li><a href="#org0bdde4c">5.1.3. Solution</a></li>
 </ul>
 </li>
 </ul>
@@ -120,8 +121,8 @@
 <h3 id="org79d5d4d"><span class="section-number-3">1.1.</span> x11 linux apps wedged after WSL update 2.0.9.0</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-org9553ed0" class="outline-4">
-<h4 id="org9553ed0"><span class="section-number-4">1.1.1.</span> Setup</h4>
+<div id="outline-container-org1618096" class="outline-4">
+<h4 id="org1618096"><span class="section-number-4">1.1.1.</span> Setup</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <ul class="org-ul">
 <li>PC rebooted overnight;   found it had installed WSL 2.0.9.0</li>
@@ -129,8 +130,8 @@
 </div>
 </div>
 
-<div id="outline-container-org2f57845" class="outline-4">
-<h4 id="org2f57845"><span class="section-number-4">1.1.2.</span> Problem</h4>
+<div id="outline-container-org26e6bcb" class="outline-4">
+<h4 id="org26e6bcb"><span class="section-number-4">1.1.2.</span> Problem</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <ul class="org-ul">
 <li>linux x11 apps unusable;  all seem to draw trash on screen in response to mouse events.
@@ -142,8 +143,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgcfe1296" class="outline-4">
-<h4 id="orgcfe1296"><span class="section-number-4">1.1.3.</span> Details</h4>
+<div id="outline-container-orgdee41aa" class="outline-4">
+<h4 id="orgdee41aa"><span class="section-number-4">1.1.3.</span> Details</h4>
 <div class="outline-text-4" id="text-1-1-3">
 <ul class="org-ul">
 <li>can see update history:
@@ -155,15 +156,15 @@
 </div>
 </div>
 
-<div id="outline-container-orgda5ba87" class="outline-4">
-<h4 id="orgda5ba87"><span class="section-number-4">1.1.4.</span> Solution</h4>
+<div id="outline-container-org98394cf" class="outline-4">
+<h4 id="org98394cf"><span class="section-number-4">1.1.4.</span> Solution</h4>
 <div class="outline-text-4" id="text-1-1-4">
 <ul class="org-ul">
 <li><p>
 force WSL vm to shutdown + restart
 </p>
 
-<pre class="example" id="org951ac98">
+<pre class="example" id="orgf1ceb98">
 PS C:\Users\Rcony&gt; wsl --shutdown
 PS C:\Users\Rcony&gt; wsl --user roland
 </pre>
@@ -185,8 +186,8 @@ Note: presumably wsl VM state is preserved across reboot,   since rebooting PC h
 <h3 id="org3905932"><span class="section-number-3">2.1.</span> inconsistent eigen package (25oct2023)</h3>
 <div class="outline-text-3" id="text-2-1">
 </div>
-<div id="outline-container-orga064f28" class="outline-4">
-<h4 id="orga064f28"><span class="section-number-4">2.1.1.</span> Setup</h4>
+<div id="outline-container-org1f19a62" class="outline-4">
+<h4 id="org1f19a62"><span class="section-number-4">2.1.1.</span> Setup</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <ul class="org-ul">
 <li>library <a href="https://github.com/Rconybea/xo-kalmanfilter">xo-kalmanfilter</a> depends on eigen</li>
@@ -207,8 +208,8 @@ Contrast this with the submodule build:  here,  when cmake build a library,  it 
 </div>
 </div>
 
-<div id="outline-container-orge4cbdcd" class="outline-4">
-<h4 id="orge4cbdcd"><span class="section-number-4">2.1.2.</span> Problem</h4>
+<div id="outline-container-org0378f92" class="outline-4">
+<h4 id="org0378f92"><span class="section-number-4">2.1.2.</span> Problem</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <ul class="org-ul">
 <li><p>
@@ -234,8 +235,8 @@ instead of <code>-Ipath/to/eigen/eigen3</code>,  so now need this to compile ins
 </div>
 
 
-<div id="outline-container-orgdee41aa" class="outline-4">
-<h4 id="orgdee41aa"><span class="section-number-4">2.1.3.</span> Details</h4>
+<div id="outline-container-orgec32ae3" class="outline-4">
+<h4 id="orgec32ae3"><span class="section-number-4">2.1.3.</span> Details</h4>
 <div class="outline-text-4" id="text-2-1-3">
 <ul class="org-ul">
 <li><p>
@@ -353,8 +354,8 @@ Evidence points to an inconsistency in Eigen-provided cmake support, if not in c
 </div>
 </div>
 
-<div id="outline-container-org93971a5" class="outline-4">
-<h4 id="org93971a5"><span class="section-number-4">2.1.4.</span> Workaround</h4>
+<div id="outline-container-org029c0be" class="outline-4">
+<h4 id="org029c0be"><span class="section-number-4">2.1.4.</span> Workaround</h4>
 <div class="outline-text-4" id="text-2-1-4">
 <p>
 It's sufficient to restate the eigen dependency in <code>xo-pykalmanfilter</code>:
@@ -383,7 +384,7 @@ My original investigation mistaken.
 It turns out I didn't understand that cmake error from <code>target_link_libraries()</code>:
 </p>
 
-<pre class="example" id="org2a1218c">
+<pre class="example" id="org76e204d">
 INTERFACE library can only be used with the INTERFACE keyword of target_link_libraries
 </pre>
 
@@ -393,8 +394,8 @@ applies to the <i>depended-on</i> library (3rd argument),  not the <i>depending<
 </div>
 </div>
 
-<div id="outline-container-orgaac5bad" class="outline-4">
-<h4 id="orgaac5bad"><span class="section-number-4">2.2.2.</span> Setup</h4>
+<div id="outline-container-org1c0acdd" class="outline-4">
+<h4 id="org1c0acdd"><span class="section-number-4">2.2.2.</span> Setup</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <ul class="org-ul">
 <li>NOTE: also asked on stack overflow <a href="https://stackoverflow.com/questions/77251201/cmake-regular-shared-library-depending-on-a-header-only-interface-library">here</a></li>
@@ -426,7 +427,7 @@ Must specify include directories for a header-only library like this:
 <p>
 cmake enforces this explicitly;   gives error
 </p>
-<pre class="example" id="orgbfff62d">
+<pre class="example" id="orgc21e568">
 target_include_directories may only set INTERFACE properties on INTERFACE targets
 </pre></li>
 
@@ -444,7 +445,7 @@ Must specify dependency on a header-only library like this:
 <p>
 cmake enforces this explicitly;   gives error
 </p>
-<pre class="example" id="orgf6d0ab7">
+<pre class="example" id="org3154742">
 INTERFACE library can only be used with the INTERFACE keyword of target_link_libraries
 </pre></li>
 
@@ -453,7 +454,7 @@ Expected behavior:
 this is sufficient for compilation of <code>bar</code> to tell compiler about include paths for <code>foo</code>:
 </p>
 
-<pre class="example" id="org7534d91">
+<pre class="example" id="orge29babc">
 gcc -Ipath/to/foo bar.cpp
 </pre>
 
@@ -464,8 +465,8 @@ This expectation is satisfied for regular non-INTERFACE libraries.
 </div>
 </div>
 
-<div id="outline-container-org8260719" class="outline-4">
-<h4 id="org8260719"><span class="section-number-4">2.2.3.</span> Problem</h4>
+<div id="outline-container-orgbff3ac3" class="outline-4">
+<h4 id="orgbff3ac3"><span class="section-number-4">2.2.3.</span> Problem</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <ul class="org-ul">
 <li>compilation fails to supply include paths for depended-on <code>foo</code> when compiling depending-on <code>bar</code>,
@@ -483,8 +484,8 @@ while ignoring the <code>INTERFACE_INCLUDE_DIRECTORIES</code> property.</li>
 </div>
 </div>
 
-<div id="outline-container-org33cd2a2" class="outline-4">
-<h4 id="org33cd2a2"><span class="section-number-4">2.2.4.</span> Workaround</h4>
+<div id="outline-container-orgfa56820" class="outline-4">
+<h4 id="orgfa56820"><span class="section-number-4">2.2.4.</span> Workaround</h4>
 <div class="outline-text-4" id="text-2-2-4">
 <ul class="org-ul">
 <li><p>
@@ -512,8 +513,8 @@ to <code>INCLUDE_DIRECTORIES</code>:
 <h3 id="org2fa01e9"><span class="section-number-3">2.3.</span> pybind11 link difficulties with transitive library dependencies (7oct2023)</h3>
 <div class="outline-text-3" id="text-2-3">
 </div>
-<div id="outline-container-orgf1ff2a3" class="outline-4">
-<h4 id="orgf1ff2a3"><span class="section-number-4">2.3.1.</span> Setup</h4>
+<div id="outline-container-orgc79f3c3" class="outline-4">
+<h4 id="orgc79f3c3"><span class="section-number-4">2.3.1.</span> Setup</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <ul class="org-ul">
 <li>cmake version 3.25.3</li>
@@ -545,14 +546,14 @@ Expect this cmake script to work:
 </div>
 </div>
 
-<div id="outline-container-orgc4935ff" class="outline-4">
-<h4 id="orgc4935ff"><span class="section-number-4">2.3.2.</span> Problem</h4>
+<div id="outline-container-orgedc438c" class="outline-4">
+<h4 id="orgedc438c"><span class="section-number-4">2.3.2.</span> Problem</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <ul class="org-ul">
 <li><p>
 Instead, link fails.   Link line something like:
 </p>
-<pre class="example" id="orgf7a5cc7">
+<pre class="example" id="orgbfb47ea">
 g++ -fPIC ... -o pyreflect.cpython-311-x86_64-linux-gnu.so /path/to/libreflect.so -lrefcnt -lindentlog
 </pre>
 
@@ -582,8 +583,8 @@ It's not obvious how <code>xo_pyreflect</code> can know that <code>indentlog</co
 </div>
 </div>
 
-<div id="outline-container-org029c0be" class="outline-4">
-<h4 id="org029c0be"><span class="section-number-4">2.3.3.</span> Workaround</h4>
+<div id="outline-container-org4d08eb0" class="outline-4">
+<h4 id="org4d08eb0"><span class="section-number-4">2.3.3.</span> Workaround</h4>
 <div class="outline-text-4" id="text-2-3-3">
 <ul class="org-ul">
 <li><p>
@@ -591,7 +592,7 @@ Recognize that <code>pyreflect</code> link shouldn't need <code>refcnt</code> on
 since <code>libreflect.so</code> has a <code>DT_NEEDED</code> entry for it.
 </p>
 
-<pre class="example" id="orge5426b3">
+<pre class="example" id="org82cee05">
 $ readelf -d /path/to/libreflect.so
 
 Dynamic section at offset 0x17860 contains 34 entries:
@@ -638,8 +639,8 @@ Then in <code>.cmake</code> for <code>pyreflect</code>,  something equivalent to
 <h3 id="org45c6c79"><span class="section-number-3">3.1.</span> mysterious lsp complaints about iostream headers (22feb2024)</h3>
 <div class="outline-text-3" id="text-3-1">
 </div>
-<div id="outline-container-orga531d76" class="outline-4">
-<h4 id="orga531d76"><span class="section-number-4">3.1.1.</span> Setup</h4>
+<div id="outline-container-org8551d76" class="outline-4">
+<h4 id="org8551d76"><span class="section-number-4">3.1.1.</span> Setup</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <ul class="org-ul">
 <li>working on bespoke streambuf implementation (cmake-examples/zstream/include/zstream/zstreambuf.hpp)</li>
@@ -647,8 +648,8 @@ Then in <code>.cmake</code> for <code>pyreflect</code>,  something equivalent to
 </div>
 </div>
 
-<div id="outline-container-org26e6bcb" class="outline-4">
-<h4 id="org26e6bcb"><span class="section-number-4">3.1.2.</span> Problem</h4>
+<div id="outline-container-org0a02a79" class="outline-4">
+<h4 id="org0a02a79"><span class="section-number-4">3.1.2.</span> Problem</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <ul class="org-ul">
 <li>getting mysterious errors from flymake + emacs,  e.g. message "&lt;fstream&gt; not found"</li>
@@ -656,8 +657,8 @@ Then in <code>.cmake</code> for <code>pyreflect</code>,  something equivalent to
 </div>
 </div>
 
-<div id="outline-container-orgca92204" class="outline-4">
-<h4 id="orgca92204"><span class="section-number-4">3.1.3.</span> Solution</h4>
+<div id="outline-container-org3f7bc18" class="outline-4">
+<h4 id="org3f7bc18"><span class="section-number-4">3.1.3.</span> Solution</h4>
 <div class="outline-text-4" id="text-3-1-3">
 <ul class="org-ul">
 <li>Had discarded <code>cmake-examples/build</code> directory,  using <code>cmake-examples/.build</code> instead.
@@ -773,7 +774,33 @@ I'd prefer to support this behavior (without the performance-accident-waiting-to
 </p>
 
 <p>
-Note that we can't use <code>istream::sentry</code> to help us,  because it sets <code>failbit</code> if it discovers stream is already at eof.
+Another strategy is to use <code>istream::peek()</code> to check for input and <code>istream::readsome()</code> to fetch it
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #ffad29; font-weight: bold;">template</span>&lt;<span style="color: #ffad29; font-weight: bold;">typename</span> <span style="color: #34cae2;">istream</span>&gt;
+<span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span>
+<span style="color: #00ede1; font-weight: bold;">read_upto</span>(<span style="color: #34cae2;">istream</span> &amp; <span style="color: #dbdb95;">in</span>, <span style="color: #008b8b;">istream</span>::<span style="color: #34cae2;">char_type</span> * <span style="color: #dbdb95;">s</span>, <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">n</span>)
+{
+    <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">n_read</span> = 0;
+
+    <span style="color: #ffad29; font-weight: bold;">while</span> (in.good() &amp;&amp; !in.eof() &amp;&amp; (n_read &lt; n))) {
+        in.peek();   <span style="color: #74af68;">/* </span><span style="color: #74af68;">ensure at least one byte available in streambuf</span><span style="color: #74af68;"> */</span>
+
+        <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">nr</span> = in.readsome(s + n_read, n - n_read);
+
+        n_read += nr;
+    }
+}
+</pre>
+</div>
+
+<p>
+This works if <code>streambuf</code> actually does buffering.   It may be very slow if <code>streambuf</code> is unbuffered.
+</p>
+
+<p>
+<code>istream::sentry</code> looks interesting,   but doesn't do any reading (except to possibly skip whitespace).
 </p>
 
 <p>
@@ -847,16 +874,14 @@ with
 </div>
 
 <p>
-Note that if sentry encounters eof,  then the line marked (A) executes &#x2013;&gt; test (B) fails &#x2013;&gt; (C) executes,
+Note that if <code>__noskipws</code> is <code>false</code> and sentry encounters eof,
+then the line marked (A) executes &#x2013;&gt; test (B) fails &#x2013;&gt; (C) executes,
 flagging stream as in an 'unrecoverable error state'.
-</p>
-
-<p>
 The line (A) appears to be mandatory (in spite of the inline comment).
 </p>
 
 <p>
-From cppreference.com:
+From <a href="https://cppreference.com">https://cppreference.com</a>:
 </p>
 
 <blockquote>
@@ -896,8 +921,7 @@ If after preparation is completed, is.good() == true, then any subsequent calls 
 </blockquote>
 
 <p>
-So: presumably could re-implement <code>istream::sentry</code>,  without setting failbit on eof.
-Let's imagine we've done this,  calling the result <code>altsentry</code>; then can write:
+However we can bypass this with <code>__noskip_</code> set to <code>true</code>:
 </p>
 
 <div class="org-src-container">
@@ -905,7 +929,7 @@ Let's imagine we've done this,  calling the result <code>altsentry</code>; then 
 <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span>
 <span style="color: #00ede1; font-weight: bold;">read_upto</span>(<span style="color: #34cae2;">istream</span> &amp; <span style="color: #dbdb95;">in</span>, <span style="color: #008b8b;">istream</span>::<span style="color: #34cae2;">char_type</span> * <span style="color: #dbdb95;">s</span>, <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">n</span>)
 {
-    <span style="color: #34cae2;">altsentry</span>&lt;<span style="color: #34cae2;">istream</span>&gt; <span style="color: #dbdb95;">sentry</span>(in, <span style="color: #008b8b;">true</span> <span style="color: #74af68;">/*</span><span style="color: #74af68;">noskipws</span><span style="color: #74af68;">*/</span>);
+    <span style="color: #008b8b;">istream</span>::<span style="color: #34cae2;">sentry</span> <span style="color: #dbdb95;">sentry</span>(in, <span style="color: #008b8b;">true</span> <span style="color: #74af68;">/*</span><span style="color: #74af68;">noskipws</span><span style="color: #74af68;">*/</span>);
 
     <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">n_read</span> = 0;
 
@@ -914,11 +938,11 @@ Let's imagine we've done this,  calling the result <code>altsentry</code>; then 
             n_read = in.rdbuf()-&gt;sgetn(s, n);
 
             in.setstate(<span style="color: #008b8b;">ios</span>::eofbit);
-        } <span style="color: #ffad29; font-weight: bold;">catch</span>(<span style="color: #008b8b;">__cxabiv1</span>::__forced_unwind &amp;)  {
-            in.setstate(<span style="color: #008b8b;">ios</span>::badbit);
+        } <span style="color: #ffad29; font-weight: bold;">catch</span>(<span style="color: #008b8b;">__cxxabiv1</span>::__forced_unwind &amp;)  {
+            in.setstate(<span style="color: #008b8b;">ios</span>::failbit);
             <span style="color: #ffad29; font-weight: bold;">throw</span>;
         } <span style="color: #ffad29; font-weight: bold;">catch</span>(...) {
-            in.setstate(<span style="color: #008b8b;">ios</span>::badbit);
+            in.setstate(<span style="color: #008b8b;">ios</span>::failbit);
         }
     }
 
@@ -926,12 +950,109 @@ Let's imagine we've done this,  calling the result <code>altsentry</code>; then 
 }
 </pre>
 </div>
+
+<p>
+Another alternative would be to post-process <code>read()</code>, and clear <code>failbit</code> if set along with <code>eofbit</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #ffad29; font-weight: bold;">template</span>&lt;<span style="color: #ffad29; font-weight: bold;">typename</span> <span style="color: #34cae2;">istream</span>&gt;
+<span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span>
+<span style="color: #00ede1; font-weight: bold;">read_upto</span>(<span style="color: #34cae2;">istream</span> &amp; <span style="color: #dbdb95;">in</span>, <span style="color: #008b8b;">istream</span>::<span style="color: #34cae2;">char_type</span> * <span style="color: #dbdb95;">s</span>, <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">n</span>)
+    {
+        in.read(s, n);
+
+        <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">n_read</span> = in.gcount();
+
+        <span style="color: #ffad29; font-weight: bold;">if</span> ((n_read &lt; n) &amp;&amp; in.eof() &amp;&amp; in.fail()) {
+            <span style="color: #74af68;">/* </span><span style="color: #74af68;">clear failbit</span><span style="color: #74af68;"> */</span>
+            in.clear(in.rdstate() &amp; ~<span style="color: #008b8b;">std</span>::<span style="color: #008b8b;">ios</span>::failbit);
+        }
+
+        <span style="color: #ffad29; font-weight: bold;">return</span> n_read;
+    }
+</pre>
+</div>
 </div>
 </div>
 
-<div id="outline-container-org1089ec7" class="outline-4">
-<h4 id="org1089ec7"><span class="section-number-4">4.1.3.</span> Iostream position reporting isn't monotonic.</h4>
+<div id="outline-container-org91f7e75" class="outline-4">
+<h4 id="org91f7e75"><span class="section-number-4">4.1.3.</span> Iostream get isn't monotonic</h4>
 <div class="outline-text-4" id="text-4-1-3">
+<p>
+<code>iostream.get(s, n, delim)</code> sets <code>failbit</code> if first character matches delim.
+</p>
+
+<p>
+This interferes with using <code>iostream.get</code> as building block for a longer i/o sequence;
+</p>
+
+<p>
+Tripped over this while writing <code>zstream.read_until</code> for my <code>cmake-examples</code> project:
+</p>
+
+<p>
+Instead of:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #00ede1; font-weight: bold;">read_until</span>(<span style="color: #34cae2;">char_type</span> * <span style="color: #dbdb95;">s</span>,
+                           <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">n</span>,
+                           <span style="color: #34cae2;">bool</span> <span style="color: #dbdb95;">check_delim_flag</span>,
+                           <span style="color: #34cae2;">char_type</span> <span style="color: #dbdb95;">delim</span>)
+    {
+        ...
+
+        <span style="color: #008b8b;">std</span>::streamsize nr = 0;
+
+        <span style="color: #ffad29; font-weight: bold;">this</span>-&gt;get(s, n, delim);
+        nr = <span style="color: #ffad29; font-weight: bold;">this</span>-&gt;gcount();
+
+        ...
+
+        <span style="color: #ffad29; font-weight: bold;">return</span> nr;
+    }
+</pre>
+</div>
+
+<p>
+We need carve-out:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #00ede1; font-weight: bold;">read_until</span>(<span style="color: #34cae2;">char_type</span> * <span style="color: #dbdb95;">s</span>,
+                           <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">n</span>,
+                           <span style="color: #34cae2;">bool</span> <span style="color: #dbdb95;">check_delim_flag</span>,
+                           <span style="color: #34cae2;">char_type</span> <span style="color: #dbdb95;">delim</span>)
+    {
+        ...
+
+        <span style="color: #008b8b;">std</span>::streamsize nr = 0;
+
+        <span style="color: #34cae2;">int_type</span> <span style="color: #dbdb95;">nextc</span> = <span style="color: #ffad29; font-weight: bold;">this</span>-&gt;rdbuf_.sgetc();
+
+        <span style="color: #ffad29; font-weight: bold;">if</span> (nextc == <span style="color: #008b8b;">Traits</span>::to_int_type(delim)) {
+            nr = 0;
+        } <span style="color: #ffad29; font-weight: bold;">else</span> {
+            <span style="color: #ffad29; font-weight: bold;">this</span>-&gt;get(s, n, delim);
+
+            nr = <span style="color: #ffad29; font-weight: bold;">this</span>-&gt;gcount();
+        }
+
+        ...
+
+        <span style="color: #ffad29; font-weight: bold;">return</span> nr;
+    }
+</pre>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-org1089ec7" class="outline-4">
+<h4 id="org1089ec7"><span class="section-number-4">4.1.4.</span> Iostream position reporting isn't monotonic.</h4>
+<div class="outline-text-4" id="text-4-1-4">
 <p>
 <code>iostream.tellg()</code> and <code>iostream.putg()</code> report current position w.r.t.
 beginning of stream for input (get) and output (put) respectively.
@@ -988,8 +1109,8 @@ n_read += input.gcount();
 </div>
 
 <div id="outline-container-orgae7b0b6" class="outline-4">
-<h4 id="orgae7b0b6"><span class="section-number-4">4.1.4.</span> Streambuf not responsible for eofbit.</h4>
-<div class="outline-text-4" id="text-4-1-4">
+<h4 id="orgae7b0b6"><span class="section-number-4">4.1.5.</span> Streambuf not responsible for eofbit.</h4>
+<div class="outline-text-4" id="text-4-1-5">
 <p>
 <code>istream.eofbit</code> probably belongs in <code>streambuf</code>.
 <code>streambuf</code> has to recognize end-of-file anyway,  since it's responsible for physical I/O.
@@ -999,8 +1120,8 @@ It might as well record and report it.
 </div>
 
 <div id="outline-container-org7d4a702" class="outline-4">
-<h4 id="org7d4a702"><span class="section-number-4">4.1.5.</span> Stream position reporting from streambuf</h4>
-<div class="outline-text-4" id="text-4-1-5">
+<h4 id="org7d4a702"><span class="section-number-4">4.1.6.</span> Stream position reporting from streambuf</h4>
+<div class="outline-text-4" id="text-4-1-6">
 <p>
 It would be simpler for <code>streambuf</code> to support <code>istream::tellg()</code> and <code>istream::tellp()</code> directly instead of relying on <code>streambuf::seekoff()</code>.
 Argument here is that even for a non-seekable stream buffer,  it still makes sense to support <code>tellg()</code> and <code>tellp()</code>.
@@ -1020,8 +1141,8 @@ which muddies the waters.
 <h3 id="org55a30dd"><span class="section-number-3">5.1.</span> zstreambuf errors after move assignment</h3>
 <div class="outline-text-3" id="text-5-1">
 </div>
-<div id="outline-container-org1618096" class="outline-4">
-<h4 id="org1618096"><span class="section-number-4">5.1.1.</span> Setup</h4>
+<div id="outline-container-orgfae0236" class="outline-4">
+<h4 id="orgfae0236"><span class="section-number-4">5.1.1.</span> Setup</h4>
 <div class="outline-text-4" id="text-5-1-1">
 <ul class="org-ul">
 <li>Making <code>zstreambuf.open()</code> work with a <code>zstreambuf</code> that's already been used for i/o.</li>
@@ -1046,8 +1167,8 @@ address-dependent computation involving one or more <code>z_stream</code> member
 </div>
 </div>
 
-<div id="outline-container-org98394cf" class="outline-4">
-<h4 id="org98394cf"><span class="section-number-4">5.1.3.</span> Solution</h4>
+<div id="outline-container-org0bdde4c" class="outline-4">
+<h4 id="org0bdde4c"><span class="section-number-4">5.1.3.</span> Solution</h4>
 <div class="outline-text-4" id="text-5-1-3">
 <ul class="org-ul">
 <li><p>
@@ -1099,7 +1220,7 @@ Then implement <code>::swap()</code> etc by swapping pointers.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-02-25 Sun 19:47</p>
+<p class="date">Created: 2024-03-06 Wed 18:24</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
