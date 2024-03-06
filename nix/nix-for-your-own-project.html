@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-03-06 Wed 18:24 -->
+<!-- 2024-03-06 Wed 18:30 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>building your own project with nix</title>
@@ -37,13 +37,13 @@
 <ul>
 <li><a href="#org7052c84">2.1. Keep .nix files and project source in separate repos</a>
 <ul>
-<li><a href="#orgbd5ef6d">2.1.1. Reasons</a></li>
+<li><a href="#orge3bc5e1">2.1.1. Reasons</a></li>
 <li><a href="#org46f3669">2.1.2. Instead</a></li>
 </ul>
 </li>
 <li><a href="#org5d86c08">2.2. Setup your build the nixpkgs way</a>
 <ul>
-<li><a href="#orge3bc5e1">2.2.1. Reasons</a></li>
+<li><a href="#org3828a59">2.2.1. Reasons</a></li>
 </ul>
 </li>
 <li><a href="#org4f9920a">2.3. Don't put build instructions in flakes</a></li>
@@ -97,8 +97,8 @@ in the same repo!   That's what we do with build instructions (<code>CMakeLists.
 </p>
 </div>
 
-<div id="outline-container-orgbd5ef6d" class="outline-4">
-<h4 id="orgbd5ef6d"><span class="section-number-4">2.1.1.</span> Reasons</h4>
+<div id="outline-container-orge3bc5e1" class="outline-4">
+<h4 id="orge3bc5e1"><span class="section-number-4">2.1.1.</span> Reasons</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <ol class="org-ol">
 <li><code>.nix</code> files (<code>default.nix</code>, <code>shell.nix</code> etc) likely need to contain revision hashes.
@@ -140,8 +140,8 @@ In other words,  use <code>callPackage</code>!
 </p>
 </div>
 
-<div id="outline-container-orge3bc5e1" class="outline-4">
-<h4 id="orge3bc5e1"><span class="section-number-4">2.2.1.</span> Reasons</h4>
+<div id="outline-container-org3828a59" class="outline-4">
+<h4 id="org3828a59"><span class="section-number-4">2.2.1.</span> Reasons</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <ol class="org-ol">
 <li><code>callPackage</code> supports cross-compilation out of the box.</li>
@@ -405,7 +405,7 @@ whatever default <code>nixpkgs</code> offers.
 <p>
 For example:
 </p>
-<pre class="example" id="orgfacb2ea">
+<pre class="example" id="orgfef0278">
 $ nix-env -qaP | grep nixpkgs.boost
 nixpkgs.boost175    boost-1.75.0
 nixpkgs.boost177    boost-1.77.0
@@ -486,7 +486,7 @@ Use result just like a regular flake
 <p>
 Verify flake:
 </p>
-<pre class="example" id="org8b8cceb">
+<pre class="example" id="orgdb5e2b2">
 $ cd cmake-examples-nix
 $ nix flake check
 </pre>
@@ -494,7 +494,7 @@ $ nix flake check
 <p>
 Example <code>flake.lock</code>:
 </p>
-<pre class="example" id="org9096765">
+<pre class="example" id="orgbeacadc">
 {
   "nodes": {
     "cmake-examples-ex23-path": {
@@ -535,14 +535,14 @@ Example <code>flake.lock</code>:
 <p>
 Build (from pinned revisions)
 </p>
-<pre class="example" id="orgb0d3795">
+<pre class="example" id="org6b01e40">
 $ nix build -L --print-build-logs .#cmake-examples-ex23
 </pre>
 
 <p>
 Result
 </p>
-<pre class="example" id="orge2994d9">
+<pre class="example" id="org4ebd39c">
 $ tree ./result
 result
 ├── 3.11
@@ -588,11 +588,11 @@ Resources
 </p>
 
 <ul class="org-ul">
-<li><a href="https://jade.fyi/blog/#flakes-arent-real">https://jade.fyi/blog/#flakes-arent-real</a> motivation for this article</li>
-<li><a href="https://github.com/vlktomas/nix-examples">https://github.com/vlktomas/nix-examples</a></li>
-<li><a href="https://ryantm.github.io/nixpkgs/stdenv/stdenv">https://ryantm.github.io/nixpkgs/stdenv/stdenv</a></li>
+<li><a href="https://jade.fyi/blog/#flakes-arent-real">https://jade.fyi/blog/#flakes-arent-real</a> wonderful Jade Lovelace blog &#x2013; inspiration for this article!</li>
+<li><a href="https://github.com/vlktomas/nix-examples">https://github.com/vlktomas/nix-examples</a> Tomas Vlk nix examples</li>
 <li><a href="https://nixos.org/guides/nix-pills/">https://nixos.org/guides/nix-pills/</a> Nix pills (nix tutorial, from the ground up)</li>
-<li><a href="https://github.com/Rconybea/cmake-examples">https://github.com/Rconybea/cmake-examples</a> progressive series of cmake examples,  using as example of a local project</li>
+<li><a href="https://ryantm.github.io/nixpkgs/stdenv/stdenv">https://ryantm.github.io/nixpkgs/stdenv/stdenv</a> Nix standard environment docs</li>
+<li><a href="https://github.com/Rconybea/cmake-examples">https://github.com/Rconybea/cmake-examples</a> my progressive series of cmake examples,  using as example of a local project</li>
 <li><a href="https://github.com/Rconybea/cmake-examples-nix">https://github.com/Rconybea/cmake-examples-nix</a> nix build for cmake-examples</li>
 </ul>
 </div>
@@ -601,7 +601,7 @@ Resources
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-03-06 Wed 18:24</p>
+<p class="date">Created: 2024-03-06 Wed 18:30</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
