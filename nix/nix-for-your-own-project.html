@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-03-06 Wed 19:45 -->
+<!-- 2024-03-06 Wed 19:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>building your own project with nix</title>
@@ -142,9 +142,9 @@ In other words,  use <code>callPackage</code>!
 </p>
 
 <ol class="org-ol">
-<li><code>callPackage</code> supports cross-compilation out of the box.</li>
+<li><code>callPackage</code> supports cross-compilation (out of the box)</li>
 
-<li><code>callPackage</code> supports overrides.</li>
+<li><code>callPackage</code> supports parameterization (i.e. overrides)</li>
 
 <li>If you already have nix build setup for nixpkgs,  then there's nothing new
 to do if you want to upload into nixpkgs (or incorporate into your fork thereof) later</li>
@@ -402,7 +402,7 @@ whatever default <code>nixpkgs</code> offers.
 <p>
 For example:
 </p>
-<pre class="example" id="orga7b5ddc">
+<pre class="example" id="orga673170">
 $ nix-env -qaP | grep nixpkgs.boost
 nixpkgs.boost175    boost-1.75.0
 nixpkgs.boost177    boost-1.77.0
@@ -483,7 +483,7 @@ Use result just like a regular flake
 <p>
 Verify flake:
 </p>
-<pre class="example" id="org673e877">
+<pre class="example" id="orga023455">
 $ cd cmake-examples-nix
 $ nix flake check
 </pre>
@@ -491,7 +491,7 @@ $ nix flake check
 <p>
 Example <code>flake.lock</code>:
 </p>
-<pre class="example" id="org67cd283">
+<pre class="example" id="orgbbe661d">
 {
   "nodes": {
     "cmake-examples-ex23-path": {
@@ -532,14 +532,14 @@ Example <code>flake.lock</code>:
 <p>
 Build (from pinned revisions)
 </p>
-<pre class="example" id="org991395b">
+<pre class="example" id="org7d490d5">
 $ nix build -L --print-build-logs .#cmake-examples-ex23
 </pre>
 
 <p>
 Result
 </p>
-<pre class="example" id="orge8be287">
+<pre class="example" id="org86bc224">
 $ tree ./result
 result
 ├── 3.11
@@ -599,7 +599,7 @@ Resources
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-03-06 Wed 19:45</p>
+<p class="date">Created: 2024-03-06 Wed 19:48</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
