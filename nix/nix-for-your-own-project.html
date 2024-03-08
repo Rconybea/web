@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-03-08 Fri 16:30 -->
+<!-- 2024-03-08 Fri 17:29 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Building your own project with nix</title>
@@ -402,7 +402,7 @@ whatever default <code>nixpkgs</code> offers.
 <p>
 For example:
 </p>
-<pre class="example" id="org48062d6">
+<pre class="example" id="org2edb145">
 $ nix-env -qaP | grep nixpkgs.boost
 nixpkgs.boost175    boost-1.75.0
 nixpkgs.boost177    boost-1.77.0
@@ -483,7 +483,7 @@ Use result just like a regular flake
 <p>
 Verify flake:
 </p>
-<pre class="example" id="org34b4bb0">
+<pre class="example" id="org30df367">
 $ cd cmake-examples-nix
 $ nix flake check
 </pre>
@@ -491,7 +491,7 @@ $ nix flake check
 <p>
 Example <code>flake.lock</code>:
 </p>
-<pre class="example" id="org557913c">
+<pre class="example" id="org0f82b04">
 {
   "nodes": {
     "cmake-examples-ex23-path": {
@@ -532,14 +532,14 @@ Example <code>flake.lock</code>:
 <p>
 Build (from pinned revisions)
 </p>
-<pre class="example" id="org848aff6">
+<pre class="example" id="orgc7f4c41">
 $ nix build -L --print-build-logs .#cmake-examples-ex23
 </pre>
 
 <p>
 Result
 </p>
-<pre class="example" id="org732efdf">
+<pre class="example" id="org0326b6a">
 $ tree ./result
 result
 ├── 3.11
@@ -585,7 +585,7 @@ Resources
 </p>
 
 <ul class="org-ul">
-<li><a href="https://jade.fyi/blog/#flakes-arent-real/">https://jade.fyi/blog/#flakes-arent-real/</a> wonderful Jade Lovelace blog &#x2013; inspiration for this article!</li>
+<li><a href="https://jade.fyi/blog/flakes-arent-real/">https://jade.fyi/blog/flakes-arent-real/</a> wonderful Jade Lovelace blog &#x2013; inspiration for this article!</li>
 <li><a href="https://github.com/vlktomas/nix-examples">https://github.com/vlktomas/nix-examples</a> Tomas Vlk nix examples</li>
 <li><a href="https://nixos.org/guides/nix-pills/">https://nixos.org/guides/nix-pills/</a> Nix pills (nix tutorial, from the ground up)</li>
 <li><a href="https://ianthehenry.com/posts/how-to-learn-nix/">https://ianthehenry.com/posts/how-to-learn-nix/</a> Ian Henry's "nix travel diary"</li>
@@ -599,7 +599,7 @@ Resources
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-03-08 Fri 16:30</p>
+<p class="date">Created: 2024-03-08 Fri 17:29</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
