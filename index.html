@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-03-06 Wed 18:24 -->
+<!-- 2024-03-08 Fri 16:30 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>assorted how-tos</title>
@@ -49,13 +49,6 @@ How-to articles maintained at <a href="https://github.com/Rconybea/org-howto">ht
 <p>
 Recent snapshots available from github pages: <a href="https://rconybea.github.io/web">https://rconybea.github.io/web</a>
 </p>
-
-<p>
-Can for example serve locally on port <code>8080</code>:
-</p>
-<pre class="example" id="org2ecdc2e">
-python3 -m http.server 8080 --directory ~/proj/public_html/org-howto
-</pre>
 </div>
 </div>
 
@@ -65,12 +58,31 @@ python3 -m http.server 8080 --directory ~/proj/public_html/org-howto
 <ul class="org-ul">
 <li><a href="lessons/til.html">TIL</a> lessons learned - problems &amp; fixes</li>
 
-<li><a href="env/development-environment.html">c++ development environment</a> emacs/lsp/c++/cmake/nix/github/docker
+<li>software projects
+<ul class="org-ul">
+<li>xo; independent c++/python libraries for event-based simulation; cmake/c++/pybind11/websockets
+<ul class="org-ul">
+<li>xo libraries</li>
+<li>xo-sm xo umbrella submodule build for all xo libs</li>
+<li><a href="https://github.com/rconybea/xo-nix2">xo-nix2</a> xo nix build using flakes (TODO: update per nix cookbook below)</li>
+<li><a href="https://github.com/rconybea/xo-nix3">xo-nix3</a> git CI build; using nix-built custom docker container</li>
+<li><a href="https://github.com:rconybea/docker-xo-builder">docker-xo-builder</a> custom docker container with all xo build deps</li>
+</ul></li>
+</ul></li>
+
+<li>cmake-examples progressive walkthrough; cmake/c++/boost/gcov/pybind11/doxygen/sphinx; +nix
+<ul class="org-ul">
+<li><a href="https://github.com/rconybea/cmake-examples">cmake-examples</a> primary repo</li>
+<li><a href="https://github.com/rconybea/cmake-examples-nix">cmake-examples-nix</a> nix build of cmake-examples</li>
+</ul></li>
+
+<li><a href="env/development-environment.html">c++ development environment</a> emacs/lsp/cmake/c++/nix/github/docker
 <ul class="org-ul">
 <li><a href="env/emacs-setup.html">.emacs walkthrough</a> terse!</li>
 <li><a href="env/org-mode-resources.html">org-mode resources</a></li>
 <li><a href="env/publish-static-html.html">publish static html</a> org-mode -&gt; github pages</li>
 <li><a href="env/github-continuous-integration">continuous integration</a> with github + nix + docker</li>
+<li><a href="nix/nix-for-your-own-project.html">nix cookbook</a> build your own projects with nix</li>
 </ul></li>
 
 <li>unix environment
@@ -79,11 +91,6 @@ python3 -m http.server 8080 --directory ~/proj/public_html/org-howto
 <li><a href="env/gpg-setup.html">env/gpg-setup.html</a> GPG setup</li>
 <li><a href="env/email-setup.html">env/email-setup.html</a> email setup</li>
 <li><a href="env/cleanmbox.html">env/cleanmbox.html</a> automatically tidy email messages</li>
-</ul></li>
-
-<li>nix howto
-<ul class="org-ul">
-<li><a href="nix/nix-for-your-own-project.html">nix cookbook</a> build your own project with nix</li>
 </ul></li>
 
 <li><a href="orgpub/org-examples.html">org-examples</a> cookbook for org-mode publishing</li>
@@ -104,7 +111,7 @@ python3 -m http.server 8080 --directory ~/proj/public_html/org-howto
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-03-06 Wed 18:24</p>
+<p class="date">Created: 2024-03-08 Fri 16:30</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

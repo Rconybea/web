@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-08 Fri 16:30 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>xo libraries</title>
+<meta name="author" content="Roland Conybeare" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style>pre.src{background:#343131;color:white;} </style>
+<style>pre.example{background:#343131;color:white;} </style>
+<style> #content{max-width:1800px;}</style>
+<style> p{max-width:1800px;}</style>
+<style> li{max-width:1800px;}</style>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="/web/index.html"> UP </a>
+ |
+ <a accesskey="H" href="/web/index.html"> HOME </a>
+</div><div id="content" class="content">
+<h1 class="title">xo libraries</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org44ae094">1. Xo</a></li>
+<li><a href="#org2024e9a">2. Python Libraries</a></li>
+<li><a href="#org35e67fe">3. C++ Libraries</a></li>
+<li><a href="#org9d765a3">4. External Dependencies</a></li>
+<li><a href="#orga75d52f">5. Python Abstracion Tower</a></li>
+<li><a href="#org71a91d6">6. C++ Abstraction Tower</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org44ae094" class="outline-2">
+<h2 id="org44ae094"><span class="section-number-2">1.</span> Xo</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+A set of integrated libraries for event-based simulation with stochastic processes.
+Intended for use in C++ and python applications.
+</p>
+
+<p>
+Variety of features covered, for example:
+kalman filters, stochastic processes, complex event processing, simulation, websockets.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2024e9a" class="outline-2">
+<h2 id="org2024e9a"><span class="section-number-2">2.</span> Python Libraries</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<a href="https://github.com/xo-pywebsock">xo-pywebsock</a> in-memory http server; can expose entirely-native publishing pipeline via websockets.
+<a href="https://github.com/rconybea/xo-pywebutil">xo-pywebutil</a> lo-level abstractions for http: endpoints, attribute lists.
+<a href="https://github.com/pykalmanfilter">xo-pykalmanfilter</a> linear kalman filter with simulation support.
+<a href="https://github.com/rconybea/xo-pydistribution">xo-pydistribution</a> probability distributions e.g. Kolmogorov Smirnov
+<a href="https://github.com/rconybea/xo-pyprocess">xo-pyprocess</a> stochastic processes with simulation focus.
+<a href="https://github.com/rconybea/xo-pyreactor">xo-pyreactor</a> complex event processors + polling reactor.
+<a href="https://github.com/rconybea/xo-pyprintjson">xo-pyprintjson</a> plugin json printing for xo c++ classes.
+<a href="https://github.com/rconybea/xo-pyreflect">xo-pyreflect</a> plugin introspection for xo c++ classes.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org35e67fe" class="outline-2">
+<h2 id="org35e67fe"><span class="section-number-2">3.</span> C++ Libraries</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+<a href="https://github.com/rconybea/xo-websock">xo-websock</a> in-memory http server with websocket and python support.
+<a href="https://github.com/xo-webutil">xo-webutil</a> low-level abstractions for http: endpoints, attribute lists.
+<a href="https://github.com/rconybea/xo-kalmanfilter">xo-kalmanfilter</a> linear kalman filter with simulation support.
+<a href="https://github.com/rconybea/xo-process">xo-process</a> stochastic processes and simulation-compatible realizations.
+<a href="https://github.com/rconybea/xo-distribution">xo-distribution</a> probability distributions including Kolmogorov-Smirnov
+<a href="https://github.com/xo-simulator">xo-simulator</a> deterministic event-based simulation
+<a href="https://github.com/rconybea/xo-reactor">xo-reactor</a> api for complex event processors + simple polling implementation.
+<a href="https://github.com/rconybea/xo-statistics">xo-statistics</a> header-only. online accumulators, histogram.
+<a href="https://github.com/rconybea/xo-printjson">xo-printjson</a> json printer with plugin support.
+<a href="https://github.com/xo-ordinaltree">xo-ordinaltree</a> header-only. fast in-memory B+ tree, red-black tree w/ ordinal statistics.
+<a href="https://github.com/rconybea/xo-randomgen">xo-randomgen</a> header-only. fast pseudo random number generators. xoshiro**,
+<a href="https://github.com/rconybea/xo-callback">xo-callback</a> header-only. reentrant callback set
+<a href="https://github.com/rconybea/xo-subsys">xo-subsys</a> orderly startup and shutdown for subsystems with plugin features
+<a href="https://github.com/rconybea/xo-reflect">xo-reflect</a> reflection library
+<a href="https://github.com/rconybea/xo-refcnt">xo-refcnt</a> intrusive reference counting
+<a href="https://github.com/rconybea/xo-indentlog">xo-indentlog</a> header-only logging library; colorized output with indentation tracking program call structure
+<a href="https://github.com/rconybea/xo-cmake">xo-cmake</a> cmake modules.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9d765a3" class="outline-2">
+<h2 id="org9d765a3"><span class="section-number-2">4.</span> External Dependencies</h2>
+<div class="outline-text-2" id="text-4">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">name</th>
+<th scope="col" class="org-left">deps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">all</td>
+<td class="org-left">gcc, lcov, catch2, cmake</td>
+</tr>
+
+<tr>
+<td class="org-left">all py</td>
+<td class="org-left">pybind11</td>
+</tr>
+
+<tr>
+<td class="org-left">xo-kalmanfilter</td>
+<td class="org-left">eigen</td>
+</tr>
+
+<tr>
+<td class="org-left">xo-websock</td>
+<td class="org-left">libwebsockets</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orga75d52f" class="outline-2">
+<h2 id="orga75d52f"><span class="section-number-2">5.</span> Python Abstracion Tower</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Each python library <code>pyfoo</code> depends on similarly-named c++ library <code>foo</code>.
+</p>
+
+
+<div id="orgfc25111" class="figure">
+<p><img src="img/xo-py-overview.png" alt="xo-py-overview.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org71a91d6" class="outline-2">
+<h2 id="org71a91d6"><span class="section-number-2">6.</span> C++ Abstraction Tower</h2>
+<div class="outline-text-2" id="text-6">
+
+<div id="org4c10179" class="figure">
+<p><img src="img/xo-overview.png" alt="xo-overview.png" />
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Roland Conybeare</p>
+<p class="date">Created: 2024-03-08 Fri 16:30</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

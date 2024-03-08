@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-03-06 Wed 19:48 -->
+<!-- 2024-03-08 Fri 16:30 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>index.org source</title>
@@ -222,7 +222,7 @@ org_html_manager.setup();  // activate after the parameters are set
  <a accesskey="H" href=""> HOME </a>
 </div><div id="content" class="content">
 <h1 class="title">index.org source</h1>
-<pre class="example" id="org6d49900">
+<pre class="example" id="orgb295901">
 #+title: assorted how-tos
 #+author: Roland Conybeare
 #+email: git3ub@nym.hush.com
@@ -253,28 +253,33 @@ org_html_manager.setup();  // activate after the parameters are set
 
   Recent snapshots available from github pages: [[https://rconybea.github.io/web]]
 
-  Can for example serve locally on port =8080=:
-  #+begin_example
-  python3 -m http.server 8080 --directory ~/proj/public_html/org-howto
-  #+end_example
-
 * Contents
   - [[file:lessons/til.org][TIL]] lessons learned - problems &amp; fixes
 
-  - [[file:env/development-environment.org][c++ development environment]] emacs/lsp/c++/cmake/nix/github/docker
+  - software projects
+    - xo; independent c++/python libraries for event-based simulation; cmake/c++/pybind11/websockets
+      - xo libraries
+      - xo-sm xo umbrella submodule build for all xo libs
+      - [[https://github.com/rconybea/xo-nix2][xo-nix2]] xo nix build using flakes (TODO: update per nix cookbook below)
+      - [[https://github.com/rconybea/xo-nix3][xo-nix3]] git CI build; using nix-built custom docker container
+      - [[https://github.com:rconybea/docker-xo-builder][docker-xo-builder]] custom docker container with all xo build deps
+
+  - cmake-examples progressive walkthrough; cmake/c++/boost/gcov/pybind11/doxygen/sphinx; +nix
+    - [[https://github.com/rconybea/cmake-examples][cmake-examples]] primary repo
+    - [[https://github.com/rconybea/cmake-examples-nix][cmake-examples-nix]] nix build of cmake-examples
+
+  - [[file:env/development-environment.org][c++ development environment]] emacs/lsp/cmake/c++/nix/github/docker
     - [[file:env/emacs-setup.org][.emacs walkthrough]] terse!
     - [[file:env/org-mode-resources.org][org-mode resources]]
     - [[file:env/publish-static-html.org][publish static html]] org-mode -&gt; github pages
     - [[file:env/github-continuous-integration][continuous integration]] with github + nix + docker
+    - [[file:nix/nix-for-your-own-project.org][nix cookbook]] build your own projects with nix
 
   - unix environment
     - [[file:env/windows11-setup.org][windows11 setup]] wsl2 life hacks
     - file:env/gpg-setup.org GPG setup
     - file:env/email-setup.org email setup
     - [[file:env/cleanmbox.org]] automatically tidy email messages
-
-  - nix howto
-    - [[file:nix/nix-for-your-own-project.org][nix cookbook]] build your own project with nix
 
   - [[file:orgpub/org-examples.org][org-examples]] cookbook for org-mode publishing
   - file:d3/d3-examples.org d3 (javascript graphics library) examples
@@ -286,7 +291,7 @@ org_html_manager.setup();  // activate after the parameters are set
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-03-06 Wed 19:48</p>
+<p class="date">Created: 2024-03-08 Fri 16:30</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

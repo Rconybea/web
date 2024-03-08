@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-03-06 Wed 19:48 -->
+<!-- 2024-03-08 Fri 16:30 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>building your own project with nix</title>
+<title>Building your own project with nix</title>
 <meta name="author" content="Roland Conybeare" />
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
@@ -27,7 +27,7 @@
  |
  <a accesskey="H" href="/web/index.html"> HOME </a>
 </div><div id="content" class="content">
-<h1 class="title">building your own project with nix</h1>
+<h1 class="title">Building your own project with nix</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
@@ -402,7 +402,7 @@ whatever default <code>nixpkgs</code> offers.
 <p>
 For example:
 </p>
-<pre class="example" id="orga673170">
+<pre class="example" id="org48062d6">
 $ nix-env -qaP | grep nixpkgs.boost
 nixpkgs.boost175    boost-1.75.0
 nixpkgs.boost177    boost-1.77.0
@@ -483,7 +483,7 @@ Use result just like a regular flake
 <p>
 Verify flake:
 </p>
-<pre class="example" id="orga023455">
+<pre class="example" id="org34b4bb0">
 $ cd cmake-examples-nix
 $ nix flake check
 </pre>
@@ -491,7 +491,7 @@ $ nix flake check
 <p>
 Example <code>flake.lock</code>:
 </p>
-<pre class="example" id="orgbbe661d">
+<pre class="example" id="org557913c">
 {
   "nodes": {
     "cmake-examples-ex23-path": {
@@ -532,14 +532,14 @@ Example <code>flake.lock</code>:
 <p>
 Build (from pinned revisions)
 </p>
-<pre class="example" id="org7d490d5">
+<pre class="example" id="org848aff6">
 $ nix build -L --print-build-logs .#cmake-examples-ex23
 </pre>
 
 <p>
 Result
 </p>
-<pre class="example" id="org86bc224">
+<pre class="example" id="org732efdf">
 $ tree ./result
 result
 ├── 3.11
@@ -599,7 +599,7 @@ Resources
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-03-06 Wed 19:48</p>
+<p class="date">Created: 2024-03-08 Fri 16:30</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
