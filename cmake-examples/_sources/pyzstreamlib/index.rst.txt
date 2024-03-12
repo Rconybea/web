@@ -1,0 +1,14 @@
+.. _pyzstreamlib:
+
+zstream module
+==============
+
+python module for working with compressed (``gzip`` format) files.
+
+.. toctree::
+   :maxdepth: 2
+
+   zstream
+   ZstreamBase
+   BufferedZstream
+   TextZstream

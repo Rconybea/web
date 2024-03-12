@@ -1,0 +1,47 @@
+.. _pyzstreamlib_zstream:
+
+.. toctree::
+   :maxdepth: 2
+
+.. py:function:: zstream.zopen(filename, mode='r', buffering=64*1024, encoding=None, errors=None, newline=None)
+
+    Drop-in (with caveats) replacement for built-in `open <https://docs.python.org/3/library/functions.html#open>`_,
+    that works with a compressed file
+
+    Caveats
+
+    *   opening in read+write mode (``'+'``) is not useful,  since stream implementation is not seekable.
+    *   opening in append (``'a'``) or exclusive (``'x'``) mode is not supported.  The ``'a'`` and ``'x'`` characters are ignored.
+    *   unlike with ``open()``, file cannot be an integer file descriptor
+    *   the optional *opener* and *closefd* arguments to ``open()`` are not supported.
+
+    :param filename:  path-like-object of file to be opened.
+                      integer file descriptors not supported.
+    :type filename:   str or bytes
+
+    :param mode:      optional string specifying style of file interaction.
+                      ``'r'`` (read), ``'w'`` (write), ``'b'`` (binary), ``'t'`` (text).
+                      ``'x'``, ``'a'`` not supported (as of mar 2024).
+                      ``'+'`` is permitted but not usable absent some basic seek support.
+                      For example, ``"rb"`` to open for reading in binary mode.  Default is ``"r"``.
+    :type mode:       str
+
+    :param buffering: optional param specifying implementation buffer size.  Floored at 1 byte;  default 64k.
+                      Implementation allocates 4x this size,  comprising one buffer each for
+                      (inflation, deflation) x (reading, writing).
+                      Zlib allocates two 32k buffers to (inflation, deflation) windowing.
+    :type buffering:  int
+
+    :param encoding:  optional string encoding for text mode; ignored in binary mode.  Default encoding is ``"utf-8"``.
+    :type encoding:   str
+
+    :param errors:    optional string specifying how text-mode encoding and decoding errors should be handled.
+                      See built-in `open`; ignored in binary mode.
+    :type errors:     str
+
+    :param newline:   optional string specifying handling of newline characters in text mode.
+                      See built-in `open`; ignored in binary mode.
+    :type newline:    str
+
+    :return: io object (derived from `io.TextIOBase` or `io.BufferedIOBase`) that reads/writes uncompressed data.
+    :rtype: io.IOBase

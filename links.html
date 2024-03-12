@@ -6,7 +6,7 @@
 <!-- 2024-03-09 Sat 11:10 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>d3/drag3 .org source</title>
+<title>&lrm;</title>
 <meta name="author" content="Roland Conybeare" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -193,134 +193,25 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="/web/css/notebook.css" />
-
-<script src="https://orgmode.org/org-info.js">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
-// @license-end
-</script>
-
-<script>
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
-org_html_manager.set("TOC_DEPTH", "3");
-org_html_manager.set("LINK_HOME", "../../index.html");
-org_html_manager.set("LINK_UP", "index.html");
-org_html_manager.set("LOCAL_TOC", "1");
-org_html_manager.set("VIEW_BUTTONS", "0");
-org_html_manager.set("MOUSE_HINT", "underline");
-org_html_manager.set("FIXED_TOC", "0");
-org_html_manager.set("TOC", "1");
-org_html_manager.set("VIEW", "info");
-org_html_manager.setup();  // activate after the parameters are set
-// @license-end
-</script>
 </head>
 <body>
-<div id="org-div-home-and-up">
- <a accesskey="h" href="index.html"> UP </a>
- |
- <a accesskey="H" href="../../index.html"> HOME </a>
-</div><div id="content" class="content">
-<h1 class="title">d3/drag3 .org source</h1>
-<pre class="example" id="org752bf39">
-#+title: d3 draggable object example #3 -- parametric
-#
-# org-publish options
-# H:2   controls section numbering.
-#       number top-level and second-level headings only
-# ^:{}  require a_{b} before assuming that b should be subscripted.
-#       without this option a_b will automatically subscript b.
-#+options: ^:{}
-#
-# options used exclusively by emacs
-#+startup: showall
-#
-# options used exclusively by the html exporter
-#+language: en
-#+infojs_opt: view:showall toc:nil ltoc:nil mouse:#ffc0c0 path:/ext/orginfo/org-info.js
-#+html_head: &lt;script type="text/javascript" src="/web/ext/d3/d3.v3.min.js"&gt;&lt;/script&gt;
-#+html_head: &lt;script type="text/javascript" src="point.js"&gt;&lt;/script&gt;
-#+html_head: &lt;script type="text/javascript" src="fx.js"&gt;&lt;/script&gt;
-#+html_head: &lt;script type="text/javascript" src="fx_view.js"&gt;&lt;/script&gt;
-#+html_head: &lt;script type="text/javascript" src="parametric-drag-example.js"&gt;&lt;/script&gt;
-#+html_head: &lt;link rel="stylesheet" type="text/css" href="/web/css/notebook.css" /&gt;
-#+html_link_home: ../../index.html
-#+html_link_up: ../../index.html
-
-* Introduction
-  This page uses the same technique as example /#2/ (file:../drag2/index.org),
-  except we demonstrate parametric dragging along a curve
-
-  - source :: org-mode source for this page is here: file:index-src.org
-
-* Prerequisites
-  As for example /#1/ (file:../drag1/index.org)
-
-* Demo
-
-  (box appears below if-and-only-if publishing to html)
-  #+begin_export html
-  &lt;div id="frame" style="border: 1px solid blue; max-width: 60em"&gt;&lt;/div&gt;
-  &lt;script type="text/javascript"&gt;
-    window.onload = function() { ex.start(this); }
-  &lt;/script&gt;
-  #+end_export
-
-* Procedure
-
-** Create javascript file ~point.js~
-   This file contains convenience subroutines for working with (x,y) coordinates
-   - pt.scale_pt
-   - pt.add_pt
-   - pt.distance_squared
-   - pt.find_closest
-
-#+include: "point.js" src js -n
-
-** Create javascript file ~fx.js~
-   This contains some utility procedures for working with functions
-   of one variable
-
-#+include: "fx.js" src js -n
-
-** Create javascript file ~fx_view.js~
-   This file contains subroutines for managing svg elements (as d3 selections)
-   that display a function f(x)
-
-#+include: "fx_view.js" src js -n
-
-** Create javascript file ~parametric-drag-example.js~:
-
-   This program:
-   - draws the cubic polynomial $f(x) = x^2(x - 0.6)$
-   - draws a draggable filled circle that's constrained to coordinates $(x,f(x))$
-
-#+include: parametric-drag-example.js src js -n
-
-** Load ~.js~ files in html header
-   Tell org-mode's html generator to load ~d3~ and ~parametric-drag-example.js~
-   when it generates this page's html ~&lt;head&gt;~ element.
-   We did the same thing in example /#2/.
-
-   At the top of the ~.org~ file:
-   #+begin_example
-    ,#+html_head: &lt;script type="text/javascript" src="/ext/d3/d3.js"&gt;&lt;/script&gt;
-    ,#+html_head: &lt;script type="text/javascript" src="point.js"&gt;&lt;/script&gt;
-    ,#+html_head: &lt;script type="text/javascript" src="fx.js"&gt;&lt;/script&gt;
-    ,#+html_head: &lt;script type="text/javascript" src="fx_view.js"&gt;&lt;/script&gt;
-    ,#+html_head: &lt;script type="text/javascript" src="parametric-drag-example.js"&gt;&lt;/script&gt;
-   #+end_example
-
-   then this embedded javascript runs (see browser dev console)..
-   #+begin_example
-    ,#+begin_export html
-    &lt;div id="frame" style="border: 1px solid blue; max-width: 60em"&gt;&lt;/div&gt;
-    &lt;script type="text/javascript"&gt;
-      window.onload = function() { ex.start(this); }
-    &lt;/script&gt;
-    ,#+end_export
-   #+end_example
-</pre>
+<div id="content" class="content">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgfe24dd5">1. Links</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfe24dd5" class="outline-2">
+<h2 id="orgfe24dd5"><span class="section-number-2">1.</span> Links</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li><a href="https://breathe.readthedocs.io/en/latest/readthedocs.html">https://breathe.readthedocs.io/en/latest/readthedocs.html</a> publishing to readthedocs doxygen+breathe+sphinx</li>
+</ul>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>

@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zstream Library &mdash; cmake examples  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Compression Library" href="../compressionlib/index.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="../pyzstreamlib/TextZstream.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            cmake examples
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">cmake-examples documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyzstreamlib/index.html">zstream module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Zstream Library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv4I00E13basic_zstream"><code class="docutils literal notranslate"><span class="pre">basic_zstream</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N13basic_zstream9char_typeE"><code class="docutils literal notranslate"><span class="pre">basic_zstream::char_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N13basic_zstream11traits_typeE"><code class="docutils literal notranslate"><span class="pre">basic_zstream::traits_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N13basic_zstream8int_typeE"><code class="docutils literal notranslate"><span class="pre">basic_zstream::int_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N13basic_zstream8pos_typeE"><code class="docutils literal notranslate"><span class="pre">basic_zstream::pos_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N13basic_zstream8off_typeE"><code class="docutils literal notranslate"><span class="pre">basic_zstream::off_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N13basic_zstream15zstreambuf_typeE"><code class="docutils literal notranslate"><span class="pre">basic_zstream::zstreambuf_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N13basic_zstream18native_handle_typeE"><code class="docutils literal notranslate"><span class="pre">basic_zstream::native_handle_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N13basic_zstream13basic_zstreamENSt10streamsizeENSt3ios8openmodeE"><code class="docutils literal notranslate"><span class="pre">basic_zstream::basic_zstream()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N13basic_zstream13basic_zstreamENSt10streamsizeENSt10unique_ptrINSt9streambufEEENSt3ios8openmodeE"><code class="docutils literal notranslate"><span class="pre">basic_zstream::basic_zstream()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N13basic_zstream13basic_zstreamENSt10unique_ptrINSt9streambufEEENSt3ios8openmodeE"><code class="docutils literal notranslate"><span class="pre">basic_zstream::basic_zstream()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N13basic_zstream13basic_zstreamENSt10streamsizeEPKcNSt3ios8openmodeE"><code class="docutils literal notranslate"><span class="pre">basic_zstream::basic_zstream()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N13basic_zstream13basic_zstreamEPKcNSt3ios8openmodeE"><code class="docutils literal notranslate"><span class="pre">basic_zstream::basic_zstream()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N13basic_zstream5rdbufEv"><code class="docutils literal notranslate"><span class="pre">basic_zstream::rdbuf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK13basic_zstream8openmodeEv"><code class="docutils literal notranslate"><span class="pre">basic_zstream::openmode()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK13basic_zstream7is_openEv"><code class="docutils literal notranslate"><span class="pre">basic_zstream::is_open()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK13basic_zstream9is_closedEv"><code class="docutils literal notranslate"><span class="pre">basic_zstream::is_closed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK13basic_zstream9is_binaryEv"><code class="docutils literal notranslate"><span class="pre">basic_zstream::is_binary()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK13basic_zstream13native_handleEv"><code class="docutils literal notranslate"><span class="pre">basic_zstream::native_handle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N13basic_zstream5allocENSt10streamsizeE"><code class="docutils literal notranslate"><span class="pre">basic_zstream::alloc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N13basic_zstream4openEPKcNSt3ios8openmodeE"><code class="docutils literal notranslate"><span class="pre">basic_zstream::open()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N13basic_zstream10read_untilEP9char_typeNSt10streamsizeEb9char_type"><code class="docutils literal notranslate"><span class="pre">basic_zstream::read_until()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N13basic_zstream10read_untilEb9char_type8uint32_t"><code class="docutils literal notranslate"><span class="pre">basic_zstream::read_until()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N13basic_zstreamaSERR13basic_zstream"><code class="docutils literal notranslate"><span class="pre">basic_zstream::operator=()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N13basic_zstream4swapER13basic_zstream"><code class="docutils literal notranslate"><span class="pre">basic_zstream::swap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N13basic_zstream10final_syncEv"><code class="docutils literal notranslate"><span class="pre">basic_zstream::final_sync()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N13basic_zstream5closeEv"><code class="docutils literal notranslate"><span class="pre">basic_zstream::close()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N13basic_zstream14set_debug_flagEb"><code class="docutils literal notranslate"><span class="pre">basic_zstream::set_debug_flag()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N13basic_zstream21c_empty_native_handleE"><code class="docutils literal notranslate"><span class="pre">basic_zstream::c_empty_native_handle</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N13basic_zstream21c_default_buffer_sizeE"><code class="docutils literal notranslate"><span class="pre">basic_zstream::c_default_buffer_size</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv4I00E16basic_zstreambuf"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N16basic_zstreambuf9size_typeE"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::size_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N16basic_zstreambuf9char_typeE"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::char_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N16basic_zstreambuf8int_typeE"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::int_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N16basic_zstreambuf8off_typeE"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::off_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N16basic_zstreambuf8pos_typeE"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::pos_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N16basic_zstreambuf18native_handle_typeE"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::native_handle_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK16basic_zstreambuf8openmodeEv"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::openmode()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK16basic_zstreambuf7is_openEv"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::is_open()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK16basic_zstreambuf9is_closedEv"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::is_closed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK16basic_zstreambuf9is_binaryEv"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::is_binary()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK16basic_zstreambuf13native_handleEv"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::native_handle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK16basic_zstreambuf12n_z_in_totalEv"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::n_z_in_total()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK16basic_zstreambuf13n_uc_in_totalEv"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::n_uc_in_total()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK16basic_zstreambuf14n_uc_out_totalEv"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::n_uc_out_total()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK16basic_zstreambuf13n_z_out_totalEv"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::n_z_out_total()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK16basic_zstreambuf11native_sbufEv"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::native_sbuf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N16basic_zstreambuf16basic_zstreambufE9size_type18native_handle_typeNSt10unique_ptrINSt9streambufEEENSt3ios8openmodeE"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::basic_zstreambuf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N16basic_zstreambufD0Ev"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::~basic_zstreambuf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N16basic_zstreambuf4openEPKcNSt3ios8openmodeE"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::open()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N16basic_zstreambuf5allocE9size_type"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::alloc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N16basic_zstreambuf17adopt_native_sbufENSt10unique_ptrINSt9streambufEEE18native_handle_type"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::adopt_native_sbuf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N16basic_zstreambuf10final_syncEv"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::final_sync()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N16basic_zstreambuf5closeEv"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::close()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N16basic_zstreambufaSERR16basic_zstreambuf"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::operator=()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N16basic_zstreambuf4swapER16basic_zstreambuf"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::swap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N16basic_zstreambuf14set_debug_flagEb"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::set_debug_flag()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N16basic_zstreambuf15c_default_buf_zE"><code class="docutils literal notranslate"><span class="pre">basic_zstreambuf::c_default_buf_z</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv4I00E14basic_xfilebuf"><code class="docutils literal notranslate"><span class="pre">basic_xfilebuf</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N14basic_xfilebuf18basic_filebuf_typeE"><code class="docutils literal notranslate"><span class="pre">basic_xfilebuf::basic_filebuf_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N14basic_xfilebuf19basic_xfilebuf_typeE"><code class="docutils literal notranslate"><span class="pre">basic_xfilebuf::basic_xfilebuf_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N14basic_xfilebuf18native_handle_typeE"><code class="docutils literal notranslate"><span class="pre">basic_xfilebuf::native_handle_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N14basic_xfilebuf14basic_xfilebufEv"><code class="docutils literal notranslate"><span class="pre">basic_xfilebuf::basic_xfilebuf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N14basic_xfilebuf14basic_xfilebufERK14basic_xfilebuf"><code class="docutils literal notranslate"><span class="pre">basic_xfilebuf::basic_xfilebuf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N14basic_xfilebuf14basic_xfilebufERR14basic_xfilebuf"><code class="docutils literal notranslate"><span class="pre">basic_xfilebuf::basic_xfilebuf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK14basic_xfilebuf2fdEv"><code class="docutils literal notranslate"><span class="pre">basic_xfilebuf::fd()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK14basic_xfilebuf13native_handleEv"><code class="docutils literal notranslate"><span class="pre">basic_xfilebuf::native_handle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N14basic_xfilebuf4openEPKcNSt8ios_base8openmodeE"><code class="docutils literal notranslate"><span class="pre">basic_xfilebuf::open()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N14basic_xfilebuf4openERKNSt6stringENSt8ios_base8openmodeE"><code class="docutils literal notranslate"><span class="pre">basic_xfilebuf::open()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4I0EN14basic_xfilebuf4openENSt11_If_fs_pathI4PathP19basic_xfilebuf_typeEERK4PathNSt8ios_base8openmodeE"><code class="docutils literal notranslate"><span class="pre">basic_xfilebuf::open()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N14basic_xfilebuf4swapER14basic_xfilebuf"><code class="docutils literal notranslate"><span class="pre">basic_xfilebuf::swap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N14basic_xfilebufaSERK14basic_xfilebuf"><code class="docutils literal notranslate"><span class="pre">basic_xfilebuf::operator=()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N14basic_xfilebufaSERR14basic_xfilebuf"><code class="docutils literal notranslate"><span class="pre">basic_xfilebuf::operator=()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../compressionlib/index.html">Compression Library</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">cmake examples</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Zstream Library</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/zstreamlib/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="zstream-library">
+<span id="zstreamlib"></span><h1>Zstream Library<a class="headerlink" href="#zstream-library" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I00E13basic_zstream">
+<span id="_CPPv3I00E13basic_zstream"></span><span id="_CPPv2I00E13basic_zstream"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CharT</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Traits</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">char_traits</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I00E13basic_zstream" title="basic_zstream::CharT"><span class="n"><span class="pre">CharT</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classbasic__zstream"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">basic_zstream</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">basic_iostream</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I00E13basic_zstream" title="basic_zstream::CharT"><span class="n"><span class="pre">CharT</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">char_traits</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I00E13basic_zstream" title="basic_zstream::CharT"><span class="n"><span class="pre">CharT</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4I00E13basic_zstream" title="Link to this definition"></a><br /></dt>
+<dd><p>iostream implementation with automatic compression/uncompression </p>
+<p>
+Example 1 - create a <code class="docutils literal notranslate"></code>.gzip file <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">zstream</span> <span class="n">zs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;path/to/foo.gz&quot;</span><span class="p">,</span> <span class="n">ios</span><span class="p">::</span><span class="n">out</span><span class="p">);</span>
+
+<span class="n">zs</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Some text to be compressed&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="n">zs</span><span class="o">.</span><span class="n">close</span><span class="p">();</span>
+</pre></div>
+</div>
+</p>
+<p>Example 2 - read from a <code class="docutils literal notranslate"></code>.gzip file <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>zstream zs(0, &quot;path/to/foo.gz&quot;, ios::in);
+
+while (!zs.eof()) {
+    string x;
+    zs &gt;&gt; x;
+
+    cout &lt;&lt; &quot;input: [&quot; &lt;&lt; x &lt;&lt; &quot;]&quot; &lt;&lt; endl;
+}
+</pre></div>
+</div>
+</p>
+<p>Example 3 - attach existing streambuf <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ios</span><span class="p">::</span><span class="n">openmode</span> <span class="n">mode</span> <span class="o">=</span> <span class="o">...</span><span class="p">;</span>
+
+<span class="n">zstream</span> <span class="n">zs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nullptr</span><span class="p">,</span> <span class="n">mode</span><span class="p">);</span>
+
+<span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">streambuf</span><span class="o">&gt;</span> <span class="n">sbuf</span> <span class="o">=</span> <span class="o">...</span><span class="p">;</span>  <span class="o">//</span> <span class="n">streambuf</span> <span class="k">for</span> <span class="n">compressed</span> <span class="n">data</span>
+<span class="nb">int</span> <span class="n">fd</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>                       <span class="o">//</span> <span class="ow">or</span> <span class="n">actual</span> <span class="n">file</span> <span class="n">descriptor</span><span class="p">,</span>  <span class="k">if</span> <span class="n">known</span>
+
+<span class="n">zs</span><span class="o">.</span><span class="n">rdbuf</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">adopt_native_sbuf</span><span class="p">(</span><span class="n">std</span><span class="p">::</span><span class="n">move</span><span class="p">(</span><span class="n">sbuf</span><span class="p">),</span> <span class="n">fd</span><span class="p">);</span>
+</pre></div>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>CharT</strong> – character type for stream elements </p></li>
+<li><p><strong>Traits</strong> – character traits; typically <code class="docutils literal notranslate"><span class="pre">std::char_traits&lt;CharT&gt;</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-unnamed-group">Unnamed Group</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N13basic_zstream9char_typeE">
+<span id="_CPPv3N13basic_zstream9char_typeE"></span><span id="_CPPv2N13basic_zstream9char_typeE"></span><span class="target" id="classbasic__zstream_1a0db371565d8cbacda805183ca4669041"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">char_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00E13basic_zstream" title="basic_zstream::CharT"><span class="n"><span class="pre">CharT</span></span></a><a class="headerlink" href="#_CPPv4N13basic_zstream9char_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>imported from <code class="docutils literal notranslate"><span class="pre">Traits</span></code></p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N13basic_zstream11traits_typeE">
+<span id="_CPPv3N13basic_zstream11traits_typeE"></span><span id="_CPPv2N13basic_zstream11traits_typeE"></span><span class="target" id="classbasic__zstream_1afc2bc589d917ed90fe84c51f77862a0e"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">traits_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00E13basic_zstream" title="basic_zstream::Traits"><span class="n"><span class="pre">Traits</span></span></a><a class="headerlink" href="#_CPPv4N13basic_zstream11traits_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>imported from <code class="docutils literal notranslate"><span class="pre">Traits</span></code></p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N13basic_zstream8int_typeE">
+<span id="_CPPv3N13basic_zstream8int_typeE"></span><span id="_CPPv2N13basic_zstream8int_typeE"></span><span class="target" id="classbasic__zstream_1a3e5a7bab7328f1b4723cd5dd233f1eb9"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">int_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00E13basic_zstream" title="basic_zstream::Traits"><span class="n"><span class="pre">Traits</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">int_type</span></span><a class="headerlink" href="#_CPPv4N13basic_zstream8int_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>imported from <code class="docutils literal notranslate"><span class="pre">Traits</span></code></p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N13basic_zstream8pos_typeE">
+<span id="_CPPv3N13basic_zstream8pos_typeE"></span><span id="_CPPv2N13basic_zstream8pos_typeE"></span><span class="target" id="classbasic__zstream_1ab181bf39bbb851a084fb2a45a6f1775d"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pos_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00E13basic_zstream" title="basic_zstream::Traits"><span class="n"><span class="pre">Traits</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">pos_type</span></span><a class="headerlink" href="#_CPPv4N13basic_zstream8pos_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>imported from <code class="docutils literal notranslate"><span class="pre">Traits</span></code></p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N13basic_zstream8off_typeE">
+<span id="_CPPv3N13basic_zstream8off_typeE"></span><span id="_CPPv2N13basic_zstream8off_typeE"></span><span class="target" id="classbasic__zstream_1aafa4b46007f08e0fb35ace955f41c56d"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">off_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00E13basic_zstream" title="basic_zstream::Traits"><span class="n"><span class="pre">Traits</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">off_type</span></span><a class="headerlink" href="#_CPPv4N13basic_zstream8off_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>imported from <code class="docutils literal notranslate"><span class="pre">Traits</span></code></p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N13basic_zstream15zstreambuf_typeE">
+<span id="_CPPv3N13basic_zstream15zstreambuf_typeE"></span><span id="_CPPv2N13basic_zstream15zstreambuf_typeE"></span><span class="target" id="classbasic__zstream_1ae52a2d926c6b2581919488709882967a"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">zstreambuf_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00E16basic_zstreambuf" title="basic_zstreambuf"><span class="n"><span class="pre">basic_zstreambuf</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I00E13basic_zstream" title="basic_zstream::CharT"><span class="n"><span class="pre">CharT</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00E13basic_zstream" title="basic_zstream::Traits"><span class="n"><span class="pre">Traits</span></span></a><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N13basic_zstream15zstreambuf_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>imported from <code class="docutils literal notranslate"><span class="pre">Traits</span></code></p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N13basic_zstream18native_handle_typeE">
+<span id="_CPPv3N13basic_zstream18native_handle_typeE"></span><span id="_CPPv2N13basic_zstream18native_handle_typeE"></span><span class="target" id="classbasic__zstream_1afd8d589123bcf5fecba953010a290370"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">native_handle_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><a class="headerlink" href="#_CPPv4N13basic_zstream18native_handle_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>will import from <code class="docutils literal notranslate"><span class="pre">Traits</span></code> in c++26 </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-unnamed-group">Unnamed Group</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N13basic_zstream13basic_zstreamENSt10streamsizeENSt3ios8openmodeE">
+<span id="_CPPv3N13basic_zstream13basic_zstreamENSt10streamsizeENSt3ios8openmodeE"></span><span id="_CPPv2N13basic_zstream13basic_zstreamENSt10streamsizeENSt3ios8openmodeE"></span><span id="basic_zstream::basic_zstream__std::streamsize.std::ios::openmode"></span><span class="target" id="classbasic__zstream_1ae24fae1187a42065f220ec037a412996"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">basic_zstream</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">streamsize</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">buf_z</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N13basic_zstream21c_default_buffer_sizeE" title="basic_zstream::c_default_buffer_size"><span class="n"><span class="pre">c_default_buffer_size</span></span></a>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ios</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">openmode</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ios</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">in</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13basic_zstream13basic_zstreamENSt10streamsizeENSt3ios8openmodeE" title="Link to this definition"></a><br /></dt>
+<dd><p>Create zstream in closed state. </p>
+<p>Before using stream for i/o, application code must invoke either<ul class="simple">
+<li><p>attach a streambuf for compressed i/o (call <code class="docutils literal notranslate"><a class="reference internal" href="#classbasic__zstream_1aaa82627ec56da10edc7473d7439d6110"><span class="std std-ref"><span class="pre">rdbuf()</span></span></a></code> method <code class="docutils literal notranslate"><span class="pre">adopt_native_sbuf(sbuf,native_fd)</span></code>)</p></li>
+<li><p>call <a class="reference internal" href="#classbasic__zstream_1a0de0bf123ae69e2b3ac318078be085c6"><span class="std std-ref">open</span></a></p></li>
+</ul>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N13basic_zstream13basic_zstreamENSt10streamsizeENSt10unique_ptrINSt9streambufEEENSt3ios8openmodeE">
+<span id="_CPPv3N13basic_zstream13basic_zstreamENSt10streamsizeENSt10unique_ptrINSt9streambufEEENSt3ios8openmodeE"></span><span id="_CPPv2N13basic_zstream13basic_zstreamENSt10streamsizeENSt10unique_ptrINSt9streambufEEENSt3ios8openmodeE"></span><span id="basic_zstream::basic_zstream__std::streamsize.std::unique_ptr:std::streambuf:.std::ios::openmode"></span><span class="target" id="classbasic__zstream_1adb609229d5d0e8c1dbcf24a6d06f2a61"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">basic_zstream</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">streamsize</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">buf_z</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unique_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">streambuf</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">native_sbuf</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ios</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">openmode</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13basic_zstream13basic_zstreamENSt10streamsizeENSt10unique_ptrINSt9streambufEEENSt3ios8openmodeE" title="Link to this definition"></a><br /></dt>
+<dd><p>Create zstream using supplied streambuf for compressed data. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>buf_z</strong> – buffer size. Implementation allocates 4 buffers of this size, one each for {input, output} x {inflated, deflated}. </p></li>
+<li><p><strong>native_sbuf</strong> – streambuf for compressed data. Default is to allocate a xfilebuf instance. </p></li>
+<li><p><strong>mode</strong> – combination of <code class="docutils literal notranslate"><span class="pre">ios::in</span></code>, <code class="docutils literal notranslate"><span class="pre">ios::out</span></code>, <code class="docutils literal notranslate"><span class="pre">ios::binary</span></code>. Other <code class="docutils literal notranslate"><span class="pre">openmode</span></code> bits ignored. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N13basic_zstream13basic_zstreamENSt10unique_ptrINSt9streambufEEENSt3ios8openmodeE">
+<span id="_CPPv3N13basic_zstream13basic_zstreamENSt10unique_ptrINSt9streambufEEENSt3ios8openmodeE"></span><span id="_CPPv2N13basic_zstream13basic_zstreamENSt10unique_ptrINSt9streambufEEENSt3ios8openmodeE"></span><span id="basic_zstream::basic_zstream__std::unique_ptr:std::streambuf:.std::ios::openmode"></span><span class="target" id="classbasic__zstream_1a8702944814631d696fbd70a79bf80db9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">basic_zstream</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unique_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">streambuf</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">native_sbuf</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ios</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">openmode</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13basic_zstream13basic_zstreamENSt10unique_ptrINSt9streambufEEENSt3ios8openmodeE" title="Link to this definition"></a><br /></dt>
+<dd><p>Create zstream using supplied streambuf for compressed data, with default buffer size. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>native_sbuf</strong> – streambuf for compressed data. Default is to allocate a xfilebuf instance. </p></li>
+<li><p><strong>mode</strong> – combination of <code class="docutils literal notranslate"><span class="pre">ios::in</span></code>, <code class="docutils literal notranslate"><span class="pre">ios::out</span></code>, <code class="docutils literal notranslate"><span class="pre">ios::binary</span></code>. Other <code class="docutils literal notranslate"><span class="pre">openmode</span></code> bits ignored. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N13basic_zstream13basic_zstreamENSt10streamsizeEPKcNSt3ios8openmodeE">
+<span id="_CPPv3N13basic_zstream13basic_zstreamENSt10streamsizeEPKcNSt3ios8openmodeE"></span><span id="_CPPv2N13basic_zstream13basic_zstreamENSt10streamsizeEPKcNSt3ios8openmodeE"></span><span id="basic_zstream::basic_zstream__std::streamsize.cCP.std::ios::openmode"></span><span class="target" id="classbasic__zstream_1ab5d9a9d8c741d631c698416915fd0ab6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">basic_zstream</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">streamsize</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">buf_z</span></span>, <span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filename</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ios</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">openmode</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ios</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">in</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13basic_zstream13basic_zstreamENSt10streamsizeEPKcNSt3ios8openmodeE" title="Link to this definition"></a><br /></dt>
+<dd><p>Create zstream attached to a (compressed) file. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>buf_z</strong> – buffer size. Implementation allocates 4 buffers of this size, one each for {input, output} x {inflated, deflated}. </p></li>
+<li><p><strong>filename</strong> – Open file with this path to hold compressed data. File will be in gzip format. </p></li>
+<li><p><strong>mode</strong> – combination of <code class="docutils literal notranslate"><span class="pre">ios::in</span></code>, <code class="docutils literal notranslate"><span class="pre">ios::out</span></code>, <code class="docutils literal notranslate"><span class="pre">ios::binary</span></code>. Other <code class="docutils literal notranslate"><span class="pre">openmode</span></code> bits ignored. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N13basic_zstream13basic_zstreamEPKcNSt3ios8openmodeE">
+<span id="_CPPv3N13basic_zstream13basic_zstreamEPKcNSt3ios8openmodeE"></span><span id="_CPPv2N13basic_zstream13basic_zstreamEPKcNSt3ios8openmodeE"></span><span id="basic_zstream::basic_zstream__cCP.std::ios::openmode"></span><span class="target" id="classbasic__zstream_1abdae811d85dce9582b4626e4cb83b49e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">basic_zstream</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filename</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ios</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">openmode</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ios</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">in</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13basic_zstream13basic_zstreamEPKcNSt3ios8openmodeE" title="Link to this definition"></a><br /></dt>
+<dd><p>Create zstream in closed state. </p>
+<p>Before using stream for i/o, application code must invoke either<ul class="simple">
+<li><p>attach a streambuf for compressed i/o (call <code class="docutils literal notranslate"><a class="reference internal" href="#classbasic__zstream_1aaa82627ec56da10edc7473d7439d6110"><span class="std std-ref"><span class="pre">rdbuf()</span></span></a></code> method <code class="docutils literal notranslate"><span class="pre">adopt_native_sbuf(sbuf,native_fd)</span></code>)</p></li>
+<li><p>call <a class="reference internal" href="#classbasic__zstream_1a0de0bf123ae69e2b3ac318078be085c6"><span class="std std-ref">open</span></a></p></li>
+</ul>
+</p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-access-methods">access methods</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N13basic_zstream5rdbufEv">
+<span id="_CPPv3N13basic_zstream5rdbufEv"></span><span id="_CPPv2N13basic_zstream5rdbufEv"></span><span id="basic_zstream::rdbuf"></span><span class="target" id="classbasic__zstream_1aaa82627ec56da10edc7473d7439d6110"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N13basic_zstream15zstreambuf_typeE" title="basic_zstream::zstreambuf_type"><span class="n"><span class="pre">zstreambuf_type</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">rdbuf</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13basic_zstream5rdbufEv" title="Link to this definition"></a><br /></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> iff this zstream is in an open state (available for i/o) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK13basic_zstream8openmodeEv">
+<span id="_CPPv3NK13basic_zstream8openmodeEv"></span><span id="_CPPv2NK13basic_zstream8openmodeEv"></span><span id="basic_zstream::openmodeC"></span><span class="target" id="classbasic__zstream_1a25f642eb1fa89d463963f7ae10fcc33d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ios</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">openmode</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">openmode</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK13basic_zstream8openmodeEv" title="Link to this definition"></a><br /></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> iff this zstream is in an open state (available for i/o) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK13basic_zstream7is_openEv">
+<span id="_CPPv3NK13basic_zstream7is_openEv"></span><span id="_CPPv2NK13basic_zstream7is_openEv"></span><span id="basic_zstream::is_openC"></span><span class="target" id="classbasic__zstream_1a197a3d3cbb4aae73c87326b7cc1ff18a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">is_open</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK13basic_zstream7is_openEv" title="Link to this definition"></a><br /></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> iff this zstream is in an open state (available for i/o) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK13basic_zstream9is_closedEv">
+<span id="_CPPv3NK13basic_zstream9is_closedEv"></span><span id="_CPPv2NK13basic_zstream9is_closedEv"></span><span id="basic_zstream::is_closedC"></span><span class="target" id="classbasic__zstream_1a3097a6a50c065d35ef58f3555e3933a7"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">is_closed</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK13basic_zstream9is_closedEv" title="Link to this definition"></a><br /></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> iff this zstream is in a closed state (not available for i/o) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK13basic_zstream9is_binaryEv">
+<span id="_CPPv3NK13basic_zstream9is_binaryEv"></span><span id="_CPPv2NK13basic_zstream9is_binaryEv"></span><span id="basic_zstream::is_binaryC"></span><span class="target" id="classbasic__zstream_1a15aed9f622aebdd94fbde05dc06a82b0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">is_binary</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK13basic_zstream9is_binaryEv" title="Link to this definition"></a><br /></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> iff this zstream was last opened with <code class="docutils literal notranslate"><span class="pre">ios::binary</span></code> set </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK13basic_zstream13native_handleEv">
+<span id="_CPPv3NK13basic_zstream13native_handleEv"></span><span id="_CPPv2NK13basic_zstream13native_handleEv"></span><span id="basic_zstream::native_handleC"></span><span class="target" id="classbasic__zstream_1a5828fabd256a6a64da023a0763cb5b53"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N13basic_zstream18native_handle_typeE" title="basic_zstream::native_handle_type"><span class="n"><span class="pre">native_handle_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">native_handle</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK13basic_zstream13native_handleEv" title="Link to this definition"></a><br /></dt>
+<dd><p>report native handle (file descriptor), if known </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N13basic_zstream5allocENSt10streamsizeE">
+<span id="_CPPv3N13basic_zstream5allocENSt10streamsizeE"></span><span id="_CPPv2N13basic_zstream5allocENSt10streamsizeE"></span><span id="basic_zstream::alloc__std::streamsize"></span><span class="target" id="classbasic__zstream_1ada724c680254a83d2f82a433822e8111"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">alloc</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">streamsize</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">buf_z</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N13basic_zstream21c_default_buffer_sizeE" title="basic_zstream::c_default_buffer_size"><span class="n"><span class="pre">c_default_buffer_size</span></span></a><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13basic_zstream5allocENSt10streamsizeE" title="Link to this definition"></a><br /></dt>
+<dd><p>Allocate buffer space for inflation/deflation. </p>
+<p>May use before reading/writing any data, after calling ctor with 0 buf_z. Does not preserve any existing buffer contents. Not inteended to be used after beginning inflation/deflation work </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N13basic_zstream4openEPKcNSt3ios8openmodeE">
+<span id="_CPPv3N13basic_zstream4openEPKcNSt3ios8openmodeE"></span><span id="_CPPv2N13basic_zstream4openEPKcNSt3ios8openmodeE"></span><span id="basic_zstream::open__cCP.std::ios::openmode"></span><span class="target" id="classbasic__zstream_1a0de0bf123ae69e2b3ac318078be085c6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">open</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filename</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ios</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">openmode</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ios</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">in</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13basic_zstream4openEPKcNSt3ios8openmodeE" title="Link to this definition"></a><br /></dt>
+<dd><p>(Re)open zstream, connected to a .gz file </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – Connect zstream to file with this pathname. </p></li>
+<li><p><strong>mode</strong> – Openmode. If <code class="docutils literal notranslate"><span class="pre">ios::out</span></code>, provide empty file, creating or truncating as need be.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Post<span class="colon">:</span></dt>
+<dd class="field-even"><p>if successful, <code class="docutils literal notranslate"><a class="reference internal" href="#classbasic__zstream_1a197a3d3cbb4aae73c87326b7cc1ff18a"><span class="std std-ref"><span class="pre">is_open()</span></span></a></code> = <code class="docutils literal notranslate"><span class="pre">true</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N13basic_zstream10read_untilEP9char_typeNSt10streamsizeEb9char_type">
+<span id="_CPPv3N13basic_zstream10read_untilEP9char_typeNSt10streamsizeEb9char_type"></span><span id="_CPPv2N13basic_zstream10read_untilEP9char_typeNSt10streamsizeEb9char_type"></span><span id="basic_zstream::read_until__char_typeP.std::streamsize.b.char_type"></span><span class="target" id="classbasic__zstream_1adf4ec3360bae10bc0133291c131d8cc2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">streamsize</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">read_until</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N13basic_zstream9char_typeE" title="basic_zstream::char_type"><span class="n"><span class="pre">char_type</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">s</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">streamsize</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">check_delim_flag</span></span>, <a class="reference internal" href="#_CPPv4N13basic_zstream9char_typeE" title="basic_zstream::char_type"><span class="n"><span class="pre">char_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">delim</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13basic_zstream10read_untilEP9char_typeNSt10streamsizeEb9char_type" title="Link to this definition"></a><br /></dt>
+<dd><p>read characters up to delimiter </p>
+<p>Read up to <code class="docutils literal notranslate"><span class="pre">n-1</span></code> chars, into memory <code class="docutils literal notranslate"><span class="pre">s</span></code>[0]..s[n-2] Stop when either:<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">s</span></code>[] is full (contains <code class="docutils literal notranslate"><span class="pre">n-1</span></code> chars)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">check_delim_flag</span></code> is true, and reached character <code class="docutils literal notranslate"><span class="pre">delim</span></code></p></li>
+</ul>
+</p>
+<p>Similar to <code class="docutils literal notranslate"></code>.get(s,n,delim) except that:<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">read_until</span></code> returns the number of characters read instead of <code class="docutils literal notranslate"><span class="pre">*this</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">read_until</span></code> includes writes <code class="docutils literal notranslate"><span class="pre">delim</span></code> (if encountered) to <code class="docutils literal notranslate"><span class="pre">s</span></code></p></li>
+</ul>
+</p>
+<p><code class="docutils literal notranslate"><span class="pre">read_until</span></code> ignores the <code class="docutils literal notranslate"><span class="pre">noskipws</span></code> flag</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We want <code class="docutils literal notranslate"><a class="reference internal" href="#classbasic__zstream_1adf4ec3360bae10bc0133291c131d8cc2"><span class="std std-ref"><span class="pre">read_until()</span></span></a></code> as building block for overload that does not require caller to supply buffer size.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return values<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>number</strong> – of chars written to <code class="docutils literal notranslate"><span class="pre">s</span></code>[], excluding trailing null.</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>s</strong> – write characters to this array. </p></li>
+<li><p><strong>n</strong> – available space in <code class="docutils literal notranslate"><span class="pre">s</span></code>. Will not write past <code class="docutils literal notranslate"><span class="pre">s</span></code>[n-1] </p></li>
+<li><p><strong>check_delim_flag</strong> – <code class="docutils literal notranslate"><span class="pre">true</span></code> to stop after first occurrence of <code class="docutils literal notranslate"><span class="pre">delim</span></code></p></li>
+<li><p><strong>delim</strong> – if <code class="docutils literal notranslate"><span class="pre">check_delim_flag</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code> stop after first occurrence of <code class="docutils literal notranslate"><span class="pre">delim</span></code> in input </p></li>
+</ul>
+</dd>
+<dt class="field-odd">Post<span class="colon">:</span></dt>
+<dd class="field-odd"><p>if <code class="docutils literal notranslate"><a class="reference internal" href="#classbasic__zstream_1adf4ec3360bae10bc0133291c131d8cc2"><span class="std std-ref"><span class="pre">read_until()</span></span></a></code> returns <code class="docutils literal notranslate"><span class="pre">nr</span></code> with <code class="docutils literal notranslate"><span class="pre">nr&gt;0</span></code>, then <code class="docutils literal notranslate"><span class="pre">s</span></code>[nr-1] is null (i.e. <code class="docutils literal notranslate"><a class="reference internal" href="#classbasic__zstream_1a0db371565d8cbacda805183ca4669041"><span class="std std-ref"><span class="pre">char_type()</span></span></a></code>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N13basic_zstream10read_untilEb9char_type8uint32_t">
+<span id="_CPPv3N13basic_zstream10read_untilEb9char_type8uint32_t"></span><span id="_CPPv2N13basic_zstream10read_untilEb9char_type8uint32_t"></span><span id="basic_zstream::read_until__b.char_type.uint32_t"></span><span class="target" id="classbasic__zstream_1ace65049a04b46cce65ef6a572535a30c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">read_until</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">check_delim_flag</span></span>, <a class="reference internal" href="#_CPPv4N13basic_zstream9char_typeE" title="basic_zstream::char_type"><span class="n"><span class="pre">char_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">delim</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">block_z</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">4095</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13basic_zstream10read_untilEb9char_type8uint32_t" title="Link to this definition"></a><br /></dt>
+<dd><p>read characters up to delimiter and package into a string </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>implementation is O(n) for return value of length n.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>check_delim_flag</strong> – If <code class="docutils literal notranslate"><span class="pre">true</span></code> read until after first occurrence of <code class="docutils literal notranslate"><span class="pre">delim</span></code>. Otherwise read until end of input. </p></li>
+<li><p><strong>delim</strong> – Stop after first occurrence of this character. Ignored if <code class="docutils literal notranslate"><span class="pre">check_delim_flag</span></code> is <code class="docutils literal notranslate"><span class="pre">false</span></code>. </p></li>
+<li><p><strong>block_z</strong> – Use temporary strings of this size to assemble result.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return values<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>string</strong> – containing characters read </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N13basic_zstreamaSERR13basic_zstream">
+<span id="_CPPv3N13basic_zstreamaSERR13basic_zstream"></span><span id="_CPPv2N13basic_zstreamaSERR13basic_zstream"></span><span id="basic_zstream::assign-operator__basic_zstreamRR"></span><span class="target" id="classbasic__zstream_1aae805bb5ee09595379cada442ae8d44b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00E13basic_zstream" title="basic_zstream"><span class="n"><span class="pre">basic_zstream</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I00E13basic_zstream" title="basic_zstream"><span class="n"><span class="pre">basic_zstream</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13basic_zstreamaSERR13basic_zstream" title="Link to this definition"></a><br /></dt>
+<dd><p>Move assignment; zstream is movable. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N13basic_zstream4swapER13basic_zstream">
+<span id="_CPPv3N13basic_zstream4swapER13basic_zstream"></span><span id="_CPPv2N13basic_zstream4swapER13basic_zstream"></span><span id="basic_zstream::swap__basic_zstreamR"></span><span class="target" id="classbasic__zstream_1ad5f4d7caf0b52dd535f874e80935a8eb"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">swap</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I00E13basic_zstream" title="basic_zstream"><span class="n"><span class="pre">basic_zstream</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13basic_zstream4swapER13basic_zstream" title="Link to this definition"></a><br /></dt>
+<dd><p>exchange state with <code class="docutils literal notranslate"><span class="pre">x</span></code></p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N13basic_zstream10final_syncEv">
+<span id="_CPPv3N13basic_zstream10final_syncEv"></span><span id="_CPPv2N13basic_zstream10final_syncEv"></span><span id="basic_zstream::final_sync"></span><span class="target" id="classbasic__zstream_1aee07632f03adfa6419d3d40cb8ec0594"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">final_sync</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13basic_zstream10final_syncEv" title="Link to this definition"></a><br /></dt>
+<dd><p>flush any trailing compressed output; promise not to write any more before closing </p>
+<p>Allow application code to read final counter values (e.g. <a class="reference internal" href="#classbasic__zstreambuf_1a66443d197bbd0b31d8c9056ce1e235e8"><span class="std std-ref">zstreambuf::n_z_in_total</span></a>) before <a class="reference internal" href="#classbasic__zstream_1acb14c4a74b5bdf5598e1c591e55c2fa2"><span class="std std-ref">close</span></a> resets them. Otherwise application code can ignore this method. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N13basic_zstream5closeEv">
+<span id="_CPPv3N13basic_zstream5closeEv"></span><span id="_CPPv2N13basic_zstream5closeEv"></span><span id="basic_zstream::close"></span><span class="target" id="classbasic__zstream_1acb14c4a74b5bdf5598e1c591e55c2fa2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">close</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13basic_zstream5closeEv" title="Link to this definition"></a><br /></dt>
+<dd><p>close stream, ensuring all buffered compressed data is written </p>
+<dl class="field-list simple">
+<dt class="field-odd">Post<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#classbasic__zstream_1a3097a6a50c065d35ef58f3555e3933a7"><span class="std std-ref">is_closed</span></a> = <code class="docutils literal notranslate"><span class="pre">true</span></code></p>
+</dd>
+<dt class="field-even">Post<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">eof()</span></code> = <code class="docutils literal notranslate"><span class="pre">true</span></code></p>
+</dd>
+<dt class="field-odd">Post<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">fail()</span></code> = <code class="docutils literal notranslate"><span class="pre">false</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N13basic_zstream14set_debug_flagEb">
+<span id="_CPPv3N13basic_zstream14set_debug_flagEb"></span><span id="_CPPv2N13basic_zstream14set_debug_flagEb"></span><span id="basic_zstream::set_debug_flag__b"></span><span class="target" id="classbasic__zstream_1a56d2c26265a97ea0167122ae9ac59a7c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_debug_flag</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13basic_zstream14set_debug_flagEb" title="Link to this definition"></a><br /></dt>
+<dd><p>in debug build, mark streambuf to log some behavior to cerr </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-attributes">Public Static Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N13basic_zstream21c_empty_native_handleE">
+<span id="_CPPv3N13basic_zstream21c_empty_native_handleE"></span><span id="_CPPv2N13basic_zstream21c_empty_native_handleE"></span><span id="basic_zstream::c_empty_native_handle__native_handle_type"></span><span class="target" id="classbasic__zstream_1a38670ea0238e4ffaeaea8dd7b0dd282c"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N13basic_zstream18native_handle_typeE" title="basic_zstream::native_handle_type"><span class="n"><span class="pre">native_handle_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">c_empty_native_handle</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="o"><span class="pre">-</span></span><span class="m"><span class="pre">1</span></span><a class="headerlink" href="#_CPPv4N13basic_zstream21c_empty_native_handleE" title="Link to this definition"></a><br /></dt>
+<dd><p>Invalid file descriptor value. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N13basic_zstream21c_default_buffer_sizeE">
+<span id="_CPPv3N13basic_zstream21c_default_buffer_sizeE"></span><span id="_CPPv2N13basic_zstream21c_default_buffer_sizeE"></span><span id="basic_zstream::c_default_buffer_size__std::streamsize"></span><span class="target" id="classbasic__zstream_1a24176062d6d67a477c7baf41aadf4e9a"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">streamsize</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">c_default_buffer_size</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N13basic_zstream15zstreambuf_typeE" title="basic_zstream::zstreambuf_type"><span class="n"><span class="pre">zstreambuf_type</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">c_default_buf_z</span></span><a class="headerlink" href="#_CPPv4N13basic_zstream21c_default_buffer_sizeE" title="Link to this definition"></a><br /></dt>
+<dd><p>Default buffer size. Buffers are used to hold both compressed and uncompressed data. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I00E16basic_zstreambuf">
+<span id="_CPPv3I00E16basic_zstreambuf"></span><span id="_CPPv2I00E16basic_zstreambuf"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CharT</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Traits</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">char_traits</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I00E16basic_zstreambuf" title="basic_zstreambuf::CharT"><span class="n"><span class="pre">CharT</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classbasic__zstreambuf"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">basic_zstreambuf</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">basic_streambuf</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I00E16basic_zstreambuf" title="basic_zstreambuf::CharT"><span class="n"><span class="pre">CharT</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">char_traits</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I00E16basic_zstreambuf" title="basic_zstreambuf::CharT"><span class="n"><span class="pre">CharT</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4I00E16basic_zstreambuf" title="Link to this definition"></a><br /></dt>
+<dd><p>Implementation of <code class="docutils literal notranslate"><span class="pre">std::basic_streambuf</span></code> that provides automatic streaming inflation/deflation to gzip format. </p>
+<p>Example - allocating buffer space from constructor. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">zstreambuf</span> <span class="n">zbuf</span><span class="p">;</span>
+
+<span class="n">std</span><span class="p">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">xfilebuf</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">(</span><span class="n">new</span> <span class="n">filebuf</span><span class="p">());</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;path/to/file.gz&quot;</span><span class="p">,</span> <span class="n">std</span><span class="p">::</span><span class="n">ios</span><span class="p">::</span><span class="ow">in</span><span class="p">))</span>
+    <span class="n">zbuf</span><span class="o">.</span><span class="n">adopt_native_sbuf</span><span class="p">(</span><span class="n">std</span><span class="p">::</span><span class="n">move</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</p>
+<p>Example - allocating buffer space after constructor returns. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">zstreambuf</span> <span class="n">zbuf</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="n">zbuf</span><span class="o">.</span><span class="n">alloc</span><span class="p">(</span><span class="mi">64</span><span class="n">UL</span><span class="o">*</span><span class="mi">1024</span><span class="n">UL</span><span class="p">);</span>
+
+<span class="n">std</span><span class="p">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">xfilebuf</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">(</span><span class="n">new</span> <span class="n">filebuf</span><span class="p">());</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="o">-&gt;</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;path/to/file.gz&quot;</span><span class="p">,</span> <span class="n">std</span><span class="p">::</span><span class="n">ios</span><span class="p">::</span><span class="ow">in</span><span class="p">))</span>
+    <span class="n">zbuf</span><span class="o">.</span><span class="n">adopt_native_sbuf</span><span class="p">(</span><span class="n">std</span><span class="p">::</span><span class="n">move</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only uses calling thread; not threadsafe.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>CharT.</strong> – Typename for (uncompressed) characters. Compressed stream always comprises <code class="docutils literal notranslate"><span class="pre">uint8_t's</span></code></p></li>
+<li><p><strong>Traits.</strong> – Typename for streambuf traits object. Typically this will be <code class="docutils literal notranslate"><span class="pre">std::char_traits&lt;CharT&gt;</span></code>. </p></li>
+</ul>
+</dd>
+</dl>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-unnamed-group">Unnamed Group</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N16basic_zstreambuf9size_typeE">
+<span id="_CPPv3N16basic_zstreambuf9size_typeE"></span><span id="_CPPv2N16basic_zstreambuf9size_typeE"></span><span class="target" id="classbasic__zstreambuf_1ae11086a957b4563049edb1068944424b"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">uint64_t</span></span><a class="headerlink" href="#_CPPv4N16basic_zstreambuf9size_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>type for buffer sizes </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N16basic_zstreambuf9char_typeE">
+<span id="_CPPv3N16basic_zstreambuf9char_typeE"></span><span id="_CPPv2N16basic_zstreambuf9char_typeE"></span><span class="target" id="classbasic__zstreambuf_1a4697e1a52502f0b27986c7c37e423c78"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">char_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00E16basic_zstreambuf" title="basic_zstreambuf::Traits"><span class="n"><span class="pre">Traits</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">char_type</span></span><a class="headerlink" href="#_CPPv4N16basic_zstreambuf9char_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>type for character (the same as template parameter <code class="docutils literal notranslate"><span class="pre">CharT</span></code>) </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N16basic_zstreambuf8int_typeE">
+<span id="_CPPv3N16basic_zstreambuf8int_typeE"></span><span id="_CPPv2N16basic_zstreambuf8int_typeE"></span><span class="target" id="classbasic__zstreambuf_1a78fb4c6b9fb5602c0228c20d8fe8b03a"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">int_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00E16basic_zstreambuf" title="basic_zstreambuf::Traits"><span class="n"><span class="pre">Traits</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">int_type</span></span><a class="headerlink" href="#_CPPv4N16basic_zstreambuf8int_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>integral type large enough to hold a <code class="docutils literal notranslate"><span class="pre">CharT</span></code></p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N16basic_zstreambuf8off_typeE">
+<span id="_CPPv3N16basic_zstreambuf8off_typeE"></span><span id="_CPPv2N16basic_zstreambuf8off_typeE"></span><span class="target" id="classbasic__zstreambuf_1a44c8b76b661872abe8fcd7519ed0f3b3"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">off_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00E16basic_zstreambuf" title="basic_zstreambuf::Traits"><span class="n"><span class="pre">Traits</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">off_type</span></span><a class="headerlink" href="#_CPPv4N16basic_zstreambuf8off_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>integral type to represent a stream offset </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N16basic_zstreambuf8pos_typeE">
+<span id="_CPPv3N16basic_zstreambuf8pos_typeE"></span><span id="_CPPv2N16basic_zstreambuf8pos_typeE"></span><span class="target" id="classbasic__zstreambuf_1a8b3991f6840e8706003c198255ecd3d7"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pos_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00E16basic_zstreambuf" title="basic_zstreambuf::Traits"><span class="n"><span class="pre">Traits</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">pos_type</span></span><a class="headerlink" href="#_CPPv4N16basic_zstreambuf8pos_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>integral type to represent a stream position </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N16basic_zstreambuf18native_handle_typeE">
+<span id="_CPPv3N16basic_zstreambuf18native_handle_typeE"></span><span id="_CPPv2N16basic_zstreambuf18native_handle_typeE"></span><span class="target" id="classbasic__zstreambuf_1aa7ed9425d92e4d7bd8f9e542edeac4b2"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">native_handle_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><a class="headerlink" href="#_CPPv4N16basic_zstreambuf18native_handle_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>type to hold a native handle (i.e. file descriptor) Can get from <code class="docutils literal notranslate"><span class="pre">Traits</span></code> in c++26 </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-access-methods">Access methods</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK16basic_zstreambuf8openmodeEv">
+<span id="_CPPv3NK16basic_zstreambuf8openmodeEv"></span><span id="_CPPv2NK16basic_zstreambuf8openmodeEv"></span><span id="basic_zstreambuf::openmodeC"></span><span class="target" id="classbasic__zstreambuf_1a150806bf51197642518c60c444fe6a90"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ios</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">openmode</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">openmode</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16basic_zstreambuf8openmodeEv" title="Link to this definition"></a><br /></dt>
+<dd><p>report openmode value recorded the last time this streambuf was opened </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK16basic_zstreambuf7is_openEv">
+<span id="_CPPv3NK16basic_zstreambuf7is_openEv"></span><span id="_CPPv2NK16basic_zstreambuf7is_openEv"></span><span id="basic_zstreambuf::is_openC"></span><span class="target" id="classbasic__zstreambuf_1a05e1033c104e048fcf644a6b4a0eec10"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">is_open</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16basic_zstreambuf7is_openEv" title="Link to this definition"></a><br /></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> iff this zstreambuf is in an open state (available for i/o) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK16basic_zstreambuf9is_closedEv">
+<span id="_CPPv3NK16basic_zstreambuf9is_closedEv"></span><span id="_CPPv2NK16basic_zstreambuf9is_closedEv"></span><span id="basic_zstreambuf::is_closedC"></span><span class="target" id="classbasic__zstreambuf_1a54375b8463299b02bbc162f181c90e50"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">is_closed</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16basic_zstreambuf9is_closedEv" title="Link to this definition"></a><br /></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> iff this zstream is in a closed state (not available fopr i/o) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK16basic_zstreambuf9is_binaryEv">
+<span id="_CPPv3NK16basic_zstreambuf9is_binaryEv"></span><span id="_CPPv2NK16basic_zstreambuf9is_binaryEv"></span><span id="basic_zstreambuf::is_binaryC"></span><span class="target" id="classbasic__zstreambuf_1a3fb60c49ee7a6099bfdb936e9feb7bd2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">is_binary</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16basic_zstreambuf9is_binaryEv" title="Link to this definition"></a><br /></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> iff this zstreambuf was last opened with <code class="docutils literal notranslate"><span class="pre">ios::binary</span></code> set </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK16basic_zstreambuf13native_handleEv">
+<span id="_CPPv3NK16basic_zstreambuf13native_handleEv"></span><span id="_CPPv2NK16basic_zstreambuf13native_handleEv"></span><span id="basic_zstreambuf::native_handleC"></span><span class="target" id="classbasic__zstreambuf_1a85027fc3222ee198882838f3cd59df9a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N16basic_zstreambuf18native_handle_typeE" title="basic_zstreambuf::native_handle_type"><span class="n"><span class="pre">native_handle_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">native_handle</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16basic_zstreambuf13native_handleEv" title="Link to this definition"></a><br /></dt>
+<dd><p>report native handle (file descriptor), if known </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK16basic_zstreambuf12n_z_in_totalEv">
+<span id="_CPPv3NK16basic_zstreambuf12n_z_in_totalEv"></span><span id="_CPPv2NK16basic_zstreambuf12n_z_in_totalEv"></span><span id="basic_zstreambuf::n_z_in_totalC"></span><span class="target" id="classbasic__zstreambuf_1a66443d197bbd0b31d8c9056ce1e235e8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">n_z_in_total</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16basic_zstreambuf12n_z_in_totalEv" title="Link to this definition"></a><br /></dt>
+<dd><p>number of bytes compressed input (according to <code class="docutils literal notranslate"><span class="pre">zlib</span></code>) consumed since this stream last opened </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK16basic_zstreambuf13n_uc_in_totalEv">
+<span id="_CPPv3NK16basic_zstreambuf13n_uc_in_totalEv"></span><span id="_CPPv2NK16basic_zstreambuf13n_uc_in_totalEv"></span><span id="basic_zstreambuf::n_uc_in_totalC"></span><span class="target" id="classbasic__zstreambuf_1a804f074617dc7b13f470755681b4a3d9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">n_uc_in_total</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16basic_zstreambuf13n_uc_in_totalEv" title="Link to this definition"></a><br /></dt>
+<dd><p>number of bytes of inflated input (according to <code class="docutils literal notranslate"><span class="pre">zlib</span></code>) produced since this stream last opened </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK16basic_zstreambuf14n_uc_out_totalEv">
+<span id="_CPPv3NK16basic_zstreambuf14n_uc_out_totalEv"></span><span id="_CPPv2NK16basic_zstreambuf14n_uc_out_totalEv"></span><span id="basic_zstreambuf::n_uc_out_totalC"></span><span class="target" id="classbasic__zstreambuf_1aafc22804cfda2fdf03bf0248d138b06c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">n_uc_out_total</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16basic_zstreambuf14n_uc_out_totalEv" title="Link to this definition"></a><br /></dt>
+<dd><p>number of bytes of uncompressed output (according to <code class="docutils literal notranslate"><span class="pre">zlib</span></code>) consumed since this stream last opened </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK16basic_zstreambuf13n_z_out_totalEv">
+<span id="_CPPv3NK16basic_zstreambuf13n_z_out_totalEv"></span><span id="_CPPv2NK16basic_zstreambuf13n_z_out_totalEv"></span><span id="basic_zstreambuf::n_z_out_totalC"></span><span class="target" id="classbasic__zstreambuf_1a20eeb19b0e4db14ef6c99df2b814f9c5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">n_z_out_total</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16basic_zstreambuf13n_z_out_totalEv" title="Link to this definition"></a><br /></dt>
+<dd><p>number of bytes of deflated output (according to <code class="docutils literal notranslate"><span class="pre">zlib</span></code>) produced since this stream last opened </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK16basic_zstreambuf11native_sbufEv">
+<span id="_CPPv3NK16basic_zstreambuf11native_sbufEv"></span><span id="_CPPv2NK16basic_zstreambuf11native_sbufEv"></span><span id="basic_zstreambuf::native_sbufC"></span><span class="target" id="classbasic__zstreambuf_1ae849e987f793cc992048ad42d220d77b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">streambuf</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">native_sbuf</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16basic_zstreambuf11native_sbufEv" title="Link to this definition"></a><br /></dt>
+<dd><p>streambuf responsible for compressed version of this streambuf </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16basic_zstreambuf16basic_zstreambufE9size_type18native_handle_typeNSt10unique_ptrINSt9streambufEEENSt3ios8openmodeE">
+<span id="_CPPv3N16basic_zstreambuf16basic_zstreambufE9size_type18native_handle_typeNSt10unique_ptrINSt9streambufEEENSt3ios8openmodeE"></span><span id="_CPPv2N16basic_zstreambuf16basic_zstreambufE9size_type18native_handle_typeNSt10unique_ptrINSt9streambufEEENSt3ios8openmodeE"></span><span id="basic_zstreambuf::basic_zstreambuf__size_type.native_handle_type.std::unique_ptr:std::streambuf:.std::ios::openmode"></span><span class="target" id="classbasic__zstreambuf_1a740e65b6a804114496f49430f00896dc"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">basic_zstreambuf</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N16basic_zstreambuf9size_typeE" title="basic_zstreambuf::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">buf_z</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">64</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">1024</span></span>, <a class="reference internal" href="#_CPPv4N16basic_zstreambuf18native_handle_typeE" title="basic_zstreambuf::native_handle_type"><span class="n"><span class="pre">native_handle_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">fd</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="o"><span class="pre">-</span></span><span class="m"><span class="pre">1</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unique_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">streambuf</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">native_sbuf</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unique_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">streambuf</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ios</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">openmode</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ios</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">in</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16basic_zstreambuf16basic_zstreambufE9size_type18native_handle_typeNSt10unique_ptrINSt9streambufEEENSt3ios8openmodeE" title="Link to this definition"></a><br /></dt>
+<dd><p>Creates new zstreambuf. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Taking care with alignment: if <code class="docutils literal notranslate"><span class="pre">CharT</span></code> is a wide character type, probably want/need aligned buffers for uncompressed data.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>buf_z</strong> – Buffer size for inflation/deflation algorithm. Actual buffer memory consumption is 4x this value, to account for:<ul>
+<li><p><code class="docutils literal notranslate"></code>.in_zs_.z_in_buf_ buffer compressed input</p></li>
+<li><p><code class="docutils literal notranslate"></code>.in_zs_.uc_out_buf_ buffer uncompressed input</p></li>
+<li><p><code class="docutils literal notranslate"></code>.out_zs_.uc_in_buf_ buffer uncompressed output</p></li>
+<li><p><code class="docutils literal notranslate"></code>.out_zs_.z_out_buf_ buffer compressed output Can use 0 to defer buffer allocation </p></li>
+</ul>
+</p></li>
+<li><p><strong>fd</strong> – Native handle (file descriptor), if known, that <a class="reference internal" href="#classbasic__zstreambuf_1ae849e987f793cc992048ad42d220d77b"><span class="std std-ref">native_sbuf</span></a> is using. Providing to anticipate c++26, and for the sake of python <code class="docutils literal notranslate"><span class="pre">IOBase.fileno()</span></code> when using this stream from python. </p></li>
+<li><p><strong>native_sbuf</strong> – <code class="docutils literal notranslate"><span class="pre">streambuf</span></code> for doing compressed i/o. If this is a filebuf, it must be in an open state </p></li>
+<li><p><strong>mode</strong> – Openmode bitmask. combination of <code class="docutils literal notranslate"><span class="pre">std::ios::in</span></code>, <code class="docutils literal notranslate"><span class="pre">std::ios::out</span></code>, <code class="docutils literal notranslate"><span class="pre">std::ios::binary</span></code>. Other openmode bits are ignored </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16basic_zstreambufD0Ev">
+<span id="_CPPv3N16basic_zstreambufD0Ev"></span><span id="_CPPv2N16basic_zstreambufD0Ev"></span><span id="basic_zstreambuf::~basic_zstreambuf"></span><span class="target" id="classbasic__zstreambuf_1a84a2103a286c7d6d0000b43cac1650d5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~basic_zstreambuf</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16basic_zstreambufD0Ev" title="Link to this definition"></a><br /></dt>
+<dd><p>Destructor. Recovers resources, closing stream if necessary. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16basic_zstreambuf4openEPKcNSt3ios8openmodeE">
+<span id="_CPPv3N16basic_zstreambuf4openEPKcNSt3ios8openmodeE"></span><span id="_CPPv2N16basic_zstreambuf4openEPKcNSt3ios8openmodeE"></span><span id="basic_zstreambuf::open__cCP.std::ios::openmode"></span><span class="target" id="classbasic__zstreambuf_1a1cb3ee7d4214b9c0b07971ab89003cb9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">open</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filename</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ios</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">openmode</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ios</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">in</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16basic_zstreambuf4openEPKcNSt3ios8openmodeE" title="Link to this definition"></a><br /></dt>
+<dd><p>(Re)open streambuf, connected to a file </p>
+<p>If <code class="docutils literal notranslate"><span class="pre">mode</span></code> sets <code class="docutils literal notranslate"><span class="pre">std::ios::out</span></code>: open <code class="docutils literal notranslate"><span class="pre">filename</span></code> for writing; if file with that name already exists, truncate it; create new file if necessary. If <code class="docutils literal notranslate"><span class="pre">mode</span></code> does not set <code class="docutils literal notranslate"><span class="pre">std::ios::out</span></code>: open file for reading.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – path to file. If <code class="docutils literal notranslate"><span class="pre">mode&amp;ios::out</span></code>, create file if necessary, and truncate if file already exists. </p></li>
+<li><p><strong>mode</strong> – <code class="docutils literal notranslate"><span class="pre">ios::in</span></code>, <code class="docutils literal notranslate"><span class="pre">ios::out</span></code> only are supported; <code class="docutils literal notranslate"><span class="pre">ios::binary</span></code> is assumed, whether or not specified. (in particular: <code class="docutils literal notranslate"><span class="pre">ios::app</span></code>, <code class="docutils literal notranslate"><span class="pre">ios::trunc</span></code>, <code class="docutils literal notranslate"><span class="pre">ios::ate</span></code>, <code class="docutils literal notranslate"><span class="pre">ios::noreplace</span></code> not supported)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Post<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"></code>.<a class="reference internal" href="#classbasic__zstreambuf_1a05e1033c104e048fcf644a6b4a0eec10"><span class="std std-ref">is_open()</span></a> if file was successfully opened; <code class="docutils literal notranslate"></code>.<a class="reference internal" href="#classbasic__zstreambuf_1a54375b8463299b02bbc162f181c90e50"><span class="std std-ref">is_closed()</span></a> otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16basic_zstreambuf5allocE9size_type">
+<span id="_CPPv3N16basic_zstreambuf5allocE9size_type"></span><span id="_CPPv2N16basic_zstreambuf5allocE9size_type"></span><span id="basic_zstreambuf::alloc__size_type"></span><span class="target" id="classbasic__zstreambuf_1a7c8f06625c8ebf6e8a0ebdc3f4cdaebe"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">alloc</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N16basic_zstreambuf9size_typeE" title="basic_zstreambuf::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">buf_z</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N16basic_zstreambuf15c_default_buf_zE" title="basic_zstreambuf::c_default_buf_z"><span class="n"><span class="pre">c_default_buf_z</span></span></a><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16basic_zstreambuf5allocE9size_type" title="Link to this definition"></a><br /></dt>
+<dd><p>Allocate buffer space before first initiating i/o. </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Not intended to be used after beginning inflation/deflation work.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>buf_z</strong> – Buffer size. zstreambuf will create 4 buffers of this size. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16basic_zstreambuf17adopt_native_sbufENSt10unique_ptrINSt9streambufEEE18native_handle_type">
+<span id="_CPPv3N16basic_zstreambuf17adopt_native_sbufENSt10unique_ptrINSt9streambufEEE18native_handle_type"></span><span id="_CPPv2N16basic_zstreambuf17adopt_native_sbufENSt10unique_ptrINSt9streambufEEE18native_handle_type"></span><span id="basic_zstreambuf::adopt_native_sbuf__std::unique_ptr:std::streambuf:.native_handle_type"></span><span class="target" id="classbasic__zstreambuf_1a46c4f57d0f7f9f33b1b4e8ace1e5cbce"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">adopt_native_sbuf</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unique_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">streambuf</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span>, <a class="reference internal" href="#_CPPv4N16basic_zstreambuf18native_handle_typeE" title="basic_zstreambuf::native_handle_type"><span class="n"><span class="pre">native_handle_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">fd</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="o"><span class="pre">-</span></span><span class="m"><span class="pre">1</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16basic_zstreambuf17adopt_native_sbufENSt10unique_ptrINSt9streambufEEE18native_handle_type" title="Link to this definition"></a><br /></dt>
+<dd><p>Attach a streambuf for dealing with compressed data. </p>
+<p>If <code class="docutils literal notranslate"><span class="pre">x</span></code> is a <code class="docutils literal notranslate"><span class="pre">filebuf</span></code>, it must be in an open state, and it’s openmode should include <code class="docutils literal notranslate"><span class="pre">ios::binary</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – streambuf for compressed data, for example <code class="docutils literal notranslate"><span class="pre">stringbuf</span></code> or <code class="docutils literal notranslate"><span class="pre">filebuf</span></code> will work here. </p></li>
+<li><p><strong>fd</strong> – native handle (file descriptor on linux), if known, for informational purposes</p></li>
+</ul>
+</dd>
+<dt class="field-even">Post<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#classbasic__zstreambuf_1a05e1033c104e048fcf644a6b4a0eec10"><span class="std std-ref">is_open</span></a> = <code class="docutils literal notranslate"><span class="pre">true</span></code></p>
+</dd>
+<dt class="field-odd">Post<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#classbasic__zstreambuf_1ae849e987f793cc992048ad42d220d77b"><span class="std std-ref">native_sbuf</span></a> = address supplied with <code class="docutils literal notranslate"><span class="pre">x</span></code></p>
+</dd>
+<dt class="field-even">Post<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#classbasic__zstreambuf_1a85027fc3222ee198882838f3cd59df9a"><span class="std std-ref">native_handle</span></a> = <code class="docutils literal notranslate"><span class="pre">fd</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16basic_zstreambuf10final_syncEv">
+<span id="_CPPv3N16basic_zstreambuf10final_syncEv"></span><span id="_CPPv2N16basic_zstreambuf10final_syncEv"></span><span id="basic_zstreambuf::final_sync"></span><span class="target" id="classbasic__zstreambuf_1af5efc37f2d921f4998390305f0e57360"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">final_sync</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16basic_zstreambuf10final_syncEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Flush remaining compressed data; promise not to write again. </p>
+<p>Given that there will be no more uncompressed output, commit remaining compressed portion to output stream.</p>
+<p>Exposed so that application code can observe final byte counters (<a class="reference internal" href="#classbasic__zstreambuf_1aafc22804cfda2fdf03bf0248d138b06c"><span class="std std-ref">n_uc_out_total</span></a> <a class="reference internal" href="#classbasic__zstreambuf_1a20eeb19b0e4db14ef6c99df2b814f9c5"><span class="std std-ref">n_z_out_total</span></a>) before <a class="reference internal" href="#classbasic__zstreambuf_1aefd783ab7fe3016bd5e585ca2255658c"><span class="std std-ref">close</span></a> resets them </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16basic_zstreambuf5closeEv">
+<span id="_CPPv3N16basic_zstreambuf5closeEv"></span><span id="_CPPv2N16basic_zstreambuf5closeEv"></span><span id="basic_zstreambuf::close"></span><span class="target" id="classbasic__zstreambuf_1aefd783ab7fe3016bd5e585ca2255658c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">close</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16basic_zstreambuf5closeEv" title="Link to this definition"></a><br /></dt>
+<dd><p>flush remaining ouput and put stream in a closed state. </p>
+<p>Stream can be reopened using <a class="reference internal" href="#classbasic__zstreambuf_1a1cb3ee7d4214b9c0b07971ab89003cb9"><span class="std std-ref">open</span></a></p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16basic_zstreambufaSERR16basic_zstreambuf">
+<span id="_CPPv3N16basic_zstreambufaSERR16basic_zstreambuf"></span><span id="_CPPv2N16basic_zstreambufaSERR16basic_zstreambuf"></span><span id="basic_zstreambuf::assign-operator__basic_zstreambufRR"></span><span class="target" id="classbasic__zstreambuf_1a290a942617fa98f4cd4316097fa05976"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00E16basic_zstreambuf" title="basic_zstreambuf"><span class="n"><span class="pre">basic_zstreambuf</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I00E16basic_zstreambuf" title="basic_zstreambuf"><span class="n"><span class="pre">basic_zstreambuf</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16basic_zstreambufaSERR16basic_zstreambuf" title="Link to this definition"></a><br /></dt>
+<dd><p>Move-assignment. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16basic_zstreambuf4swapER16basic_zstreambuf">
+<span id="_CPPv3N16basic_zstreambuf4swapER16basic_zstreambuf"></span><span id="_CPPv2N16basic_zstreambuf4swapER16basic_zstreambuf"></span><span id="basic_zstreambuf::swap__basic_zstreambufR"></span><span class="target" id="classbasic__zstreambuf_1acfa9abf20999d0ee369af9fd3875db05"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">swap</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I00E16basic_zstreambuf" title="basic_zstreambuf"><span class="n"><span class="pre">basic_zstreambuf</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16basic_zstreambuf4swapER16basic_zstreambuf" title="Link to this definition"></a><br /></dt>
+<dd><p>swap state with another <a class="reference internal" href="#classbasic__zstreambuf"><span class="std std-ref">basic_zstreambuf</span></a></p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N16basic_zstreambuf14set_debug_flagEb">
+<span id="_CPPv3N16basic_zstreambuf14set_debug_flagEb"></span><span id="_CPPv2N16basic_zstreambuf14set_debug_flagEb"></span><span id="basic_zstreambuf::set_debug_flag__b"></span><span class="target" id="classbasic__zstreambuf_1ac451d5ae3059387ddc061559c1e19d48"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_debug_flag</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16basic_zstreambuf14set_debug_flagEb" title="Link to this definition"></a><br /></dt>
+<dd><p>in a debug build, control logging for this instance </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> – <code class="docutils literal notranslate"><span class="pre">true</span></code> to enable, <code class="docutils literal notranslate"><span class="pre">false</span></code> to disable </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-attributes">Public Static Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N16basic_zstreambuf15c_default_buf_zE">
+<span id="_CPPv3N16basic_zstreambuf15c_default_buf_zE"></span><span id="_CPPv2N16basic_zstreambuf15c_default_buf_zE"></span><span id="basic_zstreambuf::c_default_buf_z__size_type"></span><span class="target" id="classbasic__zstreambuf_1a237170546886190ddbfc97329a5b98ec"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N16basic_zstreambuf9size_typeE" title="basic_zstreambuf::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">c_default_buf_z</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="../compressionlib/index.html#_CPPv424buffered_inflate_zstream" title="buffered_inflate_zstream"><span class="n"><span class="pre">buffered_inflate_zstream</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="../compressionlib/index.html#_CPPv4N24buffered_inflate_zstream15c_default_buf_zE" title="buffered_inflate_zstream::c_default_buf_z"><span class="n"><span class="pre">c_default_buf_z</span></span></a><a class="headerlink" href="#_CPPv4N16basic_zstreambuf15c_default_buf_zE" title="Link to this definition"></a><br /></dt>
+<dd><p>default buffer size for inflation/deflation (arbitrarily taking value from inflate side) </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I00E14basic_xfilebuf">
+<span id="_CPPv3I00E14basic_xfilebuf"></span><span id="_CPPv2I00E14basic_xfilebuf"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CharT</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Traits</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">char_traits</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I00E14basic_xfilebuf" title="basic_xfilebuf::CharT"><span class="n"><span class="pre">CharT</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classbasic__xfilebuf"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">basic_xfilebuf</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">basic_filebuf</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I00E14basic_xfilebuf" title="basic_xfilebuf::CharT"><span class="n"><span class="pre">CharT</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">char_traits</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I00E14basic_xfilebuf" title="basic_xfilebuf::CharT"><span class="n"><span class="pre">CharT</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4I00E14basic_xfilebuf" title="Link to this definition"></a><br /></dt>
+<dd><p>Minimal extension of gcc’s <code class="docutils literal notranslate"><span class="pre">std::basic_filebuf</span></code>, for the sole purpose of exposing file descriptor. </p>
+<p>We want to support the <code class="docutils literal notranslate"><span class="pre">iostream::native_handle()</span></code> method, in advance of c++26.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><ol class="loweralpha simple">
+<li><p>For file i/o, we want to know the file descriptor associated with a stream:<ul class="simple">
+<li><p>To permit using <code class="docutils literal notranslate"><span class="pre">epoll()</span></code>, <code class="docutils literal notranslate"><span class="pre">io_uring_enter()</span></code> or similar mechanism to schedule i/o activity on linux</p></li>
+<li><p>To implement python <code class="docutils literal notranslate"><span class="pre">IOBase.fileno()</span></code> when using the stack: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">zstream</span><span class="o">.</span><span class="n">py</span> <span class="o">/</span> <span class="n">pyzstream</span> <span class="o">/</span> <span class="p">::</span><span class="n">zstream</span> <span class="o">/</span> <span class="p">::</span><span class="n">zstreambuf</span>
+<span class="p">(</span><span class="n">python</span><span class="p">)</span>     <span class="p">(</span><span class="n">pybind11</span><span class="p">)</span>     <span class="p">(</span><span class="n">c</span><span class="o">++</span><span class="p">)</span>        <span class="p">(</span><span class="n">c</span><span class="o">++</span><span class="p">)</span>
+</pre></div>
+</div>
+</p></li>
+</ul>
+</p></li>
+<li><p>The GNU 12.3.0 stdc++ library has (under <code class="docutils literal notranslate"><span class="pre">include/c++/12</span></code>.3.0): <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">x86_64</span><span class="o">-</span><span class="n">unknown</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">bits</span><span class="o">/</span><span class="n">c</span><span class="o">++</span><span class="n">io</span><span class="o">.</span><span class="n">h</span><span class="p">]</span>        <span class="n">typedef</span> <span class="n">FILE</span> <span class="n">__c_file</span>
+<span class="p">[</span><span class="n">x86_64</span><span class="o">-</span><span class="n">unknown</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">bits</span><span class="o">/</span><span class="n">basic_file</span><span class="o">.</span><span class="n">h</span><span class="p">]</span>   <span class="n">__c_file</span> <span class="o">*</span> <span class="n">__basic_file</span><span class="o">&lt;</span><span class="n">char</span><span class="o">&gt;</span><span class="p">::</span><span class="n">_M_cfile</span> <span class="p">(</span><span class="n">private</span><span class="p">)</span>
+                                               <span class="nb">int</span> <span class="n">__basic_file</span><span class="o">&lt;</span><span class="n">char</span><span class="o">&gt;</span><span class="p">::</span><span class="n">fd</span><span class="p">()</span>            <span class="p">(</span><span class="n">public</span><span class="p">)</span>
+<span class="p">[</span><span class="n">include</span><span class="o">/</span><span class="n">fstream</span><span class="p">]</span>                              <span class="n">__basic_file</span><span class="o">&lt;</span><span class="n">char</span><span class="o">&gt;</span> <span class="n">basic_filebuf</span><span class="o">&lt;..&gt;</span><span class="p">::</span><span class="n">_M_file</span> <span class="p">(</span><span class="n">protected</span><span class="p">)</span>
+</pre></div>
+</div>
+</p></li>
+<li><p>We can’t get this from a <code class="docutils literal notranslate"><span class="pre">std::filebuf</span></code> via public API (at least, prior to c++26 <code class="docutils literal notranslate"><span class="pre">filebuf::native_handle()</span></code>):</p></li>
+<li><p>There’s also no public API path to attach a separately-created file descriptor with a filebuf.</p></li>
+<li><p>This leaves us the narrowest path to squeeze through, followed here:<ul class="simple">
+<li><p>Write class inheriting <code class="docutils literal notranslate"><span class="pre">std::filebuf</span></code></p></li>
+<li><p>In this class, provide wrapper for <code class="docutils literal notranslate"><span class="pre">std::filebuf::open()</span></code></p></li>
+<li><p>Wrapper can access file descriptor (after successful .<a class="reference internal" href="#classbasic__xfilebuf_1a6f737f1fbcbfb82c06b074bd08f92290"><span class="std std-ref">open()</span></a>) using <code class="docutils literal notranslate"><span class="pre">self-&gt;_M_file.fd()</span></code></p></li>
+<li><p>Record file descriptor separately (after that can use only the unextended <code class="docutils literal notranslate"><span class="pre">std::filebuf</span></code> api </p></li>
+</ul>
+</p></li>
+</ol>
+</p>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N14basic_xfilebuf18basic_filebuf_typeE">
+<span id="_CPPv3N14basic_xfilebuf18basic_filebuf_typeE"></span><span id="_CPPv2N14basic_xfilebuf18basic_filebuf_typeE"></span><span class="target" id="classbasic__xfilebuf_1a972fb846c387501700ed9e2bdb4b2d13"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">basic_filebuf_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">basic_filebuf</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I00E14basic_xfilebuf" title="basic_xfilebuf::CharT"><span class="n"><span class="pre">CharT</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00E14basic_xfilebuf" title="basic_xfilebuf::Traits"><span class="n"><span class="pre">Traits</span></span></a><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N14basic_xfilebuf18basic_filebuf_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>typealias for parent class </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N14basic_xfilebuf19basic_xfilebuf_typeE">
+<span id="_CPPv3N14basic_xfilebuf19basic_xfilebuf_typeE"></span><span id="_CPPv2N14basic_xfilebuf19basic_xfilebuf_typeE"></span><span class="target" id="classbasic__xfilebuf_1aa74b9a0510dac9308a8c564af63a28f0"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">basic_xfilebuf_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00E14basic_xfilebuf" title="basic_xfilebuf"><span class="n"><span class="pre">basic_xfilebuf</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I00E14basic_xfilebuf" title="basic_xfilebuf::CharT"><span class="n"><span class="pre">CharT</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00E14basic_xfilebuf" title="basic_xfilebuf::Traits"><span class="n"><span class="pre">Traits</span></span></a><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N14basic_xfilebuf19basic_xfilebuf_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>typealias for self </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N14basic_xfilebuf18native_handle_typeE">
+<span id="_CPPv3N14basic_xfilebuf18native_handle_typeE"></span><span id="_CPPv2N14basic_xfilebuf18native_handle_typeE"></span><span class="target" id="classbasic__xfilebuf_1a0cc87f31f0ba518133b5cf7f357d0739"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">native_handle_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><a class="headerlink" href="#_CPPv4N14basic_xfilebuf18native_handle_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>typealias for native handle type. </p>
+<p>
+(might as well make a reasonable effort to follow c++26 conventions here) </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Only known to be correct on linux.</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14basic_xfilebuf14basic_xfilebufEv">
+<span id="_CPPv3N14basic_xfilebuf14basic_xfilebufEv"></span><span id="_CPPv2N14basic_xfilebuf14basic_xfilebufEv"></span><span id="basic_xfilebuf::basic_xfilebuf"></span><span class="target" id="classbasic__xfilebuf_1a20207f835a3d2f03dbd48f7fdf8b4db5"></span><span class="sig-name descname"><span class="n"><span class="pre">basic_xfilebuf</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N14basic_xfilebuf14basic_xfilebufEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Default constructor. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14basic_xfilebuf14basic_xfilebufERK14basic_xfilebuf">
+<span id="_CPPv3N14basic_xfilebuf14basic_xfilebufERK14basic_xfilebuf"></span><span id="_CPPv2N14basic_xfilebuf14basic_xfilebufERK14basic_xfilebuf"></span><span id="basic_xfilebuf::basic_xfilebuf__basic_xfilebufCR"></span><span class="target" id="classbasic__xfilebuf_1a6cc5be3b1cfcaeb8c70e23001a6b1d56"></span><span class="sig-name descname"><span class="n"><span class="pre">basic_xfilebuf</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N14basic_xfilebuf14basic_xfilebufERK14basic_xfilebuf" title="basic_xfilebuf::basic_xfilebuf"><span class="n"><span class="pre">basic_xfilebuf</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N14basic_xfilebuf14basic_xfilebufERK14basic_xfilebuf" title="Link to this definition"></a><br /></dt>
+<dd><p><a class="reference internal" href="#classbasic__xfilebuf"><span class="std std-ref">basic_xfilebuf</span></a> is not copyable (since <code class="docutils literal notranslate"><span class="pre">basic_filebuf</span></code> isn’t) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14basic_xfilebuf14basic_xfilebufERR14basic_xfilebuf">
+<span id="_CPPv3N14basic_xfilebuf14basic_xfilebufERR14basic_xfilebuf"></span><span id="_CPPv2N14basic_xfilebuf14basic_xfilebufERR14basic_xfilebuf"></span><span id="basic_xfilebuf::basic_xfilebuf__basic_xfilebufRR"></span><span class="target" id="classbasic__xfilebuf_1a67eec4fd209d393a4184771e96845925"></span><span class="sig-name descname"><span class="n"><span class="pre">basic_xfilebuf</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N14basic_xfilebuf14basic_xfilebufERR14basic_xfilebuf" title="basic_xfilebuf::basic_xfilebuf"><span class="n"><span class="pre">basic_xfilebuf</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N14basic_xfilebuf14basic_xfilebufERR14basic_xfilebuf" title="Link to this definition"></a><br /></dt>
+<dd><p><a class="reference internal" href="#classbasic__xfilebuf"><span class="std std-ref">basic_xfilebuf</span></a> is not movable (since <code class="docutils literal notranslate"><span class="pre">basic_filebuf</span></code> isn’t) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK14basic_xfilebuf2fdEv">
+<span id="_CPPv3NK14basic_xfilebuf2fdEv"></span><span id="_CPPv2NK14basic_xfilebuf2fdEv"></span><span id="basic_xfilebuf::fdC"></span><span class="target" id="classbasic__xfilebuf_1a4b2e1b7a5845e2b4822901f8f1975bd4"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N14basic_xfilebuf18native_handle_typeE" title="basic_xfilebuf::native_handle_type"><span class="n"><span class="pre">native_handle_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fd</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK14basic_xfilebuf2fdEv" title="Link to this definition"></a><br /></dt>
+<dd><p>provide (readonly) access to file descriptor associated with this stream </p>
+<p>
+Asof c++26 can use <code class="docutils literal notranslate"><span class="pre">std::basic_filebuf::native_handle()</span></code> At that point <a class="reference internal" href="#classbasic__xfilebuf"><span class="std std-ref">basic_xfilebuf</span></a> can be abandoned </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Implementation tested only on linux.</p>
+</div>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK14basic_xfilebuf13native_handleEv">
+<span id="_CPPv3NK14basic_xfilebuf13native_handleEv"></span><span id="_CPPv2NK14basic_xfilebuf13native_handleEv"></span><span id="basic_xfilebuf::native_handleC"></span><span class="target" id="classbasic__xfilebuf_1afe1e7d7bfc410c4c6ddfc1441eac8a7a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N14basic_xfilebuf18native_handle_typeE" title="basic_xfilebuf::native_handle_type"><span class="n"><span class="pre">native_handle_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">native_handle</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK14basic_xfilebuf13native_handleEv" title="Link to this definition"></a><br /></dt>
+<dd><p>report O/S native handle associated with this streambuf. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14basic_xfilebuf4openEPKcNSt8ios_base8openmodeE">
+<span id="_CPPv3N14basic_xfilebuf4openEPKcNSt8ios_base8openmodeE"></span><span id="_CPPv2N14basic_xfilebuf4openEPKcNSt8ios_base8openmodeE"></span><span id="basic_xfilebuf::open__cCP.std::ios_base::openmode"></span><span class="target" id="classbasic__xfilebuf_1a6f737f1fbcbfb82c06b074bd08f92290"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N14basic_xfilebuf19basic_xfilebuf_typeE" title="basic_xfilebuf::basic_xfilebuf_type"><span class="n"><span class="pre">basic_xfilebuf_type</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">open</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">s</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ios_base</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">openmode</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14basic_xfilebuf4openEPKcNSt8ios_base8openmodeE" title="Link to this definition"></a><br /></dt>
+<dd><p>parallel <code class="docutils literal notranslate"><span class="pre">std::basic_filebuf</span></code> method with similar signature, except we use most-derived type for return pointer. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">this</span></code> on successful open; <code class="docutils literal notranslate"><span class="pre">nullptr</span></code> otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14basic_xfilebuf4openERKNSt6stringENSt8ios_base8openmodeE">
+<span id="_CPPv3N14basic_xfilebuf4openERKNSt6stringENSt8ios_base8openmodeE"></span><span id="_CPPv2N14basic_xfilebuf4openERKNSt6stringENSt8ios_base8openmodeE"></span><span id="basic_xfilebuf::open__ssCR.std::ios_base::openmode"></span><span class="target" id="classbasic__xfilebuf_1a0734b66c3d07f85e193bb4663b3ac813"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N14basic_xfilebuf19basic_xfilebuf_typeE" title="basic_xfilebuf::basic_xfilebuf_type"><span class="n"><span class="pre">basic_xfilebuf_type</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">open</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">s</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ios_base</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">openmode</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14basic_xfilebuf4openERKNSt6stringENSt8ios_base8openmodeE" title="Link to this definition"></a><br /></dt>
+<dd><p>parallel <code class="docutils literal notranslate"><span class="pre">std::basic_filebuf</span></code> method with similar signature, except we use most-derived type for return pointer. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">this</span></code> on successful open; <code class="docutils literal notranslate"><span class="pre">nullptr</span></code> otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN14basic_xfilebuf4openENSt11_If_fs_pathI4PathP19basic_xfilebuf_typeEERK4PathNSt8ios_base8openmodeE">
+<span id="_CPPv3I0EN14basic_xfilebuf4openERK4PathNSt8ios_base8openmodeE"></span><span id="_CPPv2I0EN14basic_xfilebuf4openERK4PathNSt8ios_base8openmodeE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Path</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classbasic__xfilebuf_1a7b080abcb3a1514a77a4972721a6641d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">_If_fs_path</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0EN14basic_xfilebuf4openENSt11_If_fs_pathI4PathP19basic_xfilebuf_typeEERK4PathNSt8ios_base8openmodeE" title="basic_xfilebuf::open::Path"><span class="n"><span class="pre">Path</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N14basic_xfilebuf19basic_xfilebuf_typeE" title="basic_xfilebuf::basic_xfilebuf_type"><span class="n"><span class="pre">basic_xfilebuf_type</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">open</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN14basic_xfilebuf4openENSt11_If_fs_pathI4PathP19basic_xfilebuf_typeEERK4PathNSt8ios_base8openmodeE" title="basic_xfilebuf::open::Path"><span class="n"><span class="pre">Path</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">s</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ios_base</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">openmode</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN14basic_xfilebuf4openENSt11_If_fs_pathI4PathP19basic_xfilebuf_typeEERK4PathNSt8ios_base8openmodeE" title="Link to this definition"></a><br /></dt>
+<dd><p>parallel <code class="docutils literal notranslate"><span class="pre">std::basic_filebuf</span></code> method with similar signature, except we use most-derived type for return pointer. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">this</span></code> on successful open; <code class="docutils literal notranslate"><span class="pre">nullptr</span></code> otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14basic_xfilebuf4swapER14basic_xfilebuf">
+<span id="_CPPv3N14basic_xfilebuf4swapER14basic_xfilebuf"></span><span id="_CPPv2N14basic_xfilebuf4swapER14basic_xfilebuf"></span><span id="basic_xfilebuf::swap__basic_xfilebufR"></span><span class="target" id="classbasic__xfilebuf_1a10147087c0ac98b0218c26f37e8cc969"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">swap</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I00E14basic_xfilebuf" title="basic_xfilebuf"><span class="n"><span class="pre">basic_xfilebuf</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14basic_xfilebuf4swapER14basic_xfilebuf" title="Link to this definition"></a><br /></dt>
+<dd><p>swap state with another <a class="reference internal" href="#classbasic__xfilebuf"><span class="std std-ref">basic_xfilebuf</span></a> instance </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14basic_xfilebufaSERK14basic_xfilebuf">
+<span id="_CPPv3N14basic_xfilebufaSERK14basic_xfilebuf"></span><span id="_CPPv2N14basic_xfilebufaSERK14basic_xfilebuf"></span><span id="basic_xfilebuf::assign-operator__basic_xfilebufCR"></span><span class="target" id="classbasic__xfilebuf_1a0907d120e1a0a2d4c8592be46ad6d047"></span><a class="reference internal" href="#_CPPv4I00E14basic_xfilebuf" title="basic_xfilebuf"><span class="n"><span class="pre">basic_xfilebuf</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I00E14basic_xfilebuf" title="basic_xfilebuf"><span class="n"><span class="pre">basic_xfilebuf</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N14basic_xfilebufaSERK14basic_xfilebuf" title="Link to this definition"></a><br /></dt>
+<dd><p><a class="reference internal" href="#classbasic__xfilebuf"><span class="std std-ref">basic_xfilebuf</span></a> is not copyable (since <code class="docutils literal notranslate"><span class="pre">std::filebuf</span></code> isn’t) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N14basic_xfilebufaSERR14basic_xfilebuf">
+<span id="_CPPv3N14basic_xfilebufaSERR14basic_xfilebuf"></span><span id="_CPPv2N14basic_xfilebufaSERR14basic_xfilebuf"></span><span id="basic_xfilebuf::assign-operator__basic_xfilebufRR"></span><span class="target" id="classbasic__xfilebuf_1ad31961079657d27088eda03c7577759e"></span><a class="reference internal" href="#_CPPv4I00E14basic_xfilebuf" title="basic_xfilebuf"><span class="n"><span class="pre">basic_xfilebuf</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I00E14basic_xfilebuf" title="basic_xfilebuf"><span class="n"><span class="pre">basic_xfilebuf</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N14basic_xfilebufaSERR14basic_xfilebuf" title="Link to this definition"></a><br /></dt>
+<dd><p><a class="reference internal" href="#classbasic__xfilebuf"><span class="std std-ref">basic_xfilebuf</span></a> is not movable </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../pyzstreamlib/TextZstream.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../compressionlib/index.html" class="btn btn-neutral float-right" title="Compression Library" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1980, Roland Conybeare.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+.. _pyzstreamlib_BufferedZstream:
+
+.. toctree::
+   :maxdepth: 2
+
+.. py:class:: zstream.BufferedZstream(file, mode, bufsize)
+
+   I/O class that works with compressed (``.gzip``) binary data
+
+   Inherits ::class:`ZstreamBase` and `io.BufferedIOBase <https://python.readthedocs.io/en/latest/library/io.html#io.BufferedIOBase>`_
+
+   `io.BufferedIOBase` behavior:
+
+   .. py:method:: detach
+
+      Not supported (underlying buffers exist,  but are not exposed to python)

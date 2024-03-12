@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compression Library &mdash; cmake examples  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Zstream Library" href="../zstreamlib/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            cmake examples
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">cmake-examples documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyzstreamlib/index.html">zstream module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zstreamlib/index.html">Zstream Library</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Compression Library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv411compression"><code class="docutils literal notranslate"><span class="pre">compression</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N11compression7inflateERKNSt6vectorINSt7uint8_tEEENSt8uint64_tE"><code class="docutils literal notranslate"><span class="pre">compression::inflate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N11compression7deflateERKNSt6vectorINSt7uint8_tEEE"><code class="docutils literal notranslate"><span class="pre">compression::deflate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N11compression12inflate_fileERKNSt6stringERKNSt6stringEbb"><code class="docutils literal notranslate"><span class="pre">compression::inflate_file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N11compression12deflate_fileERKNSt6stringERKNSt6stringEbb"><code class="docutils literal notranslate"><span class="pre">compression::deflate_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv424buffered_inflate_zstream"><code class="docutils literal notranslate"><span class="pre">buffered_inflate_zstream</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream11z_span_typeE"><code class="docutils literal notranslate"><span class="pre">buffered_inflate_zstream::z_span_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream9size_typeE"><code class="docutils literal notranslate"><span class="pre">buffered_inflate_zstream::size_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream24buffered_inflate_zstreamE9size_type9size_type"><code class="docutils literal notranslate"><span class="pre">buffered_inflate_zstream::buffered_inflate_zstream()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream24buffered_inflate_zstreamERK24buffered_inflate_zstream"><code class="docutils literal notranslate"><span class="pre">buffered_inflate_zstream::buffered_inflate_zstream()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK24buffered_inflate_zstream10n_in_totalEv"><code class="docutils literal notranslate"><span class="pre">buffered_inflate_zstream::n_in_total()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK24buffered_inflate_zstream11n_out_totalEv"><code class="docutils literal notranslate"><span class="pre">buffered_inflate_zstream::n_out_total()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK24buffered_inflate_zstream7z_availEv"><code class="docutils literal notranslate"><span class="pre">buffered_inflate_zstream::z_avail()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK24buffered_inflate_zstream8uc_availEv"><code class="docutils literal notranslate"><span class="pre">buffered_inflate_zstream::uc_avail()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK24buffered_inflate_zstream11uc_contentsEv"><code class="docutils literal notranslate"><span class="pre">buffered_inflate_zstream::uc_contents()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream5allocE9size_type9size_type"><code class="docutils literal notranslate"><span class="pre">buffered_inflate_zstream::alloc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream11clear2emptyEb"><code class="docutils literal notranslate"><span class="pre">buffered_inflate_zstream::clear2empty()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream9z_produceERK11z_span_type"><code class="docutils literal notranslate"><span class="pre">buffered_inflate_zstream::z_produce()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream10uc_consumeERK11z_span_type"><code class="docutils literal notranslate"><span class="pre">buffered_inflate_zstream::uc_consume()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream14uc_consume_allEv"><code class="docutils literal notranslate"><span class="pre">buffered_inflate_zstream::uc_consume_all()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream13inflate_chunkEv"><code class="docutils literal notranslate"><span class="pre">buffered_inflate_zstream::inflate_chunk()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream4swapER24buffered_inflate_zstream"><code class="docutils literal notranslate"><span class="pre">buffered_inflate_zstream::swap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstreamaSERR24buffered_inflate_zstream"><code class="docutils literal notranslate"><span class="pre">buffered_inflate_zstream::operator=()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream15c_default_buf_zE"><code class="docutils literal notranslate"><span class="pre">buffered_inflate_zstream::c_default_buf_z</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv415inflate_zstream"><code class="docutils literal notranslate"><span class="pre">inflate_zstream</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N15inflate_zstream9span_typeE"><code class="docutils literal notranslate"><span class="pre">inflate_zstream::span_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N15inflate_zstream15inflate_zstreamEv"><code class="docutils literal notranslate"><span class="pre">inflate_zstream::inflate_zstream()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N15inflate_zstream15inflate_zstreamERK15inflate_zstream"><code class="docutils literal notranslate"><span class="pre">inflate_zstream::inflate_zstream()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N15inflate_zstreamD0Ev"><code class="docutils literal notranslate"><span class="pre">inflate_zstream::~inflate_zstream()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N15inflate_zstream7rebuildEv"><code class="docutils literal notranslate"><span class="pre">inflate_zstream::rebuild()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N15inflate_zstream13inflate_chunkEv"><code class="docutils literal notranslate"><span class="pre">inflate_zstream::inflate_chunk()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N15inflate_zstream4swapER15inflate_zstream"><code class="docutils literal notranslate"><span class="pre">inflate_zstream::swap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N15inflate_zstreamaSERR15inflate_zstream"><code class="docutils literal notranslate"><span class="pre">inflate_zstream::operator=()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv424buffered_deflate_zstream"><code class="docutils literal notranslate"><span class="pre">buffered_deflate_zstream</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream11z_span_typeE"><code class="docutils literal notranslate"><span class="pre">buffered_deflate_zstream::z_span_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream9size_typeE"><code class="docutils literal notranslate"><span class="pre">buffered_deflate_zstream::size_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream24buffered_deflate_zstreamE9size_type9size_type"><code class="docutils literal notranslate"><span class="pre">buffered_deflate_zstream::buffered_deflate_zstream()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream24buffered_deflate_zstreamERK24buffered_deflate_zstream"><code class="docutils literal notranslate"><span class="pre">buffered_deflate_zstream::buffered_deflate_zstream()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK24buffered_deflate_zstream10n_in_totalEv"><code class="docutils literal notranslate"><span class="pre">buffered_deflate_zstream::n_in_total()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK24buffered_deflate_zstream11n_out_totalEv"><code class="docutils literal notranslate"><span class="pre">buffered_deflate_zstream::n_out_total()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK24buffered_deflate_zstream8uc_availEv"><code class="docutils literal notranslate"><span class="pre">buffered_deflate_zstream::uc_avail()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK24buffered_deflate_zstream11uc_contentsEv"><code class="docutils literal notranslate"><span class="pre">buffered_deflate_zstream::uc_contents()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK24buffered_deflate_zstream7z_availEv"><code class="docutils literal notranslate"><span class="pre">buffered_deflate_zstream::z_avail()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK24buffered_deflate_zstream10z_contentsEv"><code class="docutils literal notranslate"><span class="pre">buffered_deflate_zstream::z_contents()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream5allocE9size_type9size_type"><code class="docutils literal notranslate"><span class="pre">buffered_deflate_zstream::alloc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream11clear2emptyEb"><code class="docutils literal notranslate"><span class="pre">buffered_deflate_zstream::clear2empty()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream10uc_produceERK11z_span_type"><code class="docutils literal notranslate"><span class="pre">buffered_deflate_zstream::uc_produce()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream9z_consumeERK11z_span_type"><code class="docutils literal notranslate"><span class="pre">buffered_deflate_zstream::z_consume()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream13z_consume_allEv"><code class="docutils literal notranslate"><span class="pre">buffered_deflate_zstream::z_consume_all()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream13deflate_chunkEb"><code class="docutils literal notranslate"><span class="pre">buffered_deflate_zstream::deflate_chunk()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream4swapER24buffered_deflate_zstream"><code class="docutils literal notranslate"><span class="pre">buffered_deflate_zstream::swap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstreamaSERR24buffered_deflate_zstream"><code class="docutils literal notranslate"><span class="pre">buffered_deflate_zstream::operator=()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream15c_default_buf_zE"><code class="docutils literal notranslate"><span class="pre">buffered_deflate_zstream::c_default_buf_z</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv415deflate_zstream"><code class="docutils literal notranslate"><span class="pre">deflate_zstream</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N15deflate_zstream9span_typeE"><code class="docutils literal notranslate"><span class="pre">deflate_zstream::span_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N15deflate_zstream15deflate_zstreamEv"><code class="docutils literal notranslate"><span class="pre">deflate_zstream::deflate_zstream()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N15deflate_zstream15deflate_zstreamERK15deflate_zstream"><code class="docutils literal notranslate"><span class="pre">deflate_zstream::deflate_zstream()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N15deflate_zstreamD0Ev"><code class="docutils literal notranslate"><span class="pre">deflate_zstream::~deflate_zstream()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N15deflate_zstream7rebuildEv"><code class="docutils literal notranslate"><span class="pre">deflate_zstream::rebuild()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N15deflate_zstream13deflate_chunkEb"><code class="docutils literal notranslate"><span class="pre">deflate_zstream::deflate_chunk()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N15deflate_zstream4swapER15deflate_zstream"><code class="docutils literal notranslate"><span class="pre">deflate_zstream::swap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N15deflate_zstreamaSERR15deflate_zstream"><code class="docutils literal notranslate"><span class="pre">deflate_zstream::operator=()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv412base_zstream"><code class="docutils literal notranslate"><span class="pre">base_zstream</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N12base_zstream9span_typeE"><code class="docutils literal notranslate"><span class="pre">base_zstream::span_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N12base_zstream12base_zstreamERK12base_zstream"><code class="docutils literal notranslate"><span class="pre">base_zstream::base_zstream()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK12base_zstream11input_emptyEv"><code class="docutils literal notranslate"><span class="pre">base_zstream::input_empty()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK12base_zstream10have_inputEv"><code class="docutils literal notranslate"><span class="pre">base_zstream::have_input()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK12base_zstream12output_emptyEv"><code class="docutils literal notranslate"><span class="pre">base_zstream::output_empty()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK12base_zstream10n_in_totalEv"><code class="docutils literal notranslate"><span class="pre">base_zstream::n_in_total()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK12base_zstream11n_out_totalEv"><code class="docutils literal notranslate"><span class="pre">base_zstream::n_out_total()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N12base_zstream13provide_inputEPNSt7uint8_tENSt10streamsizeE"><code class="docutils literal notranslate"><span class="pre">base_zstream::provide_input()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N12base_zstream13provide_inputERK9span_type"><code class="docutils literal notranslate"><span class="pre">base_zstream::provide_input()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N12base_zstream14provide_outputEP7uint8_tNSt10streamsizeE"><code class="docutils literal notranslate"><span class="pre">base_zstream::provide_output()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N12base_zstream14provide_outputERK9span_type"><code class="docutils literal notranslate"><span class="pre">base_zstream::provide_output()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N12base_zstream4swapER12base_zstream"><code class="docutils literal notranslate"><span class="pre">base_zstream::swap()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv4I0E6buffer"><code class="docutils literal notranslate"><span class="pre">buffer</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK6buffer3bufEv"><code class="docutils literal notranslate"><span class="pre">buffer::buf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK6buffer5buf_zEv"><code class="docutils literal notranslate"><span class="pre">buffer::buf_z()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK6buffer6lo_posEv"><code class="docutils literal notranslate"><span class="pre">buffer::lo_pos()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK6buffer6hi_posEv"><code class="docutils literal notranslate"><span class="pre">buffer::hi_pos()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N6buffer9span_typeE"><code class="docutils literal notranslate"><span class="pre">buffer::span_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N6buffer9size_typeE"><code class="docutils literal notranslate"><span class="pre">buffer::size_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N6buffer6bufferEv"><code class="docutils literal notranslate"><span class="pre">buffer::buffer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N6buffer6bufferE9size_type9size_type"><code class="docutils literal notranslate"><span class="pre">buffer::buffer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N6buffer6bufferERK6buffer"><code class="docutils literal notranslate"><span class="pre">buffer::buffer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N6bufferD0Ev"><code class="docutils literal notranslate"><span class="pre">buffer::~buffer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK6bufferixE9size_type"><code class="docutils literal notranslate"><span class="pre">buffer::operator[]()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK6buffer8contentsEv"><code class="docutils literal notranslate"><span class="pre">buffer::contents()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK6buffer5availEv"><code class="docutils literal notranslate"><span class="pre">buffer::avail()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK6buffer5emptyEv"><code class="docutils literal notranslate"><span class="pre">buffer::empty()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N6buffer7produceERK9span_type"><code class="docutils literal notranslate"><span class="pre">buffer::produce()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N6buffer7consumeERK9span_type"><code class="docutils literal notranslate"><span class="pre">buffer::consume()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N6buffer5allocE9size_type9size_type"><code class="docutils literal notranslate"><span class="pre">buffer::alloc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N6buffer6setbufEP5CharT9size_type"><code class="docutils literal notranslate"><span class="pre">buffer::setbuf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N6buffer11clear2emptyEb"><code class="docutils literal notranslate"><span class="pre">buffer::clear2empty()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N6buffer4swapER6buffer"><code class="docutils literal notranslate"><span class="pre">buffer::swap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N6buffer5resetEv"><code class="docutils literal notranslate"><span class="pre">buffer::reset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N6bufferaSERR6buffer"><code class="docutils literal notranslate"><span class="pre">buffer::operator=()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N6bufferaSER6buffer"><code class="docutils literal notranslate"><span class="pre">buffer::operator=()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv4I0E4span"><code class="docutils literal notranslate"><span class="pre">span</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK4span2loEv"><code class="docutils literal notranslate"><span class="pre">span::lo()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK4span2hiEv"><code class="docutils literal notranslate"><span class="pre">span::hi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N4span9size_typeE"><code class="docutils literal notranslate"><span class="pre">span::size_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N4span4spanEP5CharTP5CharT"><code class="docutils literal notranslate"><span class="pre">span::span()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4I0ENK4span4castE4spanI6OtherTEv"><code class="docutils literal notranslate"><span class="pre">span::cast()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK4span6prefixE9size_type"><code class="docutils literal notranslate"><span class="pre">span::prefix()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK4span5emptyEv"><code class="docutils literal notranslate"><span class="pre">span::empty()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4NK4span4sizeEv"><code class="docutils literal notranslate"><span class="pre">span::size()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv4N3hex3hexENSt7uint8_tEb"><code class="docutils literal notranslate"><span class="pre">hex()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv4IDpE5tostrNSt6stringEDpRR2Tn"><code class="docutils literal notranslate"><span class="pre">tostr()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">cmake examples</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Compression Library</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/compressionlib/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="compression-library">
+<span id="compressionlib"></span><h1>Compression Library<a class="headerlink" href="#compression-library" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv411compression">
+<span id="_CPPv311compression"></span><span id="_CPPv211compression"></span><span id="compression"></span><span class="target" id="classcompression"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">compression</span></span></span><a class="headerlink" href="#_CPPv411compression" title="Link to this definition"></a><br /></dt>
+<dd><p>Using class-as-namespace idiom to scope some global, non-streaming functions. </p>
+<p><p>More memory-efficient streaming versions in neighboring files</p>
+<p>Thanks to:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://bobobobo.wordpress.com/2008/02/23/how-to-use-zlib">Bobobobo’s blog for zlib introduction</a></p></li>
+<li><p><a class="reference external" href="https://zlib.net/zlib_how.html">zlib.net howto</a></p></li>
+</ul>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#classinflate__zstream"><span class="std std-ref">inflate_zstream</span></a></p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#classbuffered__inflate__zstream"><span class="std std-ref">buffered_inflate_zstream</span></a></p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#classdeflate__zstream"><span class="std std-ref">deflate_zstream</span></a></p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#classbuffered__deflate__zstream"><span class="std std-ref">buffered_deflate_zstream</span></a></p>
+</div>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11compression7inflateERKNSt6vectorINSt7uint8_tEEENSt8uint64_tE">
+<span id="_CPPv3N11compression7inflateERKNSt6vectorINSt7uint8_tEEENSt8uint64_tE"></span><span id="_CPPv2N11compression7inflateERKNSt6vectorINSt7uint8_tEEENSt8uint64_tE"></span><span id="compression::inflate__std::vector:std::uint8_t:CR.std::uint64_t"></span><span class="target" id="classcompression_1a90d1e994dbf6d4b35f68efd676191dee"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">uint8_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">inflate</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">uint8_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">z_data_v</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">og_data_z</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11compression7inflateERKNSt6vectorINSt7uint8_tEEENSt8uint64_tE" title="Link to this definition"></a><br /></dt>
+<dd><p>uncompress contents of z_data_v[], return uncompressed data. caller expected to remember original uncompressed size + supply in og_data_z, (or supply a sufficiently-large value) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11compression7deflateERKNSt6vectorINSt7uint8_tEEE">
+<span id="_CPPv3N11compression7deflateERKNSt6vectorINSt7uint8_tEEE"></span><span id="_CPPv2N11compression7deflateERKNSt6vectorINSt7uint8_tEEE"></span><span id="compression::deflate__std::vector:std::uint8_t:CR"></span><span class="target" id="classcompression_1a1a032caa12f512ad7fd8390f636ee729"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">uint8_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">deflate</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">uint8_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">og_data_v</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11compression7deflateERKNSt6vectorINSt7uint8_tEEE" title="Link to this definition"></a><br /></dt>
+<dd><p>compress contents of og_data_v[], return compressed data </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11compression12inflate_fileERKNSt6stringERKNSt6stringEbb">
+<span id="_CPPv3N11compression12inflate_fileERKNSt6stringERKNSt6stringEbb"></span><span id="_CPPv2N11compression12inflate_fileERKNSt6stringERKNSt6stringEbb"></span><span id="compression::inflate_file__ssCR.ssCR.b.b"></span><span class="target" id="classcompression_1ae7466315f03f03f671565b6c56fbd322"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">inflate_file</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">in_file</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">out_file</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">keep_flag</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">verbose_flag</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11compression12inflate_fileERKNSt6stringERKNSt6stringEbb" title="Link to this definition"></a><br /></dt>
+<dd><p>compress file with path .in_file, putting output in .out_file </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11compression12deflate_fileERKNSt6stringERKNSt6stringEbb">
+<span id="_CPPv3N11compression12deflate_fileERKNSt6stringERKNSt6stringEbb"></span><span id="_CPPv2N11compression12deflate_fileERKNSt6stringERKNSt6stringEbb"></span><span id="compression::deflate_file__ssCR.ssCR.b.b"></span><span class="target" id="classcompression_1aaaae11f1e2831813270da8f2eeaeede9"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">deflate_file</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">in_file</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">out_file</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">keep_flag</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">verbose_flag</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11compression12deflate_fileERKNSt6stringERKNSt6stringEbb" title="Link to this definition"></a><br /></dt>
+<dd><p>uncompress file with path .in_file, putting uncompressed output in .out_file </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv424buffered_inflate_zstream">
+<span id="_CPPv324buffered_inflate_zstream"></span><span id="_CPPv224buffered_inflate_zstream"></span><span id="buffered_inflate_zstream"></span><span class="target" id="classbuffered__inflate__zstream"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">buffered_inflate_zstream</span></span></span><a class="headerlink" href="#_CPPv424buffered_inflate_zstream" title="Link to this definition"></a><br /></dt>
+<dd><p>accept compressed input and inflate (i.e. uncompress) it. </p>
+<p>Creates and manages buffer space for input and (inflateed) output.</p>
+<p>Memory allocation occurs only in:<ol class="loweralpha simple">
+<li><p>constructor</p></li>
+<li><p>buffered_inflate_stream::alloc()</p></li>
+</ol>
+</p>
+<p>Other stateful operations write to buffers established in those two entry points.</p>
+<p>Example <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ifstream zfs(&quot;path/to/compressedfile.z&quot;, ios::binary);
+buffered_inflate_zstream zs;
+ofstream ucfs(&quot;path/to/uncompressedfile&quot;);
+
+if (!ucfs)
+   error...
+if (!zfs)
+   error...
+
+while (!zfs.eof()) {
+    span&lt;char&gt; z_span = zs.z_avail();
+    if (!zfs.read(z_span.lo(), z_span.size())) {
+        error...
+    }
+    zs.z_produce(z_span.prefix(zfs.gcount()));
+
+    zs.inflate_chunk();
+
+    span&lt;char&gt; uc_span = zs.uc_contents();
+    ucfs.write(uc_span.lo(), uc_span.size());
+
+    zs.uc_consume(uc_span);
+}
+</pre></div>
+</div>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N24buffered_inflate_zstream11z_span_typeE">
+<span id="_CPPv3N24buffered_inflate_zstream11z_span_typeE"></span><span id="_CPPv2N24buffered_inflate_zstream11z_span_typeE"></span><span class="target" id="classbuffered__inflate__zstream_1a30fe899845395995ce595c0e171d1966"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">z_span_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0E4span" title="span"><span class="n"><span class="pre">span</span></span></a><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">uint8_t</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N24buffered_inflate_zstream11z_span_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>typealias for span of compressed data </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N24buffered_inflate_zstream9size_typeE">
+<span id="_CPPv3N24buffered_inflate_zstream9size_typeE"></span><span id="_CPPv2N24buffered_inflate_zstream9size_typeE"></span><span class="target" id="classbuffered__inflate__zstream_1a94c5215d258104baa9a879e7dd5a7a34"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">uint64_t</span></span><a class="headerlink" href="#_CPPv4N24buffered_inflate_zstream9size_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>typealias for stream size (in bytes) </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N24buffered_inflate_zstream24buffered_inflate_zstreamE9size_type9size_type">
+<span id="_CPPv3N24buffered_inflate_zstream24buffered_inflate_zstreamE9size_type9size_type"></span><span id="_CPPv2N24buffered_inflate_zstream24buffered_inflate_zstreamE9size_type9size_type"></span><span id="buffered_inflate_zstream::buffered_inflate_zstream__size_type.size_type"></span><span class="target" id="classbuffered__inflate__zstream_1a0898b7f98a8b6b9eae7e83c909585c9f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">buffered_inflate_zstream</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream9size_typeE" title="buffered_inflate_zstream::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">buf_z</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream15c_default_buf_zE" title="buffered_inflate_zstream::c_default_buf_z"><span class="n"><span class="pre">c_default_buf_z</span></span></a>, <a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream9size_typeE" title="buffered_inflate_zstream::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">align_z</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">sizeof</span></span><span class="p"><span class="pre">(</span></span><span class="kt"><span class="pre">char</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24buffered_inflate_zstream24buffered_inflate_zstreamE9size_type9size_type" title="Link to this definition"></a><br /></dt>
+<dd><p>Constructor; if <code class="docutils literal notranslate"><span class="pre">buf_z</span></code> &gt; 0, allocate two buffers of size <code class="docutils literal notranslate"><span class="pre">buf_z</span></code> for compressed and uncompressed content. Otherwise defer allocation. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>buf_z</strong> – buffer size, allocated separately for {compressed, uncompressed} input. </p></li>
+<li><p><strong>align_z</strong> – alignment for uncompressed buffer memory, if allocating. Otherwise ignored. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N24buffered_inflate_zstream24buffered_inflate_zstreamERK24buffered_inflate_zstream">
+<span id="_CPPv3N24buffered_inflate_zstream24buffered_inflate_zstreamERK24buffered_inflate_zstream"></span><span id="_CPPv2N24buffered_inflate_zstream24buffered_inflate_zstreamERK24buffered_inflate_zstream"></span><span id="buffered_inflate_zstream::buffered_inflate_zstream__buffered_inflate_zstreamCR"></span><span class="target" id="classbuffered__inflate__zstream_1aa945d10d5cab887045e777fe27e1f0b7"></span><span class="sig-name descname"><span class="n"><span class="pre">buffered_inflate_zstream</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream24buffered_inflate_zstreamERK24buffered_inflate_zstream" title="buffered_inflate_zstream::buffered_inflate_zstream"><span class="n"><span class="pre">buffered_inflate_zstream</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N24buffered_inflate_zstream24buffered_inflate_zstreamERK24buffered_inflate_zstream" title="Link to this definition"></a><br /></dt>
+<dd><p>not copyable (since member <code class="docutils literal notranslate"><span class="pre">zs_algo_</span></code> is not) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK24buffered_inflate_zstream10n_in_totalEv">
+<span id="_CPPv3NK24buffered_inflate_zstream10n_in_totalEv"></span><span id="_CPPv2NK24buffered_inflate_zstream10n_in_totalEv"></span><span id="buffered_inflate_zstream::n_in_totalC"></span><span class="target" id="classbuffered__inflate__zstream_1a9d3887b967fc2a9ca0c552fab89685e9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream9size_typeE" title="buffered_inflate_zstream::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">n_in_total</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24buffered_inflate_zstream10n_in_totalEv" title="Link to this definition"></a><br /></dt>
+<dd><p>number of bytes of compressed input (according to <code class="docutils literal notranslate"><span class="pre">zlib</span></code>) consumed since this stream created </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK24buffered_inflate_zstream11n_out_totalEv">
+<span id="_CPPv3NK24buffered_inflate_zstream11n_out_totalEv"></span><span id="_CPPv2NK24buffered_inflate_zstream11n_out_totalEv"></span><span id="buffered_inflate_zstream::n_out_totalC"></span><span class="target" id="classbuffered__inflate__zstream_1ab376ac60bc97e99790ec82c2883391e3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream9size_typeE" title="buffered_inflate_zstream::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">n_out_total</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24buffered_inflate_zstream11n_out_totalEv" title="Link to this definition"></a><br /></dt>
+<dd><p>number of bytes of uncompressed output (according to <code class="docutils literal notranslate"><span class="pre">zlib</span></code>) provided since this stream created </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK24buffered_inflate_zstream7z_availEv">
+<span id="_CPPv3NK24buffered_inflate_zstream7z_availEv"></span><span id="_CPPv2NK24buffered_inflate_zstream7z_availEv"></span><span id="buffered_inflate_zstream::z_availC"></span><span class="target" id="classbuffered__inflate__zstream_1a02c97ebe977aaa7c713e4bf84099a208"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream11z_span_typeE" title="buffered_inflate_zstream::z_span_type"><span class="n"><span class="pre">z_span_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">z_avail</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24buffered_inflate_zstream7z_availEv" title="Link to this definition"></a><br /></dt>
+<dd><p>space currently available for more compressed input </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK24buffered_inflate_zstream8uc_availEv">
+<span id="_CPPv3NK24buffered_inflate_zstream8uc_availEv"></span><span id="_CPPv2NK24buffered_inflate_zstream8uc_availEv"></span><span id="buffered_inflate_zstream::uc_availC"></span><span class="target" id="classbuffered__inflate__zstream_1a62b4a9ce70120da4991a13eb98339aa4"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream11z_span_typeE" title="buffered_inflate_zstream::z_span_type"><span class="n"><span class="pre">z_span_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">uc_avail</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24buffered_inflate_zstream8uc_availEv" title="Link to this definition"></a><br /></dt>
+<dd><p>space currently available for more uncompressed input (output of this <a class="reference internal" href="#classbuffered__inflate__zstream"><span class="std std-ref">buffered_inflate_zstream</span></a> object) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK24buffered_inflate_zstream11uc_contentsEv">
+<span id="_CPPv3NK24buffered_inflate_zstream11uc_contentsEv"></span><span id="_CPPv2NK24buffered_inflate_zstream11uc_contentsEv"></span><span id="buffered_inflate_zstream::uc_contentsC"></span><span class="target" id="classbuffered__inflate__zstream_1afb130a8d31c2fe68117aa408509927b0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream11z_span_typeE" title="buffered_inflate_zstream::z_span_type"><span class="n"><span class="pre">z_span_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">uc_contents</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24buffered_inflate_zstream11uc_contentsEv" title="Link to this definition"></a><br /></dt>
+<dd><p>uncompressed content currently available for consumption. </p>
+<p>If non-empty: consuming at least 1 byte allows <code class="docutils literal notranslate"><span class="pre">zlib</span></code> to guarantee progress. Consume by calling <code class="docutils literal notranslate"></code>.<a class="reference internal" href="#classbuffered__inflate__zstream_1aad7f4e93f8a150fc7b1f9a8a71a09aea"><span class="std std-ref">uc_consume()</span></a> with some non-empty prefix of <code class="docutils literal notranslate"></code>.<a class="reference internal" href="#classbuffered__inflate__zstream_1afb130a8d31c2fe68117aa408509927b0"><span class="std std-ref">uc_contents()</span></a></p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N24buffered_inflate_zstream5allocE9size_type9size_type">
+<span id="_CPPv3N24buffered_inflate_zstream5allocE9size_type9size_type"></span><span id="_CPPv2N24buffered_inflate_zstream5allocE9size_type9size_type"></span><span id="buffered_inflate_zstream::alloc__size_type.size_type"></span><span class="target" id="classbuffered__inflate__zstream_1ac54d34c28b7715bbe14107e7815bce15"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">alloc</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream9size_typeE" title="buffered_inflate_zstream::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">buf_z</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream15c_default_buf_zE" title="buffered_inflate_zstream::c_default_buf_z"><span class="n"><span class="pre">c_default_buf_z</span></span></a>, <a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream9size_typeE" title="buffered_inflate_zstream::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">align_z</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">sizeof</span></span><span class="p"><span class="pre">(</span></span><span class="kt"><span class="pre">char</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24buffered_inflate_zstream5allocE9size_type9size_type" title="Link to this definition"></a><br /></dt>
+<dd><p>allocate buffer space; may use after calling ctor with zero <code class="docutils literal notranslate"><span class="pre">buf_z</span></code>, but before initiating inflation work. </p>
+<p>Does not preserve any existing buffer contents! Not intended for use after beginning inflation work. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N24buffered_inflate_zstream11clear2emptyEb">
+<span id="_CPPv3N24buffered_inflate_zstream11clear2emptyEb"></span><span id="_CPPv2N24buffered_inflate_zstream11clear2emptyEb"></span><span id="buffered_inflate_zstream::clear2empty__b"></span><span class="target" id="classbuffered__inflate__zstream_1aeccc3239976955bd49cfaedf93d210b1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">clear2empty</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">zero_buffer_flag</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24buffered_inflate_zstream11clear2emptyEb" title="Link to this definition"></a><br /></dt>
+<dd><p>reset input/output buffers to empty state, in case want to reuse this stream for different input. </p>
+<p>May call <code class="docutils literal notranslate"><span class="pre">zlib</span></code> <code class="docutils literal notranslate"><span class="pre">inflateEnd()</span></code> and <code class="docutils literal notranslate"><span class="pre">inflateInit2()</span></code>. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N24buffered_inflate_zstream9z_produceERK11z_span_type">
+<span id="_CPPv3N24buffered_inflate_zstream9z_produceERK11z_span_type"></span><span id="_CPPv2N24buffered_inflate_zstream9z_produceERK11z_span_type"></span><span id="buffered_inflate_zstream::z_produce__z_span_typeCR"></span><span class="target" id="classbuffered__inflate__zstream_1aac63493d793b7a51ed8cc4ed9e243701"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">z_produce</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream11z_span_typeE" title="buffered_inflate_zstream::z_span_type"><span class="n"><span class="pre">z_span_type</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">span</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24buffered_inflate_zstream9z_produceERK11z_span_type" title="Link to this definition"></a><br /></dt>
+<dd><p>Introduce new compressed input to <code class="docutils literal notranslate"><span class="pre">zlib</span></code> for inflation. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>span</strong> – Memory range of new compressed input.</p>
+</dd>
+<dt class="field-even">Pre<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">span</span></code> must be a prefix of <a class="reference internal" href="#classbuffered__inflate__zstream_1a02c97ebe977aaa7c713e4bf84099a208"><span class="std std-ref">z_avail()</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N24buffered_inflate_zstream10uc_consumeERK11z_span_type">
+<span id="_CPPv3N24buffered_inflate_zstream10uc_consumeERK11z_span_type"></span><span id="_CPPv2N24buffered_inflate_zstream10uc_consumeERK11z_span_type"></span><span id="buffered_inflate_zstream::uc_consume__z_span_typeCR"></span><span class="target" id="classbuffered__inflate__zstream_1aad7f4e93f8a150fc7b1f9a8a71a09aea"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">uc_consume</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream11z_span_typeE" title="buffered_inflate_zstream::z_span_type"><span class="n"><span class="pre">z_span_type</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">span</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24buffered_inflate_zstream10uc_consumeERK11z_span_type" title="Link to this definition"></a><br /></dt>
+<dd><p>consume some inflated output; consumed buffer space can eventually be reused </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>span</strong> – Memory range of now-consumed uncompressed output.</p>
+</dd>
+<dt class="field-even">Pre<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">span</span></code> must be a prefix of <a class="reference internal" href="#classbuffered__inflate__zstream_1a62b4a9ce70120da4991a13eb98339aa4"><span class="std std-ref">uc_avail()</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N24buffered_inflate_zstream14uc_consume_allEv">
+<span id="_CPPv3N24buffered_inflate_zstream14uc_consume_allEv"></span><span id="_CPPv2N24buffered_inflate_zstream14uc_consume_allEv"></span><span id="buffered_inflate_zstream::uc_consume_all"></span><span class="target" id="classbuffered__inflate__zstream_1a1917f2dc6e13dd400c327789cb074b25"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">uc_consume_all</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24buffered_inflate_zstream14uc_consume_allEv" title="Link to this definition"></a><br /></dt>
+<dd><p>consume all buffered uncompressed content </p>
+<dl class="field-list simple">
+<dt class="field-odd">Post<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#classbuffered__inflate__zstream_1a62b4a9ce70120da4991a13eb98339aa4"><span class="std std-ref">uc_avail()</span></a> is empty </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N24buffered_inflate_zstream13inflate_chunkEv">
+<span id="_CPPv3N24buffered_inflate_zstream13inflate_chunkEv"></span><span id="_CPPv2N24buffered_inflate_zstream13inflate_chunkEv"></span><span id="buffered_inflate_zstream::inflate_chunk"></span><span class="target" id="classbuffered__inflate__zstream_1a9aa49283094debf2258e02972ae32aa4"></span><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream9size_typeE" title="buffered_inflate_zstream::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">inflate_chunk</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24buffered_inflate_zstream13inflate_chunkEv" title="Link to this definition"></a><br /></dt>
+<dd><p>attempt some inflation work </p>
+<p>Inflate some input data previously provided via <a class="reference internal" href="#classbuffered__inflate__zstream_1aac63493d793b7a51ed8cc4ed9e243701"><span class="std std-ref">z_produce()</span></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>number of bytes of inflated data appended to uc_out_buf_ as a result of this call </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N24buffered_inflate_zstream4swapER24buffered_inflate_zstream">
+<span id="_CPPv3N24buffered_inflate_zstream4swapER24buffered_inflate_zstream"></span><span id="_CPPv2N24buffered_inflate_zstream4swapER24buffered_inflate_zstream"></span><span id="buffered_inflate_zstream::swap__buffered_inflate_zstreamR"></span><span class="target" id="classbuffered__inflate__zstream_1aefb34ac7f6ccd52720db22357485f144"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">swap</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv424buffered_inflate_zstream" title="buffered_inflate_zstream"><span class="n"><span class="pre">buffered_inflate_zstream</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24buffered_inflate_zstream4swapER24buffered_inflate_zstream" title="Link to this definition"></a><br /></dt>
+<dd><p>swap state with another <a class="reference internal" href="#classbuffered__inflate__zstream"><span class="std std-ref">buffered_inflate_zstream</span></a> object </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N24buffered_inflate_zstreamaSERR24buffered_inflate_zstream">
+<span id="_CPPv3N24buffered_inflate_zstreamaSERR24buffered_inflate_zstream"></span><span id="_CPPv2N24buffered_inflate_zstreamaSERR24buffered_inflate_zstream"></span><span id="buffered_inflate_zstream::assign-operator__buffered_inflate_zstreamRR"></span><span class="target" id="classbuffered__inflate__zstream_1a0f2218ce091fd0fa8e469064367d3211"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv424buffered_inflate_zstream" title="buffered_inflate_zstream"><span class="n"><span class="pre">buffered_inflate_zstream</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv424buffered_inflate_zstream" title="buffered_inflate_zstream"><span class="n"><span class="pre">buffered_inflate_zstream</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24buffered_inflate_zstreamaSERR24buffered_inflate_zstream" title="Link to this definition"></a><br /></dt>
+<dd><p>move-assignment: annex state from another <a class="reference internal" href="#classbuffered__inflate__zstream"><span class="std std-ref">buffered_inflate_zstream</span></a> object </p>
+<p>Except for its destructor, <code class="docutils literal notranslate"><span class="pre">x</span></code> cannot be used after this method returns. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-attributes">Public Static Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N24buffered_inflate_zstream15c_default_buf_zE">
+<span id="_CPPv3N24buffered_inflate_zstream15c_default_buf_zE"></span><span id="_CPPv2N24buffered_inflate_zstream15c_default_buf_zE"></span><span id="buffered_inflate_zstream::c_default_buf_z__size_type"></span><span class="target" id="classbuffered__inflate__zstream_1a5b517791d35f7ef5e1601baa94bf3557"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N24buffered_inflate_zstream9size_typeE" title="buffered_inflate_zstream::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">c_default_buf_z</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">64UL</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">1024UL</span></span><a class="headerlink" href="#_CPPv4N24buffered_inflate_zstream15c_default_buf_zE" title="Link to this definition"></a><br /></dt>
+<dd><p>default buffer size. Used for both compressed+uncompressed stream (64k) </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv415inflate_zstream">
+<span id="_CPPv315inflate_zstream"></span><span id="_CPPv215inflate_zstream"></span><span id="inflate_zstream"></span><span class="target" id="classinflate__zstream"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">inflate_zstream</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv412base_zstream" title="base_zstream"><span class="n"><span class="pre">base_zstream</span></span></a><a class="headerlink" href="#_CPPv415inflate_zstream" title="Link to this definition"></a><br /></dt>
+<dd><p>accept compressed input and inflate (i.e. uncompress) it. </p>
+<p>Customer is responsible for supplying buffer space for compressed and uncompressed input.</p>
+<p>
+Example <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#include &quot;compression/inflate_zstream.hpp&quot;
+
+buffer&lt;uint8_t&gt; z_buf(4096);
+buffer&lt;uint8_t&gt; uc_buf(4096);
+
+// store some compressed data in z_buf.buf()
+uint64_t n_z_in = ...; // bytes stored in z_buf[]
+
+// attach buffers to native zstream
+inflate_zstream zs;
+zs.provide_input(span(z_buf, n_z_in));
+zs.provide_output(span(uc_buf, sizeof(uc_buf)));
+
+while (!z_buf.empty() || !uc_buf.empty()) {
+    auto pr = zs.inflate_chunk();
+
+    z_buf.consume(pr.first);
+    uc_buf.produce(pr.second);
+
+    if (!uc_buf.empty()) {
+        // do something with uc_buf.contents()
+        uint64_t n_uc_out
+          = dosomethingwith(uc_buf.contents().buf(), uc_buf.contents().size());
+
+        // Need n_uc_out&gt;0 eventually, to guarantee progress.
+        uc_buf.consume(uc_buf.contents().prefix(n_uc_out));
+
+        if (uc_buf.empty()) {
+            // can reuse output buffer space once it empties
+            zs.provide_output(uc_buf.avail());
+        }
+
+        if (z_buf.empty()) {
+            // get more input from somewhere,  store it starting from z_buf.buf()
+
+            n_z_in = ...;
+            zs.provide_input(z_buf.avail().prefix(n_z_in));
+        }
+    }
+}
+</pre></div>
+</div>
+ <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#classbuffered__inflate__zstream"><span class="std std-ref">buffered_inflate_zstream</span></a> for implementation that creates and manages i/o buffers.</p>
+</div>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N15inflate_zstream9span_typeE">
+<span id="_CPPv3N15inflate_zstream9span_typeE"></span><span id="_CPPv2N15inflate_zstream9span_typeE"></span><span class="target" id="classinflate__zstream_1afe559a81576ec135bee681600ee38381"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">span_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0E4span" title="span"><span class="n"><span class="pre">span</span></span></a><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">uint8_t</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N15inflate_zstream9span_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>typealias for span of (compressed or uncompressed) data </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N15inflate_zstream15inflate_zstreamEv">
+<span id="_CPPv3N15inflate_zstream15inflate_zstreamEv"></span><span id="_CPPv2N15inflate_zstream15inflate_zstreamEv"></span><span id="inflate_zstream::inflate_zstream"></span><span class="target" id="classinflate__zstream_1a8fed0a9460336263401e52fbe01aff04"></span><span class="sig-name descname"><span class="n"><span class="pre">inflate_zstream</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15inflate_zstream15inflate_zstreamEv" title="Link to this definition"></a><br /></dt>
+<dd><p>create inflation-only zstream in empty state </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N15inflate_zstream15inflate_zstreamERK15inflate_zstream">
+<span id="_CPPv3N15inflate_zstream15inflate_zstreamERK15inflate_zstream"></span><span id="_CPPv2N15inflate_zstream15inflate_zstreamERK15inflate_zstream"></span><span id="inflate_zstream::inflate_zstream__inflate_zstreamCR"></span><span class="target" id="classinflate__zstream_1a24ce1a87b8d1b79ee2f7daab793cbcc0"></span><span class="sig-name descname"><span class="n"><span class="pre">inflate_zstream</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N15inflate_zstream15inflate_zstreamERK15inflate_zstream" title="inflate_zstream::inflate_zstream"><span class="n"><span class="pre">inflate_zstream</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N15inflate_zstream15inflate_zstreamERK15inflate_zstream" title="Link to this definition"></a><br /></dt>
+<dd><p><a class="reference internal" href="#classinflate__zstream"><span class="std std-ref">inflate_zstream</span></a> is not copyable </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N15inflate_zstreamD0Ev">
+<span id="_CPPv3N15inflate_zstreamD0Ev"></span><span id="_CPPv2N15inflate_zstreamD0Ev"></span><span id="inflate_zstream::~inflate_zstream"></span><span class="target" id="classinflate__zstream_1a8f7ffbc3bb8577801efdd814f0a248cf"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~inflate_zstream</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15inflate_zstreamD0Ev" title="Link to this definition"></a><br /></dt>
+<dd><p>destructor; calls <code class="docutils literal notranslate"><span class="pre">zlib</span></code> <code class="docutils literal notranslate"><span class="pre">InflateEnd()</span></code></p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N15inflate_zstream7rebuildEv">
+<span id="_CPPv3N15inflate_zstream7rebuildEv"></span><span id="_CPPv2N15inflate_zstream7rebuildEv"></span><span id="inflate_zstream::rebuild"></span><span class="target" id="classinflate__zstream_1aee1f29a07cadac2947b9105e096e9a17"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rebuild</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15inflate_zstream7rebuildEv" title="Link to this definition"></a><br /></dt>
+<dd><p>cleanup and reestablish nominal <code class="docutils literal notranslate"><span class="pre">z_stream</span></code> state in <code class="docutils literal notranslate"><span class="pre">*base_zstream</span><span class="pre">p_native_zs_</span></code>. </p>
+<p><ul class="simple">
+<li><p>Calls <code class="docutils literal notranslate"><span class="pre">InflateEnd()</span></code> (if necessary)</p></li>
+<li><p>Calls <code class="docutils literal notranslate"><span class="pre">InflateInit2()</span></code> (always) </p></li>
+</ul>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N15inflate_zstream13inflate_chunkEv">
+<span id="_CPPv3N15inflate_zstream13inflate_chunkEv"></span><span id="_CPPv2N15inflate_zstream13inflate_chunkEv"></span><span id="inflate_zstream::inflate_chunk"></span><span class="target" id="classinflate__zstream_1a30296adefac759e68d429aae53fc91f9"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">pair</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N15inflate_zstream9span_typeE" title="inflate_zstream::span_type"><span class="n"><span class="pre">span_type</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N15inflate_zstream9span_typeE" title="inflate_zstream::span_type"><span class="n"><span class="pre">span_type</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">inflate_chunk</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15inflate_zstream13inflate_chunkEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Inflate (uncompress) some input. </p>
+<p>
+After invoking <code class="docutils literal notranslate"><a class="reference internal" href="#classinflate__zstream_1a30296adefac759e68d429aae53fc91f9"><span class="std std-ref"><span class="pre">inflate_chunk()</span></span></a></code>, caller should either:<ol class="lowerroman simple">
+<li><p>provide at least one byte of additional input (if <a class="reference internal" href="#classbase__zstream_1a54ec6fc155fe490e082dcdc1a9b9079a"><span class="std std-ref">base_zstream::have_input</span></a> is false)</p></li>
+<li><p>consume at least one byte of available output (if <a class="reference internal" href="#classbase__zstream_1a5b94af1b82341b5a2e0fada73eb4a47d"><span class="std std-ref">base_zstream::output_empty</span></a> is false)</p></li>
+</ol>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pair with: <code class="docutils literal notranslate"></code>.first = span for compressed bytes consumed <code class="docutils literal notranslate"></code>.second = span for uncompressed bytes produced</p>
+</dd>
+<dt class="field-even">Pre<span class="colon">:</span></dt>
+<dd class="field-even"><p>Input data must have been attached by a preceding call to <code class="docutils literal notranslate"><a class="reference internal" href="#classbase__zstream_1a13896a3f35ea7fa4332baa0f19420ca7"><span class="std std-ref"><span class="pre">provide_input()</span></span></a></code>. </p>
+</dd>
+<dt class="field-odd">Pre<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Output buffer space must have been provided by a preceding call to <code class="docutils literal notranslate"><a class="reference internal" href="#classbase__zstream_1a22bcaa5887aca16dbf5aa2ce20231417"><span class="std std-ref"><span class="pre">provide_output()</span></span></a></code>. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N15inflate_zstream4swapER15inflate_zstream">
+<span id="_CPPv3N15inflate_zstream4swapER15inflate_zstream"></span><span id="_CPPv2N15inflate_zstream4swapER15inflate_zstream"></span><span id="inflate_zstream::swap__inflate_zstreamR"></span><span class="target" id="classinflate__zstream_1acf05f2459f075fe2f424bb960ae82f92"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">swap</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415inflate_zstream" title="inflate_zstream"><span class="n"><span class="pre">inflate_zstream</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15inflate_zstream4swapER15inflate_zstream" title="Link to this definition"></a><br /></dt>
+<dd><p>swap state with another <a class="reference internal" href="#classinflate__zstream"><span class="std std-ref">inflate_zstream</span></a> object </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N15inflate_zstreamaSERR15inflate_zstream">
+<span id="_CPPv3N15inflate_zstreamaSERR15inflate_zstream"></span><span id="_CPPv2N15inflate_zstreamaSERR15inflate_zstream"></span><span id="inflate_zstream::assign-operator__inflate_zstreamRR"></span><span class="target" id="classinflate__zstream_1a9ecd0d5b7dcf7a48b1fc590e98a5248c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv415inflate_zstream" title="inflate_zstream"><span class="n"><span class="pre">inflate_zstream</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415inflate_zstream" title="inflate_zstream"><span class="n"><span class="pre">inflate_zstream</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15inflate_zstreamaSERR15inflate_zstream" title="Link to this definition"></a><br /></dt>
+<dd><p>move assignment </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv424buffered_deflate_zstream">
+<span id="_CPPv324buffered_deflate_zstream"></span><span id="_CPPv224buffered_deflate_zstream"></span><span id="buffered_deflate_zstream"></span><span class="target" id="classbuffered__deflate__zstream"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">buffered_deflate_zstream</span></span></span><a class="headerlink" href="#_CPPv424buffered_deflate_zstream" title="Link to this definition"></a><br /></dt>
+<dd><p>accept input and deflate (i.e. decompress) it. </p>
+<p>Creates and manages buffer space for input and (inflated) output.</p>
+<p>Memory allocation occurs only in:<ol class="loweralpha simple">
+<li><p>constructor</p></li>
+<li><p>buffered_inflate_stream::alloc()</p></li>
+</ol>
+</p>
+<p>Other stateful operations write to buffers established in those two entry points</p>
+<p>Example <div class="highlight-default notranslate"><div class="highlight"><pre><span></span> ifstream ucfs(&quot;path/to/uncompressedfile&quot;);
+ buffered_deflate_zstream zs;
+ ofstream zfs(&quot;path/to/compressedfile.z&quot;, ios::binary);
+
+ if (!ucfs)
+     error...
+ if (!zfs)
+     error...
+
+ for (bool progress = true, final_flag = false; progress;) {
+     streamsize nread = 0;
+
+     if (ucfs.eof()) {
+         // end of uncompressed stream
+
+         final = true;
+     } else {
+         span&lt;char&gt; uc_span = zs.uc_avail();
+         ucfs.get(uc_span.lo(), uc_span.size(), &#39;\n&#39;);
+         nread = ucfs.gcount();
+
+         zs.uc_produce(uc_span.prefix(nread));
+    }
+
+    zs.deflate_chunk(final);
+
+    span&lt;uint8_t&gt; z_span = zs.z_contents();
+    zfs.write(z_span.lo(), z_span.size());
+
+    zs.z_consume(z_span);
+
+    progress = (nread &gt; 0) || (z_span.size() &gt; 0);
+}
+</pre></div>
+</div>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N24buffered_deflate_zstream11z_span_typeE">
+<span id="_CPPv3N24buffered_deflate_zstream11z_span_typeE"></span><span id="_CPPv2N24buffered_deflate_zstream11z_span_typeE"></span><span class="target" id="classbuffered__deflate__zstream_1adc454ade007ae733d5d92b20ec7e3020"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">z_span_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0E4span" title="span"><span class="n"><span class="pre">span</span></span></a><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">uint8_t</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N24buffered_deflate_zstream11z_span_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>typealias for span of compressed bytes </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N24buffered_deflate_zstream9size_typeE">
+<span id="_CPPv3N24buffered_deflate_zstream9size_typeE"></span><span id="_CPPv2N24buffered_deflate_zstream9size_typeE"></span><span class="target" id="classbuffered__deflate__zstream_1aa226242014bacd5ebff7b4796db370cf"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">uint64_t</span></span><a class="headerlink" href="#_CPPv4N24buffered_deflate_zstream9size_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>typealias for stream size (will be in bytes) </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N24buffered_deflate_zstream24buffered_deflate_zstreamE9size_type9size_type">
+<span id="_CPPv3N24buffered_deflate_zstream24buffered_deflate_zstreamE9size_type9size_type"></span><span id="_CPPv2N24buffered_deflate_zstream24buffered_deflate_zstreamE9size_type9size_type"></span><span id="buffered_deflate_zstream::buffered_deflate_zstream__size_type.size_type"></span><span class="target" id="classbuffered__deflate__zstream_1ac87820c4323c1f16bc334ec67770b78a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">buffered_deflate_zstream</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream9size_typeE" title="buffered_deflate_zstream::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">buf_z</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream15c_default_buf_zE" title="buffered_deflate_zstream::c_default_buf_z"><span class="n"><span class="pre">c_default_buf_z</span></span></a>, <a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream9size_typeE" title="buffered_deflate_zstream::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">align_z</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24buffered_deflate_zstream24buffered_deflate_zstreamE9size_type9size_type" title="Link to this definition"></a><br /></dt>
+<dd><p>Constructor; if <code class="docutils literal notranslate"><span class="pre">buf_z</span></code> &gt; 0, allocate two buffers of size <code class="docutils literal notranslate"><span class="pre">buf_z</span></code> for compressed and uncompressed content. Otherwise defer allocation. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>buf_z</strong> – Buffer size, for both compressed and uncompressed input. </p></li>
+<li><p><strong>align_z</strong> – Alignment for uncompressed buffer memory, if allocating. Otherwise ignored. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N24buffered_deflate_zstream24buffered_deflate_zstreamERK24buffered_deflate_zstream">
+<span id="_CPPv3N24buffered_deflate_zstream24buffered_deflate_zstreamERK24buffered_deflate_zstream"></span><span id="_CPPv2N24buffered_deflate_zstream24buffered_deflate_zstreamERK24buffered_deflate_zstream"></span><span id="buffered_deflate_zstream::buffered_deflate_zstream__buffered_deflate_zstreamCR"></span><span class="target" id="classbuffered__deflate__zstream_1ae1f057d5ed8304f34ee0b96e63097c19"></span><span class="sig-name descname"><span class="n"><span class="pre">buffered_deflate_zstream</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream24buffered_deflate_zstreamERK24buffered_deflate_zstream" title="buffered_deflate_zstream::buffered_deflate_zstream"><span class="n"><span class="pre">buffered_deflate_zstream</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N24buffered_deflate_zstream24buffered_deflate_zstreamERK24buffered_deflate_zstream" title="Link to this definition"></a><br /></dt>
+<dd><p>not copyable (since member <code class="docutils literal notranslate"><span class="pre">zs_algo_</span></code> is not) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK24buffered_deflate_zstream10n_in_totalEv">
+<span id="_CPPv3NK24buffered_deflate_zstream10n_in_totalEv"></span><span id="_CPPv2NK24buffered_deflate_zstream10n_in_totalEv"></span><span id="buffered_deflate_zstream::n_in_totalC"></span><span class="target" id="classbuffered__deflate__zstream_1afbd57aaa5c24fb562b79478e894c45b9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream9size_typeE" title="buffered_deflate_zstream::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">n_in_total</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24buffered_deflate_zstream10n_in_totalEv" title="Link to this definition"></a><br /></dt>
+<dd><p>number of bytes of uncompressed input (according to <code class="docutils literal notranslate"><span class="pre">zlib</span></code>) consumed since this stream created </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK24buffered_deflate_zstream11n_out_totalEv">
+<span id="_CPPv3NK24buffered_deflate_zstream11n_out_totalEv"></span><span id="_CPPv2NK24buffered_deflate_zstream11n_out_totalEv"></span><span id="buffered_deflate_zstream::n_out_totalC"></span><span class="target" id="classbuffered__deflate__zstream_1ae813ff67f60f600062bdb5ed604d1d5e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream9size_typeE" title="buffered_deflate_zstream::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">n_out_total</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24buffered_deflate_zstream11n_out_totalEv" title="Link to this definition"></a><br /></dt>
+<dd><p>number of bytes of compressed output (according to <code class="docutils literal notranslate"><span class="pre">zlib</span></code>) provided since this stream created </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK24buffered_deflate_zstream8uc_availEv">
+<span id="_CPPv3NK24buffered_deflate_zstream8uc_availEv"></span><span id="_CPPv2NK24buffered_deflate_zstream8uc_availEv"></span><span id="buffered_deflate_zstream::uc_availC"></span><span class="target" id="classbuffered__deflate__zstream_1ac2ae726621c238d9929480f83099daa8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream11z_span_typeE" title="buffered_deflate_zstream::z_span_type"><span class="n"><span class="pre">z_span_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">uc_avail</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24buffered_deflate_zstream8uc_availEv" title="Link to this definition"></a><br /></dt>
+<dd><p>space current available for more uncompressed input </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK24buffered_deflate_zstream11uc_contentsEv">
+<span id="_CPPv3NK24buffered_deflate_zstream11uc_contentsEv"></span><span id="_CPPv2NK24buffered_deflate_zstream11uc_contentsEv"></span><span id="buffered_deflate_zstream::uc_contentsC"></span><span class="target" id="classbuffered__deflate__zstream_1af338807a674f9565b4c13c88eec41270"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream11z_span_typeE" title="buffered_deflate_zstream::z_span_type"><span class="n"><span class="pre">z_span_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">uc_contents</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24buffered_deflate_zstream11uc_contentsEv" title="Link to this definition"></a><br /></dt>
+<dd><p>uncompressed content currently buffered for compression (see .<a class="reference internal" href="#classbuffered__deflate__zstream_1a88dc1107fb92dbb647e887738b3b0d80"><span class="std std-ref">uc_produce()</span></a>) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK24buffered_deflate_zstream7z_availEv">
+<span id="_CPPv3NK24buffered_deflate_zstream7z_availEv"></span><span id="_CPPv2NK24buffered_deflate_zstream7z_availEv"></span><span id="buffered_deflate_zstream::z_availC"></span><span class="target" id="classbuffered__deflate__zstream_1a35a44f5b4e86dd88b39089d2c68aa680"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream11z_span_typeE" title="buffered_deflate_zstream::z_span_type"><span class="n"><span class="pre">z_span_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">z_avail</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24buffered_deflate_zstream7z_availEv" title="Link to this definition"></a><br /></dt>
+<dd><p>space currently available for more compressed output </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK24buffered_deflate_zstream10z_contentsEv">
+<span id="_CPPv3NK24buffered_deflate_zstream10z_contentsEv"></span><span id="_CPPv2NK24buffered_deflate_zstream10z_contentsEv"></span><span id="buffered_deflate_zstream::z_contentsC"></span><span class="target" id="classbuffered__deflate__zstream_1a55ee6e813f3768b264c2b8169d0707f2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream11z_span_typeE" title="buffered_deflate_zstream::z_span_type"><span class="n"><span class="pre">z_span_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">z_contents</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24buffered_deflate_zstream10z_contentsEv" title="Link to this definition"></a><br /></dt>
+<dd><p>compressed content currently available for consumption. </p>
+<p>If non-empty: consuming at least 1 byte allows <code class="docutils literal notranslate"><span class="pre">zlib</span></code> to guarantee progress. Consume by calling <code class="docutils literal notranslate"></code>.uc_consume() with a non-empty prefix of <code class="docutils literal notranslate"></code>.<a class="reference internal" href="#classbuffered__deflate__zstream_1a55ee6e813f3768b264c2b8169d0707f2"><span class="std std-ref">z_contents()</span></a></p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N24buffered_deflate_zstream5allocE9size_type9size_type">
+<span id="_CPPv3N24buffered_deflate_zstream5allocE9size_type9size_type"></span><span id="_CPPv2N24buffered_deflate_zstream5allocE9size_type9size_type"></span><span id="buffered_deflate_zstream::alloc__size_type.size_type"></span><span class="target" id="classbuffered__deflate__zstream_1ac851cf29b09b2579efbbefd18c7b6459"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">alloc</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream9size_typeE" title="buffered_deflate_zstream::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">buf_z</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream15c_default_buf_zE" title="buffered_deflate_zstream::c_default_buf_z"><span class="n"><span class="pre">c_default_buf_z</span></span></a>, <a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream9size_typeE" title="buffered_deflate_zstream::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">align_z</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">sizeof</span></span><span class="p"><span class="pre">(</span></span><span class="kt"><span class="pre">char</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24buffered_deflate_zstream5allocE9size_type9size_type" title="Link to this definition"></a><br /></dt>
+<dd><p>Allocate buffer space; may use after calling ctor with zero <code class="docutils literal notranslate"><span class="pre">buf_z</span></code>, but before initating deflation work. </p>
+<p>Does not preserve existing buffer contents! Not intended for use after beginning deflation work </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N24buffered_deflate_zstream11clear2emptyEb">
+<span id="_CPPv3N24buffered_deflate_zstream11clear2emptyEb"></span><span id="_CPPv2N24buffered_deflate_zstream11clear2emptyEb"></span><span id="buffered_deflate_zstream::clear2empty__b"></span><span class="target" id="classbuffered__deflate__zstream_1ae7b3a6d2e10afbdd3f2113abcee5d82c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">clear2empty</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">zero_buffer_flag</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24buffered_deflate_zstream11clear2emptyEb" title="Link to this definition"></a><br /></dt>
+<dd><p>reset input/output buffers to empty state, in case want to reuse *this for different input. </p>
+<p>May call <code class="docutils literal notranslate"><span class="pre">zlib</span></code> <code class="docutils literal notranslate"><span class="pre">deflateEnd()</span></code> and <code class="docutils literal notranslate"><span class="pre">deflateInit2()</span></code>. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N24buffered_deflate_zstream10uc_produceERK11z_span_type">
+<span id="_CPPv3N24buffered_deflate_zstream10uc_produceERK11z_span_type"></span><span id="_CPPv2N24buffered_deflate_zstream10uc_produceERK11z_span_type"></span><span id="buffered_deflate_zstream::uc_produce__z_span_typeCR"></span><span class="target" id="classbuffered__deflate__zstream_1a88dc1107fb92dbb647e887738b3b0d80"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">uc_produce</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream11z_span_typeE" title="buffered_deflate_zstream::z_span_type"><span class="n"><span class="pre">z_span_type</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">span</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24buffered_deflate_zstream10uc_produceERK11z_span_type" title="Link to this definition"></a><br /></dt>
+<dd><p>Introduce new uncompressed input to <code class="docutils literal notranslate"><span class="pre">zlib</span></code> for deflation. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>span</strong> – Memory range of new uncompressed input.</p>
+</dd>
+<dt class="field-even">Pre<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">span</span></code> must be a prefix of <a class="reference internal" href="#classbuffered__deflate__zstream_1ac2ae726621c238d9929480f83099daa8"><span class="std std-ref">uc_avail()</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N24buffered_deflate_zstream9z_consumeERK11z_span_type">
+<span id="_CPPv3N24buffered_deflate_zstream9z_consumeERK11z_span_type"></span><span id="_CPPv2N24buffered_deflate_zstream9z_consumeERK11z_span_type"></span><span id="buffered_deflate_zstream::z_consume__z_span_typeCR"></span><span class="target" id="classbuffered__deflate__zstream_1abead858b8d5820bb66631a9d7e1bae1b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">z_consume</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream11z_span_typeE" title="buffered_deflate_zstream::z_span_type"><span class="n"><span class="pre">z_span_type</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">span</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24buffered_deflate_zstream9z_consumeERK11z_span_type" title="Link to this definition"></a><br /></dt>
+<dd><p>consume some deflated output; consumed buffer space can eventually be reused </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>span</strong> – Memory range of now-consumed compressed output.</p>
+</dd>
+<dt class="field-even">Pre<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">span</span></code> must be a prefix of <a class="reference internal" href="#classbuffered__deflate__zstream_1a35a44f5b4e86dd88b39089d2c68aa680"><span class="std std-ref">z_avail()</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N24buffered_deflate_zstream13z_consume_allEv">
+<span id="_CPPv3N24buffered_deflate_zstream13z_consume_allEv"></span><span id="_CPPv2N24buffered_deflate_zstream13z_consume_allEv"></span><span id="buffered_deflate_zstream::z_consume_all"></span><span class="target" id="classbuffered__deflate__zstream_1a2e25368ae3d5d79627fd30df126aa042"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">z_consume_all</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24buffered_deflate_zstream13z_consume_allEv" title="Link to this definition"></a><br /></dt>
+<dd><p>consume all buffered compressed content </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N24buffered_deflate_zstream13deflate_chunkEb">
+<span id="_CPPv3N24buffered_deflate_zstream13deflate_chunkEb"></span><span id="_CPPv2N24buffered_deflate_zstream13deflate_chunkEb"></span><span id="buffered_deflate_zstream::deflate_chunk__b"></span><span class="target" id="classbuffered__deflate__zstream_1a1e98dad0eb7484a288188698e5a085e8"></span><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream9size_typeE" title="buffered_deflate_zstream::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">deflate_chunk</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">final_flag</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24buffered_deflate_zstream13deflate_chunkEb" title="Link to this definition"></a><br /></dt>
+<dd><p>attempt some deflation work. </p>
+<p>Deflate some input data previously provided via <a class="reference internal" href="#classbuffered__deflate__zstream_1a88dc1107fb92dbb647e887738b3b0d80"><span class="std std-ref">uc_produce()</span></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>final_flag</strong> – When true, pass <code class="docutils literal notranslate"><span class="pre">Z_FINAL</span></code> to <code class="docutils literal notranslate"><span class="pre">deflate()</span></code>, to ensure latent compression state is flushed. Optimally set exactly once at end of stream. May be called earlier, at the cost of less efficient compression.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>number of b ytes of deflated data appended to z_out_buf_ as a result of this call. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N24buffered_deflate_zstream4swapER24buffered_deflate_zstream">
+<span id="_CPPv3N24buffered_deflate_zstream4swapER24buffered_deflate_zstream"></span><span id="_CPPv2N24buffered_deflate_zstream4swapER24buffered_deflate_zstream"></span><span id="buffered_deflate_zstream::swap__buffered_deflate_zstreamR"></span><span class="target" id="classbuffered__deflate__zstream_1aa9cb10a77c8227f03e495a9ebba3f80a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">swap</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv424buffered_deflate_zstream" title="buffered_deflate_zstream"><span class="n"><span class="pre">buffered_deflate_zstream</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24buffered_deflate_zstream4swapER24buffered_deflate_zstream" title="Link to this definition"></a><br /></dt>
+<dd><p>swap state with another buffered_deflate_stream object </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N24buffered_deflate_zstreamaSERR24buffered_deflate_zstream">
+<span id="_CPPv3N24buffered_deflate_zstreamaSERR24buffered_deflate_zstream"></span><span id="_CPPv2N24buffered_deflate_zstreamaSERR24buffered_deflate_zstream"></span><span id="buffered_deflate_zstream::assign-operator__buffered_deflate_zstreamRR"></span><span class="target" id="classbuffered__deflate__zstream_1a426ebcbba794ea5aa314db5e05e7cf67"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv424buffered_deflate_zstream" title="buffered_deflate_zstream"><span class="n"><span class="pre">buffered_deflate_zstream</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv424buffered_deflate_zstream" title="buffered_deflate_zstream"><span class="n"><span class="pre">buffered_deflate_zstream</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24buffered_deflate_zstreamaSERR24buffered_deflate_zstream" title="Link to this definition"></a><br /></dt>
+<dd><p>move-assignemnt: annex state from another <a class="reference internal" href="#classbuffered__deflate__zstream"><span class="std std-ref">buffered_deflate_zstream</span></a> object. </p>
+<p>Except for its destructor, <code class="docutils literal notranslate"><span class="pre">x</span></code> cannot be used after this method returns. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-attributes">Public Static Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N24buffered_deflate_zstream15c_default_buf_zE">
+<span id="_CPPv3N24buffered_deflate_zstream15c_default_buf_zE"></span><span id="_CPPv2N24buffered_deflate_zstream15c_default_buf_zE"></span><span id="buffered_deflate_zstream::c_default_buf_z__size_type"></span><span class="target" id="classbuffered__deflate__zstream_1a93c31294ffe1865f453713a57ca768d8"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N24buffered_deflate_zstream9size_typeE" title="buffered_deflate_zstream::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">c_default_buf_z</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">64UL</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">1024UL</span></span><a class="headerlink" href="#_CPPv4N24buffered_deflate_zstream15c_default_buf_zE" title="Link to this definition"></a><br /></dt>
+<dd><p>default buffer size (64k) </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv415deflate_zstream">
+<span id="_CPPv315deflate_zstream"></span><span id="_CPPv215deflate_zstream"></span><span id="deflate_zstream"></span><span class="target" id="classdeflate__zstream"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">deflate_zstream</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv412base_zstream" title="base_zstream"><span class="n"><span class="pre">base_zstream</span></span></a><a class="headerlink" href="#_CPPv415deflate_zstream" title="Link to this definition"></a><br /></dt>
+<dd><p>accept uncompressed output and deflate (i.e. compress) it. </p>
+<p>Customer is responsible for supplying buffer space for compressed and uncompressed output.</p>
+<p>
+Example <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#include &quot;compression/deflate_zstream.hpp&quot;
+
+buffer&lt;uint8_t&gt; uc_buf(4096);
+buffer&lt;uint8_t&gt; z_buf(4096);
+
+// store some to-be-compressed data in uc_buf.buf()
+uint64_t n_uc_in = ...; // content stored in uc_buf[]
+
+// attach buffers to native zstream
+deflate_zstream zs;
+zs.provide_input(span(uc_buf, n_uc_in));
+zs.provide_output(span(z_buf, sizeof(z_buf));
+
+while (!uc_buf.empty() || !z_buf.empty()) {
+    auto pr = zs.deflate_chunk();
+
+    uc_buf.consume(pr.first);
+    z_buf.produce(pr.second);
+
+    if (!z_buf.empty()) {
+        // do something with z_buf.contents()
+        uint64_t n_z_out
+          = dosomethingwith(z_buf.contents().buf(), z_buf.contents().size());
+
+        // Need z_uc_out&gt;0 eventually, to guarantee progress.
+        z_buf.consume(z_buf.contents().prefix(n_z_out));
+
+        if (z_buf.empty()) {
+            // can reuse output buffer space once it empties
+            zs.provide_output(z_buf.avail());
+        }
+
+        if (uc_buf.empty()) {
+            // get more input from somewhere,  store it starting from uc_buf.buf()
+
+            n_uc_in = ...;
+            zs.provide_input(uc_buf.avail().prefix(n_uc_in));
+        }
+    }
+}
+</pre></div>
+</div>
+ <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#classbuffered__deflate__zstream"><span class="std std-ref">buffered_deflate_zstream</span></a> for implementation that creates and manages i/o buffers.</p>
+</div>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N15deflate_zstream9span_typeE">
+<span id="_CPPv3N15deflate_zstream9span_typeE"></span><span id="_CPPv2N15deflate_zstream9span_typeE"></span><span class="target" id="classdeflate__zstream_1aa63974c232ac2ff7e720bcaf06c67f03"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">span_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0E4span" title="span"><span class="n"><span class="pre">span</span></span></a><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">uint8_t</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N15deflate_zstream9span_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>typealias for span of compressed data </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N15deflate_zstream15deflate_zstreamEv">
+<span id="_CPPv3N15deflate_zstream15deflate_zstreamEv"></span><span id="_CPPv2N15deflate_zstream15deflate_zstreamEv"></span><span id="deflate_zstream::deflate_zstream"></span><span class="target" id="classdeflate__zstream_1ae4c61173e1feac8339a2e769cd3f21aa"></span><span class="sig-name descname"><span class="n"><span class="pre">deflate_zstream</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15deflate_zstream15deflate_zstreamEv" title="Link to this definition"></a><br /></dt>
+<dd><p>create deflation-only zstream in empty state </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N15deflate_zstream15deflate_zstreamERK15deflate_zstream">
+<span id="_CPPv3N15deflate_zstream15deflate_zstreamERK15deflate_zstream"></span><span id="_CPPv2N15deflate_zstream15deflate_zstreamERK15deflate_zstream"></span><span id="deflate_zstream::deflate_zstream__deflate_zstreamCR"></span><span class="target" id="classdeflate__zstream_1ae9ebdae44fdec122d0b323e5d0d4a435"></span><span class="sig-name descname"><span class="n"><span class="pre">deflate_zstream</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N15deflate_zstream15deflate_zstreamERK15deflate_zstream" title="deflate_zstream::deflate_zstream"><span class="n"><span class="pre">deflate_zstream</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N15deflate_zstream15deflate_zstreamERK15deflate_zstream" title="Link to this definition"></a><br /></dt>
+<dd><p><a class="reference internal" href="#classdeflate__zstream"><span class="std std-ref">deflate_zstream</span></a> is not copyable </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N15deflate_zstreamD0Ev">
+<span id="_CPPv3N15deflate_zstreamD0Ev"></span><span id="_CPPv2N15deflate_zstreamD0Ev"></span><span id="deflate_zstream::~deflate_zstream"></span><span class="target" id="classdeflate__zstream_1af718f5a7f947f94258610ecaeba90c93"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~deflate_zstream</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15deflate_zstreamD0Ev" title="Link to this definition"></a><br /></dt>
+<dd><p>destructor; calls <code class="docutils literal notranslate"><span class="pre">zlib</span></code> <code class="docutils literal notranslate"><span class="pre">DeflateEnd()</span></code></p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N15deflate_zstream7rebuildEv">
+<span id="_CPPv3N15deflate_zstream7rebuildEv"></span><span id="_CPPv2N15deflate_zstream7rebuildEv"></span><span id="deflate_zstream::rebuild"></span><span class="target" id="classdeflate__zstream_1a384fe3959d2bf86e392ec6267469a40f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rebuild</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15deflate_zstream7rebuildEv" title="Link to this definition"></a><br /></dt>
+<dd><p>cleanup and reestablish nominal <code class="docutils literal notranslate"><span class="pre">z_stream</span></code> state in <code class="docutils literal notranslate"><span class="pre">*base_zstream</span><span class="pre">p_native_zs_</span></code></p>
+<p><ol class="lowerroman simple">
+<li><p>Calls <code class="docutils literal notranslate"><span class="pre">DeflateEnd()</span></code> (if necessary)</p></li>
+<li><p>Calls <code class="docutils literal notranslate"><span class="pre">DeflateInit2()</span></code> (always) </p></li>
+</ol>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N15deflate_zstream13deflate_chunkEb">
+<span id="_CPPv3N15deflate_zstream13deflate_chunkEb"></span><span id="_CPPv2N15deflate_zstream13deflate_chunkEb"></span><span id="deflate_zstream::deflate_chunk__b"></span><span class="target" id="classdeflate__zstream_1a529ff6c4f4ba86f1ff3b4afc65c3eb1d"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">pair</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N15deflate_zstream9span_typeE" title="deflate_zstream::span_type"><span class="n"><span class="pre">span_type</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N15deflate_zstream9span_typeE" title="deflate_zstream::span_type"><span class="n"><span class="pre">span_type</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">deflate_chunk</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">final_flag</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15deflate_zstream13deflate_chunkEb" title="Link to this definition"></a><br /></dt>
+<dd><p>Deflate (compress) some input. </p>
+<p>
+Can set on earlier calls, at the cost of restarting compression state with corresponding increase in size of compressed stream.</p>
+<p>
+After invoking <code class="docutils literal notranslate"><a class="reference internal" href="#classdeflate__zstream_1a529ff6c4f4ba86f1ff3b4afc65c3eb1d"><span class="std std-ref"><span class="pre">deflate_chunk()</span></span></a></code>, caller should either:<ol class="lowerroman simple">
+<li><p>provide at least one byte of additional input (if <a class="reference internal" href="#classbase__zstream_1a54ec6fc155fe490e082dcdc1a9b9079a"><span class="std std-ref">base_zstream::have_input</span></a> is false)</p></li>
+<li><p>consume at least one byte of available output (if <a class="reference internal" href="#classbase__zstream_1a5b94af1b82341b5a2e0fada73eb4a47d"><span class="std std-ref">base_zstream::output_empty</span></a> is false)</p></li>
+</ol>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>final_flag</strong> – True to provide <code class="docutils literal notranslate"><span class="pre">Z_FINISH</span></code> to <code class="docutils literal notranslate"><span class="pre">deflate()</span></code>, to flush pending compression state held in <code class="docutils literal notranslate"><span class="pre">*base_zstream</span><span class="pre">p_native_zs_</span></code>. Ideally set this exactly once, in last call to deflate_chunk, as uncompressed stream ends.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>pair with: <code class="docutils literal notranslate"></code>.first = span for uncompressed bytes consumed <code class="docutils literal notranslate"></code>.second = span for compressed bytes produced</p>
+</dd>
+<dt class="field-odd">Pre<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Input data must have been attached by a preceding call to <code class="docutils literal notranslate"><a class="reference internal" href="#classbase__zstream_1a13896a3f35ea7fa4332baa0f19420ca7"><span class="std std-ref"><span class="pre">provide_input()</span></span></a></code>. </p>
+</dd>
+<dt class="field-even">Pre<span class="colon">:</span></dt>
+<dd class="field-even"><p>Output buffer space must have been provided by a preceding call to <code class="docutils literal notranslate"><a class="reference internal" href="#classbase__zstream_1a22bcaa5887aca16dbf5aa2ce20231417"><span class="std std-ref"><span class="pre">provide_output()</span></span></a></code>. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N15deflate_zstream4swapER15deflate_zstream">
+<span id="_CPPv3N15deflate_zstream4swapER15deflate_zstream"></span><span id="_CPPv2N15deflate_zstream4swapER15deflate_zstream"></span><span id="deflate_zstream::swap__deflate_zstreamR"></span><span class="target" id="classdeflate__zstream_1a5c20cd8d21731d932dc59a79d47606b3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">swap</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415deflate_zstream" title="deflate_zstream"><span class="n"><span class="pre">deflate_zstream</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15deflate_zstream4swapER15deflate_zstream" title="Link to this definition"></a><br /></dt>
+<dd><p>move assignment </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N15deflate_zstreamaSERR15deflate_zstream">
+<span id="_CPPv3N15deflate_zstreamaSERR15deflate_zstream"></span><span id="_CPPv2N15deflate_zstreamaSERR15deflate_zstream"></span><span id="deflate_zstream::assign-operator__deflate_zstreamRR"></span><span class="target" id="classdeflate__zstream_1a0d4c9419d45c5c7fee6a79fb63dac49d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv415deflate_zstream" title="deflate_zstream"><span class="n"><span class="pre">deflate_zstream</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415deflate_zstream" title="deflate_zstream"><span class="n"><span class="pre">deflate_zstream</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15deflate_zstreamaSERR15deflate_zstream" title="Link to this definition"></a><br /></dt>
+<dd><p>move assignment </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv412base_zstream">
+<span id="_CPPv312base_zstream"></span><span id="_CPPv212base_zstream"></span><span id="base_zstream"></span><span class="target" id="classbase__zstream"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">base_zstream</span></span></span><a class="headerlink" href="#_CPPv412base_zstream" title="Link to this definition"></a><br /></dt>
+<dd><p>manage a <code class="docutils literal notranslate"><span class="pre">z_stream</span></code> struct (from <code class="docutils literal notranslate"><span class="pre">zlib</span></code>) </p>
+<p>See <a class="reference external" href="https://www.zlib.net/manual.html">Zlib manual</a> for <code class="docutils literal notranslate"><span class="pre">z_stream</span></code> API.</p>
+<p>This class used by <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#classdeflate__zstream"><span class="std std-ref">deflate_zstream</span></a></p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#classinflate__zstream"><span class="std std-ref">inflate_zstream</span></a>. </p>
+</div>
+</p>
+<p>Subclassed by <a class="reference internal" href="#classdeflate__zstream"><span class="std std-ref">deflate_zstream</span></a>, <a class="reference internal" href="#classinflate__zstream"><span class="std std-ref">inflate_zstream</span></a></p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N12base_zstream9span_typeE">
+<span id="_CPPv3N12base_zstream9span_typeE"></span><span id="_CPPv2N12base_zstream9span_typeE"></span><span class="target" id="classbase__zstream_1a6b47e9c2a250110be47ec12f6c2e42bd"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">span_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0E4span" title="span"><span class="n"><span class="pre">span</span></span></a><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">uint8_t</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N12base_zstream9span_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>span type for interaction with <code class="docutils literal notranslate"><span class="pre">zlib</span></code> functions. Using <code class="docutils literal notranslate"><span class="pre">uint8_t</span></code> since <code class="docutils literal notranslate"><span class="pre">zlib</span></code> functions operate exclusively on byte ranges. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12base_zstream12base_zstreamERK12base_zstream">
+<span id="_CPPv3N12base_zstream12base_zstreamERK12base_zstream"></span><span id="_CPPv2N12base_zstream12base_zstreamERK12base_zstream"></span><span id="base_zstream::base_zstream__base_zstreamCR"></span><span class="target" id="classbase__zstream_1a4bc47dbd64e1e5cd303da41c953ebc39"></span><span class="sig-name descname"><span class="n"><span class="pre">base_zstream</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N12base_zstream12base_zstreamERK12base_zstream" title="base_zstream::base_zstream"><span class="n"><span class="pre">base_zstream</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N12base_zstream12base_zstreamERK12base_zstream" title="Link to this definition"></a><br /></dt>
+<dd><p><a class="reference internal" href="#classbase__zstream"><span class="std std-ref">base_zstream</span></a> is not copyable </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK12base_zstream11input_emptyEv">
+<span id="_CPPv3NK12base_zstream11input_emptyEv"></span><span id="_CPPv2NK12base_zstream11input_emptyEv"></span><span id="base_zstream::input_emptyC"></span><span class="target" id="classbase__zstream_1ad5d9aae96b2c9250cc6faadb18907f96"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">input_empty</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12base_zstream11input_emptyEv" title="Link to this definition"></a><br /></dt>
+<dd><p>true iff no input work remaining (as far as <code class="docutils literal notranslate"><span class="pre">*p_zstream</span></code> control struct is concerned) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK12base_zstream10have_inputEv">
+<span id="_CPPv3NK12base_zstream10have_inputEv"></span><span id="_CPPv2NK12base_zstream10have_inputEv"></span><span id="base_zstream::have_inputC"></span><span class="target" id="classbase__zstream_1a54ec6fc155fe490e082dcdc1a9b9079a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">have_input</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12base_zstream10have_inputEv" title="Link to this definition"></a><br /></dt>
+<dd><p>true iff zlib control struct has input work remaining </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK12base_zstream12output_emptyEv">
+<span id="_CPPv3NK12base_zstream12output_emptyEv"></span><span id="_CPPv2NK12base_zstream12output_emptyEv"></span><span id="base_zstream::output_emptyC"></span><span class="target" id="classbase__zstream_1a5b94af1b82341b5a2e0fada73eb4a47d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">output_empty</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12base_zstream12output_emptyEv" title="Link to this definition"></a><br /></dt>
+<dd><p>true iff no output work available from zlib control struct </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK12base_zstream10n_in_totalEv">
+<span id="_CPPv3NK12base_zstream10n_in_totalEv"></span><span id="_CPPv2NK12base_zstream10n_in_totalEv"></span><span id="base_zstream::n_in_totalC"></span><span class="target" id="classbase__zstream_1af729edb903d98735ec688a8dcade14d6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">n_in_total</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12base_zstream10n_in_totalEv" title="Link to this definition"></a><br /></dt>
+<dd><p>total number of bytes consumed (by <code class="docutils literal notranslate"><span class="pre">zlib</span></code> control struct) since this instance created </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK12base_zstream11n_out_totalEv">
+<span id="_CPPv3NK12base_zstream11n_out_totalEv"></span><span id="_CPPv2NK12base_zstream11n_out_totalEv"></span><span id="base_zstream::n_out_totalC"></span><span class="target" id="classbase__zstream_1afb0db3b110a2f3ab6d75497a48bcbb74"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">n_out_total</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK12base_zstream11n_out_totalEv" title="Link to this definition"></a><br /></dt>
+<dd><p>total number of bytes produced (by <code class="docutils literal notranslate"><span class="pre">zlib</span></code> control struct) since this instance created </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12base_zstream13provide_inputEPNSt7uint8_tENSt10streamsizeE">
+<span id="_CPPv3N12base_zstream13provide_inputEPNSt7uint8_tENSt10streamsizeE"></span><span id="_CPPv2N12base_zstream13provide_inputEPNSt7uint8_tENSt10streamsizeE"></span><span id="base_zstream::provide_input__std::uint8_tP.std::streamsize"></span><span class="target" id="classbase__zstream_1a13896a3f35ea7fa4332baa0f19420ca7"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">provide_input</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">buf</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">streamsize</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">buf_z</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12base_zstream13provide_inputEPNSt7uint8_tENSt10streamsizeE" title="Link to this definition"></a><br /></dt>
+<dd><p>provide a new input memory range for compression/decompression. </p>
+<p>Discards any unconsumed input. To avoid, invoke only when <code class="docutils literal notranslate"></code>.<a class="reference internal" href="#classbase__zstream_1ad5d9aae96b2c9250cc6faadb18907f96"><span class="std std-ref">input_empty()</span></a> is true.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>buf</strong> – start of input range </p></li>
+<li><p><strong>buf_z</strong> – size of input range in bytes </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12base_zstream13provide_inputERK9span_type">
+<span id="_CPPv3N12base_zstream13provide_inputERK9span_type"></span><span id="_CPPv2N12base_zstream13provide_inputERK9span_type"></span><span id="base_zstream::provide_input__span_typeCR"></span><span class="target" id="classbase__zstream_1a1a355afbea6f2bd894fd61c98479b1d6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">provide_input</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N12base_zstream9span_typeE" title="base_zstream::span_type"><span class="n"><span class="pre">span_type</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">span</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12base_zstream13provide_inputERK9span_type" title="Link to this definition"></a><br /></dt>
+<dd><p>same as <code class="docutils literal notranslate"><span class="pre">provide_input(buf,buf_z)</span></code> but use span </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12base_zstream14provide_outputEP7uint8_tNSt10streamsizeE">
+<span id="_CPPv3N12base_zstream14provide_outputEP7uint8_tNSt10streamsizeE"></span><span id="_CPPv2N12base_zstream14provide_outputEP7uint8_tNSt10streamsizeE"></span><span id="base_zstream::provide_output__uint8_tP.std::streamsize"></span><span class="target" id="classbase__zstream_1a22bcaa5887aca16dbf5aa2ce20231417"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">provide_output</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">buf</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">streamsize</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">buf_z</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12base_zstream14provide_outputEP7uint8_tNSt10streamsizeE" title="Link to this definition"></a><br /></dt>
+<dd><p>provide new output memory range for compression/decompression. </p>
+<p>Discards any unconsumed output. To avoid, invoke only when <code class="docutils literal notranslate"></code>.<a class="reference internal" href="#classbase__zstream_1a5b94af1b82341b5a2e0fada73eb4a47d"><span class="std std-ref">output_empty()</span></a> is true.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>buf</strong> – start of new output range </p></li>
+<li><p><strong>buf_z</strong> – size of output range in bytes </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12base_zstream14provide_outputERK9span_type">
+<span id="_CPPv3N12base_zstream14provide_outputERK9span_type"></span><span id="_CPPv2N12base_zstream14provide_outputERK9span_type"></span><span id="base_zstream::provide_output__span_typeCR"></span><span class="target" id="classbase__zstream_1a0ce61d699dc235a81f45306d8b9f939b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">provide_output</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N12base_zstream9span_typeE" title="base_zstream::span_type"><span class="n"><span class="pre">span_type</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">span</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12base_zstream14provide_outputERK9span_type" title="Link to this definition"></a><br /></dt>
+<dd><p>same as <code class="docutils literal notranslate"><span class="pre">provide_output(buf,buf_z)</span></code> but use span </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N12base_zstream4swapER12base_zstream">
+<span id="_CPPv3N12base_zstream4swapER12base_zstream"></span><span id="_CPPv2N12base_zstream4swapER12base_zstream"></span><span id="base_zstream::swap__base_zstreamR"></span><span class="target" id="classbase__zstream_1a7d6910ff5eae064d1dfc1ab83ac2bde3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">swap</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv412base_zstream" title="base_zstream"><span class="n"><span class="pre">base_zstream</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12base_zstream4swapER12base_zstream" title="Link to this definition"></a><br /></dt>
+<dd><p>swap with another <a class="reference internal" href="#classbase__zstream"><span class="std std-ref">base_zstream</span></a> object </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I0E6buffer">
+<span id="_CPPv3I0E6buffer"></span><span id="_CPPv2I0E6buffer"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CharT</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classbuffer"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">buffer</span></span></span><a class="headerlink" href="#_CPPv4I0E6buffer" title="Link to this definition"></a><br /></dt>
+<dd><p>Container for a (possibly owned) FIFO queue of chars. </p>
+<p><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">buf</span>
+
+  <span class="o">+------------------------------------------+</span>
+  <span class="o">|</span>  <span class="o">|</span>  <span class="o">...</span>  <span class="o">|</span>  <span class="o">|</span> <span class="n">X</span><span class="o">|</span>  <span class="o">...</span> <span class="o">|</span> <span class="n">X</span><span class="o">|</span>  <span class="o">|</span>    <span class="o">...</span>  <span class="o">|</span>  <span class="o">|</span>
+  <span class="o">+------------------------------------------+</span>
+   <span class="o">^</span>             <span class="o">^</span>            <span class="o">^</span>               <span class="o">^</span>
+   <span class="mi">0</span>             <span class="o">.</span><span class="n">lo</span>          <span class="o">.</span><span class="n">hi</span>             <span class="o">.</span><span class="n">buf_z</span>
+
+                 <span class="o">&lt;-</span><span class="n">contents</span><span class="o">-&gt;&lt;----</span><span class="n">avail</span><span class="o">-----&gt;</span>
+</pre></div>
+</div>
+</p>
+<p>Buffer does not support wrapped content: content that has not been consumed always occupies contiguous memory.</p>
+<p>Example: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>// 1.
+  buffer&lt;char&gt; buf(64*1024);
+  buf.empty() -&gt; true
+  buf.buf_z() -&gt; 65536
+  buf.lo_pos() -&gt; 0
+  buf.hi_pos() -&gt; 65536
+  buf.contents() -&gt; empty span
+  buf.avail() -&gt; span entire buffer memory
+
+  // write to (a prefix of) buf.avail()
+  ::strncpy(buf.buf(), &quot;hello, world\n&quot;, 13);
+  buf.produce(span_type(buf.buf(), buf.buf() + 13));
+
+  buf.lo_pos() -&gt; 0
+  buf.hi_pos() -&gt; 13
+  buf.contents() -&gt; &quot;hello, world\n&quot;;
+
+
+  // examine stored content (does not change buffer state)
+  auto span = buf.contents();
+  cerr &lt;&lt; string_view(span.lo(), span.hi());  // &quot;hello, world\n&quot;
+
+  // consume (a prefix of) stored content
+  buf.consume(span.prefix(7);
+
+  buf.lo_pos() -&gt; 7
+  buf.hi_pos() -&gt; 13
+  buf.contents() -&gt; &quot;world\n&quot;
+
+  // consuming all remain content resets to original state
+  buf.consume(buf.contents());
+
+  buf.empty() -&gt; true
+  buf.hi_pos() -&gt; 0     // not 13!
+
+// 2.
+  buffer&lt;char&gt; buf;
+  buf.empty() -&gt; true
+  buf.buf_z() -&gt; 0
+  buf.lo_pos() -&gt; 0
+  buf.hi_pos() -&gt; 0
+  buf.contents() -&gt; empty span
+  buf.avail() -&gt; empty span
+
+  // allocate memory separately from ctor
+  buf.alloc(64*1024);
+</pre></div>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>CharT.</strong> – buffer element type.</p>
+</dd>
+</dl>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-access-methods">Access methods</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK6buffer3bufEv">
+<span id="_CPPv3NK6buffer3bufEv"></span><span id="_CPPv2NK6buffer3bufEv"></span><span id="buffer::bufC"></span><span class="target" id="classbuffer_1a7c5fc85d072387929ac9811c0015591b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0E6buffer" title="buffer::CharT"><span class="n"><span class="pre">CharT</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">buf</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6buffer3bufEv" title="Link to this definition"></a><br /></dt>
+<dd><p>start of buffer memory </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK6buffer5buf_zEv">
+<span id="_CPPv3NK6buffer5buf_zEv"></span><span id="_CPPv2NK6buffer5buf_zEv"></span><span id="buffer::buf_zC"></span><span class="target" id="classbuffer_1a9363e111b1163d0a0261b113d3189046"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N6buffer9size_typeE" title="buffer::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">buf_z</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6buffer5buf_zEv" title="Link to this definition"></a><br /></dt>
+<dd><p>buffer size (number of characters) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK6buffer6lo_posEv">
+<span id="_CPPv3NK6buffer6lo_posEv"></span><span id="_CPPv2NK6buffer6lo_posEv"></span><span id="buffer::lo_posC"></span><span class="target" id="classbuffer_1a339c51961f4f1d4779170a006dc166b1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N6buffer9size_typeE" title="buffer::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lo_pos</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6buffer6lo_posEv" title="Link to this definition"></a><br /></dt>
+<dd><p>current start position within buffer </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK6buffer6hi_posEv">
+<span id="_CPPv3NK6buffer6hi_posEv"></span><span id="_CPPv2NK6buffer6hi_posEv"></span><span id="buffer::hi_posC"></span><span class="target" id="classbuffer_1aa73ceb8f95ab18f01fc46c23ccbc209b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N6buffer9size_typeE" title="buffer::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hi_pos</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6buffer6hi_posEv" title="Link to this definition"></a><br /></dt>
+<dd><p>current end position within buffer </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N6buffer9span_typeE">
+<span id="_CPPv3N6buffer9span_typeE"></span><span id="_CPPv2N6buffer9span_typeE"></span><span class="target" id="classbuffer_1ad359c5a6b58b22e47fefded6ea9c1f26"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">span_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0E4span" title="span"><span class="n"><span class="pre">span</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E6buffer" title="buffer::CharT"><span class="n"><span class="pre">CharT</span></span></a><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N6buffer9span_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>typealias for span of CharT </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N6buffer9size_typeE">
+<span id="_CPPv3N6buffer9size_typeE"></span><span id="_CPPv2N6buffer9size_typeE"></span><span class="target" id="classbuffer_1ad2fdff2f34b5c34c7aa4fc2025ed67cd"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">uint64_t</span></span><a class="headerlink" href="#_CPPv4N6buffer9size_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>typealias for buffer size (counts CharT’s, not bytes) </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6buffer6bufferEv">
+<span id="_CPPv3N6buffer6bufferEv"></span><span id="_CPPv2N6buffer6bufferEv"></span><span id="buffer::buffer"></span><span class="target" id="classbuffer_1a93da0e49842488fffa3ae59591c769b2"></span><span class="sig-name descname"><span class="n"><span class="pre">buffer</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N6buffer6bufferEv" title="Link to this definition"></a><br /></dt>
+<dd><p>create empty buffer. </p>
+<p>Does not allocate any storage; <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#classbuffer_1a4c18960c1ab18f645e5a2598d9c5c92f"><span class="std std-ref">alloc</span></a></p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6buffer6bufferE9size_type9size_type">
+<span id="_CPPv3N6buffer6bufferE9size_type9size_type"></span><span id="_CPPv2N6buffer6bufferE9size_type9size_type"></span><span id="buffer::buffer__size_type.size_type"></span><span class="target" id="classbuffer_1a732eb66da2f588a2ff934f87161b5986"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">buffer</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N6buffer9size_typeE" title="buffer::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">buf_z</span></span>, <a class="reference internal" href="#_CPPv4N6buffer9size_typeE" title="buffer::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">align_z</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">sizeof</span></span><span class="p"><span class="pre">(</span></span><span class="kt"><span class="pre">char</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6buffer6bufferE9size_type9size_type" title="Link to this definition"></a><br /></dt>
+<dd><p>create empty buffer, and possibly allocate storage. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>buf_z</strong> – Buffer size. allocate storage (owned by this buffer) if &gt;0. </p></li>
+<li><p><strong>align_z</strong> – Align to this value, e.g. 8 to align storage on an 8-byte boundary </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6buffer6bufferERK6buffer">
+<span id="_CPPv3N6buffer6bufferERK6buffer"></span><span id="_CPPv2N6buffer6bufferERK6buffer"></span><span id="buffer::buffer__bufferCR"></span><span class="target" id="classbuffer_1aef69fd239ed92456cf2792a93187d2bf"></span><span class="sig-name descname"><span class="n"><span class="pre">buffer</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N6buffer6bufferERK6buffer" title="buffer::buffer"><span class="n"><span class="pre">buffer</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N6buffer6bufferERK6buffer" title="Link to this definition"></a><br /></dt>
+<dd><p>buffer is not copyable </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6bufferD0Ev">
+<span id="_CPPv3N6bufferD0Ev"></span><span id="_CPPv2N6bufferD0Ev"></span><span id="buffer::~buffer"></span><span class="target" id="classbuffer_1aaffc1155c4a37c9d4f56aeac6f0e33e0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~buffer</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6bufferD0Ev" title="Link to this definition"></a><br /></dt>
+<dd><p>destructor. Release storage if owned </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK6bufferixE9size_type">
+<span id="_CPPv3NK6bufferixE9size_type"></span><span id="_CPPv2NK6bufferixE9size_type"></span><span id="buffer::subscript-operator__size_typeC"></span><span class="target" id="classbuffer_1a0de81c00e674e44575c9e77495e6bc26"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0E6buffer" title="buffer::CharT"><span class="n"><span class="pre">CharT</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">[]</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N6buffer9size_typeE" title="buffer::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">i</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6bufferixE9size_type" title="Link to this definition"></a><br /></dt>
+<dd><p>readonly access to a single buffer element. </p>
+<p>Relative to start of buffer (ignores current consume position) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK6buffer8contentsEv">
+<span id="_CPPv3NK6buffer8contentsEv"></span><span id="_CPPv2NK6buffer8contentsEv"></span><span id="buffer::contentsC"></span><span class="target" id="classbuffer_1aec72a437d1cf0fb71ada083c1264667c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N6buffer9span_typeE" title="buffer::span_type"><span class="n"><span class="pre">span_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">contents</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6buffer8contentsEv" title="Link to this definition"></a><br /></dt>
+<dd><p>return span for current buffer contents </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK6buffer5availEv">
+<span id="_CPPv3NK6buffer5availEv"></span><span id="_CPPv2NK6buffer5availEv"></span><span id="buffer::availC"></span><span class="target" id="classbuffer_1ad20b761bfa43cdee16cfaf8815a7faed"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N6buffer9span_typeE" title="buffer::span_type"><span class="n"><span class="pre">span_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">avail</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6buffer5availEv" title="Link to this definition"></a><br /></dt>
+<dd><p>returns span for writable buffer contents (unused prefix following produce position </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK6buffer5emptyEv">
+<span id="_CPPv3NK6buffer5emptyEv"></span><span id="_CPPv2NK6buffer5emptyEv"></span><span id="buffer::emptyC"></span><span class="target" id="classbuffer_1a74d57707059cbe8aaad4974ded75b257"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">empty</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6buffer5emptyEv" title="Link to this definition"></a><br /></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> iff buffer is empty </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6buffer7produceERK9span_type">
+<span id="_CPPv3N6buffer7produceERK9span_type"></span><span id="_CPPv2N6buffer7produceERK9span_type"></span><span id="buffer::produce__span_typeCR"></span><span class="target" id="classbuffer_1a0992e9a474bb628e15105ff88d09c5f8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">produce</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N6buffer9span_typeE" title="buffer::span_type"><span class="n"><span class="pre">span_type</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">span</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6buffer7produceERK9span_type" title="Link to this definition"></a><br /></dt>
+<dd><p>update buffer produce position, after (independently) writing contents of span to it </p>
+<dl class="field-list simple">
+<dt class="field-odd">Pre<span class="colon">:</span></dt>
+<dd class="field-odd"><p>left endpoint of <code class="docutils literal notranslate"><span class="pre">span</span></code> equals buffer produce position (<code class="docutils literal notranslate"></code>.hi_pos) </p>
+</dd>
+<dt class="field-even">Pre<span class="colon">:</span></dt>
+<dd class="field-even"><p>right endpoint of <code class="docutils literal notranslate"><span class="pre">span</span></code> within bounds of buffer memory range </p>
+</dd>
+<dt class="field-odd">Post<span class="colon">:</span></dt>
+<dd class="field-odd"><p>right endpoint of <code class="docutils literal notranslate"><span class="pre">span</span></code> equals buffer produce position. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6buffer7consumeERK9span_type">
+<span id="_CPPv3N6buffer7consumeERK9span_type"></span><span id="_CPPv2N6buffer7consumeERK9span_type"></span><span id="buffer::consume__span_typeCR"></span><span class="target" id="classbuffer_1aa37d0098fc08395d8124e0891415cdce"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">consume</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N6buffer9span_typeE" title="buffer::span_type"><span class="n"><span class="pre">span_type</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">span</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6buffer7consumeERK9span_type" title="Link to this definition"></a><br /></dt>
+<dd><p>update buffer consume position, when done with contents of span </p>
+<dl class="field-list simple">
+<dt class="field-odd">Pre<span class="colon">:</span></dt>
+<dd class="field-odd"><p>left endpoint of <code class="docutils literal notranslate"><span class="pre">span</span></code> equals buffer consume position (<code class="docutils literal notranslate"></code>.lo_pos) </p>
+</dd>
+<dt class="field-even">Pre<span class="colon">:</span></dt>
+<dd class="field-even"><p>right endpoint of <code class="docutils literal notranslate"><span class="pre">span</span></code> within bounds of buffer memory range </p>
+</dd>
+<dt class="field-odd">Post<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Either buffer is empty, with <code class="docutils literal notranslate"></code>.lo_pos = <code class="docutils literal notranslate"></code>.hi_pos = <code class="docutils literal notranslate"><span class="pre">0</span></code>. buffer is non-empty, right endpoint of <code class="docutils literal notranslate"><span class="pre">span</span></code> equals new buffer consume position. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6buffer5allocE9size_type9size_type">
+<span id="_CPPv3N6buffer5allocE9size_type9size_type"></span><span id="_CPPv2N6buffer5allocE9size_type9size_type"></span><span id="buffer::alloc__size_type.size_type"></span><span class="target" id="classbuffer_1a4c18960c1ab18f645e5a2598d9c5c92f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">alloc</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N6buffer9size_typeE" title="buffer::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">buf_z</span></span>, <a class="reference internal" href="#_CPPv4N6buffer9size_typeE" title="buffer::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">align_z</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">sizeof</span></span><span class="p"><span class="pre">(</span></span><span class="kt"><span class="pre">char</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6buffer5allocE9size_type9size_type" title="Link to this definition"></a><br /></dt>
+<dd><p>allocate buffer with desired amount of memory </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>buf_z</strong> – desired buffer size </p></li>
+<li><p><strong>align_z</strong> – alignment; buffer memory will be aligned on this byte-boundary. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6buffer6setbufEP5CharT9size_type">
+<span id="_CPPv3N6buffer6setbufEP5CharT9size_type"></span><span id="_CPPv2N6buffer6setbufEP5CharT9size_type"></span><span id="buffer::setbuf__CharTP.size_type"></span><span class="target" id="classbuffer_1a5b54b6dc44fb84537414d357fc9667a9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setbuf</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0E6buffer" title="buffer::CharT"><span class="n"><span class="pre">CharT</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">buf</span></span>, <a class="reference internal" href="#_CPPv4N6buffer9size_typeE" title="buffer::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">buf_z</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6buffer6setbufEP5CharT9size_type" title="Link to this definition"></a><br /></dt>
+<dd><p>attach buffer to (unowned) range of <code class="docutils literal notranslate"><span class="pre">buf_z</span></code> bytes starting at <code class="docutils literal notranslate"><span class="pre">buf</span></code>[0] </p>
+<p>Buffer is not responsible for managing storage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Post<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ol class="lowerroman simple">
+<li><p>buffer is empty </p></li>
+</ol>
+</p>
+</dd>
+<dt class="field-even">Post<span class="colon">:</span></dt>
+<dd class="field-even"><p><ol class="lowerroman simple">
+<li><p>buffer read position = buffer write position = 0 </p></li>
+</ol>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6buffer11clear2emptyEb">
+<span id="_CPPv3N6buffer11clear2emptyEb"></span><span id="_CPPv2N6buffer11clear2emptyEb"></span><span id="buffer::clear2empty__b"></span><span class="target" id="classbuffer_1adb1a3dfa311922259e0d877421d63468"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">clear2empty</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">zero_buffer_flag</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6buffer11clear2emptyEb" title="Link to this definition"></a><br /></dt>
+<dd><p>revert buffer to empty state and possibly zero it </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>zero_buffer_flag</strong> – Zero buffer contents iff this is true</p>
+</dd>
+<dt class="field-even">Post<span class="colon">:</span></dt>
+<dd class="field-even"><p><ol class="lowerroman simple">
+<li><p>buffer is empty </p></li>
+</ol>
+</p>
+</dd>
+<dt class="field-odd">Post<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ol class="lowerroman simple">
+<li><p>buffer read position = buffer write position = 0 </p></li>
+</ol>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6buffer4swapER6buffer">
+<span id="_CPPv3N6buffer4swapER6buffer"></span><span id="_CPPv2N6buffer4swapER6buffer"></span><span id="buffer::swap__bufferR"></span><span class="target" id="classbuffer_1aa7405160999251a186148a3ac93ff676"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">swap</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0E6buffer" title="buffer"><span class="n"><span class="pre">buffer</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6buffer4swapER6buffer" title="Link to this definition"></a><br /></dt>
+<dd><p>swap representation with another buffer instance. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6buffer5resetEv">
+<span id="_CPPv3N6buffer5resetEv"></span><span id="_CPPv2N6buffer5resetEv"></span><span id="buffer::reset"></span><span class="target" id="classbuffer_1ab91c84d6d2ade39cbed8520640ec80ae"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6buffer5resetEv" title="Link to this definition"></a><br /></dt>
+<dd><p>reset buffer to an empty state and recover owned storage </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6bufferaSERR6buffer">
+<span id="_CPPv3N6bufferaSERR6buffer"></span><span id="_CPPv2N6bufferaSERR6buffer"></span><span id="buffer::assign-operator__bufferRR"></span><span class="target" id="classbuffer_1a0789edf236021ae6eeccdafaf39b07e7"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0E6buffer" title="buffer"><span class="n"><span class="pre">buffer</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0E6buffer" title="buffer"><span class="n"><span class="pre">buffer</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6bufferaSERR6buffer" title="Link to this definition"></a><br /></dt>
+<dd><p>move-assignment operator. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> – right-hand-side to move from.</p>
+</dd>
+<dt class="field-even">Post<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">x</span></code> is in a valid, empty, </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N6bufferaSER6buffer">
+<span id="_CPPv3N6bufferaSER6buffer"></span><span id="_CPPv2N6bufferaSER6buffer"></span><span id="buffer::assign-operator__bufferR"></span><span class="target" id="classbuffer_1a9100c918e71d138369ad2a46b2e757f5"></span><a class="reference internal" href="#_CPPv4I0E6buffer" title="buffer"><span class="n"><span class="pre">buffer</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0E6buffer" title="buffer"><span class="n"><span class="pre">buffer</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N6bufferaSER6buffer" title="Link to this definition"></a><br /></dt>
+<dd><p>buffer is not assignable </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I0E4span">
+<span id="_CPPv3I0E4span"></span><span id="_CPPv2I0E4span"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CharT</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classspan"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">span</span></span></span><a class="headerlink" href="#_CPPv4I0E4span" title="Link to this definition"></a><br /></dt>
+<dd><p>Represents a contiguous memory range, without ownership. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>CharT</strong> – type for elements referred to by this span. </p>
+</dd>
+</dl>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-getters">getters</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4span2loEv">
+<span id="_CPPv3NK4span2loEv"></span><span id="_CPPv2NK4span2loEv"></span><span id="span::loC"></span><span class="target" id="classspan_1a2cf737a59d876589695841f5532514c6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0E4span" title="span::CharT"><span class="n"><span class="pre">CharT</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">lo</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4span2loEv" title="Link to this definition"></a><br /></dt>
+<dd><p>get member span::lo_</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4span2hiEv">
+<span id="_CPPv3NK4span2hiEv"></span><span id="_CPPv2NK4span2hiEv"></span><span id="span::hiC"></span><span class="target" id="classspan_1a0565aea40fd9b1b1488fa3d71ae315e6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0E4span" title="span::CharT"><span class="n"><span class="pre">CharT</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">hi</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4span2hiEv" title="Link to this definition"></a><br /></dt>
+<dd><p>get member span::hi_</p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N4span9size_typeE">
+<span id="_CPPv3N4span9size_typeE"></span><span id="_CPPv2N4span9size_typeE"></span><span class="target" id="classspan_1a8f3f0cebd36238298792c13424e2bb4a"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">uint64_t</span></span><a class="headerlink" href="#_CPPv4N4span9size_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>typealias for span size (in units of CharT) </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N4span4spanEP5CharTP5CharT">
+<span id="_CPPv3N4span4spanEP5CharTP5CharT"></span><span id="_CPPv2N4span4spanEP5CharTP5CharT"></span><span id="span::span__CharTP.CharTP"></span><span class="target" id="classspan_1a9f0b96c4fc9f7512fb84929c94b4e42b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">span</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0E4span" title="span::CharT"><span class="n"><span class="pre">CharT</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">lo</span></span>, <a class="reference internal" href="#_CPPv4I0E4span" title="span::CharT"><span class="n"><span class="pre">CharT</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">hi</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4span4spanEP5CharTP5CharT" title="Link to this definition"></a><br /></dt>
+<dd><p>create span for the contiguous memory range [<code class="docutils literal notranslate"><span class="pre">lo</span></code>, <code class="docutils literal notranslate"><span class="pre">hi</span></code>) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK4span4castE4spanI6OtherTEv">
+<span id="_CPPv3I0ENK4span4castEv"></span><span id="_CPPv2I0ENK4span4castEv"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OtherT</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classspan_1aa8559441eee6dfe26589d280e0a9dc30"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0E4span" title="span"><span class="n"><span class="pre">span</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0ENK4span4castE4spanI6OtherTEv" title="span::cast::OtherT"><span class="n"><span class="pre">OtherT</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cast</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK4span4castE4spanI6OtherTEv" title="Link to this definition"></a><br /></dt>
+<dd><p>create new span over supplied type, with identical (possibly misaligned) endpoints. </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><ol class="lowerroman simple">
+<li><p>New span uses exactly the same memory addresses. Endpoint pointers may not be aligned.</p></li>
+<li><p>Implementation assumes code compiled with <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">fno</span><span class="o">-</span><span class="n">strict</span><span class="o">-</span><span class="n">aliasing</span> 
+</pre></div>
+</div>
+ enabled.</p></li>
+</ol>
+</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>OtherT</strong> – element type for new span </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4span6prefixE9size_type">
+<span id="_CPPv3NK4span6prefixE9size_type"></span><span id="_CPPv2NK4span6prefixE9size_type"></span><span id="span::prefix__size_typeC"></span><span class="target" id="classspan_1aa478c6f26c7522eaacd7149f92cc9f43"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0E4span" title="span"><span class="n"><span class="pre">span</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">prefix</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N4span9size_typeE" title="span::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">z</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4span6prefixE9size_type" title="Link to this definition"></a><br /></dt>
+<dd><p>create span including the first <code class="docutils literal notranslate"><span class="pre">z</span></code> members of this span. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4span5emptyEv">
+<span id="_CPPv3NK4span5emptyEv"></span><span id="_CPPv2NK4span5emptyEv"></span><span id="span::emptyC"></span><span class="target" id="classspan_1a6ee2a82c9bfb5926ebe00af17a7d87b1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">empty</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4span5emptyEv" title="Link to this definition"></a><br /></dt>
+<dd><p>true iff this span is empty (comprises 0 elements). </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4span4sizeEv">
+<span id="_CPPv3NK4span4sizeEv"></span><span id="_CPPv2NK4span4sizeEv"></span><span id="span::sizeC"></span><span class="target" id="classspan_1a989b6fc3f311b66b4fa970672daf47ec"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N4span9size_typeE" title="span::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4span4sizeEv" title="Link to this definition"></a><br /></dt>
+<dd><p>report the number of elements (of type CharT) in this span. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3hex3hexENSt7uint8_tEb">
+<span id="_CPPv3N3hex3hexENSt7uint8_tEb"></span><span id="_CPPv2N3hex3hexENSt7uint8_tEb"></span><span id="hex::hex__std::uint8_t.b"></span><span class="target" id="structhex_1a3a723f5b210df867b2fefead3b2a1d00"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-prename descclassname"><a class="reference internal" href="#_CPPv4N3hex3hexENSt7uint8_tEb" title="hex::hex"><span class="n"><span class="pre">hex</span></span></a><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">hex</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">w_char</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3hex3hexENSt7uint8_tEb" title="Link to this definition"></a><br /></dt>
+<dd><p>constructor; create stream-inserter instance </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4IDpE5tostrNSt6stringEDpRR2Tn">
+<span id="_CPPv3IDpE5tostrDpRR2Tn"></span><span id="_CPPv2IDpE5tostrDpRR2Tn"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="sig-name descname"><span class="n"><span class="pre">Tn</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="tostr_8hpp_1abc4b101e9b7b473dfbbbec4ba814f98f"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">tostr</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4IDpE5tostrNSt6stringEDpRR2Tn" title="tostr::Tn"><span class="n"><span class="pre">Tn</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">...</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">args</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4IDpE5tostrNSt6stringEDpRR2Tn" title="Link to this definition"></a><br /></dt>
+<dd><p>construct string from in-order printed value of arguments </p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tostr</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>is shorthand for:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="n">stringstream</span> <span class="n">s</span><span class="p">;</span>
+  <span class="n">s</span> <span class="o">&lt;&lt;</span> <span class="n">x1</span> <span class="o">&lt;&lt;</span> <span class="n">x2</span> <span class="o">&lt;&lt;</span> <span class="o">...</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>args</strong> – (parameter pack) arguments to be printed </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>string constructed by writing each argument to a stringstrema. </p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../zstreamlib/index.html" class="btn btn-neutral float-left" title="Zstream Library" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1980, Roland Conybeare.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
