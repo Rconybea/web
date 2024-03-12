@@ -1,0 +1,3 @@
+This file tells github not to preprocess webpages.
+Need this for sphinx to work,  since sphinx has directories that begin with an underscore
+character,  and jekyll treats these as special (and doesn't copy them!)
