@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Install &mdash; xo stringlit documentation  documentation</title>
+  <title>Source &mdash; xo flatstring documentation  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
@@ -34,7 +34,7 @@
           
           
           <a href="index.html" class="icon icon-home">
-            xo stringlit documentation
+            xo flatstring documentation
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -46,8 +46,10 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">xo-flatstring contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Install</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#include-as-submodule">Include as submodule</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#id1">Install</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#copy-includes">Copy includes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#include-as-git-submodule">Include as git submodule</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#supported-compilers">Supported compilers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#building-from-source">Building from source</a></li>
 </ul>
@@ -62,7 +64,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">xo stringlit documentation</a>
+          <a href="index.html">xo flatstring documentation</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -70,7 +72,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Install</li>
+      <li class="breadcrumb-item active">Source</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/install.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -80,13 +82,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <span class="target" id="install"></span><section id="id1">
-<h1>Install<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
-<p><a class="reference external" href="https://github.com/rconybea/xo-flatstring">xo-flatstring source</a> lives on github.</p>
-<p>Implementation relies on c++20 features (for example class-instances as template arguments).
+  <span class="target" id="install"></span><section id="source">
+<h1>Source<a class="headerlink" href="#source" title="Link to this heading"></a></h1>
+<p>Source code lives on github <a class="reference external" href="https://github.com/rconybea/xo-flatstring">here</a></p>
+<p>To clone from git:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/rconybea/xo-flatstring
+</pre></div>
+</div>
+<p>Implementation relies on c++20 features (expanded use of constexpr; class-instances as template arguments).
 Tested with gcc 13.2</p>
-<section id="include-as-submodule">
-<h2>Include as submodule<a class="headerlink" href="#include-as-submodule" title="Link to this heading"></a></h2>
+</section>
+<section id="id1">
+<h1>Install<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>Since xo-flatstring is header-only, can incorporate into another project just by copying the include directories
+to somewhere convenient.</p>
+<section id="copy-includes">
+<h2>Copy includes<a class="headerlink" href="#copy-includes" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># For example..</span>
+<span class="nb">cd</span><span class="w"> </span>myproject
+mkdir<span class="w"> </span>-p<span class="w"> </span>ext/xo-flatstring
+rsync<span class="w"> </span>-a<span class="w"> </span>-v<span class="w"> </span>path/to/xo-flatstring/include/<span class="w"> </span>ext/xo-flatstring/
+</pre></div>
+</div>
+</section>
+<section id="include-as-git-submodule">
+<h2>Include as git submodule<a class="headerlink" href="#include-as-git-submodule" title="Link to this heading"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>myproject
 git<span class="w"> </span>submodule<span class="w"> </span>add<span class="w"> </span>-b<span class="w"> </span>main<span class="w"> </span>https://github.com/rconybea/xo-flatstring<span class="w"> </span>ext/xo-flatstring
 git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init
@@ -115,6 +135,14 @@ Example instructions (github CI) for build starting from stock ubuntu are in <a 
 <li><p><a class="reference external" href="https://github.com/catchorg/Catch2">catch2</a> header-only unit-test framework</p></li>
 <li><p><a class="reference external" href="https://github.com/rconybea/xo-cmake">xo-cmake</a> cmake macros</p></li>
 <li><p><a class="reference external" href="https://github.com/rconybea/indentlog">xo-indentlog</a> logging with call-structure indenting</p></li>
+</ul>
+<p>To build documentation, will also need:</p>
+<ul class="simple">
+<li><p><cite>doxygen</cite></p></li>
+<li><p><cite>graphviz</cite></p></li>
+<li><p><cite>sphinx</cite></p></li>
+<li><p><cite>breathe</cite></p></li>
+<li><p><cite>sphinx_rtd_theme</cite></p></li>
 </ul>
 </section>
 </section>
