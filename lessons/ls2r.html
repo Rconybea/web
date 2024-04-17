@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-04-16 Tue 21:21 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Things that surprised me</title>
+<meta name="author" content="Roland Conybeare" />
+<meta name="description" content="lessons learned while building cooperating c++ libraries using nix|cmake|pybind11|eigen amongst others" />
+<meta name="keywords" content="c++ cmake git submodule pybind11 eigen transitive-library-dependency" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style>pre.src{background:#343131;color:white;} </style>
+<style>pre.example{background:#343131;color:white;} </style>
+<style> #content{max-width:1800px;}</style>
+<style> p{max-width:1800px;}</style>
+<style> li{max-width:1800px;}</style>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href=""> UP </a>
+ |
+ <a accesskey="H" href="../index.html"> HOME </a>
+</div><div id="content" class="content">
+<h1 class="title">Things that surprised me</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgc63b48b">1. Introduction</a></li>
+<li><a href="#orgddc0ae1">2. c++</a>
+<ul>
+<li><a href="#org3e725b9">2.1. empty structs have non-zero size</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc63b48b" class="outline-2">
+<h2 id="orgc63b48b"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+In other words: Principle-of-Least-Surprise violations,  according to Roland.
+Not necessarily flaws.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgddc0ae1" class="outline-2">
+<h2 id="orgddc0ae1"><span class="section-number-2">2.</span> c++</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org3e725b9" class="outline-3">
+<h3 id="org3e725b9"><span class="section-number-3">2.1.</span> empty structs have non-zero size</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Venerable standard requirement (inherited from C).
+</p>
+
+<p>
+Standard requires that distinct variables always have different addresses.
+</p>
+
+<p>
+Consider this example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #23d7d7;">#include</span> <span style="color: #e67128;">&lt;array&gt;</span>
+
+<span style="color: #ffad29; font-weight: bold;">using</span> <span style="color: #34cae2;">foo</span> = <span style="color: #ffad29; font-weight: bold;">struct</span> {};
+
+<span style="color: #34cae2;">void</span> <span style="color: #00ede1; font-weight: bold;">loop</span>() {
+    <span style="color: #34cae2;">foo</span> <span style="color: #dbdb95;">v</span>[100];
+
+    <span style="color: #34cae2;">foo</span> * <span style="color: #dbdb95;">p</span> = &amp;(v[0]);
+    <span style="color: #34cae2;">foo</span> * <span style="color: #dbdb95;">e</span> = &amp;(v[100]);
+
+    <span style="color: #ffad29; font-weight: bold;">for</span> (; p != e; ++p) {
+        <span style="color: #74af68;">// </span><span style="color: #74af68;">do something</span>
+    }
+}
+</pre>
+</div>
+
+<p>
+If <code>foo</code> has zero size,  and presumably <code>foo[100]</code> also has zero size,
+then the for-loop executes zero times instead of 100,  which isn't likely to be what programmers expect.
+</p>
+
+<p>
+The price of this consistency is that now <code>sizeof(foo[100])</code> is at least 100 bytes.
+</p>
+
+<p>
+Starting in c++20,  we can mitigate this somewhat:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #ffad29; font-weight: bold;">struct</span> <span style="color: #34cae2;">bar</span> {
+    [[no_unique_address]] <span style="color: #34cae2;">foo</span> <span style="color: #dbdb95;">empty1</span>, <span style="color: #dbdb95;">empty2</span>;
+    <span style="color: #34cae2;">int</span> <span style="color: #dbdb95;">counter</span>;
+};
+</pre>
+</div>
+
+<p>
+The unique address requirement still applies to variables <b>of the same type</b>,
+so <code>bar::empty1</code> and <code>bar::empty2</code> will have different addresses.
+</p>
+
+<p>
+However,  variables of different types can have the same address,
+as long as one of them has the <code>no_unique_address</code> attribute.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Roland Conybeare</p>
+<p class="date">Created: 2024-04-16 Tue 21:21</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

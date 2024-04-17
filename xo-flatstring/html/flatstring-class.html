@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flatstring &mdash; xo stringlit documentation  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Flatstring Functions" href="flatstring-functions.html" />
+    <link rel="prev" title="Flatstring Reference" href="flatstring-reference.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            xo stringlit documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">xo-flatstring contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lessons.html">Lessons</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="flatstring-reference.html">Flatstring Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Flatstring</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4I_NSt6size_tEEN2xo10flatstringE"><code class="docutils literal notranslate"><span class="pre">flatstring</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#instance-variables">Instance Variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv46value_"><code class="docutils literal notranslate"><span class="pre">value_</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#types">Types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv411traits_type"><code class="docutils literal notranslate"><span class="pre">traits_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv410value_type"><code class="docutils literal notranslate"><span class="pre">value_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv414allocator_type"><code class="docutils literal notranslate"><span class="pre">allocator_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49size_type"><code class="docutils literal notranslate"><span class="pre">size_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv415difference_type"><code class="docutils literal notranslate"><span class="pre">difference_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49reference"><code class="docutils literal notranslate"><span class="pre">reference</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv415const_reference"><code class="docutils literal notranslate"><span class="pre">const_reference</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv47pointer"><code class="docutils literal notranslate"><span class="pre">pointer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv413const_pointer"><code class="docutils literal notranslate"><span class="pre">const_pointer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv48iterator"><code class="docutils literal notranslate"><span class="pre">iterator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv414const_iterator"><code class="docutils literal notranslate"><span class="pre">const_iterator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv416reverse_iterator"><code class="docutils literal notranslate"><span class="pre">reverse_iterator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv422const_reverse_iterator"><code class="docutils literal notranslate"><span class="pre">const_reverse_iterator</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#constants">Constants</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv44npos"><code class="docutils literal notranslate"><span class="pre">npos</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv414fixed_capacity"><code class="docutils literal notranslate"><span class="pre">fixed_capacity</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#constructors">Constructors</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv410flatstringv"><code class="docutils literal notranslate"><span class="pre">flatstring()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv410flatstringRA1N_Kc"><code class="docutils literal notranslate"><span class="pre">flatstring()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#properties">Properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5emptyEv"><code class="docutils literal notranslate"><span class="pre">empty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK4sizeEv"><code class="docutils literal notranslate"><span class="pre">size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK6lengthEv"><code class="docutils literal notranslate"><span class="pre">length()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK8capacityEv"><code class="docutils literal notranslate"><span class="pre">capacity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK8max_sizeEv"><code class="docutils literal notranslate"><span class="pre">max_size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5c_strEv"><code class="docutils literal notranslate"><span class="pre">c_str()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#access-methods">Access Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv42at9size_type"><code class="docutils literal notranslate"><span class="pre">at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK2atE9size_type"><code class="docutils literal notranslate"><span class="pre">at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4ix9size_type"><code class="docutils literal notranslate"><span class="pre">operator[]()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NKixE9size_type"><code class="docutils literal notranslate"><span class="pre">operator[]()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#iterators">Iterators</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv45beginv"><code class="docutils literal notranslate"><span class="pre">begin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv43endv"><code class="docutils literal notranslate"><span class="pre">end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK6cbeginEv"><code class="docutils literal notranslate"><span class="pre">cbegin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK4cendEv"><code class="docutils literal notranslate"><span class="pre">cend()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5beginEv"><code class="docutils literal notranslate"><span class="pre">begin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK3endEv"><code class="docutils literal notranslate"><span class="pre">end()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv46rbeginv"><code class="docutils literal notranslate"><span class="pre">rbegin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv44rendv"><code class="docutils literal notranslate"><span class="pre">rend()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK7crbeginEv"><code class="docutils literal notranslate"><span class="pre">crbegin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5crendEv"><code class="docutils literal notranslate"><span class="pre">crend()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK6rbeginEv"><code class="docutils literal notranslate"><span class="pre">rbegin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK4rendEv"><code class="docutils literal notranslate"><span class="pre">rend()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#assignment">Assignment</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv45clearv"><code class="docutils literal notranslate"><span class="pre">clear()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv46assign9size_type10value_type"><code class="docutils literal notranslate"><span class="pre">assign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv46assignRK10flatstring"><code class="docutils literal notranslate"><span class="pre">assign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv46assignRK10flatstring9size_type9size_type"><code class="docutils literal notranslate"><span class="pre">assign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv46assignPK10value_type9size_type"><code class="docutils literal notranslate"><span class="pre">assign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv46assignPK10value_type"><code class="docutils literal notranslate"><span class="pre">assign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0E6assignR10flatstring9InputIter9InputIter"><code class="docutils literal notranslate"><span class="pre">assign()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#conversion">Conversion</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK3strEv"><code class="docutils literal notranslate"><span class="pre">str()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NKcvNSt11string_viewEEv"><code class="docutils literal notranslate"><span class="pre">operator</span> <span class="pre">std::string_view()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NKcvPKcEv"><code class="docutils literal notranslate"><span class="pre">operator</span> <span class="pre">const</span> <span class="pre">char*()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="flatstring-functions.html">Flatstring Functions</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">xo stringlit documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="flatstring-reference.html">Flatstring Reference</a></li>
+      <li class="breadcrumb-item active">Flatstring</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/flatstring-class.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="flatstring">
+<span id="flatstring-class"></span><h1>Flatstring<a class="headerlink" href="#flatstring" title="Link to this heading"></a></h1>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;xo/flatstring/flatstring.hpp&gt;</span>
+</pre></div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">flatstring</span></code> is a thin wrapper around a character array.</p>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I_NSt6size_tEEN2xo10flatstringE">
+<span id="_CPPv3I_NSt6size_tEEN2xo10flatstringE"></span><span id="_CPPv2I_NSt6size_tEEN2xo10flatstringE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">N</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="structxo_1_1flatstring"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">flatstring</span></span></span><a class="headerlink" href="#_CPPv4I_NSt6size_tEEN2xo10flatstringE" title="Link to this definition"></a><br /></dt>
+<dd><p>class to represent a string with a fixed amount of storage space. </p>
+<p><ul class="simple">
+<li><p>Flatstring memory layout is a fixed-size, null-terminated char array.</p></li>
+<li><p>With a few exceptions, flatstring methods are noexcept. <code class="docutils literal notranslate"><a class="reference internal" href="#group__flatstring-access_1gaf6e5fe2f1335f315896ee49c8885fd08"><span class="std std-ref"><span class="pre">flatstring&lt;N&gt;::at()</span></span></a></code> may throw, for consistency with <code class="docutils literal notranslate"><span class="pre">std::string::at()</span></code> behavior</p></li>
+<li><p>Construction and concatenation of flatstrings are constexpr, and can be done at compile time. We rely on this in related projects (e.g. <a class="reference external" href="https://github.com:rconybea/xo-unit">https://github.com:rconybea/xo-unit</a>)</p></li>
+<li><p>Preserves as much of the c++23 <code class="docutils literal notranslate"><span class="pre">std::string</span></code> api as practicable</p></li>
+</ul>
+</p>
+<p><code class="docutils literal notranslate"><span class="pre">N</span></code> includes mandatory null terminator, so we require <code class="docutils literal notranslate"><span class="pre">N</span></code> &gt; 0.</p>
+<p><dl class="simple">
+<dt><strong>Invariant</strong></dt><dd><p>all flatstring instances are null-terminated. </p>
+</dd>
+<dt><strong>Invariant</strong></dt><dd><p>sizeof(flatstring&lt;N&gt;) == N </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<section id="instance-variables">
+<h2>Instance Variables<a class="headerlink" href="#instance-variables" title="Link to this heading"></a></h2>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv46value_">
+<span id="_CPPv36value_"></span><span id="_CPPv26value_"></span><span id="value___cA"></span><span class="target" id="group__flatstring-instance-variables_1ga725ba0e5e1095e35073a7326264a467a"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">value_</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv46value_" title="Link to this definition"></a><br /></dt>
+<dd><p>characters comprising this literal string </p>
+</dd></dl>
+
+</section>
+<section id="types">
+<h2>Types<a class="headerlink" href="#types" title="Link to this heading"></a></h2>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__flatstring-types"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">flatstring-types</span></span></dt>
+<dd><p>Template types exposed by <code class="docutils literal notranslate"><span class="pre">flatstring&lt;N&gt;</span></code></p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-typedefs">Typedefs</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv411traits_type">
+<span id="_CPPv311traits_type"></span><span id="_CPPv211traits_type"></span><span class="target" id="group__flatstring-types_1gad222f7cac8708bf53a51688e31f50645"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">traits_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">char_traits</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">char</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv411traits_type" title="Link to this definition"></a><br /></dt>
+<dd><p>character traits for this flatstring </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv410value_type">
+<span id="_CPPv310value_type"></span><span id="_CPPv210value_type"></span><span class="target" id="group__flatstring-types_1ga8fe10e053def6b9f23fcc91b3c2cef10"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">value_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><a class="headerlink" href="#_CPPv410value_type" title="Link to this definition"></a><br /></dt>
+<dd><p>type of each character in this flatstring </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv414allocator_type">
+<span id="_CPPv314allocator_type"></span><span id="_CPPv214allocator_type"></span><span class="target" id="group__flatstring-types_1ga4493d1cf2d72fb230528f4ae6da9764b"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">allocator_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">allocator</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">char</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv414allocator_type" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv49size_type">
+<span id="_CPPv39size_type"></span><span id="_CPPv29size_type"></span><span class="target" id="group__flatstring-types_1ga36f84310d62e8c8eca4e091251d4304f"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">allocator_traits</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv414allocator_type" title="allocator_type"><span class="n"><span class="pre">allocator_type</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_type</span></span><a class="headerlink" href="#_CPPv49size_type" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv415difference_type">
+<span id="_CPPv315difference_type"></span><span id="_CPPv215difference_type"></span><span class="target" id="group__flatstring-types_1ga01fed9cbf32bd50883746797bbddfc1c"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">difference_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">allocator_traits</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv414allocator_type" title="allocator_type"><span class="n"><span class="pre">allocator_type</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">difference_type</span></span><a class="headerlink" href="#_CPPv415difference_type" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv49reference">
+<span id="_CPPv39reference"></span><span id="_CPPv29reference"></span><span class="target" id="group__flatstring-types_1gafb48621e025861e35fa99f540eb415ac"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reference</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410value_type" title="value_type"><span class="n"><span class="pre">value_type</span></span></a><span class="p"><span class="pre">&amp;</span></span><a class="headerlink" href="#_CPPv49reference" title="Link to this definition"></a><br /></dt>
+<dd><p>type of a character reference </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv415const_reference">
+<span id="_CPPv315const_reference"></span><span id="_CPPv215const_reference"></span><span class="target" id="group__flatstring-types_1gaf01e5b5afa4c7942a0303ce481cac37b"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">const_reference</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410value_type" title="value_type"><span class="n"><span class="pre">value_type</span></span></a><span class="p"><span class="pre">&amp;</span></span><a class="headerlink" href="#_CPPv415const_reference" title="Link to this definition"></a><br /></dt>
+<dd><p>type of a readonly character reference </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv47pointer">
+<span id="_CPPv37pointer"></span><span id="_CPPv27pointer"></span><span class="target" id="group__flatstring-types_1ga5e13ba62c4d93b81e0866caf7bd7b4b2"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pointer</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">allocator_traits</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv414allocator_type" title="allocator_type"><span class="n"><span class="pre">allocator_type</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">pointer</span></span><a class="headerlink" href="#_CPPv47pointer" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv413const_pointer">
+<span id="_CPPv313const_pointer"></span><span id="_CPPv213const_pointer"></span><span class="target" id="group__flatstring-types_1ga7632b034208c972b868b08ee30e67f13"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">const_pointer</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">allocator_traits</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv414allocator_type" title="allocator_type"><span class="n"><span class="pre">allocator_type</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">const_pointer</span></span><a class="headerlink" href="#_CPPv413const_pointer" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv48iterator">
+<span id="_CPPv38iterator"></span><span id="_CPPv28iterator"></span><span class="target" id="group__flatstring-types_1ga6e80c435bb198f0bef3be6e93fc53630"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">iterator</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="p"><span class="pre">*</span></span><a class="headerlink" href="#_CPPv48iterator" title="Link to this definition"></a><br /></dt>
+<dd><p>representation for a read/write iterator </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv414const_iterator">
+<span id="_CPPv314const_iterator"></span><span id="_CPPv214const_iterator"></span><span class="target" id="group__flatstring-types_1ga680325b04984afd3502d9b960f8586a6"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">const_iterator</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="p"><span class="pre">*</span></span><a class="headerlink" href="#_CPPv414const_iterator" title="Link to this definition"></a><br /></dt>
+<dd><p>representation for a readonly iterator </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv416reverse_iterator">
+<span id="_CPPv316reverse_iterator"></span><span id="_CPPv216reverse_iterator"></span><span class="target" id="group__flatstring-types_1ga3cfd951b0af9e7579d1444dbd4701552"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reverse_iterator</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="p"><span class="pre">*</span></span><a class="headerlink" href="#_CPPv416reverse_iterator" title="Link to this definition"></a><br /></dt>
+<dd><p>representation for a read/write reverse iterator </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv422const_reverse_iterator">
+<span id="_CPPv322const_reverse_iterator"></span><span id="_CPPv222const_reverse_iterator"></span><span class="target" id="group__flatstring-types_1gad00683dd186b0463b702281e19f82f1e"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">const_reverse_iterator</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="p"><span class="pre">*</span></span><a class="headerlink" href="#_CPPv422const_reverse_iterator" title="Link to this definition"></a><br /></dt>
+<dd><p>representation for a readonly reverse iterator </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Link to this heading"></a></h2>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv44npos">
+<span id="_CPPv34npos"></span><span id="_CPPv24npos"></span><span id="npos__size_typeC"></span><span class="target" id="group__flatstring-constants_1ga80ea237c5aa11b1fc39734fa43404898"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49size_type" title="size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">npos</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49size_type" title="size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="p"><span class="pre">(</span></span><span class="o"><span class="pre">-</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv44npos" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv414fixed_capacity">
+<span id="_CPPv314fixed_capacity"></span><span id="_CPPv214fixed_capacity"></span><span id="fixed_capacity__std::sC"></span><span class="target" id="group__flatstring-constants_1ga7eb8c05dadad751b592dc8f09d791468"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fixed_capacity</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">N</span></span><a class="headerlink" href="#_CPPv414fixed_capacity" title="Link to this definition"></a><br /></dt>
+<dd><p>capacity of this flatstring, including final null terminator. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>not present in <code class="docutils literal notranslate"><span class="pre">std::string</span></code> api </p>
+</div>
+</dd></dl>
+
+</section>
+<section id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Link to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv410flatstringv">
+<span id="_CPPv310flatstringv"></span><span id="_CPPv210flatstringv"></span><span id="flatstringCE"></span><span class="target" id="group__flatstring-ctor_1ga44e0c47a395ae2e6e4c5f4d66e8f6e8d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">flatstring</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv410flatstringv" title="Link to this definition"></a><br /></dt>
+<dd><p>create empty string literal. Will contain N null characters </p>
+<p>Example <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">constexpr</span> <span class="n">flatstring</span><span class="o">&lt;</span><span class="mi">5</span><span class="o">&gt;</span> <span class="n">s1</span><span class="p">;</span>
+<span class="n">static_assert</span><span class="p">(</span><span class="n">s1</span><span class="o">.</span><span class="n">empty</span><span class="p">());</span>
+</pre></div>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv410flatstringRA1N_Kc">
+<span id="_CPPv310flatstringRA1N_Kc"></span><span id="_CPPv210flatstringRAN_Kc"></span><span class="target" id="group__flatstring-ctor_1gaf20ec5a6fb89b42f94dfabc87f29560c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">flatstring</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">str</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">]</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv410flatstringRA1N_Kc" title="Link to this definition"></a><br /></dt>
+<dd><p>create string literal from a correctly-sized char array </p>
+<p>Example <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">constexpr</span> <span class="n">flatstring</span> <span class="n">s1</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">);</span>
+<span class="n">static_assert</span><span class="p">(</span><span class="n">s1</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+</p>
+</dd></dl>
+
+</section>
+<section id="properties">
+<h2>Properties<a class="headerlink" href="#properties" title="Link to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5emptyEv">
+<span id="_CPPv3NK5emptyEv"></span><span id="_CPPv2NK5emptyEv"></span><span id="emptyCCE"></span><span class="target" id="group__flatstring-properties_1ga29eb44f2cfda4187c18c94c9b50c846d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">empty</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK5emptyEv" title="Link to this definition"></a><br /></dt>
+<dd><p>true if (and only if) string is empty </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4sizeEv">
+<span id="_CPPv3NK4sizeEv"></span><span id="_CPPv2NK4sizeEv"></span><span id="sizeCCE"></span><span class="target" id="group__flatstring-properties_1gaf4f79550ebdb29e291fd20e90b4c74e4"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49size_type" title="size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK4sizeEv" title="Link to this definition"></a><br /></dt>
+<dd><p>returns current size of this string </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK6lengthEv">
+<span id="_CPPv3NK6lengthEv"></span><span id="_CPPv2NK6lengthEv"></span><span id="lengthCCE"></span><span class="target" id="group__flatstring-properties_1ga9add05ddc15058ab887bfee9d5996d56"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49size_type" title="size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">length</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK6lengthEv" title="Link to this definition"></a><br /></dt>
+<dd><p>synonym for <code class="docutils literal notranslate"><a class="reference internal" href="#group__flatstring-properties_1gaf4f79550ebdb29e291fd20e90b4c74e4"><span class="std std-ref"><span class="pre">size()</span></span></a></code></p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK8capacityEv">
+<span id="_CPPv3NK8capacityEv"></span><span id="_CPPv2NK8capacityEv"></span><span id="capacityCCE"></span><span class="target" id="group__flatstring-properties_1ga87ddfe2f0b43582a7c2e48069ff20358"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49size_type" title="size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">capacity</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK8capacityEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK8max_sizeEv">
+<span id="_CPPv3NK8max_sizeEv"></span><span id="_CPPv2NK8max_sizeEv"></span><span id="max_sizeCCE"></span><span class="target" id="group__flatstring-properties_1ga08e413c9a15f5a354bd5db5f130df7fc"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49size_type" title="size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">max_size</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK8max_sizeEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5c_strEv">
+<span id="_CPPv3NK5c_strEv"></span><span id="_CPPv2NK5c_strEv"></span><span id="c_strCCE"></span><span class="target" id="group__flatstring-properties_1ga2caff7ec32ce28f895b5dadb6037ac4e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">c_str</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK5c_strEv" title="Link to this definition"></a><br /></dt>
+<dd><p>contents as plain old C-style string. </p>
+</dd></dl>
+
+</section>
+<section id="access-methods">
+<h2>Access Methods<a class="headerlink" href="#access-methods" title="Link to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv42at9size_type">
+<span id="_CPPv32at9size_type"></span><span id="_CPPv22at9size_type"></span><span id="at__size_typeCE"></span><span class="target" id="group__flatstring-access_1gaf6e5fe2f1335f315896ee49c8885fd08"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410value_type" title="value_type"><span class="n"><span class="pre">value_type</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">at</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49size_type" title="size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">pos</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv42at9size_type" title="Link to this definition"></a><br /></dt>
+<dd><p>return char at position <code class="docutils literal notranslate"><span class="pre">pos</span></code> in this string (counting from zero). </p>
+<p>Throws <code class="docutils literal notranslate"><span class="pre">std::out_of_range</span></code> exception if <code class="docutils literal notranslate"><span class="pre">pos</span></code> &gt;= <code class="docutils literal notranslate"><span class="pre">N</span></code></p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2atE9size_type">
+<span id="_CPPv3NK2atE9size_type"></span><span id="_CPPv2NK2atE9size_type"></span><span id="at__size_typeCCE"></span><span class="target" id="group__flatstring-access_1gadb1f62d4b85101f6005a563fa96bbdc8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410value_type" title="value_type"><span class="n"><span class="pre">value_type</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">at</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49size_type" title="size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">pos</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2atE9size_type" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4ix9size_type">
+<span id="_CPPv3ix9size_type"></span><span id="_CPPv2ix9size_type"></span><span id="subscript-operator__size_typeCE"></span><span class="target" id="group__flatstring-access_1gaecfba53d094a472b1222d9bb7fe974b3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410value_type" title="value_type"><span class="n"><span class="pre">value_type</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">[]</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49size_type" title="size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">pos</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4ix9size_type" title="Link to this definition"></a><br /></dt>
+<dd><p>return char at position <code class="docutils literal notranslate"><span class="pre">pos</span></code> in this string (counting from zero). </p>
+<p>Does not check bounds: undefined behavior if <code class="docutils literal notranslate"><span class="pre">pos</span></code> &gt;= <code class="docutils literal notranslate"><span class="pre">N</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Pre<span class="colon">:</span></dt>
+<dd class="field-odd"><p>0&lt;=pos&lt;=N-1 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NKixE9size_type">
+<span id="_CPPv3NKixE9size_type"></span><span id="_CPPv2NKixE9size_type"></span><span id="subscript-operator__size_typeCCE"></span><span class="target" id="group__flatstring-access_1ga2c67085729404682cf2e0aa682b66185"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410value_type" title="value_type"><span class="n"><span class="pre">value_type</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">[]</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49size_type" title="size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">pos</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NKixE9size_type" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</section>
+<section id="iterators">
+<h2>Iterators<a class="headerlink" href="#iterators" title="Link to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv45beginv">
+<span id="_CPPv35beginv"></span><span id="_CPPv25beginv"></span><span id="beginCE"></span><span class="target" id="group__flatstring-iterators_1gaa8461afb0c17591f76f212bda796e2a7"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv48iterator" title="iterator"><span class="n"><span class="pre">iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">begin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv45beginv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv43endv">
+<span id="_CPPv33endv"></span><span id="_CPPv23endv"></span><span id="endCE"></span><span class="target" id="group__flatstring-iterators_1gadf7fc6b633a17581cab5a27147e8ad32"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv48iterator" title="iterator"><span class="n"><span class="pre">iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">end</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv43endv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK6cbeginEv">
+<span id="_CPPv3NK6cbeginEv"></span><span id="_CPPv2NK6cbeginEv"></span><span id="cbeginCCE"></span><span class="target" id="group__flatstring-iterators_1ga33f64d5d3321f7b3fbb080acd3ef4807"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv414const_iterator" title="const_iterator"><span class="n"><span class="pre">const_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cbegin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6cbeginEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4cendEv">
+<span id="_CPPv3NK4cendEv"></span><span id="_CPPv2NK4cendEv"></span><span id="cendCCE"></span><span class="target" id="group__flatstring-iterators_1ga647f0208f029b7fca0b7a4b1bb1dbda5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv414const_iterator" title="const_iterator"><span class="n"><span class="pre">const_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cend</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4cendEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5beginEv">
+<span id="_CPPv3NK5beginEv"></span><span id="_CPPv2NK5beginEv"></span><span id="beginCCE"></span><span class="target" id="group__flatstring-iterators_1ga3a75f5a094de8f812075687061b78481"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv414const_iterator" title="const_iterator"><span class="n"><span class="pre">const_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">begin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5beginEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK3endEv">
+<span id="_CPPv3NK3endEv"></span><span id="_CPPv2NK3endEv"></span><span id="endCCE"></span><span class="target" id="group__flatstring-iterators_1ga96728348134aa5c6671af3037b9bf4e4"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv414const_iterator" title="const_iterator"><span class="n"><span class="pre">const_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">end</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK3endEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv46rbeginv">
+<span id="_CPPv36rbeginv"></span><span id="_CPPv26rbeginv"></span><span id="rbeginCE"></span><span class="target" id="group__flatstring-iterators_1gaa2c087a31bd65c5609839e34ae96180f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv416reverse_iterator" title="reverse_iterator"><span class="n"><span class="pre">reverse_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rbegin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv46rbeginv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv44rendv">
+<span id="_CPPv34rendv"></span><span id="_CPPv24rendv"></span><span id="rendCE"></span><span class="target" id="group__flatstring-iterators_1ga60b412f71ff68a541220a01cdeb55ff1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv416reverse_iterator" title="reverse_iterator"><span class="n"><span class="pre">reverse_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rend</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv44rendv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK7crbeginEv">
+<span id="_CPPv3NK7crbeginEv"></span><span id="_CPPv2NK7crbeginEv"></span><span id="crbeginCCE"></span><span class="target" id="group__flatstring-iterators_1ga7ca8ea1781d648abf255feed4b4ba9af"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv422const_reverse_iterator" title="const_reverse_iterator"><span class="n"><span class="pre">const_reverse_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">crbegin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7crbeginEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5crendEv">
+<span id="_CPPv3NK5crendEv"></span><span id="_CPPv2NK5crendEv"></span><span id="crendCCE"></span><span class="target" id="group__flatstring-iterators_1gab37f0166285487a2cf90b89706feba58"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv422const_reverse_iterator" title="const_reverse_iterator"><span class="n"><span class="pre">const_reverse_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">crend</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5crendEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK6rbeginEv">
+<span id="_CPPv3NK6rbeginEv"></span><span id="_CPPv2NK6rbeginEv"></span><span id="rbeginCCE"></span><span class="target" id="group__flatstring-iterators_1ga89f8861fb15eddfce02cdeec5b347d39"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv422const_reverse_iterator" title="const_reverse_iterator"><span class="n"><span class="pre">const_reverse_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rbegin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK6rbeginEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK4rendEv">
+<span id="_CPPv3NK4rendEv"></span><span id="_CPPv2NK4rendEv"></span><span id="rendCCE"></span><span class="target" id="group__flatstring-iterators_1ga9b367e6fae63adede0651d09e92bcb27"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv422const_reverse_iterator" title="const_reverse_iterator"><span class="n"><span class="pre">const_reverse_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rend</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK4rendEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</section>
+<section id="assignment">
+<h2>Assignment<a class="headerlink" href="#assignment" title="Link to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv45clearv">
+<span id="_CPPv35clearv"></span><span id="_CPPv25clearv"></span><span id="clear"></span><span class="target" id="group__flatstring-assign_1ga6e87592a4a71fa964914894863531c78"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">clear</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv45clearv" title="Link to this definition"></a><br /></dt>
+<dd><p>put string into empty state. fills entire char array with nulls </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv46assign9size_type10value_type">
+<span id="_CPPv36assign9size_type10value_type"></span><span id="_CPPv26assign9size_type10value_type"></span><span id="assign__size_type.value_typeCE"></span><span class="target" id="group__flatstring-assign_1ga48d014aa54b46c5f51c64c80ff5a1c07"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410flatstringv" title="flatstring"><span class="n"><span class="pre">flatstring</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">assign</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49size_type" title="size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">count</span></span>, <a class="reference internal" href="#_CPPv410value_type" title="value_type"><span class="n"><span class="pre">value_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">ch</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv46assign9size_type10value_type" title="Link to this definition"></a><br /></dt>
+<dd><p>replace contents with min(count,N-1) copies of character ch </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv46assignRK10flatstring">
+<span id="_CPPv36assignRK10flatstring"></span><span id="_CPPv26assignRK10flatstring"></span><span id="assign__flatstringCRCE"></span><span class="target" id="group__flatstring-assign_1gab9c2dd957944a6ad35c4d0df22ef8d31"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410flatstringv" title="flatstring"><span class="n"><span class="pre">flatstring</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">assign</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410flatstringv" title="flatstring"><span class="n"><span class="pre">flatstring</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv46assignRK10flatstring" title="Link to this definition"></a><br /></dt>
+<dd><p>replace contents with first N-1 characters of str </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv46assignRK10flatstring9size_type9size_type">
+<span id="_CPPv36assignRK10flatstring9size_type9size_type"></span><span id="_CPPv26assignRK10flatstring9size_type9size_type"></span><span id="assign__flatstringCR.size_type.size_typeCE"></span><span class="target" id="group__flatstring-assign_1ga63df098b6c7c9bb5aafb5fa1cd4971d8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410flatstringv" title="flatstring"><span class="n"><span class="pre">flatstring</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">assign</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410flatstringv" title="flatstring"><span class="n"><span class="pre">flatstring</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span>, <a class="reference internal" href="#_CPPv49size_type" title="size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">pos</span></span>, <a class="reference internal" href="#_CPPv49size_type" title="size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">count</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv44npos" title="npos"><span class="n"><span class="pre">npos</span></span></a><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv46assignRK10flatstring9size_type9size_type" title="Link to this definition"></a><br /></dt>
+<dd><p>replace contents with substring [pos,pos+count] of str </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv46assignPK10value_type9size_type">
+<span id="_CPPv36assignPK10value_type9size_type"></span><span id="_CPPv26assignPK10value_type9size_type"></span><span id="assign__value_typeCP.size_typeCE"></span><span class="target" id="group__flatstring-assign_1ga30356fe3fe1557c07a9490eac1030fc0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410flatstringv" title="flatstring"><span class="n"><span class="pre">flatstring</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">assign</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410value_type" title="value_type"><span class="n"><span class="pre">value_type</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">cstr</span></span>, <a class="reference internal" href="#_CPPv49size_type" title="size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">count</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv46assignPK10value_type9size_type" title="Link to this definition"></a><br /></dt>
+<dd><p>replace contents with range [cstr, cstr + count) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv46assignPK10value_type">
+<span id="_CPPv36assignPK10value_type"></span><span id="_CPPv26assignPK10value_type"></span><span id="assign__value_typeCPCE"></span><span class="target" id="group__flatstring-assign_1ga90aaff3af391bf904cdd1de888dbd39b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410flatstringv" title="flatstring"><span class="n"><span class="pre">flatstring</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">assign</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410value_type" title="value_type"><span class="n"><span class="pre">value_type</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">cstr</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv46assignPK10value_type" title="Link to this definition"></a><br /></dt>
+<dd><p>replace contents with C-style string cstr </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0E6assignR10flatstring9InputIter9InputIter">
+<span id="_CPPv3I0E6assign9InputIter9InputIter"></span><span id="_CPPv2I0E6assign9InputIter9InputIter"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InputIter</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__flatstring-assign_1ga543191cb1599e2438cb57e1056650054"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410flatstringv" title="flatstring"><span class="n"><span class="pre">flatstring</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">assign</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0E6assignR10flatstring9InputIter9InputIter" title="assign::InputIter"><span class="n"><span class="pre">InputIter</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">first</span></span>, <a class="reference internal" href="#_CPPv4I0E6assignR10flatstring9InputIter9InputIter" title="assign::InputIter"><span class="n"><span class="pre">InputIter</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">last</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0E6assignR10flatstring9InputIter9InputIter" title="Link to this definition"></a><br /></dt>
+<dd><p>replace contents with iterator range [first, last) </p>
+</dd></dl>
+
+</section>
+<section id="conversion">
+<h2>Conversion<a class="headerlink" href="#conversion" title="Link to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK3strEv">
+<span id="_CPPv3NK3strEv"></span><span id="_CPPv2NK3strEv"></span><span id="strC"></span><span class="target" id="group__flatstring-conversion-operators_1ga50526688ee85765bbeed9ca155e8f14b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">str</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK3strEv" title="Link to this definition"></a><br /></dt>
+<dd><p>conversion to <code class="docutils literal notranslate"><span class="pre">std::string</span></code></p>
+<p>Example <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">constexpr</span> <span class="n">flatstring</span> <span class="n">s</span><span class="p">(</span><span class="s2">&quot;bazinga!&quot;</span><span class="p">);</span>
+<span class="n">std</span><span class="p">::</span><span class="n">string</span> <span class="n">s_str</span><span class="p">{</span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="p">()};</span>
+</pre></div>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NKcvNSt11string_viewEEv">
+<span id="_CPPv3NKcvNSt11string_viewEEv"></span><span id="_CPPv2NKcvNSt11string_viewEEv"></span><span id="castto-std::string_view-operatorCCE"></span><span class="target" id="group__flatstring-conversion-operators_1ga0a2aaebe8a486d19efcfb060d15f05f8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string_view</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NKcvNSt11string_viewEEv" title="Link to this definition"></a><br /></dt>
+<dd><p>conversion operator to string_view </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NKcvPKcEv">
+<span id="_CPPv3NKcvPKcEv"></span><span id="_CPPv2NKcvPKcEv"></span><span id="castto-cCP-operatorCCE"></span><span class="target" id="group__flatstring-conversion-operators_1gae4b63793701304a70b4053d11d136535"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="p"><span class="pre">*</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NKcvPKcEv" title="Link to this definition"></a><br /></dt>
+<dd><p>conversion operator to C-style string. </p>
+<p>Example <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">constexpr</span> <span class="n">flatstring</span> <span class="n">s</span><span class="p">(</span><span class="s2">&quot;obey gravity..&quot;</span><span class="p">);</span>
+<span class="n">strcmp</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="s2">&quot;obey...&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="flatstring-reference.html" class="btn btn-neutral float-left" title="Flatstring Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="flatstring-functions.html" class="btn btn-neutral float-right" title="Flatstring Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1980, Roland Conybeare.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

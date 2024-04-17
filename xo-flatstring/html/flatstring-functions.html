@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flatstring Functions &mdash; xo stringlit documentation  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Flatstring" href="flatstring-class.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            xo stringlit documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">xo-flatstring contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lessons.html">Lessons</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="flatstring-reference.html">Flatstring Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="flatstring-class.html">Flatstring</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Flatstring Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4IDpEN2xo17flatstring_concatEDaDpRR2Ts"><code class="docutils literal notranslate"><span class="pre">flatstring_concat()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4I_NSt6size_tE_NSt6size_tEEssDaRK10flatstringI2N1ERK10flatstringI2N2E"><code class="docutils literal notranslate"><span class="pre">operator&lt;=&gt;()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">xo stringlit documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="flatstring-reference.html">Flatstring Reference</a></li>
+      <li class="breadcrumb-item active">Flatstring Functions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/flatstring-functions.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toctree-wrapper compound" id="flatstring-functions">
+</div>
+<section id="id1">
+<h1>Flatstring Functions<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;xo/flatstring/flatstring.hpp&gt;</span>
+</pre></div>
+</div>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4IDpEN2xo17flatstring_concatEDaDpRR2Ts">
+<span id="_CPPv3IDpEN2xo17flatstring_concatEDpRR2Ts"></span><span id="_CPPv2IDpEN2xo17flatstring_concatEDpRR2Ts"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="sig-name descname"><span class="n"><span class="pre">Ts</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="flatstring_8hpp_1ae2b021269ac0d0ab01b0b8ea40b35931"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">flatstring_concat</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4IDpEN2xo17flatstring_concatEDaDpRR2Ts" title="xo::flatstring_concat::Ts"><span class="n"><span class="pre">Ts</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">...</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">args</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4IDpEN2xo17flatstring_concatEDaDpRR2Ts" title="Link to this definition"></a><br /></dt>
+<dd><p>Concatenate flatstrings, possibly mixed with C-style char arrays. </p>
+<p>Example: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">constexpr</span> <span class="n">auto</span> <span class="n">s</span> <span class="o">=</span> <span class="n">flatstring_concat</span><span class="p">(</span><span class="n">flatstring</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">),</span>
+                                     <span class="s2">&quot;, &quot;</span><span class="p">,</span>
+                                     <span class="n">flatstring</span><span class="p">(</span><span class="s2">&quot;world&quot;</span><span class="p">));</span>
+<span class="n">static_assert</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">capacity</span> <span class="o">==</span> <span class="mi">13</span><span class="p">);</span>
+</pre></div>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I_NSt6size_tE_NSt6size_tEEssDaRK10flatstringI2N1ERK10flatstringI2N2E">
+<span id="_CPPv3I_NSt6size_tE_NSt6size_tEEssRK10flatstringI2N1ERK10flatstringI2N2E"></span><span id="_CPPv2I_NSt6size_tE_NSt6size_tEEssRK10flatstringI2N1ERK10flatstringI2N2E"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">N1</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">N2</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__flatstring-3way-compare_1ga0ede2719379fcf5306a1b8cc36a1a9ea"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&lt;=&gt;</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="flatstring-class.html#_CPPv410flatstringv" title="flatstring"><span class="n"><span class="pre">flatstring</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_NSt6size_tE_NSt6size_tEEssDaRK10flatstringI2N1ERK10flatstringI2N2E" title="operator&lt;=&gt;::N1"><span class="n"><span class="pre">N1</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">s1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="flatstring-class.html#_CPPv410flatstringv" title="flatstring"><span class="n"><span class="pre">flatstring</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_NSt6size_tE_NSt6size_tEEssDaRK10flatstringI2N1ERK10flatstringI2N2E" title="operator&lt;=&gt;::N2"><span class="n"><span class="pre">N2</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">s2</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4I_NSt6size_tE_NSt6size_tEEssDaRK10flatstringI2N1ERK10flatstringI2N2E" title="Link to this definition"></a><br /></dt>
+<dd><p>3-way compare for two flatstrings </p>
+<p>Example <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">constexpr</span> <span class="n">auto</span> <span class="n">cmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">flatstring</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">)</span> <span class="o">&lt;=&gt;</span> <span class="n">flatstring</span><span class="p">(</span><span class="s2">&quot;bar&quot;</span><span class="p">));</span>
+<span class="n">static_assert</span><span class="p">(</span><span class="n">cmp</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="flatstring-class.html" class="btn btn-neutral float-left" title="Flatstring" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1980, Roland Conybeare.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

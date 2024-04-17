@@ -1,0 +1,15 @@
+.. _stringliteral_functions:
+
+.. toctree::
+   :maxdepth: 2
+
+Stringliteral Functions
+=======================
+
+.. code-block:: cpp
+
+    #include <xo/stringliteral/stringliteral.hpp>
+
+.. doxygenfunction:: xo::stringliteral_concat
+
+.. doxygenfunction:: xo::stringliteral_compare

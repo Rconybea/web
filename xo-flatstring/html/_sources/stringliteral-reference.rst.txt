@@ -1,0 +1,11 @@
+.. _stringliteral-reference:
+
+Stringliteral Reference
+=======================
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Stringliteral Reference
+
+   flatstring-class
+   stringliteral-functions

@@ -1,0 +1,12 @@
+.. _stringliteral-class:
+
+Stringliteral
+=============
+
+.. code-block:: cpp
+
+    #include <xo/stringliteral/stringliteral.hpp>
+
+A ``stringliteral`` is a thin wrapper around a character array.
+
+.. doxygenclass:: xo::stringliteral

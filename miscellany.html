@@ -6,7 +6,7 @@
 <!-- 2024-04-16 Tue 21:21 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>d3/drag1 .org source</title>
+<title>&lrm;</title>
 <meta name="author" content="Roland Conybeare" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -193,101 +193,64 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="/web/css/notebook.css" />
-
-<script src="https://orgmode.org/org-info.js">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
-// @license-end
-</script>
-
-<script>
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
-org_html_manager.set("TOC_DEPTH", "3");
-org_html_manager.set("LINK_HOME", "../../index.html");
-org_html_manager.set("LINK_UP", "index.html");
-org_html_manager.set("LOCAL_TOC", "1");
-org_html_manager.set("VIEW_BUTTONS", "0");
-org_html_manager.set("MOUSE_HINT", "underline");
-org_html_manager.set("FIXED_TOC", "0");
-org_html_manager.set("TOC", "1");
-org_html_manager.set("VIEW", "info");
-org_html_manager.setup();  // activate after the parameters are set
-// @license-end
-</script>
 </head>
 <body>
-<div id="org-div-home-and-up">
- <a accesskey="h" href="index.html"> UP </a>
- |
- <a accesskey="H" href="../../index.html"> HOME </a>
-</div><div id="content" class="content">
-<h1 class="title">d3/drag1 .org source</h1>
-<pre class="example" id="org3e208be">
-#+title: d3 draggable object example #1 -- standalone
-#
-# org-publish options
-# H:2   controls section numbering.
-#       number top-level and second-level headings only
-# ^:{}  require a_{b} before assuming that b should be subscripted.
-#       without this option a_b will automatically subscript b.
-#+options: ^:{}
-#
-# options used exclusively by emacs
-#+startup: showall
-#
-# options used exclusively by the html exporter
-#+language: en
-#+infojs_opt: view:showall toc:nil ltoc:nil mouse:#ffc0c0 path:/web/ext/orginfo/org-info.js
-#+html_head: &lt;link rel="stylesheet" type="text/css" href="/web/css/notebook.css" /&gt;
-#+html_link_home: ../../index.html
-#+html_link_up: ../../index.html
-#
+<div id="content" class="content">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org202924d">1. custom domain with github repo.</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org202924d" class="outline-2">
+<h2 id="org202924d"><span class="section-number-2">1.</span> custom domain with github repo.</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+plan:
+</p>
+<ol class="org-ol">
+<li>put <code>CNAME</code> file under username.github.io repo,  so that sites are categorized under conybeare.net</li>
+<li><p>
+can have more than one sitemap file per robots.txt file
+</p>
 
-* Introduction
-  Creating a draggable object in d3.
-  Followed guide originally here (sadly now-broken link):
-  http://ssun.azurewebsites.net/creating-a-draggable-object-in-d3
+<p>
+In <code>robots.txt</code>
+</p>
 
-  - ~.org~ source for this file is here: file:index-src.org
+<pre class="example" id="org37feca0">
 
-* Try it here
-  - [[http:drag-example.html]]
+Sitemap: http://www.example.com/sitemap-host1.xml
 
-* Prerequisites
-  1. A directory tree ~$HTTP_ROOT~ that you can visit in a browser or serve via http.
-     I'm using ~$HOME/proj/public_html/org-howto~, for example
+Sitemap: http://www.example.com/sitemap-host1.xml
 
-  2. Mike Bostock's ~d3~ installed in ~$HTTP_ROOT/ext/d3~:
+</pre></li>
 
-     #+begin_src sh :results output :exports both
-     ls -l $HOME/proj/public_html/org-howto/ext/d3
-     #+end_src
+<li><p>
+can also use sitemap that is index of sitemap files
+</p>
 
-     #+RESULTS:
-     : total 336
-     : -rw-rw-r-- 1 roland roland 151725 Mar 12 00:06 d3.v3.min.js
+<pre class="example" id="orge3d3d98">
 
-  3. Optionally,  a webserver making ~$HTTP_ROOT~ available over http,
-     for example:
-     #+begin_example
-     cd $HOME/Dropbox/public_html
-     python -m SimpleHTTPServer 8080
-     #+end_example
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;sitemapindex xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"&gt;
+  &lt;sitemap&gt;
+    &lt;loc&gt;http://www.example.com/sitemap1.xml.gz&lt;/loc&gt;
+    &lt;lastmod&gt;2004-10-01T18:23:17+00:00&lt;/lastmod&gt;
+  &lt;/sitemap&gt;
+  &lt;sitemap&gt; ... &lt;/sitemap&gt;
+&lt;/sitemapindex&gt;
 
-  When this is in place,
-  we should be able to bring up ~d3.js~ in a browser here: http:/ext/d3/d3.js
-
-* Procedure
-** Create skeleton html file
-   This is the file browser will load to deliver our example.
-   Create ~drag-example.html~.
-#+include: "drag-example.html" example
-
-** Create javascript file drag-example.js
-   Create ~drag-example.js~.
-   This is where our ~d3~ code lives.
-#+include: "drag-example.js" example
 </pre>
+
+<p>
+Here <code>lastmod</code> tag is optional
+</p></li>
+</ol>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
