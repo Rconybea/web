@@ -54,6 +54,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Flatstring Functions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#_CPPv4IDpEN2xo17flatstring_concatEDaDpRR2Ts"><code class="docutils literal notranslate"><span class="pre">flatstring_concat()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#_CPPv4I_NSt6size_tE_NSt6size_tEEssDaRK10flatstringI2N1ERK10flatstringI2N2E"><code class="docutils literal notranslate"><span class="pre">operator&lt;=&gt;()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4I_NSt6size_tE_NSt6size_tEEeqbRK10flatstringI2N1ERK10flatstringI2N2E"><code class="docutils literal notranslate"><span class="pre">operator==()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -114,6 +115,21 @@
 </pre></div>
 </div>
 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I_NSt6size_tE_NSt6size_tEEeqbRK10flatstringI2N1ERK10flatstringI2N2E">
+<span id="_CPPv3I_NSt6size_tE_NSt6size_tEEeqRK10flatstringI2N1ERK10flatstringI2N2E"></span><span id="_CPPv2I_NSt6size_tE_NSt6size_tEEeqRK10flatstringI2N1ERK10flatstringI2N2E"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">N1</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">N2</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__flatstring-3way-compare_1ga6206741717b8e1cb0bab40189d233520"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="flatstring-class.html#_CPPv410flatstringv" title="flatstring"><span class="n"><span class="pre">flatstring</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_NSt6size_tE_NSt6size_tEEeqbRK10flatstringI2N1ERK10flatstringI2N2E" title="operator==::N1"><span class="n"><span class="pre">N1</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">s1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="flatstring-class.html#_CPPv410flatstringv" title="flatstring"><span class="n"><span class="pre">flatstring</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_NSt6size_tE_NSt6size_tEEeqbRK10flatstringI2N1ERK10flatstringI2N2E" title="operator==::N2"><span class="n"><span class="pre">N2</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">s2</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4I_NSt6size_tE_NSt6size_tEEeqbRK10flatstringI2N1ERK10flatstringI2N2E" title="Link to this definition"></a><br /></dt>
+<dd><p>equality comparison for two flatstrings. </p>
+<p>Example <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">constexpr</span> <span class="nb">bool</span> <span class="n">cmp</span> <span class="o">=</span> <span class="p">(</span><span class="n">flatstring</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="n">flatstring</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">));</span>
+<span class="n">static_assert</span><span class="p">(</span><span class="n">cmp</span> <span class="o">==</span> <span class="n">true</span><span class="p">);</span>
+</pre></div>
+</div>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>spaceship operator alone isn’t sufficient to get this defined, at least with gcc 13.1 </p>
+</div>
 </dd></dl>
 
 </section>
