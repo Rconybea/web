@@ -27,9 +27,6 @@ Why ``ratio``?
 
    install
 
-_comment: lessons
-_comment: ratio-reference
-
 Indices and Tables
 ------------------
 
