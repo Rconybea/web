@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ratio Functions &mdash; xo ratio documentation  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Ratio" href="ratio-class.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            xo ratio documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">xo-ratio contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html#id1">Install</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="ratio-reference.html">Ratio Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ratio-class.html">Ratio</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Ratio Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4I00EN2xo5ratio10make_ratioE5ratioINSt13common_type_tI4Int14Int2EEE4Int14Int2"><code class="docutils literal notranslate"><span class="pre">make_ratio()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4I00EplDaRK6Ratio1RK6Ratio2"><code class="docutils literal notranslate"><span class="pre">operator+()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4I00EmiDaRK6Ratio1RK6Ratio2"><code class="docutils literal notranslate"><span class="pre">operator-()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4I00EmlDaRK6Ratio1RK6Ratio2"><code class="docutils literal notranslate"><span class="pre">operator*()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4I00EdvDaRK6Ratio1RK6Ratio2"><code class="docutils literal notranslate"><span class="pre">operator/()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4I00EeqbRK6Ratio1RK6Ratio2"><code class="docutils literal notranslate"><span class="pre">operator==()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4I00EssDaRK6Ratio1RK6Ratio2"><code class="docutils literal notranslate"><span class="pre">operator&lt;=&gt;()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">xo ratio documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="ratio-reference.html">Ratio Reference</a></li>
+      <li class="breadcrumb-item active">Ratio Functions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/ratio-functions.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toctree-wrapper compound" id="ratio-functions">
+</div>
+<section id="id1">
+<h1>Ratio Functions<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;xo/ratio/ratio.hpp&gt;</span>
+</pre></div>
+</div>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I00EN2xo5ratio10make_ratioE5ratioINSt13common_type_tI4Int14Int2EEE4Int14Int2">
+<span id="_CPPv3I00EN2xo5ratio10make_ratioE4Int14Int2"></span><span id="_CPPv2I00EN2xo5ratio10make_ratioE4Int14Int2"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Int1</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Int2</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="ratio_8hpp_1a5ba15ddde916eca720e22c32a81c4022"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ratio</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">make_ratio</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I00EN2xo5ratio10make_ratioE5ratioINSt13common_type_tI4Int14Int2EEE4Int14Int2" title="xo::ratio::make_ratio::Int1"><span class="n"><span class="pre">Int1</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <a class="reference internal" href="#_CPPv4I00EN2xo5ratio10make_ratioE5ratioINSt13common_type_tI4Int14Int2EEE4Int14Int2" title="xo::ratio::make_ratio::Int2"><span class="n"><span class="pre">Int2</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">d</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="o"><span class="pre">-&gt;</span></span><span class="w"> </span><span class="n"><span class="pre">ratio</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">common_type_t</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I00EN2xo5ratio10make_ratioE5ratioINSt13common_type_tI4Int14Int2EEE4Int14Int2" title="xo::ratio::make_ratio::Int1"><span class="n"><span class="pre">Int1</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00EN2xo5ratio10make_ratioE5ratioINSt13common_type_tI4Int14Int2EEE4Int14Int2" title="xo::ratio::make_ratio::Int2"><span class="n"><span class="pre">Int2</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4I00EN2xo5ratio10make_ratioE5ratioINSt13common_type_tI4Int14Int2EEE4Int14Int2" title="Link to this definition"></a><br /></dt>
+<dd><p>create a ratio in lowest terms from two integers </p>
+</dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ratio-arithmetic"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">ratio-arithmetic</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I00EplDaRK6Ratio1RK6Ratio2">
+<span id="_CPPv3I00EplRK6Ratio1RK6Ratio2"></span><span id="_CPPv2I00EplRK6Ratio1RK6Ratio2"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Ratio1</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Ratio2</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__ratio-arithmetic_1ga318b483570fe4b897d8ce0a41d6be84d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">+</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00EplDaRK6Ratio1RK6Ratio2" title="operator+::Ratio1"><span class="n"><span class="pre">Ratio1</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00EplDaRK6Ratio1RK6Ratio2" title="operator+::Ratio2"><span class="n"><span class="pre">Ratio2</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I00EplDaRK6Ratio1RK6Ratio2" title="Link to this definition"></a><br /></dt>
+<dd><p>add two ratios. </p>
+<p>One argument may be a non-ratio type if it can be promoted to a ratio </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I00EmiDaRK6Ratio1RK6Ratio2">
+<span id="_CPPv3I00EmiRK6Ratio1RK6Ratio2"></span><span id="_CPPv2I00EmiRK6Ratio1RK6Ratio2"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Ratio1</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Ratio2</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__ratio-arithmetic_1ga6f4758e35aaae1c1ee67a4e3431a5595"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">-</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00EmiDaRK6Ratio1RK6Ratio2" title="operator-::Ratio1"><span class="n"><span class="pre">Ratio1</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00EmiDaRK6Ratio1RK6Ratio2" title="operator-::Ratio2"><span class="n"><span class="pre">Ratio2</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I00EmiDaRK6Ratio1RK6Ratio2" title="Link to this definition"></a><br /></dt>
+<dd><p>subtract two ratios. </p>
+<p>One argument may be a non-ratio type if it can be promoted to a ratio </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I00EmlDaRK6Ratio1RK6Ratio2">
+<span id="_CPPv3I00EmlRK6Ratio1RK6Ratio2"></span><span id="_CPPv2I00EmlRK6Ratio1RK6Ratio2"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Ratio1</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Ratio2</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__ratio-arithmetic_1ga0759d0d51b180270fcc5220529fcfa8f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">*</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00EmlDaRK6Ratio1RK6Ratio2" title="operator*::Ratio1"><span class="n"><span class="pre">Ratio1</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00EmlDaRK6Ratio1RK6Ratio2" title="operator*::Ratio2"><span class="n"><span class="pre">Ratio2</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I00EmlDaRK6Ratio1RK6Ratio2" title="Link to this definition"></a><br /></dt>
+<dd><p>multiply two ratios </p>
+<p>One argument may be a non-ratio type if it can be promoted to a ratio </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I00EdvDaRK6Ratio1RK6Ratio2">
+<span id="_CPPv3I00EdvRK6Ratio1RK6Ratio2"></span><span id="_CPPv2I00EdvRK6Ratio1RK6Ratio2"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Ratio1</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Ratio2</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__ratio-arithmetic_1ga8ef7ddcf61ec4482212f77934a5170bb"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">/</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00EdvDaRK6Ratio1RK6Ratio2" title="operator/::Ratio1"><span class="n"><span class="pre">Ratio1</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00EdvDaRK6Ratio1RK6Ratio2" title="operator/::Ratio2"><span class="n"><span class="pre">Ratio2</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I00EdvDaRK6Ratio1RK6Ratio2" title="Link to this definition"></a><br /></dt>
+<dd><p>divide two ratios </p>
+<p>One argument may be a non-ratio type if it can be promoted to a ratio </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ratio-3way-compare"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">ratio-3way-compare</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I00EeqbRK6Ratio1RK6Ratio2">
+<span id="_CPPv3I00EeqRK6Ratio1RK6Ratio2"></span><span id="_CPPv2I00EeqRK6Ratio1RK6Ratio2"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Ratio1</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Ratio2</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__ratio-3way-compare_1ga99c46c24ad43824563ec2c0c522f4809"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00EeqbRK6Ratio1RK6Ratio2" title="operator==::Ratio1"><span class="n"><span class="pre">Ratio1</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00EeqbRK6Ratio1RK6Ratio2" title="operator==::Ratio2"><span class="n"><span class="pre">Ratio2</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I00EeqbRK6Ratio1RK6Ratio2" title="Link to this definition"></a><br /></dt>
+<dd><p>compare two ratios for equality </p>
+<p>One argument may be a non-ratio type if it can be promoted to a ratio </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I00EssDaRK6Ratio1RK6Ratio2">
+<span id="_CPPv3I00EssRK6Ratio1RK6Ratio2"></span><span id="_CPPv2I00EssRK6Ratio1RK6Ratio2"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Ratio1</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Ratio2</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__ratio-3way-compare_1ga00ad0026e0775823df50af4ca62475c5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&lt;=&gt;</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00EssDaRK6Ratio1RK6Ratio2" title="operator&lt;=&gt;::Ratio1"><span class="n"><span class="pre">Ratio1</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00EssDaRK6Ratio1RK6Ratio2" title="operator&lt;=&gt;::Ratio2"><span class="n"><span class="pre">Ratio2</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I00EssDaRK6Ratio1RK6Ratio2" title="Link to this definition"></a><br /></dt>
+<dd><p>compare two ratios </p>
+<p>One argument may be a non-ratio type if it can be promoted to a ratio </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ratio-class.html" class="btn btn-neutral float-left" title="Ratio" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1980, Roland Conybeare.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
