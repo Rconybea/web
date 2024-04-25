@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quantity &mdash; xo unit documentation  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Quantity Factory Functions" href="quantity-factoryfunctions.html" />
+    <link rel="prev" title="Quantity Reference" href="quantity-reference.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            xo unit documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">xo-unit contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unit-quantities.html">Unit Quantities</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Quantity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4I00EN2xo4unit8quantityE"><code class="docutils literal notranslate"><span class="pre">quantity</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#type-traits">Type Traits</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49unit_type"><code class="docutils literal notranslate"><span class="pre">unit_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49repr_type"><code class="docutils literal notranslate"><span class="pre">repr_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I_3dimE10find_bpu_t"><code class="docutils literal notranslate"><span class="pre">find_bpu_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I_3dimE16basis_scale_type"><code class="docutils literal notranslate"><span class="pre">basis_scale_type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#constructors">Constructors</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv48quantityv"><code class="docutils literal notranslate"><span class="pre">quantity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv48quantityRK8quantity"><code class="docutils literal notranslate"><span class="pre">quantity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv48quantityRR8quantity"><code class="docutils literal notranslate"><span class="pre">quantity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv413unit_quantityv"><code class="docutils literal notranslate"><span class="pre">unit_quantity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv47promote4Repr"><code class="docutils literal notranslate"><span class="pre">promote()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#assignment">Assignment</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4aSRK8quantity"><code class="docutils literal notranslate"><span class="pre">operator=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4aSRR8quantity"><code class="docutils literal notranslate"><span class="pre">operator=()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#access-methods">Access Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK5scaleEv"><code class="docutils literal notranslate"><span class="pre">scale()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49unit_cstrv"><code class="docutils literal notranslate"><span class="pre">unit_cstr()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#constants">Constants</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I_3dim0E11basis_power"><code class="docutils literal notranslate"><span class="pre">basis_power</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#conversion-methods">Conversion Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I00ENK9with_unitE8quantityI5Unit25Repr2Ev"><code class="docutils literal notranslate"><span class="pre">with_unit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I00ENK15with_basis_unitEDav"><code class="docutils literal notranslate"><span class="pre">with_basis_unit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0ENK15with_units_fromEDa8Quantity"><code class="docutils literal notranslate"><span class="pre">with_units_from()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I00ENK10with_unitsEDav"><code class="docutils literal notranslate"><span class="pre">with_units()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I00ENK11in_units_ofE5Repr2v"><code class="docutils literal notranslate"><span class="pre">in_units_of()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0ENK9with_reprE8quantityI9unit_type5Repr2Ev"><code class="docutils literal notranslate"><span class="pre">with_repr()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#arithmetic">Arithmetic</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0EpLR8quantity9Quantity2"><code class="docutils literal notranslate"><span class="pre">operator+=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0EmIR8quantity9Quantity2"><code class="docutils literal notranslate"><span class="pre">operator-=()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0ENK8multiplyEDa9Quantity2"><code class="docutils literal notranslate"><span class="pre">multiply()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0ENK6divideEDa9Quantity2"><code class="docutils literal notranslate"><span class="pre">divide()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0ENK8scale_byEDa5Repr2"><code class="docutils literal notranslate"><span class="pre">scale_by()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0ENK9divide_byEDa5Repr2"><code class="docutils literal notranslate"><span class="pre">divide_by()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0ENK11divide_intoEDa5Repr2"><code class="docutils literal notranslate"><span class="pre">divide_into()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#comparison">Comparison</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0ENK7compareEDa9Quantity2"><code class="docutils literal notranslate"><span class="pre">compare()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quantity-factoryfunctions.html">Quantity Factory Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quantity-unitvars.html">Quantity Unit Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="unit-reference.html">Unit Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">xo unit documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="quantity-reference.html">Quantity Reference</a></li>
+      <li class="breadcrumb-item active">Quantity</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/quantity-class.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="quantity">
+<span id="quantity-class"></span><h1>Quantity<a class="headerlink" href="#quantity" title="Link to this heading"></a></h1>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;xo/unit/quantity.hpp&gt;</span>
+</pre></div>
+</div>
+<p>The primary data structure for interacting with xo-unit is the
+template class <code class="docutils literal notranslate"><span class="pre">xo::unit::quantity</span></code>.</p>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I00EN2xo4unit8quantityE">
+<span id="_CPPv3I00EN2xo4unit8quantityE"></span><span id="_CPPv2I00EN2xo4unit8quantityE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Unit</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repr</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classxo_1_1unit_1_1quantity"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">quantity</span></span></span><a class="headerlink" href="#_CPPv4I00EN2xo4unit8quantityE" title="Link to this definition"></a><br /></dt>
+<dd><p>represents a scalar quantity; enforces dimensional consistency at compile time. </p>
+<p><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Unit</span></code> is a type identifying dimension and scale attaching to this quantity. Unit must satisfy <code class="docutils literal notranslate"><span class="pre">unit_concept&lt;Unit&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Repr</span></code> is a type used to represent quantity values, scaled by <code class="docutils literal notranslate"><span class="pre">Unit</span></code>. Repr must satisfy <code class="docutils literal notranslate"><span class="pre">numeric_concept&lt;Repr&gt;</span></code></p></li>
+</ul>
+</p>
+<p>A quantity’s run-time state consists of exactly one <code class="docutils literal notranslate"><span class="pre">Repr</span></code> instance: <code class="docutils literal notranslate"><span class="pre">sizeof(quantity&lt;Unit,</span> <span class="pre">Repr&gt;)</span></code> == sizeof(Repr) </p>
+</dd></dl>
+
+<section id="type-traits">
+<h2>Type Traits<a class="headerlink" href="#type-traits" title="Link to this heading"></a></h2>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv49unit_type">
+<span id="_CPPv39unit_type"></span><span id="_CPPv29unit_type"></span><span class="target" id="group__quantity-traits_1ga842bf62a2cbe0941ba2d8069390eb99d"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unit_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Unit</span></span><a class="headerlink" href="#_CPPv49unit_type" title="Link to this definition"></a><br /></dt>
+<dd><p>type capturing the units (and dimension) of this quantity </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv49repr_type">
+<span id="_CPPv39repr_type"></span><span id="_CPPv29repr_type"></span><span class="target" id="group__quantity-traits_1ga294ded50dded05df90a662280b5665f8"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">repr_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Repr</span></span><a class="headerlink" href="#_CPPv49repr_type" title="Link to this definition"></a><br /></dt>
+<dd><p>type used for representation of this quantity </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4I_3dimE10find_bpu_t">
+<span id="_CPPv3I_3dimE10find_bpu_t"></span><span id="_CPPv2I_3dimE10find_bpu_t"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">dim</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">BasisDim</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__quantity-traits_1gae1ca8f37d6d39364b5ac9fb0129b4379"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">find_bpu_t</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">unit_find_bpu_t</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv49unit_type" title="unit_type"><span class="n"><span class="pre">unit_type</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_3dimE10find_bpu_t" title="find_bpu_t::BasisDim"><span class="n"><span class="pre">BasisDim</span></span></a><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4I_3dimE10find_bpu_t" title="Link to this definition"></a><br /></dt>
+<dd><p>report this quantity’s basis-power-unit type for a given basis dimension </p>
+<p>Example: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">auto</span> <span class="n">q</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">qty</span><span class="p">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">*</span> <span class="n">qty</span><span class="p">::</span><span class="n">seconds</span><span class="p">(</span><span class="mf">100.0</span><span class="p">));</span>
+<span class="n">q</span><span class="o">.</span><span class="n">unit_cstr</span><span class="p">();</span> <span class="o">//</span> <span class="s2">&quot;ms^-2&quot;</span>
+
+<span class="n">using</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">find_bpu_t</span><span class="o">&lt;</span><span class="n">dim</span><span class="p">::</span><span class="n">time</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="n">tmp</span><span class="p">::</span><span class="n">c_native_dim</span><span class="p">;</span>          <span class="o">//</span> <span class="n">dim</span><span class="p">::</span><span class="n">time</span>
+<span class="n">tmp</span><span class="p">::</span><span class="n">c_native_unit</span><span class="p">;</span>         <span class="o">//</span> <span class="n">native_unit_id</span><span class="p">::</span><span class="n">second</span>
+<span class="n">tmp</span><span class="p">::</span><span class="n">scalefactor_type</span><span class="p">::</span><span class="n">num</span><span class="p">;</span> <span class="o">//</span> <span class="mi">1</span>
+<span class="n">tmp</span><span class="p">::</span><span class="n">scalefactor_type</span><span class="p">::</span><span class="n">den</span><span class="p">;</span> <span class="o">//</span> <span class="mi">1000</span>
+<span class="n">tmp</span><span class="p">::</span><span class="n">power_type</span><span class="p">::</span><span class="n">num</span><span class="p">;</span>       <span class="o">//</span> <span class="o">-</span><span class="mi">2</span>
+<span class="n">tmp</span><span class="p">::</span><span class="n">pwoer_type</span><span class="p">::</span><span class="n">den</span><span class="p">;</span>       <span class="o">//</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4I_3dimE16basis_scale_type">
+<span id="_CPPv3I_3dimE16basis_scale_type"></span><span id="_CPPv2I_3dimE16basis_scale_type"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">dim</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">BasisDim</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__quantity-traits_1ga778d229ea00bb8b84074740922f86a9b"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">basis_scale_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_3dimE10find_bpu_t" title="find_bpu_t"><span class="n"><span class="pre">find_bpu_t</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_3dimE16basis_scale_type" title="basis_scale_type::BasisDim"><span class="n"><span class="pre">BasisDim</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">scalefactor_type</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">type</span></span><a class="headerlink" href="#_CPPv4I_3dimE16basis_scale_type" title="Link to this definition"></a><br /></dt>
+<dd><p>report this quantity’s scalefactor type for given basis dimension </p>
+</dd></dl>
+
+</section>
+<section id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Link to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv48quantityv">
+<span id="_CPPv38quantityv"></span><span id="_CPPv28quantityv"></span><span id="quantityCE"></span><span class="target" id="group__quantity-ctors_1ga522da101c747350b44440d32a3b89e94"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">quantity</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv48quantityv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv48quantityRK8quantity">
+<span id="_CPPv38quantityRK8quantity"></span><span id="_CPPv28quantityRK8quantity"></span><span id="quantity__quantityCRCE"></span><span class="target" id="group__quantity-ctors_1gaeedee06e64a3af8628bc7a7e08d6b00f"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">quantity</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv48quantityRK8quantity" title="quantity"><span class="n"><span class="pre">quantity</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv48quantityRK8quantity" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv48quantityRR8quantity">
+<span id="_CPPv38quantityRR8quantity"></span><span id="_CPPv28quantityRR8quantity"></span><span id="quantity__quantityRRCE"></span><span class="target" id="group__quantity-ctors_1ga8c00c64805a81341258680852b0f17da"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">quantity</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv48quantityRR8quantity" title="quantity"><span class="n"><span class="pre">quantity</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv48quantityRR8quantity" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv413unit_quantityv">
+<span id="_CPPv313unit_quantityv"></span><span id="_CPPv213unit_quantityv"></span><span id="unit_quantityCE"></span><span class="target" id="group__quantity-named-ctors_1ga6265f6f10f272380993f6f3226f40224"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv48quantityv" title="quantity"><span class="n"><span class="pre">quantity</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unit_quantity</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413unit_quantityv" title="Link to this definition"></a><br /></dt>
+<dd><p>construct a unit quantity using <code class="docutils literal notranslate"><span class="pre">unit_type</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">auto</span> <span class="n">q</span> <span class="o">=</span> <span class="n">qty</span><span class="p">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span> <span class="o">/</span> <span class="n">qty</span><span class="p">::</span><span class="n">kilometers</span><span class="p">(</span><span class="mf">23.0</span><span class="p">);</span>
+<span class="n">q</span><span class="p">::</span><span class="n">unit_quantity</span><span class="p">();</span>   <span class="o">//</span> <span class="mi">1</span><span class="n">ms</span><span class="o">.</span><span class="n">km</span><span class="o">^-</span><span class="mi">1</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv47promote4Repr">
+<span id="_CPPv37promote4Repr"></span><span id="_CPPv27promote4Repr"></span><span id="promote__ReprCE"></span><span class="target" id="group__quantity-named-ctors_1ga4195d08ba68b6311c17c9b66261e8007"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">promote</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Repr</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv47promote4Repr" title="Link to this definition"></a><br /></dt>
+<dd><p>promote representation to quantity. Same as multiplying by Unit </p>
+</dd></dl>
+
+<p>The simplest way to create a quantity instance is to use either</p>
+<ul class="simple">
+<li><p>factory functions in <code class="docutils literal notranslate"><span class="pre">xo::unit::qty</span></code>, see <a class="reference internal" href="quantity-factoryfunctions.html"><span class="doc">Quantity Factory Functions</span></a></p></li>
+<li><p>unit variables in <code class="docutils literal notranslate"><span class="pre">xo::unit::units</span></code>, see <a class="reference internal" href="quantity-unitvars.html"><span class="doc">Quantity Unit Variables</span></a></p></li>
+</ul>
+</section>
+<section id="assignment">
+<h2>Assignment<a class="headerlink" href="#assignment" title="Link to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4aSRK8quantity">
+<span id="_CPPv3aSRK8quantity"></span><span id="_CPPv2aSRK8quantity"></span><span id="assign-operator__quantityCR"></span><span class="target" id="group__quantity-assignment_1ga21eabcb1fd53623cc906451aacb36c3a"></span><a class="reference internal" href="#_CPPv48quantityv" title="quantity"><span class="n"><span class="pre">quantity</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv48quantityv" title="quantity"><span class="n"><span class="pre">quantity</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4aSRK8quantity" title="Link to this definition"></a><br /></dt>
+<dd><p>copy constructor </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4aSRR8quantity">
+<span id="_CPPv3aSRR8quantity"></span><span id="_CPPv2aSRR8quantity"></span><span id="assign-operator__quantityRR"></span><span class="target" id="group__quantity-assignment_1gad18b07f3ad6782036b70e8fc1b7b476e"></span><a class="reference internal" href="#_CPPv48quantityv" title="quantity"><span class="n"><span class="pre">quantity</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv48quantityv" title="quantity"><span class="n"><span class="pre">quantity</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4aSRR8quantity" title="Link to this definition"></a><br /></dt>
+<dd><p>move constructor </p>
+</dd></dl>
+
+</section>
+<section id="access-methods">
+<h2>Access Methods<a class="headerlink" href="#access-methods" title="Link to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5scaleEv">
+<span id="_CPPv3NK5scaleEv"></span><span id="_CPPv2NK5scaleEv"></span><span id="scaleCCE"></span><span class="target" id="group__quantity-access-methods_1gaadd2de1c60352ceac0386519670e0b37"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="n"><span class="pre">Repr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">scale</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5scaleEv" title="Link to this definition"></a><br /></dt>
+<dd><p>get scale value (relative to unit) (scale_) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv49unit_cstrv">
+<span id="_CPPv39unit_cstrv"></span><span id="_CPPv29unit_cstrv"></span><span id="unit_cstrCE"></span><span class="target" id="group__quantity-access-methods_1ga892a958cc813e5d9522ee4109958f8d3"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">unit_cstr</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv49unit_cstrv" title="Link to this definition"></a><br /></dt>
+<dd><p>abbreviation for this quantity’s units </p>
+<p>This string literal is constructed at compile-time by concatenating abbreviations for each basis-power-unit. For implementation see:<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">xo::unit::native_unit_abbrev_helper</span></code> (in xo/unit/basis_unit.hpp) for each native dimension</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xo::unit::scaled_native_unit_abbrev</span></code> (in xo/unit/basis_unit.hpp) last-resort handling for scaled native dimensions</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xo::unit::scaled_native_unit_abbrev</span></code> (in xo/unit/unit.hpp) specializations for scaled native dimensions </p></li>
+</ul>
+</p>
+</dd></dl>
+
+</section>
+<section id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Link to this heading"></a></h2>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4I_3dim0E11basis_power">
+<span id="_CPPv3I_3dim0E11basis_power"></span><span id="_CPPv2I_3dim0E11basis_power"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">dim</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">BasisDim</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PowerRepr</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__quantity-constants_1ga003f9f7db213caff7443ddadded1a372"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_3dim0E11basis_power" title="basis_power::PowerRepr"><span class="n"><span class="pre">PowerRepr</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">basis_power</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">from_ratio</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_3dim0E11basis_power" title="basis_power::PowerRepr"><span class="n"><span class="pre">PowerRepr</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_3dimE10find_bpu_t" title="find_bpu_t"><span class="n"><span class="pre">find_bpu_t</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_3dim0E11basis_power" title="basis_power::BasisDim"><span class="n"><span class="pre">BasisDim</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">power_type</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4I_3dim0E11basis_power" title="Link to this definition"></a><br /></dt>
+<dd><p>report exponent of <code class="docutils literal notranslate"><span class="pre">BasisDim</span></code> in dimension of this quantity </p>
+<p>For example: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">auto</span> <span class="n">q</span> <span class="o">=</span> <span class="n">qty</span><span class="p">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">*</span> <span class="n">qty</span><span class="p">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="nb">int</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">basis_power</span><span class="o">&lt;</span><span class="n">dim</span><span class="p">::</span><span class="n">time</span><span class="o">&gt;</span><span class="p">;</span> <span class="o">//</span> <span class="n">p1</span> <span class="o">==</span> <span class="mi">2</span>
+<span class="nb">int</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">basis_power</span><span class="o">&lt;</span><span class="n">dim</span><span class="p">::</span><span class="n">mass</span><span class="o">&gt;</span><span class="p">;</span> <span class="o">//</span> <span class="n">p2</span> <span class="o">==</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+</dd></dl>
+
+</section>
+<section id="conversion-methods">
+<h2>Conversion Methods<a class="headerlink" href="#conversion-methods" title="Link to this heading"></a></h2>
+<p>Amount-preserving conversion to quantities with different units and/or representation.</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I00ENK9with_unitE8quantityI5Unit25Repr2Ev">
+<span id="_CPPv3I00ENK9with_unitEv"></span><span id="_CPPv2I00ENK9with_unitEv"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Unit2</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repr2</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49repr_type" title="repr_type"><span class="n"><span class="pre">repr_type</span></span></a><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__quantity-unit-conversion_1gabfe03d8bcaab8bc31d4ad36278df3c14"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv48quantityv" title="quantity"><span class="n"><span class="pre">quantity</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I00ENK9with_unitE8quantityI5Unit25Repr2Ev" title="with_unit::Unit2"><span class="n"><span class="pre">Unit2</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00ENK9with_unitE8quantityI5Unit25Repr2Ev" title="with_unit::Repr2"><span class="n"><span class="pre">Repr2</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">with_unit</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I00ENK9with_unitE8quantityI5Unit25Repr2Ev" title="Link to this definition"></a><br /></dt>
+<dd><p>convert to quantity representing the same amount, but changing units and perhaps representation. </p>
+<p>These two expressions are equivalent: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">q</span><span class="o">.</span><span class="n">with_unit</span><span class="o">&lt;</span><span class="n">units</span><span class="p">::</span><span class="n">millisecond</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="n">quantity</span><span class="o">&lt;</span><span class="n">units</span><span class="p">::</span><span class="n">millisecond</span><span class="p">,</span> <span class="n">q</span><span class="p">::</span><span class="n">repr_type</span><span class="o">&gt;</span><span class="p">(</span><span class="n">q</span><span class="p">);</span>
+</pre></div>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I00ENK15with_basis_unitEDav">
+<span id="_CPPv3I00ENK15with_basis_unitEv"></span><span id="_CPPv2I00ENK15with_basis_unitEv"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">BasisUnit2</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repr2</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49repr_type" title="repr_type"><span class="n"><span class="pre">repr_type</span></span></a><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__quantity-unit-conversion_1gab84e1e293e0e4a2c249c8e1e034b8b60"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">with_basis_unit</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I00ENK15with_basis_unitEDav" title="Link to this definition"></a><br /></dt>
+<dd><p>produce quantity scaled according to <code class="docutils literal notranslate"><span class="pre">BasisUnit2</span></code>, representing the same value as <code class="docutils literal notranslate"><span class="pre">*this</span></code>. </p>
+<p>For example:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">q1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">minutes</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">kilograms</span><span class="p">(</span><span class="mf">2.5</span><span class="p">);</span><span class="w">         </span><span class="c1">// q1 = 2.5kg.min^-1</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">q2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q1</span><span class="p">.</span><span class="n">with_basis_unit</span><span class="o">&lt;</span><span class="n">units</span><span class="o">::</span><span class="n">millisecond</span><span class="o">&gt;</span><span class="p">();</span><span class="w">  </span><span class="c1">// q2 in kg.ms^-1</span>
+</pre></div>
+</div>
+<p>Motivation is ability to chain rescaling to reach desired compound unit</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">auto</span> <span class="n">q3</span> <span class="o">=</span> <span class="n">q1</span><span class="o">.</span><span class="n">with_basis_unit</span><span class="o">&lt;</span><span class="n">units</span><span class="p">::</span><span class="n">second</span><span class="o">&gt;</span><span class="p">()</span>
+            <span class="o">.</span><span class="n">with_basis_unit</span><span class="o">&lt;</span><span class="n">units</span><span class="p">::</span><span class="n">gram</span><span class="o">&gt;</span><span class="p">();</span>   <span class="o">//</span> <span class="n">q3</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">s</span><span class="o">^-</span><span class="mi">1</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK15with_units_fromEDa8Quantity">
+<span id="_CPPv3I0ENK15with_units_fromE8Quantity"></span><span id="_CPPv2I0ENK15with_units_fromE8Quantity"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Quantity</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__quantity-unit-conversion_1gacb94cdaeb3cb4b6ec13196d800115bbe"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">with_units_from</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0ENK15with_units_fromEDa8Quantity" title="with_units_from::Quantity"><span class="n"><span class="pre">Quantity</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">q</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK15with_units_fromEDa8Quantity" title="Link to this definition"></a><br /></dt>
+<dd><p>express this quantity in the same units as <code class="docutils literal notranslate"><span class="pre">q</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>q</strong> – take units from <code class="docutils literal notranslate"><span class="pre">q::unit_type</span></code>, ignoring <code class="docutils literal notranslate"><span class="pre">q.scale()</span></code></p>
+</dd>
+<dt class="field-even">Pre<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">*this</span></code> and <code class="docutils literal notranslate"><span class="pre">q</span></code> must have the same dimension</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>this amount, but expressed using the same units as <code class="docutils literal notranslate"><span class="pre">q</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I00ENK10with_unitsEDav">
+<span id="_CPPv3I00ENK10with_unitsEv"></span><span id="_CPPv2I00ENK10with_unitsEv"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Unit2</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repr2</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49repr_type" title="repr_type"><span class="n"><span class="pre">repr_type</span></span></a><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__quantity-unit-conversion_1gacefea8fa442fe72a5d14455d3423cecd"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">with_units</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I00ENK10with_unitsEDav" title="Link to this definition"></a><br /></dt>
+<dd><p>express this quantity in units of <code class="docutils literal notranslate"><span class="pre">Unit2</span></code>. </p>
+<p><code class="docutils literal notranslate"><span class="pre">Unit2</span></code> specifies new units <code class="docutils literal notranslate"><span class="pre">Repr2</span></code> specifies representation </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>this amount, but expressed as a multiple of <code class="docutils literal notranslate"><span class="pre">Unit2</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I00ENK11in_units_ofE5Repr2v">
+<span id="_CPPv3I00ENK11in_units_ofEv"></span><span id="_CPPv2I00ENK11in_units_ofEv"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Unit2</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repr2</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49repr_type" title="repr_type"><span class="n"><span class="pre">repr_type</span></span></a><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__quantity-unit-conversion_1ga3a06ba9947e56787e7817a31fc36627c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00ENK11in_units_ofE5Repr2v" title="in_units_of::Repr2"><span class="n"><span class="pre">Repr2</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">in_units_of</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I00ENK11in_units_ofE5Repr2v" title="Link to this definition"></a><br /></dt>
+<dd><p>compute scale with respect to <code class="docutils literal notranslate"><span class="pre">Unit2</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">Unit2</span></code> rescale in terms of this unit. <code class="docutils literal notranslate"><span class="pre">Repr2</span></code> compute scale in this representation </p>
+<dl class="field-list simple">
+<dt class="field-odd">Pre<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">*this</span></code> must have the same dimension as <code class="docutils literal notranslate"><span class="pre">Unit2</span></code></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>scale to use for <code class="docutils literal notranslate"><span class="pre">quantity&lt;Unit2,Repr2&gt;</span></code> representing the same amount as <code class="docutils literal notranslate"><span class="pre">*this</span></code>. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK9with_reprE8quantityI9unit_type5Repr2Ev">
+<span id="_CPPv3I0ENK9with_reprEv"></span><span id="_CPPv2I0ENK9with_reprEv"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repr2</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__quantity-unit-conversion_1ga081cddfa0b6edb976d9e02f521bcb4a5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv48quantityv" title="quantity"><span class="n"><span class="pre">quantity</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv49unit_type" title="unit_type"><span class="n"><span class="pre">unit_type</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK9with_reprE8quantityI9unit_type5Repr2Ev" title="with_repr::Repr2"><span class="n"><span class="pre">Repr2</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">with_repr</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK9with_reprE8quantityI9unit_type5Repr2Ev" title="Link to this definition"></a><br /></dt>
+<dd><p>convert to quantity with representation <code class="docutils literal notranslate"><span class="pre">Repr2</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a quantity representing the same amount as <code class="docutils literal notranslate"><span class="pre">*this</span></code>, but using representation <code class="docutils literal notranslate"><span class="pre">Repr2</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="arithmetic">
+<h2>Arithmetic<a class="headerlink" href="#arithmetic" title="Link to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EpLR8quantity9Quantity2">
+<span id="_CPPv3I0EpL9Quantity2"></span><span id="_CPPv2I0EpL9Quantity2"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Quantity2</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__quantity-arithmetic_1ga5cd09fe6d1451d1cf00afe591d17cf6f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv48quantityv" title="quantity"><span class="n"><span class="pre">quantity</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">+=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EpLR8quantity9Quantity2" title="operator+=::Quantity2"><span class="n"><span class="pre">Quantity2</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EpLR8quantity9Quantity2" title="Link to this definition"></a><br /></dt>
+<dd><p>add quantity in-place </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>y</strong> – quantity to add </p>
+</dd>
+<dt class="field-even">Pre<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">y</span></code> must have the same dimension as <code class="docutils literal notranslate"><span class="pre">*this</span></code>.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>this quantity after adding y </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EmIR8quantity9Quantity2">
+<span id="_CPPv3I0EmI9Quantity2"></span><span id="_CPPv2I0EmI9Quantity2"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Quantity2</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__quantity-arithmetic_1ga9098c8016576506fd5017ac048480fcd"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv48quantityv" title="quantity"><span class="n"><span class="pre">quantity</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">-=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EmIR8quantity9Quantity2" title="operator-=::Quantity2"><span class="n"><span class="pre">Quantity2</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EmIR8quantity9Quantity2" title="Link to this definition"></a><br /></dt>
+<dd><p>subtract quantity in-place </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>y</strong> – quantity to subtract </p>
+</dd>
+<dt class="field-even">Pre<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">y</span></code> must have the same dimensions as <code class="docutils literal notranslate"><span class="pre">*this</span></code></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>this quantity after subtracting y </p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>Support methods for arithmetic operations</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK8multiplyEDa9Quantity2">
+<span id="_CPPv3I0ENK8multiplyE9Quantity2"></span><span id="_CPPv2I0ENK8multiplyE9Quantity2"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Quantity2</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__quantity-arithmeticsupport_1ga13ecdbda667d0b081da35c74a7834b68"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">multiply</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0ENK8multiplyEDa9Quantity2" title="multiply::Quantity2"><span class="n"><span class="pre">Quantity2</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">y</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK8multiplyEDa9Quantity2" title="Link to this definition"></a><br /></dt>
+<dd><p>multiply this quantity <em>x</em> by another quantity <em>y</em>. </p>
+<p>Result will propagate dimension and units appropriately. If <em>x</em> and <em>y</em> use conflicting scale factors for a dimension, adopt scalefactor from <em>x</em>.</p>
+<p>note: result will be a dimensionless value (e.g. type <code class="docutils literal notranslate"><span class="pre">double</span></code>) if units cancel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>y</strong> – multiply by this amount </p>
+</dd>
+<dt class="field-even">Pre<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">Quantity2</span></code> must satisfy <code class="docutils literal notranslate"><span class="pre">quantity_concept&lt;Quantity2&gt;</span></code></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>x.multiply(y) returns amount representing x*y </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK6divideEDa9Quantity2">
+<span id="_CPPv3I0ENK6divideE9Quantity2"></span><span id="_CPPv2I0ENK6divideE9Quantity2"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Quantity2</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__quantity-arithmeticsupport_1gaa9b30a8224b31f593ea2bde6aa9db0be"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">divide</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0ENK6divideEDa9Quantity2" title="divide::Quantity2"><span class="n"><span class="pre">Quantity2</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">y</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK6divideEDa9Quantity2" title="Link to this definition"></a><br /></dt>
+<dd><p>multiply this quantity <em>x</em> by another quantity <em>y</em></p>
+<p>Result will propagate dimension and units appropriately. If <em>x</em> and <em>y</em> use conflicting scale factors for a dimension, adopt scalefactor from <em>x</em>.</p>
+<p>note: result will be a dimensionless value (e.g. type <code class="docutils literal notranslate"><span class="pre">double</span></code>) if units cancel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>y</strong> – divide by this amount </p>
+</dd>
+<dt class="field-even">Pre<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">Quantity2</span></code> must satisfy <code class="docutils literal notranslate"><span class="pre">quantity_concept&lt;Quantity2&gt;</span></code></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>x.divide(y) returns amount representing x/y </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK8scale_byEDa5Repr2">
+<span id="_CPPv3I0ENK8scale_byE5Repr2"></span><span id="_CPPv2I0ENK8scale_byE5Repr2"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repr2</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__quantity-arithmeticsupport_1ga9373c094560d1136ba974edea66e93a1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">scale_by</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0ENK8scale_byEDa5Repr2" title="scale_by::Repr2"><span class="n"><span class="pre">Repr2</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">y</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK8scale_byEDa5Repr2" title="Link to this definition"></a><br /></dt>
+<dd><p>scale this quantity <em>x</em> by dimensionless amount <code class="docutils literal notranslate"><span class="pre">y</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>quantity representing <code class="docutils literal notranslate"><span class="pre">x*y</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK9divide_byEDa5Repr2">
+<span id="_CPPv3I0ENK9divide_byE5Repr2"></span><span id="_CPPv2I0ENK9divide_byE5Repr2"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repr2</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__quantity-arithmeticsupport_1gafec84e845d60328d919e841f847f3f92"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">divide_by</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0ENK9divide_byEDa5Repr2" title="divide_by::Repr2"><span class="n"><span class="pre">Repr2</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK9divide_byEDa5Repr2" title="Link to this definition"></a><br /></dt>
+<dd><p>divide this quantity <em>x</em> by dimensionless amount <code class="docutils literal notranslate"><span class="pre">y</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>quantity representing <code class="docutils literal notranslate"><span class="pre">x/y</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK11divide_intoEDa5Repr2">
+<span id="_CPPv3I0ENK11divide_intoE5Repr2"></span><span id="_CPPv2I0ENK11divide_intoE5Repr2"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repr2</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__quantity-arithmeticsupport_1ga18bcc26ebc09503568aa68ebcfbb810d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">divide_into</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0ENK11divide_intoEDa5Repr2" title="divide_into::Repr2"><span class="n"><span class="pre">Repr2</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK11divide_intoEDa5Repr2" title="Link to this definition"></a><br /></dt>
+<dd><p>divide dimensionless number <code class="docutils literal notranslate"><span class="pre">x</span></code> by this quantity <code class="docutils literal notranslate"><span class="pre">y</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>quantity representing <code class="docutils literal notranslate"><span class="pre">x/y</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="comparison">
+<h2>Comparison<a class="headerlink" href="#comparison" title="Link to this heading"></a></h2>
+<p>Support methods for comparison operators</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK7compareEDa9Quantity2">
+<span id="_CPPv3I0ENK7compareE9Quantity2"></span><span id="_CPPv2I0ENK7compareE9Quantity2"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Quantity2</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__quantity-comparisonsupport_1ga731d806bcc7bba59c1918b4f2b56cbc3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">compare</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0ENK7compareEDa9Quantity2" title="compare::Quantity2"><span class="n"><span class="pre">Quantity2</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">y</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK7compareEDa9Quantity2" title="Link to this definition"></a><br /></dt>
+<dd><p>compare this quantity with another, return 3-way comparison </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>y</strong> – rhs quantity to compare </p>
+</dd>
+<dt class="field-even">Pre<span class="colon">:</span></dt>
+<dd class="field-even"><p>arguments must be quantities having the same dimension</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>signed integer; {-ve, 0, +ve} when <code class="docutils literal notranslate"><span class="pre">*this</span></code> is {less than, equal, greater than} <code class="docutils literal notranslate"><span class="pre">y</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quantity-reference.html" class="btn btn-neutral float-left" title="Quantity Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="quantity-factoryfunctions.html" class="btn btn-neutral float-right" title="Quantity Factory Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1980, Roland Conybeare.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

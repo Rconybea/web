@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unit Quantities &mdash; xo unit documentation  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Quantity Reference" href="quantity-reference.html" />
+    <link rel="prev" title="Examples" href="examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            xo unit documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">xo-unit contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Unit Quantities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#converting-units">Converting units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-basis-units">Using basis units</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unit-reference.html">Unit Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">xo unit documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Unit Quantities</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/unit-quantities.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <span class="target" id="unit-quantities"></span><section id="id1">
+<h1>Unit Quantities<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>Xo-unit uses the type system to represent units.
+This is great for eliminating runtime overhead.</p>
+<p>One place where we face some awkwardness is conversions involving multiple dimensions.
+We’d like to write something concise like</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">meter</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">second</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">second</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The difficulty arises because xo-unit represents <cite>meter</cite> and <cite>second</cite> by types
+(<code class="docutils literal notranslate"><span class="pre">xo::unit::units::meter</span></code> and <code class="docutils literal notranslate"><span class="pre">xo::unit::units::second</span></code>); operators like <cite>*</cite> and <cite>/</cite>
+apply to <em>values</em>, not types.</p>
+<p>We’ll present various ways to express rescaling below</p>
+<section id="converting-units">
+<h2>Converting units<a class="headerlink" href="#converting-units" title="Link to this heading"></a></h2>
+<p>First, xo-unit provides constexpr unit quantities in namespace <code class="docutils literal notranslate"><span class="pre">xo::unit::unit_qty</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">meter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qty</span><span class="o">::</span><span class="n">meters</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">2</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">kilometer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qty</span><span class="o">::</span><span class="n">kilometers</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">3</span><span class="w"> </span><span class="c1">// etc</span>
+</pre></div>
+</div>
+<p>Second,  a method <code class="docutils literal notranslate"><span class="pre">quantity::with_units_from</span></code> that takes units (only) from its argument:
+<code class="docutils literal notranslate"><span class="pre">quantity::with_units_from</span></code> just extracts its argument’s unit_type to call <code class="docutils literal notranslate"><span class="pre">quantity::with_units</span></code>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="w"> </span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Unit</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">Repr</span><span class="o">&gt;</span>
+<span class="linenos">2</span><span class="w"> </span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Quantity</span><span class="o">&gt;</span>
+<span class="linenos">3</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">Unit</span><span class="p">,</span><span class="w"> </span><span class="n">Repr</span><span class="o">&gt;::</span><span class="n">with_units_from</span><span class="p">(</span><span class="n">Quantity</span><span class="w"> </span><span class="n">q</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">4</span><span class="w">     </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">with_units</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Quantity</span><span class="o">::</span><span class="n">unit_type</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="linenos">5</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Motivation is that it’s easier to express an argument to <cite>with_units_from</cite>
+than to express template arguments to <cite>with_units</cite>.</p>
+<p>Prefer</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">unit</span><span class="o">::</span><span class="nn">unit_qty</span><span class="p">;</span><span class="w"> </span><span class="c1">// u::meter is a value</span>
+<span class="linenos">2</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">qty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">unit</span><span class="o">::</span><span class="nn">qty</span><span class="p">;</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">q1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qty</span><span class="o">::</span><span class="n">kilometers</span><span class="p">(</span><span class="mf">150.0</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">qty</span><span class="o">::</span><span class="n">hours</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="hll"><span class="linenos">5</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">q2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q1</span><span class="p">.</span><span class="n">with_units_from</span><span class="p">(</span><span class="n">u</span><span class="o">::</span><span class="n">meter</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">u</span><span class="o">::</span><span class="n">second</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>instead of the more verbose:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">unit</span><span class="o">::</span><span class="nn">units</span><span class="p">;</span><span class="w">  </span><span class="c1">// u::meter is a type</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">q1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qty</span><span class="o">::</span><span class="n">kilometers</span><span class="p">(</span><span class="mf">150.0</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">qty</span><span class="o">::</span><span class="n">hours</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="linenos">4</span>
+<span class="hll"><span class="linenos">5</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">q2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q1</span><span class="p">.</span><span class="n">with_units</span><span class="o">&lt;</span><span class="n">unit_cartesian_product_t</span><span class="o">&lt;</span><span class="n">u</span><span class="o">::</span><span class="n">meter</span><span class="p">,</span>
+</span><span class="hll"><span class="linenos">6</span><span class="w">                                                  </span><span class="n">unit_invert_t</span><span class="o">&lt;</span><span class="n">u</span><span class="o">::</span><span class="n">second</span><span class="o">&gt;&gt;&gt;</span><span class="p">();</span>
+</span></pre></div>
+</div>
+</section>
+<section id="using-basis-units">
+<h2>Using basis units<a class="headerlink" href="#using-basis-units" title="Link to this heading"></a></h2>
+<p>An alternative way to request multidimensional unit conversion is with basis units</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">unit</span><span class="o">::</span><span class="nn">units</span><span class="p">;</span><span class="w">  </span><span class="c1">// u::meter is a type</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">q1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qty</span><span class="o">::</span><span class="n">kilometers</span><span class="p">(</span><span class="mf">150.0</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">qty</span><span class="o">::</span><span class="n">hours</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="hll"><span class="linenos">4</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">q2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q1</span><span class="p">.</span><span class="n">with_basis_unit</span><span class="o">&lt;</span><span class="n">u</span><span class="o">::</span><span class="n">second</span><span class="o">&gt;</span><span class="p">();</span><span class="w"> </span><span class="c1">// q2 in km.s^-1</span>
+</span><span class="hll"><span class="linenos">5</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">q3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q2</span><span class="p">.</span><span class="n">with_basis_unit</span><span class="o">&lt;</span><span class="n">u</span><span class="o">::</span><span class="n">meter</span><span class="o">&gt;</span><span class="p">();</span><span class="w">  </span><span class="c1">// q3 in m.s^-1</span>
+</span></pre></div>
+</div>
+<p>With this technique we don’t have to supply the basis dimension’s exponent.
+Instead we’re just giving scale.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="examples.html" class="btn btn-neutral float-left" title="Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="quantity-reference.html" class="btn btn-neutral float-right" title="Quantity Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1980, Roland Conybeare.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

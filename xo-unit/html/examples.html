@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Examples &mdash; xo unit documentation  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Unit Quantities" href="unit-quantities.html" />
+    <link rel="prev" title="Install" href="install.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            xo unit documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">xo-unit contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#compile-time-unit-inference">Compile-time unit inference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#explicit-scale-conversion">Explicit scale conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scale-conversion-triggered-by-assignment">Scale conversion triggered by assignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scale-conversion-triggered-by-arithmetic">Scale conversion triggered by arithmetic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dimensionless-quantities-collapse-automatically">Dimensionless quantities collapse automatically</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fractional-dimension">Fractional dimension</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="unit-quantities.html">Unit Quantities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unit-reference.html">Unit Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">xo unit documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Examples</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/examples.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <span class="target" id="examples"></span><section id="id1">
+<h1>Examples<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<section id="compile-time-unit-inference">
+<h2>Compile-time unit inference<a class="headerlink" href="#compile-time-unit-inference" title="Link to this heading"></a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;xo/unit/quantity.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">unit</span><span class="o">::</span><span class="nn">units</span><span class="p">;</span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">qty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">unit</span><span class="o">::</span><span class="nn">qty</span><span class="p">;</span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">xo</span><span class="o">::</span><span class="n">unit</span><span class="o">::</span><span class="n">quantity</span><span class="p">;</span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qty</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qty</span><span class="o">::</span><span class="n">kilograms</span><span class="p">(</span><span class="mf">2.5</span><span class="p">);</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">t</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">static_assert</span><span class="p">(</span><span class="n">same_as</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="w"> </span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">u</span><span class="o">::</span><span class="n">millisecond</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">static_assert</span><span class="p">(</span><span class="n">same_as</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">m</span><span class="p">),</span><span class="w"> </span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">u</span><span class="o">::</span><span class="n">kilogram</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;&gt;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">static_assert</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+<span class="w">    </span><span class="k">static_assert</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">));</span>
+<span class="w">    </span><span class="k">static_assert</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">));</span>
+
+<span class="w">    </span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;t: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, m: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, a: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>with output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="p">:</span> <span class="mi">10</span><span class="n">ms</span><span class="p">,</span> <span class="n">m</span><span class="p">:</span> <span class="mf">2.5</span><span class="n">kg</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">t</span><span class="o">^-</span><span class="mi">2</span><span class="p">:</span> <span class="mf">0.025</span><span class="n">kg</span><span class="o">.</span><span class="n">ms</span><span class="o">^-</span><span class="mi">2</span>
+</pre></div>
+</div>
+<p>Remarks:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">xo-unit</span></code> system runs entirely at compile time;  there’s no runtime overhead.</p></li>
+<li><p>No runtime overhead includes construction of literal strings such as <code class="docutils literal notranslate"><span class="pre">kg.ms^-2</span></code>
+(this is once place implementation requires c++20)</p></li>
+<li><p>Units are sticky: since we expressed <code class="docutils literal notranslate"><span class="pre">t</span></code> in milliseconds and <code class="docutils literal notranslate"><span class="pre">m</span></code> in kilograms, result is in the same terms.</p></li>
+<li><p>Unit ordering is sticky.  Mass appears on the left in printed value of <code class="docutils literal notranslate"><span class="pre">a</span></code> because it was on the left-hand side of <code class="docutils literal notranslate"><span class="pre">operator/</span></code></p></li>
+<li><p>Example omits verifying <code class="docutils literal notranslate"><span class="pre">decltype(a)</span></code>,  to keep output small.</p></li>
+<li><p>Conversion factors are exact (provided dimensions are limited to integer powers).
+Exact conversion involves no loss of precision.</p></li>
+</ul>
+</section>
+<section id="explicit-scale-conversion">
+<h2>Explicit scale conversion<a class="headerlink" href="#explicit-scale-conversion" title="Link to this heading"></a></h2>
+<p>Can convert between compatible units explictly:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w"> </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;xo/unit/quantity.hpp&quot;</span>
+<span class="linenos"> 2</span><span class="w"> </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="w"> </span><span class="kt">int</span>
+<span class="linenos"> 5</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 6</span><span class="w">     </span><span class="k">namespace</span><span class="w"> </span><span class="nn">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">unit</span><span class="o">::</span><span class="nn">units</span><span class="p">;</span>
+<span class="linenos"> 7</span><span class="w">     </span><span class="k">namespace</span><span class="w"> </span><span class="nn">qty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">unit</span><span class="o">::</span><span class="nn">qty</span><span class="p">;</span>
+<span class="linenos"> 8</span><span class="w">     </span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="w">     </span><span class="k">auto</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qty</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mf">25.0</span><span class="p">);</span>
+<span class="hll"><span class="linenos">11</span><span class="w">     </span><span class="k">auto</span><span class="w"> </span><span class="n">t1_usec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">with_unit</span><span class="o">&lt;</span><span class="n">u</span><span class="o">::</span><span class="n">microsecond</span><span class="o">&gt;</span><span class="p">();</span>
+</span><span class="hll"><span class="linenos">12</span><span class="w">     </span><span class="k">auto</span><span class="w"> </span><span class="n">t1_sec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">with_unit</span><span class="o">&lt;</span><span class="n">u</span><span class="o">::</span><span class="n">second</span><span class="o">&gt;</span><span class="p">();</span>
+</span><span class="linenos">13</span>
+<span class="linenos">14</span><span class="w">     </span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;t1: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, t1_usec: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t1_usec</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, t1_sec: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t1_sec</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">15</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>with output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t1</span><span class="p">:</span> <span class="mi">25</span><span class="n">ms</span><span class="p">,</span> <span class="n">t1_usec</span><span class="p">:</span> <span class="mi">25000</span><span class="n">us</span><span class="p">,</span> <span class="n">t1_sec</span><span class="p">:</span> <span class="mf">0.025</span><span class="n">s</span>
+</pre></div>
+</div>
+</section>
+<section id="scale-conversion-triggered-by-assignment">
+<h2>Scale conversion triggered by assignment<a class="headerlink" href="#scale-conversion-triggered-by-assignment" title="Link to this heading"></a></h2>
+<p>One way to convert units is by assignment:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w"> </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;xo/unit/quantity.hpp&quot;</span>
+<span class="linenos"> 2</span><span class="w"> </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 5</span><span class="w">     </span><span class="k">namespace</span><span class="w"> </span><span class="nn">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">unit</span><span class="p">;</span>
+<span class="linenos"> 6</span><span class="w">     </span><span class="k">namespace</span><span class="w"> </span><span class="nn">qty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">units</span><span class="o">::</span><span class="nn">qty</span><span class="p">;</span>
+<span class="linenos"> 7</span><span class="w">     </span><span class="k">using</span><span class="w"> </span><span class="n">xo</span><span class="o">::</span><span class="n">unit</span><span class="o">::</span><span class="n">quantity</span><span class="p">;</span>
+<span class="linenos"> 8</span><span class="w">     </span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="linenos"> 9</span>
+<span class="hll"><span class="linenos">10</span><span class="w">     </span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">units</span><span class="o">::</span><span class="n">second</span><span class="o">&gt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qty</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</span><span class="hll"><span class="linenos">11</span><span class="w">     </span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">units</span><span class="o">::</span><span class="n">gram</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qty</span><span class="o">::</span><span class="n">kilograms</span><span class="p">(</span><span class="mf">2.5</span><span class="p">);</span>
+</span><span class="linenos">12</span><span class="w">     </span><span class="k">auto</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">t</span><span class="p">);</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="w">     </span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;t: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, m: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, a: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">15</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>with output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="p">:</span> <span class="mf">0.01</span><span class="n">s</span><span class="p">,</span> <span class="n">m</span><span class="p">:</span> <span class="mi">2500</span><span class="n">g</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">t</span><span class="o">^-</span><span class="mi">2</span><span class="p">:</span> <span class="mf">2.5e+07</span><span class="n">g</span><span class="o">.</span><span class="n">s</span><span class="o">^-</span><span class="mi">2</span>
+</pre></div>
+</div>
+<p>Remarks:</p>
+<ul class="simple">
+<li><p>Assignment to <code class="docutils literal notranslate"><span class="pre">t</span></code> converted to representation <code class="docutils literal notranslate"><span class="pre">double</span></code>.
+We could have used <code class="code docutils literal notranslate"><span class="pre">quantity&lt;unit::second,</span> <span class="pre">int&gt;</span></code> to convert (possibly rounding down)
+representation to <cite>int</cite>.</p></li>
+</ul>
+</section>
+<section id="scale-conversion-triggered-by-arithmetic">
+<h2>Scale conversion triggered by arithmetic<a class="headerlink" href="#scale-conversion-triggered-by-arithmetic" title="Link to this heading"></a></h2>
+<p>When representing a particular quantity,
+xo-unit uses at most one scale for each <a class="reference internal" href="glossary.html#term-basis-dimension"><span class="xref std std-term">basis dimension</span></a> associated with the unit for that quantity.
+When an arithmetic operator encounters basis units involving two different scales,
+the operator will adopt the scale provided by the left-hand argument:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w"> </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;xo/unit/quantity.hpp&quot;</span>
+<span class="linenos"> 2</span><span class="w"> </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 5</span><span class="w">     </span><span class="k">namespace</span><span class="w"> </span><span class="nn">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">unit</span><span class="p">;</span>
+<span class="linenos"> 6</span><span class="w">     </span><span class="k">namespace</span><span class="w"> </span><span class="nn">qty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">units</span><span class="o">::</span><span class="nn">qty</span><span class="p">;</span>
+<span class="linenos"> 7</span><span class="w">     </span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="w">     </span><span class="k">auto</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qty</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">10</span><span class="w">     </span><span class="k">auto</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qty</span><span class="o">::</span><span class="n">minutes</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="hll"><span class="linenos">11</span><span class="w">     </span><span class="k">auto</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span>
+</span><span class="linenos">12</span>
+<span class="linenos">13</span><span class="w">     </span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;t1: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, t2: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, p: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">14</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>with output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t1</span><span class="p">:</span> <span class="mi">1</span><span class="n">ms</span><span class="p">,</span> <span class="n">t2</span><span class="p">:</span> <span class="mi">1</span><span class="nb">min</span><span class="p">,</span> <span class="n">t1</span><span class="o">*</span><span class="n">t2</span><span class="p">:</span> <span class="mi">60000</span><span class="n">ms</span><span class="o">^</span><span class="mi">2</span>
+</pre></div>
+</div>
+</section>
+<section id="dimensionless-quantities-collapse-automatically">
+<h2>Dimensionless quantities collapse automatically<a class="headerlink" href="#dimensionless-quantities-collapse-automatically" title="Link to this heading"></a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w"> </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;xo/unit/quantity.hpp&quot;</span>
+<span class="linenos"> 2</span><span class="w"> </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 5</span><span class="w">     </span><span class="k">namespace</span><span class="w"> </span><span class="nn">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">unit</span><span class="p">;</span>
+<span class="linenos"> 6</span><span class="w">     </span><span class="k">namespace</span><span class="w"> </span><span class="nn">qty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">units</span><span class="o">::</span><span class="nn">qty</span><span class="p">;</span>
+<span class="linenos"> 7</span><span class="w">     </span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="w">     </span><span class="k">auto</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qty</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">10</span><span class="w">     </span><span class="k">auto</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qty</span><span class="o">::</span><span class="n">minutes</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">11</span><span class="w">     </span><span class="k">auto</span><span class="w"> </span><span class="n">r1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">t2</span><span class="p">.</span><span class="n">with_repr</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="linenos">12</span><span class="w">     </span><span class="k">auto</span><span class="w"> </span><span class="n">r2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">with_repr</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="linenos">13</span>
+<span class="hll"><span class="linenos">14</span><span class="w">     </span><span class="k">static_assert</span><span class="o">&lt;</span><span class="n">same_as</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">r1</span><span class="p">),</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="p">);</span>
+</span><span class="hll"><span class="linenos">15</span><span class="w">     </span><span class="k">static_assert</span><span class="o">&lt;</span><span class="n">same_as</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">r2</span><span class="p">),</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="p">);</span>
+</span><span class="linenos">16</span>
+<span class="linenos">17</span><span class="w">     </span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;t1: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, t2: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, t1/t2: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">r1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, t2/t1: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">r2</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">18</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>with output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t1</span><span class="p">:</span> <span class="mi">1</span><span class="n">ms</span><span class="p">,</span> <span class="n">t2</span><span class="p">:</span> <span class="mi">1</span><span class="nb">min</span><span class="p">,</span> <span class="n">t1</span><span class="o">/</span><span class="n">t2</span><span class="p">:</span> <span class="mf">1.66667e-05</span><span class="p">,</span> <span class="n">t2</span><span class="o">/</span><span class="n">t1</span><span class="p">:</span> <span class="mi">60000</span>
+</pre></div>
+</div>
+</section>
+<section id="fractional-dimension">
+<h2>Fractional dimension<a class="headerlink" href="#fractional-dimension" title="Link to this heading"></a></h2>
+<p>Fractional dimensions are supported;   they work in the same way as familiar integral dimensions.</p>
+<p>Only caveat is that converting between fractional units with different scales creates a floating-point conversion factor,
+which may incur loss of precision based on floating-point roundoff.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w"> </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;xo/unit/quantity.hpp&quot;</span>
+<span class="linenos"> 2</span><span class="w"> </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span><span class="w"> </span><span class="kt">int</span>
+<span class="linenos"> 5</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 6</span><span class="w">     </span><span class="k">namespace</span><span class="w"> </span><span class="nn">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">unit</span><span class="o">::</span><span class="nn">units</span><span class="p">;</span>
+<span class="linenos"> 7</span><span class="w">     </span><span class="k">namespace</span><span class="w"> </span><span class="nn">qty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">unit</span><span class="o">::</span><span class="nn">qty</span><span class="p">;</span>
+<span class="linenos"> 8</span><span class="w">     </span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="w">     </span><span class="cm">/* 20% volatility over 250 days (approx number of trading days in one year) */</span>
+<span class="linenos">11</span><span class="w">     </span><span class="k">auto</span><span class="w"> </span><span class="n">q1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qty</span><span class="o">::</span><span class="n">volatility250d</span><span class="p">(</span><span class="mf">0.2</span><span class="p">);</span>
+<span class="linenos">12</span><span class="w">     </span><span class="cm">/* 10% volatility over 30 days */</span>
+<span class="linenos">13</span><span class="w">     </span><span class="k">auto</span><span class="w"> </span><span class="n">q2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qty</span><span class="o">::</span><span class="n">volatility30d</span><span class="p">(</span><span class="mf">0.1</span><span class="p">);</span>
+<span class="linenos">14</span>
+<span class="hll"><span class="linenos">15</span><span class="w">     </span><span class="k">static_assert</span><span class="p">(</span><span class="n">q2</span><span class="p">.</span><span class="n">basis_power</span><span class="o">&lt;</span><span class="n">dim</span><span class="o">::</span><span class="n">time</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">0.5</span><span class="p">);</span>
+</span><span class="linenos">16</span>
+<span class="linenos">17</span><span class="w">     </span><span class="k">auto</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">q2</span><span class="p">;</span>
+<span class="linenos">18</span><span class="w">     </span><span class="k">auto</span><span class="w"> </span><span class="n">prod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">q2</span><span class="p">;</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="w">     </span><span class="k">static_assert</span><span class="p">(</span><span class="n">prod</span><span class="p">.</span><span class="n">basis_power</span><span class="o">&lt;</span><span class="n">dim</span><span class="o">::</span><span class="n">time</span><span class="o">&gt;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span><span class="w">     </span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;q1: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">q1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, q2: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">q2</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, q1+q2: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, q1*q2&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">prod</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">23</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>with output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">q1</span><span class="p">:</span> <span class="mf">0.2</span><span class="n">yr250</span><span class="o">^-</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="n">q2</span><span class="p">:</span> <span class="mf">0.1</span><span class="n">mo</span><span class="o">^-</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="n">q1</span><span class="o">+</span><span class="n">q2</span><span class="p">:</span> <span class="mf">0.488675</span><span class="n">yr250</span><span class="o">^</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="n">q1</span><span class="o">*</span><span class="n">q2</span><span class="p">:</span> <span class="mf">0.057735</span><span class="n">yr250</span><span class="o">^-</span><span class="mi">1</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="install.html" class="btn btn-neutral float-left" title="Install" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="unit-quantities.html" class="btn btn-neutral float-right" title="Unit Quantities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1980, Roland Conybeare.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
