@@ -9,6 +9,7 @@
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
   
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -49,7 +50,9 @@
 <li class="toctree-l1"><a class="reference internal" href="install.html">Source</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install.html#id1">Install</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Lessons</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#must-fully-initialize-memory">Must Fully Initialize Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#must-fully-initialize-memory">Must fully initialize memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#still-need-equality-comparison-alongside-spaceship-operator">Still need equality comparison alongside spaceship operator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#constexpr-strict-about-pointer-arithmetic">Constexpr strict about pointer arithmetic</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="flatstring-reference.html">Flatstring Reference</a></li>
@@ -86,7 +89,7 @@ One hurdle we’ve created for ourselves, is we need both gcc and clang to agree
 that an expression can be computed at compile-time;
 otherwise will get false alarms in our IDE (raised by LSP running in the background, which relies on clang).</p>
 <section id="must-fully-initialize-memory">
-<h2>Must Fully Initialize Memory<a class="headerlink" href="#must-fully-initialize-memory" title="Link to this heading"></a></h2>
+<h2>Must fully initialize memory<a class="headerlink" href="#must-fully-initialize-memory" title="Link to this heading"></a></h2>
 <p>Struggled for a while with the implementation of :ref:xo::flatstring_concat</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">N</span><span class="o">&gt;</span>
 <span class="n">flatstring</span><span class="o">::</span><span class="n">flatstring</span><span class="o">&lt;</span><span class="n">N</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -109,6 +112,50 @@ otherwise will get false alarms in our IDE (raised by LSP running in the backgro
 <span class="p">}</span>
 </pre></div>
 </div>
+</section>
+<section id="still-need-equality-comparison-alongside-spaceship-operator">
+<h2>Still need equality comparison alongside spaceship operator<a class="headerlink" href="#still-need-equality-comparison-alongside-spaceship-operator" title="Link to this heading"></a></h2>
+<p>Had the impression that spaceship operator for :ref:xo::flatstring would be sufficient
+to get all six comparison operators:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">N1</span><span class="p">,</span>
+<span class="w">          </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">N2</span><span class="o">&gt;</span>
+<span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span>
+<span class="k">operator</span><span class="o">&lt;=&gt;</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">flatstring</span><span class="o">&lt;</span><span class="n">N1</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">s1</span><span class="p">,</span>
+<span class="w">            </span><span class="k">const</span><span class="w"> </span><span class="n">flatstring</span><span class="o">&lt;</span><span class="n">N2</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">s2</span><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string_view</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string_view</span><span class="p">(</span><span class="n">s2</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>We observe this is not the case,  at least with gcc 13.1;  need to separately define :ref:xo::operator==</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">N1</span><span class="p">,</span>
+<span class="w">          </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="n">N2</span><span class="o">&gt;</span>
+<span class="k">constexpr</span><span class="w"> </span><span class="kt">bool</span>
+<span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">flatstring</span><span class="o">&lt;</span><span class="n">N1</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">s1</span><span class="p">,</span>
+<span class="w">           </span><span class="k">const</span><span class="w"> </span><span class="n">flatstring</span><span class="o">&lt;</span><span class="n">N2</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">s2</span><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">((</span><span class="n">s1</span><span class="w"> </span><span class="o">&lt;=&gt;</span><span class="w"> </span><span class="n">s2</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">strong_ordering</span><span class="o">::</span><span class="n">equal</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="constexpr-strict-about-pointer-arithmetic">
+<h2>Constexpr strict about pointer arithmetic<a class="headerlink" href="#constexpr-strict-about-pointer-arithmetic" title="Link to this heading"></a></h2>
+<p>Initially attempted to implement :ref:xo::flatstring reverse iterators using char pointers.</p>
+<p>Notice there’s an assymetry between reverse iterators and forward iterators.
+We can (and do) implement forward iterators using char pointers.
+The natural value of <code class="docutils literal notranslate"><span class="pre">flatstring::end()</span></code> is a char pointer referring to just past the end of
+the string,  i.e. to its null terminator.  From the compiler’s perspective,  this is an ordinary
+char pointer,  just like other iterator values.</p>
+<p>For reverse iterators this isn’t the case.  The natural value for <code class="docutils literal notranslate"><span class="pre">flatstring::rend()</span></code> might
+seem to be a char pointer referring to just before the first character in the string.
+However this is no longer a valid pointer address – dereferencing would be undefined behavior.</p>
+<p>In particular,  with this implementation, gcc demotes <code class="docutils literal notranslate"><span class="pre">flatstring::rend()</span></code> to non-constexpr</p>
+<p>Workaround is to implement a shim iterator class, where representation is pointer to the
+character just after the one the iterator position; iterator’s <code class="docutils literal notranslate"><span class="pre">operator*</span></code> adjusts pointer before
+dereferencing.</p>
+<p>This works because gcc can observe that we never dereference a reverse iterator with pointer value
+at the beginning of a flatstring.</p>
 </section>
 </section>
 
