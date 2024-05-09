@@ -48,14 +48,46 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Abstraction Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html#representation">Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">How To…</a></li>
 <li class="toctree-l1"><a class="reference internal" href="unit-quantities.html">Unit Quantities</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="quantity-class.html">Quantity</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Quantity Factory Functions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Quantity Factory Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mass">Mass</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty10milligramsEDa4Repr"><code class="docutils literal notranslate"><span class="pre">milligrams()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty5gramsEDa4Repr"><code class="docutils literal notranslate"><span class="pre">grams()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty9kilogramsEDa4Repr"><code class="docutils literal notranslate"><span class="pre">kilograms()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#distance">Distance</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty11millimetersEDa4Repr"><code class="docutils literal notranslate"><span class="pre">millimeters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty6metersEDa4Repr"><code class="docutils literal notranslate"><span class="pre">meters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty10kilometersEDa4Repr"><code class="docutils literal notranslate"><span class="pre">kilometers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty6inchesEDa4Repr"><code class="docutils literal notranslate"><span class="pre">inches()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#time">Time</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty11nanosecondsEDa4Repr"><code class="docutils literal notranslate"><span class="pre">nanoseconds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty12microsecondsEDa4Repr"><code class="docutils literal notranslate"><span class="pre">microseconds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty12millisecondsEDa4Repr"><code class="docutils literal notranslate"><span class="pre">milliseconds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty7secondsEDa4Repr"><code class="docutils literal notranslate"><span class="pre">seconds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty7minutesEDa4Repr"><code class="docutils literal notranslate"><span class="pre">minutes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty5hoursEDa4Repr"><code class="docutils literal notranslate"><span class="pre">hours()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty4daysEDa4Repr"><code class="docutils literal notranslate"><span class="pre">days()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="quantity-unitvars.html">Quantity Unit Variables</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="unit-reference.html">Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bu-store-class.html">Basis Unit Store</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Dimension</a></li>
 </ul>
 
         </div>
@@ -90,58 +122,91 @@
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;xo/unit/quantity.hpp&gt;</span>
 </pre></div>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “xo::unit::qty::milligrams” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “xo::unit::qty::grams” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “xo::unit::qty::kilograms” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “xo::unit::qty::millimeters” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “xo::unit::qty::meters” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “xo::unit::qty::kilometers” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “xo::unit::qty::nanoseconds” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “xo::unit::qty::microseconds” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “xo::unit::qty::milliseconds” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “xo::unit::qty::seconds” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “xo::unit::qty::minutes” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “xo::unit::qty::hours” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “xo::unit::qty::days” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
-</div>
+<section id="mass">
+<h2>Mass<a class="headerlink" href="#mass" title="Link to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2xo3qty3qty10milligramsEDa4Repr">
+<span id="_CPPv3I0EN2xo3qty3qty10milligramsE4Repr"></span><span id="_CPPv2I0EN2xo3qty3qty10milligramsE4Repr"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repr</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="quantity_8hpp_1afdff82bf93a3d92dc1c11d5eada85935"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">milligrams</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty10milligramsEDa4Repr" title="xo::qty::qty::milligrams::Repr"><span class="n"><span class="pre">Repr</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN2xo3qty3qty10milligramsEDa4Repr" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2xo3qty3qty5gramsEDa4Repr">
+<span id="_CPPv3I0EN2xo3qty3qty5gramsE4Repr"></span><span id="_CPPv2I0EN2xo3qty3qty5gramsE4Repr"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repr</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="quantity_8hpp_1a134ceccc1af40f2194e9d8f274846a86"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">grams</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty5gramsEDa4Repr" title="xo::qty::qty::grams::Repr"><span class="n"><span class="pre">Repr</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN2xo3qty3qty5gramsEDa4Repr" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2xo3qty3qty9kilogramsEDa4Repr">
+<span id="_CPPv3I0EN2xo3qty3qty9kilogramsE4Repr"></span><span id="_CPPv2I0EN2xo3qty3qty9kilogramsE4Repr"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repr</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="quantity_8hpp_1aa2bbd9fc486a2d5e14062c3cb75563d0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">kilograms</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty9kilogramsEDa4Repr" title="xo::qty::qty::kilograms::Repr"><span class="n"><span class="pre">Repr</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN2xo3qty3qty9kilogramsEDa4Repr" title="Link to this definition"></a><br /></dt>
+<dd><p>create a quantity representing <code class="docutils literal notranslate"><span class="pre">x</span></code> kilograms of mass, with compile-time unit representation </p>
+</dd></dl>
+
+</section>
+<section id="distance">
+<h2>Distance<a class="headerlink" href="#distance" title="Link to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2xo3qty3qty11millimetersEDa4Repr">
+<span id="_CPPv3I0EN2xo3qty3qty11millimetersE4Repr"></span><span id="_CPPv2I0EN2xo3qty3qty11millimetersE4Repr"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repr</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="quantity_8hpp_1aec29079bfd061a196940fec8e27d43bb"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">millimeters</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty11millimetersEDa4Repr" title="xo::qty::qty::millimeters::Repr"><span class="n"><span class="pre">Repr</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN2xo3qty3qty11millimetersEDa4Repr" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2xo3qty3qty6metersEDa4Repr">
+<span id="_CPPv3I0EN2xo3qty3qty6metersE4Repr"></span><span id="_CPPv2I0EN2xo3qty3qty6metersE4Repr"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repr</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="quantity_8hpp_1abbf88dbf962f045cb41bc8c148a0b000"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">meters</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty6metersEDa4Repr" title="xo::qty::qty::meters::Repr"><span class="n"><span class="pre">Repr</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN2xo3qty3qty6metersEDa4Repr" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2xo3qty3qty10kilometersEDa4Repr">
+<span id="_CPPv3I0EN2xo3qty3qty10kilometersE4Repr"></span><span id="_CPPv2I0EN2xo3qty3qty10kilometersE4Repr"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repr</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="quantity_8hpp_1af3d2c1f21de12092287b6895867aeb16"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">kilometers</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty10kilometersEDa4Repr" title="xo::qty::qty::kilometers::Repr"><span class="n"><span class="pre">Repr</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN2xo3qty3qty10kilometersEDa4Repr" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2xo3qty3qty6inchesEDa4Repr">
+<span id="_CPPv3I0EN2xo3qty3qty6inchesE4Repr"></span><span id="_CPPv2I0EN2xo3qty3qty6inchesE4Repr"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repr</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="quantity_8hpp_1ad7a9bf40652e63a8b0b555a13689bea1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">inches</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty6inchesEDa4Repr" title="xo::qty::qty::inches::Repr"><span class="n"><span class="pre">Repr</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN2xo3qty3qty6inchesEDa4Repr" title="Link to this definition"></a><br /></dt>
+<dd><p>create quantity representing <code class="docutils literal notranslate"><span class="pre">x</span></code> inches of distance, with compile-time unit representation </p>
+</dd></dl>
+
+</section>
+<section id="time">
+<h2>Time<a class="headerlink" href="#time" title="Link to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2xo3qty3qty11nanosecondsEDa4Repr">
+<span id="_CPPv3I0EN2xo3qty3qty11nanosecondsE4Repr"></span><span id="_CPPv2I0EN2xo3qty3qty11nanosecondsE4Repr"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repr</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="quantity_8hpp_1ab2d30e0a655dcddaf2a42a90c7573cac"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">nanoseconds</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty11nanosecondsEDa4Repr" title="xo::qty::qty::nanoseconds::Repr"><span class="n"><span class="pre">Repr</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN2xo3qty3qty11nanosecondsEDa4Repr" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2xo3qty3qty12microsecondsEDa4Repr">
+<span id="_CPPv3I0EN2xo3qty3qty12microsecondsE4Repr"></span><span id="_CPPv2I0EN2xo3qty3qty12microsecondsE4Repr"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repr</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="quantity_8hpp_1afb706869c780cc4c49f56317c2951a00"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">microseconds</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty12microsecondsEDa4Repr" title="xo::qty::qty::microseconds::Repr"><span class="n"><span class="pre">Repr</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN2xo3qty3qty12microsecondsEDa4Repr" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2xo3qty3qty12millisecondsEDa4Repr">
+<span id="_CPPv3I0EN2xo3qty3qty12millisecondsE4Repr"></span><span id="_CPPv2I0EN2xo3qty3qty12millisecondsE4Repr"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repr</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="quantity_8hpp_1aa463cf070c0e80f255dfec28c2313722"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">milliseconds</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty12millisecondsEDa4Repr" title="xo::qty::qty::milliseconds::Repr"><span class="n"><span class="pre">Repr</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN2xo3qty3qty12millisecondsEDa4Repr" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2xo3qty3qty7secondsEDa4Repr">
+<span id="_CPPv3I0EN2xo3qty3qty7secondsE4Repr"></span><span id="_CPPv2I0EN2xo3qty3qty7secondsE4Repr"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repr</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="quantity_8hpp_1aef38b65e754e1c2eb94b0f39fec9303a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">seconds</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty7secondsEDa4Repr" title="xo::qty::qty::seconds::Repr"><span class="n"><span class="pre">Repr</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN2xo3qty3qty7secondsEDa4Repr" title="Link to this definition"></a><br /></dt>
+<dd><p>create quantity representing <code class="docutils literal notranslate"><span class="pre">x</span></code> seconds of time, with compile-time unit representation </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2xo3qty3qty7minutesEDa4Repr">
+<span id="_CPPv3I0EN2xo3qty3qty7minutesE4Repr"></span><span id="_CPPv2I0EN2xo3qty3qty7minutesE4Repr"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repr</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="quantity_8hpp_1aac8b8db9ae38c1fcba81aa1588111056"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">minutes</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty7minutesEDa4Repr" title="xo::qty::qty::minutes::Repr"><span class="n"><span class="pre">Repr</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN2xo3qty3qty7minutesEDa4Repr" title="Link to this definition"></a><br /></dt>
+<dd><p>create quantity representing <code class="docutils literal notranslate"><span class="pre">x</span></code> minutes of time, with compile-time unit representation </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2xo3qty3qty5hoursEDa4Repr">
+<span id="_CPPv3I0EN2xo3qty3qty5hoursE4Repr"></span><span id="_CPPv2I0EN2xo3qty3qty5hoursE4Repr"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repr</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="quantity_8hpp_1a1832b9633a9026abcb5f34c7586445e0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">hours</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty5hoursEDa4Repr" title="xo::qty::qty::hours::Repr"><span class="n"><span class="pre">Repr</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN2xo3qty3qty5hoursEDa4Repr" title="Link to this definition"></a><br /></dt>
+<dd><p>create quantity representing <code class="docutils literal notranslate"><span class="pre">x</span></code> hours of time, with compile-time unit representation </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2xo3qty3qty4daysEDa4Repr">
+<span id="_CPPv3I0EN2xo3qty3qty4daysE4Repr"></span><span id="_CPPv2I0EN2xo3qty3qty4daysE4Repr"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repr</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="quantity_8hpp_1a17230b73eb17eb92b0067d2bbc01adbc"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">days</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN2xo3qty3qty4daysEDa4Repr" title="xo::qty::qty::days::Repr"><span class="n"><span class="pre">Repr</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN2xo3qty3qty4daysEDa4Repr" title="Link to this definition"></a><br /></dt>
+<dd><p>create quantity representing <code class="docutils literal notranslate"><span class="pre">x</span></code> days of time, with compile-time unit representation </p>
+</dd></dl>
+
+</section>
 </section>
 
 

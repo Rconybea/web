@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basis Unit &mdash; xo unit documentation  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Basis Unit Constants" href="basis-unit-constants.html" />
+    <link rel="prev" title="Basis Unit Reference" href="basis-unit-reference.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            xo unit documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">xo-unit contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Abstraction Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html#representation">Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">How To…</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unit-quantities.html">Unit Quantities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unit-reference.html">Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bu-store-class.html">Basis Unit Store</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Basis Unit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#class">Class</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N2xo3qty10basis_unitE"><code class="docutils literal notranslate"><span class="pre">basis_unit</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#member-variables">Member Variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv411native_dim_"><code class="docutils literal notranslate"><span class="pre">native_dim_</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv412scalefactor_"><code class="docutils literal notranslate"><span class="pre">scalefactor_</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#constructors">Constructors</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv410basis_unitv"><code class="docutils literal notranslate"><span class="pre">basis_unit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv410basis_unit9dimensionRK22scalefactor_ratio_type"><code class="docutils literal notranslate"><span class="pre">basis_unit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#access-methods">Access Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK10native_dimEv"><code class="docutils literal notranslate"><span class="pre">native_dim()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK11scalefactorEv"><code class="docutils literal notranslate"><span class="pre">scalefactor()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#comparison">Comparison</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4eqRK10basis_unitRK10basis_unit"><code class="docutils literal notranslate"><span class="pre">operator==()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4neRK10basis_unitRK10basis_unit"><code class="docutils literal notranslate"><span class="pre">operator!=()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basis-unit-constants.html">Basis Unit Constants</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Dimension</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">xo unit documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="basis-unit-reference.html">Basis Unit Reference</a></li>
+      <li class="breadcrumb-item active">Basis Unit</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/basis-unit-class.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="basis-unit">
+<span id="basis-unit-class"></span><h1>Basis Unit<a class="headerlink" href="#basis-unit" title="Link to this heading"></a></h1>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;xo/unit/basis_unit.hpp&gt;</span>
+</pre></div>
+</div>
+<p>A <code class="code docutils literal notranslate"><span class="pre">basis_unit</span></code> represents a unit belonging to a single native dimension.
+For example <code class="code docutils literal notranslate"><span class="pre">bu::meter</span></code> representing a distance of 1 meter.</p>
+<section id="class">
+<h2>Class<a class="headerlink" href="#class" title="Link to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N2xo3qty10basis_unitE">
+<span id="_CPPv3N2xo3qty10basis_unitE"></span><span id="_CPPv2N2xo3qty10basis_unitE"></span><span id="xo::qty::basis_unit"></span><span class="target" id="structxo_1_1qty_1_1basis__unit"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">basis_unit</span></span></span><a class="headerlink" href="#_CPPv4N2xo3qty10basis_unitE" title="Link to this definition"></a><br /></dt>
+<dd><p>A dimensionless multiple of a single natively-specified basis dimension. </p>
+<p>For example “3600 minutes” or “1e-6 grams” </p>
+</dd></dl>
+
+</section>
+<section id="member-variables">
+<h2>Member Variables<a class="headerlink" href="#member-variables" title="Link to this heading"></a></h2>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__basis-unit-instance-vars"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">basis-unit-instance-vars</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv411native_dim_">
+<span id="_CPPv311native_dim_"></span><span id="_CPPv211native_dim_"></span><span id="native_dim___dimension"></span><span class="target" id="group__basis-unit-instance-vars_1ga32ed8862b5440e83d6f693e89fe4ebb9"></span><span class="n"><span class="pre">dimension</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">native_dim_</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">dimension</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">invalid</span></span><a class="headerlink" href="#_CPPv411native_dim_" title="Link to this definition"></a><br /></dt>
+<dd><p>identifies a native unit, e.g. time (in seconds) </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv412scalefactor_">
+<span id="_CPPv312scalefactor_"></span><span id="_CPPv212scalefactor_"></span><span id="scalefactor___scalefactor_ratio_type"></span><span class="target" id="group__basis-unit-instance-vars_1gabfadb581b108c51930e18007fe441f4d"></span><span class="n"><span class="pre">scalefactor_ratio_type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">scalefactor_</span></span></span><a class="headerlink" href="#_CPPv412scalefactor_" title="Link to this definition"></a><br /></dt>
+<dd><p>this unit defined as multiple scalefactor times native unit </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Link to this heading"></a></h2>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__basis-unit-constructors"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">basis-unit-constructors</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv410basis_unitv">
+<span id="_CPPv310basis_unitv"></span><span id="_CPPv210basis_unitv"></span><span id="basis_unitCE"></span><span class="target" id="group__basis-unit-constructors_1ga56801067bbb6ccdc36028bfef8d129e9"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">basis_unit</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv410basis_unitv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv410basis_unit9dimensionRK22scalefactor_ratio_type">
+<span id="_CPPv310basis_unit9dimensionRK22scalefactor_ratio_type"></span><span id="_CPPv210basis_unit9dimensionRK22scalefactor_ratio_type"></span><span id="basis_unit__dimension.scalefactor_ratio_typeCRCE"></span><span class="target" id="group__basis-unit-constructors_1gaf01e3081463369dd92119c960a175fe9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">basis_unit</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">dimension</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">native_dim</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">scalefactor_ratio_type</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">scalefactor</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410basis_unit9dimensionRK22scalefactor_ratio_type" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="access-methods">
+<h2>Access Methods<a class="headerlink" href="#access-methods" title="Link to this heading"></a></h2>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__basis-unit-access-methods"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">basis-unit-access-methods</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK10native_dimEv">
+<span id="_CPPv3NK10native_dimEv"></span><span id="_CPPv2NK10native_dimEv"></span><span id="native_dimCCE"></span><span class="target" id="group__basis-unit-access-methods_1ga2287c7d8c31665ced5962e8350df939d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="n"><span class="pre">dimension</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">native_dim</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10native_dimEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK11scalefactorEv">
+<span id="_CPPv3NK11scalefactorEv"></span><span id="_CPPv2NK11scalefactorEv"></span><span id="scalefactorCCE"></span><span class="target" id="group__basis-unit-access-methods_1gac868af8d979808f947076f089a659118"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">scalefactor_ratio_type</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">scalefactor</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK11scalefactorEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="comparison">
+<h2>Comparison<a class="headerlink" href="#comparison" title="Link to this heading"></a></h2>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__basis-unit-comparison-support"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">basis-unit-comparison-support</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4eqRK10basis_unitRK10basis_unit">
+<span id="_CPPv3eqRK10basis_unitRK10basis_unit"></span><span id="_CPPv2eqRK10basis_unitRK10basis_unit"></span><span id="eq-operator__basis_unitCR.basis_unitCRCE"></span><span class="target" id="group__basis-unit-comparison-support_1ga787d3ad69f3aca402f1d21eb1d687a88"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4eqRK10basis_unitRK10basis_unit" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4neRK10basis_unitRK10basis_unit">
+<span id="_CPPv3neRK10basis_unitRK10basis_unit"></span><span id="_CPPv2neRK10basis_unitRK10basis_unit"></span><span id="neq-operator__basis_unitCR.basis_unitCRCE"></span><span class="target" id="group__basis-unit-comparison-support_1gaa4dc57e19c7647032a145a5586f4cf2f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">!=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4neRK10basis_unitRK10basis_unit" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="basis-unit-reference.html" class="btn btn-neutral float-left" title="Basis Unit Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="basis-unit-constants.html" class="btn btn-neutral float-right" title="Basis Unit Constants" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1980, Roland Conybeare.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

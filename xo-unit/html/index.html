@@ -47,9 +47,16 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Abstraction Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html#representation">Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">How To…</a></li>
 <li class="toctree-l1"><a class="reference internal" href="unit-quantities.html">Unit Quantities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="unit-reference.html">Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bu-store-class.html">Basis Unit Store</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Dimension</a></li>
 </ul>
 
         </div>
@@ -82,8 +89,14 @@
 dimension checking and unit conversion.</p>
 <p>Functionality is similar in spirit to that provided by <code class="docutils literal notranslate"><span class="pre">boost::units</span></code>;
 however there are some important differences:</p>
-<p>First, implementation relies on c++20 features
-like class-instance template parameters to efficiently assemble string constants at compile time.</p>
+<ul class="simple">
+<li><p>streamlined implementation using c++20 features.</p></li>
+<li><p>along with no-runtime-overhead compile-time unit inference,
+also provides defer-until-runtime representation.</p></li>
+<li><p>constexpr string representation for things like unit abbreviations.</p></li>
+<li><p>supports fractional dimensions, for concepts like volatility.</p></li>
+<li><p>integration with python (see sister project xo-pyunit)</p></li>
+</ul>
 <p>Second, <code class="docutils literal notranslate"><span class="pre">xo-unit</span></code> supports fractional dimensions.  This allows using it to naturally handle
 concepts like volatility (dimension 1/sqrt(time)), for example.</p>
 <p>Finally, <code class="docutils literal notranslate"><span class="pre">xo-unit</span></code> is written with the expectation of providing
@@ -101,10 +114,18 @@ runtime (since we can’t construct new c++ types at runtime).</p>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="examples.html#compile-time-unit-inference">Compile-time unit inference</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples.html#explicit-scale-conversion">Explicit scale conversion</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples.html#scale-conversion-triggered-by-assignment">Scale conversion triggered by assignment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples.html#scale-conversion-triggered-by-arithmetic">Scale conversion triggered by arithmetic</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples.html#dimensionless-quantities-collapse-automatically">Dimensionless quantities collapse automatically</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#implicit-scale-conversion">Implicit Scale conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#scale-conversion-and-arithmetic">Scale conversion and arithmetic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#dimensionless-quantities-unwrap-implicitly">Dimensionless quantities unwrap implicitly</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples.html#fractional-dimension">Fractional dimension</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Abstraction Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html#representation">Representation</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">How To…</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="development.html#add-basis-unit">Add Basis Unit</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="unit-quantities.html">Unit Quantities</a><ul>
@@ -120,6 +141,29 @@ runtime (since we can’t construct new c++ types at runtime).</p>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="unit-reference.html">Unit Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="unit-concept.html">Unit Concepts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bu-store-class.html">Basis Unit Store</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bu-store-class.html#_CPPv4N2xo3qty6detail8bu_storeE"><code class="docutils literal notranslate"><span class="pre">bu_store</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="bu-store-class.html#_CPPv4N2xo3qty6detail12bu_dim_storeE"><code class="docutils literal notranslate"><span class="pre">bu_dim_store</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="bu-store-class.html#_CPPv410entry_type"><code class="docutils literal notranslate"><span class="pre">entry_type</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="bu-store-class.html#_CPPv414native_scale_v"><code class="docutils literal notranslate"><span class="pre">native_scale_v</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="bu-store-class.html#_CPPv45n_bu_"><code class="docutils literal notranslate"><span class="pre">n_bu_</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="bu-store-class.html#_CPPv412bu_abbrev_v_"><code class="docutils literal notranslate"><span class="pre">bu_abbrev_v_</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="bu-store-class.html#constants">Constants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bu-store-class.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basis-unit-class.html">Basis Unit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basis-unit-constants.html">Basis Unit Constants</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Dimension</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dimension-enum.html#_CPPv4N2xo3qty9dimensionE"><code class="docutils literal notranslate"><span class="pre">dimension</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="dimension-enum.html#_CPPv4N2xo3qty5n_dimE"><code class="docutils literal notranslate"><span class="pre">n_dim</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="dimension-enum.html#_CPPv4N2xo3qty7dim2strE9dimension"><code class="docutils literal notranslate"><span class="pre">dim2str()</span></code></a></li>
 </ul>
 </li>
 </ul>

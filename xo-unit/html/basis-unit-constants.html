@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basis Unit Constants &mdash; xo unit documentation  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Dimension" href="dimension-enum.html" />
+    <link rel="prev" title="Basis Unit" href="basis-unit-class.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            xo unit documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">xo-unit contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Abstraction Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html#representation">Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">How To…</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unit-quantities.html">Unit Quantities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unit-reference.html">Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bu-store-class.html">Basis Unit Store</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="basis-unit-class.html">Basis Unit</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Basis Unit Constants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mass-units">Mass Units</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv48picogram"><code class="docutils literal notranslate"><span class="pre">picogram</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv48nanogram"><code class="docutils literal notranslate"><span class="pre">nanogram</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49microgram"><code class="docutils literal notranslate"><span class="pre">microgram</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49milligram"><code class="docutils literal notranslate"><span class="pre">milligram</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv44gram"><code class="docutils literal notranslate"><span class="pre">gram</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv48kilogram"><code class="docutils literal notranslate"><span class="pre">kilogram</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv45tonne"><code class="docutils literal notranslate"><span class="pre">tonne</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49kilotonne"><code class="docutils literal notranslate"><span class="pre">kilotonne</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49megatonne"><code class="docutils literal notranslate"><span class="pre">megatonne</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49gigatonne"><code class="docutils literal notranslate"><span class="pre">gigatonne</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#distance-units">Distance Units</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49picometer"><code class="docutils literal notranslate"><span class="pre">picometer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49nanometer"><code class="docutils literal notranslate"><span class="pre">nanometer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv410micrometer"><code class="docutils literal notranslate"><span class="pre">micrometer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv410millimeter"><code class="docutils literal notranslate"><span class="pre">millimeter</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv45meter"><code class="docutils literal notranslate"><span class="pre">meter</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49kilometer"><code class="docutils literal notranslate"><span class="pre">kilometer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49megameter"><code class="docutils literal notranslate"><span class="pre">megameter</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49gigameter"><code class="docutils literal notranslate"><span class="pre">gigameter</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv411lightsecond"><code class="docutils literal notranslate"><span class="pre">lightsecond</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv416astronomicalunit"><code class="docutils literal notranslate"><span class="pre">astronomicalunit</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49picometre"><code class="docutils literal notranslate"><span class="pre">picometre</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49nanometre"><code class="docutils literal notranslate"><span class="pre">nanometre</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv410micrometre"><code class="docutils literal notranslate"><span class="pre">micrometre</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv410millimetre"><code class="docutils literal notranslate"><span class="pre">millimetre</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv45metre"><code class="docutils literal notranslate"><span class="pre">metre</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49kilometre"><code class="docutils literal notranslate"><span class="pre">kilometre</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49megametre"><code class="docutils literal notranslate"><span class="pre">megametre</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49gigametre"><code class="docutils literal notranslate"><span class="pre">gigametre</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv44inch"><code class="docutils literal notranslate"><span class="pre">inch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv44foot"><code class="docutils literal notranslate"><span class="pre">foot</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv44yard"><code class="docutils literal notranslate"><span class="pre">yard</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv44mile"><code class="docutils literal notranslate"><span class="pre">mile</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#time-units">Time Units</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv410picosecond"><code class="docutils literal notranslate"><span class="pre">picosecond</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv410nanosecond"><code class="docutils literal notranslate"><span class="pre">nanosecond</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv411microsecond"><code class="docutils literal notranslate"><span class="pre">microsecond</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv411millisecond"><code class="docutils literal notranslate"><span class="pre">millisecond</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv46second"><code class="docutils literal notranslate"><span class="pre">second</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv46minute"><code class="docutils literal notranslate"><span class="pre">minute</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv44hour"><code class="docutils literal notranslate"><span class="pre">hour</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv43day"><code class="docutils literal notranslate"><span class="pre">day</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv44week"><code class="docutils literal notranslate"><span class="pre">week</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv45month"><code class="docutils literal notranslate"><span class="pre">month</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv44year"><code class="docutils literal notranslate"><span class="pre">year</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv47year365"><code class="docutils literal notranslate"><span class="pre">year365</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv47year360"><code class="docutils literal notranslate"><span class="pre">year360</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv47year250"><code class="docutils literal notranslate"><span class="pre">year250</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Dimension</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">xo unit documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="basis-unit-reference.html">Basis Unit Reference</a></li>
+      <li class="breadcrumb-item active">Basis Unit Constants</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/basis-unit-constants.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="basis-unit-constants">
+<span id="id1"></span><h1>Basis Unit Constants<a class="headerlink" href="#basis-unit-constants" title="Link to this heading"></a></h1>
+<p>These constants represent low-level building blocks.
+Relative scalefactors for each unit are chosen here.</p>
+<p>Application code will not use this class directly;
+instead it’s expected to use units from the <code class="code docutils literal notranslate"><span class="pre">xo::qty::u</span></code> namespace.
+Those units are implemented on top of the basis units described here.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;xo/unit/basis_unit.hpp&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="n">xo</span><span class="o">::</span><span class="n">qty</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">bu</span><span class="p">;</span>
+</pre></div>
+</div>
+<section id="mass-units">
+<h2>Mass Units<a class="headerlink" href="#mass-units" title="Link to this heading"></a></h2>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__basis-unit-mass-units"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">basis-unit-mass-units</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv48picogram">
+<span id="_CPPv38picogram"></span><span id="_CPPv28picogram"></span><span id="picogram__basis_unit"></span><span class="target" id="group__basis-unit-mass-units_1ga5e3e1593b2dc7a4806f7dddddb4316dc"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">picogram</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">mass_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1000000000000</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv48picogram" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv48nanogram">
+<span id="_CPPv38nanogram"></span><span id="_CPPv28nanogram"></span><span id="nanogram__basis_unit"></span><span class="target" id="group__basis-unit-mass-units_1ga19d77b73484297f0c42795f457d7df8c"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nanogram</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">mass_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1000000000</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv48nanogram" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv49microgram">
+<span id="_CPPv39microgram"></span><span id="_CPPv29microgram"></span><span id="microgram__basis_unit"></span><span class="target" id="group__basis-unit-mass-units_1ga6698ec619e75be9ca65b7eb82a3e95c9"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">microgram</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">mass_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1000000</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv49microgram" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv49milligram">
+<span id="_CPPv39milligram"></span><span id="_CPPv29milligram"></span><span id="milligram__basis_unit"></span><span class="target" id="group__basis-unit-mass-units_1gab9e07c64be5f18743e8d9f74019a8564"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">milligram</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">mass_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1000</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv49milligram" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv44gram">
+<span id="_CPPv34gram"></span><span id="_CPPv24gram"></span><span id="gram__basis_unit"></span><span class="target" id="group__basis-unit-mass-units_1ga2cc3205d7a5382f13fa0c49f9d401832"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gram</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">mass_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv44gram" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv48kilogram">
+<span id="_CPPv38kilogram"></span><span id="_CPPv28kilogram"></span><span id="kilogram__basis_unit"></span><span class="target" id="group__basis-unit-mass-units_1ga194a8715905ce7e3654acfc6d5532dd8"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kilogram</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">mass_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1000</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv48kilogram" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv45tonne">
+<span id="_CPPv35tonne"></span><span id="_CPPv25tonne"></span><span id="tonne__basis_unit"></span><span class="target" id="group__basis-unit-mass-units_1ga08b328fc3549d537172b28f7a559bbab"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">tonne</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">mass_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1000000</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv45tonne" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv49kilotonne">
+<span id="_CPPv39kilotonne"></span><span id="_CPPv29kilotonne"></span><span id="kilotonne__basis_unit"></span><span class="target" id="group__basis-unit-mass-units_1gafe0592a9ea94209e42f4ac930ee40c1b"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kilotonne</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">mass_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1000000000</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv49kilotonne" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv49megatonne">
+<span id="_CPPv39megatonne"></span><span id="_CPPv29megatonne"></span><span id="megatonne__basis_unit"></span><span class="target" id="group__basis-unit-mass-units_1ga9328622b24a2fb6b6ee031954bfee915"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">megatonne</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">mass_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1000000000000</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv49megatonne" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv49gigatonne">
+<span id="_CPPv39gigatonne"></span><span id="_CPPv29gigatonne"></span><span id="gigatonne__basis_unit"></span><span class="target" id="group__basis-unit-mass-units_1ga13d0d13250455e16b9ab7a3693d7b964"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gigatonne</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">mass_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1000000000000000</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv49gigatonne" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="distance-units">
+<h2>Distance Units<a class="headerlink" href="#distance-units" title="Link to this heading"></a></h2>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__basis-unit-distance-units"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">basis-unit-distance-units</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv49picometer">
+<span id="_CPPv39picometer"></span><span id="_CPPv29picometer"></span><span id="picometer__basis_unit"></span><span class="target" id="group__basis-unit-distance-units_1ga2005ed422178befea617ffd09454c01a"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">picometer</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">distance_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1000000000000</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv49picometer" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv49nanometer">
+<span id="_CPPv39nanometer"></span><span id="_CPPv29nanometer"></span><span id="nanometer__basis_unit"></span><span class="target" id="group__basis-unit-distance-units_1ga69a6f4766108e29435fbffc30dbcc017"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nanometer</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">distance_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1000000000</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv49nanometer" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv410micrometer">
+<span id="_CPPv310micrometer"></span><span id="_CPPv210micrometer"></span><span id="micrometer__basis_unit"></span><span class="target" id="group__basis-unit-distance-units_1ga4628cbed34ca8f323d600cbcccad1afe"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">micrometer</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">distance_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1000000</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv410micrometer" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv410millimeter">
+<span id="_CPPv310millimeter"></span><span id="_CPPv210millimeter"></span><span id="millimeter__basis_unit"></span><span class="target" id="group__basis-unit-distance-units_1ga53328a3cdc1ba8348ba5ae4e6ecc44b7"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">millimeter</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">distance_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1000</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv410millimeter" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv45meter">
+<span id="_CPPv35meter"></span><span id="_CPPv25meter"></span><span id="meter__basis_unit"></span><span class="target" id="group__basis-unit-distance-units_1gabb87acea20c450a1785e899598371d8b"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">meter</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">distance_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv45meter" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv49kilometer">
+<span id="_CPPv39kilometer"></span><span id="_CPPv29kilometer"></span><span id="kilometer__basis_unit"></span><span class="target" id="group__basis-unit-distance-units_1ga96c490fc89f6d1511d2e6b0d97a74175"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kilometer</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">distance_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1000</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv49kilometer" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv49megameter">
+<span id="_CPPv39megameter"></span><span id="_CPPv29megameter"></span><span id="megameter__basis_unit"></span><span class="target" id="group__basis-unit-distance-units_1ga624c2bbdec1ca088cd1f14903bd3e3b7"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">megameter</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">distance_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1000000</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv49megameter" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv49gigameter">
+<span id="_CPPv39gigameter"></span><span id="_CPPv29gigameter"></span><span id="gigameter__basis_unit"></span><span class="target" id="group__basis-unit-distance-units_1gaf9b351221dc6c782413d150e2b970907"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gigameter</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">distance_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1000000000</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv49gigameter" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv411lightsecond">
+<span id="_CPPv311lightsecond"></span><span id="_CPPv211lightsecond"></span><span id="lightsecond__basis_unit"></span><span class="target" id="group__basis-unit-distance-units_1gafd935c36518710061250735d9a3c7a14"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lightsecond</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">distance_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">299792458</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv411lightsecond" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv416astronomicalunit">
+<span id="_CPPv316astronomicalunit"></span><span id="_CPPv216astronomicalunit"></span><span id="astronomicalunit__basis_unit"></span><span class="target" id="group__basis-unit-distance-units_1ga6ef8d92007477c32ae78e191f0d13e10"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">astronomicalunit</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">distance_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">149597870700</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv416astronomicalunit" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv49picometre">
+<span id="_CPPv39picometre"></span><span id="_CPPv29picometre"></span><span id="picometre__basis_unit"></span><span class="target" id="group__basis-unit-distance-units_1gaed1d3b546d5cfebc734516bf4a3221af"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">picometre</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49picometer" title="picometer"><span class="n"><span class="pre">picometer</span></span></a><a class="headerlink" href="#_CPPv49picometre" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv49nanometre">
+<span id="_CPPv39nanometre"></span><span id="_CPPv29nanometre"></span><span id="nanometre__basis_unit"></span><span class="target" id="group__basis-unit-distance-units_1ga89d7f805c94888d62e918ebad613f7ed"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nanometre</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49nanometer" title="nanometer"><span class="n"><span class="pre">nanometer</span></span></a><a class="headerlink" href="#_CPPv49nanometre" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv410micrometre">
+<span id="_CPPv310micrometre"></span><span id="_CPPv210micrometre"></span><span id="micrometre__basis_unit"></span><span class="target" id="group__basis-unit-distance-units_1ga63e03c7695b5027f37fe485f758a290c"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">micrometre</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410micrometer" title="micrometer"><span class="n"><span class="pre">micrometer</span></span></a><a class="headerlink" href="#_CPPv410micrometre" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv410millimetre">
+<span id="_CPPv310millimetre"></span><span id="_CPPv210millimetre"></span><span id="millimetre__basis_unit"></span><span class="target" id="group__basis-unit-distance-units_1ga23b592a88ec10bada0b638f2c57ef587"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">millimetre</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv410millimeter" title="millimeter"><span class="n"><span class="pre">millimeter</span></span></a><a class="headerlink" href="#_CPPv410millimetre" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv45metre">
+<span id="_CPPv35metre"></span><span id="_CPPv25metre"></span><span id="metre__basis_unit"></span><span class="target" id="group__basis-unit-distance-units_1ga2745e5bb7b60ef099aeb8ae86573ab1e"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">metre</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv45meter" title="meter"><span class="n"><span class="pre">meter</span></span></a><a class="headerlink" href="#_CPPv45metre" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv49kilometre">
+<span id="_CPPv39kilometre"></span><span id="_CPPv29kilometre"></span><span id="kilometre__basis_unit"></span><span class="target" id="group__basis-unit-distance-units_1ga913fc6b9ee6765b44b20e20a7499cafd"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">kilometre</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49kilometer" title="kilometer"><span class="n"><span class="pre">kilometer</span></span></a><a class="headerlink" href="#_CPPv49kilometre" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv49megametre">
+<span id="_CPPv39megametre"></span><span id="_CPPv29megametre"></span><span id="megametre__basis_unit"></span><span class="target" id="group__basis-unit-distance-units_1ga3fec3a0e99d937b4eec6f0764f47bee1"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">megametre</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49megameter" title="megameter"><span class="n"><span class="pre">megameter</span></span></a><a class="headerlink" href="#_CPPv49megametre" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv49gigametre">
+<span id="_CPPv39gigametre"></span><span id="_CPPv29gigametre"></span><span id="gigametre__basis_unit"></span><span class="target" id="group__basis-unit-distance-units_1ga8382f6e84b0b06f92d8d1d9961fa4b74"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gigametre</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49gigameter" title="gigameter"><span class="n"><span class="pre">gigameter</span></span></a><a class="headerlink" href="#_CPPv49gigametre" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv44inch">
+<span id="_CPPv34inch"></span><span id="_CPPv24inch"></span><span id="inch__basis_unit"></span><span class="target" id="group__basis-unit-distance-units_1gaa20d437c52437c5b9acefb32b38a2a40"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">inch</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">distance_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">3048</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">120000</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv44inch" title="Link to this definition"></a><br /></dt>
+<dd><p>basis-unit representing 1 inch; defined as exactly 1/12 feet </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv44foot">
+<span id="_CPPv34foot"></span><span id="_CPPv24foot"></span><span id="foot__basis_unit"></span><span class="target" id="group__basis-unit-distance-units_1gabdf01b683fdb6177578e69af0853ce0c"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">foot</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">distance_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">3048</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">10000</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv44foot" title="Link to this definition"></a><br /></dt>
+<dd><p>basis-unit representing 1 foot; defined as exactly 0.3048 meters </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv44yard">
+<span id="_CPPv34yard"></span><span id="_CPPv24yard"></span><span id="yard__basis_unit"></span><span class="target" id="group__basis-unit-distance-units_1ga11f7342c625f7fd13228c78ab01bc0b8"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">yard</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">distance_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">3</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">3048</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">10000</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv44yard" title="Link to this definition"></a><br /></dt>
+<dd><p>basis-unit representing 1 yard; defined as exactly 3 feet </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv44mile">
+<span id="_CPPv34mile"></span><span id="_CPPv24mile"></span><span id="mile__basis_unit"></span><span class="target" id="group__basis-unit-distance-units_1gad9d32b13f9308052d774891357e86032"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mile</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">distance_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">5280</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">3048</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">10000</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv44mile" title="Link to this definition"></a><br /></dt>
+<dd><p>basis-unit representing 1 mile; defined as exactly 1760 yards = 5280 feet </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="time-units">
+<h2>Time Units<a class="headerlink" href="#time-units" title="Link to this heading"></a></h2>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__basis-unit-time-units"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">basis-unit-time-units</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv410picosecond">
+<span id="_CPPv310picosecond"></span><span id="_CPPv210picosecond"></span><span id="picosecond__basis_unit"></span><span class="target" id="group__basis-unit-time-units_1ga5b91b803da03e59327eaf30b4a1da6ee"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">picosecond</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">time_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1000000000000</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv410picosecond" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv410nanosecond">
+<span id="_CPPv310nanosecond"></span><span id="_CPPv210nanosecond"></span><span id="nanosecond__basis_unit"></span><span class="target" id="group__basis-unit-time-units_1ga56bc31749f07bec3ed8447dde0b38998"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nanosecond</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">time_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1000000000</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv410nanosecond" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv411microsecond">
+<span id="_CPPv311microsecond"></span><span id="_CPPv211microsecond"></span><span id="microsecond__basis_unit"></span><span class="target" id="group__basis-unit-time-units_1gaa20afe971e5702cef3b947e172bfa40a"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">microsecond</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">time_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1000000</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv411microsecond" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv411millisecond">
+<span id="_CPPv311millisecond"></span><span id="_CPPv211millisecond"></span><span id="millisecond__basis_unit"></span><span class="target" id="group__basis-unit-time-units_1ga5d41663f628b26dd666141a1248e587e"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">millisecond</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">time_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1000</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv411millisecond" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv46second">
+<span id="_CPPv36second"></span><span id="_CPPv26second"></span><span id="second__basis_unit"></span><span class="target" id="group__basis-unit-time-units_1ga00b86c2cd39f3c3fb529509cb866773d"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">second</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">time_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv46second" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv46minute">
+<span id="_CPPv36minute"></span><span id="_CPPv26minute"></span><span id="minute__basis_unit"></span><span class="target" id="group__basis-unit-time-units_1ga3607da6f5f0eaa6fad44ae359ae35e68"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">minute</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">time_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">60</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv46minute" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv44hour">
+<span id="_CPPv34hour"></span><span id="_CPPv24hour"></span><span id="hour__basis_unit"></span><span class="target" id="group__basis-unit-time-units_1gad77d59e19028de5f373ba599c33b3c58"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hour</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">time_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">3600</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv44hour" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv43day">
+<span id="_CPPv33day"></span><span id="_CPPv23day"></span><span id="day__basis_unit"></span><span class="target" id="group__basis-unit-time-units_1ga34e13ece1b16adb6f5022e189c5dee96"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">day</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">time_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">24</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">3600</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv43day" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv44week">
+<span id="_CPPv34week"></span><span id="_CPPv24week"></span><span id="week__basis_unit"></span><span class="target" id="group__basis-unit-time-units_1gac5602a84ba8f7cbb907c2dd1d0b2fbe8"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">week</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">time_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">7</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">24</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">3600</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv44week" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv45month">
+<span id="_CPPv35month"></span><span id="_CPPv25month"></span><span id="month__basis_unit"></span><span class="target" id="group__basis-unit-time-units_1ga6b029c4d395b78a331bea89d79a87504"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">month</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">time_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">30</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">24</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">3600</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv45month" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv44year">
+<span id="_CPPv34year"></span><span id="_CPPv24year"></span><span id="year__basis_unit"></span><span class="target" id="group__basis-unit-time-units_1ga55911289373524ce48564e9b0ed4b317"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">year</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">time_unit</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">365</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">24</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">6</span></span><span class="p"><span class="pre">)</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">3600</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv44year" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv47year365">
+<span id="_CPPv37year365"></span><span id="_CPPv27year365"></span><span id="year365__basis_unit"></span><span class="target" id="group__basis-unit-time-units_1ga8d0f180835b3ba96b3949408a7fd6953"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">year365</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">time_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">365</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">24</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">3600</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv47year365" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv47year360">
+<span id="_CPPv37year360"></span><span id="_CPPv27year360"></span><span id="year360__basis_unit"></span><span class="target" id="group__basis-unit-time-units_1ga274004967870eae60568c777cef5b6b7"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">year360</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">time_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">360</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">24</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">3600</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv47year360" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv47year250">
+<span id="_CPPv37year250"></span><span id="_CPPv27year250"></span><span id="year250__basis_unit"></span><span class="target" id="group__basis-unit-time-units_1ga86b45c0c80840a8daab5e01f9ed09fa7"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv410basis_unitv" title="basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">year250</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">time_unit</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">250</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">24</span></span><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">3600</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv47year250" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="basis-unit-class.html" class="btn btn-neutral float-left" title="Basis Unit" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dimension-enum.html" class="btn btn-neutral float-right" title="Dimension" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1980, Roland Conybeare.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

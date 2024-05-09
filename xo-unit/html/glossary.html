@@ -46,9 +46,16 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Abstraction Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html#representation">Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">How To…</a></li>
 <li class="toctree-l1"><a class="reference internal" href="unit-quantities.html">Unit Quantities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="unit-reference.html">Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bu-store-class.html">Basis Unit Store</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Dimension</a></li>
 </ul>
 
         </div>
@@ -79,14 +86,20 @@
 <span id="id1"></span><h1>Glossary<a class="headerlink" href="#glossary" title="Link to this heading"></a></h1>
 <dl class="simple glossary">
 <dt id="term-basis-dimension">basis dimension<a class="headerlink" href="#term-basis-dimension" title="Link to this term"></a></dt><dd><p>Orthogonal directions associated with basis units,  for example <em>mass</em>, <em>length</em>, <em>time</em>.
-In xo-unit these are represented by the enum <code class="docutils literal notranslate"><span class="pre">xo::unit::dim</span></code>.</p>
+In xo-unit these are represented by the enum <code class="docutils literal notranslate"><span class="pre">xo::qty::dim</span></code>.</p>
 </dd>
-<dt id="term-basis-unit">basis unit<a class="headerlink" href="#term-basis-unit" title="Link to this term"></a></dt><dd><p>An implementation type representing a quantity (with associated scale) in the direction of a single <a class="reference internal" href="#term-basis-dimension"><span class="xref std std-term">basis dimension</span></a>.
+<dt id="term-basis-unit-bu">basis unit (bu)<a class="headerlink" href="#term-basis-unit-bu" title="Link to this term"></a></dt><dd><p>An implementation type representing a quantity (with associated scale) in the direction of a single <a class="reference internal" href="#term-basis-dimension"><span class="xref std std-term">basis dimension</span></a>.
 For example <em>milliseconds</em>, <em>seconds</em>, and <em>hours</em> stand for different basis units with the <em>time</em> dimension.
-In xo-unit these are represented by the template type <code class="docutils literal notranslate"><span class="pre">xo::unit::basis_unit</span></code>.</p>
+In xo-unit these are represented by the template type <code class="docutils literal notranslate"><span class="pre">xo::qty::basis_unit</span></code>.</p>
 </dd>
-<dt id="term-bpu">bpu<a class="headerlink" href="#term-bpu" title="Link to this term"></a></dt><dd><p>A rational power of a (single) basis unit.  For example <em>kg.m.s:sup:-2</em> or <em>hr:sup:-(1/2)</em>.
-In xo-unit these are represented by the template type <code class="docutils literal notranslate"><span class="pre">xo::unit::bpu</span></code>.</p>
+<dt id="term-bpu">bpu<a class="headerlink" href="#term-bpu" title="Link to this term"></a></dt><dd><p>A rational power of a (single) basis unit.  For example <em>s:sup:-2</em> or <em>hr:sup:-(1/2)</em>.
+In xo-unit these are represented by the template type <code class="docutils literal notranslate"><span class="pre">xo::qty::bpu</span></code>.</p>
+</dd>
+<dt id="term-natural-unit-nu">natural unit (nu)<a class="headerlink" href="#term-natural-unit-nu" title="Link to this term"></a></dt><dd><p>A cartesian product of basis power units (bpus).  For example <em>kg.m.s:sup:-2</em> or <em>hr:sup:-(1/2)</em>.
+In xo-unit these are represented by template type <code class="docutils literal notranslate"><span class="pre">xo::qty::natural_unit</span></code>.</p>
+</dd>
+<dt id="term-scaled-unit-su">scaled unit (su)<a class="headerlink" href="#term-scaled-unit-su" title="Link to this term"></a></dt><dd><p>A dimensionless multiple of a natural unit.  Used as intermediate value when coalescing quantities involving different units.
+In xo-unit these are represented by template type <code class="docutils literal notranslate"><span class="pre">xo::qty::scaled_unit</span></code>.</p>
 </dd>
 <dt id="term-XO">XO<a class="headerlink" href="#term-XO" title="Link to this term"></a></dt><dd><p>A set of integrated c++ libraries for complex event processing, with browser and python integration.
 <a class="reference external" href="https://rconybea.github.io/web/sw/xo.html">xo documentation here</a></p>

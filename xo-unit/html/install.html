@@ -53,9 +53,16 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Abstraction Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html#representation">Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">How To…</a></li>
 <li class="toctree-l1"><a class="reference internal" href="unit-quantities.html">Unit Quantities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="unit-reference.html">Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bu-store-class.html">Basis Unit Store</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Dimension</a></li>
 </ul>
 
         </div>
@@ -86,7 +93,7 @@
 <h1>Install<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
 <p><a class="reference external" href="https://github.com/rconybea/xo-unit">xo-unit source</a> lives on github.</p>
 <p>Implementation relies on some c++20 features (for example class-instances as template arguments).
-Tested with gcc 12.3</p>
+Tested with gcc 12.3, 13.2</p>
 <section id="include-as-submodule">
 <h2>Include as submodule<a class="headerlink" href="#include-as-submodule" title="Link to this heading"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>myproject
@@ -105,7 +112,7 @@ and add</p>
 <section id="supported-compilers">
 <h2>Supported compilers<a class="headerlink" href="#supported-compilers" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>developed with gcc 12.3.0;  github CI using gcc 11.4.0 (asof March 2024)</p></li>
+<li><p>developed with gcc 12.3.0 and gcc 13.2.0;  github CI using gcc 11.4.0 (asof March 2024)</p></li>
 </ul>
 </section>
 <section id="building-from-source">

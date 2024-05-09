@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abstraction Tower &mdash; xo unit documentation  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="How To…" href="development.html" />
+    <link rel="prev" title="Examples" href="examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            xo unit documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">xo-unit contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Abstraction Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#representation">Representation</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">How To…</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unit-quantities.html">Unit Quantities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unit-reference.html">Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bu-store-class.html">Basis Unit Store</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Dimension</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">xo unit documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Abstraction Tower</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/implementation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="abstraction-tower">
+<span id="implementation"></span><h1>Abstraction Tower<a class="headerlink" href="#abstraction-tower" title="Link to this heading"></a></h1>
+<p>Abstraction tower for <em>xo-unit</em> components.</p>
+<img alt="_images/ditaa-8dde7d3c2f1d9de91d93de8fc85780c25670f123.png" src="_images/ditaa-8dde7d3c2f1d9de91d93de8fc85780c25670f123.png" />
+<ul>
+<li><p>quantity: see <a class="reference internal" href="quantity-reference.html"><span class="doc">Quantity Reference</span></a>.
+quantity with compile-time unit work</p></li>
+<li><p>xquantity:
+quantity with unit work deferred until runtime</p></li>
+<li><p>scaled_unit:
+a unit involving zero or more dimensions, and associated conversion factor.</p>
+<ul class="simple">
+<li><p>can express result of arithmetic involving multiple scales,
+by reporting an outer scalefactor</p></li>
+<li><p>a scaled unit is ‘natural’ if its outer scalefactor is 1.</p></li>
+<li><p>quantities are represented by associating a natural scaled_unit instance</p></li>
+<li><p>scaled_units are closed under multiplication and division.</p></li>
+<li><p>multiplication and division commit to a single <code class="code docutils literal notranslate"><span class="pre">basis_unit</span></code> for each
+dimension.</p></li>
+</ul>
+</li>
+<li><p>natural_unit:
+a unit involving zero or more dimensions, and at most one scale per dimension.
+A quantity instance is always represented as a dimensionless multiple
+of a natural unit</p>
+<ul class="simple">
+<li><p>natural_units are <em>not</em> closed under multiplication and division.
+(for example consider <code class="code docutils literal notranslate"><span class="pre">xo::qty::qty::foot</span> <span class="pre">*</span> <span class="pre">xo::qty::qty::meter</span></code>)</p></li>
+</ul>
+</li>
+<li><p>bpu: <a class="reference internal" href="bpu-class.html"><span class="doc">BPU</span></a>.</p>
+<p>A rational (usually integer) power of a basis unit. Has a single dimension.</p>
+</li>
+<li><p>bu_store: <a class="reference internal" href="bu-store-class.html"><span class="doc">Basis Unit Store</span></a>.</p>
+<p>Associates basis units with abbreviations.</p>
+<p>For example <code class="docutils literal notranslate"><span class="pre">bu::kilogram</span></code> =&gt; <code class="docutils literal notranslate"><span class="pre">&quot;kg&quot;</span></code></p>
+</li>
+<li><p>basis_unit: <a class="reference internal" href="basis-unit-reference.html"><span class="doc">Basis Unit Reference</span></a>.</p>
+<p>A unit with a single dimension and scale.</p>
+</li>
+<li><p>dimension: <a class="reference internal" href="dimension-enum.html"><span class="doc">Dimension</span></a>.</p>
+<p>identifies a dimension, such as mass or time.</p>
+</li>
+</ul>
+</section>
+<section id="representation">
+<h1>Representation<a class="headerlink" href="#representation" title="Link to this heading"></a></h1>
+<p>Worked example using <a class="reference internal" href="quantity-class.html#_CPPv4I_Da0EN2xo3qty8quantityE" title="xo::qty::quantity"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">xo::qty::quantity</span></code></a></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;xo/unit/quantity.hpp&quot;</span>
+<span class="linenos">2</span><span class="p">...</span>
+<span class="linenos">3</span><span class="k">namespace</span><span class="w"> </span><span class="nn">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">qty</span><span class="o">::</span><span class="nn">qty</span><span class="p">;</span>
+<span class="linenos">4</span>
+<span class="linenos">5</span><span class="c1">// 7.55km.min^-2</span>
+<span class="hll"><span class="linenos">6</span><span class="n">quantity</span><span class="w"> </span><span class="n">qty1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">7.55</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">q</span><span class="o">::</span><span class="n">kilometer</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">q</span><span class="o">::</span><span class="n">minute</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">q</span><span class="o">::</span><span class="n">minute</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<figure class="align-center" id="id1">
+<p class="plantuml">
+<a href="_images/plantuml-34bb0e0e26d1d2ab1ba50dfe5b03b1d4ea933860.png"><img src="_images/plantuml-34bb0e0e26d1d2ab1ba50dfe5b03b1d4ea933860.png" alt="object qty1&lt;&lt;quantity&gt;&gt;
+qty1 : scale = 7.55
+
+rectangle {
+
+object km_per_min2&lt;&lt;natural_unit&gt;&gt;
+km_per_min2 : n_bpu = 2
+km_per_min2 : bpu[0] = km
+km_per_min2 : bpu[1] = per_min
+
+object km&lt;&lt;bpu&gt;&gt;
+km : native_dim = dim.mass
+km : scalefactor = 1000/1
+km : power = 1
+
+object per_min2&lt;&lt;bpu&gt;&gt;
+per_min2 : native_dim = dim.time
+per_min2 : scalefactor = 60/1
+per_min2 : power = -2
+
+qty1 o-- km_per_min2 : s_unit (static constexpr)
+
+km_per_min2 *-- km
+km_per_min2 *-- per_min2
+
+}" style="width: 410.85px; height: 404.91px"/></a>
+</p>
+<figcaption>
+<p><span class="caption-text">representation for quantity 7.55km.min^-2</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">// 123ng</span>
+<span class="linenos">2</span><span class="n">quantity</span><span class="w"> </span><span class="n">qty2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q</span><span class="o">::</span><span class="n">nanograms</span><span class="p">(</span><span class="mi">123</span><span class="p">);</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id2">
+<p class="plantuml">
+<a href="_images/plantuml-b65248d71a8dbdb9362f56c590365641d6c93d07.png"><img src="_images/plantuml-b65248d71a8dbdb9362f56c590365641d6c93d07.png" alt="object qty2&lt;&lt;quantity&gt;&gt;
+qty2 : scale = 123
+
+rectangle {
+
+object ng_unit&lt;&lt;natural_unit&gt;&gt;
+ng_unit : n_bpu = 1
+ng_unit : bpu[0] = ng
+
+object ng&lt;&lt;bpu&gt;&gt;
+ng : native_dim = dim::mass
+ng : scalefactor = 1/10^9
+ng : power = 1
+
+qty2 o-- ng_unit : s_unit (static constexpr)
+
+ng_unit *-- ng
+
+}" style="width: 270.27px; height: 388.08px"/></a>
+</p>
+<figcaption>
+<p><span class="caption-text">representation for quantity 123 nanograms</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="c1">// (123*7.55) ng.km.min^-2</span>
+<span class="linenos">2</span><span class="n">quantity</span><span class="w"> </span><span class="n">qty3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qty2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">qty1</span><span class="p">;</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id3">
+<p class="plantuml">
+<a href="_images/plantuml-23c1a4d1bdb33030c1910c72499666fd045966e6.png"><img src="_images/plantuml-23c1a4d1bdb33030c1910c72499666fd045966e6.png" alt="object qty3&lt;&lt;quantity&gt;&gt;
+qty3 : scale = 928.65
+
+rectangle {
+
+  object ng_km_min2_unit&lt;&lt;natural_unit&gt;&gt;
+  ng_km_min2_unit : n_bpu = 3
+  ng_km_min2_unit : bpu[0] = ng
+  ng_km_min2_unit : bpu[1] = km
+  ng_km_min2_unit : bpu[2] = per_min2
+
+  object ng&lt;&lt;bpu&gt;&gt;
+  ng : native_dim = dim::mass
+  ng : scalefactor = 1/10^9
+  ng : power = 1
+
+  object km&lt;&lt;bpu&gt;&gt;
+  km : native_dim = dim::distance
+  km : scalefactor = 1000/1
+  km : power = 1
+
+  object per_min2&lt;&lt;bpu&gt;&gt;
+  per_min2 : native_dim = dim::time
+  per_min2 : scalefactor = 60/1
+  per_min2 : power = -2
+
+  qty3 o-- ng_km_min2_unit : s_unit (static constexpr)
+
+  ng_km_min2_unit *-- ng
+  ng_km_min2_unit *-- km
+  ng_km_min2_unit *-- per_min2
+}" style="width: 653.4px; height: 420.75px"/></a>
+</p>
+<figcaption>
+<p><span class="caption-text">quantity 928.65 ng.km.min^-2</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">namespace</span><span class="w"> </span><span class="nn">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">qty</span><span class="o">::</span><span class="nn">u</span><span class="p">;</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="c1">// (123*7.55) ng.km.min^-2  ==&gt;  2.57958e-10kg.m.s^-2</span>
+<span class="linenos">4</span>
+<span class="linenos">5</span><span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">newton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u</span><span class="o">::</span><span class="n">kilogram</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u</span><span class="o">::</span><span class="n">meter</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">u</span><span class="o">::</span><span class="n">second</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u</span><span class="o">::</span><span class="n">second</span><span class="p">);</span>
+<span class="linenos">6</span>
+<span class="linenos">7</span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">newton</span><span class="o">&gt;</span><span class="w"> </span><span class="n">qty3b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qty3</span><span class="p">;</span>
+<span class="linenos">8</span>
+<span class="linenos">9</span><span class="c1">// quantity qty3b = qty3.rescale_ext&lt;newton&gt;();</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id4">
+<p class="plantuml">
+<a href="_images/plantuml-61f42cb8b298fa2dd76fd28056839fb39c0ec238.png"><img src="_images/plantuml-61f42cb8b298fa2dd76fd28056839fb39c0ec238.png" alt="object qty3b&lt;&lt;quantity&gt;&gt;
+qty3b : scale = 2.59758e-10
+
+rectangle {
+
+  object kg_m_s2_unit&lt;&lt;natural_unit&gt;&gt;
+  kg_m_s2_unit : n_bpu = 3
+  kg_m_s2_unit : bpu[0] = kg
+  kg_m_s2_unit : bpu[1] = m
+  kg_m_s2_unit : bpu[2] = per_s2
+
+  object kg&lt;&lt;bpu&gt;&gt;
+  kg : native_dim = dim::mass
+  kg : scalefactor = 1000/1
+  kg : power = 1
+
+  object m&lt;&lt;bpu&gt;&gt;
+  m : native_dim = dim::distance
+  m : scalefactor = 1/1
+  m : power = 1
+
+  object per_s2&lt;&lt;bpu&gt;&gt;
+  per_s2 : native_dim = dim::time
+  per_s2 : scalefactor = 1/1
+  per_s2 : power = -2
+
+  qty3b o-- kg_m_s2_unit : s_unit (static constexpr)
+
+  kg_m_s2_unit *-- kg
+  kg_m_s2_unit *-- m
+  kg_m_s2_unit *-- per_s2
+}" style="width: 653.4px; height: 420.75px"/></a>
+</p>
+<figcaption>
+<p><span class="caption-text">quantity 928.65 ng.km.min^-2</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="examples.html" class="btn btn-neutral float-left" title="Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="development.html" class="btn btn-neutral float-right" title="How To…" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1980, Roland Conybeare.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

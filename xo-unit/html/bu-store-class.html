@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basis Unit Store &mdash; xo unit documentation  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Basis Unit Reference" href="basis-unit-reference.html" />
+    <link rel="prev" title="BPU" href="bpu-class.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            xo unit documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">xo-unit contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Abstraction Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html#representation">Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">How To…</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unit-quantities.html">Unit Quantities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unit-reference.html">Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Basis Unit Store</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv4N2xo3qty6detail8bu_storeE"><code class="docutils literal notranslate"><span class="pre">bu_store</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv4N2xo3qty6detail12bu_dim_storeE"><code class="docutils literal notranslate"><span class="pre">bu_dim_store</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv410entry_type"><code class="docutils literal notranslate"><span class="pre">entry_type</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv414native_scale_v"><code class="docutils literal notranslate"><span class="pre">native_scale_v</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv45n_bu_"><code class="docutils literal notranslate"><span class="pre">n_bu_</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#_CPPv412bu_abbrev_v_"><code class="docutils literal notranslate"><span class="pre">bu_abbrev_v_</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#constants">Constants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N2xo3qty15bu_abbrev_storeE"><code class="docutils literal notranslate"><span class="pre">bu_abbrev_store</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N2xo3qty9bu_abbrevERK10basis_unit"><code class="docutils literal notranslate"><span class="pre">bu_abbrev()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Dimension</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">xo unit documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Basis Unit Store</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/bu-store-class.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="basis-unit-store">
+<span id="bu-store-class"></span><h1>Basis Unit Store<a class="headerlink" href="#basis-unit-store" title="Link to this heading"></a></h1>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;xo/unit/bu_store.hpp&gt;</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="nn">bu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">qty</span><span class="o">::</span><span class="nn">detail</span><span class="o">::</span><span class="nn">bu</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>A <code class="code docutils literal notranslate"><span class="pre">xo::qty::bu_store</span></code> is a small, constexpr, key-value store associating
+abbreviations with basis units. To satisfy the constexpr requirement,
+all unit abbreviations are irrevocably established from <code class="docutils literal notranslate"><span class="pre">bu_store</span></code>’s constructor.</p>
+<p>The constant <code class="docutils literal notranslate"><span class="pre">bu_abbrev_store</span></code> contains a single instance of <code class="docutils literal notranslate"><span class="pre">bu_store</span></code>,
+recording all built-in units along with their associated abbreviations</p>
+<figure class="align-center" id="id1">
+<p class="plantuml">
+<a href="_images/plantuml-332a87e3fe51d7dc64f4ecebc161a6db18a71d29.png"><img src="_images/plantuml-332a87e3fe51d7dc64f4ecebc161a6db18a71d29.png" alt="map mass_table {
+bu::milligram =&gt; &quot;mg&quot;
+bu::gram =&gt; &quot;g&quot;
+bu::kilogram =&gt; &quot;kg&quot;
+}
+
+map distance_table {
+bu::millimeter =&gt; &quot;mm&quot;
+bu::meter =&gt; &quot;m&quot;
+bu::kilometer =&gt; &quot;km&quot;
+}
+
+map time_table {
+bu::millisecond =&gt; &quot;ms&quot;
+bu::second =&gt; &quot;s&quot;
+bu::minute =&gt; &quot;min&quot;
+bu::hour =&gt; &quot;hr&quot;
+}
+
+object bu_abbrev_store&lt;&lt;bu_store&gt;&gt;
+bu_abbrev_store : bu_abbrev_vv[dim::mass] = mass_table
+bu_abbrev_store : bu_abbrev_vv[dim::distance] = distance_table
+bu_abbrev_store : bu_abbrev_vv[dim::time] = time_table
+
+bu_abbrev_store o-- mass_table
+bu_abbrev_store o-- distance_table
+bu_abbrev_store o-- time_table" style="width: 559.35px; height: 266.31px"/></a>
+</p>
+<figcaption>
+<p><span class="caption-text">basis-unit store</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>This class supports the implementation of <code class="docutils literal notranslate"><span class="pre">natural_unit::abbrev()</span></code>.</p>
+<p>Application code is not expected to interact directly with it.</p>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N2xo3qty6detail8bu_storeE">
+<span id="_CPPv3N2xo3qty6detail8bu_storeE"></span><span id="_CPPv2N2xo3qty6detail8bu_storeE"></span><span id="xo::qty::detail::bu_store"></span><span class="target" id="structxo_1_1qty_1_1detail_1_1bu__store"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bu_store</span></span></span><a class="headerlink" href="#_CPPv4N2xo3qty6detail8bu_storeE" title="Link to this definition"></a><br /></dt>
+<dd><p>associate basis units with abbreviations </p>
+</dd></dl>
+
+<p>For example, this would be possible:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;xo/unit/bu_store.hpp&gt;</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="nn">bu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">using</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">qty</span><span class="o">::</span><span class="nn">detail</span><span class="o">::</span><span class="nn">bu</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="n">xo</span><span class="o">::</span><span class="n">qty</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">bu_store</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="n">xo</span><span class="o">::</span><span class="n">qty</span><span class="o">::</span><span class="n">dim</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="n">xo</span><span class="o">::</span><span class="n">flatstring</span><span class="p">;</span>
+
+<span class="k">constexpr</span><span class="w"> </span><span class="n">bu_store</span><span class="w"> </span><span class="n">store</span><span class="p">;</span>
+<span class="k">static_assert</span><span class="p">(</span><span class="n">store</span><span class="p">.</span><span class="n">bu_abbrev</span><span class="p">(</span><span class="n">bu</span><span class="o">::</span><span class="n">minute</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">flatstring</span><span class="p">(</span><span class="s">&quot;min&quot;</span><span class="p">));</span>
+<span class="k">static_assert</span><span class="p">(</span><span class="n">store</span><span class="p">.</span><span class="n">bu_abbrev</span><span class="p">(</span><span class="n">bu</span><span class="o">::</span><span class="n">microgram</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">flatstring</span><span class="p">(</span><span class="s">&quot;ug&quot;</span><span class="p">));</span>
+</pre></div>
+</div>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N2xo3qty6detail12bu_dim_storeE">
+<span id="_CPPv3N2xo3qty6detail12bu_dim_storeE"></span><span id="_CPPv2N2xo3qty6detail12bu_dim_storeE"></span><span id="xo::qty::detail::bu_dim_store"></span><span class="target" id="structxo_1_1qty_1_1detail_1_1bu__dim__store"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bu_dim_store</span></span></span><a class="headerlink" href="#_CPPv4N2xo3qty6detail12bu_dim_storeE" title="Link to this definition"></a><br /></dt>
+<dd><p>store basis-unit abbreviations for a particular dimension </p>
+</dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__bu-dim-store-type-traits"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">bu-dim-store-type-traits</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-typedefs">Typedefs</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv410entry_type">
+<span id="_CPPv310entry_type"></span><span id="_CPPv210entry_type"></span><span class="target" id="group__bu-dim-store-type-traits_1ga8cec8aca8adc43d45702614e4adb9246"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">entry_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">pair</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">scalefactor2x_ratio_type</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">bu_abbrev_type</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv410entry_type" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv414native_scale_v">
+<span id="_CPPv314native_scale_v"></span><span id="_CPPv214native_scale_v"></span><span class="target" id="group__bu-dim-store-type-traits_1gacbb05687bbb99c2ca78d9982c1ed3589"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">native_scale_v</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">array</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv410entry_type" title="entry_type"><span class="n"><span class="pre">entry_type</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">max_bu_per_dim</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv414native_scale_v" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__bu-dim-store-instance-vars"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">bu-dim-store-instance-vars</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv45n_bu_">
+<span id="_CPPv35n_bu_"></span><span id="_CPPv25n_bu_"></span><span id="n_bu___std::s"></span><span class="target" id="group__bu-dim-store-instance-vars_1gafedbb1fa2748479a9df93eb5b602f1d8"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">n_bu_</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv45n_bu_" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv412bu_abbrev_v_">
+<span id="_CPPv312bu_abbrev_v_"></span><span id="_CPPv212bu_abbrev_v_"></span><span id="bu_abbrev_v___std::array:entry_type.max_bu_per_dim:"></span><span class="target" id="group__bu-dim-store-instance-vars_1ga5d99b5c525122060a1a09c14225f2e8c"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">array</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv410entry_type" title="entry_type"><span class="n"><span class="pre">entry_type</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">max_bu_per_dim</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bu_abbrev_v_</span></span></span><a class="headerlink" href="#_CPPv412bu_abbrev_v_" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<section id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Link to this heading"></a></h2>
+<p>Provides dictionary of unit abbreviations</p>
+<p>Application code is not expected to interact directly with <code class="docutils literal notranslate"><span class="pre">bu_abbrev_store</span></code>.</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2xo3qty15bu_abbrev_storeE">
+<span id="_CPPv3N2xo3qty15bu_abbrev_storeE"></span><span id="_CPPv2N2xo3qty15bu_abbrev_storeE"></span><span id="xo::qty::bu_abbrev_store__detail::bu_store"></span><span class="target" id="bu__store_8hpp_1a777bea2d98ce95cc1f7c50a23e820482"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="n"><span class="pre">detail</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N2xo3qty6detail8bu_storeE" title="xo::qty::detail::bu_store"><span class="n"><span class="pre">bu_store</span></span></a><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">bu_abbrev_store</span></span></span><a class="headerlink" href="#_CPPv4N2xo3qty15bu_abbrev_storeE" title="Link to this definition"></a><br /></dt>
+<dd><p>global abbreviation store. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Extending the contents of this store at runtime is not supported, in favor of preserving constexpr abbreviations. </p>
+</div>
+</dd></dl>
+
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2xo3qty9bu_abbrevERK10basis_unit">
+<span id="_CPPv3N2xo3qty9bu_abbrevERK10basis_unit"></span><span id="_CPPv2N2xo3qty9bu_abbrevERK10basis_unit"></span><span id="xo::qty::bu_abbrev__basis_unitCRCE"></span><span class="target" id="bu__store_8hpp_1a829be9297e8b92e63f8590cb2483c333"></span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="n"><span class="pre">bu_abbrev_type</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">bu_abbrev</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="basis-unit-class.html#_CPPv4N2xo3qty10basis_unitE" title="xo::qty::basis_unit"><span class="n"><span class="pre">basis_unit</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">bu</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2xo3qty9bu_abbrevERK10basis_unit" title="Link to this definition"></a><br /></dt>
+<dd><p>get abbreviation for basis-unit <code class="docutils literal notranslate"><span class="pre">bu</span></code></p>
+</dd></dl>
+
+<p>For example:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;xo/unit/bu_store.hpp&gt;</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="nn">bu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">qty</span><span class="o">::</span><span class="nn">bu</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="n">xo</span><span class="o">::</span><span class="n">qty</span><span class="o">::</span><span class="n">bu_abbrev</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="n">xo</span><span class="o">::</span><span class="n">flatstring</span><span class="p">;</span>
+
+<span class="k">static_assert</span><span class="p">(</span><span class="n">bu_abbrev</span><span class="p">(</span><span class="n">bu</span><span class="o">::</span><span class="n">kilogram</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">xo</span><span class="o">::</span><span class="n">flatstring</span><span class="p">(</span><span class="s">&quot;kg&quot;</span><span class="p">));</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="bpu-class.html" class="btn btn-neutral float-left" title="BPU" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="basis-unit-reference.html" class="btn btn-neutral float-right" title="Basis Unit Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1980, Roland Conybeare.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

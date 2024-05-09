@@ -45,9 +45,16 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Abstraction Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html#representation">Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">How To…</a></li>
 <li class="toctree-l1"><a class="reference internal" href="unit-quantities.html">Unit Quantities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="unit-reference.html">Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bu-store-class.html">Basis Unit Store</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Dimension</a></li>
 </ul>
 
         </div>
@@ -77,36 +84,57 @@
 <h1 id="index">Index</h1>
 
 <div class="genindex-jumpbox">
- <a href="#B"><strong>B</strong></a>
+ <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
+ | <a href="#K"><strong>K</strong></a>
+ | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
  | <a href="#O"><strong>O</strong></a>
  | <a href="#P"><strong>P</strong></a>
  | <a href="#Q"><strong>Q</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
  | <a href="#U"><strong>U</strong></a>
  | <a href="#W"><strong>W</strong></a>
  | <a href="#X"><strong>X</strong></a>
+ | <a href="#Y"><strong>Y</strong></a>
  
 </div>
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="quantity-class.html#_CPPv421always_constexpr_unit">always_constexpr_unit (C++ member)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="basis-unit-constants.html#_CPPv416astronomicalunit">astronomicalunit (C++ member)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="glossary.html#term-basis-dimension"><strong>basis dimension</strong></a>
 </li>
-      <li><a href="glossary.html#term-basis-unit"><strong>basis unit</strong></a>
+      <li><a href="glossary.html#term-basis-unit-bu"><strong>basis unit (bu)</strong></a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="quantity-class.html#_CPPv4I_3dim0E11basis_power">basis_power (C++ member)</a>
-</li>
-      <li><a href="quantity-class.html#_CPPv4I_3dimE16basis_scale_type">basis_scale_type (C++ type)</a>
+      <li><a href="basis-unit-class.html#_CPPv410basis_unit9dimensionRK22scalefactor_ratio_type">basis_unit (C++ function)</a>, <a href="basis-unit-class.html#_CPPv410basis_unitv">[1]</a>
 </li>
       <li><a href="glossary.html#term-bpu"><strong>bpu</strong></a>
+</li>
+      <li><a href="bu-store-class.html#_CPPv412bu_abbrev_v_">bu_abbrev_v_ (C++ member)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -114,7 +142,7 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="quantity-class.html#_CPPv4I0ENK7compareEDa9Quantity2">compare (C++ function)</a>
+      <li><a href="quantity-class.html#_CPPv4I0E7compareDaRK8quantityRK9Quantity2">compare (C++ function)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -122,13 +150,15 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="quantity-class.html#_CPPv4I0ENK6divideEDa9Quantity2">divide (C++ function)</a>
+      <li><a href="basis-unit-constants.html#_CPPv43day">day (C++ member)</a>
 </li>
   </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="quantity-class.html#_CPPv4I0ENK9divide_byEDa5Repr2">divide_by (C++ function)</a>
-</li>
-      <li><a href="quantity-class.html#_CPPv4I0ENK11divide_intoEDa5Repr2">divide_into (C++ function)</a>
+      <li><a href="bu-store-class.html#_CPPv410entry_type">entry_type (C++ type)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -136,7 +166,31 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="quantity-class.html#_CPPv4I_3dimE10find_bpu_t">find_bpu_t (C++ type)</a>
+      <li><a href="basis-unit-constants.html#_CPPv44foot">foot (C++ member)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="basis-unit-constants.html#_CPPv49gigameter">gigameter (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv49gigametre">gigametre (C++ member)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="basis-unit-constants.html#_CPPv49gigatonne">gigatonne (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv44gram">gram (C++ member)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="basis-unit-constants.html#_CPPv44hour">hour (C++ member)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -147,12 +201,100 @@
       <li><a href="quantity-class.html#_CPPv4I00ENK11in_units_ofE5Repr2v">in_units_of (C++ function)</a>
 </li>
   </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="basis-unit-constants.html#_CPPv44inch">inch (C++ member)</a>
+</li>
+      <li><a href="quantity-class.html#_CPPv4NK16is_dimensionlessEv">is_dimensionless (C++ function)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="basis-unit-constants.html#_CPPv48kilogram">kilogram (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv49kilometer">kilometer (C++ member)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="basis-unit-constants.html#_CPPv49kilometre">kilometre (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv49kilotonne">kilotonne (C++ member)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="basis-unit-constants.html#_CPPv411lightsecond">lightsecond (C++ member)</a>
+</li>
+  </ul></td>
 </tr></table>
 
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="quantity-class.html#_CPPv4I0ENK8multiplyEDa9Quantity2">multiply (C++ function)</a>
+      <li><a href="basis-unit-constants.html#_CPPv49megameter">megameter (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv49megametre">megametre (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv49megatonne">megatonne (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv45meter">meter (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv45metre">metre (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv49microgram">microgram (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv410micrometer">micrometer (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv410micrometre">micrometre (C++ member)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="basis-unit-constants.html#_CPPv411microsecond">microsecond (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv44mile">mile (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv49milligram">milligram (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv410millimeter">millimeter (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv410millimetre">millimetre (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv411millisecond">millisecond (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv46minute">minute (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv45month">month (C++ member)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="bu-store-class.html#_CPPv45n_bu_">n_bu_ (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv48nanogram">nanogram (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv49nanometer">nanometer (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv49nanometre">nanometre (C++ member)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="basis-unit-constants.html#_CPPv410nanosecond">nanosecond (C++ member)</a>
+</li>
+      <li><a href="basis-unit-class.html#_CPPv4NK10native_dimEv">native_dim (C++ function)</a>
+</li>
+      <li><a href="basis-unit-class.html#_CPPv411native_dim_">native_dim_ (C++ member)</a>
+</li>
+      <li><a href="bu-store-class.html#_CPPv414native_scale_v">native_scale_v (C++ type)</a>
+</li>
+      <li><a href="glossary.html#term-natural-unit-nu"><strong>natural unit (nu)</strong></a>
 </li>
   </ul></td>
 </tr></table>
@@ -160,13 +302,19 @@
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="quantity-class.html#_CPPv4I0ENKcv2Q2Ev">operator Q2 (C++ function)</a>
+</li>
+      <li><a href="basis-unit-class.html#_CPPv4neRK10basis_unitRK10basis_unit">operator!= (C++ function)</a>
+</li>
       <li><a href="quantity-class.html#_CPPv4I0EpLR8quantity9Quantity2">operator+= (C++ function)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="quantity-class.html#_CPPv4I0EmIR8quantity9Quantity2">operator-= (C++ function)</a>
 </li>
-      <li><a href="quantity-class.html#_CPPv4aSRK8quantity">operator= (C++ function)</a>, <a href="quantity-class.html#_CPPv4aSRR8quantity">[1]</a>
+      <li><a href="quantity-class.html#_CPPv4I0EaSR8quantityRK2Q2">operator= (C++ function)</a>, <a href="quantity-class.html#_CPPv4aSRK8quantity">[1]</a>
+</li>
+      <li><a href="basis-unit-class.html#_CPPv4eqRK10basis_unitRK10basis_unit">operator== (C++ function)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -174,7 +322,15 @@
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="quantity-class.html#_CPPv47promote4Repr">promote (C++ function)</a>
+      <li><a href="basis-unit-constants.html#_CPPv48picogram">picogram (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv49picometer">picometer (C++ member)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="basis-unit-constants.html#_CPPv49picometre">picometre (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv410picosecond">picosecond (C++ member)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -182,7 +338,7 @@
 <h2 id="Q">Q</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="quantity-class.html#_CPPv48quantityRK8quantity">quantity (C++ function)</a>, <a href="quantity-class.html#_CPPv48quantityRR8quantity">[1]</a>, <a href="quantity-class.html#_CPPv48quantityv">[2]</a>
+      <li><a href="quantity-class.html#_CPPv48quantity4Repr">quantity (C++ function)</a>, <a href="quantity-class.html#_CPPv48quantityv">[1]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -190,7 +346,19 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="quantity-class.html#_CPPv416ratio_int2x_type">ratio_int2x_type (C++ type)</a>
+</li>
+      <li><a href="quantity-class.html#_CPPv414ratio_int_type">ratio_int_type (C++ type)</a>
+</li>
+      <li><a href="quantity-class.html#_CPPv4NK10reciprocalEv">reciprocal (C++ function)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="quantity-class.html#_CPPv49repr_type">repr_type (C++ type)</a>
+</li>
+      <li><a href="quantity-class.html#_CPPv4I_12natural_unitI14ratio_int_typeEENK7rescaleEDav">rescale (C++ function)</a>
+</li>
+      <li><a href="quantity-class.html#_CPPv4I_11scaled_unitI14ratio_int_typeEENK11rescale_extEDav">rescale_ext (C++ function)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -198,11 +366,29 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="quantity-class.html#_CPPv413s_scaled_unit">s_scaled_unit (C++ member)</a>
+</li>
       <li><a href="quantity-class.html#_CPPv4NK5scaleEv">scale (C++ function)</a>
+</li>
+      <li><a href="quantity-class.html#_CPPv46scale_">scale_ (C++ member)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="quantity-class.html#_CPPv4I0ENK8scale_byEDa5Repr2">scale_by (C++ function)</a>
+      <li><a href="glossary.html#term-scaled-unit-su"><strong>scaled unit (su)</strong></a>
+</li>
+      <li><a href="basis-unit-class.html#_CPPv4NK11scalefactorEv">scalefactor (C++ function)</a>
+</li>
+      <li><a href="basis-unit-class.html#_CPPv412scalefactor_">scalefactor_ (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv46second">second (C++ member)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="basis-unit-constants.html#_CPPv45tonne">tonne (C++ member)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -210,12 +396,10 @@
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="quantity-class.html#_CPPv49unit_cstrv">unit_cstr (C++ function)</a>
+      <li><a href="quantity-class.html#_CPPv4NK4unitEv">unit (C++ function)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="quantity-class.html#_CPPv413unit_quantityv">unit_quantity (C++ function)</a>
-</li>
       <li><a href="quantity-class.html#_CPPv49unit_type">unit_type (C++ type)</a>
 </li>
   </ul></td>
@@ -224,6 +408,8 @@
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="basis-unit-constants.html#_CPPv44week">week (C++ member)</a>
+</li>
       <li><a href="quantity-class.html#_CPPv4I00ENK15with_basis_unitEDav">with_basis_unit (C++ function)</a>
 </li>
       <li><a href="quantity-class.html#_CPPv4I0ENK9with_reprE8quantityI9unit_type5Repr2Ev">with_repr (C++ function)</a>
@@ -244,13 +430,127 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="glossary.html#term-XO"><strong>XO</strong></a>
 </li>
-      <li><a href="unit-concept.html#_CPPv4I0EN2xo4unit18basis_unit_conceptE">xo::unit::basis_unit_concept (C++ concept)</a>
+      <li><a href="basis-unit-class.html#_CPPv4N2xo3qty10basis_unitE">xo::qty::basis_unit (C++ class)</a>
+</li>
+      <li><a href="bu-store-class.html#_CPPv4N2xo3qty9bu_abbrevERK10basis_unit">xo::qty::bu_abbrev (C++ function)</a>
+</li>
+      <li><a href="bu-store-class.html#_CPPv4N2xo3qty15bu_abbrev_storeE">xo::qty::bu_abbrev_store (C++ member)</a>
+</li>
+      <li><a href="bu-store-class.html#_CPPv4N2xo3qty6detail12bu_dim_storeE">xo::qty::detail::bu_dim_store (C++ class)</a>
+</li>
+      <li><a href="bu-store-class.html#_CPPv4N2xo3qty6detail8bu_storeE">xo::qty::detail::bu_store (C++ class)</a>
+</li>
+      <li><a href="dimension-enum.html#_CPPv4N2xo3qty7dim2strE9dimension">xo::qty::dim2str (C++ function)</a>
+</li>
+      <li><a href="dimension-enum.html#_CPPv4N2xo3qty9dimensionE">xo::qty::dimension (C++ enum)</a>
+</li>
+      <li><a href="dimension-enum.html#_CPPv4N2xo3qty9dimension8currencyE">xo::qty::dimension::currency (C++ enumerator)</a>
+</li>
+      <li><a href="dimension-enum.html#_CPPv4N2xo3qty9dimension8distanceE">xo::qty::dimension::distance (C++ enumerator)</a>
+</li>
+      <li><a href="dimension-enum.html#_CPPv4N2xo3qty9dimension7invalidE">xo::qty::dimension::invalid (C++ enumerator)</a>
+</li>
+      <li><a href="dimension-enum.html#_CPPv4N2xo3qty9dimension4massE">xo::qty::dimension::mass (C++ enumerator)</a>
+</li>
+      <li><a href="dimension-enum.html#_CPPv4N2xo3qty9dimension5n_dimE">xo::qty::dimension::n_dim (C++ enumerator)</a>
+</li>
+      <li><a href="dimension-enum.html#_CPPv4N2xo3qty9dimension5priceE">xo::qty::dimension::price (C++ enumerator)</a>
+</li>
+      <li><a href="dimension-enum.html#_CPPv4N2xo3qty9dimension4timeE">xo::qty::dimension::time (C++ enumerator)</a>
+</li>
+      <li><a href="dimension-enum.html#_CPPv4N2xo3qty5n_dimE">xo::qty::n_dim (C++ member)</a>
+</li>
+      <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty16astronomicalunitE">xo::qty::qty::astronomicalunit (C++ member)</a>
+</li>
+      <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty3dayE">xo::qty::qty::day (C++ member)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty4daysEDa4Repr">xo::qty::qty::days (C++ function)</a>
+</li>
+      <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty9gigameterE">xo::qty::qty::gigameter (C++ member)</a>
+</li>
+      <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty4gramE">xo::qty::qty::gram (C++ member)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty5gramsEDa4Repr">xo::qty::qty::grams (C++ function)</a>
+</li>
+      <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty4hourE">xo::qty::qty::hour (C++ member)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty5hoursEDa4Repr">xo::qty::qty::hours (C++ function)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty6inchesEDa4Repr">xo::qty::qty::inches (C++ function)</a>
+</li>
+      <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty8kilogramE">xo::qty::qty::kilogram (C++ member)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="quantity-class.html#_CPPv4I00EN2xo4unit8quantityE">xo::unit::quantity (C++ class)</a>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty9kilogramsEDa4Repr">xo::qty::qty::kilograms (C++ function)</a>
+</li>
+      <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty9kilometerE">xo::qty::qty::kilometer (C++ member)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty10kilometersEDa4Repr">xo::qty::qty::kilometers (C++ function)</a>
+</li>
+      <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty9kilotonneE">xo::qty::qty::kilotonne (C++ member)</a>
+</li>
+      <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty11lightsecondE">xo::qty::qty::lightsecond (C++ member)</a>
+</li>
+      <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty9megameterE">xo::qty::qty::megameter (C++ member)</a>
+</li>
+      <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty5meterE">xo::qty::qty::meter (C++ member)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty6metersEDa4Repr">xo::qty::qty::meters (C++ function)</a>
+</li>
+      <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty10micrometerE">xo::qty::qty::micrometer (C++ member)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty12microsecondsEDa4Repr">xo::qty::qty::microseconds (C++ function)</a>
+</li>
+      <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty9milligramE">xo::qty::qty::milligram (C++ member)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty10milligramsEDa4Repr">xo::qty::qty::milligrams (C++ function)</a>
+</li>
+      <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty10millimeterE">xo::qty::qty::millimeter (C++ member)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty11millimetersEDa4Repr">xo::qty::qty::millimeters (C++ function)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty12millisecondsEDa4Repr">xo::qty::qty::milliseconds (C++ function)</a>
+</li>
+      <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty6minuteE">xo::qty::qty::minute (C++ member)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty7minutesEDa4Repr">xo::qty::qty::minutes (C++ function)</a>
+</li>
+      <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty9nanometerE">xo::qty::qty::nanometer (C++ member)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty11nanosecondsEDa4Repr">xo::qty::qty::nanoseconds (C++ function)</a>
+</li>
+      <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty9picometerE">xo::qty::qty::picometer (C++ member)</a>
+</li>
+      <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty6secondE">xo::qty::qty::second (C++ member)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty7secondsEDa4Repr">xo::qty::qty::seconds (C++ function)</a>
+</li>
+      <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty5tonneE">xo::qty::qty::tonne (C++ member)</a>
+</li>
+      <li><a href="quantity-class.html#_CPPv4I_Da0EN2xo3qty8quantityE">xo::qty::quantity (C++ class)</a>
+</li>
+      <li><a href="unit-concept.html#_CPPv4I0EN2xo4unit18basis_unit_conceptE">xo::unit::basis_unit_concept (C++ concept)</a>
 </li>
       <li><a href="unit-concept.html#_CPPv4I0EN2xo4unit12unit_conceptE">xo::unit::unit_concept (C++ concept)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Y">Y</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="basis-unit-constants.html#_CPPv44yard">yard (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv44year">year (C++ member)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="basis-unit-constants.html#_CPPv47year250">year250 (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv47year360">year360 (C++ member)</a>
+</li>
+      <li><a href="basis-unit-constants.html#_CPPv47year365">year365 (C++ member)</a>
 </li>
   </ul></td>
 </tr></table>
