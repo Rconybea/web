@@ -22,7 +22,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Quantity" href="quantity-class.html" />
-    <link rel="prev" title="Unit Quantities" href="unit-quantities.html" /> 
+    <link rel="prev" title="Components" href="implementation.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,25 +44,31 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">xo-unit contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">xo-unit contents</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="implementation.html">Abstraction Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="implementation.html#representation">Representation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="development.html">How To…</a></li>
-<li class="toctree-l1"><a class="reference internal" href="unit-quantities.html">Unit Quantities</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Quantity Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="quantity-class.html">Quantity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantity-factoryfunctions.html">Quantity Factory Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantity-unitvars.html">Quantity Unit Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quantity-source-code.html">Quantity Source Code</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="unit-reference.html">Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xquantity-reference.html">Xquantity Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scaled-unit-reference.html">Scaled Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="natural-unit-class.html">Natural Unit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bu-store-class.html">Basis Unit Store</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Native Dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubuntu-github-workflow.html">Ubuntu Github Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search.html">Search Page</a></li>
 </ul>
 
         </div>
@@ -91,34 +97,41 @@
              
   <section id="quantity-reference">
 <span id="id1"></span><h1>Quantity Reference<a class="headerlink" href="#quantity-reference" title="Link to this heading"></a></h1>
+<img alt="_images/ditaa-8403fa66acef33ca91cef45ab20b9810035d93a5.png" src="_images/ditaa-8403fa66acef33ca91cef45ab20b9810035d93a5.png" />
 <div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Quantity Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="quantity-class.html">Quantity</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="quantity-class.html#_CPPv4I_Da0EN2xo3qty8quantityE"><code class="docutils literal notranslate"><span class="pre">quantity</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="quantity-class.html#type-traits">Type Traits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quantity-class.html#context">Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quantity-class.html#class">Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantity-class.html#member-variables">Member Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quantity-class.html#type-traits">Type Traits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantity-class.html#constructors">Constructors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantity-class.html#assignment">Assignment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantity-class.html#access-methods">Access Methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantity-class.html#constants">Constants</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantity-class.html#conversion-methods">Conversion Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quantity-class.html#arithmetic">Arithmetic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quantity-class.html#arithmetic-operators">Arithmetic Operators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantity-class.html#comparison">Comparison</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="quantity-factoryfunctions.html">Quantity Factory Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quantity-factoryfunctions.html#context">Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quantity-factoryfunctions.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantity-factoryfunctions.html#mass">Mass</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantity-factoryfunctions.html#distance">Distance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantity-factoryfunctions.html#time">Time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quantity-factoryfunctions.html#volatility">Volatility</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="quantity-unitvars.html">Quantity Unit Variables</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quantity-unitvars.html#context">Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quantity-unitvars.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantity-unitvars.html#mass">Mass</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantity-unitvars.html#distance">Distance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantity-unitvars.html#time">Time</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="quantity-source-code.html">Quantity Source Code</a></li>
 </ul>
 </div>
 </section>
@@ -127,7 +140,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="unit-quantities.html" class="btn btn-neutral float-left" title="Unit Quantities" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="implementation.html" class="btn btn-neutral float-left" title="Components" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="quantity-class.html" class="btn btn-neutral float-right" title="Quantity" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

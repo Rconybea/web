@@ -18,6 +18,7 @@
         <script src="_static/documentation_options.js?v=5929fcd5"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -43,20 +44,25 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">xo-unit contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">xo-unit contents</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="implementation.html">Abstraction Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="implementation.html#representation">Representation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="development.html">How To…</a></li>
-<li class="toctree-l1"><a class="reference internal" href="unit-quantities.html">Unit Quantities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="unit-reference.html">Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xquantity-reference.html">Xquantity Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scaled-unit-reference.html">Scaled Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="natural-unit-class.html">Natural Unit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bu-store-class.html">Basis Unit Store</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Native Dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubuntu-github-workflow.html">Ubuntu Github Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search.html">Search Page</a></li>
 </ul>
 
         </div>
@@ -103,12 +109,17 @@ concepts like volatility (dimension 1/sqrt(time)), for example.</p>
 python integration via pybind11. This requires a parallel set of data structures that can work at
 runtime (since we can’t construct new c++ types at runtime).</p>
 <div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">xo-unit contents:</span></p>
+<p class="caption" role="heading"><span class="caption-text">xo-unit contents</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="install.html#include-as-submodule">Include as submodule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#ubuntu-install-pattern">Ubuntu Install Pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#installing-from-source">Installing from source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#use-cmake-support">Use CMake Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#build-and-install-with-unit-tests-enabled">Build and Install with Unit Tests Enabled</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#build-examples">Build Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#build-and-install-documentation">Build and Install Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="install.html#supported-compilers">Supported compilers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="install.html#building-from-source">Building from source</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
@@ -118,64 +129,85 @@ runtime (since we can’t construct new c++ types at runtime).</p>
 <li class="toctree-l2"><a class="reference internal" href="examples.html#scale-conversion-and-arithmetic">Scale conversion and arithmetic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples.html#dimensionless-quantities-unwrap-implicitly">Dimensionless quantities unwrap implicitly</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples.html#fractional-dimension">Fractional dimension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#dynamic-dimension">Dynamic dimension</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="implementation.html">Abstraction Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="implementation.html#representation">Representation</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="development.html">How To…</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="development.html#add-basis-unit">Add Basis Unit</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="unit-quantities.html">Unit Quantities</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="unit-quantities.html#converting-units">Converting units</a></li>
-<li class="toctree-l2"><a class="reference internal" href="unit-quantities.html#using-basis-units">Using basis units</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="quantity-class.html">Quantity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantity-factoryfunctions.html">Quantity Factory Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantity-unitvars.html">Quantity Unit Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quantity-source-code.html">Quantity Source Code</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="unit-reference.html">Unit Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="unit-concept.html">Unit Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xquantity-reference.html">Xquantity Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="xquantity-class.html">Xquantity</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scaled-unit-reference.html">Scaled Unit Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scaled-unit-class.html">Scaled Unit Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scaled-unit-constants.html">Scaled Unit Constants</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="natural-unit-class.html">Natural Unit</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="natural-unit-class.html#context">Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="natural-unit-class.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="natural-unit-class.html#class">Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="natural-unit-class.html#member-variables">Member Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="natural-unit-class.html#type-traits">Type Traits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="natural-unit-class.html#constructors">Constructors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="natural-unit-class.html#access-methods">Access Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="natural-unit-class.html#general-methods">General Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="natural-unit-class.html#conversion">Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="natural-unit-class.html#comparison-functions">Comparison Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bpu-class.html#context">Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bpu-class.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bpu-class.html#class">Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bpu-class.html#member-variables">Member Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bpu-class.html#constructors">Constructors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bpu-class.html#access-methods">Access Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bpu-class.html#other-methods">Other Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bpu-class.html#comparison">Comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bpu-class.html#details">Details</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="bu-store-class.html">Basis Unit Store</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="bu-store-class.html#_CPPv4N2xo3qty6detail8bu_storeE"><code class="docutils literal notranslate"><span class="pre">bu_store</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="bu-store-class.html#_CPPv4N2xo3qty6detail12bu_dim_storeE"><code class="docutils literal notranslate"><span class="pre">bu_dim_store</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="bu-store-class.html#_CPPv410entry_type"><code class="docutils literal notranslate"><span class="pre">entry_type</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="bu-store-class.html#_CPPv414native_scale_v"><code class="docutils literal notranslate"><span class="pre">native_scale_v</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="bu-store-class.html#_CPPv45n_bu_"><code class="docutils literal notranslate"><span class="pre">n_bu_</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="bu-store-class.html#_CPPv412bu_abbrev_v_"><code class="docutils literal notranslate"><span class="pre">bu_abbrev_v_</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="bu-store-class.html#class">Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bu-store-class.html#constants">Constants</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bu-store-class.html#functions">Functions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="basis-unit-class.html">Basis Unit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basis-unit-class.html">Basis Unit Class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="basis-unit-constants.html">Basis Unit Constants</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Dimension</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="dimension-enum.html#_CPPv4N2xo3qty9dimensionE"><code class="docutils literal notranslate"><span class="pre">dimension</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="dimension-enum.html#_CPPv4N2xo3qty5n_dimE"><code class="docutils literal notranslate"><span class="pre">n_dim</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="dimension-enum.html#_CPPv4N2xo3qty7dim2strE9dimension"><code class="docutils literal notranslate"><span class="pre">dim2str()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Native Dimension</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dimension-enum.html#context">Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dimension-enum.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dimension-enum.html#enum">Enum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dimension-enum.html#constants">Constants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dimension-enum.html#functions">Functions</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="development.html#addding-a-basis-unit">Addding a Basis Unit</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ubuntu-github-workflow.html">Ubuntu Github Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search.html">Search Page</a></li>
 </ul>
 </div>
-<section id="indices-and-tables">
-<h2>Indices and Tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p><a class="reference internal" href="glossary.html#glossary"><span class="std std-ref">Glossary</span></a></p></li>
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
-</ul>
-</section>
 </section>
 
 

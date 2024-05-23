@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dimension &mdash; xo unit documentation  documentation</title>
+  <title>Native Dimension &mdash; xo unit documentation  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
@@ -21,6 +21,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Development" href="development.html" />
     <link rel="prev" title="Basis Unit Constants" href="basis-unit-constants.html" /> 
 </head>
 
@@ -43,34 +44,50 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">xo-unit contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">xo-unit contents</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="implementation.html">Abstraction Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="implementation.html#representation">Representation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="development.html">How To…</a></li>
-<li class="toctree-l1"><a class="reference internal" href="unit-quantities.html">Unit Quantities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="unit-reference.html">Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xquantity-reference.html">Xquantity Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scaled-unit-reference.html">Scaled Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="natural-unit-class.html">Natural Unit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bu-store-class.html">Basis Unit Store</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Dimension</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#_CPPv4N2xo3qty9dimensionE"><code class="docutils literal notranslate"><span class="pre">dimension</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N2xo3qty9dimension7invalidE"><code class="docutils literal notranslate"><span class="pre">dimension::invalid</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N2xo3qty9dimension4massE"><code class="docutils literal notranslate"><span class="pre">dimension::mass</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N2xo3qty9dimension8distanceE"><code class="docutils literal notranslate"><span class="pre">dimension::distance</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N2xo3qty9dimension4timeE"><code class="docutils literal notranslate"><span class="pre">dimension::time</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N2xo3qty9dimension8currencyE"><code class="docutils literal notranslate"><span class="pre">dimension::currency</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N2xo3qty9dimension5priceE"><code class="docutils literal notranslate"><span class="pre">dimension::price</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N2xo3qty9dimension5n_dimE"><code class="docutils literal notranslate"><span class="pre">dimension::n_dim</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Native Dimension</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#context">Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#enum">Enum</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N2xo3qty9dimensionE"><code class="docutils literal notranslate"><span class="pre">dimension</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N2xo3qty9dimension7invalidE"><code class="docutils literal notranslate"><span class="pre">dimension::invalid</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N2xo3qty9dimension4massE"><code class="docutils literal notranslate"><span class="pre">dimension::mass</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N2xo3qty9dimension8distanceE"><code class="docutils literal notranslate"><span class="pre">dimension::distance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N2xo3qty9dimension4timeE"><code class="docutils literal notranslate"><span class="pre">dimension::time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N2xo3qty9dimension8currencyE"><code class="docutils literal notranslate"><span class="pre">dimension::currency</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N2xo3qty9dimension5priceE"><code class="docutils literal notranslate"><span class="pre">dimension::price</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N2xo3qty9dimension5n_dimE"><code class="docutils literal notranslate"><span class="pre">dimension::n_dim</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#_CPPv4N2xo3qty5n_dimE"><code class="docutils literal notranslate"><span class="pre">n_dim</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#_CPPv4N2xo3qty7dim2strE9dimension"><code class="docutils literal notranslate"><span class="pre">dim2str()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#constants">Constants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N2xo3qty5n_dimE"><code class="docutils literal notranslate"><span class="pre">n_dim</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4N2xo3qty7dim2strE9dimension"><code class="docutils literal notranslate"><span class="pre">dim2str()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubuntu-github-workflow.html">Ubuntu Github Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search.html">Search Page</a></li>
 </ul>
 
         </div>
@@ -87,7 +104,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Dimension</li>
+      <li class="breadcrumb-item active">Native Dimension</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/dimension-enum.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -97,12 +114,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="dimension">
-<span id="id1"></span><h1>Dimension<a class="headerlink" href="#dimension" title="Link to this heading"></a></h1>
+  <section id="native-dimension">
+<span id="dimension"></span><h1>Native Dimension<a class="headerlink" href="#native-dimension" title="Link to this heading"></a></h1>
+<p>An abstract dimension;  distinct native dimensions are orthogonal</p>
+<section id="context">
+<h2>Context<a class="headerlink" href="#context" title="Link to this heading"></a></h2>
+<img alt="_images/ditaa-659193ba2d0787ced94dc95be37a8fe363b27025.png" src="_images/ditaa-659193ba2d0787ced94dc95be37a8fe363b27025.png" />
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>Identifies an abstract dimension, for example <em>mass</em> or <em>time</em>.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;xo/unit/dimension.hpp&gt;</span>
 </pre></div>
 </div>
-<p>Identifies an abstract dimension, for example <em>mass</em> or <em>time</em>.</p>
+<p>For example can use this enum to index basis members of a <a class="reference internal" href="scaled-unit-class.html"><span class="doc">scaled_unit</span></a> instance:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;xo/unit/quantity.hpp&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">qty</span><span class="p">;</span>
+
+<span class="k">auto</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q</span><span class="o">::</span><span class="n">kilometers</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">q</span><span class="o">::</span><span class="n">hours</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="hll"><span class="k">auto</span><span class="w"> </span><span class="n">bpu1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">lookup_dim</span><span class="p">(</span><span class="n">dim</span><span class="o">::</span><span class="n">time</span><span class="p">);</span>
+</span><span class="hll"><span class="k">auto</span><span class="w"> </span><span class="n">bpu2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">lookup_dim</span><span class="p">(</span><span class="n">dim</span><span class="o">::</span><span class="n">distance</span><span class="p">);</span>
+</span></pre></div>
+</div>
+</section>
+<section id="enum">
+<h2>Enum<a class="headerlink" href="#enum" title="Link to this heading"></a></h2>
 <dl class="cpp enum-class">
 <dt class="sig sig-object cpp" id="_CPPv4N2xo3qty9dimensionE">
 <span id="_CPPv3N2xo3qty9dimensionE"></span><span id="_CPPv2N2xo3qty9dimensionE"></span><span class="target" id="dimension_8hpp_1a9fd55952e5e80f2736e55e7e5574d531"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">dimension</span></span></span><a class="headerlink" href="#_CPPv4N2xo3qty9dimensionE" title="Link to this definition"></a><br /></dt>
@@ -158,12 +196,18 @@
 
 </dd></dl>
 
+</section>
+<section id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Link to this heading"></a></h2>
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N2xo3qty5n_dimE">
 <span id="_CPPv3N2xo3qty5n_dimE"></span><span id="_CPPv2N2xo3qty5n_dimE"></span><span id="xo::qty::n_dim__std::s"></span><span class="target" id="dimension_8hpp_1a30f1ac6053b95934760dc3e55291baed"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">n_dim</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">static_cast</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">(</span></span><a class="reference internal" href="#_CPPv4N2xo3qty9dimensionE" title="xo::qty::dimension"><span class="n"><span class="pre">dimension</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N2xo3qty9dimension5n_dimE" title="xo::qty::dimension::n_dim"><span class="n"><span class="pre">n_dim</span></span></a><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N2xo3qty5n_dimE" title="Link to this definition"></a><br /></dt>
 <dd><p>number of built-in dimensions, convenient for array sizing </p>
 </dd></dl>
 
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h2>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N2xo3qty7dim2strE9dimension">
 <span id="_CPPv3N2xo3qty7dim2strE9dimension"></span><span id="_CPPv2N2xo3qty7dim2strE9dimension"></span><span id="xo::qty::dim2str__dimension"></span><span class="target" id="dimension_8hpp_1a3f7d7b9ff7ba0097da316789af36b15f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">dim2str</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N2xo3qty9dimensionE" title="xo::qty::dimension"><span class="n"><span class="pre">dimension</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2xo3qty7dim2strE9dimension" title="Link to this definition"></a><br /></dt>
@@ -171,12 +215,14 @@
 </dd></dl>
 
 </section>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="basis-unit-constants.html" class="btn btn-neutral float-left" title="Basis Unit Constants" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="development.html" class="btn btn-neutral float-right" title="Development" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

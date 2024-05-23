@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scaled Unit &mdash; xo unit documentation  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Scaled Unit Constants" href="scaled-unit-constants.html" />
+    <link rel="prev" title="Scaled Unit Reference" href="scaled-unit-reference.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            xo unit documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">xo-unit contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html#representation">Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xquantity-reference.html">Xquantity Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="scaled-unit-reference.html">Scaled Unit Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Scaled Unit Class</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#context">Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#motivation">Motivation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#class">Class</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I00EN2xo3qty11scaled_unitE"><code class="docutils literal notranslate"><span class="pre">scaled_unit</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#member-variables">Member Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#type-traits">Type Traits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#access-methods">Access Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#general-methods">General Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#operators">Operators</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="scaled-unit-constants.html">Scaled Unit Constants</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="natural-unit-class.html">Natural Unit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bu-store-class.html">Basis Unit Store</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Native Dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubuntu-github-workflow.html">Ubuntu Github Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search.html">Search Page</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">xo unit documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="scaled-unit-reference.html">Scaled Unit Reference</a></li>
+      <li class="breadcrumb-item active">Scaled Unit</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/scaled-unit-class.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="scaled-unit">
+<span id="scaled-unit-class"></span><h1>Scaled Unit<a class="headerlink" href="#scaled-unit" title="Link to this heading"></a></h1>
+<p>A dimensionless multiple of a <a class="reference internal" href="natural-unit-class.html"><span class="doc">natural_unit</span></a></p>
+<section id="context">
+<h2>Context<a class="headerlink" href="#context" title="Link to this heading"></a></h2>
+<img alt="_images/ditaa-44516ac41cfbf99953610e7761ac0749ffec492f.png" src="_images/ditaa-44516ac41cfbf99953610e7761ac0749ffec492f.png" />
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>Extension of <a class="reference internal" href="natural-unit-class.html"><span class="doc">natural_unit</span></a> to enable representing the intermediate
+result of multiplication (or division) of natural units.</p>
+<ul class="simple">
+<li><p>represents a (dimensionless) multiple of a cartesian product of basis units.</p></li>
+<li><p>constexpr implementation</p></li>
+<li><p>limited support for fractional dimensions such as time^-1/2</p></li>
+</ul>
+<figure class="align-center" id="id1">
+<p class="plantuml">
+<a href="_images/plantuml-5ba29ee31c55453a46b5c7f29cfcad4ff4c55798.png"><img src="_images/plantuml-5ba29ee31c55453a46b5c7f29cfcad4ff4c55798.png" alt="object area_per_time&lt;&lt;scaled_unit&gt;&gt;
+area_per_time : outer_scale_factor = 3048/10000
+area_per_time : outer_scale_sq = 1.0
+area_per_time : natural_unit = m2_per_min
+
+object m2_per_min&lt;&lt;natural_unit&gt;&gt;
+m2_per_min : n_bpu = 2
+m2_per_min : bpu_v[]
+
+object m2&lt;&lt;bpu&gt;&gt;
+m2 : native_dim = dim::distance
+m2 : scalefactor = 1/1
+m2 : power = 2/1
+
+object min&lt;&lt;bpu&gt;&gt;
+min : native_dim = dim::time
+min : scalefactor = 60/1
+min : power = -1/1
+
+area_per_time o-- m2_per_min
+m2_per_min o-- m2
+m2_per_min o-- min" style="width: 412.83px; height: 386.1px"/></a>
+</p>
+<figcaption>
+<p><span class="caption-text">scaled unit after (u::meter * u::foot / u::minute)</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Scaled units with non-unity outer scalefactors arise as intermediate results
+of quantity arithmetic</p>
+<section id="motivation">
+<h3>Motivation<a class="headerlink" href="#motivation" title="Link to this heading"></a></h3>
+<p>Consider multiplying two units:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">qty</span><span class="p">;</span>
+
+<span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">u_prod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u</span><span class="o">::</span><span class="n">meter</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u</span><span class="o">::</span><span class="n">kilometer</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>How should we represent the product?</p>
+<p>We don’t want to mix units. Instead we consolidate on a common unit;
+to do this we accumulate a product of conversion factors from such consolidation.</p>
+<p>For example:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">static_assert</span><span class="p">(</span><span class="n">u_prod</span><span class="p">.</span><span class="n">n_bpu</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="k">static_assert</span><span class="p">(</span><span class="n">u_prod</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">bu</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">detail</span><span class="o">::</span><span class="n">bu</span><span class="o">::</span><span class="n">meter</span><span class="p">);</span>
+<span class="hll"><span class="k">static_assert</span><span class="p">(</span><span class="n">u_prod</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">power</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">power_ratio_type</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+</span><span class="k">static_assert</span><span class="p">(</span><span class="n">u_prod</span><span class="p">.</span><span class="n">outer_scale_factor_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">xo</span><span class="o">::</span><span class="n">ratio</span><span class="o">::</span><span class="n">ratio</span><span class="o">&lt;</span><span class="kt">int64_t</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">1000</span><span class="p">));</span>
+<span class="k">static_assert</span><span class="p">(</span><span class="n">u_prod</span><span class="p">.</span><span class="n">outer_scale_sq_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w">   </span><span class="c1">// used if fractional dimension</span>
+</pre></div>
+</div>
+<p>Here we accumulate <code class="code docutils literal notranslate"><span class="pre">1000</span></code>, from converting kilometers to meters.</p>
+<p>Division works similarly. In this example dimension cancel, but we still have a non-unity conversion factor.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">qty</span><span class="o">::</span><span class="nn">u</span><span class="p">;</span>
+
+<span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">u_div</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u</span><span class="o">::</span><span class="n">meter</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">u</span><span class="o">::</span><span class="n">kilometer</span><span class="p">;</span>
+
+<span class="c1">// dimensionlesss result</span>
+<span class="k">static_assert</span><span class="p">(</span><span class="n">u_prod</span><span class="p">.</span><span class="n">n_bpu</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="hll"><span class="k">static_assert</span><span class="p">(</span><span class="n">u_prod</span><span class="p">.</span><span class="n">outer_scale_factor_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">xo</span><span class="o">::</span><span class="n">ratio</span><span class="o">::</span><span class="n">ratio</span><span class="o">&lt;</span><span class="kt">int64_t</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1000</span><span class="p">));</span>
+</span><span class="k">static_assert</span><span class="p">(</span><span class="n">u_prod</span><span class="p">.</span><span class="n">outer_scale_sq_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>When multiple dimensions needing conversion are involved, scalefactors accumulate:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">qty</span><span class="o">::</span><span class="nn">u</span><span class="p">;</span>
+
+<span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">u2_prod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u</span><span class="o">::</span><span class="n">meter</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u</span><span class="o">::</span><span class="n">hour</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u</span><span class="o">::</span><span class="n">kilometer</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u</span><span class="o">::</span><span class="n">minute</span><span class="p">;</span>
+
+<span class="k">static_assert</span><span class="p">(</span><span class="n">u2_prod</span><span class="p">.</span><span class="n">n_bpu</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="k">static_assert</span><span class="p">(</span><span class="n">u2_prod</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">bu</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">detail</span><span class="o">::</span><span class="n">bu</span><span class="o">::</span><span class="n">meter</span><span class="p">);</span>
+<span class="k">static_assert</span><span class="p">(</span><span class="n">u2_prod</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">bu</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">detail</span><span class="o">::</span><span class="n">bu</span><span class="o">::</span><span class="n">hour</span><span class="p">);</span>
+<span class="hll"><span class="k">static_assert</span><span class="p">(</span><span class="n">u2_prod</span><span class="p">.</span><span class="n">outer_scale_factor_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">xo</span><span class="o">::</span><span class="n">ratio</span><span class="o">::</span><span class="n">ratio</span><span class="o">&lt;</span><span class="kt">int64_t</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">3</span><span class="p">));</span>
+</span><span class="k">static_assert</span><span class="p">(</span><span class="n">u2_prod</span><span class="p">.</span><span class="n">outer_scale_sq_</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w">   </span><span class="c1">// used if fractional dimension</span>
+</pre></div>
+</div>
+<p>Here the <code class="code docutils literal notranslate"><span class="pre">50/3</span></code> result comes from multiplying <code class="code docutils literal notranslate"><span class="pre">1000/1</span></code> (converting kilometers -&gt; meters)
+by <code class="code docutils literal notranslate"><span class="pre">1/60</span></code> (converting minutes -&gt; hours)</p>
+</section>
+</section>
+<section id="class">
+<h2>Class<a class="headerlink" href="#class" title="Link to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I00EN2xo3qty11scaled_unitE">
+<span id="_CPPv3I00EN2xo3qty11scaled_unitE"></span><span id="_CPPv2I00EN2xo3qty11scaled_unitE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Int</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OuterScale</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">ratio</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ratio</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I00EN2xo3qty11scaled_unitE" title="xo::qty::scaled_unit::Int"><span class="n"><span class="pre">Int</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="structxo_1_1qty_1_1scaled__unit"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">scaled_unit</span></span></span><a class="headerlink" href="#_CPPv4I00EN2xo3qty11scaled_unitE" title="Link to this definition"></a><br /></dt>
+<dd><p>Represents the product sqrt(outer_scale_sq) * outer_scale_exact * nat_unit. </p>
+</dd></dl>
+
+</section>
+<section id="member-variables">
+<h2>Member Variables<a class="headerlink" href="#member-variables" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “scaled-unit-instance-vars” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+</section>
+<section id="type-traits">
+<h2>Type Traits<a class="headerlink" href="#type-traits" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “scaled-unit-type-traits” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+</section>
+<section id="access-methods">
+<h2>Access Methods<a class="headerlink" href="#access-methods" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “scaled-unit-access-methods” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+</section>
+<section id="general-methods">
+<h2>General Methods<a class="headerlink" href="#general-methods" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “scaled-unit-general-methods” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+</section>
+<section id="operators">
+<h2>Operators<a class="headerlink" href="#operators" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “scaled-unit-operators” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="scaled-unit-reference.html" class="btn btn-neutral float-left" title="Scaled Unit Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="scaled-unit-constants.html" class="btn btn-neutral float-right" title="Scaled Unit Constants" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1980, Roland Conybeare.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

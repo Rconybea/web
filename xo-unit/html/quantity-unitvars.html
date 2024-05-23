@@ -21,7 +21,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Unit Reference" href="unit-reference.html" />
+    <link rel="next" title="Quantity Source Code" href="quantity-source-code.html" />
     <link rel="prev" title="Quantity Factory Functions" href="quantity-factoryfunctions.html" /> 
 </head>
 
@@ -44,19 +44,22 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">xo-unit contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">xo-unit contents</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="implementation.html">Abstraction Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="implementation.html#representation">Representation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="development.html">How To…</a></li>
-<li class="toctree-l1"><a class="reference internal" href="unit-quantities.html">Unit Quantities</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="quantity-class.html">Quantity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantity-factoryfunctions.html">Quantity Factory Functions</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Quantity Unit Variables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#context">Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mass">Mass</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N2xo3qty3qty8picogramE"><code class="docutils literal notranslate"><span class="pre">picogram</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N2xo3qty3qty8nanogramE"><code class="docutils literal notranslate"><span class="pre">nanogram</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4N2xo3qty3qty9microgramE"><code class="docutils literal notranslate"><span class="pre">microgram</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N2xo3qty3qty9milligramE"><code class="docutils literal notranslate"><span class="pre">milligram</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N2xo3qty3qty4gramE"><code class="docutils literal notranslate"><span class="pre">gram</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N2xo3qty3qty8kilogramE"><code class="docutils literal notranslate"><span class="pre">kilogram</span></code></a></li>
@@ -86,13 +89,21 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="quantity-source-code.html">Quantity Source Code</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="unit-reference.html">Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xquantity-reference.html">Xquantity Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scaled-unit-reference.html">Scaled Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="natural-unit-class.html">Natural Unit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bu-store-class.html">Basis Unit Store</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Native Dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubuntu-github-workflow.html">Ubuntu Github Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search.html">Search Page</a></li>
 </ul>
 
         </div>
@@ -120,10 +131,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="toctree-wrapper compound" id="quantity-unitvars">
-</div>
-<section id="quantity-unit-variables">
-<h1>Quantity Unit Variables<a class="headerlink" href="#quantity-unit-variables" title="Link to this heading"></a></h1>
+  <section id="quantity-unit-variables">
+<span id="quantity-unitvars"></span><h1>Quantity Unit Variables<a class="headerlink" href="#quantity-unit-variables" title="Link to this heading"></a></h1>
+<p>Built-in unit quantities</p>
+<section id="context">
+<h2>Context<a class="headerlink" href="#context" title="Link to this heading"></a></h2>
+<img alt="_images/ditaa-8403fa66acef33ca91cef45ab20b9810035d93a5.png" src="_images/ditaa-8403fa66acef33ca91cef45ab20b9810035d93a5.png" />
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;xo/unit/quantity.hpp&gt;</span>
 </pre></div>
 </div>
@@ -138,8 +154,27 @@ Can use these to assemble unit quantities with compound dimensions</p>
 </span><span class="linenos">7</span><span class="k">auto</span><span class="w"> </span><span class="n">q2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">with_units_from</span><span class="p">(</span><span class="n">q1</span><span class="p">,</span><span class="w"> </span><span class="n">u_mps</span><span class="p">);</span>
 </pre></div>
 </div>
+</section>
 <section id="mass">
 <h2>Mass<a class="headerlink" href="#mass" title="Link to this heading"></a></h2>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2xo3qty3qty8picogramE">
+<span id="_CPPv3N2xo3qty3qty8picogramE"></span><span id="_CPPv2N2xo3qty3qty8picogramE"></span><span id="xo::qty::qty::picogram__auto"></span><span class="target" id="quantity_8hpp_1ae997de503c06988c2f64691122ad520b"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">picogram</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty9picogramsEDa4Repr" title="xo::qty::qty::picograms"><span class="n"><span class="pre">picograms</span></span></a><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N2xo3qty3qty8picogramE" title="Link to this definition"></a><br /></dt>
+<dd><p>a quantity representing 1 picogram of mass, with compile-time unit representation </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2xo3qty3qty8nanogramE">
+<span id="_CPPv3N2xo3qty3qty8nanogramE"></span><span id="_CPPv2N2xo3qty3qty8nanogramE"></span><span id="xo::qty::qty::nanogram__auto"></span><span class="target" id="quantity_8hpp_1a393b17717750869a144720b454d980a5"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">nanogram</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty9nanogramsEDa4Repr" title="xo::qty::qty::nanograms"><span class="n"><span class="pre">nanograms</span></span></a><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N2xo3qty3qty8nanogramE" title="Link to this definition"></a><br /></dt>
+<dd><p>a quantity representing 1 nanogram of mass, with compile-time unit representation </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2xo3qty3qty9microgramE">
+<span id="_CPPv3N2xo3qty3qty9microgramE"></span><span id="_CPPv2N2xo3qty3qty9microgramE"></span><span id="xo::qty::qty::microgram__auto"></span><span class="target" id="quantity_8hpp_1ac60e6e396b1eb75be0d181c9f85d8c3e"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">microgram</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty10microgramsEDa4Repr" title="xo::qty::qty::micrograms"><span class="n"><span class="pre">micrograms</span></span></a><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N2xo3qty3qty9microgramE" title="Link to this definition"></a><br /></dt>
+<dd><p>a quantity representing 1 microgram of mass, with compile-time unit representation </p>
+</dd></dl>
+
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N2xo3qty3qty9milligramE">
 <span id="_CPPv3N2xo3qty3qty9milligramE"></span><span id="_CPPv2N2xo3qty3qty9milligramE"></span><span id="xo::qty::qty::milligram__auto"></span><span class="target" id="quantity_8hpp_1ae064c7553da3d75a5a93ab6921a6d61f"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">milligram</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty10milligramsEDa4Repr" title="xo::qty::qty::milligrams"><span class="n"><span class="pre">milligrams</span></span></a><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N2xo3qty3qty9milligramE" title="Link to this definition"></a><br /></dt>
@@ -160,34 +195,42 @@ Can use these to assemble unit quantities with compound dimensions</p>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N2xo3qty3qty5tonneE">
-<span id="_CPPv3N2xo3qty3qty5tonneE"></span><span id="_CPPv2N2xo3qty3qty5tonneE"></span><span id="xo::qty::qty::tonne__auto"></span><span class="target" id="quantity_8hpp_1a46b2cee2294a496714fa2163ef164cd3"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">tonne</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">tonnes</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N2xo3qty3qty5tonneE" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N2xo3qty3qty5tonneE"></span><span id="_CPPv2N2xo3qty3qty5tonneE"></span><span id="xo::qty::qty::tonne__auto"></span><span class="target" id="quantity_8hpp_1a46b2cee2294a496714fa2163ef164cd3"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">tonne</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty6tonnesEDa4Repr" title="xo::qty::qty::tonnes"><span class="n"><span class="pre">tonnes</span></span></a><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N2xo3qty3qty5tonneE" title="Link to this definition"></a><br /></dt>
 <dd><p>a quantity representing 1 metric tonne of mass, with compile-time unit representation </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N2xo3qty3qty9kilotonneE">
-<span id="_CPPv3N2xo3qty3qty9kilotonneE"></span><span id="_CPPv2N2xo3qty3qty9kilotonneE"></span><span id="xo::qty::qty::kilotonne__auto"></span><span class="target" id="quantity_8hpp_1a08d61f780fba781e95b16c4d6f6e414c"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">kilotonne</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">kilotonnes</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N2xo3qty3qty9kilotonneE" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N2xo3qty3qty9kilotonneE"></span><span id="_CPPv2N2xo3qty3qty9kilotonneE"></span><span id="xo::qty::qty::kilotonne__auto"></span><span class="target" id="quantity_8hpp_1a08d61f780fba781e95b16c4d6f6e414c"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">kilotonne</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty10kilotonnesEDa4Repr" title="xo::qty::qty::kilotonnes"><span class="n"><span class="pre">kilotonnes</span></span></a><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N2xo3qty3qty9kilotonneE" title="Link to this definition"></a><br /></dt>
 <dd><p>a quantity representing 1 metric kilotonne of mass, with compile-time unit representation </p>
 </dd></dl>
 
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenvariable: Cannot find variable “xo::qty::qty::megatonne” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenvariable: Cannot find variable “xo::qty::qty::gigatonne” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
 </section>
 <section id="distance">
 <h2>Distance<a class="headerlink" href="#distance" title="Link to this heading"></a></h2>
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N2xo3qty3qty9picometerE">
-<span id="_CPPv3N2xo3qty3qty9picometerE"></span><span id="_CPPv2N2xo3qty3qty9picometerE"></span><span id="xo::qty::qty::picometer__auto"></span><span class="target" id="quantity_8hpp_1ab90adb6ad59aa314d8f9b20d97b3920f"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">picometer</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">picometers</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N2xo3qty3qty9picometerE" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N2xo3qty3qty9picometerE"></span><span id="_CPPv2N2xo3qty3qty9picometerE"></span><span id="xo::qty::qty::picometer__auto"></span><span class="target" id="quantity_8hpp_1ab90adb6ad59aa314d8f9b20d97b3920f"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">picometer</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty10picometersEDa4Repr" title="xo::qty::qty::picometers"><span class="n"><span class="pre">picometers</span></span></a><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N2xo3qty3qty9picometerE" title="Link to this definition"></a><br /></dt>
 <dd><p>a quantity representing 1 picometer of distance, with compile-time unit representation </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N2xo3qty3qty9nanometerE">
-<span id="_CPPv3N2xo3qty3qty9nanometerE"></span><span id="_CPPv2N2xo3qty3qty9nanometerE"></span><span id="xo::qty::qty::nanometer__auto"></span><span class="target" id="quantity_8hpp_1a3b29a3e50aa17a4699f47c0668fe1287"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">nanometer</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">nanometers</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N2xo3qty3qty9nanometerE" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N2xo3qty3qty9nanometerE"></span><span id="_CPPv2N2xo3qty3qty9nanometerE"></span><span id="xo::qty::qty::nanometer__auto"></span><span class="target" id="quantity_8hpp_1a3b29a3e50aa17a4699f47c0668fe1287"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">nanometer</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty10nanometersEDa4Repr" title="xo::qty::qty::nanometers"><span class="n"><span class="pre">nanometers</span></span></a><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N2xo3qty3qty9nanometerE" title="Link to this definition"></a><br /></dt>
 <dd><p>a quantity representing 1 nanometer of distance, with compile-time unit representation </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N2xo3qty3qty10micrometerE">
-<span id="_CPPv3N2xo3qty3qty10micrometerE"></span><span id="_CPPv2N2xo3qty3qty10micrometerE"></span><span id="xo::qty::qty::micrometer__auto"></span><span class="target" id="quantity_8hpp_1a2006fcc4b757d62ee6c996f956042211"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">micrometer</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">micrometers</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N2xo3qty3qty10micrometerE" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N2xo3qty3qty10micrometerE"></span><span id="_CPPv2N2xo3qty3qty10micrometerE"></span><span id="xo::qty::qty::micrometer__auto"></span><span class="target" id="quantity_8hpp_1a2006fcc4b757d62ee6c996f956042211"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">micrometer</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty11micrometersEDa4Repr" title="xo::qty::qty::micrometers"><span class="n"><span class="pre">micrometers</span></span></a><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N2xo3qty3qty10micrometerE" title="Link to this definition"></a><br /></dt>
 <dd><p>a quantity representing 1 micrometer of distance, with compile-time unit representation </p>
 </dd></dl>
 
@@ -211,31 +254,63 @@ Can use these to assemble unit quantities with compound dimensions</p>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N2xo3qty3qty9megameterE">
-<span id="_CPPv3N2xo3qty3qty9megameterE"></span><span id="_CPPv2N2xo3qty3qty9megameterE"></span><span id="xo::qty::qty::megameter__auto"></span><span class="target" id="quantity_8hpp_1af87bca00ff7dfd54bf9a84de84dd477a"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">megameter</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">megameters</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N2xo3qty3qty9megameterE" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N2xo3qty3qty9megameterE"></span><span id="_CPPv2N2xo3qty3qty9megameterE"></span><span id="xo::qty::qty::megameter__auto"></span><span class="target" id="quantity_8hpp_1af87bca00ff7dfd54bf9a84de84dd477a"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">megameter</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty10megametersEDa4Repr" title="xo::qty::qty::megameters"><span class="n"><span class="pre">megameters</span></span></a><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N2xo3qty3qty9megameterE" title="Link to this definition"></a><br /></dt>
 <dd><p>a quantity representing 1 megameter of distance, with compile-time unit representation </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N2xo3qty3qty9gigameterE">
-<span id="_CPPv3N2xo3qty3qty9gigameterE"></span><span id="_CPPv2N2xo3qty3qty9gigameterE"></span><span id="xo::qty::qty::gigameter__auto"></span><span class="target" id="quantity_8hpp_1a406cf36b8ad4911ac8f28834d380944c"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">gigameter</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">gigameters</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N2xo3qty3qty9gigameterE" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N2xo3qty3qty9gigameterE"></span><span id="_CPPv2N2xo3qty3qty9gigameterE"></span><span id="xo::qty::qty::gigameter__auto"></span><span class="target" id="quantity_8hpp_1a406cf36b8ad4911ac8f28834d380944c"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">gigameter</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty10gigametersEDa4Repr" title="xo::qty::qty::gigameters"><span class="n"><span class="pre">gigameters</span></span></a><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N2xo3qty3qty9gigameterE" title="Link to this definition"></a><br /></dt>
 <dd><p>a quantity representing 1 gigameter of distance, with compile-time unit representation </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N2xo3qty3qty11lightsecondE">
-<span id="_CPPv3N2xo3qty3qty11lightsecondE"></span><span id="_CPPv2N2xo3qty3qty11lightsecondE"></span><span id="xo::qty::qty::lightsecond__auto"></span><span class="target" id="quantity_8hpp_1a570f3a3cc3ea1e1dba0542a1e036f0c3"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">lightsecond</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">lightseconds</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N2xo3qty3qty11lightsecondE" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N2xo3qty3qty11lightsecondE"></span><span id="_CPPv2N2xo3qty3qty11lightsecondE"></span><span id="xo::qty::qty::lightsecond__auto"></span><span class="target" id="quantity_8hpp_1a570f3a3cc3ea1e1dba0542a1e036f0c3"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">lightsecond</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty12lightsecondsEDa4Repr" title="xo::qty::qty::lightseconds"><span class="n"><span class="pre">lightseconds</span></span></a><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N2xo3qty3qty11lightsecondE" title="Link to this definition"></a><br /></dt>
 <dd><p>a quantity representing exactly 1 lightsecond of distance, with compile-time unit representation </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N2xo3qty3qty16astronomicalunitE">
-<span id="_CPPv3N2xo3qty3qty16astronomicalunitE"></span><span id="_CPPv2N2xo3qty3qty16astronomicalunitE"></span><span id="xo::qty::qty::astronomicalunit__auto"></span><span class="target" id="quantity_8hpp_1adfdb0e4e56eaea9995cc6a29350c5b42"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">astronomicalunit</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">astronomicalunits</span></span><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N2xo3qty3qty16astronomicalunitE" title="Link to this definition"></a><br /></dt>
+<span id="_CPPv3N2xo3qty3qty16astronomicalunitE"></span><span id="_CPPv2N2xo3qty3qty16astronomicalunitE"></span><span id="xo::qty::qty::astronomicalunit__auto"></span><span class="target" id="quantity_8hpp_1adfdb0e4e56eaea9995cc6a29350c5b42"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">astronomicalunit</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty17astronomicalunitsEDa4Repr" title="xo::qty::qty::astronomicalunits"><span class="n"><span class="pre">astronomicalunits</span></span></a><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N2xo3qty3qty16astronomicalunitE" title="Link to this definition"></a><br /></dt>
 <dd><p>a quantity representing exactly 1 astronomical unit of distance, with compile-time unit representation </p>
 </dd></dl>
 
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenvariable: Cannot find variable “xo::qty::qty::inch” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenvariable: Cannot find variable “xo::qty::qty::foot” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenvariable: Cannot find variable “xo::qty::qty::yard” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenvariable: Cannot find variable “xo::qty::qty::mile” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
 </section>
 <section id="time">
 <h2>Time<a class="headerlink" href="#time" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenvariable: Cannot find variable “xo::qty::qty::picosecond” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenvariable: Cannot find variable “xo::qty::qty::nanosecond” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenvariable: Cannot find variable “xo::qty::qty::microsecond” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenvariable: Cannot find variable “xo::qty::qty::millisecond” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N2xo3qty3qty6secondE">
 <span id="_CPPv3N2xo3qty3qty6secondE"></span><span id="_CPPv2N2xo3qty3qty6secondE"></span><span id="xo::qty::qty::second__auto"></span><span class="target" id="quantity_8hpp_1adc3266b52cf58588fbab329ad3185668"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">xo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">qty</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">second</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty7secondsEDa4Repr" title="xo::qty::qty::seconds"><span class="n"><span class="pre">seconds</span></span></a><span class="p"><span class="pre">(</span></span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv4N2xo3qty3qty6secondE" title="Link to this definition"></a><br /></dt>
@@ -260,6 +335,30 @@ Can use these to assemble unit quantities with compound dimensions</p>
 <dd><p>a quantity representing 1 day of time (exactly 24 hours), with compile-time unit representation </p>
 </dd></dl>
 
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenvariable: Cannot find variable “xo::qty::qty::week” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenvariable: Cannot find variable “xo::qty::qty::month” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenvariable: Cannot find variable “xo::qty::qty::year” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenvariable: Cannot find variable “xo::qty::qty::year250” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenvariable: Cannot find variable “xo::qty::qty::year360” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenvariable: Cannot find variable “xo::qty::qty::year365” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
 </section>
 </section>
 
@@ -268,7 +367,7 @@ Can use these to assemble unit quantities with compound dimensions</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="quantity-factoryfunctions.html" class="btn btn-neutral float-left" title="Quantity Factory Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="unit-reference.html" class="btn btn-neutral float-right" title="Unit Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="quantity-source-code.html" class="btn btn-neutral float-right" title="Quantity Source Code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xquantity &mdash; xo unit documentation  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Scaled Unit Reference" href="scaled-unit-reference.html" />
+    <link rel="prev" title="Xquantity Reference" href="xquantity-reference.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            xo unit documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">xo-unit contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html#representation">Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="xquantity-reference.html">Xquantity Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Xquantity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#context">Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#class">Class</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I000EN2xo3qty9xquantityE"><code class="docutils literal notranslate"><span class="pre">xquantity</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#member-variables">Member Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#constructors">Constructors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#access-methods">Access Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#general-methods">General Methods</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scaled-unit-reference.html">Scaled Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="natural-unit-class.html">Natural Unit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bu-store-class.html">Basis Unit Store</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Native Dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubuntu-github-workflow.html">Ubuntu Github Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search.html">Search Page</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">xo unit documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="xquantity-reference.html">Xquantity Reference</a></li>
+      <li class="breadcrumb-item active">Xquantity</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/xquantity-class.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="xquantity">
+<span id="xquantity-class"></span><h1>Xquantity<a class="headerlink" href="#xquantity" title="Link to this heading"></a></h1>
+<p>Polymorphic dimensioned quantity with runtime unit checking/conversion</p>
+<section id="context">
+<h2>Context<a class="headerlink" href="#context" title="Link to this heading"></a></h2>
+<img alt="_images/ditaa-f1cc7f6e5ec2ac0d2813d9d173a2217870a3bbf1.png" src="_images/ditaa-f1cc7f6e5ec2ac0d2813d9d173a2217870a3bbf1.png" />
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;xo/unit/xquantity.hpp&gt;</span>
+</pre></div>
+</div>
+<figure class="align-center">
+<p class="plantuml">
+<a href="_images/plantuml-e9653f90556d43a335edd7ea431755af98cd7635.png"><img src="_images/plantuml-e9653f90556d43a335edd7ea431755af98cd7635.png" alt="allowmixing
+
+object qty1&lt;&lt;xquantity&gt;&gt;
+qty1 : scale = 1.23
+qty1 : unit = unit
+
+object unit&lt;&lt;scaled_unit&gt;&gt;
+unit : is_natural() = true
+
+qty1 o-- unit" style="width: 146.52px; height: 203.94px"/></a>
+</p>
+</figure>
+</section>
+<section id="class">
+<h2>Class<a class="headerlink" href="#class" title="Link to this heading"></a></h2>
+<p>Class with run-time unit representation.</p>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I000EN2xo3qty9xquantityE">
+<span id="_CPPv3I000EN2xo3qty9xquantityE"></span><span id="_CPPv2I000EN2xo3qty9xquantityE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repr</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Int</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">int64_t</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Int2x</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">detail</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">width2x_t</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I000EN2xo3qty9xquantityE" title="xo::qty::xquantity::Int"><span class="n"><span class="pre">Int</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classxo_1_1qty_1_1xquantity"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xquantity</span></span></span><a class="headerlink" href="#_CPPv4I000EN2xo3qty9xquantityE" title="Link to this definition"></a><br /></dt>
+<dd><p>represent a scalar quantity with polymorphic units. </p>
+<p><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Repr</span></code> type used represent a dimensionless multiple of a natural unit.</p></li>
+</ul>
+</p>
+<p>Constexpr implementation, but units are explicitly represented: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sizeof</span><span class="p">(</span><span class="n">Quantity2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">Repr</span><span class="p">)</span>
+</pre></div>
+</div>
+</p>
+<p>Explicit unit representation allows introducing units at runtime, for example in python bindings. See for example <a class="reference external" href="https://github.com/rconybea/xo-pyutil">xo-pyutil</a></p>
+<p>See <a class="reference internal" href="quantity-class.html#classxo_1_1qty_1_1quantity"><span class="std std-ref">quantity</span></a> for implementation with units established at compile time</p>
+<p>Require:<ul class="simple">
+<li><p>Repr supports numeric operations (+, -, *, /)</p></li>
+<li><p>Repr supports conversion from double. </p></li>
+</ul>
+</p>
+</dd></dl>
+
+</section>
+<section id="member-variables">
+<h2>Member Variables<a class="headerlink" href="#member-variables" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “xquantity-instance-vars” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+</section>
+<section id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “xquantity-ctors” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+</section>
+<section id="access-methods">
+<h2>Access Methods<a class="headerlink" href="#access-methods" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “xquantity-access-methods” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+</section>
+<section id="general-methods">
+<h2>General Methods<a class="headerlink" href="#general-methods" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “xquantity-methods” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="xquantity-reference.html" class="btn btn-neutral float-left" title="Xquantity Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="scaled-unit-reference.html" class="btn btn-neutral float-right" title="Scaled Unit Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1980, Roland Conybeare.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

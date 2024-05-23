@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Abstraction Tower &mdash; xo unit documentation  documentation</title>
+  <title>Components &mdash; xo unit documentation  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
@@ -21,7 +21,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="How To…" href="development.html" />
+    <link rel="next" title="Quantity Reference" href="quantity-reference.html" />
     <link rel="prev" title="Examples" href="examples.html" /> 
 </head>
 
@@ -44,22 +44,27 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">xo-unit contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">xo-unit contents</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Abstraction Tower</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#representation">Representation</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="development.html">How To…</a></li>
-<li class="toctree-l1"><a class="reference internal" href="unit-quantities.html">Unit Quantities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="unit-reference.html">Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xquantity-reference.html">Xquantity Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scaled-unit-reference.html">Scaled Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="natural-unit-class.html">Natural Unit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bu-store-class.html">Basis Unit Store</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Native Dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubuntu-github-workflow.html">Ubuntu Github Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search.html">Search Page</a></li>
 </ul>
 
         </div>
@@ -76,7 +81,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Abstraction Tower</li>
+      <li class="breadcrumb-item active">Components</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/implementation.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -86,17 +91,42 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="abstraction-tower">
-<span id="implementation"></span><h1>Abstraction Tower<a class="headerlink" href="#abstraction-tower" title="Link to this heading"></a></h1>
-<p>Abstraction tower for <em>xo-unit</em> components.</p>
-<img alt="_images/ditaa-8dde7d3c2f1d9de91d93de8fc85780c25670f123.png" src="_images/ditaa-8dde7d3c2f1d9de91d93de8fc85780c25670f123.png" />
+  <section id="components">
+<span id="implementation"></span><h1>Components<a class="headerlink" href="#components" title="Link to this heading"></a></h1>
+<p>Library dependency tower for <em>xo-unit</em>:</p>
+<img alt="_images/ditaa-ed4e8993c6a283f4464d316a773873fb22d78dc9.png" src="_images/ditaa-ed4e8993c6a283f4464d316a773873fb22d78dc9.png" />
+<p>Install instructions <a class="reference internal" href="install.html"><span class="doc">here</span></a></p>
+<p>Abstraction tower for <em>xo-unit</em> components:</p>
+<img alt="_images/ditaa-d5fc847c8afaf6cbd196bbeefca8c8389ec2dbe5.png" src="_images/ditaa-d5fc847c8afaf6cbd196bbeefca8c8389ec2dbe5.png" />
 <ul>
-<li><p>quantity: see <a class="reference internal" href="quantity-reference.html"><span class="doc">Quantity Reference</span></a>.
-quantity with compile-time unit work</p></li>
-<li><p>xquantity:
-quantity with unit work deferred until runtime</p></li>
-<li><p>scaled_unit:
-a unit involving zero or more dimensions, and associated conversion factor.</p>
+<li><p><a class="reference internal" href="quantity-reference.html"><span class="doc">quantity</span></a>:</p>
+<p>A quantity with unit checking and conversion done at compile-time</p>
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;xo/unit/quantity.hpp&quot;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">q1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xo</span><span class="o">::</span><span class="n">qty</span><span class="o">::</span><span class="n">qty</span><span class="o">::</span><span class="n">kilometers</span><span class="p">(</span><span class="mf">7.5</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><a class="reference internal" href="xquantity-reference.html"><span class="doc">xquantity</span></a>:</p>
+<p>A quantity with unit checking and conversion done at run-time.
+This is useful if unit information isn’t known at compile time, for example
+if reading units from console input.</p>
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;xo/unit/xquantity.hpp&quot;</span>
+<span class="n">xquantity</span><span class="w"> </span><span class="n">qty1</span><span class="p">(</span><span class="mf">7.5</span><span class="p">,</span><span class="w"> </span><span class="n">xo</span><span class="o">::</span><span class="n">qty</span><span class="o">::</span><span class="n">u</span><span class="o">::</span><span class="n">foot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><a class="reference internal" href="scaled-unit-class.html"><span class="doc">scaled_unit</span></a>:</p>
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;xo/unit/scaled_unit.hpp&quot;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xo</span><span class="o">::</span><span class="n">qty</span><span class="o">::</span><span class="n">u</span><span class="o">::</span><span class="n">millimeter</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>A unit involving zero or more dimensions, and associated conversion factor.</p>
 <ul class="simple">
 <li><p>can express result of arithmetic involving multiple scales,
 by reporting an outer scalefactor</p></li>
@@ -107,8 +137,14 @@ by reporting an outer scalefactor</p></li>
 dimension.</p></li>
 </ul>
 </li>
-<li><p>natural_unit:
-a unit involving zero or more dimensions, and at most one scale per dimension.
+<li><p><a class="reference internal" href="natural-unit-class.html"><span class="doc">natural_unit</span></a></p>
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;xo/unit/natural_unit.hpp&quot;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xo</span><span class="o">::</span><span class="n">qty</span><span class="o">::</span><span class="n">nu</span><span class="o">::</span><span class="n">millimeter</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>A unit involving zero or more dimensions, and at most one scale per dimension.
 A quantity instance is always represented as a dimensionless multiple
 of a natural unit</p>
 <ul class="simple">
@@ -116,38 +152,66 @@ of a natural unit</p>
 (for example consider <code class="code docutils literal notranslate"><span class="pre">xo::qty::qty::foot</span> <span class="pre">*</span> <span class="pre">xo::qty::qty::meter</span></code>)</p></li>
 </ul>
 </li>
-<li><p>bpu: <a class="reference internal" href="bpu-class.html"><span class="doc">BPU</span></a>.</p>
+<li><p><a class="reference internal" href="bpu-class.html"><span class="doc">bpu</span></a></p>
 <p>A rational (usually integer) power of a basis unit. Has a single dimension.</p>
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;xo/unit/bpu.hpp&quot;</span>
+<span class="n">xo</span><span class="o">::</span><span class="n">qty</span><span class="o">::</span><span class="n">bpu</span><span class="p">(</span><span class="n">xo</span><span class="o">::</span><span class="n">qty</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">bu</span><span class="o">::</span><span class="n">millimeter</span><span class="p">,</span>
+<span class="w">             </span><span class="n">xo</span><span class="o">::</span><span class="n">qty</span><span class="o">::</span><span class="n">power_ratio_type</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span><span class="w">  </span><span class="c1">// mm^2</span>
+</pre></div>
+</div>
+</div></blockquote>
 </li>
-<li><p>bu_store: <a class="reference internal" href="bu-store-class.html"><span class="doc">Basis Unit Store</span></a>.</p>
-<p>Associates basis units with abbreviations.</p>
+<li><p><a class="reference internal" href="bu-store-class.html"><span class="doc">bu_store</span></a></p>
+<p>Associates basis units with abbreviations.
+Abbreviations used to decorate printed quantities.</p>
 <p>For example <code class="docutils literal notranslate"><span class="pre">bu::kilogram</span></code> =&gt; <code class="docutils literal notranslate"><span class="pre">&quot;kg&quot;</span></code></p>
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;xo/unit/bu_store.hpp&quot;</span>
+<span class="n">xo</span><span class="o">::</span><span class="n">qty</span><span class="o">::</span><span class="n">bu_abbrev_store</span><span class="p">.</span><span class="n">bu_abbrev</span><span class="p">(</span><span class="n">xo</span><span class="o">::</span><span class="n">qty</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">bu</span><span class="o">::</span><span class="n">picogram</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;pg&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
 </li>
-<li><p>basis_unit: <a class="reference internal" href="basis-unit-reference.html"><span class="doc">Basis Unit Reference</span></a>.</p>
+<li><p><a class="reference internal" href="basis-unit-reference.html"><span class="doc">basis_unit</span></a></p>
 <p>A unit with a single dimension and scale.</p>
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;xo/unit/basis_unit.hpp&quot;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xo</span><span class="o">::</span><span class="n">qty</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">bu</span><span class="o">::</span><span class="n">picogram</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
 </li>
-<li><p>dimension: <a class="reference internal" href="dimension-enum.html"><span class="doc">Dimension</span></a>.</p>
+<li><p><a class="reference internal" href="dimension-enum.html"><span class="doc">dimension</span></a></p>
 <p>identifies a dimension, such as mass or time.</p>
+<blockquote>
+<div><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;xo/unit/dimension.hpp&quot;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xo</span><span class="o">::</span><span class="n">qty</span><span class="o">::</span><span class="n">dimension</span><span class="o">::</span><span class="n">mass</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
 </li>
 </ul>
 </section>
 <section id="representation">
 <h1>Representation<a class="headerlink" href="#representation" title="Link to this heading"></a></h1>
-<p>Worked example using <a class="reference internal" href="quantity-class.html#_CPPv4I_Da0EN2xo3qty8quantityE" title="xo::qty::quantity"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">xo::qty::quantity</span></code></a></p>
+<p>Worked example using <a class="reference internal" href="quantity-class.html#_CPPv4I_Da0EN2xo3qty8quantityE" title="xo::qty::quantity"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">xo::qty::quantity</span></code></a>.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;xo/unit/quantity.hpp&quot;</span>
 <span class="linenos">2</span><span class="p">...</span>
-<span class="linenos">3</span><span class="k">namespace</span><span class="w"> </span><span class="nn">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">qty</span><span class="o">::</span><span class="nn">qty</span><span class="p">;</span>
-<span class="linenos">4</span>
-<span class="linenos">5</span><span class="c1">// 7.55km.min^-2</span>
-<span class="hll"><span class="linenos">6</span><span class="n">quantity</span><span class="w"> </span><span class="n">qty1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">7.55</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">q</span><span class="o">::</span><span class="n">kilometer</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">q</span><span class="o">::</span><span class="n">minute</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">q</span><span class="o">::</span><span class="n">minute</span><span class="p">);</span>
-</span></pre></div>
+<span class="linenos">3</span><span class="k">using</span><span class="w"> </span><span class="n">xo</span><span class="o">::</span><span class="n">qty</span><span class="p">;</span>
+<span class="linenos">4</span><span class="k">namespace</span><span class="w"> </span><span class="nn">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">qty</span><span class="o">::</span><span class="nn">qty</span><span class="p">;</span>
+<span class="linenos">5</span>
+<span class="hll"><span class="linenos">6</span><span class="c1">// 7.55km.min^-2</span>
+</span><span class="linenos">7</span><span class="n">quantity</span><span class="w"> </span><span class="n">qty1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">7.55</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">q</span><span class="o">::</span><span class="n">kilometer</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">q</span><span class="o">::</span><span class="n">minute</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">q</span><span class="o">::</span><span class="n">minute</span><span class="p">);</span>
+</pre></div>
 </div>
+<p>Note: in diagrams below, components with pale blue background are discarded before runtime</p>
 <figure class="align-center" id="id1">
 <p class="plantuml">
-<a href="_images/plantuml-34bb0e0e26d1d2ab1ba50dfe5b03b1d4ea933860.png"><img src="_images/plantuml-34bb0e0e26d1d2ab1ba50dfe5b03b1d4ea933860.png" alt="object qty1&lt;&lt;quantity&gt;&gt;
+<a href="_images/plantuml-8e06b30422f8d7af77cd822394c579ec994da65c.png"><img src="_images/plantuml-8e06b30422f8d7af77cd822394c579ec994da65c.png" alt="object qty1&lt;&lt;quantity&gt;&gt;
 qty1 : scale = 7.55
 
-rectangle {
+rectangle #e0f0ff {
 
 object km_per_min2&lt;&lt;natural_unit&gt;&gt;
 km_per_min2 : n_bpu = 2
@@ -181,10 +245,10 @@ km_per_min2 *-- per_min2
 </div>
 <figure class="align-center" id="id2">
 <p class="plantuml">
-<a href="_images/plantuml-b65248d71a8dbdb9362f56c590365641d6c93d07.png"><img src="_images/plantuml-b65248d71a8dbdb9362f56c590365641d6c93d07.png" alt="object qty2&lt;&lt;quantity&gt;&gt;
+<a href="_images/plantuml-3fb1677bc19057aa3f5626e8189070bbf50c1039.png"><img src="_images/plantuml-3fb1677bc19057aa3f5626e8189070bbf50c1039.png" alt="object qty2&lt;&lt;quantity&gt;&gt;
 qty2 : scale = 123
 
-rectangle {
+rectangle #e0f0ff {
 
 object ng_unit&lt;&lt;natural_unit&gt;&gt;
 ng_unit : n_bpu = 1
@@ -211,10 +275,10 @@ ng_unit *-- ng
 </div>
 <figure class="align-center" id="id3">
 <p class="plantuml">
-<a href="_images/plantuml-23c1a4d1bdb33030c1910c72499666fd045966e6.png"><img src="_images/plantuml-23c1a4d1bdb33030c1910c72499666fd045966e6.png" alt="object qty3&lt;&lt;quantity&gt;&gt;
+<a href="_images/plantuml-b65573940f8c0d0968ffe2b8e19c621a5c8331e7.png"><img src="_images/plantuml-b65573940f8c0d0968ffe2b8e19c621a5c8331e7.png" alt="object qty3&lt;&lt;quantity&gt;&gt;
 qty3 : scale = 928.65
 
-rectangle {
+rectangle #e0f0ff {
 
   object ng_km_min2_unit&lt;&lt;natural_unit&gt;&gt;
   ng_km_min2_unit : n_bpu = 3
@@ -261,10 +325,10 @@ rectangle {
 </div>
 <figure class="align-center" id="id4">
 <p class="plantuml">
-<a href="_images/plantuml-61f42cb8b298fa2dd76fd28056839fb39c0ec238.png"><img src="_images/plantuml-61f42cb8b298fa2dd76fd28056839fb39c0ec238.png" alt="object qty3b&lt;&lt;quantity&gt;&gt;
+<a href="_images/plantuml-8eb38dd2693018c6607179acf23c2916d61cdee4.png"><img src="_images/plantuml-8eb38dd2693018c6607179acf23c2916d61cdee4.png" alt="object qty3b&lt;&lt;quantity&gt;&gt;
 qty3b : scale = 2.59758e-10
 
-rectangle {
+rectangle #e0f0ff {
 
   object kg_m_s2_unit&lt;&lt;natural_unit&gt;&gt;
   kg_m_s2_unit : n_bpu = 3
@@ -307,7 +371,7 @@ rectangle {
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="examples.html" class="btn btn-neutral float-left" title="Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="development.html" class="btn btn-neutral float-right" title="How To…" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="quantity-reference.html" class="btn btn-neutral float-right" title="Quantity Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

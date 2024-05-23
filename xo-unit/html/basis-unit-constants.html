@@ -21,7 +21,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Dimension" href="dimension-enum.html" />
+    <link rel="next" title="Native Dimension" href="dimension-enum.html" />
     <link rel="prev" title="Basis Unit" href="basis-unit-class.html" /> 
 </head>
 
@@ -44,21 +44,23 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">xo-unit contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">xo-unit contents</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="implementation.html">Abstraction Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="implementation.html#representation">Representation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="development.html">How To…</a></li>
-<li class="toctree-l1"><a class="reference internal" href="unit-quantities.html">Unit Quantities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="unit-reference.html">Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xquantity-reference.html">Xquantity Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scaled-unit-reference.html">Scaled Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="natural-unit-class.html">Natural Unit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bu-store-class.html">Basis Unit Store</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="basis-unit-class.html">Basis Unit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basis-unit-class.html">Basis Unit Class</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Basis Unit Constants</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#context">Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mass-units">Mass Units</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv48picogram"><code class="docutils literal notranslate"><span class="pre">picogram</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv48nanogram"><code class="docutils literal notranslate"><span class="pre">nanogram</span></code></a></li>
@@ -118,7 +120,12 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Native Dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubuntu-github-workflow.html">Ubuntu Github Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search.html">Search Page</a></li>
 </ul>
 
         </div>
@@ -148,9 +155,17 @@
              
   <section id="basis-unit-constants">
 <span id="id1"></span><h1>Basis Unit Constants<a class="headerlink" href="#basis-unit-constants" title="Link to this heading"></a></h1>
-<p>These constants represent low-level building blocks.
+<p>Relative scalefactors for each built-in unit.</p>
+<section id="context">
+<h2>Context<a class="headerlink" href="#context" title="Link to this heading"></a></h2>
+<img alt="_images/ditaa-cec989073f835607919dbe4cb7ee2cecf0fa3971.png" src="_images/ditaa-cec989073f835607919dbe4cb7ee2cecf0fa3971.png" />
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>Constants in the <code class="code docutils literal notranslate"><span class="pre">xo::qty::detail::bu</span></code> namespace represent
+low-level building blocks for specifying units.
 Relative scalefactors for each unit are chosen here.</p>
-<p>Application code will not use this class directly;
+<p>Application code will not typically use these values directtly;
 instead it’s expected to use units from the <code class="code docutils literal notranslate"><span class="pre">xo::qty::u</span></code> namespace.
 Those units are implemented on top of the basis units described here.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;xo/unit/basis_unit.hpp&gt;</span>
@@ -158,6 +173,7 @@ Those units are implemented on top of the basis units described here.</p>
 <span class="k">using</span><span class="w"> </span><span class="n">xo</span><span class="o">::</span><span class="n">qty</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">bu</span><span class="p">;</span>
 </pre></div>
 </div>
+</section>
 <section id="mass-units">
 <h2>Mass Units<a class="headerlink" href="#mass-units" title="Link to this heading"></a></h2>
 <dl>
@@ -432,7 +448,7 @@ Those units are implemented on top of the basis units described here.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="basis-unit-class.html" class="btn btn-neutral float-left" title="Basis Unit" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="dimension-enum.html" class="btn btn-neutral float-right" title="Dimension" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="dimension-enum.html" class="btn btn-neutral float-right" title="Native Dimension" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

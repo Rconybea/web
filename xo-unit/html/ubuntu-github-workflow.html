@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ubuntu Github Workflow &mdash; xo unit documentation  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Glossary" href="glossary.html" />
+    <link rel="prev" title="Development" href="development.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            xo unit documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">xo-unit contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html#representation">Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xquantity-reference.html">Xquantity Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scaled-unit-reference.html">Scaled Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="natural-unit-class.html">Natural Unit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bu-store-class.html">Basis Unit Store</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Native Dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Ubuntu Github Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search.html">Search Page</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">xo unit documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Ubuntu Github Workflow</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/ubuntu-github-workflow.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ubuntu-github-workflow">
+<h1>Ubuntu Github Workflow<a class="headerlink" href="#ubuntu-github-workflow" title="Link to this heading"></a></h1>
+<p>Instructions for build starting on a stock ubuntu platform (see <cite>xo-unit/.github/workflows/ubuntu_main.yml</cite>)</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build xo-unit + dependencies</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;main&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&quot;main&quot;</span><span class="w"> </span><span class="p p-Indicator">]</span>
+
+<span class="nt">env</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)</span>
+<span class="w">  </span><span class="nt">BUILD_TYPE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Release</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">build</span><span class="p">:</span>
+<span class="w">    </span><span class="c1"># The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.</span>
+<span class="w">    </span><span class="c1"># You can convert this to a matrix build if you need cross-platform coverage.</span>
+<span class="w">    </span><span class="c1"># See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">checkout source</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no"># install catch2, doxygen.  see</span>
+<span class="w">        </span><span class="no">#   [[https://stackoverflow.com/questions/57982945/how-to-apt-get-install-in-a-github-actions-workflow]]</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::install catch2&quot;</span>
+<span class="w">        </span><span class="no">sudo apt-get install -y catch2</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::install doxygen&quot;</span>
+<span class="w">        </span><span class="no">sudo apt-get install -y doxygen</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::install sphinx&quot;</span>
+<span class="w">        </span><span class="no">sudo apt-get install -y python3-sphinx</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::install sphinx readthedocs theme&quot;</span>
+<span class="w">        </span><span class="no">sudo apt-get install -y python3-sphinx-rtd-theme</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">#echo &quot;::group::install pybind11&quot;</span>
+<span class="w">        </span><span class="no">#sudo apt-get install -y pybind11-dev</span>
+<span class="w">        </span><span class="no">#echo &quot;::endgroup&quot;</span>
+
+<span class="w">    </span><span class="c1"># ----------------------------------------------------------------</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clone xo-cmake</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Rconybea/xo-cmake</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">repo/xo-cmake</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build xo-cmake</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">XONAME=xo-cmake</span>
+<span class="w">        </span><span class="no">XOSRC=repo/${XONAME}</span>
+<span class="w">        </span><span class="no">BUILDDIR=${{github.workspace}}/build_${XONAME}</span>
+<span class="w">        </span><span class="no">PREFIX=${{github.workspace}}/local</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::configure ${XONAME}&quot;</span>
+<span class="w">        </span><span class="no">cmake -B ${BUILDDIR} -DCMAKE_INSTALL_PREFIX=${PREFIX} ${XOSRC}</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::compile ${XONAME}&quot;</span>
+<span class="w">        </span><span class="no">cmake --build ${BUILDDIR} --config ${{env.BUILD_TYPE}}</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::local install ${XONAME}&quot;</span>
+<span class="w">        </span><span class="no">cmake --install ${BUILDDIR}</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::local dir tree&quot;</span>
+<span class="w">        </span><span class="no">tree ${PREFIX}</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">    </span><span class="c1"># ----------------------------------------------------------------</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clone xo-indentlog</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Rconybea/indentlog</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">repo/xo-indentlog</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build xo-indentlog</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">XONAME=xo-indentlog</span>
+<span class="w">        </span><span class="no">XOSRC=repo/${XONAME}</span>
+<span class="w">        </span><span class="no">BUILDDIR=${{github.workspace}}/build_${XONAME}</span>
+<span class="w">        </span><span class="no">PREFIX=${{github.workspace}}/local</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::repo dir tree&quot;</span>
+<span class="w">        </span><span class="no">tree -L 2 repo</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::configure ${XONAME}&quot;</span>
+<span class="w">        </span><span class="no">cmake -B ${BUILDDIR} -DCMAKE_INSTALL_PREFIX=${PREFIX} ${XOSRC}</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::compile ${XONAME}&quot;</span>
+<span class="w">        </span><span class="no">cmake --build ${BUILDDIR} --config ${{env.BUILD_TYPE}} -j</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::local install ${XONAME}&quot;</span>
+<span class="w">        </span><span class="no">cmake --install ${BUILDDIR}</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::local dir tree&quot;</span>
+<span class="w">        </span><span class="no">tree -L 3 ${PREFIX}</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">    </span><span class="c1"># ----------------------------------------------------------------</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clone xo-flatstring</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Rconybea/xo-flatstring</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">repo/xo-flatstring</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build xo-flatstring</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">XONAME=xo-flatstring</span>
+<span class="w">        </span><span class="no">XOSRC=repo/${XONAME}</span>
+<span class="w">        </span><span class="no">BUILDDIR=${{github.workspace}}/build_${XONAME}</span>
+<span class="w">        </span><span class="no">PREFIX=${{github.workspace}}/local</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::repo dir tree&quot;</span>
+<span class="w">        </span><span class="no">tree -L 2 repo</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::configure ${XONAME}&quot;</span>
+<span class="w">        </span><span class="no">cmake -B ${BUILDDIR} -DCMAKE_INSTALL_PREFIX=${PREFIX} ${XOSRC}</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::compile ${XONAME}&quot;</span>
+<span class="w">        </span><span class="no">cmake --build ${BUILDDIR} --config ${{env.BUILD_TYPE}} -j</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::local install ${XONAME}&quot;</span>
+<span class="w">        </span><span class="no">cmake --install ${BUILDDIR}</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::local dir tree&quot;</span>
+<span class="w">        </span><span class="no">tree -L 3 ${PREFIX}</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">    </span><span class="c1"># ----------------------------------------------------------------</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clone xo-randomgen</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Rconybea/randomgen</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">repo/xo-randomgen</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build xo-randomgen</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">XONAME=xo-randomgen</span>
+<span class="w">        </span><span class="no">XOSRC=repo/${XONAME}</span>
+<span class="w">        </span><span class="no">BUILDDIR=${{github.workspace}}/build_${XONAME}</span>
+<span class="w">        </span><span class="no">PREFIX=${{github.workspace}}/local</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::repo dir tree&quot;</span>
+<span class="w">        </span><span class="no">tree -L 2 repo</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::configure ${XONAME}&quot;</span>
+<span class="w">        </span><span class="no">cmake -B ${BUILDDIR} -DCMAKE_INSTALL_PREFIX=${PREFIX} ${XOSRC}</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::compile ${XONAME}&quot;</span>
+<span class="w">        </span><span class="no">cmake --build ${BUILDDIR} --config ${{env.BUILD_TYPE}} -j</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::local install ${XONAME}&quot;</span>
+<span class="w">        </span><span class="no">cmake --install ${BUILDDIR}</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::local dir tree&quot;</span>
+<span class="w">        </span><span class="no">tree -L 3 ${PREFIX}</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">    </span><span class="c1"># ----------------------------------------------------------------</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clone xo-ratio</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Rconybea/xo-ratio</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">repo/xo-ratio</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build xo-ratio</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">XONAME=xo-ratio</span>
+<span class="w">        </span><span class="no">XOSRC=repo/${XONAME}</span>
+<span class="w">        </span><span class="no">BUILDDIR=${{github.workspace}}/build_${XONAME}</span>
+<span class="w">        </span><span class="no">PREFIX=${{github.workspace}}/local</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::repo dir tree&quot;</span>
+<span class="w">        </span><span class="no">tree -L 2 repo</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::configure ${XONAME}&quot;</span>
+<span class="w">        </span><span class="no">cmake -B ${BUILDDIR} -DCMAKE_INSTALL_PREFIX=${PREFIX} ${XOSRC}</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::compile ${XONAME}&quot;</span>
+<span class="w">        </span><span class="no">cmake --build ${BUILDDIR} --config ${{env.BUILD_TYPE}} -j</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::local install ${XONAME}&quot;</span>
+<span class="w">        </span><span class="no">cmake --install ${BUILDDIR}</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::local dir tree&quot;</span>
+<span class="w">        </span><span class="no">tree -L 3 ${PREFIX}</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">    </span><span class="c1"># ----------------------------------------------------------------</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build self (xo-unit)</span>
+<span class="w">      </span><span class="c1"># Configure CMake in a &#39;build&#39; subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.</span>
+<span class="w">      </span><span class="c1"># See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">XONAME=xo-unit</span>
+<span class="w">        </span><span class="no">BUILDDIR=${{github.workspace}}/build_${XONAME}</span>
+<span class="w">        </span><span class="no">PREFIX=${{github.workspace}}/local</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::repo dir tree&quot;</span>
+<span class="w">        </span><span class="no">tree -L 2 repo</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::configure ${XONAME}&quot;</span>
+<span class="w">        </span><span class="no">cmake -B ${BUILDDIR} -DCMAKE_MODULE_PATH=${PREFIX}/share/cmake -DCMAKE_PREFIX_PATH=${PREFIX} -DCMAKE_INSTALL_PREFIX=${PREFIX} -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::compile ${XONAME}&quot;</span>
+<span class="w">        </span><span class="no">cmake --build ${BUILDDIR} --config ${{env.BUILD_TYPE}}</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::local install ${XONAME}&quot;</span>
+<span class="w">        </span><span class="no">cmake --install ${BUILDDIR}</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no">echo &quot;::group::local dir tree&quot;</span>
+<span class="w">        </span><span class="no">tree -L 3 ${PREFIX}</span>
+<span class="w">        </span><span class="no">echo &quot;::endgroup&quot;</span>
+
+<span class="w">        </span><span class="no"># Execute tests defined by the CMake configuration.</span>
+<span class="w">        </span><span class="no"># See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail</span>
+<span class="w">        </span><span class="no">(cd ${BUILDDIR} &amp;&amp; ctest -C ${{env.BUILD_TYPE}})</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="development.html" class="btn btn-neutral float-left" title="Development" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="glossary.html" class="btn btn-neutral float-right" title="Glossary" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1980, Roland Conybeare.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

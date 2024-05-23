@@ -44,20 +44,22 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">xo-unit contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">xo-unit contents</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="implementation.html">Abstraction Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="implementation.html#representation">Representation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="development.html">How To…</a></li>
-<li class="toctree-l1"><a class="reference internal" href="unit-quantities.html">Unit Quantities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="unit-reference.html">Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xquantity-reference.html">Xquantity Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scaled-unit-reference.html">Scaled Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="natural-unit-class.html">Natural Unit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bu-store-class.html">Basis Unit Store</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Basis Unit</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Basis Unit Class</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#context">Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#class">Class</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4N2xo3qty10basis_unitE"><code class="docutils literal notranslate"><span class="pre">basis_unit</span></code></a></li>
 </ul>
@@ -87,7 +89,12 @@
 <li class="toctree-l2"><a class="reference internal" href="basis-unit-constants.html">Basis Unit Constants</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Native Dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubuntu-github-workflow.html">Ubuntu Github Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search.html">Search Page</a></li>
 </ul>
 
         </div>
@@ -117,11 +124,32 @@
              
   <section id="basis-unit">
 <span id="basis-unit-class"></span><h1>Basis Unit<a class="headerlink" href="#basis-unit" title="Link to this heading"></a></h1>
+<p>A unit representing a fixed multiple of a native dimension.</p>
+<section id="context">
+<h2>Context<a class="headerlink" href="#context" title="Link to this heading"></a></h2>
+<img alt="_images/ditaa-cec989073f835607919dbe4cb7ee2cecf0fa3971.png" src="_images/ditaa-cec989073f835607919dbe4cb7ee2cecf0fa3971.png" />
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>A <code class="code docutils literal notranslate"><span class="pre">basis_unit</span></code> represents a unit belonging to a single native dimension.
+For example <code class="code docutils literal notranslate"><span class="pre">bu::meter</span></code> representing a distance of 1 meter.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;xo/unit/basis_unit.hpp&gt;</span>
 </pre></div>
 </div>
-<p>A <code class="code docutils literal notranslate"><span class="pre">basis_unit</span></code> represents a unit belonging to a single native dimension.
-For example <code class="code docutils literal notranslate"><span class="pre">bu::meter</span></code> representing a distance of 1 meter.</p>
+<figure class="align-center" id="id1">
+<p class="plantuml">
+<a href="_images/plantuml-05a2e453d4bfbc8cdece85a973505e7ba5902ec7.png"><img src="_images/plantuml-05a2e453d4bfbc8cdece85a973505e7ba5902ec7.png" alt="object bu1&lt;&lt;basis_unit&gt;&gt;
+bu1 : native_dim = time
+bu1 : scalefactor = 60" style="width: 153.45px; height: 93.06px"/></a>
+</p>
+<figcaption>
+<p><span class="caption-text">basis unit representing 1 minute</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p><code class="code docutils literal notranslate"><span class="pre">basis_unit</span></code> is intended as an implementation-level abstraction.
+Application code will normally interact with the more-capable <code class="code docutils literal notranslate"><span class="pre">scaled_unit</span></code>
+instead of <code class="code docutils literal notranslate"><span class="pre">basis_unit</span></code>.</p>
+</section>
 <section id="class">
 <h2>Class<a class="headerlink" href="#class" title="Link to this heading"></a></h2>
 <dl class="cpp class">

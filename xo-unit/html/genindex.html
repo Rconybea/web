@@ -41,20 +41,25 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">xo-unit contents:</span></p>
-<ul>
+              <p class="caption" role="heading"><span class="caption-text">xo-unit contents</span></p>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="implementation.html">Abstraction Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="implementation.html#representation">Representation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="development.html">How To…</a></li>
-<li class="toctree-l1"><a class="reference internal" href="unit-quantities.html">Unit Quantities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="unit-reference.html">Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xquantity-reference.html">Xquantity Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scaled-unit-reference.html">Scaled Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="natural-unit-class.html">Natural Unit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bu-store-class.html">Basis Unit Store</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Native Dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubuntu-github-workflow.html">Ubuntu Github Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search.html">Search Page</a></li>
 </ul>
 
         </div>
@@ -124,15 +129,17 @@
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="glossary.html#term-basis-dimension"><strong>basis dimension</strong></a>
+      <li><a href="glossary.html#term-basis-power-unit"><strong>basis power unit</strong></a>
 </li>
-      <li><a href="glossary.html#term-basis-unit-bu"><strong>basis unit (bu)</strong></a>
+      <li><a href="glossary.html#term-basis-unit"><strong>basis unit</strong></a>
+</li>
+      <li><a href="basis-unit-class.html#_CPPv410basis_unit9dimensionRK22scalefactor_ratio_type">basis_unit (C++ function)</a>, <a href="basis-unit-class.html#_CPPv410basis_unitv">[1]</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="basis-unit-class.html#_CPPv410basis_unit9dimensionRK22scalefactor_ratio_type">basis_unit (C++ function)</a>, <a href="basis-unit-class.html#_CPPv410basis_unitv">[1]</a>
-</li>
       <li><a href="glossary.html#term-bpu"><strong>bpu</strong></a>
+</li>
+      <li><a href="glossary.html#term-bu"><strong>bu</strong></a>
 </li>
       <li><a href="bu-store-class.html#_CPPv412bu_abbrev_v_">bu_abbrev_v_ (C++ member)</a>
 </li>
@@ -151,6 +158,12 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="basis-unit-constants.html#_CPPv43day">day (C++ member)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="glossary.html#term-dim"><strong>dim</strong></a>
+</li>
+      <li><a href="glossary.html#term-dimension"><strong>dimension</strong></a>
 </li>
   </ul></td>
 </tr></table>
@@ -284,17 +297,19 @@
 </li>
       <li><a href="basis-unit-constants.html#_CPPv49nanometre">nanometre (C++ member)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="basis-unit-constants.html#_CPPv410nanosecond">nanosecond (C++ member)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="basis-unit-class.html#_CPPv4NK10native_dimEv">native_dim (C++ function)</a>
 </li>
       <li><a href="basis-unit-class.html#_CPPv411native_dim_">native_dim_ (C++ member)</a>
 </li>
       <li><a href="bu-store-class.html#_CPPv414native_scale_v">native_scale_v (C++ type)</a>
 </li>
-      <li><a href="glossary.html#term-natural-unit-nu"><strong>natural unit (nu)</strong></a>
+      <li><a href="glossary.html#term-natural-unit"><strong>natural unit</strong></a>
+</li>
+      <li><a href="glossary.html#term-nu"><strong>nu</strong></a>
 </li>
   </ul></td>
 </tr></table>
@@ -306,12 +321,8 @@
 </li>
       <li><a href="basis-unit-class.html#_CPPv4neRK10basis_unitRK10basis_unit">operator!= (C++ function)</a>
 </li>
-      <li><a href="quantity-class.html#_CPPv4I0EpLR8quantity9Quantity2">operator+= (C++ function)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="quantity-class.html#_CPPv4I0EmIR8quantity9Quantity2">operator-= (C++ function)</a>
-</li>
       <li><a href="quantity-class.html#_CPPv4I0EaSR8quantityRK2Q2">operator= (C++ function)</a>, <a href="quantity-class.html#_CPPv4aSRK8quantity">[1]</a>
 </li>
       <li><a href="basis-unit-class.html#_CPPv4eqRK10basis_unitRK10basis_unit">operator== (C++ function)</a>
@@ -372,15 +383,17 @@
 </li>
       <li><a href="quantity-class.html#_CPPv46scale_">scale_ (C++ member)</a>
 </li>
+      <li><a href="glossary.html#term-scaled-unit"><strong>scaled unit</strong></a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="glossary.html#term-scaled-unit-su"><strong>scaled unit (su)</strong></a>
-</li>
       <li><a href="basis-unit-class.html#_CPPv4NK11scalefactorEv">scalefactor (C++ function)</a>
 </li>
       <li><a href="basis-unit-class.html#_CPPv412scalefactor_">scalefactor_ (C++ member)</a>
 </li>
       <li><a href="basis-unit-constants.html#_CPPv46second">second (C++ member)</a>
+</li>
+      <li><a href="glossary.html#term-su"><strong>su</strong></a>
 </li>
   </ul></td>
 </tr></table>
@@ -432,6 +445,8 @@
 </li>
       <li><a href="basis-unit-class.html#_CPPv4N2xo3qty10basis_unitE">xo::qty::basis_unit (C++ class)</a>
 </li>
+      <li><a href="bpu-class.html#_CPPv4I0EN2xo3qty3bpuE">xo::qty::bpu (C++ class)</a>
+</li>
       <li><a href="bu-store-class.html#_CPPv4N2xo3qty9bu_abbrevERK10basis_unit">xo::qty::bu_abbrev (C++ function)</a>
 </li>
       <li><a href="bu-store-class.html#_CPPv4N2xo3qty15bu_abbrev_storeE">xo::qty::bu_abbrev_store (C++ member)</a>
@@ -460,13 +475,23 @@
 </li>
       <li><a href="dimension-enum.html#_CPPv4N2xo3qty5n_dimE">xo::qty::n_dim (C++ member)</a>
 </li>
+      <li><a href="natural-unit-class.html#_CPPv4I0EN2xo3qty12natural_unitE">xo::qty::natural_unit (C++ class)</a>
+</li>
       <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty16astronomicalunitE">xo::qty::qty::astronomicalunit (C++ member)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty17astronomicalunitsEDa4Repr">xo::qty::qty::astronomicalunits (C++ function)</a>
 </li>
       <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty3dayE">xo::qty::qty::day (C++ member)</a>
 </li>
       <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty4daysEDa4Repr">xo::qty::qty::days (C++ function)</a>
 </li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty4feetEDa4Repr">xo::qty::qty::feet (C++ function)</a>
+</li>
       <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty9gigameterE">xo::qty::qty::gigameter (C++ member)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty10gigametersEDa4Repr">xo::qty::qty::gigameters (C++ function)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty10gigatonnesEDa4Repr">xo::qty::qty::gigatonnes (C++ function)</a>
 </li>
       <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty4gramE">xo::qty::qty::gram (C++ member)</a>
 </li>
@@ -480,8 +505,6 @@
 </li>
       <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty8kilogramE">xo::qty::qty::kilogram (C++ member)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty9kilogramsEDa4Repr">xo::qty::qty::kilograms (C++ function)</a>
 </li>
       <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty9kilometerE">xo::qty::qty::kilometer (C++ member)</a>
@@ -490,17 +513,35 @@
 </li>
       <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty9kilotonneE">xo::qty::qty::kilotonne (C++ member)</a>
 </li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty10kilotonnesEDa4Repr">xo::qty::qty::kilotonnes (C++ function)</a>
+</li>
       <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty11lightsecondE">xo::qty::qty::lightsecond (C++ member)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty12lightsecondsEDa4Repr">xo::qty::qty::lightseconds (C++ function)</a>
 </li>
       <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty9megameterE">xo::qty::qty::megameter (C++ member)</a>
 </li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty10megametersEDa4Repr">xo::qty::qty::megameters (C++ function)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty10megatonnesEDa4Repr">xo::qty::qty::megatonnes (C++ function)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty5meterE">xo::qty::qty::meter (C++ member)</a>
 </li>
       <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty6metersEDa4Repr">xo::qty::qty::meters (C++ function)</a>
 </li>
+      <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty9microgramE">xo::qty::qty::microgram (C++ member)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty10microgramsEDa4Repr">xo::qty::qty::micrograms (C++ function)</a>
+</li>
       <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty10micrometerE">xo::qty::qty::micrometer (C++ member)</a>
 </li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty11micrometersEDa4Repr">xo::qty::qty::micrometers (C++ function)</a>
+</li>
       <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty12microsecondsEDa4Repr">xo::qty::qty::microseconds (C++ function)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty5milesEDa4Repr">xo::qty::qty::miles (C++ function)</a>
 </li>
       <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty9milligramE">xo::qty::qty::milligram (C++ member)</a>
 </li>
@@ -516,11 +557,27 @@
 </li>
       <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty7minutesEDa4Repr">xo::qty::qty::minutes (C++ function)</a>
 </li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty6monthsEDa4Repr">xo::qty::qty::months (C++ function)</a>
+</li>
+      <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty8nanogramE">xo::qty::qty::nanogram (C++ member)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty9nanogramsEDa4Repr">xo::qty::qty::nanograms (C++ function)</a>
+</li>
       <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty9nanometerE">xo::qty::qty::nanometer (C++ member)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty10nanometersEDa4Repr">xo::qty::qty::nanometers (C++ function)</a>
 </li>
       <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty11nanosecondsEDa4Repr">xo::qty::qty::nanoseconds (C++ function)</a>
 </li>
+      <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty8picogramE">xo::qty::qty::picogram (C++ member)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty9picogramsEDa4Repr">xo::qty::qty::picograms (C++ function)</a>
+</li>
       <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty9picometerE">xo::qty::qty::picometer (C++ member)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty10picometersEDa4Repr">xo::qty::qty::picometers (C++ function)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty11picosecondsEDa4Repr">xo::qty::qty::picoseconds (C++ function)</a>
 </li>
       <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty6secondE">xo::qty::qty::second (C++ member)</a>
 </li>
@@ -528,11 +585,33 @@
 </li>
       <li><a href="quantity-unitvars.html#_CPPv4N2xo3qty3qty5tonneE">xo::qty::qty::tonne (C++ member)</a>
 </li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty6tonnesEDa4Repr">xo::qty::qty::tonnes (C++ function)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty15volatility_250dEDa4Repr">xo::qty::qty::volatility_250d (C++ function)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty14volatility_30dEDa4Repr">xo::qty::qty::volatility_30d (C++ function)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty15volatility_360dEDa4Repr">xo::qty::qty::volatility_360d (C++ function)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty15volatility_365dEDa4Repr">xo::qty::qty::volatility_365d (C++ function)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty5weeksEDa4Repr">xo::qty::qty::weeks (C++ function)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty5yardsEDa4Repr">xo::qty::qty::yards (C++ function)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty8year250sEDa4Repr">xo::qty::qty::year250s (C++ function)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty8year360sEDa4Repr">xo::qty::qty::year360s (C++ function)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty8year365sEDa4Repr">xo::qty::qty::year365s (C++ function)</a>
+</li>
+      <li><a href="quantity-factoryfunctions.html#_CPPv4I0EN2xo3qty3qty5yearsEDa4Repr">xo::qty::qty::years (C++ function)</a>
+</li>
       <li><a href="quantity-class.html#_CPPv4I_Da0EN2xo3qty8quantityE">xo::qty::quantity (C++ class)</a>
 </li>
-      <li><a href="unit-concept.html#_CPPv4I0EN2xo4unit18basis_unit_conceptE">xo::unit::basis_unit_concept (C++ concept)</a>
+      <li><a href="scaled-unit-class.html#_CPPv4I00EN2xo3qty11scaled_unitE">xo::qty::scaled_unit (C++ class)</a>
 </li>
-      <li><a href="unit-concept.html#_CPPv4I0EN2xo4unit12unit_conceptE">xo::unit::unit_concept (C++ concept)</a>
+      <li><a href="xquantity-class.html#_CPPv4I000EN2xo3qty9xquantityE">xo::qty::xquantity (C++ class)</a>
 </li>
   </ul></td>
 </tr></table>

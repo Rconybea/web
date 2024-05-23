@@ -18,9 +18,11 @@
         <script src="_static/documentation_options.js?v=5929fcd5"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Ubuntu Github Workflow" href="ubuntu-github-workflow.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,20 +44,27 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">xo-unit contents:</span></p>
-<ul>
+              <p class="caption" role="heading"><span class="caption-text">xo-unit contents</span></p>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="implementation.html">Abstraction Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="implementation.html#representation">Representation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="development.html">How To…</a></li>
-<li class="toctree-l1"><a class="reference internal" href="unit-quantities.html">Unit Quantities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="unit-reference.html">Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xquantity-reference.html">Xquantity Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scaled-unit-reference.html">Scaled Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="natural-unit-class.html">Natural Unit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bu-store-class.html">Basis Unit Store</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Native Dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubuntu-github-workflow.html">Ubuntu Github Workflow</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Glossary</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search.html">Search Page</a></li>
 </ul>
 
         </div>
@@ -84,22 +93,36 @@
              
   <section id="glossary">
 <span id="id1"></span><h1>Glossary<a class="headerlink" href="#glossary" title="Link to this heading"></a></h1>
-<dl class="simple glossary">
-<dt id="term-basis-dimension">basis dimension<a class="headerlink" href="#term-basis-dimension" title="Link to this term"></a></dt><dd><p>Orthogonal directions associated with basis units,  for example <em>mass</em>, <em>length</em>, <em>time</em>.
-In xo-unit these are represented by the enum <code class="docutils literal notranslate"><span class="pre">xo::qty::dim</span></code>.</p>
+<dl class="glossary">
+<dt id="term-dimension">dimension<a class="headerlink" href="#term-dimension" title="Link to this term"></a></dt><dt id="term-dim">dim<a class="headerlink" href="#term-dim" title="Link to this term"></a></dt><dd><div class="line-block">
+<div class="line">Fundamental, orthogonal directions associated available for constructing units.</div>
+<div class="line">For example <em>mass</em>, <em>length</em>, <em>time</em>.</div>
+<div class="line">In <em>xo-unit</em> these are represented by the enum <a class="reference internal" href="dimension-enum.html"><span class="doc">xo::qty::dimension</span></a>.</div>
+</div>
 </dd>
-<dt id="term-basis-unit-bu">basis unit (bu)<a class="headerlink" href="#term-basis-unit-bu" title="Link to this term"></a></dt><dd><p>An implementation type representing a quantity (with associated scale) in the direction of a single <a class="reference internal" href="#term-basis-dimension"><span class="xref std std-term">basis dimension</span></a>.
-For example <em>milliseconds</em>, <em>seconds</em>, and <em>hours</em> stand for different basis units with the <em>time</em> dimension.
-In xo-unit these are represented by the template type <code class="docutils literal notranslate"><span class="pre">xo::qty::basis_unit</span></code>.</p>
+<dt id="term-basis-unit">basis unit<a class="headerlink" href="#term-basis-unit" title="Link to this term"></a></dt><dt id="term-bu">bu<a class="headerlink" href="#term-bu" title="Link to this term"></a></dt><dd><div class="line-block">
+<div class="line">An implementation type representing a quantity (with associated scale) in the direction of a single <a class="reference internal" href="#term-dimension"><span class="xref std std-term">dimension</span></a>.</div>
+<div class="line">For example <em>milliseconds</em>, <em>seconds</em>, and <em>hours</em> stand for different basis units within the <em>time</em> dimension.</div>
+<div class="line">In <em>xo-unit</em> these are represented by the template type <a class="reference internal" href="basis-unit-class.html"><span class="doc">xo::qty::basis_unit</span></a>.</div>
+</div>
 </dd>
-<dt id="term-bpu">bpu<a class="headerlink" href="#term-bpu" title="Link to this term"></a></dt><dd><p>A rational power of a (single) basis unit.  For example <em>s:sup:-2</em> or <em>hr:sup:-(1/2)</em>.
-In xo-unit these are represented by the template type <code class="docutils literal notranslate"><span class="pre">xo::qty::bpu</span></code>.</p>
+<dt id="term-basis-power-unit">basis power unit<a class="headerlink" href="#term-basis-power-unit" title="Link to this term"></a></dt><dt id="term-bpu">bpu<a class="headerlink" href="#term-bpu" title="Link to this term"></a></dt><dd><div class="line-block">
+<div class="line">A rational power of a (single) basis unit.</div>
+<div class="line">For example <span class="math notranslate nohighlight">\(s^{-2}\)</span> for unit “per second squared” or <span class="math notranslate nohighlight">\(yr^{-(1/2)}\)</span> for “per square-root of a year”.</div>
+<div class="line">In <em>xo-unit</em> these are represented by the template type <a class="reference internal" href="bpu-class.html"><span class="doc">xo::qty::bpu</span></a></div>
+</div>
 </dd>
-<dt id="term-natural-unit-nu">natural unit (nu)<a class="headerlink" href="#term-natural-unit-nu" title="Link to this term"></a></dt><dd><p>A cartesian product of basis power units (bpus).  For example <em>kg.m.s:sup:-2</em> or <em>hr:sup:-(1/2)</em>.
-In xo-unit these are represented by template type <code class="docutils literal notranslate"><span class="pre">xo::qty::natural_unit</span></code>.</p>
+<dt id="term-natural-unit">natural unit<a class="headerlink" href="#term-natural-unit" title="Link to this term"></a></dt><dt id="term-nu">nu<a class="headerlink" href="#term-nu" title="Link to this term"></a></dt><dd><div class="line-block">
+<div class="line">A cartesian product of basis power units (bpus);</div>
+<div class="line">For example <span class="math notranslate nohighlight">\(kg.m.s^{-2}\)</span> or <span class="math notranslate nohighlight">\(hr^{-(1/2)}\)</span>.</div>
+<div class="line">In <em>xo-unit</em> these are represented by template type <a class="reference internal" href="natural-unit-class.html"><span class="doc">xo::qty::natural_unit</span></a>.</div>
+</div>
 </dd>
-<dt id="term-scaled-unit-su">scaled unit (su)<a class="headerlink" href="#term-scaled-unit-su" title="Link to this term"></a></dt><dd><p>A dimensionless multiple of a natural unit.  Used as intermediate value when coalescing quantities involving different units.
-In xo-unit these are represented by template type <code class="docutils literal notranslate"><span class="pre">xo::qty::scaled_unit</span></code>.</p>
+<dt id="term-scaled-unit">scaled unit<a class="headerlink" href="#term-scaled-unit" title="Link to this term"></a></dt><dt id="term-su">su<a class="headerlink" href="#term-su" title="Link to this term"></a></dt><dd><div class="line-block">
+<div class="line">A dimensionless multiple of a natural unit.</div>
+<div class="line">Used as intermediate value when coalescing quantities involving different units.</div>
+<div class="line">In <em>xo-unit</em> these are represented by template type <a class="reference internal" href="scaled-unit-class.html"><span class="doc">xo::qty::scaled_unit</span></a>.</div>
+</div>
 </dd>
 <dt id="term-XO">XO<a class="headerlink" href="#term-XO" title="Link to this term"></a></dt><dd><p>A set of integrated c++ libraries for complex event processing, with browser and python integration.
 <a class="reference external" href="https://rconybea.github.io/web/sw/xo.html">xo documentation here</a></p>
@@ -112,7 +135,9 @@ In xo-unit these are represented by template type <code class="docutils literal 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ubuntu-github-workflow.html" class="btn btn-neutral float-left" title="Ubuntu Github Workflow" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
   <hr/>
 

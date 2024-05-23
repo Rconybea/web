@@ -44,25 +44,35 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">xo-unit contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">xo-unit contents</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Install</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#include-as-submodule">Include as submodule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ubuntu-install-pattern">Ubuntu Install Pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-from-source">Installing from source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#use-cmake-support">Use CMake Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-and-install-with-unit-tests-enabled">Build and Install with Unit Tests Enabled</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-examples">Build Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-and-install-documentation">Build and Install Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#supported-compilers">Supported compilers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#building-from-source">Building from source</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="implementation.html">Abstraction Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="implementation.html#representation">Representation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="development.html">How To…</a></li>
-<li class="toctree-l1"><a class="reference internal" href="unit-quantities.html">Unit Quantities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="unit-reference.html">Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xquantity-reference.html">Xquantity Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scaled-unit-reference.html">Scaled Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="natural-unit-class.html">Natural Unit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bu-store-class.html">Basis Unit Store</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Native Dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubuntu-github-workflow.html">Ubuntu Github Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search.html">Search Page</a></li>
 </ul>
 
         </div>
@@ -91,42 +101,241 @@
              
   <span class="target" id="install"></span><section id="id1">
 <h1>Install<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
-<p><a class="reference external" href="https://github.com/rconybea/xo-unit">xo-unit source</a> lives on github.</p>
+<p><code class="docutils literal notranslate"><span class="pre">xo-unit</span></code> uses supporting header-only libraries <code class="docutils literal notranslate"><span class="pre">xo-ratio</span></code> and <code class="docutils literal notranslate"><span class="pre">xo-flatstring</span></code>.
+and (optionally) cmake macros <code class="docutils literal notranslate"><span class="pre">xo-cmake</span></code>.  These are on github:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/rconybea/xo-unit">xo-unit source</a> (constexpr quantities, units and dimension-checking)</p></li>
+<li><p><a class="reference external" href="https://github.com/rconybea/xo-ratio">xo-ratio source</a> (constexpr exact ratios)</p></li>
+<li><p><a class="reference external" href="https://github.com/rconybea/xo-flatstring">xo-flatstring source</a> (constexpr strings)</p></li>
+<li><p><a class="reference external" href="https://github.com/rconybea/xo-cmake">xo-cmake source</a> (shared cmake macros)</p></li>
+</ul>
+<p><cite>xo-cmake</cite> is nccessary to invoke <cite>xo</cite> cmake build for:</p>
+<ul class="simple">
+<li><p>site install</p></li>
+<li><p>example programs</p></li>
+<li><p>unit tests</p></li>
+</ul>
+<p>Can omit to instead copy <cite>xo_unit</cite>, <cite>xo-ratio</cite> and <cite>xo-flatstring</cite> source trees;
+see instructions below for including as git submodule</p>
 <p>Implementation relies on some c++20 features (for example class-instances as template arguments).
 Tested with gcc 12.3, 13.2</p>
 <section id="include-as-submodule">
 <h2>Include as submodule<a class="headerlink" href="#include-as-submodule" title="Link to this heading"></a></h2>
+<p>One way to use <code class="docutils literal notranslate"><span class="pre">xo-unit</span></code> in a project is to import the source tree directly:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>myproject
+git<span class="w"> </span>submodule<span class="w"> </span>add<span class="w"> </span>-b<span class="w"> </span>main<span class="w"> </span>https://github.com/rconybea/xo-flatstring<span class="w"> </span>ext/xo-flatstring
+git<span class="w"> </span>submodule<span class="w"> </span>add<span class="w"> </span>-b<span class="w"> </span>main<span class="w"> </span>https://github.com/rconybea/xo-ratio<span class="w"> </span>ext/xo-ratio
 git<span class="w"> </span>submodule<span class="w"> </span>add<span class="w"> </span>-b<span class="w"> </span>main<span class="w"> </span>https://github.com/rconybea/xo-unit<span class="w"> </span>ext/xo-unit
 git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init
 </pre></div>
 </div>
 <p>This assumes you organize directly-incorporated dependencies under directory <code class="docutils literal notranslate"><span class="pre">myproject/ext</span></code>.
-You would then add <code class="docutils literal notranslate"><span class="pre">myproject/ext/xo-unit/include</span></code> to your compiler’s include path,
-and add</p>
+You would then add to your compiler’s include path the directories <code class="docutils literal notranslate"><span class="pre">myproject/ext/xo-flatstring/include</span></code>,
+<code class="docutils literal notranslate"><span class="pre">myproject/ext/xo-ratio/include</span></code>, <code class="docutils literal notranslate"><span class="pre">myproject/ext/xo-unit/include</span></code>;</p>
+<p>and add</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;xo/unit/quantity.hpp&gt;</span>
 </pre></div>
 </div>
 <p>to c++ source files that rely on xo-unit</p>
 </section>
+<section id="ubuntu-install-pattern">
+<h2>Ubuntu Install Pattern<a class="headerlink" href="#ubuntu-install-pattern" title="Link to this heading"></a></h2>
+<p><a class="reference internal" href="ubuntu-github-workflow.html"><span class="doc">Example instructions</span></a> (used for github actions CI) for build starting from stock ubuntu</p>
+</section>
+<section id="installing-from-source">
+<h2>Installing from source<a class="headerlink" href="#installing-from-source" title="Link to this heading"></a></h2>
+<p>Install scripts for <cite>xo-unit</cite>, <cite>xo-ratio</cite> and <cite>xo-flatstring</cite> depend on shared cmake macros
+and a bootstrap script <cite>xo-cmake-config</cite>.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/rconybea/xo-cmake">xo-cmake</a> source</p></li>
+</ul>
+<p>Preamble:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/proj/xo
+<span class="nb">cd</span><span class="w"> </span>~/proj/xo
+
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/rconybea/xo-cmake
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/rconybea/xo-flatstring
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/rconybea/xo-ratio
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/rconybea/xo-unit
+
+<span class="nv">PREFIX</span><span class="o">=</span>~/local<span class="w">  </span><span class="c1"># ..or other desired installation prefix</span>
+</pre></div>
+</div>
+<p>Ordering below is important;  cmake support for each subsystem
+requires successful installation of its predecessor.</p>
+<p>Install <cite>xo-cmake</cite>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="nv">$PREFIX</span><span class="w"> </span>-B<span class="w"> </span>xo-cmake/.build<span class="w"> </span>-S<span class="w"> </span>xo-cmake
+cmake<span class="w"> </span>--build<span class="w"> </span>xo-cmake/.build<span class="w"> </span>-j<span class="w">   </span><span class="c1"># placeholder, no-op for now</span>
+cmake<span class="w"> </span>--install<span class="w"> </span>xo-cmake/.build
+</pre></div>
+</div>
+<p>Build and Install <cite>xo-flatstring</cite>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="nv">$PREFIX</span><span class="w"> </span>-DENABLE_TESTING<span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-B<span class="w"> </span>xo-flatstring/.build<span class="w"> </span>-S<span class="w"> </span>xo-flatstring
+cmake<span class="w"> </span>--build<span class="w"> </span>xo-flatstring/.build<span class="w"> </span>-j
+cmake<span class="w"> </span>--install<span class="w"> </span>xo-flatstring/.build
+</pre></div>
+</div>
+<p>Build and Install <cite>xo-ratio</cite>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="nv">$PREFIX</span><span class="w"> </span>-DENABLE_TESTING<span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-B<span class="w"> </span>xo-ratio/.build<span class="w"> </span>-S<span class="w"> </span>xo-ratio
+cmake<span class="w"> </span>--build<span class="w"> </span>xo-ratio/.build<span class="w"> </span>-j
+cmake<span class="w"> </span>--install<span class="w"> </span>xo-ratio/.build
+</pre></div>
+</div>
+<p>Build and Install <cite>xo-unit</cite>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="nv">$PREFIX</span><span class="w"> </span>-DENABLE_TESTING<span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-B<span class="w"> </span>xo-unit/.build<span class="w"> </span>-S<span class="w"> </span>xo-unit
+cmake<span class="w"> </span>--build<span class="w"> </span>xo-unit/.build<span class="w"> </span>-j
+cmake<span class="w"> </span>--install<span class="w"> </span>xo-unit/.build
+</pre></div>
+</div>
+<p>Directories under <code class="docutils literal notranslate"><span class="pre">PREFIX</span></code> will then contain:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PREFIX</span>
+<span class="o">+-</span> <span class="nb">bin</span>
+<span class="o">|</span>  \<span class="o">-</span> <span class="n">xo</span><span class="o">-</span><span class="n">cmake</span><span class="o">-</span><span class="n">config</span>
+<span class="o">+-</span> <span class="n">include</span>
+<span class="o">|</span>  \<span class="o">-</span> <span class="n">xo</span>
+<span class="o">|</span>     <span class="o">+-</span> <span class="n">cxxutil</span><span class="o">/</span>
+<span class="o">|</span>     <span class="o">+-</span> <span class="n">flatstring</span><span class="o">/</span>
+<span class="o">|</span>     <span class="o">+-</span> <span class="n">ratio</span><span class="o">/</span>
+<span class="o">|</span>     <span class="o">+-</span> <span class="n">unit</span><span class="o">/</span>
+<span class="o">+-</span> <span class="n">lib</span>
+<span class="o">|</span>  \<span class="o">-</span> <span class="n">cmake</span>
+<span class="o">|</span>     <span class="o">+-</span> <span class="n">indentlog</span><span class="o">/</span>
+<span class="o">|</span>     <span class="o">+-</span> <span class="n">randomgen</span><span class="o">/</span>
+<span class="o">|</span>     <span class="o">+-</span> <span class="n">xo_flatstring</span><span class="o">/</span>
+<span class="o">|</span>     \<span class="o">-</span> <span class="n">xo_unit</span><span class="o">/</span>
+<span class="o">+-</span> <span class="n">share</span>
+   \<span class="o">-</span> <span class="n">cmake</span>
+      \<span class="o">-</span> <span class="n">xo_macros</span><span class="o">/</span>
+</pre></div>
+</div>
+</section>
+<section id="use-cmake-support">
+<h2>Use CMake Support<a class="headerlink" href="#use-cmake-support" title="Link to this heading"></a></h2>
+<p>To use built-in cmake suport:</p>
+<p>Make sure <code class="docutils literal notranslate"><span class="pre">PREFIX/lib/cmake</span></code> is searched by cmake (if necessary, include it in <code class="docutils literal notranslate"><span class="pre">CMAKE_PREFIX_PATH</span></code>)</p>
+<p>Add to <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code>:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">FindPackage</span><span class="p">(</span><span class="s">xo_unit</span><span class="w"> </span><span class="s">CONFIG</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">mytarget</span><span class="w"> </span><span class="s">INTERFACE</span><span class="w"> </span><span class="s">xo_unit</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="build-and-install-with-unit-tests-enabled">
+<h2>Build and Install with Unit Tests Enabled<a class="headerlink" href="#build-and-install-with-unit-tests-enabled" title="Link to this heading"></a></h2>
+<p>Running unit tests require a few additional dependencies:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/catchorg/Catch2">catch2</a> header-only unit-test framework</p></li>
+<li><p><a class="reference external" href="https://github.com/rconybea/indentlog">xo-indentlog</a> logging with call-structure indenting</p></li>
+<li><p><a class="reference external" href="https://github.com/rconybea/randomgen">xo-randomgen</a> fast random number generator (xoshiro256ss)</p></li>
+</ul>
+<p>Preamble:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/proj/xo
+<span class="nb">cd</span><span class="w"> </span>~/proj/xo
+
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/rconybea/xo-cmake
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/rconybea/indentlog<span class="w"> </span>xo-indentlog
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/rconybea/randomgen<span class="w"> </span>xo-randomgen
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/rconybea/xo-flatstring
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/rconybea/xo-ratio
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/rconybea/xo-unit
+
+<span class="nv">PREFIX</span><span class="o">=</span>~/local<span class="w">  </span><span class="c1"># ..or other desired installation prefix</span>
+</pre></div>
+</div>
+<p>Build and Install <cite>catch2</cite> (assuming ubuntu here):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>catch2<span class="w">  </span><span class="c1"># on ubuntu, for example</span>
+</pre></div>
+</div>
+<p>Build and Install <cite>xo-cmake</cite>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="nv">$PREFIX</span><span class="w"> </span>-B<span class="w"> </span>xo-cmake/.build<span class="w"> </span>-S<span class="w"> </span>xo-cmake
+cmake<span class="w"> </span>--build<span class="w"> </span>xo-cmake/.build<span class="w"> </span>-j<span class="w">   </span><span class="c1"># placeholder, no-op for now</span>
+cmake<span class="w"> </span>--install<span class="w"> </span>xo-cmake/.build
+</pre></div>
+</div>
+<p>Build, Test and Install <cite>xo-indentlog</cite>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="nv">$PREFIX</span><span class="w"> </span>-B<span class="w"> </span>xo-indentlog/.build<span class="w"> </span>-S<span class="w"> </span>xo-indentlog
+cmake<span class="w"> </span>--build<span class="w"> </span>xo-indentlog/.build<span class="w"> </span>-j
+cmake<span class="w"> </span>--build<span class="w"> </span>xo-indentlog/.build<span class="w"> </span>--<span class="w"> </span><span class="nb">test</span><span class="w">   </span><span class="c1"># run unit tests, cmake invokes ctest</span>
+<span class="o">(</span><span class="nb">cd</span><span class="w"> </span>xo-indentlog/.build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>ctest<span class="o">)</span><span class="w">           </span><span class="c1"># or invoke ctest directly</span>
+cmake<span class="w"> </span>--install<span class="w"> </span>xo-indentlog/.build
+</pre></div>
+</div>
+<p>Build and Install <cite>xo-randomgen</cite> (no unit tests yet):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="nv">$PREFIX</span><span class="w"> </span>-B<span class="w"> </span>xo-randomgen/.build<span class="w"> </span>-S<span class="w"> </span>xo-randomgen
+cmake<span class="w"> </span>--build<span class="w"> </span>xo-randomgen/.build<span class="w"> </span>-j
+cmake<span class="w"> </span>--install<span class="w"> </span>xo-randomgen/.build
+</pre></div>
+</div>
+<p>Build, Test and Install <cite>xo-flatstring</cite>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="nv">$PREFIX</span><span class="w"> </span>-B<span class="w"> </span>xo-flatstring/.build<span class="w"> </span>-S<span class="w"> </span>xo-flatstring
+cmake<span class="w"> </span>--build<span class="w"> </span>xo-flatstring/.build<span class="w"> </span>-j
+cmake<span class="w"> </span>--build<span class="w"> </span>xo-flatstring/.build<span class="w"> </span>--<span class="w"> </span><span class="nb">test</span><span class="w">   </span><span class="c1"># run unit tests, cmake invokes ctest</span>
+<span class="o">(</span><span class="nb">cd</span><span class="w"> </span>xo-flatstring/.build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>ctest<span class="o">)</span><span class="w">           </span><span class="c1"># or invoke ctest directly</span>
+cmake<span class="w"> </span>--install<span class="w"> </span>xo-flatstring/.build
+</pre></div>
+</div>
+<p>Build, Test and Install <cite>xo-ratio</cite>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="nv">$PREFIX</span><span class="w"> </span>-B<span class="w"> </span>xo-ratio/.build<span class="w"> </span>-S<span class="w"> </span>xo-ratio
+cmake<span class="w"> </span>--build<span class="w"> </span>xo-ratio/.build<span class="w"> </span>-j
+cmake<span class="w"> </span>--build<span class="w"> </span>xo-ratio/.build<span class="w"> </span>--<span class="w"> </span><span class="nb">test</span><span class="w">   </span><span class="c1"># run unit tests, cmake invokes ctest</span>
+<span class="o">(</span><span class="nb">cd</span><span class="w"> </span>xo-ratio/.build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>ctest<span class="o">)</span><span class="w">           </span><span class="c1"># or invoke ctest directly</span>
+cmake<span class="w"> </span>--install<span class="w"> </span>xo-ratio/.build
+</pre></div>
+</div>
+<p>Build, Test and Install <cite>xo-unit</cite>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="nv">$PREFIX</span><span class="w"> </span>-B<span class="w"> </span>xo-unit/.build<span class="w"> </span>-S<span class="w"> </span>xo-unit
+cmake<span class="w"> </span>--build<span class="w"> </span>xo-unit/.build<span class="w"> </span>-j
+cmake<span class="w"> </span>--build<span class="w"> </span>xo-unit/.build<span class="w"> </span>--<span class="w"> </span><span class="nb">test</span><span class="w">   </span><span class="c1"># run unit tests, cmake invokes ctest</span>
+<span class="o">(</span><span class="nb">cd</span><span class="w"> </span>xo-unit/.build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>ctest<span class="o">)</span><span class="w">           </span><span class="c1"># or invoke ctest directly</span>
+cmake<span class="w"> </span>--install<span class="w"> </span>xo-unit/.build
+</pre></div>
+</div>
+</section>
+<section id="build-examples">
+<h2>Build Examples<a class="headerlink" href="#build-examples" title="Link to this heading"></a></h2>
+<p>To enable building example programs:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/proj/xo
+cmake<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="nv">$PREFIX</span><span class="w"> </span>-DXO_ENABLE_EXAMPLES<span class="o">=</span><span class="m">1</span><span class="w"> </span>-B<span class="w"> </span>xo-unit/.build<span class="w"> </span>-S<span class="w"> </span>xo-unit
+</pre></div>
+</div>
+<p>Run examples from the build directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~/proj/xo/xo-unit/.build/example/ex1/xo_unit_ex1
+~/proj/xo/xo-unit/.build/example/ex2/xo_unit_ex2
+<span class="c1"># etc</span>
+</pre></div>
+</div>
+</section>
+<section id="build-and-install-documentation">
+<h2>Build and Install Documentation<a class="headerlink" href="#build-and-install-documentation" title="Link to this heading"></a></h2>
+<p>xo-unit documentation has these additional dependencies:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.doxygen.nl">doxygen</a> annotation-driven inline documentation</p></li>
+<li><p><a class="reference external" href="https://www.sphinx-doc.org">sphinx</a> documentation based on ReST files</p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/sphinx-rtd-theme">sphinx-rtd-theme</a> popular CSS theme for sphinx</p></li>
+<li><p><a class="reference external" href="https://breathe.readthedocs.io/en/latest">breathe</a> make doxygen-generated ingredients available from sphinx</p></li>
+</ul>
+<p>Preamble (assuming ubuntu here):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>doxygen
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>python3-sphinx
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>python3-sphinx-rtd-theme
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>python3-breathe
+</pre></div>
+</div>
+<p>Build <cite>xo-unit</cite> docs</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/proj/xo
+cmake<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="nv">$PREFIX</span><span class="w"> </span>-B<span class="w"> </span>xo-unit/.build
+cmake<span class="w"> </span>--build<span class="w"> </span>xo-unit/.build<span class="w"> </span>--<span class="w"> </span>docs
+cmake<span class="w"> </span>--install<span class="w"> </span>xo-unit/.build<span class="w">   </span><span class="c1"># if docs built,  installs to $PREFIX/share/doc/xo_unit/html</span>
+</pre></div>
+</div>
+</section>
 <section id="supported-compilers">
 <h2>Supported compilers<a class="headerlink" href="#supported-compilers" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>developed with gcc 12.3.0 and gcc 13.2.0;  github CI using gcc 11.4.0 (asof March 2024)</p></li>
-</ul>
-</section>
-<section id="building-from-source">
-<h2>Building from source<a class="headerlink" href="#building-from-source" title="Link to this heading"></a></h2>
-<p>Although the xo-unit library is header-only, unit tests have some dependencies.
-Example instructions (github CI) for build starting from stock ubuntu are in <a class="reference external" href="https://github.com/Rconybea/xo-unit/blob/main/.github/workflows/ubuntu-main.yml">ubuntu-main.yml</a></p>
-<p>Unit test dependencies:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/catchorg/Catch2">catch2</a> header-only unit-test framework</p></li>
-<li><p><a class="reference external" href="https://github.com/rconybea/xo-cmake">xo-cmake</a> cmake macros</p></li>
-<li><p><a class="reference external" href="https://github.com/rconybea/indentlog">xo-indentlog</a> logging with call-structure indenting</p></li>
-<li><p><a class="reference external" href="https://github.com/rconybea/refcnt">xo-refcnt</a> intrusive reference counting (needed by xo-reflect)</p></li>
-<li><p><a class="reference external" href="https://github.com/rconybea/subsys">xo-subsys</a> plugin initialization support (needed by xo-reflect)</p></li>
-<li><p><a class="reference external" href="https://github.com/rconybea/reflect">xo-reflect</a> c++ introspection library</p></li>
 </ul>
 </section>
 </section>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Natural Unit &mdash; xo unit documentation  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="BPU" href="bpu-class.html" />
+    <link rel="prev" title="Scaled Unit Constants" href="scaled-unit-constants.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            xo unit documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">xo-unit contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html#representation">Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xquantity-reference.html">Xquantity Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scaled-unit-reference.html">Scaled Unit Reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Natural Unit</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#context">Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#class">Class</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4I0EN2xo3qty12natural_unitE"><code class="docutils literal notranslate"><span class="pre">natural_unit</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#member-variables">Member Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#type-traits">Type Traits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#constructors">Constructors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#access-methods">Access Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#general-methods">General Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conversion">Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#comparison-functions">Comparison Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bu-store-class.html">Basis Unit Store</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Native Dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubuntu-github-workflow.html">Ubuntu Github Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search.html">Search Page</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">xo unit documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Natural Unit</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/natural-unit-class.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="natural-unit">
+<span id="natural-unit-class"></span><h1>Natural Unit<a class="headerlink" href="#natural-unit" title="Link to this heading"></a></h1>
+<p>A natural unit represents a product of terms, each involving a distinct basis dimension</p>
+<section id="context">
+<h2>Context<a class="headerlink" href="#context" title="Link to this heading"></a></h2>
+<img alt="_images/ditaa-853ff047fc0382fc817d8c1e8c10a1b1118dedc8.png" src="_images/ditaa-853ff047fc0382fc817d8c1e8c10a1b1118dedc8.png" />
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;xo/unit/natural_unit.hpp&gt;</span>
+</pre></div>
+</div>
+<p>Representation for the unit associated with a <a class="reference internal" href="xquantity-class.html"><span class="doc">xquantity</span></a></p>
+<ul class="simple">
+<li><p>represents a cartesian product of basis units.</p></li>
+<li><p>constexpr implementation</p></li>
+<li><p>limited support for fractional dimensions such as time^-1/2</p></li>
+</ul>
+<figure class="align-center" id="id1">
+<p class="plantuml">
+<a href="_images/plantuml-3cfbecd0fbf7a165af5cc55290e2250ca1685cbf.png"><img src="_images/plantuml-3cfbecd0fbf7a165af5cc55290e2250ca1685cbf.png" alt="object newton&lt;&lt;natural_unit&gt;&gt;
+newton : n_bpu = 3
+newton : bpu_v[]
+
+object kg&lt;&lt;bpu&gt;&gt;
+kg : native_dim = dim::mass
+kg : scalefactor = 1000/1
+kg : power = 1/1
+
+object m&lt;&lt;bpu&gt;&gt;
+m : native_dim = dim::distance
+m : scalefactor = 1/1
+m : power = 1/1
+
+object s2&lt;&lt;bpu&gt;&gt;
+s2 : native_dim = dim::time
+s2 : scalefactor = 1/1
+s2 : power = -2/1
+
+newton o-- kg
+newton o-- m
+newton o-- s2" style="width: 622.71px; height: 236.61px"/></a>
+</p>
+<figcaption>
+<p><span class="caption-text">natural unit for a Newton (unit of force)</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="class">
+<h2>Class<a class="headerlink" href="#class" title="Link to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2xo3qty12natural_unitE">
+<span id="_CPPv3I0EN2xo3qty12natural_unitE"></span><span id="_CPPv2I0EN2xo3qty12natural_unitE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Int</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classxo_1_1qty_1_1natural__unit"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">natural_unit</span></span></span><a class="headerlink" href="#_CPPv4I0EN2xo3qty12natural_unitE" title="Link to this definition"></a><br /></dt>
+<dd><p>an array representing the cartesian product of distinct basis-power-units </p>
+<p><ol class="loweralpha simple">
+<li><p>Quantities are represented as a multiple of a natural unit</p></li>
+<li><p>Each bpu in the array represents a power of a basis dimension, e.g. “meter” or “second^2”.</p></li>
+<li><p>Each bpu in an array has a different dimension id. For example dim::time, if present, appears once.</p></li>
+<li><p>Basis dimensions can appear in any order. Order used for constructing abbreviations: will get <code class="docutils literal notranslate"><span class="pre">&quot;kg.m&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;m.kg&quot;</span></code> depending on the orderin of <code class="docutils literal notranslate"><span class="pre">dim::distance</span></code> and <code class="docutils literal notranslate"><span class="pre">dim::mass</span></code> in <code class="docutils literal notranslate"><span class="pre">bpu_v_</span></code></p></li>
+</ol>
+</p>
+</dd></dl>
+
+</section>
+<section id="member-variables">
+<h2>Member Variables<a class="headerlink" href="#member-variables" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “natural-unit-instance-vars” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+</section>
+<section id="type-traits">
+<h2>Type Traits<a class="headerlink" href="#type-traits" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “natural-unit-type-traits” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+</section>
+<section id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “natural-unit-ctors” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+</section>
+<section id="access-methods">
+<h2>Access Methods<a class="headerlink" href="#access-methods" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “natural-unit-access-methods” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+</section>
+<section id="general-methods">
+<h2>General Methods<a class="headerlink" href="#general-methods" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “natural-unit-methods” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+</section>
+<section id="conversion">
+<h2>Conversion<a class="headerlink" href="#conversion" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “natural-unit-conversion-methods” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+</section>
+<section id="comparison-functions">
+<h2>Comparison Functions<a class="headerlink" href="#comparison-functions" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “natural-unit-comparison-functions” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="scaled-unit-constants.html" class="btn btn-neutral float-left" title="Scaled Unit Constants" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="bpu-class.html" class="btn btn-neutral float-right" title="BPU" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 1980, Roland Conybeare.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

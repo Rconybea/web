@@ -44,27 +44,29 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">xo-unit contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">xo-unit contents</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="implementation.html">Abstraction Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="implementation.html#representation">Representation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="development.html">How To…</a></li>
-<li class="toctree-l1"><a class="reference internal" href="unit-quantities.html">Unit Quantities</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Quantity</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#_CPPv4I_Da0EN2xo3qty8quantityE"><code class="docutils literal notranslate"><span class="pre">quantity</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#type-traits">Type Traits</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#_CPPv49repr_type"><code class="docutils literal notranslate"><span class="pre">repr_type</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#_CPPv49unit_type"><code class="docutils literal notranslate"><span class="pre">unit_type</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#_CPPv414ratio_int_type"><code class="docutils literal notranslate"><span class="pre">ratio_int_type</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#_CPPv416ratio_int2x_type"><code class="docutils literal notranslate"><span class="pre">ratio_int2x_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#context">Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#class">Class</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I_Da0EN2xo3qty8quantityE"><code class="docutils literal notranslate"><span class="pre">quantity</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#member-variables">Member Variables</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv413s_scaled_unit"><code class="docutils literal notranslate"><span class="pre">s_scaled_unit</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv46scale_"><code class="docutils literal notranslate"><span class="pre">scale_</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#type-traits">Type Traits</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49repr_type"><code class="docutils literal notranslate"><span class="pre">repr_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49unit_type"><code class="docutils literal notranslate"><span class="pre">unit_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv414ratio_int_type"><code class="docutils literal notranslate"><span class="pre">ratio_int_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv416ratio_int2x_type"><code class="docutils literal notranslate"><span class="pre">ratio_int2x_type</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#constructors">Constructors</a><ul>
@@ -99,9 +101,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0ENKcv2Q2Ev"><code class="docutils literal notranslate"><span class="pre">operator</span> <span class="pre">Q2()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#arithmetic">Arithmetic</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0EpLR8quantity9Quantity2"><code class="docutils literal notranslate"><span class="pre">operator+=()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#_CPPv4I0EmIR8quantity9Quantity2"><code class="docutils literal notranslate"><span class="pre">operator-=()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#arithmetic-operators">Arithmetic Operators</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv4NK10reciprocalEv"><code class="docutils literal notranslate"><span class="pre">reciprocal()</span></code></a></li>
 </ul>
 </li>
@@ -113,13 +113,21 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="quantity-factoryfunctions.html">Quantity Factory Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quantity-unitvars.html">Quantity Unit Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quantity-source-code.html">Quantity Source Code</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="unit-reference.html">Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xquantity-reference.html">Xquantity Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scaled-unit-reference.html">Scaled Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="natural-unit-class.html">Natural Unit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bpu-class.html">BPU</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bu-store-class.html">Basis Unit Store</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Native Dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubuntu-github-workflow.html">Ubuntu Github Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search.html">Search Page</a></li>
 </ul>
 
         </div>
@@ -149,17 +157,65 @@
              
   <section id="quantity">
 <span id="quantity-class"></span><h1>Quantity<a class="headerlink" href="#quantity" title="Link to this heading"></a></h1>
+<p>Dimensioned quantity with compile-time unit checking/conversion</p>
+<section id="context">
+<h2>Context<a class="headerlink" href="#context" title="Link to this heading"></a></h2>
+<img alt="_images/ditaa-8403fa66acef33ca91cef45ab20b9810035d93a5.png" src="_images/ditaa-8403fa66acef33ca91cef45ab20b9810035d93a5.png" />
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;xo/unit/quantity.hpp&gt;</span>
 </pre></div>
 </div>
+<figure class="align-center">
+<p class="plantuml">
+<a href="_images/plantuml-a7c3d17597915598be4035a553dc3aa67e33e7ca.png"><img src="_images/plantuml-a7c3d17597915598be4035a553dc3aa67e33e7ca.png" alt="allowmixing
+
+object qty1&lt;&lt;quantity&gt;&gt;
+qty1 : scale = 1.23
+
+rectangle constexpr #e0f0ff {
+
+object unit&lt;&lt;scaled_unit&gt;&gt;
+unit : is_natural() = true
+
+qty1 o-- unit : s_scaled_unit (static constexpr)
+
+}" style="width: 297.99px; height: 240.57px"/></a>
+</p>
+</figure>
+<ul>
+<li><p>Arithmetic on <a class="reference internal" href="quantity-reference.html"><span class="doc">xo::qty::quantity</span></a> instances
+does <em>not</em> use <code class="docutils literal notranslate"><span class="pre">xo::qty::quantity::s_scaled_unit</span></code> at runtime;
+instead gets everything it needs at compile time.</p></li>
+<li><p>The <code class="code docutils literal notranslate"><span class="pre">xo::qty::quantity</span></code> template takes a <a class="reference internal" href="scaled-unit-class.html"><span class="doc">xo::qty::scaled_unit</span></a> instance,
+but only accepts values with <code class="code docutils literal notranslate"><span class="pre">xo::qty::scaled_unit::is_natural()</span> <span class="pre">==</span> <span class="pre">true</span></code>.</p>
+<p>This accomodation (instead of requiring a <a class="reference internal" href="natural-unit-class.html"><span class="doc">xo::qty::natural_unit</span></a> instance
+is to make possible code like this possible:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;xo/unit/quantity.hpp&quot;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">xo</span><span class="o">::</span><span class="nn">qty</span><span class="p">;</span>
+
+<span class="n">quantity</span><span class="o">&lt;</span><span class="n">u</span><span class="o">::</span><span class="n">meter</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">u</span><span class="o">::</span><span class="n">second</span><span class="o">&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="n">quantity</span><span class="o">&lt;</span><span class="n">u</span><span class="o">::</span><span class="n">meter</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u</span><span class="o">::</span><span class="n">mter</span><span class="o">&gt;</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>while rejecting attempt to mix multiple scales in the same quantity value:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">quantity</span><span class="o">&lt;</span><span class="n">u</span><span class="o">::</span><span class="n">meter</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u</span><span class="o">::</span><span class="n">millimeter</span><span class="o">&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="c1">// will not compile</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="class">
+<h2>Class<a class="headerlink" href="#class" title="Link to this heading"></a></h2>
 <p>The primary data structure for interacting with xo-unit is the
-template class <code class="docutils literal notranslate"><span class="pre">xo::qty::quantity</span></code>.</p>
+template class <code class="docutils literal notranslate"><span class="pre">xo::qty::quantity</span></code>.
+A quantity is a compile-time wrapper around a single arithmetic value,
+with type taken from the <code class="docutils literal notranslate"><span class="pre">Repr</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">quantity&lt;Unit,</span> <span class="pre">Repr&gt;</span></code>.</p>
 <dl class="cpp class">
 <dt class="sig sig-object cpp" id="_CPPv4I_Da0EN2xo3qty8quantityE">
 <span id="_CPPv3I_Da0EN2xo3qty8quantityE"></span><span id="_CPPv2I_Da0EN2xo3qty8quantityE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ScaledUnit</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repr</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classxo_1_1qty_1_1quantity"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">quantity</span></span></span><a class="headerlink" href="#_CPPv4I_Da0EN2xo3qty8quantityE" title="Link to this definition"></a><br /></dt>
 <dd><p>represent a scalar quantity with associated units. </p>
 <p><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">NaturalUnit</span></code> is a non-type template parameter identifying a unit used for this quantity. In <em>xo-unit</em> it will be an instance of <code class="docutils literal notranslate"><span class="pre">natural_unit</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NaturalUnit</span></code> is a non-type template parameter identifying a unit used for this quantity. In <em>xo-unit</em> it will be an instance of <code class="docutils literal notranslate"><a class="reference internal" href="natural-unit-class.html#classxo_1_1qty_1_1natural__unit"><span class="std std-ref"><span class="pre">natural_unit</span></span></a></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Repr</span></code> is a type used to represent a multiple of <code class="docutils literal notranslate"><span class="pre">NaturalUnit</span></code>.</p></li>
 </ul>
 </p>
@@ -170,6 +226,38 @@ template class <code class="docutils literal notranslate"><span class="pre">xo::
 </p>
 </dd></dl>
 
+</section>
+<section id="member-variables">
+<h2>Member Variables<a class="headerlink" href="#member-variables" title="Link to this heading"></a></h2>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__quantity-static-vars"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">quantity-static-vars</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv413s_scaled_unit">
+<span id="_CPPv313s_scaled_unit"></span><span id="_CPPv213s_scaled_unit"></span><span id="s_scaled_unit__scaled_unit:ratio_int_type:"></span><span class="target" id="group__quantity-static-vars_1ga044ac400eebc2dee69b27b85ba973a90"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="n"><span class="pre">scaled_unit</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv414ratio_int_type" title="ratio_int_type"><span class="n"><span class="pre">ratio_int_type</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">s_scaled_unit</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">ScaledUnit</span></span><a class="headerlink" href="#_CPPv413s_scaled_unit" title="Link to this definition"></a><br /></dt>
+<dd><p>unit for quantity of this type. Determined at compile-time </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__quantity-instance-vars"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">quantity-instance-vars</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv46scale_">
+<span id="_CPPv36scale_"></span><span id="_CPPv26scale_"></span><span id="scale___Repr"></span><span class="target" id="group__quantity-instance-vars_1ga2b2b93b964ce198f2e97ee57d9e9ef1c"></span><span class="n"><span class="pre">Repr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">scale_</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Repr</span></span><span class="p"><span class="pre">{</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv46scale_" title="Link to this definition"></a><br /></dt>
+<dd><p>quantity represents this multiple of <a class="reference internal" href="#group__quantity-static-vars_1ga044ac400eebc2dee69b27b85ba973a90"><span class="std std-ref">s_scaled_unit</span></a></p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
 <section id="type-traits">
 <h2>Type Traits<a class="headerlink" href="#type-traits" title="Link to this heading"></a></h2>
 <dl>
@@ -199,37 +287,6 @@ template class <code class="docutils literal notranslate"><span class="pre">xo::
 <dt class="sig sig-object cpp" id="_CPPv416ratio_int2x_type">
 <span id="_CPPv316ratio_int2x_type"></span><span id="_CPPv216ratio_int2x_type"></span><span class="target" id="group__quantity-type-traits_1ga896df45fe014bd91537f2df26db6e158"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ratio_int2x_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">detail</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">width2x_t</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49unit_type" title="unit_type"><span class="n"><span class="pre">unit_type</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ratio_int_type</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv416ratio_int2x_type" title="Link to this definition"></a><br /></dt>
 <dd><p>double-width type used for numerator and denominator of intermediate scalefactor ratios. Used to mitigate loss of precision during computation of conversion factors between units with widely-differing magnitude </p>
-</dd></dl>
-
-</div>
-</dd></dl>
-
-</section>
-<section id="member-variables">
-<h2>Member Variables<a class="headerlink" href="#member-variables" title="Link to this heading"></a></h2>
-<dl>
-<dt class="sig sig-object cpp">
-<span class="target" id="group__quantity-static-vars"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">quantity-static-vars</span></span></dt>
-<dd><div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
-<dl class="cpp var">
-<dt class="sig sig-object cpp" id="_CPPv413s_scaled_unit">
-<span id="_CPPv313s_scaled_unit"></span><span id="_CPPv213s_scaled_unit"></span><span id="s_scaled_unit__scaled_unit:ratio_int_type:"></span><span class="target" id="group__quantity-static-vars_1ga044ac400eebc2dee69b27b85ba973a90"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="n"><span class="pre">scaled_unit</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv414ratio_int_type" title="ratio_int_type"><span class="n"><span class="pre">ratio_int_type</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">s_scaled_unit</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">ScaledUnit</span></span><a class="headerlink" href="#_CPPv413s_scaled_unit" title="Link to this definition"></a><br /></dt>
-<dd><p>unit for quantity of this type. Determined at compile-time </p>
-</dd></dl>
-
-</div>
-</dd></dl>
-
-<dl>
-<dt class="sig sig-object cpp">
-<span class="target" id="group__quantity-instance-vars"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">quantity-instance-vars</span></span></dt>
-<dd><div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
-<dl class="cpp var">
-<dt class="sig sig-object cpp" id="_CPPv46scale_">
-<span id="_CPPv36scale_"></span><span id="_CPPv26scale_"></span><span id="scale___Repr"></span><span class="target" id="group__quantity-instance-vars_1ga2b2b93b964ce198f2e97ee57d9e9ef1c"></span><span class="n"><span class="pre">Repr</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">scale_</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Repr</span></span><span class="p"><span class="pre">{</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv46scale_" title="Link to this definition"></a><br /></dt>
-<dd><p>quantity represents this multiple of <a class="reference internal" href="#group__quantity-static-vars_1ga044ac400eebc2dee69b27b85ba973a90"><span class="std std-ref">s_scaled_unit</span></a></p>
 </dd></dl>
 
 </div>
@@ -266,6 +323,11 @@ template class <code class="docutils literal notranslate"><span class="pre">xo::
 </section>
 <section id="assignment">
 <h2>Assignment<a class="headerlink" href="#assignment" title="Link to this heading"></a></h2>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__quantity-assignment"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">quantity-assignment</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4aSRK8quantity">
 <span id="_CPPv3aSRK8quantity"></span><span id="_CPPv2aSRK8quantity"></span><span id="assign-operator__quantityCR"></span><span class="target" id="group__quantity-assignment_1ga0becf72a1decb913a02193742d7f427c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv48quantityv" title="quantity"><span class="n"><span class="pre">quantity</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv48quantityv" title="quantity"><span class="n"><span class="pre">quantity</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4aSRK8quantity" title="Link to this definition"></a><br /></dt>
@@ -278,9 +340,17 @@ template class <code class="docutils literal notranslate"><span class="pre">xo::
 <dd><p>assignment from quantity with compatible units </p>
 </dd></dl>
 
+</div>
+</dd></dl>
+
 </section>
 <section id="access-methods">
 <h2>Access Methods<a class="headerlink" href="#access-methods" title="Link to this heading"></a></h2>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__quantity-access-methods"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">quantity-access-methods</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5scaleEv">
 <span id="_CPPv3NK5scaleEv"></span><span id="_CPPv2NK5scaleEv"></span><span id="scaleCCE"></span><span class="target" id="group__quantity-access-methods_1ga42431a5dc057dc7d18e12ccb2270860d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49repr_type" title="repr_type"><span class="n"><span class="pre">repr_type</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">scale</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5scaleEv" title="Link to this definition"></a><br /></dt>
@@ -299,9 +369,17 @@ template class <code class="docutils literal notranslate"><span class="pre">xo::
 <dd><p>true iff this quantity represents a dimensionless value </p>
 </dd></dl>
 
+</div>
+</dd></dl>
+
 </section>
 <section id="constants">
 <h2>Constants<a class="headerlink" href="#constants" title="Link to this heading"></a></h2>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__quantity-constants"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">quantity-constants</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv421always_constexpr_unit">
 <span id="_CPPv321always_constexpr_unit"></span><span id="_CPPv221always_constexpr_unit"></span><span id="always_constexpr_unit__b"></span><span class="target" id="group__quantity-constants_1ga276ee0c960c1b6ef7f0d7c38c2d7e03c"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">always_constexpr_unit</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><a class="headerlink" href="#_CPPv421always_constexpr_unit" title="Link to this definition"></a><br /></dt>
@@ -309,10 +387,18 @@ template class <code class="docutils literal notranslate"><span class="pre">xo::
 <p>Useful in c++ template resolution. </p>
 </dd></dl>
 
+</div>
+</dd></dl>
+
 </section>
 <section id="conversion-methods">
 <h2>Conversion Methods<a class="headerlink" href="#conversion-methods" title="Link to this heading"></a></h2>
 <p>Amount-preserving conversion to quantities with different units and/or representation.</p>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__quantity-unit-conversion"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">quantity-unit-conversion</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4I00ENK9with_unitE8quantityI5Unit25Repr2Ev">
 <span id="_CPPv3I00ENK9with_unitEv"></span><span id="_CPPv2I00ENK9with_unitEv"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Unit2</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Repr2</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49repr_type" title="repr_type"><span class="n"><span class="pre">repr_type</span></span></a><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__quantity-unit-conversion_1gabfe03d8bcaab8bc31d4ad36278df3c14"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv48quantityv" title="quantity"><span class="n"><span class="pre">quantity</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I00ENK9with_unitE8quantityI5Unit25Repr2Ev" title="with_unit::Unit2"><span class="n"><span class="pre">Unit2</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I00ENK9with_unitE8quantityI5Unit25Repr2Ev" title="with_unit::Repr2"><span class="n"><span class="pre">Repr2</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">with_unit</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I00ENK9with_unitE8quantityI5Unit25Repr2Ev" title="Link to this definition"></a><br /></dt>
@@ -410,43 +496,16 @@ template class <code class="docutils literal notranslate"><span class="pre">xo::
 <span id="_CPPv3I0ENKcv2Q2Ev"></span><span id="_CPPv2I0ENKcv2Q2Ev"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Q2</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__quantity-unit-conversion_1gaee15b1441ba98ed911eaf11f1c52c9ad"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENKcv2Q2Ev" title="operator Q2::Q2"><span class="n"><span class="pre">Q2</span></span></a></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENKcv2Q2Ev" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
+</div>
+</dd></dl>
+
 </section>
-<section id="arithmetic">
-<h2>Arithmetic<a class="headerlink" href="#arithmetic" title="Link to this heading"></a></h2>
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4I0EpLR8quantity9Quantity2">
-<span id="_CPPv3I0EpL9Quantity2"></span><span id="_CPPv2I0EpL9Quantity2"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Quantity2</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__quantity-arithmetic_1ga5cd09fe6d1451d1cf00afe591d17cf6f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv48quantityv" title="quantity"><span class="n"><span class="pre">quantity</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">+=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EpLR8quantity9Quantity2" title="operator+=::Quantity2"><span class="n"><span class="pre">Quantity2</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EpLR8quantity9Quantity2" title="Link to this definition"></a><br /></dt>
-<dd><p>add quantity in-place </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>y</strong> – quantity to add </p>
-</dd>
-<dt class="field-even">Pre<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">y</span></code> must have the same dimension as <code class="docutils literal notranslate"><span class="pre">*this</span></code>.</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>this quantity after adding y </p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4I0EmIR8quantity9Quantity2">
-<span id="_CPPv3I0EmI9Quantity2"></span><span id="_CPPv2I0EmI9Quantity2"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Quantity2</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__quantity-arithmetic_1ga9098c8016576506fd5017ac048480fcd"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv48quantityv" title="quantity"><span class="n"><span class="pre">quantity</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">-=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EmIR8quantity9Quantity2" title="operator-=::Quantity2"><span class="n"><span class="pre">Quantity2</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EmIR8quantity9Quantity2" title="Link to this definition"></a><br /></dt>
-<dd><p>subtract quantity in-place </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>y</strong> – quantity to subtract </p>
-</dd>
-<dt class="field-even">Pre<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">y</span></code> must have the same dimensions as <code class="docutils literal notranslate"><span class="pre">*this</span></code></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>this quantity after subtracting y </p>
-</dd>
-</dl>
-</dd></dl>
-
+<section id="arithmetic-operators">
+<h2>Arithmetic Operators<a class="headerlink" href="#arithmetic-operators" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “quantity-operators” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
 <p>Support methods for arithmetic operations</p>
 <dl>
 <dt class="sig sig-object cpp">

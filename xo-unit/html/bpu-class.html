@@ -22,7 +22,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Basis Unit Store" href="bu-store-class.html" />
-    <link rel="prev" title="Unit Concepts" href="unit-concept.html" /> 
+    <link rel="prev" title="Natural Unit" href="natural-unit-class.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,20 +44,39 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">xo-unit contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">xo-unit contents</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="implementation.html">Abstraction Tower</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementation.html">Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="implementation.html#representation">Representation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="development.html">How To…</a></li>
-<li class="toctree-l1"><a class="reference internal" href="unit-quantities.html">Unit Quantities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quantity-reference.html">Quantity Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="unit-reference.html">Unit Reference</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">BPU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xquantity-reference.html">Xquantity Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scaled-unit-reference.html">Scaled Unit Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="natural-unit-class.html">Natural Unit</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">BPU</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#context">Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#class">Class</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#_CPPv4I0EN2xo3qty3bpuE"><code class="docutils literal notranslate"><span class="pre">bpu</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#member-variables">Member Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#constructors">Constructors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#access-methods">Access Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-methods">Other Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#comparison">Comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#details">Details</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="bu-store-class.html">Basis Unit Store</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basis-unit-reference.html">Basis Unit Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dimension-enum.html">Native Dimension</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ubuntu-github-workflow.html">Ubuntu Github Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search.html">Search Page</a></li>
 </ul>
 
         </div>
@@ -86,10 +105,17 @@
              
   <section id="bpu">
 <span id="bpu-class"></span><h1>BPU<a class="headerlink" href="#bpu" title="Link to this heading"></a></h1>
+<p>A rational (usually integral) power of a single basis unit</p>
+<section id="context">
+<h2>Context<a class="headerlink" href="#context" title="Link to this heading"></a></h2>
+<img alt="_images/ditaa-7e93663a62d3e6f5a75b008c04ff95ad0895c4eb.png" src="_images/ditaa-7e93663a62d3e6f5a75b008c04ff95ad0895c4eb.png" />
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;xo/unit/bpu.hpp&gt;</span>
 </pre></div>
 </div>
-<p>A <code class="code docutils literal notranslate"><span class="pre">xo::qty::bpu</span></code> represents a rational (usually integer) power of a <a class="reference internal" href="basis-unit-class.html"><span class="doc">Basis Unit</span></a>.</p>
+<p>A <code class="code docutils literal notranslate"><span class="pre">xo::qty::bpu</span></code> (aka “basis power unit”) represents a rational (usually integer) power of a <a class="reference internal" href="basis-unit-class.html"><span class="doc">Basis Unit</span></a>.</p>
 <p>For example:</p>
 <figure class="align-center" id="id1">
 <p class="plantuml">
@@ -113,13 +139,68 @@ vol : power = -1/2" style="width: 219.78px; height: 109.89px"/></a>
 <p><span class="caption-text">representation for annual (365-day) volatility</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
 </figure>
+<p><code class="code docutils literal notranslate"><span class="pre">bpu</span></code> is intended as an implementation-level abstraction.
+Application code will normally interact with the more-general <code class="code docutils literal notranslate"><span class="pre">scaled_unit</span></code>
+instead of <code class="code docutils literal notranslate"><span class="pre">bpu</span></code>.</p>
+</section>
+<section id="class">
+<h2>Class<a class="headerlink" href="#class" title="Link to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN2xo3qty3bpuE">
+<span id="_CPPv3I0EN2xo3qty3bpuE"></span><span id="_CPPv2I0EN2xo3qty3bpuE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Int</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="structxo_1_1qty_1_1bpu"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bpu</span></span></span><a class="headerlink" href="#_CPPv4I0EN2xo3qty3bpuE" title="Link to this definition"></a><br /></dt>
+<dd><p>represent product of a compile-time scale-factor with a rational power of a native unit </p>
+</dd></dl>
+
+</section>
+<section id="member-variables">
+<h2>Member Variables<a class="headerlink" href="#member-variables" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “bpu-instance-vars” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+</section>
+<section id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “bpu-ctors” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+</section>
+<section id="access-methods">
+<h2>Access Methods<a class="headerlink" href="#access-methods" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “bpu-access-methods” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+</section>
+<section id="other-methods">
+<h2>Other Methods<a class="headerlink" href="#other-methods" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “bpu-methods” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+</section>
+<section id="comparison">
+<h2>Comparison<a class="headerlink" href="#comparison" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “bpu-comparison” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+</section>
+<section id="details">
+<h2>Details<a class="headerlink" href="#details" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “bpu-abbrev-helpers” in doxygen xml output for project “xodoxxml” from directory: /home/roland/proj/xo/xo-unit/.build-ccov/docs/dox/xml</p>
+</div>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="unit-concept.html" class="btn btn-neutral float-left" title="Unit Concepts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="natural-unit-class.html" class="btn btn-neutral float-left" title="Natural Unit" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="bu-store-class.html" class="btn btn-neutral float-right" title="Basis Unit Store" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
