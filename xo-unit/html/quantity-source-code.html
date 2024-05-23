@@ -9,6 +9,7 @@
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
   
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -365,8 +366,23 @@
 <span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span>
 <span class="w">            </span><span class="p">}</span>
 
-<span class="w">            </span><span class="c1">// operator*=</span>
-<span class="w">            </span><span class="c1">// operator/=</span>
+<span class="w">            </span><span class="cm">/** multiply @p y in-place.  y must be dimensionless **/</span>
+<span class="w">            </span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Dimensionless</span><span class="o">&gt;</span>
+<span class="w">            </span><span class="k">requires</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">is_arithmetic_v</span><span class="o">&lt;</span><span class="n">Dimensionless</span><span class="o">&gt;</span>
+<span class="w">            </span><span class="k">constexpr</span>
+<span class="w">            </span><span class="n">quantity</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">*=</span><span class="p">(</span><span class="n">Dimensionless</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">scale_</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="cm">/** divide @p y in-place.  y must be dimensionless **/</span>
+<span class="w">            </span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Dimensionless</span><span class="o">&gt;</span>
+<span class="w">            </span><span class="k">requires</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">is_arithmetic_v</span><span class="o">&lt;</span><span class="n">Dimensionless</span><span class="o">&gt;</span>
+<span class="w">            </span><span class="k">constexpr</span>
+<span class="w">            </span><span class="n">quantity</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">/=</span><span class="p">(</span><span class="n">Dimensionless</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">scale_</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
 
 <span class="w">            </span><span class="c1">///@}</span>
 
@@ -733,6 +749,40 @@
 <span class="w">        </span><span class="k">operator</span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Q1</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Q2</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
 <span class="w">        </span><span class="p">{</span>
 <span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">detail</span><span class="o">::</span><span class="n">quantity_util</span><span class="o">::</span><span class="n">subtract</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="cm">/** subtract an arithmetic value from a dimensionless quantity **/</span>
+<span class="w">        </span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Quantity</span><span class="p">,</span>
+<span class="w">                  </span><span class="k">typename</span><span class="w"> </span><span class="nc">Dimensionless</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="k">requires</span><span class="w"> </span><span class="p">(</span><span class="n">quantity_concept</span><span class="o">&lt;</span><span class="n">Quantity</span><span class="o">&gt;</span>
+<span class="w">                  </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Quantity</span><span class="o">::</span><span class="n">is_dimensionless</span><span class="p">()</span>
+<span class="w">                  </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">is_arithmetic_v</span><span class="o">&lt;</span><span class="n">Dimensionless</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="w">        </span><span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span>
+<span class="w">        </span><span class="k">operator</span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Quantity</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">Dimensionless</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="k">using</span><span class="w"> </span><span class="n">repr_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">common_type_t</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Quantity</span><span class="o">::</span><span class="n">repr_type</span><span class="p">,</span><span class="w"> </span><span class="n">Dimensionless</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="w">            </span><span class="k">auto</span><span class="w"> </span><span class="n">xp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">repr_type</span><span class="o">&gt;</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">scale</span><span class="p">());</span>
+<span class="w">            </span><span class="k">auto</span><span class="w"> </span><span class="n">yp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">repr_type</span><span class="o">&gt;</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">xp</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">yp</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="cm">/** subtract a dimensionless quantity from an arithmetic value **/</span>
+<span class="w">        </span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Dimensionless</span><span class="p">,</span>
+<span class="w">                  </span><span class="k">typename</span><span class="w"> </span><span class="nc">Quantity</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="k">requires</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">is_arithmetic_v</span><span class="o">&lt;</span><span class="n">Dimensionless</span><span class="o">&gt;</span>
+<span class="w">                  </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">quantity_concept</span><span class="o">&lt;</span><span class="n">Quantity</span><span class="o">&gt;</span>
+<span class="w">                  </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Quantity</span><span class="o">::</span><span class="n">is_dimensionless</span><span class="p">())</span>
+<span class="w">        </span><span class="k">constexpr</span><span class="w"> </span><span class="k">auto</span>
+<span class="w">        </span><span class="k">operator</span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">Dimensionless</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Quantity</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="k">using</span><span class="w"> </span><span class="n">repr_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">common_type_t</span><span class="o">&lt;</span><span class="n">Dimensionless</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">Quantity</span><span class="o">::</span><span class="n">repr_type</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="w">            </span><span class="k">auto</span><span class="w"> </span><span class="n">xp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">repr_type</span><span class="o">&gt;</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="w">            </span><span class="k">auto</span><span class="w"> </span><span class="n">yp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">repr_type</span><span class="o">&gt;</span><span class="p">(</span><span class="n">y</span><span class="p">.</span><span class="n">scale</span><span class="p">());</span>
+
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">xp</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">yp</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 
 <span class="w">        </span><span class="c1">///@}</span>
