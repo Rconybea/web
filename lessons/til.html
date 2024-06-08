@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-03-06 Wed 18:24 -->
+<!-- 2024-06-08 Sat 16:08 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Today I Learned - lessons from building a C++ development stack</title>
@@ -38,10 +38,10 @@
 <ul>
 <li><a href="#org79d5d4d">1.1. x11 linux apps wedged after WSL update 2.0.9.0</a>
 <ul>
-<li><a href="#org1618096">1.1.1. Setup</a></li>
-<li><a href="#org26e6bcb">1.1.2. Problem</a></li>
-<li><a href="#orgdee41aa">1.1.3. Details</a></li>
-<li><a href="#org98394cf">1.1.4. Solution</a></li>
+<li><a href="#orgfae0236">1.1.1. Setup</a></li>
+<li><a href="#org0a02a79">1.1.2. Problem</a></li>
+<li><a href="#orgec32ae3">1.1.3. Details</a></li>
+<li><a href="#org0bdde4c">1.1.4. Solution</a></li>
 </ul>
 </li>
 </ul>
@@ -50,25 +50,25 @@
 <ul>
 <li><a href="#org3905932">2.1. inconsistent eigen package (25oct2023)</a>
 <ul>
-<li><a href="#org1f19a62">2.1.1. Setup</a></li>
-<li><a href="#org0378f92">2.1.2. Problem</a></li>
-<li><a href="#orgec32ae3">2.1.3. Details</a></li>
-<li><a href="#org029c0be">2.1.4. Workaround</a></li>
+<li><a href="#org24d44e7">2.1.1. Setup</a></li>
+<li><a href="#orgac9e19c">2.1.2. Problem</a></li>
+<li><a href="#orgc073eb2">2.1.3. Details</a></li>
+<li><a href="#org4d08eb0">2.1.4. Workaround</a></li>
 </ul>
 </li>
 <li><a href="#orgcd6dd5f">2.2. cmake handling of header-only library dependencies (7oct2023)</a>
 <ul>
 <li><a href="#org22a0d6c">2.2.1. Update</a></li>
-<li><a href="#org1c0acdd">2.2.2. Setup</a></li>
-<li><a href="#orgbff3ac3">2.2.3. Problem</a></li>
-<li><a href="#orgfa56820">2.2.4. Workaround</a></li>
+<li><a href="#org02d4a56">2.2.2. Setup</a></li>
+<li><a href="#org8c7cbfb">2.2.3. Problem</a></li>
+<li><a href="#orga1c9173">2.2.4. Workaround</a></li>
 </ul>
 </li>
 <li><a href="#org2fa01e9">2.3. pybind11 link difficulties with transitive library dependencies (7oct2023)</a>
 <ul>
-<li><a href="#orgc79f3c3">2.3.1. Setup</a></li>
-<li><a href="#orgedc438c">2.3.2. Problem</a></li>
-<li><a href="#org4d08eb0">2.3.3. Workaround</a></li>
+<li><a href="#org3d85e3f">2.3.1. Setup</a></li>
+<li><a href="#org0087ec3">2.3.2. Problem</a></li>
+<li><a href="#orgda6ea9d">2.3.3. Workaround</a></li>
 </ul>
 </li>
 </ul>
@@ -77,9 +77,9 @@
 <ul>
 <li><a href="#org45c6c79">3.1. mysterious lsp complaints about iostream headers (22feb2024)</a>
 <ul>
-<li><a href="#org8551d76">3.1.1. Setup</a></li>
-<li><a href="#org0a02a79">3.1.2. Problem</a></li>
-<li><a href="#org3f7bc18">3.1.3. Solution</a></li>
+<li><a href="#orge78c148">3.1.1. Setup</a></li>
+<li><a href="#org884eb3f">3.1.2. Problem</a></li>
+<li><a href="#org1c6ee1d">3.1.3. Solution</a></li>
 </ul>
 </li>
 </ul>
@@ -102,9 +102,19 @@
 <ul>
 <li><a href="#org55a30dd">5.1. zstreambuf errors after move assignment</a>
 <ul>
-<li><a href="#orgfae0236">5.1.1. Setup</a></li>
+<li><a href="#orgf6baa01">5.1.1. Setup</a></li>
 <li><a href="#org011c2af">5.1.2. Problem + Diagnosis</a></li>
-<li><a href="#org0bdde4c">5.1.3. Solution</a></li>
+<li><a href="#orgb9e80eb">5.1.3. Solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org00f4ef0">6. gcc</a>
+<ul>
+<li><a href="#org4a6feed">6.1. how to get built-in defines (8jun2024)</a>
+<ul>
+<li><a href="#org295eb2f">6.1.1. Problem</a></li>
+<li><a href="#org2323d19">6.1.2. Solution</a></li>
 </ul>
 </li>
 </ul>
@@ -121,8 +131,8 @@
 <h3 id="org79d5d4d"><span class="section-number-3">1.1.</span> x11 linux apps wedged after WSL update 2.0.9.0</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-org1618096" class="outline-4">
-<h4 id="org1618096"><span class="section-number-4">1.1.1.</span> Setup</h4>
+<div id="outline-container-orgfae0236" class="outline-4">
+<h4 id="orgfae0236"><span class="section-number-4">1.1.1.</span> Setup</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <ul class="org-ul">
 <li>PC rebooted overnight;   found it had installed WSL 2.0.9.0</li>
@@ -130,8 +140,8 @@
 </div>
 </div>
 
-<div id="outline-container-org26e6bcb" class="outline-4">
-<h4 id="org26e6bcb"><span class="section-number-4">1.1.2.</span> Problem</h4>
+<div id="outline-container-org0a02a79" class="outline-4">
+<h4 id="org0a02a79"><span class="section-number-4">1.1.2.</span> Problem</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <ul class="org-ul">
 <li>linux x11 apps unusable;  all seem to draw trash on screen in response to mouse events.
@@ -143,8 +153,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgdee41aa" class="outline-4">
-<h4 id="orgdee41aa"><span class="section-number-4">1.1.3.</span> Details</h4>
+<div id="outline-container-orgec32ae3" class="outline-4">
+<h4 id="orgec32ae3"><span class="section-number-4">1.1.3.</span> Details</h4>
 <div class="outline-text-4" id="text-1-1-3">
 <ul class="org-ul">
 <li>can see update history:
@@ -156,15 +166,15 @@
 </div>
 </div>
 
-<div id="outline-container-org98394cf" class="outline-4">
-<h4 id="org98394cf"><span class="section-number-4">1.1.4.</span> Solution</h4>
+<div id="outline-container-org0bdde4c" class="outline-4">
+<h4 id="org0bdde4c"><span class="section-number-4">1.1.4.</span> Solution</h4>
 <div class="outline-text-4" id="text-1-1-4">
 <ul class="org-ul">
 <li><p>
 force WSL vm to shutdown + restart
 </p>
 
-<pre class="example" id="orgf1ceb98">
+<pre class="example" id="org9d93d44">
 PS C:\Users\Rcony&gt; wsl --shutdown
 PS C:\Users\Rcony&gt; wsl --user roland
 </pre>
@@ -186,8 +196,8 @@ Note: presumably wsl VM state is preserved across reboot,   since rebooting PC h
 <h3 id="org3905932"><span class="section-number-3">2.1.</span> inconsistent eigen package (25oct2023)</h3>
 <div class="outline-text-3" id="text-2-1">
 </div>
-<div id="outline-container-org1f19a62" class="outline-4">
-<h4 id="org1f19a62"><span class="section-number-4">2.1.1.</span> Setup</h4>
+<div id="outline-container-org24d44e7" class="outline-4">
+<h4 id="org24d44e7"><span class="section-number-4">2.1.1.</span> Setup</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <ul class="org-ul">
 <li>library <a href="https://github.com/Rconybea/xo-kalmanfilter">xo-kalmanfilter</a> depends on eigen</li>
@@ -208,8 +218,8 @@ Contrast this with the submodule build:  here,  when cmake build a library,  it 
 </div>
 </div>
 
-<div id="outline-container-org0378f92" class="outline-4">
-<h4 id="org0378f92"><span class="section-number-4">2.1.2.</span> Problem</h4>
+<div id="outline-container-orgac9e19c" class="outline-4">
+<h4 id="orgac9e19c"><span class="section-number-4">2.1.2.</span> Problem</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <ul class="org-ul">
 <li><p>
@@ -235,8 +245,8 @@ instead of <code>-Ipath/to/eigen/eigen3</code>,  so now need this to compile ins
 </div>
 
 
-<div id="outline-container-orgec32ae3" class="outline-4">
-<h4 id="orgec32ae3"><span class="section-number-4">2.1.3.</span> Details</h4>
+<div id="outline-container-orgc073eb2" class="outline-4">
+<h4 id="orgc073eb2"><span class="section-number-4">2.1.3.</span> Details</h4>
 <div class="outline-text-4" id="text-2-1-3">
 <ul class="org-ul">
 <li><p>
@@ -354,8 +364,8 @@ Evidence points to an inconsistency in Eigen-provided cmake support, if not in c
 </div>
 </div>
 
-<div id="outline-container-org029c0be" class="outline-4">
-<h4 id="org029c0be"><span class="section-number-4">2.1.4.</span> Workaround</h4>
+<div id="outline-container-org4d08eb0" class="outline-4">
+<h4 id="org4d08eb0"><span class="section-number-4">2.1.4.</span> Workaround</h4>
 <div class="outline-text-4" id="text-2-1-4">
 <p>
 It's sufficient to restate the eigen dependency in <code>xo-pykalmanfilter</code>:
@@ -384,7 +394,7 @@ My original investigation mistaken.
 It turns out I didn't understand that cmake error from <code>target_link_libraries()</code>:
 </p>
 
-<pre class="example" id="org76e204d">
+<pre class="example" id="org1dc665b">
 INTERFACE library can only be used with the INTERFACE keyword of target_link_libraries
 </pre>
 
@@ -394,8 +404,8 @@ applies to the <i>depended-on</i> library (3rd argument),  not the <i>depending<
 </div>
 </div>
 
-<div id="outline-container-org1c0acdd" class="outline-4">
-<h4 id="org1c0acdd"><span class="section-number-4">2.2.2.</span> Setup</h4>
+<div id="outline-container-org02d4a56" class="outline-4">
+<h4 id="org02d4a56"><span class="section-number-4">2.2.2.</span> Setup</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <ul class="org-ul">
 <li>NOTE: also asked on stack overflow <a href="https://stackoverflow.com/questions/77251201/cmake-regular-shared-library-depending-on-a-header-only-interface-library">here</a></li>
@@ -427,7 +437,7 @@ Must specify include directories for a header-only library like this:
 <p>
 cmake enforces this explicitly;   gives error
 </p>
-<pre class="example" id="orgc21e568">
+<pre class="example" id="org671e050">
 target_include_directories may only set INTERFACE properties on INTERFACE targets
 </pre></li>
 
@@ -445,7 +455,7 @@ Must specify dependency on a header-only library like this:
 <p>
 cmake enforces this explicitly;   gives error
 </p>
-<pre class="example" id="org3154742">
+<pre class="example" id="org1cadab8">
 INTERFACE library can only be used with the INTERFACE keyword of target_link_libraries
 </pre></li>
 
@@ -454,7 +464,7 @@ Expected behavior:
 this is sufficient for compilation of <code>bar</code> to tell compiler about include paths for <code>foo</code>:
 </p>
 
-<pre class="example" id="orge29babc">
+<pre class="example" id="org05beb64">
 gcc -Ipath/to/foo bar.cpp
 </pre>
 
@@ -465,8 +475,8 @@ This expectation is satisfied for regular non-INTERFACE libraries.
 </div>
 </div>
 
-<div id="outline-container-orgbff3ac3" class="outline-4">
-<h4 id="orgbff3ac3"><span class="section-number-4">2.2.3.</span> Problem</h4>
+<div id="outline-container-org8c7cbfb" class="outline-4">
+<h4 id="org8c7cbfb"><span class="section-number-4">2.2.3.</span> Problem</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <ul class="org-ul">
 <li>compilation fails to supply include paths for depended-on <code>foo</code> when compiling depending-on <code>bar</code>,
@@ -484,8 +494,8 @@ while ignoring the <code>INTERFACE_INCLUDE_DIRECTORIES</code> property.</li>
 </div>
 </div>
 
-<div id="outline-container-orgfa56820" class="outline-4">
-<h4 id="orgfa56820"><span class="section-number-4">2.2.4.</span> Workaround</h4>
+<div id="outline-container-orga1c9173" class="outline-4">
+<h4 id="orga1c9173"><span class="section-number-4">2.2.4.</span> Workaround</h4>
 <div class="outline-text-4" id="text-2-2-4">
 <ul class="org-ul">
 <li><p>
@@ -513,8 +523,8 @@ to <code>INCLUDE_DIRECTORIES</code>:
 <h3 id="org2fa01e9"><span class="section-number-3">2.3.</span> pybind11 link difficulties with transitive library dependencies (7oct2023)</h3>
 <div class="outline-text-3" id="text-2-3">
 </div>
-<div id="outline-container-orgc79f3c3" class="outline-4">
-<h4 id="orgc79f3c3"><span class="section-number-4">2.3.1.</span> Setup</h4>
+<div id="outline-container-org3d85e3f" class="outline-4">
+<h4 id="org3d85e3f"><span class="section-number-4">2.3.1.</span> Setup</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <ul class="org-ul">
 <li>cmake version 3.25.3</li>
@@ -546,14 +556,14 @@ Expect this cmake script to work:
 </div>
 </div>
 
-<div id="outline-container-orgedc438c" class="outline-4">
-<h4 id="orgedc438c"><span class="section-number-4">2.3.2.</span> Problem</h4>
+<div id="outline-container-org0087ec3" class="outline-4">
+<h4 id="org0087ec3"><span class="section-number-4">2.3.2.</span> Problem</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <ul class="org-ul">
 <li><p>
 Instead, link fails.   Link line something like:
 </p>
-<pre class="example" id="orgbfb47ea">
+<pre class="example" id="org5d46acb">
 g++ -fPIC ... -o pyreflect.cpython-311-x86_64-linux-gnu.so /path/to/libreflect.so -lrefcnt -lindentlog
 </pre>
 
@@ -583,8 +593,8 @@ It's not obvious how <code>xo_pyreflect</code> can know that <code>indentlog</co
 </div>
 </div>
 
-<div id="outline-container-org4d08eb0" class="outline-4">
-<h4 id="org4d08eb0"><span class="section-number-4">2.3.3.</span> Workaround</h4>
+<div id="outline-container-orgda6ea9d" class="outline-4">
+<h4 id="orgda6ea9d"><span class="section-number-4">2.3.3.</span> Workaround</h4>
 <div class="outline-text-4" id="text-2-3-3">
 <ul class="org-ul">
 <li><p>
@@ -592,7 +602,7 @@ Recognize that <code>pyreflect</code> link shouldn't need <code>refcnt</code> on
 since <code>libreflect.so</code> has a <code>DT_NEEDED</code> entry for it.
 </p>
 
-<pre class="example" id="org82cee05">
+<pre class="example" id="orgde83b6c">
 $ readelf -d /path/to/libreflect.so
 
 Dynamic section at offset 0x17860 contains 34 entries:
@@ -639,8 +649,8 @@ Then in <code>.cmake</code> for <code>pyreflect</code>,  something equivalent to
 <h3 id="org45c6c79"><span class="section-number-3">3.1.</span> mysterious lsp complaints about iostream headers (22feb2024)</h3>
 <div class="outline-text-3" id="text-3-1">
 </div>
-<div id="outline-container-org8551d76" class="outline-4">
-<h4 id="org8551d76"><span class="section-number-4">3.1.1.</span> Setup</h4>
+<div id="outline-container-orge78c148" class="outline-4">
+<h4 id="orge78c148"><span class="section-number-4">3.1.1.</span> Setup</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <ul class="org-ul">
 <li>working on bespoke streambuf implementation (cmake-examples/zstream/include/zstream/zstreambuf.hpp)</li>
@@ -648,8 +658,8 @@ Then in <code>.cmake</code> for <code>pyreflect</code>,  something equivalent to
 </div>
 </div>
 
-<div id="outline-container-org0a02a79" class="outline-4">
-<h4 id="org0a02a79"><span class="section-number-4">3.1.2.</span> Problem</h4>
+<div id="outline-container-org884eb3f" class="outline-4">
+<h4 id="org884eb3f"><span class="section-number-4">3.1.2.</span> Problem</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <ul class="org-ul">
 <li>getting mysterious errors from flymake + emacs,  e.g. message "&lt;fstream&gt; not found"</li>
@@ -657,8 +667,8 @@ Then in <code>.cmake</code> for <code>pyreflect</code>,  something equivalent to
 </div>
 </div>
 
-<div id="outline-container-org3f7bc18" class="outline-4">
-<h4 id="org3f7bc18"><span class="section-number-4">3.1.3.</span> Solution</h4>
+<div id="outline-container-org1c6ee1d" class="outline-4">
+<h4 id="org1c6ee1d"><span class="section-number-4">3.1.3.</span> Solution</h4>
 <div class="outline-text-4" id="text-3-1-3">
 <ul class="org-ul">
 <li>Had discarded <code>cmake-examples/build</code> directory,  using <code>cmake-examples/.build</code> instead.
@@ -1141,8 +1151,8 @@ which muddies the waters.
 <h3 id="org55a30dd"><span class="section-number-3">5.1.</span> zstreambuf errors after move assignment</h3>
 <div class="outline-text-3" id="text-5-1">
 </div>
-<div id="outline-container-orgfae0236" class="outline-4">
-<h4 id="orgfae0236"><span class="section-number-4">5.1.1.</span> Setup</h4>
+<div id="outline-container-orgf6baa01" class="outline-4">
+<h4 id="orgf6baa01"><span class="section-number-4">5.1.1.</span> Setup</h4>
 <div class="outline-text-4" id="text-5-1-1">
 <ul class="org-ul">
 <li>Making <code>zstreambuf.open()</code> work with a <code>zstreambuf</code> that's already been used for i/o.</li>
@@ -1167,8 +1177,8 @@ address-dependent computation involving one or more <code>z_stream</code> member
 </div>
 </div>
 
-<div id="outline-container-org0bdde4c" class="outline-4">
-<h4 id="org0bdde4c"><span class="section-number-4">5.1.3.</span> Solution</h4>
+<div id="outline-container-orgb9e80eb" class="outline-4">
+<h4 id="orgb9e80eb"><span class="section-number-4">5.1.3.</span> Solution</h4>
 <div class="outline-text-4" id="text-5-1-3">
 <ul class="org-ul">
 <li><p>
@@ -1217,10 +1227,121 @@ Then implement <code>::swap()</code> etc by swapping pointers.
 </div>
 </div>
 </div>
+
+<div id="outline-container-org00f4ef0" class="outline-2">
+<h2 id="org00f4ef0"><span class="section-number-2">6.</span> gcc</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-org4a6feed" class="outline-3">
+<h3 id="org4a6feed"><span class="section-number-3">6.1.</span> how to get built-in defines (8jun2024)</h3>
+<div class="outline-text-3" id="text-6-1">
+</div>
+<div id="outline-container-org295eb2f" class="outline-4">
+<h4 id="org295eb2f"><span class="section-number-4">6.1.1.</span> Problem</h4>
+<div class="outline-text-4" id="text-6-1-1">
+<ul class="org-ul">
+<li>want to know the set of builtin <code>#defines</code> provided by compiler,
+as a function of command line arguments.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2323d19" class="outline-4">
+<h4 id="org2323d19"><span class="section-number-4">6.1.2.</span> Solution</h4>
+<div class="outline-text-4" id="text-6-1-2">
+<ul class="org-ul">
+<li>stumbled on this stack overflow question
+<a href="https://stackoverflow.com/questions/28939652/how-to-detect-sse-sse2-avx-avx2-avx-512-avx-128-fma-kcvi-availability-at-compile">https://stackoverflow.com/questions/28939652/how-to-detect-sse-sse2-avx-avx2-avx-512-avx-128-fma-kcvi-availability-at-compile</a></li>
+
+<li><p>
+turns out to be an easy one-liner
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">gcc -dM -E - &lt; /dev/null | sort
+</pre>
+</div>
+
+<p>
+with output like
+</p>
+
+<pre class="example" id="org5925131">
+#define _FORTIFY_SOURCE 3
+#define _LP64 1
+#define _STDC_PREDEF_H 1
+#define __ATOMIC_ACQUIRE 2
+#define __ATOMIC_ACQ_REL 4
+...
+</pre>
+
+<p>
+Here:
+</p>
+
+<ul class="org-ul">
+<li><code>-E</code> tells compiler to emit preprocessor output</li>
+<li><code>-dM</code> tells compiler to produce defines instead of preprocesed source code</li>
+<li><code>-</code> as last argument tells compiler to compile input from stdin.</li>
+</ul></li>
+
+<li><p>
+to look at say SSE/AVX related instructions:
+</p>
+
+<p>
+(using gcc 13.2 here)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">gcc -dM -E - &lt; /dev/null | egrep <span style="color: #e67128;">"SSE|AVX"</span> | sort
+</pre>
+</div>
+
+<pre class="example" id="org4d7cb53">
+#define __MMX_WITH_SSE__ 1
+#define __SSE2_MATH__ 1
+#define __SSE2__ 1
+#define __SSE_MATH__ 1
+#define __SSE__ 1
+</pre>
+
+<p>
+but with <code>-mavx512f</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">gcc -mavx512f -dM -E - &lt; /dev/null | egrep <span style="color: #e67128;">"SSE|AVX"</span> | sort
+</pre>
+</div>
+
+<p>
+with output:
+</p>
+
+<pre class="example" id="orgf607ba5">
+#define __AVX2__ 1
+#define __AVX512F__ 1
+#define __AVX__ 1
+#define __MMX_WITH_SSE__ 1
+#define __SSE2_MATH__ 1
+#define __SSE2__ 1
+#define __SSE3__ 1
+#define __SSE4_1__ 1
+#define __SSE4_2__ 1
+#define __SSE_MATH__ 1
+#define __SSE__ 1
+#define __SSSE3__ 1
+</pre></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-03-06 Wed 18:24</p>
+<p class="date">Created: 2024-06-08 Sat 16:08</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

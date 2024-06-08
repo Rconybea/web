@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-05-23 Thu 14:50 -->
+<!-- 2024-06-08 Sat 16:08 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -247,13 +247,33 @@
 <li><a href="https://www.florian-diesch.de/doc/sphinx/themes-and-pygments-styles/index.html">https://www.florian-diesch.de/doc/sphinx/themes-and-pygments-styles/index.html</a> sphinx+pygments styles</li>
 
 <li><a href="https://devhints.io/plantuml">https://devhints.io/plantuml</a>  plantuml cheatsheet</li>
+
+<li><p>
+<a href="https://www.jsums.edu/robotics/files/2016/12/FECS17_Proceedings-FEC3555.pdf">https://www.jsums.edu/robotics/files/2016/12/FECS17_Proceedings-FEC3555.pdf</a>  simd coding
+c[]
+_<sub>m256</sub> m0 = _mm256<sub>setzero</sub><sub>ps</sub>();
+_<sub>m256</sub> m1 = _mm256<sub>rboadcast</sub><sub>ss</sub>(a+i*n+k)
+_<sub>m256</sub> m2 = _mm256<sub>load</sub><sub>ps</sub>((b+k*n+j));
+_<sub>m256</sub> m3 = _mm256<sub>mul</sub><sub>ps</sub>(m1, m2)
+m0 = _<sub>mm256</sub><sub>add</sub><sub>ps</sub>(m0, m3)
+_mm256<sub>store</sub><sub>ps</sub>(c+i*n+j, m0);
+</p>
+
+<p>
+_mm512<sub>masz</sub><sub>loadu</sub><sub>pd</sub>(mask, v[]+i)
+_mm512<sub>loadu</sub><sub>pd</sub>(v[] + i)
+_mm512<sub>fmadd</sub><sub>pd</sub>(m1, m2, msum)
+_mm512<sub>set1</sub><sub>pd</sub> broadcast float64 element to destination
+_mm512<sub>set</sub><sub>pd</sub>(double e0, .., double e7)  broadcast packed float64 elements
+_mm512<sub>setzero</sub><sub>pd</sub> make vector _<sub>m512d</sub> with all elts set to zero VXORPD
+</p></li>
 </ul>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-05-23 Thu 14:50</p>
+<p class="date">Created: 2024-06-08 Sat 16:08</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
