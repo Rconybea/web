@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-04-25 Thu 18:11 -->
+<!-- 2024-06-19 Wed 19:34 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>xo libraries</title>
@@ -39,6 +39,7 @@
 <li><a href="#org9d765a3">4. External Dependencies</a></li>
 <li><a href="#org0312f09">5. Python Abstraction Tower</a></li>
 <li><a href="#org71a91d6">6. C++ Abstraction Tower</a></li>
+<li><a href="#orgae7e923">7. Size</a></li>
 </ul>
 </div>
 </div>
@@ -65,6 +66,7 @@ kalman filters, stochastic processes, complex event processing, simulation, webs
 <li><a href="https://github.com/rconybea/xo-pywebsock">xo-pywebsock</a> in-memory http server; can expose entirely-native publishing pipeline via websockets.</li>
 <li><a href="https://github.com/rconybea/xo-pywebutil">xo-pywebutil</a> lo-level abstractions for http: endpoints, attribute lists.</li>
 <li><a href="https://github.com/rconybea/xo-pykalmanfilter">xo-pykalmanfilter</a> linear kalman filter with simulation support.</li>
+<li><a href="https://github.com/rconybea/xo-pymatrix">xo-pymatrix</a> matrix algorithms [wip]</li>
 <li><a href="https://github.com/rconybea/xo-pydistribution">xo-pydistribution</a> probability distributions e.g. Kolmogorov Smirnov</li>
 <li><a href="https://github.com/rconybea/xo-pyprocess">xo-pyprocess</a> stochastic processes with simulation focus.</li>
 <li><a href="https://github.com/rconybea/xo-pyreactor">xo-pyreactor</a> complex event processors + polling reactor.</li>
@@ -112,18 +114,19 @@ data structures
 </ul>
 
 <p>
-dimension [wip]
+quantitative
 </p>
 <ul class="org-ul">
+<li><a href="https://github.com/rconybea/xo-matrix">xo-matrix</a> header-only.  specialized matrix algorithms with some vectorization [wip]</li>
 <li><a href="https://github.com/rconybea/xo-unit">xo-unit</a> header-only.  no-alloc constexpr exact unit conversions with some fractional-dimension support.</li>
 <li><a href="https://github.com/rconybea/xo-ratio">xo-ratio</a> header-only.  no-alloc constexpr exact ratio arithmetic.</li>
-<li><a href="https://github.com/rconybea/xo-flatstring">xo-flatstring</a> header-only. no-alloc plain-old-data constexpr string implementation</li>
 </ul>
 
 <p>
 general-purpose
 </p>
 <ul class="org-ul">
+<li><a href="https://github.com/rconybea/xo-flatstring">xo-flatstring</a> header-only. no-alloc plain-old-data constexpr string implementation</li>
 <li><a href="https://github.com/rconybea/xo-callback">xo-callback</a> header-only. reentrant callback set</li>
 <li><a href="https://github.com/rconybea/xo-printjson">xo-printjson</a> json printer with plugin support.</li>
 <li><a href="https://github.com/rconybea/reflect">xo-reflect</a> reflection/introspection library</li>
@@ -213,10 +216,175 @@ Each python library <code>pyfoo</code> depends on similarly-named c++ library <c
 </div>
 </div>
 </div>
+
+<div id="outline-container-orgae7e923" class="outline-2">
+<h2 id="orgae7e923"><span class="section-number-2">7.</span> Size</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+(per <code>cloc</code>;  excludes comments.  Sizes as of 10jun2024)
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">subsystem</th>
+<th scope="col" class="org-right">cmake</th>
+<th scope="col" class="org-right">.hpp</th>
+<th scope="col" class="org-right">.cpp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">xo-websock</td>
+<td class="org-right">34</td>
+<td class="org-right">186</td>
+<td class="org-right">1418</td>
+</tr>
+
+<tr>
+<td class="org-left">xo-webutil</td>
+<td class="org-right">27</td>
+<td class="org-right">77</td>
+<td class="org-right">56</td>
+</tr>
+
+<tr>
+<td class="org-left">xo-kalmanfilter</td>
+<td class="org-right">47</td>
+<td class="org-right">552</td>
+<td class="org-right">904</td>
+</tr>
+
+<tr>
+<td class="org-left">xo-process</td>
+<td class="org-right">34</td>
+<td class="org-right">645</td>
+<td class="org-right">163</td>
+</tr>
+
+<tr>
+<td class="org-left">xo-simulator</td>
+<td class="org-right">31</td>
+<td class="org-right">186</td>
+<td class="org-right">392</td>
+</tr>
+
+<tr>
+<td class="org-left">xo-reactor</td>
+<td class="org-right">39</td>
+<td class="org-right">1110</td>
+<td class="org-right">261</td>
+</tr>
+
+<tr>
+<td class="org-left">xo-distribution</td>
+<td class="org-right">24</td>
+<td class="org-right">717</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">xo-ordinaltree</td>
+<td class="org-right">24</td>
+<td class="org-right">3962</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">xo-statistics</td>
+<td class="org-right">22</td>
+<td class="org-right">166</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">xo-matrix</td>
+<td class="org-right">29</td>
+<td class="org-right">1266</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">xo-unit</td>
+<td class="org-right">49</td>
+<td class="org-right">1972</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">xo-ratio</td>
+<td class="org-right">36</td>
+<td class="org-right">418</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">xo-reflect</td>
+<td class="org-right">54</td>
+<td class="org-right">891</td>
+<td class="org-right">289</td>
+</tr>
+
+<tr>
+<td class="org-left">xo-refcnt</td>
+<td class="org-right">36</td>
+<td class="org-right">306</td>
+<td class="org-right">130</td>
+</tr>
+
+<tr>
+<td class="org-left">xo-indentlog</td>
+<td class="org-right">35</td>
+<td class="org-right">1632</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">xo-flatstring</td>
+<td class="org-right">34</td>
+<td class="org-right">582</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">xo-callback</td>
+<td class="org-right">25</td>
+<td class="org-right">180</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">xo-subsys</td>
+<td class="org-right">27</td>
+<td class="org-right">153</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">xo-cmake</td>
+<td class="org-right">1164</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-04-25 Thu 18:11</p>
+<p class="date">Created: 2024-06-19 Wed 19:34</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
