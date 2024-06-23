@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-06-23 Sun 12:53 -->
+<!-- 2024-06-23 Sun 12:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>[19jun2024] injecting symbols into llvm jit</title>
@@ -324,7 +324,7 @@ we want to fetch corresponding symbol from the jit:
 <p>
 This step would fail with error
 </p>
-<pre class="example" id="orge8eb06a">
+<pre class="example" id="org6b399ea">
 Unable to resolve symbol: mul_f64
 </pre>
 
@@ -332,7 +332,7 @@ Unable to resolve symbol: mul_f64
 Even though inspecting <code>libxo_jit.so</code> shows the symbol is present
 </p>
 
-<pre class="example" id="org97e3f3a">
+<pre class="example" id="org12d398a">
 $ readelf -d ~/proj/local2/lib/libxo_jit.so | grep mul_f64
 ... D mul_f64 ...
 </pre>
@@ -414,7 +414,7 @@ Using gcc 13.2, LLVM 18.1.5, building on ubuntu (really WSL2-on-windows), with n
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-06-23 Sun 12:53</p>
+<p class="date">Created: 2024-06-23 Sun 12:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
