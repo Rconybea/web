@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-06-23 Sun 12:32 -->
+<!-- 2024-06-23 Sun 12:53 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>[23jun2024] llvm::FunctionType and IRBuilder::CreateAlloc</title>
@@ -70,7 +70,7 @@ but ran into trouble introducing support for function types.
 <p>
 Example:
 </p>
-<pre class="example" id="org32143a8">
+<pre class="example" id="org77c19ed">
 define twice(f :: int(int), x :: int) { f(f(x)) }
 </pre>
 </div>
@@ -358,7 +358,7 @@ that has a function type argument, llvm hangs.
 Session:
 </p>
 
-<pre class="example" id="org608e708">
+<pre class="example" id="orgadeff9d">
 bash-5.2$ gdb ./example/ex2_jit/xo_jit_ex2
 GNU gdb (GDB) 14.2
 Copyright (C) 2023 Free Software Foundation, Inc.
@@ -412,7 +412,7 @@ The debug log snippet <code>:var_type "double (*)(double)"</code> comes from <co
 The smoking gun (once you know..) is this snippet:
 </p>
 
-<pre class="example" id="orgd3f3c08">
+<pre class="example" id="org3ca377a">
 ex1 llvm_ircode:
 declare double @callit(double (double), double)
 </pre>
@@ -453,7 +453,7 @@ before the shoe dropped:
 I encountered bug working with a more complicated example &#x2013; nested lambdas
 </p>
 
-<pre class="example" id="orgbd4e7fb">
+<pre class="example" id="orgcafa98a">
 define pow4(x :: int) {
     define twice(f :: int-&gt;int, x :: int) { f(f(x)) }
     define sq(x :: int) { x*x })
@@ -511,7 +511,7 @@ Using gcc 13.2, LLVM 18.1.5, building on ubuntu (really WSL2-on-windows), with n
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-06-23 Sun 12:32</p>
+<p class="date">Created: 2024-06-23 Sun 12:53</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

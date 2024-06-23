@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-06-23 Sun 12:53 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>[19jun2024] injecting symbols into llvm jit</title>
+<meta name="author" content="Roland Conybeare" />
+<meta name="description" content="injecting symbols for c++-located function into llvm jit" />
+<meta name="keywords" content="c++ pybind11 llvm jit transitive-library-dependency" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href=""> UP </a>
+ |
+ <a accesskey="H" href="../index.html"> HOME </a>
+</div><div id="content" class="content">
+<h1 class="title">[19jun2024] injecting symbols into llvm jit</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orge64fada">1. Introduction</a></li>
+<li><a href="#orgb3b96e0">2. TL;DR</a></li>
+<li><a href="#orgd8398ff">3. Context</a></li>
+<li><a href="#org0ae9495">4. Setup</a></li>
+<li><a href="#orgf2ee699">5. Problem + Diagnosis</a></li>
+<li><a href="#org8e05e02">6. Workaround</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge64fada" class="outline-2">
+<h2 id="orge64fada"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+I have a hobby/learning project <a href="https://github.com/Rconybea/xo-jit">xo-jit</a> jumping off from the content in the LLVM Kaleidoscope tutorial. <sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>
+In contrast to Kaleidoscope, <b>xo-jit</b> builds a shared library;  this is intended to support
+jit-compiled code invoked from a python REPL.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb3b96e0" class="outline-2">
+<h2 id="orgb3b96e0"><span class="section-number-2">2.</span> TL;DR</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+When binding a symbols for in-process jit, consider supplyin absolute address instead of symbol name.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd8398ff" class="outline-2">
+<h2 id="orgd8398ff"><span class="section-number-2">3.</span> Context</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>trying to make library functions callable from llvm-compiled functions.</li>
+<li>library <a href="https://github.com/Rconybea/xo-reflect">xo-reflect</a> provides c++ reflection</li>
+<li>library <a href="https://github.com/Rconybea/xo-expression">xo-expression</a> provides abstract syntax trees (for a typed lambda calculus-ish language)</li>
+<li>library <a href="https://github.com/Rconybea/xo-jit">xo-jit</a> compiles expressions using LLVM + links into running process via JIT</li>
+<li>libraries <a href="https://github.com/Rconybea/xo-pyreflect">xo-pyreflect</a>, <a href="https://github.com/Rconybea/xo-pyexpression">xo-pyexpression</a>, <a href="https://xo-pygit">xo-pygit</a> provide pybind11 wrappers.</li>
+</ul>
+
+<p>
+Using these libraries can from python:
+</p>
+<ul class="org-ul">
+<li>construct an AST for a program</li>
+<li>compile to machine code</li>
+<li>run resulting machine code from the same python session,  thanks to Jit</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0ae9495" class="outline-2">
+<h2 id="org0ae9495"><span class="section-number-2">4.</span> Setup</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Libraries built with <code>CMAKE_INSTALL_PREFIX</code> set to <code>~/local2</code>.
+Then run python like
+</p>
+<div class="org-src-container">
+<pre class="src src-bash"><span style="color: #dbdb95;">PYTHONPATH</span>=~/local2/lib:$<span style="color: #dbdb95;">PYTHONPATH</span> python
+</pre>
+</div>
+<p>
+(my <code>PYTHONPATH</code> rather long, contains a plethora of nix directories)
+</p>
+
+<p>
+Then from python:
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #ffad29; font-weight: bold;">from</span> xo_pyreflect <span style="color: #ffad29; font-weight: bold;">import</span> *
+<span style="color: #ffad29; font-weight: bold;">from</span> xo_pyexpression <span style="color: #ffad29; font-weight: bold;">import</span> *
+<span style="color: #ffad29; font-weight: bold;">from</span> xo_pyjit <span style="color: #ffad29; font-weight: bold;">import</span> *
+
+<span style="color: #74af68;"># </span><span style="color: #74af68;">builing program like</span>
+<span style="color: #74af68;">#   </span><span style="color: #74af68;">lambda (x) : x * x</span>
+<span style="color: #74af68;"># </span><span style="color: #74af68;">with</span>
+<span style="color: #74af68;">#   </span><span style="color: #74af68;">x :: double</span>
+
+<span style="color: #dbdb95;">f64_t</span> = TypeDescr.lookup_by_name(<span style="color: #e67128;">'double'</span>)
+<span style="color: #dbdb95;">x</span> = make_var(<span style="color: #e67128;">'x'</span>, f64_t)
+<span style="color: #74af68;">#</span><span style="color: #74af68;">f = make_sin_pm()     # works</span>
+<span style="color: #dbdb95;">f</span> = make_mul_f64_pm()  <span style="color: #74af68;"># </span><span style="color: #74af68;">fails to resolve</span>
+<span style="color: #dbdb95;">c</span> = make_apply(f, [x, x])
+<span style="color: #dbdb95;">lm</span> = make_lambda(<span style="color: #e67128;">'sq'</span>, [x], c)
+
+<span style="color: #dbdb95;">mp</span> = MachPipeline.make()
+
+<span style="color: #dbdb95;">code</span> = mp.codegen(lm)
+mp.machgen_current_model()
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf2ee699" class="outline-2">
+<h2 id="orgf2ee699"><span class="section-number-2">5.</span> Problem + Diagnosis</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+All this appears to work,   however the llvm jit is lazy,  so at this point
+although it's ready to produce machine code,  it hasn't actually done so yet.
+</p>
+
+<p>
+To get hold of the llvm-compiled <code>sq</code> function,  so we can invoke it from python,
+we want to fetch corresponding symbol from the jit:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #dbdb95;">sq</span> = mp.lookup_fn(<span style="color: #e67128;">'double (*)(double)'</span>, <span style="color: #e67128;">'sq'</span>)
+</pre>
+</div>
+
+<p>
+This step would fail with error
+</p>
+<pre class="example" id="orge8eb06a">
+Unable to resolve symbol: mul_f64
+</pre>
+
+<p>
+Even though inspecting <code>libxo_jit.so</code> shows the symbol is present
+</p>
+
+<pre class="example" id="org97e3f3a">
+$ readelf -d ~/proj/local2/lib/libxo_jit.so | grep mul_f64
+... D mul_f64 ...
+</pre>
+
+<p>
+We were relying on feature adopted from Kaleidoscope's JIT
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #74af68;">// </span><span style="color: #74af68;">in xo/jit/Jit.hpp</span>
+
+dest_dynamic_lib_.addGenerator
+    (cantFail(DynamicLibrarySearchGenerator::GetForCurrentProcess
+              (data_layout_.getGlobalPrefix())));
+</pre>
+</div>
+
+<p>
+Although this seems to work for kaleidoscope,  it's somehow not sufficient here.
+</p>
+
+<p>
+Hypothesis:
+</p>
+<ul class="org-ul">
+<li>perhaps <code>GenericLibrarySearchGenerator::GetForCurrentProcess()</code> behaves differently
+when invoked from a shared library (in this case <code>libxo_jit.so</code>)?</li>
+<li>maybe it can find the symbol for <code>::sin()</code> because they're in a library that's in scope
+starting from <code>libLLVM.so</code>,  but can't find <code>::mul_f64()</code> because that comes from a
+sibling <b>xo</b> library (even when jamming the symbol into <code>libxo_jit.so</code> itself!)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8e05e02" class="outline-2">
+<h2 id="org8e05e02"><span class="section-number-2">6.</span> Workaround</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li>Found <a href="https://stackoverflow.com/questions/57612173/llvm-jit-symbols-not-found">this article on stack overflow</a>:</li>
+<li>One of the answers gives a workaround for <b>LLVM-16</b>.  Was able to adapt that solution for <b>LLVM-18</b>:</li>
+<li>Workaround is to explicitly bind the symbol to an absolute address.</li>
+<li>This only works via JIT in a running process,  since only then do we know the absolute address
+for a symbol.</li>
+</ul>
+
+<p>
+In our jit:
+</p>
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #34cae2;">class</span> <span style="color: #dbdb95;">Jit</span> {
+<span style="color: #008b8b;">public</span>:
+    <span style="color: #e67128;">/** intern </span><span style="color: #008b8b;">@p</span><span style="color: #e67128;"> symbol, binding it to address </span><span style="color: #008b8b;">@p</span><span style="color: #e67128;"> dest **/</span>
+    template &lt;typename T&gt;
+    llvm::Error intern_symbol(<span style="color: #ffad29; font-weight: bold;">const</span> <span style="color: #dbdb95;">std</span>::string &amp; symbol, T * dest) {
+        llvm::orc::SymbolMap symbol_map;
+        symbol_map[mangler_(symbol)]
+            = llvm::orc::ExecutorSymbolDef(llvm::orc::ExecutorAddr::fromPtr(dest),
+                                           llvm::JITSymbolFlags());
+
+        <span style="color: #ffad29; font-weight: bold;">auto</span> <span style="color: #dbdb95;">materializer</span> = llvm::orc::absoluteSymbols(symbol_map);
+
+        <span style="color: #ffad29; font-weight: bold;">return</span> dest_dynamic_lib_.define(materializer);
+    } <span style="color: #74af68;">/*</span><span style="color: #74af68;">intern_symbol</span><span style="color: #74af68;">*/</span>
+};
+</pre>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+Using gcc 13.2, LLVM 18.1.5, building on ubuntu (really WSL2-on-windows), with nix supplying dependencies
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: Roland Conybeare</p>
+<p class="date">Created: 2024-06-23 Sun 12:53</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
