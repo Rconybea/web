@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-06-23 Sun 13:42 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>[8jun2024] gcc: getting builtin defines</title>
+<meta name="author" content="Roland Conybeare" />
+<meta name="description" content="List available C preprocessor symbols with gcc" />
+<meta name="keywords" content="c++ gcc preprocessor" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style>pre.src{background:#343131;color:white;} </style>
+<style>pre.example{background:#343131;color:white;} </style>
+<style> #content{max-width:1800px;}</style>
+<style> p{max-width:1800px;}</style>
+<style> li{max-width:1800px;}</style>
+<link rel="shortcut icon" type="image/x-icon" href="/web/img/favicon.ico" />
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href=""> UP </a>
+ |
+ <a accesskey="H" href="../../../index.html"> HOME </a>
+</div><div id="content" class="content">
+<h1 class="title">[8jun2024] gcc: getting builtin defines</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org2b21739">1. How to get built-in C preprocessor defines from gcc</a></li>
+<li><a href="#org5de93bd">2. Solution</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2b21739" class="outline-2">
+<h2 id="org2b21739"><span class="section-number-2">1.</span> How to get built-in C preprocessor defines from gcc</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Want to know the set of builtin <code>#defines</code> provided by compiler,
+as a function of command line arguments.
+</p>
+
+<p>
+My use case was figuring out which symbols for vector instructions
+got picked up with <code>-march=native</code> on my dev host.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5de93bd" class="outline-2">
+<h2 id="org5de93bd"><span class="section-number-2">2.</span> Solution</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>stumbled on this stack overflow question
+<a href="https://stackoverflow.com/questions/28939652/how-to-detect-sse-sse2-avx-avx2-avx-512-avx-128-fma-kcvi-availability-at-compile">https://stackoverflow.com/questions/28939652/how-to-detect-sse-sse2-avx-avx2-avx-512-avx-128-fma-kcvi-availability-at-compile</a></li>
+
+<li><p>
+turns out to be an easy one-liner
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">gcc -dM -E - &lt; /dev/null | sort
+</pre>
+</div>
+
+<p>
+with output like
+</p>
+
+<pre class="example" id="org69c3fcb">
+#define _FORTIFY_SOURCE 3
+#define _LP64 1
+#define _STDC_PREDEF_H 1
+#define __ATOMIC_ACQUIRE 2
+#define __ATOMIC_ACQ_REL 4
+...
+</pre>
+
+<p>
+Here:
+</p>
+
+<ul class="org-ul">
+<li><code>-E</code> tells compiler to emit preprocessor output</li>
+<li><code>-dM</code> tells compiler to produce defines instead of preprocesed source code</li>
+<li><code>-</code> as last argument tells compiler to compile input from stdin.</li>
+</ul></li>
+
+<li><p>
+to look at say SSE/AVX related instructions:
+</p>
+
+<p>
+(using gcc 13.2 here)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">gcc -dM -E - &lt; /dev/null | egrep <span style="color: #e67128;">"SSE|AVX"</span> | sort
+</pre>
+</div>
+
+<pre class="example" id="org92d5da8">
+#define __MMX_WITH_SSE__ 1
+#define __SSE2_MATH__ 1
+#define __SSE2__ 1
+#define __SSE_MATH__ 1
+#define __SSE__ 1
+</pre>
+
+<p>
+but with <code>-mavx512f</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">gcc -mavx512f -dM -E - &lt; /dev/null | egrep <span style="color: #e67128;">"SSE|AVX"</span> | sort
+</pre>
+</div>
+
+<p>
+with output:
+</p>
+
+<pre class="example" id="org4c81c28">
+#define __AVX2__ 1
+#define __AVX512F__ 1
+#define __AVX__ 1
+#define __MMX_WITH_SSE__ 1
+#define __SSE2_MATH__ 1
+#define __SSE2__ 1
+#define __SSE3__ 1
+#define __SSE4_1__ 1
+#define __SSE4_2__ 1
+#define __SSE_MATH__ 1
+#define __SSE__ 1
+#define __SSSE3__ 1
+</pre></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Roland Conybeare</p>
+<p class="date">Created: 2024-06-23 Sun 13:42</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

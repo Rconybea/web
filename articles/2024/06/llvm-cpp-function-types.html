@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-06-23 Sun 13:32 -->
+<!-- 2024-06-23 Sun 13:42 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>[23jun2024] llvm::FunctionType and IRBuilder::CreateAlloc</title>
@@ -71,7 +71,7 @@ but ran into trouble introducing support for function types.
 <p>
 Example:
 </p>
-<pre class="example" id="org5004a5f">
+<pre class="example" id="orgeeb3d15">
 define twice(f :: int(int), x :: int) { f(f(x)) }
 </pre>
 </div>
@@ -93,9 +93,9 @@ We must rehearse the C-language distinction between function types and pointer-t
 <ol class="org-ol">
 <li>I'm following Kaleidoscope's advice for satisfying LLVM IR's single-assignment requirement:
 function arguments are copied to the stack via <code>IRBuilder::CreateAlloca()</code>.
-Stack traffic is subsequently optimized away</li>
-<li>To represent types, <b>xo-jit</b> relies on sister library <a href="https://github.com/Rconybea/reflect">xo-reflect</a>.
-<b>xo-reflect</b> leverages c++ template specialization (to the extent possible)
+Stack traffic is subsequently optimized away by an llvm transform.</li>
+<li>To represent types, <b>xo-jit</b> relies on sister library <a href="https://github.com/Rconybea/reflect">xo-reflect</a>.</li>
+<li><b>xo-reflect</b> leverages c++ template specialization (where possible)
 to automate type construction.</li>
 </ol>
 </div>
@@ -350,7 +350,7 @@ that has a function type argument, llvm hangs.
 Session:
 </p>
 
-<pre class="example" id="org60b8878">
+<pre class="example" id="orge46901e">
 bash-5.2$ gdb ./example/ex2_jit/xo_jit_ex2
 GNU gdb (GDB) 14.2
 Copyright (C) 2023 Free Software Foundation, Inc.
@@ -404,7 +404,7 @@ The debug log snippet <code>:var_type "double (*)(double)"</code> comes from <co
 The smoking gun (once you know..) is this snippet:
 </p>
 
-<pre class="example" id="orgcb4ae97">
+<pre class="example" id="org86690e3">
 ex1 llvm_ircode:
 declare double @callit(double (double), double)
 </pre>
@@ -445,7 +445,7 @@ before the shoe dropped:
 I encountered bug working with a more complicated example &#x2013; nested lambdas
 </p>
 
-<pre class="example" id="orgf38a865">
+<pre class="example" id="org3153072">
 define pow4(x :: int) {
     define twice(f :: int-&gt;int, x :: int) { f(f(x)) }
     define sq(x :: int) { x*x })
@@ -503,7 +503,7 @@ Using gcc 13.2, LLVM 18.1.5, building on ubuntu (really WSL2-on-windows), with n
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-06-23 Sun 13:32</p>
+<p class="date">Created: 2024-06-23 Sun 13:42</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
