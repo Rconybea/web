@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-06-23 Sun 12:21 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>[23jun2024] llvm::FunctionType and IRBuilder::CreateAlloc</title>
+<meta name="author" content="Roland Conybeare" />
+<meta name="description" content="lessons learned while building cooperating c++ libraries using nix|cmake|pybind11|eigen amongst others" />
+<meta name="keywords" content="c++ cmake git submodule pybind11 eigen transitive-library-dependency" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href=""> UP </a>
+ |
+ <a accesskey="H" href="../index.html"> HOME </a>
+</div><div id="content" class="content">
+<h1 class="title">[23jun2024] llvm::FunctionType and IRBuilder::CreateAlloc</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgac692aa">1. Introduction</a></li>
+<li><a href="#org655141a">2. TL;DR</a></li>
+<li><a href="#orgaa1f90c">3. Context</a></li>
+<li><a href="#orgdbf9d93">4. LLVM Stack Allocation</a>
+<ul>
+<li><a href="#orgc25c898">4.1. Allocating Stack Space for a Value</a></li>
+<li><a href="#orga7bef01">4.2. Storing a Value to the Stack</a></li>
+<li><a href="#orgef48ef6">4.3. Reading a Value from the Stack</a></li>
+<li><a href="#orgc0691b8">4.4. Eliminating Stack Variables during Optimization</a></li>
+</ul>
+</li>
+<li><a href="#org7931685">5. Problem + Diagnosis</a></li>
+<li><a href="#org68fe91e">6. Bugfix</a></li>
+<li><a href="#orgc9fba5e">7. Postmorten</a></li>
+<li><a href="#org0b18445">8. Conclusion</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgac692aa" class="outline-2">
+<h2 id="orgac692aa"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+I have a hobby/learning project <a href="https://github.com/Rconybea/xo-jit">xo-jit</a>,  jumping off from the content in the LLVM Kaleidoscope tutorial.
+<b>xo-jit</b> supports a recognizable version of typed lambda calculus. <sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>
+</p>
+
+<p>
+It's reached the point where built-in machine-supported atomic types
+(<code>int32</code>, <code>uint64</code>, <code>float</code>, <code>double</code>, ..) work,
+but ran into trouble introducing support for function types.
+</p>
+
+<p>
+Example:
+</p>
+<pre class="example" id="org7b005ba">
+define twice(f :: int(int), x :: int) { f(f(x)) }
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org655141a" class="outline-2">
+<h2 id="org655141a"><span class="section-number-2">2.</span> TL;DR</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+We must rehearse the C-language distinction between function types and pointer-to-function types.
+<code>llvm::IRBuilder::CreateAlloc</code> hangs if asked to allocate space for an <code>llvm::FunctionType</code>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgaa1f90c" class="outline-2">
+<h2 id="orgaa1f90c"><span class="section-number-2">3.</span> Context</h2>
+<div class="outline-text-2" id="text-3">
+<ol class="org-ol">
+<li><p>
+I'm following Kaleidoscope's advice for satisfying LLVM IR's single-assignment requirement:
+function arguments are copied to the stack via <code>IRBuilder::CreateAlloca()</code>.
+</p>
+
+<p>
+Stack traffic is subsequently optimized away
+</p></li>
+
+<li>To represent types, <b>xo-jit</b> relies on sister library <a href="https://github.com/Rconybea/reflect">xo-reflect</a>.
+<b>xo-reflect</b> leverages c++ template specialization (to the extent possible)
+to automate type construction.</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgdbf9d93" class="outline-2">
+<h2 id="orgdbf9d93"><span class="section-number-2">4.</span> LLVM Stack Allocation</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+For our variables,  this involves several steps:
+</p>
+
+<ol class="org-ol">
+<li>Creating a stack allocation, <b>alloca</b></li>
+
+<li>Storing a value to the stack</li>
+
+<li>Loading a value from the stack</li>
+
+<li>Use optimizer pass to undo stack use</li>
+</ol>
+</div>
+
+<div id="outline-container-orgc25c898" class="outline-3">
+<h3 id="orgc25c898"><span class="section-number-3">4.1.</span> Allocating Stack Space for a Value</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+<b>xo-jit</b> code for creating a stack allocation uses <code>IRBuilder::CreateAlloc</code>.
+Excerpt from <code>MachPipeline</code> (<a href="https://github.com/Rconybea/xo-jit/blob/main/include/xo/jit/MachPipeline.hpp">.hpp</a> <a href="https://github.com/Rconybea/xo-jit/blob/main/src/jit/MachPipeline.cpp">.cpp</a>):
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #008b8b;">llvm</span>::<span style="color: #34cae2;">AllocaInst</span> *
+<span style="color: #008b8b;">MachPipeline</span>::<span style="color: #00ede1; font-weight: bold;">create_entry_block_alloca</span>(<span style="color: #008b8b;">llvm</span>::<span style="color: #34cae2;">Function</span> * <span style="color: #dbdb95;">llvm_fn</span>,
+                                        <span style="color: #ffad29; font-weight: bold;">const</span> <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">string</span> &amp; <span style="color: #dbdb95;">var_name</span>,
+                                        <span style="color: #34cae2;">TypeDescr</span> <span style="color: #dbdb95;">var_type</span>)
+{
+    <span style="color: #ffad29; font-weight: bold;">constexpr</span> <span style="color: #34cae2;">bool</span> <span style="color: #dbdb95;">c_debug_flag</span> = <span style="color: #008b8b;">true</span>;
+    <span style="color: #ffad29; font-weight: bold;">using</span> <span style="color: #008b8b;">xo</span>::scope;
+
+    <span style="color: #34cae2;">scope</span> <span style="color: #dbdb95;">log</span>(XO_DEBUG(c_debug_flag),
+              xtag(<span style="color: #e67128;">"llvm_fn"</span>, (<span style="color: #34cae2;">void</span>*)llvm_fn),
+              xtag(<span style="color: #e67128;">"var_name"</span>, var_name),
+              xtag(<span style="color: #e67128;">"var_type"</span>, var_type-&gt;short_name()));
+
+    <span style="color: #008b8b;">llvm</span>::<span style="color: #34cae2;">IRBuilder</span>&lt;&gt; <span style="color: #dbdb95;">tmp_ir_builder</span>(&amp;llvm_fn-&gt;getEntryBlock(),
+                                     llvm_fn-&gt;getEntryBlock().begin());
+
+    <span style="color: #008b8b;">llvm</span>::<span style="color: #34cae2;">Type</span> * <span style="color: #dbdb95;">llvm_var_type</span> = td_to_llvm_type(llvm_cx_.borrow(),
+                                                 var_type);
+
+    <span style="color: #34cae2;">log</span> &amp;&amp; <span style="color: #dbdb95;">log</span>(xtag(<span style="color: #e67128;">"llvm_var_type"</span>, (<span style="color: #34cae2;">void</span>*)llvm_var_type));
+
+    <span style="color: #ffad29; font-weight: bold;">if</span> (!llvm_var_type)
+        <span style="color: #ffad29; font-weight: bold;">return</span> <span style="color: #008b8b;">nullptr</span>;
+
+    <span style="color: #008b8b;">llvm</span>::<span style="color: #34cae2;">AllocaInst</span> * <span style="color: #dbdb95;">retval</span> = tmp_ir_builder.CreateAlloca(llvm_var_type,
+                                                            <span style="color: #008b8b;">nullptr</span>,
+                                                            var_name);
+    <span style="color: #34cae2;">log</span> &amp;&amp; <span style="color: #dbdb95;">log</span>(xtag(<span style="color: #e67128;">"alloca"</span>, (<span style="color: #34cae2;">void</span>*)retval));
+
+    <span style="color: #ffad29; font-weight: bold;">return</span> retval;
+} <span style="color: #74af68;">/*</span><span style="color: #74af68;">create_entry_block_alloca</span><span style="color: #74af68;">*/</span>
+</pre>
+</div>
+
+<p>
+The helper function <code>td_to_llvm_type()</code> constructs an <code>llvm::Type</code> corresponding
+to an <b>xo-reflect</b> <code>TypeDescr</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #008b8b;">llvm</span>::<span style="color: #34cae2;">Type</span> *
+<span style="color: #00ede1; font-weight: bold;">td_to_llvm_type</span>(<span style="color: #008b8b;">xo</span>::<span style="color: #008b8b;">ref</span>::<span style="color: #34cae2;">brw</span>&lt;LlvmContext&gt; <span style="color: #dbdb95;">llvm_cx</span>, <span style="color: #34cae2;">TypeDescr</span> <span style="color: #dbdb95;">td</span>);
+
+<span style="color: #e67128;">/** obtain llvm representation for a function type with the same signature as</span>
+<span style="color: #e67128;"> *  that represented by </span><span style="color: #008b8b;">@p</span><span style="color: #e67128;"> fn_td</span>
+<span style="color: #e67128;"> **/</span>
+<span style="color: #008b8b;">llvm</span>::<span style="color: #34cae2;">FunctionType</span> *
+<span style="color: #00ede1; font-weight: bold;">function_td_to_llvm_type</span>(<span style="color: #008b8b;">xo</span>::<span style="color: #008b8b;">ref</span>::<span style="color: #34cae2;">brw</span>&lt;LlvmContext&gt; <span style="color: #dbdb95;">llvm_cx</span>,
+                         <span style="color: #34cae2;">TypeDescr</span> <span style="color: #dbdb95;">fn_td</span>)
+{
+    <span style="color: #34cae2;">int</span> <span style="color: #dbdb95;">n_fn_arg</span> = fn_td-&gt;n_fn_arg();
+
+    <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">vector</span>&lt;<span style="color: #008b8b;">llvm</span>::<span style="color: #34cae2;">Type</span> *&gt; <span style="color: #dbdb95;">llvm_argtype_v</span>;
+    llvm_argtype_v.reserve(n_fn_arg);
+
+    <span style="color: #e67128;">/** check function args are all known **/</span>
+    <span style="color: #ffad29; font-weight: bold;">for</span> (<span style="color: #34cae2;">int</span> <span style="color: #dbdb95;">i</span> = 0; i &lt; n_fn_arg; ++i) {
+        <span style="color: #34cae2;">TypeDescr</span> <span style="color: #dbdb95;">arg_td</span> = fn_td-&gt;fn_arg(i);
+
+        <span style="color: #008b8b;">llvm</span>::<span style="color: #34cae2;">Type</span> * <span style="color: #dbdb95;">llvm_argtype</span> = td_to_llvm_type(llvm_cx, arg_td);
+
+        <span style="color: #ffad29; font-weight: bold;">if</span> (!llvm_argtype)
+            <span style="color: #ffad29; font-weight: bold;">return</span> <span style="color: #008b8b;">nullptr</span>;
+
+        llvm_argtype_v.push_back(llvm_argtype);
+    }
+
+    <span style="color: #34cae2;">TypeDescr</span> <span style="color: #dbdb95;">retval_td</span> = fn_td-&gt;fn_retval();
+    <span style="color: #008b8b;">llvm</span>::<span style="color: #34cae2;">Type</span> * <span style="color: #dbdb95;">llvm_retval</span> = td_to_llvm_type(llvm_cx, retval_td);
+
+    <span style="color: #ffad29; font-weight: bold;">if</span> (!llvm_retval)
+        <span style="color: #ffad29; font-weight: bold;">return</span> <span style="color: #008b8b;">nullptr</span>;
+
+    <span style="color: #ffad29; font-weight: bold;">auto</span> * <span style="color: #dbdb95;">llvm_fn_type</span> = <span style="color: #008b8b;">llvm</span>::<span style="color: #008b8b;">FunctionType</span>::get(llvm_retval,
+                                                  llvm_argtype_v,
+                                                  <span style="color: #008b8b;">false</span> <span style="color: #74af68;">/*</span><span style="color: #74af68;">!varargs</span><span style="color: #74af68;">*/</span>);
+
+    <span style="color: #ffad29; font-weight: bold;">return</span> llvm_fn_type;
+}
+
+<span style="color: #008b8b;">llvm</span>::<span style="color: #34cae2;">Type</span> *
+<span style="color: #00ede1; font-weight: bold;">td_to_llvm_type</span>(<span style="color: #008b8b;">xo</span>::<span style="color: #008b8b;">ref</span>::<span style="color: #34cae2;">brw</span>&lt;LlvmContext&gt; <span style="color: #dbdb95;">llvm_cx</span>, <span style="color: #34cae2;">TypeDescr</span> <span style="color: #dbdb95;">td</span>) {
+    <span style="color: #ffad29; font-weight: bold;">auto</span> &amp; <span style="color: #dbdb95;">llvm_cx_ref</span> = llvm_cx-&gt;llvm_cx_ref();
+
+    <span style="color: #ffad29; font-weight: bold;">if</span> (td-&gt;is_function()) {
+        <span style="color: #ffad29; font-weight: bold;">return</span> function_td_to_llvm_type(llvm_cx, td);
+    } <span style="color: #ffad29; font-weight: bold;">else</span> <span style="color: #ffad29; font-weight: bold;">if</span> (<span style="color: #008b8b;">Reflect</span>::is_native&lt;<span style="color: #34cae2;">bool</span>&gt;(td)) {
+        <span style="color: #ffad29; font-weight: bold;">return</span> <span style="color: #008b8b;">llvm</span>::<span style="color: #008b8b;">Type</span>::getInt1Ty(llvm_cx_ref);
+    } <span style="color: #ffad29; font-weight: bold;">else</span> <span style="color: #ffad29; font-weight: bold;">if</span> (<span style="color: #008b8b;">Reflect</span>::is_native&lt;<span style="color: #34cae2;">char</span>&gt;(td)) {
+        <span style="color: #ffad29; font-weight: bold;">return</span> <span style="color: #008b8b;">llvm</span>::<span style="color: #008b8b;">Type</span>::getInt8Ty(llvm_cx_ref);
+    } <span style="color: #ffad29; font-weight: bold;">else</span> <span style="color: #ffad29; font-weight: bold;">if</span> (<span style="color: #008b8b;">Reflect</span>::is_native&lt;<span style="color: #34cae2;">short</span>&gt;(td)) {
+        <span style="color: #ffad29; font-weight: bold;">return</span> <span style="color: #008b8b;">llvm</span>::<span style="color: #008b8b;">Type</span>::getInt16Ty(llvm_cx_ref);
+    } <span style="color: #ffad29; font-weight: bold;">else</span> <span style="color: #ffad29; font-weight: bold;">if</span> (<span style="color: #008b8b;">Reflect</span>::is_native&lt;<span style="color: #34cae2;">int</span>&gt;(td)) {
+        <span style="color: #ffad29; font-weight: bold;">return</span> <span style="color: #008b8b;">llvm</span>::<span style="color: #008b8b;">Type</span>::getInt32Ty(llvm_cx_ref);
+    } <span style="color: #ffad29; font-weight: bold;">else</span> <span style="color: #ffad29; font-weight: bold;">if</span> (<span style="color: #008b8b;">Reflect</span>::is_native&lt;<span style="color: #34cae2;">long</span>&gt;(td)) {
+        <span style="color: #ffad29; font-weight: bold;">return</span> <span style="color: #008b8b;">llvm</span>::<span style="color: #008b8b;">Type</span>::getInt64Ty(llvm_cx_ref);
+    } <span style="color: #ffad29; font-weight: bold;">else</span> <span style="color: #ffad29; font-weight: bold;">if</span> (<span style="color: #008b8b;">Reflect</span>::is_native&lt;<span style="color: #34cae2;">float</span>&gt;(td)) {
+        <span style="color: #ffad29; font-weight: bold;">return</span> <span style="color: #008b8b;">llvm</span>::<span style="color: #008b8b;">Type</span>::getFloatTy(llvm_cx_ref);
+    } <span style="color: #ffad29; font-weight: bold;">else</span> <span style="color: #ffad29; font-weight: bold;">if</span> (<span style="color: #008b8b;">Reflect</span>::is_native&lt;<span style="color: #34cae2;">double</span>&gt;(td)) {
+        <span style="color: #ffad29; font-weight: bold;">return</span> <span style="color: #008b8b;">llvm</span>::<span style="color: #008b8b;">Type</span>::getDoubleTy(llvm_cx_ref);
+    } <span style="color: #ffad29; font-weight: bold;">else</span> {
+        cerr &lt;&lt; <span style="color: #e67128;">"td_to_llvm_type: no llvm type available for T"</span>
+             &lt;&lt; xtag(<span style="color: #e67128;">"T"</span>, td-&gt;short_name())
+             &lt;&lt; endl;
+        <span style="color: #ffad29; font-weight: bold;">return</span> <span style="color: #008b8b;">nullptr</span>;
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga7bef01" class="outline-3">
+<h3 id="orga7bef01"><span class="section-number-3">4.2.</span> Storing a Value to the Stack</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+Once we have a stack allocation,   writing a value is simple
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #008b8b;">llvm</span>::<span style="color: #34cae2;">Function</span> *
+<span style="color: #008b8b;">MachPipeline</span>::<span style="color: #00ede1; font-weight: bold;">codegen_lambda_defn</span>(<span style="color: #008b8b;">ref</span>::<span style="color: #34cae2;">brw</span>&lt;Lambda&gt; <span style="color: #dbdb95;">lambda</span>,
+                                  <span style="color: #008b8b;">llvm</span>::<span style="color: #34cae2;">IRBuilder</span>&lt;&gt; &amp; <span style="color: #dbdb95;">ir_builder</span>)
+{
+    <span style="color: #ffad29; font-weight: bold;">auto</span> * <span style="color: #dbdb95;">llvm_fn</span> = llvm_module_-&gt;getFunction(lambda-&gt;name());
+
+    <span style="color: #ffad29; font-weight: bold;">for</span> (<span style="color: #ffad29; font-weight: bold;">auto</span> &amp; <span style="color: #dbdb95;">arg</span> : llvm_fn-&gt;args()) {
+        <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">string</span> <span style="color: #dbdb95;">arg_name</span> = <span style="color: #008b8b;">std</span>::string(arg.getName());
+
+        <span style="color: #008b8b;">llvm</span>::<span style="color: #34cae2;">AllocaInst</span> * <span style="color: #dbdb95;">alloca</span>
+            = create_entry_block_alloca(llvm_fn,
+                                        arg_name,
+                                        lambda-&gt;fn_args(i));
+
+        ir_builder.CreateStore(&amp;arg, alloca);
+    }
+
+    <span style="color: #74af68;">// </span><span style="color: #74af68;">codegen continues..</span>
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgef48ef6" class="outline-3">
+<h3 id="orgef48ef6"><span class="section-number-3">4.3.</span> Reading a Value from the Stack</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+Reading from stack allocation is also straightforward:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #008b8b;">llvm</span>::<span style="color: #34cae2;">Value</span> *
+<span style="color: #008b8b;">MachPipeline</span>::<span style="color: #00ede1; font-weight: bold;">codegen_variable</span>(<span style="color: #008b8b;">ref</span>::<span style="color: #34cae2;">brw</span>&lt;Variable&gt; <span style="color: #dbdb95;">var</span>,
+                               <span style="color: #008b8b;">llvm</span>::<span style="color: #34cae2;">IRBuilder</span>&lt;&gt; &amp; <span style="color: #dbdb95;">ir_builder</span>)
+{
+    <span style="color: #ffad29; font-weight: bold;">if</span> (env_stack_.empty()) {
+        cerr &lt;&lt; <span style="color: #e67128;">"MachPipeline::codegen_variable: expected non-empty environment stack"</span>
+             &lt;&lt; xtag(<span style="color: #e67128;">"x"</span>, var-&gt;name())
+             &lt;&lt; endl;
+
+        <span style="color: #ffad29; font-weight: bold;">return</span> <span style="color: #008b8b;">nullptr</span>;
+    }
+
+    <span style="color: #008b8b;">llvm</span>::<span style="color: #34cae2;">AllocaInst</span> * <span style="color: #dbdb95;">alloca</span> = env_stack_.top().lookup_var(var-&gt;name());
+
+    <span style="color: #ffad29; font-weight: bold;">if</span> (!alloca)
+        <span style="color: #ffad29; font-weight: bold;">return</span> <span style="color: #008b8b;">nullptr</span>;
+
+    <span style="color: #74af68;">/* </span><span style="color: #74af68;">code to load value from stack</span><span style="color: #74af68;"> */</span>
+    <span style="color: #ffad29; font-weight: bold;">return</span> ir_builder.CreateLoad(alloca-&gt;getAllocatedType(),
+                                 alloca,
+                                 var-&gt;name().c_str());
+} <span style="color: #74af68;">/*</span><span style="color: #74af68;">codegen_variable</span><span style="color: #74af68;">*/</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc0691b8" class="outline-3">
+<h3 id="orgc0691b8"><span class="section-number-3">4.4.</span> Eliminating Stack Variables during Optimization</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+Excerpt from <code>IrPipeline</code> (<a href="https://github.com/Rconybea/xo-jit/blob/main/include/xo/jit/IrPipeline.hpp">.hpp</a> <a href="https://github.com/Rconybea/xo-jit/blob/main/src/jit/IrPipeline.cpp">.cpp</a>)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #008b8b;">IrPipeline</span>::<span style="color: #00ede1; font-weight: bold;">IrPipeline</span>(<span style="color: #008b8b;">ref</span>::<span style="color: #34cae2;">rp</span>&lt;LlvmContext&gt; <span style="color: #dbdb95;">llvm_cx</span>)
+{
+    <span style="color: #74af68;">//</span><span style="color: #74af68;">...</span>
+
+    <span style="color: #ffad29; font-weight: bold;">this</span>-&gt;llvm_fpmgr_ = make_unique&lt;<span style="color: #008b8b;">llvm</span>::FunctionPassManager&gt;();
+
+    <span style="color: #74af68;">// </span><span style="color: #74af68;">...</span>
+
+    <span style="color: #e67128;">/** transform passes **/</span>
+    <span style="color: #ffad29; font-weight: bold;">this</span>-&gt;llvm_fpmgr_-&gt;addPass(<span style="color: #008b8b;">llvm</span>::InstCombinePass());
+
+    <span style="color: #74af68;">/* </span><span style="color: #74af68;">NOTE: llvm 19 adds mem2reg transform here</span><span style="color: #74af68;"> */</span>
+    <span style="color: #ffad29; font-weight: bold;">this</span>-&gt;llvm_fpmgr_-&gt;addPass(<span style="color: #008b8b;">llvm</span>::PromotePass());
+
+    <span style="color: #ffad29; font-weight: bold;">this</span>-&gt;llvm_fpmgr_-&gt;addPass(<span style="color: #008b8b;">llvm</span>::ReassociatePass());
+    <span style="color: #ffad29; font-weight: bold;">this</span>-&gt;llvm_fpmgr_-&gt;addPass(<span style="color: #008b8b;">llvm</span>::GVNPass());
+    <span style="color: #ffad29; font-weight: bold;">this</span>-&gt;llvm_fpmgr_-&gt;addPass(<span style="color: #008b8b;">llvm</span>::SimplifyCFGPass());
+
+    <span style="color: #74af68;">// </span><span style="color: #74af68;">...</span>
+} <span style="color: #74af68;">/*</span><span style="color: #74af68;">ctor</span><span style="color: #74af68;">*/</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7931685" class="outline-2">
+<h2 id="org7931685"><span class="section-number-2">5.</span> Problem + Diagnosis</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+When we try to invoke <code>MachPipeline::codegen_lambda_defn()</code> for a <code>xo::expr::Lambda</code>
+that has a function type argument, llvm hangs.
+</p>
+
+<p>
+Session:
+</p>
+
+<pre class="example" id="org0e37cd4">
+bash-5.2$ gdb ./example/ex2_jit/xo_jit_ex2
+GNU gdb (GDB) 14.2
+Copyright (C) 2023 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html&gt;
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-unknown-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+&lt;https://www.gnu.org/software/gdb/bugs/&gt;.
+Find the GDB manual and other documentation resources online at:
+    &lt;http://www.gnu.org/software/gdb/documentation/&gt;.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./example/ex2_jit/xo_jit_ex2...
+(No debugging symbols found in ./example/ex2_jit/xo_jit_ex2)
+(gdb) run
+Starting program: /home/roland/proj/xo/xo-jit/.build/example/ex2_jit/xo_jit_ex2
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/nix/store/apab5i73dqa09wx0q27b6fbhd1r18ihl-glibc-2.39-31/lib/libthread_db.so.1".
+22:00:41.933724 +(0) main                                                       [ex2_jit.cpp:65]
+ex1 llvm_ircode:
+declare double @sqrt(double)
+
+22:00:41.933983   +(1) MachPipeline::codegen_lambda_decl  :lambda-name callit   [MachPipeline.cpp:460]
+                    llvm formal param names :i 0 :param &lt;Variable :name f :type "double (*)(double)"&gt;
+                    llvm formal param names :i 1 :param &lt;Variable :name x :type double&gt;
+22:00:41.934072   -(1) MachPipeline::codegen_lambda_decl
+ex1 llvm_ircode:
+declare double @callit(double (double), double)
+
+22:00:41.934121   +(1) MachPipeline::create_entry_block_alloca  :llvm_fn 0x60d000004628 :var_name f :var_type "double (*)(double)" [MachPipeline.cpp:413]
+                     :llvm_var_type 0x621000007900
+  C-c C-c
+Program received signal SIGINT, Interrupt.
+0x00007fffefdc6a78 in llvm::DataLayout::getAlignment(llvm::Type*, bool) const () from /nix/store/7g85a60mqdzshfdm068468wpbdv209fi-llvm-18.1.5-lib/lib/libLLVM.so.18.1
+(gdb) where
+#0  0x00007fffefdc6a78 in llvm::DataLayout::getAlignment(llvm::Type*, bool) const () from /nix/store/7g85a60mqdzshfdm068468wpbdv209fi-llvm-18.1.5-lib/lib/libLLVM.so.18.1
+#1  0x00007ffff78c0528 in llvm::IRBuilderBase::CreateAlloca(llvm::Type*, llvm::Value*, llvm::Twine const&amp;) () from /home/roland/proj/xo/xo-jit/.build/src/jit/libxo_jit.so.1
+#2  0x00007ffff78b265e in xo::jit::MachPipeline::create_entry_block_alloca(llvm::Function*, std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, xo::reflect::TypeDescrBase const*) () from /home/roland/proj/xo/xo-jit/.build/src/jit/libxo_jit.so.1
+#3  0x000000000040f961 in main ()
+</pre>
+
+<p>
+The debug log snippet <code>:var_type "double (*)(double)"</code> comes from <code>xo::reflect::TypeDescr</code>,  not llvm.
+</p>
+
+<p>
+The smoking gun (once you know..) is this snippet:
+</p>
+
+<pre class="example" id="org178fb8e">
+ex1 llvm_ircode:
+declare double @callit(double (double), double)
+</pre>
+
+<p>
+<code>double (double)</code> is a function type,  not a point-to-function type.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org68fe91e" class="outline-2">
+<h2 id="org68fe91e"><span class="section-number-2">6.</span> Bugfix</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Check back soon..
+</p>
+
+<p>
+I'm writing this before modifing <code>MachPipeline</code> to
+pass pointers-to-functions instead of functions.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc9fba5e" class="outline-2">
+<h2 id="orgc9fba5e"><span class="section-number-2">7.</span> Postmorten</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+I spent longer grappling with this bug than I care to admit.
+</p>
+
+<p>
+When confronted with llvm hanging, I investigated several alternative explanations
+before the shoe dropped:
+</p>
+
+<p>
+I encountered bug working with a more complicated example &#x2013; nested lambdas
+</p>
+
+<pre class="example" id="org819a671">
+define pow4(x :: int) {
+    define twice(f :: int-&gt;int, x :: int) { f(f(x)) }
+    define sq(x :: int) { x*x })
+
+    twice(sq, x)
+}
+</pre>
+
+<p>
+Since problem showed with two calls to <code>MachPipeline::codegen_lambda_defn()</code>,
+I thought that some stateful interaction between one or more of
+<code>llvm::Module</code>, <code>llvm::Context</code>, <code>llvm::ExecutionSession</code> might be the culprit.
+</p>
+
+<p>
+Spent some time refactoring so that <code>MachPipeline</code> would generate code for
+nested lambdas before commencing codegen for an enclosing lambda.
+</p>
+
+<p>
+Also made related wild-guess changes like introducing explicit activation records,
+and ensuring lambda declarations created separately and in-advance-of definitions.
+</p>
+
+<p>
+Similarly,  invented hypothetical state requirements on <code>IRBuilder</code>:
+can you interleave inserts to multiple builders for the same function?
+</p>
+
+<p>
+I expect perhaps you can, though haven't encountered proof yet.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0b18445" class="outline-2">
+<h2 id="org0b18445"><span class="section-number-2">8.</span> Conclusion</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Chalk this up to occupational hazard of being at the wrong end of a learning curve;
+trying to reason about llvm behavior int the presence of (gaping) knowledge gaps.
+</p>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+Using gcc 13.2, LLVM 18.1.5, building on ubuntu (really WSL2-on-windows), with nix supplying dependencies
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: Roland Conybeare</p>
+<p class="date">Created: 2024-06-23 Sun 12:21</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
