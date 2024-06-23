@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-06-23 Sun 12:57 -->
+<!-- 2024-06-23 Sun 13:22 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>[19jun2024] injecting symbols into llvm jit</title>
 <meta name="author" content="Roland Conybeare" />
 <meta name="description" content="injecting symbols for c++-located function into llvm jit" />
-<meta name="keywords" content="c++ pybind11 llvm jit transitive-library-dependency" />
+<meta name="keywords" content="c++ llvm jit pybind11 transitive-library-dependency" />
 <meta name="generator" content="Org Mode" />
 <style>
   #content { max-width: 60em; margin: auto; }
@@ -195,6 +195,7 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
+<link rel="shortcut icon" type="image/x-icon" href="/web/img/favicon.ico" />
 </head>
 <body>
 <div id="org-div-home-and-up">
@@ -324,7 +325,7 @@ we want to fetch corresponding symbol from the jit:
 <p>
 This step would fail with error
 </p>
-<pre class="example" id="org6b399ea">
+<pre class="example" id="orgb062eb5">
 Unable to resolve symbol: mul_f64
 </pre>
 
@@ -332,7 +333,7 @@ Unable to resolve symbol: mul_f64
 Even though inspecting <code>libxo_jit.so</code> shows the symbol is present
 </p>
 
-<pre class="example" id="org12d398a">
+<pre class="example" id="org320f45f">
 $ readelf -d ~/proj/local2/lib/libxo_jit.so | grep mul_f64
 ... D mul_f64 ...
 </pre>
@@ -414,7 +415,7 @@ Using gcc 13.2, LLVM 18.1.5, building on ubuntu (really WSL2-on-windows), with n
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-06-23 Sun 12:57</p>
+<p class="date">Created: 2024-06-23 Sun 13:22</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
