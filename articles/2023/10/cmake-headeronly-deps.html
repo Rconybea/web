@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-09-08 Sun 18:23 -->
+<!-- 2024-09-08 Sun 18:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>[7oct2023] cmake header-only dependencies</title>
@@ -36,9 +36,9 @@
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
 <li><a href="#orgdfed4bd">1. Update</a></li>
-<li><a href="#org8b587fa">2. Setup</a></li>
-<li><a href="#orgf7d8315">3. Problem</a></li>
-<li><a href="#org8c31567">4. Workaround</a></li>
+<li><a href="#orgb397588">2. Setup (before Update)</a></li>
+<li><a href="#org61433c0">3. Problem (before Update)</a></li>
+<li><a href="#org65c2946">4. Workaround (before Update)</a></li>
 </ul>
 </div>
 </div>
@@ -51,7 +51,7 @@ My original investigation (below) mistaken.
 It turns out I didn't understand that cmake error from <code>target_link_libraries()</code>:
 </p>
 
-<pre class="example" id="org06cecc3">
+<pre class="example" id="org610a5f8">
 INTERFACE library can only be used with the INTERFACE keyword of target_link_libraries
 </pre>
 
@@ -65,8 +65,8 @@ Mistaken investigation below for posterity :)
 </div>
 </div>
 
-<div id="outline-container-org8b587fa" class="outline-2">
-<h2 id="org8b587fa"><span class="section-number-2">2.</span> Setup</h2>
+<div id="outline-container-orgb397588" class="outline-2">
+<h2 id="orgb397588"><span class="section-number-2">2.</span> Setup (before Update)</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>NOTE: also asked on stack overflow <a href="https://stackoverflow.com/questions/77251201/cmake-regular-shared-library-depending-on-a-header-only-interface-library">here</a></li>
@@ -98,7 +98,7 @@ Must specify include directories for a header-only library like this:
 <p>
 cmake enforces this explicitly;   gives error
 </p>
-<pre class="example" id="orgc90f6d9">
+<pre class="example" id="org88a18fa">
 target_include_directories may only set INTERFACE properties on INTERFACE targets
 </pre></li>
 
@@ -116,7 +116,7 @@ Must specify dependency on a header-only library like this:
 <p>
 cmake enforces this explicitly;   gives error
 </p>
-<pre class="example" id="org0ce5eb8">
+<pre class="example" id="orgfacead3">
 INTERFACE library can only be used with the INTERFACE keyword of target_link_libraries
 </pre></li>
 
@@ -125,7 +125,7 @@ Expected behavior:
 this is sufficient for compilation of <code>bar</code> to tell compiler about include paths for <code>foo</code>:
 </p>
 
-<pre class="example" id="orgccc3700">
+<pre class="example" id="org3a81dcd">
 gcc -Ipath/to/foo bar.cpp
 </pre>
 
@@ -136,8 +136,8 @@ This expectation is satisfied for regular non-INTERFACE libraries.
 </div>
 </div>
 
-<div id="outline-container-orgf7d8315" class="outline-2">
-<h2 id="orgf7d8315"><span class="section-number-2">3.</span> Problem</h2>
+<div id="outline-container-org61433c0" class="outline-2">
+<h2 id="org61433c0"><span class="section-number-2">3.</span> Problem (before Update)</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>compilation fails to supply include paths for depended-on <code>foo</code> when compiling depending-on <code>bar</code>,
@@ -155,8 +155,8 @@ while ignoring the <code>INTERFACE_INCLUDE_DIRECTORIES</code> property.</li>
 </div>
 </div>
 
-<div id="outline-container-org8c31567" class="outline-2">
-<h2 id="org8c31567"><span class="section-number-2">4.</span> Workaround</h2>
+<div id="outline-container-org65c2946" class="outline-2">
+<h2 id="org65c2946"><span class="section-number-2">4.</span> Workaround (before Update)</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li><p>
@@ -181,7 +181,7 @@ to <code>INCLUDE_DIRECTORIES</code>:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-09-08 Sun 18:23</p>
+<p class="date">Created: 2024-09-08 Sun 18:33</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

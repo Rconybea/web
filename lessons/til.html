@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-09-08 Sun 18:23 -->
+<!-- 2024-09-08 Sun 18:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Today I Learned - lessons from building a C++ development stack</title>
@@ -35,45 +35,36 @@
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
 <li><a href="#org97c7afd">1. wsl (windows services for linux)</a></li>
-<li><a href="#org5a25305">2. cmake</a>
+<li><a href="#org5a25305">2. cmake</a></li>
+<li><a href="#org74fc161">3. pybind11</a></li>
+<li><a href="#org327d4a5">4. lsp (language server process)</a>
 <ul>
-<li><a href="#orge007d17">2.1. pybind11 link difficulties with transitive library dependencies (7oct2023)</a>
+<li><a href="#org65a1f50">4.1. mysterious lsp complaints about iostream headers (22feb2024)</a>
 <ul>
-<li><a href="#orgce35e20">2.1.1. Setup</a></li>
-<li><a href="#orgb00bc72">2.1.2. Problem</a></li>
-<li><a href="#org6a2b1db">2.1.3. Workaround</a></li>
+<li><a href="#orgfc24530">4.1.1. Setup</a></li>
+<li><a href="#org6583408">4.1.2. Problem</a></li>
+<li><a href="#org713224a">4.1.3. Solution</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org327d4a5">3. lsp (language server process)</a>
+<li><a href="#org0823ccf">5. iostream</a>
 <ul>
-<li><a href="#org65a1f50">3.1. mysterious lsp complaints about iostream headers (22feb2024)</a>
+<li><a href="#org94c4c13">5.1. general api rant (25feb2024)</a>
 <ul>
-<li><a href="#orgfc24530">3.1.1. Setup</a></li>
-<li><a href="#org6583408">3.1.2. Problem</a></li>
-<li><a href="#org713224a">3.1.3. Solution</a></li>
+<li><a href="#orgddfcd78">5.1.1. <code>istream.read()</code> doesn't report the number of bytes/chars read.</a></li>
+<li><a href="#org14a1b76">5.1.2. <code>istream.read(s, n)</code> expects always to read n chars.</a></li>
+<li><a href="#orga2ae10c">5.1.3. Iostream get isn't monotonic</a></li>
+<li><a href="#orgf90d0fa">5.1.4. Iostream position reporting isn't monotonic.</a></li>
+<li><a href="#orgc5ad4f1">5.1.5. Streambuf not responsible for eofbit.</a></li>
+<li><a href="#orgc1e9ba7">5.1.6. Stream position reporting from streambuf</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org0823ccf">4. iostream</a>
-<ul>
-<li><a href="#org94c4c13">4.1. general api rant (25feb2024)</a>
-<ul>
-<li><a href="#orgddfcd78">4.1.1. <code>istream.read()</code> doesn't report the number of bytes/chars read.</a></li>
-<li><a href="#org14a1b76">4.1.2. <code>istream.read(s, n)</code> expects always to read n chars.</a></li>
-<li><a href="#orga2ae10c">4.1.3. Iostream get isn't monotonic</a></li>
-<li><a href="#orgf90d0fa">4.1.4. Iostream position reporting isn't monotonic.</a></li>
-<li><a href="#orgc5ad4f1">4.1.5. Streambuf not responsible for eofbit.</a></li>
-<li><a href="#orgc1e9ba7">4.1.6. Stream position reporting from streambuf</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org8404985">5. zlib</a></li>
-<li><a href="#org16db22f">6. gcc</a></li>
-<li><a href="#orge7c63fe">7. llvm</a></li>
+<li><a href="#org8404985">6. zlib</a></li>
+<li><a href="#org16db22f">7. gcc</a></li>
+<li><a href="#orge7c63fe">8. llvm</a></li>
 </ul>
 </div>
 </div>
@@ -98,140 +89,28 @@
 <li>(Oct 2023) <a href="../articles/2023/10/cmake-headeronly-deps.html">cmake headeronly dependencies</a></li>
 </ul>
 </div>
-
-<div id="outline-container-orge007d17" class="outline-3">
-<h3 id="orge007d17"><span class="section-number-3">2.1.</span> pybind11 link difficulties with transitive library dependencies (7oct2023)</h3>
-<div class="outline-text-3" id="text-2-1">
 </div>
-<div id="outline-container-orgce35e20" class="outline-4">
-<h4 id="orgce35e20"><span class="section-number-4">2.1.1.</span> Setup</h4>
-<div class="outline-text-4" id="text-2-1-1">
+
+<div id="outline-container-org74fc161" class="outline-2">
+<h2 id="org74fc161"><span class="section-number-2">3.</span> pybind11</h2>
+<div class="outline-text-2" id="text-3">
 <ul class="org-ul">
-<li>cmake version 3.25.3</li>
-<li>pybind11 version ???</li>
-<li>nix build (see <a href="https://github.com:rconybea/xo-nix2">https://github.com:rconybea/xo-nix2</a>)
-Consequences of nix build:
-<ul class="org-ul">
-<li>Each package installed to a separate directory &#x2013; no "common swimming pool" like <code>/usr/lib</code></li>
-<li>Implies install directory always distinct from any directory containing build inputs</li>
-<li>Tends to reveal oversights in toolchain,  as we'll see below</li>
-</ul></li>
-
-<li>pybind library (<code>xo-pyreflect</code>) with dependency on a separate library (<code>xo-reflect</code>),
-that in turn has secondary dependencies (<code>xo-refcnt</code>, <code>xo-indentlog</code>).
-Note that <code>xo-indentlog</code> is header-only.</li>
-
-<li><p>
-Expect this cmake script to work:
-</p>
-<div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #00ede1; font-weight: bold;">find_package</span>(pybind11)
-<span style="color: #00ede1; font-weight: bold;">pybind11_add_module</span>(pyreflect pyreflect.cpp)
-
-<span style="color: #00ede1; font-weight: bold;">find_package</span>(reflect CONFIG REQUIRED)
-<span style="color: #00ede1; font-weight: bold;">target_link_libraries</span>(pyreflect PUBLIC reflect)
-</pre>
-</div></li>
+<li>(Oct 2023) <a href="../articles/2023/10/pybind11-transitive-deps.html">pybind11 transitive library deps</a></li>
 </ul>
-</div>
-</div>
-
-<div id="outline-container-orgb00bc72" class="outline-4">
-<h4 id="orgb00bc72"><span class="section-number-4">2.1.2.</span> Problem</h4>
-<div class="outline-text-4" id="text-2-1-2">
-<ul class="org-ul">
-<li><p>
-Instead, link fails.   Link line something like:
-</p>
-<pre class="example" id="orgae26970">
-g++ -fPIC ... -o pyreflect.cpython-311-x86_64-linux-gnu.so /path/to/libreflect.so -lrefcnt -lindentlog
-</pre>
-
-<p>
-Two problems here:
-</p>
-<ol class="org-ol">
-<li>directory containing <code>librefcnt.so</code> isn't on the link line (no <code>-L/path/to/refcnt/dir</code> for example).</li>
-<li><code>libindentlog.so</code> does not exist,  since <code>indentlog</code> is header-only</li>
-</ol></li>
-
-<li><p>
-Looked into intermediate outputs like <code>lib/cmake/reflectTargets.cmake</code>,  excerpt:
-</p>
-<div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #00ede1; font-weight: bold;">set_target_properties</span>(reflect PROPERTIES
-    INTERFACE_INCLUDE_DIRECTORIES <span style="color: #e67128;">"${</span><span style="color: #dbdb95;">_IMPORT_PREFIX</span><span style="color: #e67128;">}/include"</span>
-    INTERFACE_LINK_LIBRARIES <span style="color: #e67128;">"indentlog;refcnt"</span>
-)
-</pre>
-</div>
-<p>
-It's not obvious how <code>xo_pyreflect</code> can know that <code>indentlog</code> is header-only,  while <code>refcnt</code> isn't
-(though could presumably extract the relevant libdir from <code>find_package()</code> with some work).
-</p></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-org6a2b1db" class="outline-4">
-<h4 id="org6a2b1db"><span class="section-number-4">2.1.3.</span> Workaround</h4>
-<div class="outline-text-4" id="text-2-1-3">
-<ul class="org-ul">
-<li><p>
-Recognize that <code>pyreflect</code> link shouldn't need <code>refcnt</code> on the link line,
-since <code>libreflect.so</code> has a <code>DT_NEEDED</code> entry for it.
-</p>
-
-<pre class="example" id="orgf9436b4">
-$ readelf -d /path/to/libreflect.so
-
-Dynamic section at offset 0x17860 contains 34 entries:
-  Tag        Type                         Name/Value
- 0x0000000000000001 (NEEDED)             Shared library: [librefcnt.so.1]
-...
-</pre></li>
-
-<li><p>
-When building <code>pyreflect</code>,  suppress transitive dependencies
-For example:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #74af68;"># </span><span style="color: #74af68;">xo_cxx.cmake</span>
-<span style="color: #ffad29; font-weight: bold;">macro</span>(xo_pybind11_dependency target dep)
-    <span style="color: #00ede1; font-weight: bold;">find_package</span>(${<span style="color: #dbdb95;">dep</span>} CONFIG REQUIRED)
-    <span style="color: #00ede1; font-weight: bold;">set_property</span>(TARGET ${<span style="color: #dbdb95;">dep</span>} PROPERTY INTERFACE_LINK_LIBRARIES <span style="color: #e67128;">""</span>)
-    <span style="color: #00ede1; font-weight: bold;">target_link_libraries</span>(${<span style="color: #dbdb95;">target</span>} PUBLIC ${<span style="color: #dbdb95;">dep</span>})
-<span style="color: #ffad29; font-weight: bold;">endmacro</span>()
-</pre>
-</div>
-
-<p>
-Then in <code>.cmake</code> for <code>pyreflect</code>,  something equivalent to:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #00ede1; font-weight: bold;">pybind11_add_module</span>(pyreflect pyreflect.cpp)
-<span style="color: #00ede1; font-weight: bold;">xo_pybind11_dependency</span>(pyreflect reflect)
-</pre>
-</div></li>
-</ul>
-</div>
-</div>
 </div>
 </div>
 
 <div id="outline-container-org327d4a5" class="outline-2">
-<h2 id="org327d4a5"><span class="section-number-2">3.</span> lsp (language server process)</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="org327d4a5"><span class="section-number-2">4.</span> lsp (language server process)</h2>
+<div class="outline-text-2" id="text-4">
 </div>
 <div id="outline-container-org65a1f50" class="outline-3">
-<h3 id="org65a1f50"><span class="section-number-3">3.1.</span> mysterious lsp complaints about iostream headers (22feb2024)</h3>
-<div class="outline-text-3" id="text-3-1">
+<h3 id="org65a1f50"><span class="section-number-3">4.1.</span> mysterious lsp complaints about iostream headers (22feb2024)</h3>
+<div class="outline-text-3" id="text-4-1">
 </div>
 <div id="outline-container-orgfc24530" class="outline-4">
-<h4 id="orgfc24530"><span class="section-number-4">3.1.1.</span> Setup</h4>
-<div class="outline-text-4" id="text-3-1-1">
+<h4 id="orgfc24530"><span class="section-number-4">4.1.1.</span> Setup</h4>
+<div class="outline-text-4" id="text-4-1-1">
 <ul class="org-ul">
 <li>working on bespoke streambuf implementation (cmake-examples/zstream/include/zstream/zstreambuf.hpp)</li>
 </ul>
@@ -239,8 +118,8 @@ Then in <code>.cmake</code> for <code>pyreflect</code>,  something equivalent to
 </div>
 
 <div id="outline-container-org6583408" class="outline-4">
-<h4 id="org6583408"><span class="section-number-4">3.1.2.</span> Problem</h4>
-<div class="outline-text-4" id="text-3-1-2">
+<h4 id="org6583408"><span class="section-number-4">4.1.2.</span> Problem</h4>
+<div class="outline-text-4" id="text-4-1-2">
 <ul class="org-ul">
 <li>getting mysterious errors from flymake + emacs,  e.g. message "&lt;fstream&gt; not found"</li>
 </ul>
@@ -248,8 +127,8 @@ Then in <code>.cmake</code> for <code>pyreflect</code>,  something equivalent to
 </div>
 
 <div id="outline-container-org713224a" class="outline-4">
-<h4 id="org713224a"><span class="section-number-4">3.1.3.</span> Solution</h4>
-<div class="outline-text-4" id="text-3-1-3">
+<h4 id="org713224a"><span class="section-number-4">4.1.3.</span> Solution</h4>
+<div class="outline-text-4" id="text-4-1-3">
 <ul class="org-ul">
 <li>Had discarded <code>cmake-examples/build</code> directory,  using <code>cmake-examples/.build</code> instead.
 This was to prevent build tree showing up when running <code>tree</code> in the <code>cmake-examples</code> directory</li>
@@ -266,16 +145,16 @@ This was to prevent build tree showing up when running <code>tree</code> in the 
 </div>
 
 <div id="outline-container-org0823ccf" class="outline-2">
-<h2 id="org0823ccf"><span class="section-number-2">4.</span> iostream</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="org0823ccf"><span class="section-number-2">5.</span> iostream</h2>
+<div class="outline-text-2" id="text-5">
 </div>
 <div id="outline-container-org94c4c13" class="outline-3">
-<h3 id="org94c4c13"><span class="section-number-3">4.1.</span> general api rant (25feb2024)</h3>
-<div class="outline-text-3" id="text-4-1">
+<h3 id="org94c4c13"><span class="section-number-3">5.1.</span> general api rant (25feb2024)</h3>
+<div class="outline-text-3" id="text-5-1">
 </div>
 <div id="outline-container-orgddfcd78" class="outline-4">
-<h4 id="orgddfcd78"><span class="section-number-4">4.1.1.</span> <code>istream.read()</code> doesn't report the number of bytes/chars read.</h4>
-<div class="outline-text-4" id="text-4-1-1">
+<h4 id="orgddfcd78"><span class="section-number-4">5.1.1.</span> <code>istream.read()</code> doesn't report the number of bytes/chars read.</h4>
+<div class="outline-text-4" id="text-5-1-1">
 <p>
 Instead of:
 </p>
@@ -308,8 +187,8 @@ that will be discarded on next read operation.
 </div>
 
 <div id="outline-container-org14a1b76" class="outline-4">
-<h4 id="org14a1b76"><span class="section-number-4">4.1.2.</span> <code>istream.read(s, n)</code> expects always to read n chars.</h4>
-<div class="outline-text-4" id="text-4-1-2">
+<h4 id="org14a1b76"><span class="section-number-4">5.1.2.</span> <code>istream.read(s, n)</code> expects always to read n chars.</h4>
+<div class="outline-text-4" id="text-5-1-2">
 <p>
 It sets <code>failbit</code> if less than <code>n</code> chars read.
 </p>
@@ -567,8 +446,8 @@ Another alternative would be to post-process <code>read()</code>, and clear <cod
 </div>
 
 <div id="outline-container-orga2ae10c" class="outline-4">
-<h4 id="orga2ae10c"><span class="section-number-4">4.1.3.</span> Iostream get isn't monotonic</h4>
-<div class="outline-text-4" id="text-4-1-3">
+<h4 id="orga2ae10c"><span class="section-number-4">5.1.3.</span> Iostream get isn't monotonic</h4>
+<div class="outline-text-4" id="text-5-1-3">
 <p>
 <code>iostream.get(s, n, delim)</code> sets <code>failbit</code> if first character matches delim.
 </p>
@@ -641,8 +520,8 @@ We need carve-out:
 
 
 <div id="outline-container-orgf90d0fa" class="outline-4">
-<h4 id="orgf90d0fa"><span class="section-number-4">4.1.4.</span> Iostream position reporting isn't monotonic.</h4>
-<div class="outline-text-4" id="text-4-1-4">
+<h4 id="orgf90d0fa"><span class="section-number-4">5.1.4.</span> Iostream position reporting isn't monotonic.</h4>
+<div class="outline-text-4" id="text-5-1-4">
 <p>
 <code>iostream.tellg()</code> and <code>iostream.putg()</code> report current position w.r.t.
 beginning of stream for input (get) and output (put) respectively.
@@ -699,8 +578,8 @@ n_read += input.gcount();
 </div>
 
 <div id="outline-container-orgc5ad4f1" class="outline-4">
-<h4 id="orgc5ad4f1"><span class="section-number-4">4.1.5.</span> Streambuf not responsible for eofbit.</h4>
-<div class="outline-text-4" id="text-4-1-5">
+<h4 id="orgc5ad4f1"><span class="section-number-4">5.1.5.</span> Streambuf not responsible for eofbit.</h4>
+<div class="outline-text-4" id="text-5-1-5">
 <p>
 <code>istream.eofbit</code> probably belongs in <code>streambuf</code>.
 <code>streambuf</code> has to recognize end-of-file anyway,  since it's responsible for physical I/O.
@@ -710,8 +589,8 @@ It might as well record and report it.
 </div>
 
 <div id="outline-container-orgc1e9ba7" class="outline-4">
-<h4 id="orgc1e9ba7"><span class="section-number-4">4.1.6.</span> Stream position reporting from streambuf</h4>
-<div class="outline-text-4" id="text-4-1-6">
+<h4 id="orgc1e9ba7"><span class="section-number-4">5.1.6.</span> Stream position reporting from streambuf</h4>
+<div class="outline-text-4" id="text-5-1-6">
 <p>
 It would be simpler for <code>streambuf</code> to support <code>istream::tellg()</code> and <code>istream::tellp()</code> directly instead of relying on <code>streambuf::seekoff()</code>.
 Argument here is that even for a non-seekable stream buffer,  it still makes sense to support <code>tellg()</code> and <code>tellp()</code>.
@@ -728,8 +607,8 @@ which muddies the waters.
 </div>
 
 <div id="outline-container-org8404985" class="outline-2">
-<h2 id="org8404985"><span class="section-number-2">5.</span> zlib</h2>
-<div class="outline-text-2" id="text-5">
+<h2 id="org8404985"><span class="section-number-2">6.</span> zlib</h2>
+<div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>(Jan? 2024) <a href="../articles/2024/01/zstream-isnt-moveable.html">zlib z_stream cannot be moved</a></li>
 </ul>
@@ -737,8 +616,8 @@ which muddies the waters.
 </div>
 
 <div id="outline-container-org16db22f" class="outline-2">
-<h2 id="org16db22f"><span class="section-number-2">6.</span> gcc</h2>
-<div class="outline-text-2" id="text-6">
+<h2 id="org16db22f"><span class="section-number-2">7.</span> gcc</h2>
+<div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>(June 2024) <a href="../articles/2024/06/gcc-builtin-defines.html">get builtin preprocessor defines from gcc</a></li>
 </ul>
@@ -746,8 +625,8 @@ which muddies the waters.
 </div>
 
 <div id="outline-container-orge7c63fe" class="outline-2">
-<h2 id="orge7c63fe"><span class="section-number-2">7.</span> llvm</h2>
-<div class="outline-text-2" id="text-7">
+<h2 id="orge7c63fe"><span class="section-number-2">8.</span> llvm</h2>
+<div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li>(June 2024) <a href="../articles/2024/06/injecting-symbols-into-llvm-jit.html">injecting symbols into llvm jit</a></li>
 <li>(June 2024) <a href="../articles/2024/06/llvm-cpp-function-types.html">alloca and function pointers</a></li>
@@ -757,7 +636,7 @@ which muddies the waters.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-09-08 Sun 18:23</p>
+<p class="date">Created: 2024-09-08 Sun 18:33</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
