@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-09-08 Sun 18:14 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>[25oct2023] inconsistent cmake eigen package</title>
+<meta name="author" content="Roland Conybeare" />
+<meta name="description" content="wsl update wedges x11 apps" />
+<meta name="keywords" content="cmake eigen bug" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style>pre.src{background:#343131;color:white;} </style>
+<style>pre.example{background:#343131;color:white;} </style>
+<style> #content{max-width:1800px;}</style>
+<style> p{max-width:1800px;}</style>
+<style> li{max-width:1800px;}</style>
+<link rel="shortcut icon" type="image/x-icon" href="/web/img/favicon.ico" />
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href=""> UP </a>
+ |
+ <a accesskey="H" href="../../../index.html"> HOME </a>
+</div><div id="content" class="content">
+<h1 class="title">[25oct2023] inconsistent cmake eigen package</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org157be9d">1. Setup</a></li>
+<li><a href="#orgd3e1cfb">2. Problem</a></li>
+<li><a href="#org51cfbc8">3. Details</a></li>
+<li><a href="#org2ff841a">4. Workaround</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org157be9d" class="outline-2">
+<h2 id="org157be9d"><span class="section-number-2">1.</span> Setup</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>library <a href="https://github.com/Rconybea/xo-kalmanfilter">xo-kalmanfilter</a> depends on eigen</li>
+<li>library <a href="https://github.com/Rconybea/xo-pykalmanfilter">xo-pykalmanfilter</a> depends on <code>xo-kalmanfilter</code></li>
+<li>the project <a href="https://github.com/Rconybea/xo">xo</a> incorporates both codebases (along with others) into single umbrella source tree (using git submodules).</li>
+<li>alternatively, can build+install libraries independently (in bottom-up dependency order),</li>
+</ul>
+
+<p>
+We call this last a 'vanilla build',  since it follows standard practice for installing 3rd-party libraries.
+In a so-called vanilla build,  we use cmake's <code>find_package()</code> support to acquire each dependency.
+In a vanilla build,  When cmake builds a library,  it obtains its dependencies from their final install location.
+</p>
+
+<p>
+Contrast this with the submodule build:  here,  when cmake build a library,  it obtains its dependencies from the build tree
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd3e1cfb" class="outline-2">
+<h2 id="orgd3e1cfb"><span class="section-number-2">2.</span> Problem</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li><p>
+submodule build works as expected;   compile flags include required <code>-Ipath/to/eigen/eigen3</code>,
+so c++ code like this compiles
+</p>
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #23d7d7;">#include</span> <span style="color: #e67128;">&lt;Eigen/Dense&gt;</span>
+</pre>
+</div></li>
+
+<li><p>
+vanilla build fails:
+when compiling xo-pykalmanfilter,  the header path for eigen is given as <code>-Ipath/to/eigen</code>
+instead of <code>-Ipath/to/eigen/eigen3</code>,  so now need this to compile instead:
+</p>
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #23d7d7;">#include</span> <span style="color: #e67128;">&lt;eigen3/Eigen/Dense&gt;</span>
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org51cfbc8" class="outline-2">
+<h2 id="org51cfbc8"><span class="section-number-2">3.</span> Details</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li><p>
+<code>xo-kalmanfilter</code> specifies eigen dependency in the approved manner:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #74af68;"># </span><span style="color: #74af68;">xo-kalmanfilter/src/kalmanfilter/CMakeLists.txt</span>
+<span style="color: #00ede1; font-weight: bold;">set</span>(SELF_LIB xo_kalmanfilter)
+..
+<span style="color: #00ede1; font-weight: bold;">xo_external_target_dependency</span>(${<span style="color: #dbdb95;">SELF_LIB</span>} Eigen3 Eigen3::Eigen)
+</pre>
+</div>
+
+<p>
+which expands as if we had written:
+</p>
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #00ede1; font-weight: bold;">find_package</span>(Eigen3 CONFIG REQUIRED)
+<span style="color: #00ede1; font-weight: bold;">target_link_libraries</span>(${<span style="color: #dbdb95;">SELF_LIB</span>} PUBLIC Eigen3::Eigen)
+</pre>
+</div>
+
+<p>
+This works as expected in submodule build.
+In submodule build, codebases <code>xo-kalmanfilter</code> and <code>xo-pykalmanfilter</code> (amongst others) are incorporated
+into a single source tree:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #74af68;"># </span><span style="color: #74af68;">xo-sm2/CMakeLists.txt</span>
+<span style="color: #00ede1; font-weight: bold;">set</span>(XO_SUBMODULE_BUILD True)
+..
+<span style="color: #00ede1; font-weight: bold;">add_subdirectory</span>(repo/xo-kalmanfilter)
+<span style="color: #00ede1; font-weight: bold;">add_subdirectory</span>(repo/xo-pykalmanfilter)
+</pre>
+</div></li>
+
+<li><p>
+<code>xo-pykalmanfilter</code> specifies <code>xo-kalmanfilter</code> dependency:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #74af68;"># </span><span style="color: #74af68;">xo-pykalmanfilter/src/pykalmanfilter/CMakeLists.txt</span>
+<span style="color: #00ede1; font-weight: bold;">set</span>(SELF_LIB pykalmanfilter)
+..
+<span style="color: #00ede1; font-weight: bold;">xo_pybind11_dependency</span>(${<span style="color: #dbdb95;">SELF_LIB</span>} xo_kalmanfilter)
+</pre>
+</div>
+
+<p>
+which expands differently,  depending on build type.
+In submodule build,  as if we had written:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #00ede1; font-weight: bold;">target_include_directories</span>(${<span style="color: #dbdb95;">SELF_LIB</span>} PUBLIC $&lt;BUILD_INTERFACE:${<span style="color: #dbdb95;">CMAKE_SOURCE_DIR</span>}/repo/xo_kalmanfilter/include&gt;)
+<span style="color: #00ede1; font-weight: bold;">target_include_directories</span>(${<span style="color: #dbdb95;">SELF_LIB</span>} PUBLIC $&lt;BUILD_INTERFACE:${<span style="color: #dbdb95;">CMAKE_BINARY_DIR</span>}/repo/xo_kalmanfilter/include&gt;)
+<span style="color: #00ede1; font-weight: bold;">target_link_libraries</span>(${<span style="color: #dbdb95;">SELF_LIB</span>} PUBLIC xo_kalmanfilter)
+</pre>
+</div>
+
+<p>
+In vanilla build,  <code>xo_pybind11_dependency()</code> expands differently:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #00ede1; font-weight: bold;">find_package</span>(xo_kalmanfilter CONFIG REQUIRED)
+..
+<span style="color: #00ede1; font-weight: bold;">target_link_libraries</span>(${<span style="color: #dbdb95;">SELF_LIB</span>} PUBLIC xo_kalmanfilter)
+</pre>
+</div></li>
+
+<li><p>
+<code>xo-kalmanfilter</code> provides support for cmake <code>find_package()</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #74af68;"># </span><span style="color: #74af68;">xo-kalmanfilter/cmake/xo_kalmanfilterConfig.cmake.in</span>
+
+@PACKAGE_INIT@
+
+<span style="color: #00ede1; font-weight: bold;">include</span>(CMakeFindDependencyMacro)
+<span style="color: #00ede1; font-weight: bold;">find_dependency</span>(reactor)
+<span style="color: #00ede1; font-weight: bold;">find_dependency</span>(eigen3)
+
+<span style="color: #00ede1; font-weight: bold;">include</span>(<span style="color: #e67128;">"${</span><span style="color: #dbdb95;">CMAKE_CURRENT_LIST_DIR</span><span style="color: #e67128;">}/@PROJECT_NAME@Targets.cmake"</span>)
+<span style="color: #00ede1; font-weight: bold;">check_required_components</span>(<span style="color: #e67128;">"@PROJECT_NAME@"</span>)
+</pre>
+</div>
+
+<p>
+and generated <code>xo_kalmanfilterTargets.cmake</code> file contains:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #74af68;"># </span><span style="color: #74af68;">Create imported target xo_kalmanfilter</span>
+<span style="color: #00ede1; font-weight: bold;">add_library</span>(xo_kalmanfilter SHARED IMPORTED)
+
+<span style="color: #00ede1; font-weight: bold;">set_target_properties</span>(xo_kalmanfilter PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES <span style="color: #e67128;">"${</span><span style="color: #dbdb95;">_IMPORT_PREFIX</span><span style="color: #e67128;">}/include;${</span><span style="color: #dbdb95;">_IMPORT_PREFIX</span><span style="color: #e67128;">}/include/xo/kalmanfilter"</span>
+  INTERFACE_LINK_LIBRARIES <span style="color: #e67128;">"reactor;Eigen3::Eigen"</span>
+)
+</pre>
+</div>
+
+<p>
+which.. doesn't look wrong :)
+</p>
+
+<p>
+Evidence points to an inconsistency in Eigen-provided cmake support, if not in cmake proper.
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2ff841a" class="outline-2">
+<h2 id="org2ff841a"><span class="section-number-2">4.</span> Workaround</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Since the eigen dependency isn't propagating, we need to restate it in downstream
+libraries, in this case <code>xo-pykalmanfilter</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #74af68;"># </span><span style="color: #74af68;">xo_pykalmanfilter/src/pykalmanfilter/CMakeLists.txt</span>
+<span style="color: #00ede1; font-weight: bold;">set</span>(SELF_LIB pykalmanfilter)
+...
+<span style="color: #00ede1; font-weight: bold;">xo_external_target_dependency</span>(${<span style="color: #dbdb95;">SELF_LIB</span>} Eigen3 Eigen3::Eigen)
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Roland Conybeare</p>
+<p class="date">Created: 2024-09-08 Sun 18:14</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
