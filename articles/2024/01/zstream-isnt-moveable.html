@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-06-23 Sun 13:54 -->
+<!-- 2024-09-08 Sun 18:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>[2024] zlib z_stream isn't moveable</title>
@@ -35,16 +35,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org59f8506">1. TL;DR</a></li>
-<li><a href="#org8c6763b">2. Setup</a></li>
-<li><a href="#org107814b">3. Problem + Diagnosis</a></li>
-<li><a href="#orgaeac056">4. Solution</a></li>
+<li><a href="#orgf791578">1. TL;DR</a></li>
+<li><a href="#orgb8f13c0">2. Setup</a></li>
+<li><a href="#org108cfd9">3. Problem + Diagnosis</a></li>
+<li><a href="#org5f5d3ba">4. Solution</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org59f8506" class="outline-2">
-<h2 id="org59f8506"><span class="section-number-2">1.</span> TL;DR</h2>
+<div id="outline-container-orgf791578" class="outline-2">
+<h2 id="orgf791578"><span class="section-number-2">1.</span> TL;DR</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Be aware that <code>zlib</code>'s <code>z_stream</code> struct cannot be moved.
@@ -53,8 +53,8 @@ Presume it contains internal pointers to itself.
 </div>
 </div>
 
-<div id="outline-container-org8c6763b" class="outline-2">
-<h2 id="org8c6763b"><span class="section-number-2">2.</span> Setup</h2>
+<div id="outline-container-orgb8f13c0" class="outline-2">
+<h2 id="orgb8f13c0"><span class="section-number-2">2.</span> Setup</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>Using <code>zstreambuf</code> (provided as byproduct of my <a href="https://github.com/Rconybea/cmake-examples">cmake-examples</a> project)
@@ -66,8 +66,8 @@ I ran into errors after move assignment.</li>
 </div>
 </div>
 
-<div id="outline-container-org107814b" class="outline-2">
-<h2 id="org107814b"><span class="section-number-2">3.</span> Problem + Diagnosis</h2>
+<div id="outline-container-org108cfd9" class="outline-2">
+<h2 id="org108cfd9"><span class="section-number-2">3.</span> Problem + Diagnosis</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>Unit testing revealed that uncompress failed after second <code>zstreambuf.open()</code>.</li>
@@ -81,8 +81,8 @@ address-dependent computation involving one or more <code>z_stream</code> member
 </div>
 </div>
 
-<div id="outline-container-orgaeac056" class="outline-2">
-<h2 id="orgaeac056"><span class="section-number-2">4.</span> Solution</h2>
+<div id="outline-container-org5f5d3ba" class="outline-2">
+<h2 id="org5f5d3ba"><span class="section-number-2">4.</span> Solution</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li><p>
@@ -132,7 +132,7 @@ Then implement <code>::swap()</code> etc by swapping pointers.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-06-23 Sun 13:54</p>
+<p class="date">Created: 2024-09-08 Sun 18:01</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

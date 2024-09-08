@@ -3,11 +3,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-09-29 Fri 12:37 -->
+<!-- 2024-09-08 Sun 18:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>org-mode examples / tutorial</title>
-<meta name="author" content="roly-desktop-23" />
+<meta name="author" content="Roland Conybeare" />
 <meta name="generator" content="Org Mode" />
 <style>
   #content { max-width: 60em; margin: auto; }
@@ -258,31 +258,31 @@ org_html_manager.setup();  // activate after the parameters are set
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org7792ad5">1. Introduction</a></li>
-<li><a href="#org390a027">2. Links</a></li>
-<li><a href="#orga51f847">3. org-mode header</a>
+<li><a href="#org493e3cf">1. Introduction</a></li>
+<li><a href="#orgf0abccf">2. Links</a></li>
+<li><a href="#orgaeba62a">3. org-mode header</a>
 <ul>
-<li><a href="#orgb6f4ecc">3.1. org-publish</a>
+<li><a href="#org374877e">3.1. org-publish</a>
 <ul>
-<li><a href="#org8fedf2a">3.1.1. subscripts</a></li>
+<li><a href="#org44b798f">3.1.1. subscripts</a></li>
 </ul>
 </li>
-<li><a href="#org47aa885">3.2. html</a>
+<li><a href="#orgbb2b57a">3.2. html</a>
 <ul>
-<li><a href="#org02c713d">3.2.1. attach a stylesheet</a></li>
-<li><a href="#orgd2240fc">3.2.2. use infojs (javascript texinfo-style navigation)</a></li>
+<li><a href="#orgb0766f0">3.2.1. attach a stylesheet</a></li>
+<li><a href="#orgb7cde16">3.2.2. use infojs (javascript texinfo-style navigation)</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgc5fed5d">4. quoting literal text</a></li>
-<li><a href="#org81d1df2">5. embedding mathematics</a></li>
+<li><a href="#org9538610">4. quoting literal text</a></li>
+<li><a href="#orga2e2cbf">5. embedding mathematics</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7792ad5" class="outline-2">
-<h2 id="org7792ad5"><span class="section-number-2">1.</span> Introduction</h2>
+<div id="outline-container-org493e3cf" class="outline-2">
+<h2 id="org493e3cf"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Eric Nielsen, Jr.  has a lovely document describing how to do various useful things with org-mode.
@@ -291,8 +291,8 @@ You can read the original here: <a href="http://ehneilsen.net/notebook/orgExampl
 </p>
 </div>
 </div>
-<div id="outline-container-org390a027" class="outline-2">
-<h2 id="org390a027"><span class="section-number-2">2.</span> Links</h2>
+<div id="outline-container-orgf0abccf" class="outline-2">
+<h2 id="orgf0abccf"><span class="section-number-2">2.</span> Links</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Links I found useful here:
@@ -307,23 +307,23 @@ Sebastian Rose's tutorial on org-mode publishing</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orga51f847" class="outline-2">
-<h2 id="orga51f847"><span class="section-number-2">3.</span> org-mode header</h2>
+<div id="outline-container-orgaeba62a" class="outline-2">
+<h2 id="orgaeba62a"><span class="section-number-2">3.</span> org-mode header</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Lines that begin with #+ are treated as org-mode instructions.
 </p>
 </div>
 
-<div id="outline-container-orgb6f4ecc" class="outline-3">
-<h3 id="orgb6f4ecc"><span class="section-number-3">3.1.</span> org-publish</h3>
+<div id="outline-container-org374877e" class="outline-3">
+<h3 id="org374877e"><span class="section-number-3">3.1.</span> org-publish</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Several org-exporter options are gathered under the #+options tag.
 </p>
 </div>
-<div id="outline-container-org8fedf2a" class="outline-4">
-<h4 id="org8fedf2a"><span class="section-number-4">3.1.1.</span> subscripts</h4>
+<div id="outline-container-org44b798f" class="outline-4">
+<h4 id="org44b798f"><span class="section-number-4">3.1.1.</span> subscripts</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <pre class="example">
 ,#+options: ^:{}
@@ -343,17 +343,17 @@ to get the result a<sub>b</sub>
 </div>
 </div>
 </div>
-<div id="outline-container-org47aa885" class="outline-3">
-<h3 id="org47aa885"><span class="section-number-3">3.2.</span> html</h3>
+<div id="outline-container-orgbb2b57a" class="outline-3">
+<h3 id="orgbb2b57a"><span class="section-number-3">3.2.</span> html</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 The following options apply only to the html exporter:
 </p>
 </div>
-<div id="outline-container-org02c713d" class="outline-4">
-<h4 id="org02c713d"><span class="section-number-4">3.2.1.</span> attach a stylesheet</h4>
+<div id="outline-container-orgb0766f0" class="outline-4">
+<h4 id="orgb0766f0"><span class="section-number-4">3.2.1.</span> attach a stylesheet</h4>
 <div class="outline-text-4" id="text-3-2-1">
-<pre class="example" id="org11b79d6">
+<pre class="example" id="orgf11af39">
 #+html_head: &lt;link rel="stylesheet" type="text/css" href="../css/notebook.css" /&gt;
 </pre>
 <p>
@@ -367,7 +367,7 @@ This embeds the text
 in the &lt;head&gt; section of the exported .html file
 I'm using Eric Nielsen Jr.'s notebook.css file:
 </p>
-<pre class="example" id="org83ca3b9">
+<pre class="example" id="org6ec096b">
 body {
   max-width: 60em;
   margin:0 auto;
@@ -423,10 +423,10 @@ a:link, a:visited {
 </pre>
 </div>
 </div>
-<div id="outline-container-orgd2240fc" class="outline-4">
-<h4 id="orgd2240fc"><span class="section-number-4">3.2.2.</span> use infojs (javascript texinfo-style navigation)</h4>
+<div id="outline-container-orgb7cde16" class="outline-4">
+<h4 id="orgb7cde16"><span class="section-number-4">3.2.2.</span> use infojs (javascript texinfo-style navigation)</h4>
 <div class="outline-text-4" id="text-3-2-2">
-<pre class="example" id="org99ceae8">
+<pre class="example" id="org7f2ef91">
 #+INFOJS_OPT: view:showall toc:nil path:/ext/org/org-info.js
 </pre>
 
@@ -444,14 +444,14 @@ so that I can count on navigation working when my laptop isn't connected to the 
 </div>
 </div>
 </div>
-<div id="outline-container-orgc5fed5d" class="outline-2">
-<h2 id="orgc5fed5d"><span class="section-number-2">4.</span> quoting literal text</h2>
+<div id="outline-container-org9538610" class="outline-2">
+<h2 id="org9538610"><span class="section-number-2">4.</span> quoting literal text</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 See also: <a href="http://orgmode.org/manual/Literal-examples.html">http://orgmode.org/manual/Literal-examples.html</a> org-mode manual
 Place text to be quoted between #+begin_example and #+end_example brackets:
 </p>
-<pre class="example" id="orgb518980">
+<pre class="example" id="orgd9ef73d">
 #+begin_example
 To be, or not to be, that is the question.
 #+end_example
@@ -459,13 +459,13 @@ To be, or not to be, that is the question.
 <p>
 displays as:
 </p>
-<pre class="example" id="org485fee8">
+<pre class="example" id="org97b52ff">
 To be, or not to be, that is the question.
 </pre>
 </div>
 </div>
-<div id="outline-container-org81d1df2" class="outline-2">
-<h2 id="org81d1df2"><span class="section-number-2">5.</span> embedding mathematics</h2>
+<div id="outline-container-orga2e2cbf" class="outline-2">
+<h2 id="orga2e2cbf"><span class="section-number-2">5.</span> embedding mathematics</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 See reference here: <a href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference">http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference</a>
@@ -486,8 +486,8 @@ use <code>$$..$$</code> to bracket out-of-line formulae:
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: roly-desktop-23</p>
-<p class="date">Created: 2023-09-29 Fri 12:37</p>
+<p class="author">Author: Roland Conybeare</p>
+<p class="date">Created: 2024-09-08 Sun 18:01</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-07 Sat 18:54 -->
+<!-- 2024-09-08 Sun 18:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>github continuous integration</title>
@@ -32,34 +32,34 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org7cb71fe">1. Motivation</a></li>
-<li><a href="#org4ec320d">2. Contents</a></li>
-<li><a href="#org0719f34">3. Progressive Implementation</a>
+<li><a href="#orga0b5350">1. Motivation</a></li>
+<li><a href="#org16ee1aa">2. Contents</a></li>
+<li><a href="#orgc75f245">3. Progressive Implementation</a>
 <ul>
-<li><a href="#org78fda30">3.1. Scheme 1 - github build using base o/s platform</a>
+<li><a href="#org7187031">3.1. Scheme 1 - github build using base o/s platform</a>
 <ul>
-<li><a href="#orgf4d120a">3.1.1. Preliminaries</a></li>
+<li><a href="#org1f46174">3.1.1. Preliminaries</a></li>
 </ul>
 </li>
-<li><a href="#org2b856de">3.2. Scheme 2 - docker build using base o/s platform</a>
+<li><a href="#orge1b917d">3.2. Scheme 2 - docker build using base o/s platform</a>
 <ul>
-<li><a href="#org8bf17bf">3.2.1. Preliminaries</a></li>
+<li><a href="#org50d27f3">3.2.1. Preliminaries</a></li>
 </ul>
 </li>
-<li><a href="#org5983758">3.3. Scheme 3 - custom docker container via nix (no c++)</a>
+<li><a href="#orgcdc5a96">3.3. Scheme 3 - custom docker container via nix (no c++)</a>
 <ul>
-<li><a href="#orgeeeb47b">3.3.1. Preliminaries</a></li>
+<li><a href="#org42c1c11">3.3.1. Preliminaries</a></li>
 </ul>
 </li>
-<li><a href="#orgab21fcd">3.4. Scheme 4 - custom docker container via nix (with gcc)</a></li>
+<li><a href="#orgaa325d8">3.4. Scheme 4 - custom docker container via nix (with gcc)</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7cb71fe" class="outline-2">
-<h2 id="org7cb71fe"><span class="section-number-2">1.</span> Motivation</h2>
+<div id="outline-container-orga0b5350" class="outline-2">
+<h2 id="orga0b5350"><span class="section-number-2">1.</span> Motivation</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 We want to use a custom (<code>docker</code>) container with <code>github</code> actions,  and prepare it using <code>nix</code>.
@@ -81,8 +81,8 @@ Several advantages:
 </div>
 </div>
 
-<div id="outline-container-org4ec320d" class="outline-2">
-<h2 id="org4ec320d"><span class="section-number-2">2.</span> Contents</h2>
+<div id="outline-container-org16ee1aa" class="outline-2">
+<h2 id="org16ee1aa"><span class="section-number-2">2.</span> Contents</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 repos under <a href="https://github.com/Rconybea">https://github.com/Rconybea</a>
@@ -134,15 +134,15 @@ repos under <a href="https://github.com/Rconybea">https://github.com/Rconybea</a
 <td class="org-left">scheme 4</td>
 <td class="org-left">container</td>
 <td class="org-left"><a href="https://github.com/Rconybea/docker-cpp-builder">docker-cpp-builder</a></td>
-<td class="org-left"><a href="https://github.com/Rconybea/docker-action-example3">docker-action-example3</a></td>
+<td class="org-left"><a href="https://github.com/rconybea/docker-action-example3">docker-action-example3</a></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-org0719f34" class="outline-2">
-<h2 id="org0719f34"><span class="section-number-2">3.</span> Progressive Implementation</h2>
+<div id="outline-container-orgc75f245" class="outline-2">
+<h2 id="orgc75f245"><span class="section-number-2">3.</span> Progressive Implementation</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 We'll present several progressive CI-with-github examples,
@@ -150,12 +150,12 @@ that converge on goals above.
 </p>
 </div>
 
-<div id="outline-container-org78fda30" class="outline-3">
-<h3 id="org78fda30"><span class="section-number-3">3.1.</span> Scheme 1 - github build using base o/s platform</h3>
+<div id="outline-container-org7187031" class="outline-3">
+<h3 id="org7187031"><span class="section-number-3">3.1.</span> Scheme 1 - github build using base o/s platform</h3>
 <div class="outline-text-3" id="text-3-1">
 </div>
-<div id="outline-container-orgf4d120a" class="outline-4">
-<h4 id="orgf4d120a"><span class="section-number-4">3.1.1.</span> Preliminaries</h4>
+<div id="outline-container-org1f46174" class="outline-4">
+<h4 id="org1f46174"><span class="section-number-4">3.1.1.</span> Preliminaries</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <p>
 source for <code>Scheme 1</code> is on github here: <a href="https://github.com/Rconybea/hello-example">https://github.com/Rconybea/hello-example</a>
@@ -163,9 +163,9 @@ source for <code>Scheme 1</code> is on github here: <a href="https://github.com/
 </div>
 
 <ol class="org-ol">
-<li><a id="org991be39"></a>Directory structure<br />
+<li><a id="org14278bf"></a>Directory structure<br />
 <div class="outline-text-5" id="text-3-1-1-1">
-<pre class="example" id="org91789a3">
+<pre class="example" id="org4fc3340">
 hello-example
 +- .github
 |  \- workflow
@@ -176,7 +176,7 @@ hello-example
 </div>
 </li>
 
-<li><a id="orgb4e7e1e"></a>Source<br />
+<li><a id="org323918f"></a>Source<br />
 <div class="outline-text-5" id="text-3-1-1-2">
 <div class="org-src-container">
 <pre class="src src-c++"><span style="color: #74af68;">// </span><span style="color: #74af68;">hello.cpp</span>
@@ -200,7 +200,7 @@ hello-example
 </div>
 </li>
 
-<li><a id="org0fdf124"></a>Cmake build files<br />
+<li><a id="orge6fdaf3"></a>Cmake build files<br />
 <div class="outline-text-5" id="text-3-1-1-3">
 <div class="org-src-container">
 <pre class="src src-cmake"><span style="color: #74af68;"># </span><span style="color: #74af68;">CMakeLists.txt</span>
@@ -231,9 +231,9 @@ hello-example
 </div>
 </li>
 
-<li><a id="orgc3c54dc"></a>Build + Run<br />
+<li><a id="org8e064b8"></a>Build + Run<br />
 <div class="outline-text-5" id="text-3-1-1-4">
-<pre class="example" id="orgf0c12de">
+<pre class="example" id="orgd70bbcb">
 $ cd hello-example
 $ mkdir build
 $ cmake ..
@@ -250,7 +250,7 @@ Hello, World!
 </div>
 </li>
 
-<li><a id="org6768d41"></a>Continuous Integration with Github<br />
+<li><a id="org40411da"></a>Continuous Integration with Github<br />
 <div class="outline-text-5" id="text-3-1-1-5">
 <p>
 We need to do two things:
@@ -262,8 +262,8 @@ setup a github repo holding our sources:
 <pre class="example">
 $ cd hello-world
 $ git remote -v
-origin  git@github.com:Rconybea/hello-example.git (fetch)
-origin  git@github.com:Rconybea/hello-example.git (push)
+origin  git@github.com:rconybea/hello-example.git (fetch)
+origin  git@github.com:rconybea/hello-example.git (push)
 </pre></li>
 <li><p>
 configure github actions for that repo
@@ -313,8 +313,8 @@ build will run the contents of <code>steps</code> in order.
 </div>
 </div>
 
-<div id="outline-container-org2b856de" class="outline-3">
-<h3 id="org2b856de"><span class="section-number-3">3.2.</span> Scheme 2 - docker build using base o/s platform</h3>
+<div id="outline-container-orge1b917d" class="outline-3">
+<h3 id="orge1b917d"><span class="section-number-3">3.2.</span> Scheme 2 - docker build using base o/s platform</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Instead of building on github-provided base ubuntu platform,
@@ -326,8 +326,8 @@ Initially replacing c++ program with shell script,  we'll restore it later.
 </p>
 </div>
 
-<div id="outline-container-org8bf17bf" class="outline-4">
-<h4 id="org8bf17bf"><span class="section-number-4">3.2.1.</span> Preliminaries</h4>
+<div id="outline-container-org50d27f3" class="outline-4">
+<h4 id="org50d27f3"><span class="section-number-4">3.2.1.</span> Preliminaries</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <p>
 source for <code>Scheme 2</code> is on github here: <a href="https://github.comt/Rconybea/docker-action-example">https://github.comt/Rconybea/docker-action-example</a>
@@ -344,9 +344,9 @@ Container:
 </div>
 
 <ol class="org-ol">
-<li><a id="orgff6b8ec"></a>Directory Structure<br />
+<li><a id="org1425dc9"></a>Directory Structure<br />
 <div class="outline-text-5" id="text-3-2-1-1">
-<pre class="example" id="org24adefe">
+<pre class="example" id="orgf5b7fec">
 docker-action-example
 +- .github
 |  \- workflows
@@ -357,7 +357,7 @@ docker-action-example
 </div>
 </li>
 
-<li><a id="orgce42505"></a>Source<br />
+<li><a id="orgffe6125"></a>Source<br />
 <div class="outline-text-5" id="text-3-2-1-2">
 <p>
 <code>entrypoint.sh</code>:
@@ -372,12 +372,12 @@ docker-action-example
 </div>
 </li>
 
-<li><a id="org22770ba"></a>Docker Container<br />
+<li><a id="org5e37d75"></a>Docker Container<br />
 <div class="outline-text-5" id="text-3-2-1-3">
 <p>
 <code>DockerFile</code>:
 </p>
-<pre class="example" id="org721d351">
+<pre class="example" id="org4c2a58b">
 # base container image
 FROM ubuntu:22.04
 
@@ -390,7 +390,7 @@ ENTRYPOINT ["/entrypoint.sh"]
 </div>
 </li>
 
-<li><a id="orgd256360"></a>Use Container as github action<br />
+<li><a id="org8e67c2a"></a>Use Container as github action<br />
 <div class="outline-text-5" id="text-3-2-1-4">
 <p>
 toplevel <code>action.yml</code> describes a custom github action
@@ -428,7 +428,7 @@ that operates by invoking docker image
 </div>
 </li>
 
-<li><a id="orgd8b1447"></a>Continuous Integration with Github<br />
+<li><a id="org6809ecf"></a>Continuous Integration with Github<br />
 <div class="outline-text-5" id="text-3-2-1-5">
 <p>
 Configure github actions for repo <a href="https://github.com/Rconybea/docker-action-example">https://github.com/Rconybea/docker-action-example</a>;
@@ -469,12 +469,12 @@ In <code>main.yml</code> here:
 </div>
 </div>
 
-<div id="outline-container-org5983758" class="outline-3">
-<h3 id="org5983758"><span class="section-number-3">3.3.</span> Scheme 3 - custom docker container via nix (no c++)</h3>
+<div id="outline-container-orgcdc5a96" class="outline-3">
+<h3 id="orgcdc5a96"><span class="section-number-3">3.3.</span> Scheme 3 - custom docker container via nix (no c++)</h3>
 <div class="outline-text-3" id="text-3-3">
 </div>
-<div id="outline-container-orgeeeb47b" class="outline-4">
-<h4 id="orgeeeb47b"><span class="section-number-4">3.3.1.</span> Preliminaries</h4>
+<div id="outline-container-org42c1c11" class="outline-4">
+<h4 id="org42c1c11"><span class="section-number-4">3.3.1.</span> Preliminaries</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <p>
 Source for <code>Scheme 3</code> uses two repos:
@@ -488,15 +488,15 @@ Source for <code>Scheme 3</code> uses two repos:
 </div>
 
 <ol class="org-ol">
-<li><a id="orgb8c78f5"></a>Directory structure<br />
+<li><a id="orgc7f32f6"></a>Directory structure<br />
 <div class="outline-text-5" id="text-3-3-1-1">
-<pre class="example" id="org432ad36">
+<pre class="example" id="org5dd62f1">
 docker-nix-hello
 +- flake.nix
 \- flake.lock    # automatically created by nix
 </pre>
 
-<pre class="example" id="orgd680713">
+<pre class="example" id="orgedd9606">
 docker-action-example2
 \- .github
    \- workflows
@@ -505,7 +505,7 @@ docker-action-example2
 </div>
 </li>
 
-<li><a id="org3195ddd"></a>Source<br />
+<li><a id="org4ca9078"></a>Source<br />
 <div class="outline-text-5" id="text-3-3-1-2">
 <p>
 Prepare minimal custom docker container using a nix flake.
@@ -569,7 +569,7 @@ Prepare minimal custom docker container using a nix flake.
 </div>
 </li>
 
-<li><a id="orga0a410c"></a>Build Container + Upload to github<br />
+<li><a id="orga0554de"></a>Build Container + Upload to github<br />
 <div class="outline-text-5" id="text-3-3-1-3">
 <p>
 Container will be <code>docker-nix-hello</code>.
@@ -634,7 +634,7 @@ push to github container registry
 </li>
 
 
-<li><a id="org158f6fb"></a>Workflow Using Custom Container<br />
+<li><a id="orga5068e7"></a>Workflow Using Custom Container<br />
 <div class="outline-text-5" id="text-3-3-1-4">
 <p>
 in <code>docker-action-example2/.github/workflows/main.yml</code>:
@@ -662,8 +662,8 @@ in <code>docker-action-example2/.github/workflows/main.yml</code>:
 </div>
 </div>
 
-<div id="outline-container-orgab21fcd" class="outline-3">
-<h3 id="orgab21fcd"><span class="section-number-3">3.4.</span> Scheme 4 - custom docker container via nix (with gcc)</h3>
+<div id="outline-container-orgaa325d8" class="outline-3">
+<h3 id="orgaa325d8"><span class="section-number-3">3.4.</span> Scheme 4 - custom docker container via nix (with gcc)</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 Source for <code>Scheme 4</code> in two repos:
@@ -676,15 +676,15 @@ Source for <code>Scheme 4</code> in two repos:
 </div>
 
 <ol class="org-ol">
-<li><a id="org440a231"></a>Directory structure<br />
+<li><a id="org1ebe52d"></a>Directory structure<br />
 <div class="outline-text-5" id="text-3-4-0-1">
-<pre class="example" id="org2593c3c">
+<pre class="example" id="org0f9588e">
 docker-cpp-builder
 +- flake.nix
 \- flake.lock    # automatically created by nix
 </pre>
 
-<pre class="example" id="orge84729c">
+<pre class="example" id="orgba9a5e1">
 docker-action-example3
 +- .github
 |  \- workflows
@@ -695,7 +695,7 @@ docker-action-example3
 </div>
 </li>
 
-<li><a id="org199c01f"></a>Source<br />
+<li><a id="orgfb2c1ee"></a>Source<br />
 <div class="outline-text-5" id="text-3-4-0-2">
 <p>
 Prepare custom docker container to deliver build stack (<code>gcc</code>, <code>cmake</code>, &#x2026;)
@@ -754,7 +754,7 @@ Prepare custom docker container to deliver build stack (<code>gcc</code>, <code>
 </div>
 </li>
 
-<li><a id="orgddf24b3"></a>Build Container + Upload to github<br />
+<li><a id="org54f5662"></a>Build Container + Upload to github<br />
 <div class="outline-text-5" id="text-3-4-0-3">
 <p>
 Instructions are the same as for Scheme 3,  but using <code>~/proj/docker-cpp-builder</code> instead of <code>~/proj/docker-nix-hello</code>
@@ -776,7 +776,7 @@ After uploading package (docker image) for gcc builder  appears here: <a href="h
 </div>
 </li>
 
-<li><a id="orgb3b9b91"></a>Workflow using Custom Container<br />
+<li><a id="org445664f"></a>Workflow using Custom Container<br />
 <div class="outline-text-5" id="text-3-4-0-4">
 <p>
 in <code>docker-action-example3/.github/workflows/main.yml</code>:
@@ -798,7 +798,7 @@ in <code>docker-action-example3/.github/workflows/main.yml</code>:
       - <span style="color: #dbdb95;">name</span>: checkout
         <span style="color: #dbdb95;">run</span>:
           <span style="color: #74af68;"># </span><span style="color: #74af68;">not using usual checkout action: bc complications from within container</span>
-          GIT_SSL_NO_VERIFY=true git clone https://${{env.GIT_USER}}:${{env.GIT_TOKEN}}@github.com/Rconybea/docker-action-example3.git
+          GIT_SSL_NO_VERIFY=true git clone https://${{env.GIT_USER}}:${{env.GIT_TOKEN}}@github.com/rconybea/docker-action-example3.git
 
       - <span style="color: #dbdb95;">name</span>: compile
         <span style="color: #dbdb95;">run</span>:
@@ -842,7 +842,7 @@ Presumably there's a problem authenticating github.com's certificate
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2023-10-07 Sat 18:54</p>
+<p class="date">Created: 2024-09-08 Sun 18:01</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

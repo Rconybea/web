@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-02-09 Fri 18:50 -->
+<!-- 2024-09-08 Sun 18:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>publishing static HTML</title>
@@ -32,22 +32,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org53d83dd">1. Publish Static HTML</a>
+<li><a href="#orgb5e8e93">1. Publish Static HTML</a>
 <ul>
-<li><a href="#orgc3bed80">1.1. base emacs configuration for publishing</a></li>
-<li><a href="#org99f210d">1.2. setup for literate programming</a></li>
-<li><a href="#orga19f438">1.3. HTML theme</a></li>
-<li><a href="#org8e9b4d5">1.4. display HTML locally</a></li>
-<li><a href="#orgf2a33cb">1.5. publish to github pages</a></li>
-<li><a href="#org897c231">1.6. package as docker container</a></li>
+<li><a href="#org8ca614f">1.1. base emacs configuration for publishing</a></li>
+<li><a href="#org651593a">1.2. setup for literate programming</a></li>
+<li><a href="#orgbb5ab14">1.3. HTML theme</a></li>
+<li><a href="#orgc6eb5ea">1.4. display HTML locally</a></li>
+<li><a href="#org96aaf8e">1.5. publish to github pages</a></li>
+<li><a href="#org746de39">1.6. package as docker container</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org53d83dd" class="outline-2">
-<h2 id="org53d83dd"><span class="section-number-2">1.</span> Publish Static HTML</h2>
+<div id="outline-container-orgb5e8e93" class="outline-2">
+<h2 id="orgb5e8e93"><span class="section-number-2">1.</span> Publish Static HTML</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 In particular,  including this content.
@@ -59,8 +59,8 @@ Maintaining public <code>.org</code> content here: <a href="https://github.com/R
 </p>
 </div>
 
-<div id="outline-container-orgc3bed80" class="outline-3">
-<h3 id="orgc3bed80"><span class="section-number-3">1.1.</span> base emacs configuration for publishing</h3>
+<div id="outline-container-org8ca614f" class="outline-3">
+<h3 id="org8ca614f"><span class="section-number-3">1.1.</span> base emacs configuration for publishing</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 See also
@@ -111,7 +111,7 @@ See also
 <p>
 With this configuration
 </p>
-<pre class="example" id="org6c05123">
+<pre class="example" id="orgd4a4df7">
 ~M-x org-publish-project org-howto~
 </pre>
 
@@ -122,8 +122,8 @@ generates HTML content in <code>~/proj/public_html/org-howto~</code>.
 </div>
 
 
-<div id="outline-container-org99f210d" class="outline-3">
-<h3 id="org99f210d"><span class="section-number-3">1.2.</span> setup for literate programming</h3>
+<div id="outline-container-org651593a" class="outline-3">
+<h3 id="org651593a"><span class="section-number-3">1.2.</span> setup for literate programming</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 <code>org-mode</code> can automate weaving together content prepared by other programs,
@@ -194,7 +194,7 @@ for example <code>graphviz</code>.
 Example <code>.org</code> content using graphviz:
 </p>
 
-<pre class="example" id="orgd755b5e">
+<pre class="example" id="org7cd07e5">
 #+begin_src dot :file img/living-room-av/macmini.svg :exports results :cmdline -Tsvg
 digraph {
   size="4,4";
@@ -216,8 +216,8 @@ publishing (or using <code>C-c C-v b</code>) creates/updates file in <code>img/l
 </div>
 </div>
 
-<div id="outline-container-orga19f438" class="outline-3">
-<h3 id="orga19f438"><span class="section-number-3">1.3.</span> HTML theme</h3>
+<div id="outline-container-orgbb5ab14" class="outline-3">
+<h3 id="orgbb5ab14"><span class="section-number-3">1.3.</span> HTML theme</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 Using Fabrice Niessen's awesome readtheorg theme see <a href="https://github.com/fniessen/org-html-themes">org-html-themes</a>
@@ -233,8 +233,8 @@ Apply theme by including the following in each <code>.org</code> header:
 </div>
 </div>
 
-<div id="outline-container-org8e9b4d5" class="outline-3">
-<h3 id="org8e9b4d5"><span class="section-number-3">1.4.</span> display HTML locally</h3>
+<div id="outline-container-orgc6eb5ea" class="outline-3">
+<h3 id="orgc6eb5ea"><span class="section-number-3">1.4.</span> display HTML locally</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 Once we have HTML in <code>~/proj/public_html/org-howto</code>,  can view it locally:
@@ -254,8 +254,8 @@ Caveat: builtin python webserver doesn't support https.
 </div>
 </div>
 
-<div id="outline-container-orgf2a33cb" class="outline-3">
-<h3 id="orgf2a33cb"><span class="section-number-3">1.5.</span> publish to github pages</h3>
+<div id="outline-container-org96aaf8e" class="outline-3">
+<h3 id="org96aaf8e"><span class="section-number-3">1.5.</span> publish to github pages</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 To work with github pages,  We tweak the <code>.org</code> tree slightly:
@@ -274,7 +274,7 @@ When we publish <code>.org</code> tree to github pages, it appears at <a href="h
 <p>
 <code>.org</code> pages that want to use root-relative paths, prefix with <code>/web</code>:
 </p>
-<pre class="example" id="orgfc00fb4">
+<pre class="example" id="orgc6e9e5c">
 #+infojs_opt: view:showall toc:nil ltoc:nil mouse:#ffc0c0 path:/web/ext/orginfo/org-info.js
 #+html_head: &lt;link rel="stylesheet" type="text/css" href="/web/css/notebook.css" /&gt;
 </pre>
@@ -290,8 +290,8 @@ Note that <code>org-publish</code> expands the <code>web</code> symlink,  so eve
 </div>
 </div>
 
-<div id="outline-container-org897c231" class="outline-3">
-<h3 id="org897c231"><span class="section-number-3">1.6.</span> package as docker container</h3>
+<div id="outline-container-org746de39" class="outline-3">
+<h3 id="org746de39"><span class="section-number-3">1.6.</span> package as docker container</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 We can snapshot and serve generated html in a dedicated docker container with this <code>flake.nix</code>
@@ -361,7 +361,7 @@ We can snapshot and serve generated html in a dedicated docker container with th
 <li><p>
 build docker container image using <code>~/proj/public_html/flake.nix</code>:
 </p>
-<pre class="example" id="org030d1ac">
+<pre class="example" id="org98cc2f5">
 $ cd ~/proj/public_html
 $ nix build
 $ ls -ld result
@@ -371,14 +371,14 @@ $ ls -ld result
 <li><p>
 load image into docker
 </p>
-<pre class="example" id="orgc8738de">
+<pre class="example" id="org6a5cf28">
 $ docker load &lt;./result
 </pre>
 
 <p>
 or send to some other host:
 </p>
-<pre class="example" id="orge8c0b94">
+<pre class="example" id="orgc6c46a0">
 $ mycloudhost=...
 $ scp /nix/store/dck2rix8n8sx6wi0d4is0fq17c72ddqx-serve-org-howto.tar.gz root@${mycloudhost}
 $ ssh ${mycloudhost}
@@ -404,7 +404,7 @@ Docker image contains only python and our html tree,  so much smaller than typic
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-02-09 Fri 18:50</p>
+<p class="date">Created: 2024-09-08 Sun 18:01</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-06-23 Sun 13:28 -->
+<!-- 2024-09-08 Sun 18:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>[19jun2024] injecting symbols into llvm jit</title>
@@ -35,18 +35,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge64fada">1. Introduction</a></li>
-<li><a href="#orgb3b96e0">2. TL;DR</a></li>
-<li><a href="#orgd8398ff">3. Context</a></li>
-<li><a href="#org0ae9495">4. Setup</a></li>
-<li><a href="#orgf2ee699">5. Problem + Diagnosis</a></li>
-<li><a href="#org8e05e02">6. Workaround</a></li>
+<li><a href="#org89d51c5">1. Introduction</a></li>
+<li><a href="#orgdfba45a">2. TL;DR</a></li>
+<li><a href="#org9f27968">3. Context</a></li>
+<li><a href="#org0fb323d">4. Setup</a></li>
+<li><a href="#orgbaab4d0">5. Problem + Diagnosis</a></li>
+<li><a href="#org2358846">6. Workaround</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orge64fada" class="outline-2">
-<h2 id="orge64fada"><span class="section-number-2">1.</span> Introduction</h2>
+<div id="outline-container-org89d51c5" class="outline-2">
+<h2 id="org89d51c5"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 I have a hobby/learning project <a href="https://github.com/Rconybea/xo-jit">xo-jit</a> jumping off from the content in the LLVM Kaleidoscope tutorial. <sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>
@@ -56,8 +56,8 @@ jit-compiled code invoked from a python REPL.
 </div>
 </div>
 
-<div id="outline-container-orgb3b96e0" class="outline-2">
-<h2 id="orgb3b96e0"><span class="section-number-2">2.</span> TL;DR</h2>
+<div id="outline-container-orgdfba45a" class="outline-2">
+<h2 id="orgdfba45a"><span class="section-number-2">2.</span> TL;DR</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 When binding a symbols for in-process jit, consider supplyin absolute address instead of symbol name.
@@ -65,8 +65,8 @@ When binding a symbols for in-process jit, consider supplyin absolute address in
 </div>
 </div>
 
-<div id="outline-container-orgd8398ff" class="outline-2">
-<h2 id="orgd8398ff"><span class="section-number-2">3.</span> Context</h2>
+<div id="outline-container-org9f27968" class="outline-2">
+<h2 id="org9f27968"><span class="section-number-2">3.</span> Context</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>trying to make library functions callable from llvm-compiled functions.</li>
@@ -87,8 +87,8 @@ Using these libraries can from python:
 </div>
 </div>
 
-<div id="outline-container-org0ae9495" class="outline-2">
-<h2 id="org0ae9495"><span class="section-number-2">4.</span> Setup</h2>
+<div id="outline-container-org0fb323d" class="outline-2">
+<h2 id="org0fb323d"><span class="section-number-2">4.</span> Setup</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Libraries built with <code>CMAKE_INSTALL_PREFIX</code> set to <code>~/local2</code>.
@@ -131,8 +131,8 @@ mp.machgen_current_model()
 </div>
 </div>
 
-<div id="outline-container-orgf2ee699" class="outline-2">
-<h2 id="orgf2ee699"><span class="section-number-2">5.</span> Problem + Diagnosis</h2>
+<div id="outline-container-orgbaab4d0" class="outline-2">
+<h2 id="orgbaab4d0"><span class="section-number-2">5.</span> Problem + Diagnosis</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 All this appears to work,   however the llvm jit is lazy,  so at this point
@@ -152,7 +152,7 @@ we want to fetch corresponding symbol from the jit:
 <p>
 This step would fail with error
 </p>
-<pre class="example" id="org26ddb76">
+<pre class="example" id="org8ca1316">
 Unable to resolve symbol: mul_f64
 </pre>
 
@@ -160,7 +160,7 @@ Unable to resolve symbol: mul_f64
 Even though inspecting <code>libxo_jit.so</code> shows the symbol is present
 </p>
 
-<pre class="example" id="orgef2ea7a">
+<pre class="example" id="orga84606a">
 $ readelf -d ~/proj/local2/lib/libxo_jit.so | grep mul_f64
 ... D mul_f64 ...
 </pre>
@@ -195,8 +195,8 @@ sibling <b>xo</b> library (even when jamming the symbol into <code>libxo_jit.so<
 </div>
 </div>
 
-<div id="outline-container-org8e05e02" class="outline-2">
-<h2 id="org8e05e02"><span class="section-number-2">6.</span> Workaround</h2>
+<div id="outline-container-org2358846" class="outline-2">
+<h2 id="org2358846"><span class="section-number-2">6.</span> Workaround</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>Found <a href="https://stackoverflow.com/questions/57612173/llvm-jit-symbols-not-found">this article on stack overflow</a>:</li>
@@ -242,7 +242,7 @@ Using gcc 13.2, LLVM 18.1.5, building on ubuntu (really WSL2-on-windows), with n
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-06-23 Sun 13:28</p>
+<p class="date">Created: 2024-09-08 Sun 18:01</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-09-08 Sun 18:01 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>[2023] wsl update wedges x11 apps</title>
+<meta name="author" content="Roland Conybeare" />
+<meta name="description" content="wsl update wedges x11 apps" />
+<meta name="keywords" content="c++ gcc preprocessor" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style>pre.src{background:#343131;color:white;} </style>
+<style>pre.example{background:#343131;color:white;} </style>
+<style> #content{max-width:1800px;}</style>
+<style> p{max-width:1800px;}</style>
+<style> li{max-width:1800px;}</style>
+<link rel="shortcut icon" type="image/x-icon" href="/web/img/favicon.ico" />
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href=""> UP </a>
+ |
+ <a accesskey="H" href="../../../index.html"> HOME </a>
+</div><div id="content" class="content">
+<h1 class="title">[2023] wsl update wedges x11 apps</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org1a3b3ae">1. TL;DR</a></li>
+<li><a href="#org4da287e">2. Setup</a></li>
+<li><a href="#orga94204b">3. Problem</a></li>
+<li><a href="#orgaad1a6f">4. Details</a></li>
+<li><a href="#orgea89a41">5. Solution</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1a3b3ae" class="outline-2">
+<h2 id="org1a3b3ae"><span class="section-number-2">1.</span> TL;DR</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+x11 linux apps wedged after WSL update 2.0.9.0
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4da287e" class="outline-2">
+<h2 id="org4da287e"><span class="section-number-2">2.</span> Setup</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>PC rebooted overnight;   found it had installed WSL 2.0.9.0</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga94204b" class="outline-2">
+<h2 id="orga94204b"><span class="section-number-2">3.</span> Problem</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>linux x11 apps unusable;  all seem to draw trash on screen in response to mouse events.
+<ul class="org-ul">
+<li>writeup here: <a href="https://answers.microsoft.com/en-us/windows/forum/all/linux-x11-apps-wedged-after-wsl-update-2090/8b659f22-16d6-4d37-94a2-b4e9521fb82e">linux-x11-appws-wedged-after-wsl-update-2090</a></li>
+<li>30sec youtube video here: <a href="https://youtu.be/ZSu0HNnf00g">windows11: WSL 16nov23 update breaks x11 apps</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgaad1a6f" class="outline-2">
+<h2 id="orgaad1a6f"><span class="section-number-2">4.</span> Details</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>can see update history:
+<ul class="org-ul">
+<li><code>Control Panel|Programs|Programs and Features|(sort on Installed On)</code></li>
+<li><code>Settings|Windows Update|Update History</code> (windows updates only - not sortable by date afaict)</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgea89a41" class="outline-2">
+<h2 id="orgea89a41"><span class="section-number-2">5.</span> Solution</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li><p>
+force WSL vm to shutdown + restart
+</p>
+
+<pre class="example" id="orgd8d5df8">
+PS C:\Users\Rcony&gt; wsl --shutdown
+PS C:\Users\Rcony&gt; wsl --user roland
+</pre>
+
+<p>
+Note: presumably wsl VM state is preserved across reboot,   since rebooting PC had no effect here.
+</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Roland Conybeare</p>
+<p class="date">Created: 2024-09-08 Sun 18:01</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

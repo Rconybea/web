@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-02-25 Sun 19:07 -->
+<!-- 2024-09-08 Sun 18:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>email setup</title>
@@ -33,45 +33,45 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org6ee25f1">1. Introduction</a>
+<li><a href="#org30eb80b">1. Introduction</a>
 <ul>
-<li><a href="#orgf5a0416">1.1. TL;DR</a></li>
-<li><a href="#org5e49901">1.2. Overview</a></li>
-<li><a href="#org9ceec62">1.3. Goals</a></li>
-<li><a href="#orgd18ef65">1.4. Links</a></li>
+<li><a href="#org9804e11">1.1. TL;DR</a></li>
+<li><a href="#org268e7a2">1.2. Overview</a></li>
+<li><a href="#orgd21e084">1.3. Goals</a></li>
+<li><a href="#org014aced">1.4. Links</a></li>
 </ul>
 </li>
-<li><a href="#org78eee96">2. Setup Instructions</a>
+<li><a href="#org8b6caf4">2. Setup Instructions</a>
 <ul>
-<li><a href="#orgc5258b2">2.1. Scaffold Maildir Tree</a></li>
-<li><a href="#org3e8bb4d">2.2. Isync Setup</a></li>
-<li><a href="#orgb1651a8">2.3. Isync Use</a></li>
-<li><a href="#org2b77d57">2.4. Notmuch Setup</a></li>
-<li><a href="#orge1e0c7c">2.5. Outgoing Mail Setup</a></li>
+<li><a href="#orge4dabcf">2.1. Scaffold Maildir Tree</a></li>
+<li><a href="#org0f8c03c">2.2. Isync Setup</a></li>
+<li><a href="#orgf99e8c1">2.3. Isync Use</a></li>
+<li><a href="#org18c1d6f">2.4. Notmuch Setup</a></li>
+<li><a href="#org0540db3">2.5. Outgoing Mail Setup</a></li>
 </ul>
 </li>
-<li><a href="#org4e1a731">3. Lessons and Tradeoffs</a></li>
-<li><a href="#org74028ef">4. Next</a></li>
+<li><a href="#org4d93439">3. Lessons and Tradeoffs</a></li>
+<li><a href="#org6a7b454">4. Next</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org6ee25f1" class="outline-2">
-<h2 id="org6ee25f1"><span class="section-number-2">1.</span> Introduction</h2>
+<div id="outline-container-org30eb80b" class="outline-2">
+<h2 id="org30eb80b"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Setting up email automation on my primary desktop.
 </p>
 </div>
 
-<div id="outline-container-orgf5a0416" class="outline-3">
-<h3 id="orgf5a0416"><span class="section-number-3">1.1.</span> TL;DR</h3>
+<div id="outline-container-org9804e11" class="outline-3">
+<h3 id="org9804e11"><span class="section-number-3">1.1.</span> TL;DR</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 To tidy emails:
 </p>
 
-<pre class="example" id="org6bf394b">
+<pre class="example" id="orgd658d8b">
 $ mbsync -a --pull  # fetch new emails from providers
 $ cleanupmbox       # apply automatic rules (on local copy)
 $ mbsync -a --push  # propagate deletes/moves back to providers
@@ -86,14 +86,14 @@ and/or enjoy tidied email on provider's system (e.g. gmail in browser)
 <p>
 Alternatively can search from command line:
 </p>
-<pre class="example" id="orge654d6a">
+<pre class="example" id="org8b743ff">
 $ notmuch search sometext
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org5e49901" class="outline-3">
-<h3 id="org5e49901"><span class="section-number-3">1.2.</span> Overview</h3>
+<div id="outline-container-org268e7a2" class="outline-3">
+<h3 id="org268e7a2"><span class="section-number-3">1.2.</span> Overview</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 After some investigation settled on:
@@ -111,7 +111,7 @@ next after this one.
 </p>
 
 
-<div id="org46262ba" class="figure">
+<div id="org3d6139a" class="figure">
 <p><img src="img/email-overview.png" alt="email-overview.png" />
 </p>
 </div>
@@ -128,8 +128,8 @@ Notes:
 </div>
 </div>
 
-<div id="outline-container-org9ceec62" class="outline-3">
-<h3 id="org9ceec62"><span class="section-number-3">1.3.</span> Goals</h3>
+<div id="outline-container-orgd21e084" class="outline-3">
+<h3 id="orgd21e084"><span class="section-number-3">1.3.</span> Goals</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 I had the following goals:
@@ -143,8 +143,8 @@ will provide an up-to-date view.</li>
 </div>
 </div>
 
-<div id="outline-container-orgd18ef65" class="outline-3">
-<h3 id="orgd18ef65"><span class="section-number-3">1.4.</span> Links</h3>
+<div id="outline-container-org014aced" class="outline-3">
+<h3 id="org014aced"><span class="section-number-3">1.4.</span> Links</h3>
 <div class="outline-text-3" id="text-1-4">
 <ul class="org-ul">
 <li><a href="https://anarc.at/blog/2021-11-21-mbsync-vs-offlineimap/">https://anarc.at/blog/2021-11-21-mbsync-vs-offlineimap/</a>  isync vs offlineimap,  plus useful example configuration.</li>
@@ -155,28 +155,28 @@ will provide an up-to-date view.</li>
 </div>
 </div>
 
-<div id="outline-container-org78eee96" class="outline-2">
-<h2 id="org78eee96"><span class="section-number-2">2.</span> Setup Instructions</h2>
+<div id="outline-container-org8b6caf4" class="outline-2">
+<h2 id="org8b6caf4"><span class="section-number-2">2.</span> Setup Instructions</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgc5258b2" class="outline-3">
-<h3 id="orgc5258b2"><span class="section-number-3">2.1.</span> Scaffold Maildir Tree</h3>
+<div id="outline-container-orge4dabcf" class="outline-3">
+<h3 id="orge4dabcf"><span class="section-number-3">2.1.</span> Scaffold Maildir Tree</h3>
 <div class="outline-text-3" id="text-2-1">
-<pre class="example" id="org81b4943">
+<pre class="example" id="orga5e0ec5">
 $ mkdir -p ~/.mail/gmail
 $ mkdir -p ~/.mail/hushmail
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org3e8bb4d" class="outline-3">
-<h3 id="org3e8bb4d"><span class="section-number-3">2.2.</span> Isync Setup</h3>
+<div id="outline-container-org0f8c03c" class="outline-3">
+<h3 id="org0f8c03c"><span class="section-number-3">2.2.</span> Isync Setup</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Install isync into shell environment;  may want to later set this up to poll periodically.
 </p>
 
-<pre class="example" id="org36aa2c3">
+<pre class="example" id="orgb221fc3">
 $ nix-env -i isync
 </pre>
 
@@ -188,7 +188,7 @@ Anonymized configuration file:
 hushmail part:
 </p>
 
-<pre class="example" id="orga135c06">
+<pre class="example" id="org41cfb08">
 # ~/.mbsyncrc
 
 IMAPAccount hushmail
@@ -235,7 +235,7 @@ Remove both
 gmail part:
 </p>
 
-<pre class="example" id="orgd64676b">
+<pre class="example" id="org6fea789">
 IMAPAccount gmail
 Host imap.gmail.com
 User replacewithuser@gmail.com
@@ -275,41 +275,41 @@ Remove both
 </div>
 </div>
 
-<div id="outline-container-orgb1651a8" class="outline-3">
-<h3 id="orgb1651a8"><span class="section-number-3">2.3.</span> Isync Use</h3>
+<div id="outline-container-orgf99e8c1" class="outline-3">
+<h3 id="orgf99e8c1"><span class="section-number-3">2.3.</span> Isync Use</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 sync email folders from all providers:
 </p>
-<pre class="example" id="orgac54760">
+<pre class="example" id="org50d8751">
 $ mbsync -a
 </pre>
 
 <p>
 or to just sync with hushmail provider
 </p>
-<pre class="example" id="orgaa493b9">
+<pre class="example" id="org640010e">
 $ mbsync hushmail
 </pre>
 
 <p>
 To just propagate changes from gmail to local:
 </p>
-<pre class="example" id="org1c1f9c8">
+<pre class="example" id="orgc05c8aa">
 $ mbsync gmail --pull
 </pre>
 
 <p>
 Similarly,  to just propagate changes to hushmail:
 </p>
-<pre class="example" id="orgc4c694b">
+<pre class="example" id="orgee12468">
 $ mbsync hushmail --push
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org2b77d57" class="outline-3">
-<h3 id="org2b77d57"><span class="section-number-3">2.4.</span> Notmuch Setup</h3>
+<div id="outline-container-org18c1d6f" class="outline-3">
+<h3 id="org18c1d6f"><span class="section-number-3">2.4.</span> Notmuch Setup</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 Installed <code>notmuch</code> via nix flake in my project <code>xo-nix2</code>.
@@ -342,7 +342,7 @@ Installing this way ensures that <code>emacs</code>, <code>notmuch</code> and <c
 <code>notmuch</code> gets setup interactively:
 </p>
 
-<pre class="example" id="org4237797">
+<pre class="example" id="orge2f3337">
 $ notmuch setup
 Your full name:
 Your primary email address: alice@gmail.com
@@ -359,7 +359,7 @@ This creates empty tag database in <code>MAILDIR=/.notmuch</code> (<code>/home/a
 <p>
 Populate tag database with contents of MAILDIR:
 </p>
-<pre class="example" id="org13e9ea7">
+<pre class="example" id="org8c814a3">
 $ notmuch new
 </pre>
 
@@ -383,8 +383,8 @@ Now can browse email from emacs with <code>M-x notmuch</code>.
 </div>
 </div>
 
-<div id="outline-container-orge1e0c7c" class="outline-3">
-<h3 id="orge1e0c7c"><span class="section-number-3">2.5.</span> Outgoing Mail Setup</h3>
+<div id="outline-container-org0540db3" class="outline-3">
+<h3 id="org0540db3"><span class="section-number-3">2.5.</span> Outgoing Mail Setup</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 in <code>~/.emacs</code>:
@@ -411,7 +411,7 @@ in <code>~/.emacs</code>:
 <p>
 For <code>smtpmail</code>, We also need <code>~/.authinfo</code> to provide login credentials
 </p>
-<pre class="example" id="org4d0628d">
+<pre class="example" id="orgc9b80af">
 machine smtp.gmail.com login replacewithuser@gmail.com port 587 password replacewithpassword
 </pre>
 
@@ -430,8 +430,8 @@ Now can send email with <code>C-x m</code>
 </div>
 </div>
 
-<div id="outline-container-org4e1a731" class="outline-2">
-<h2 id="org4e1a731"><span class="section-number-2">3.</span> Lessons and Tradeoffs</h2>
+<div id="outline-container-org4d93439" class="outline-2">
+<h2 id="org4d93439"><span class="section-number-2">3.</span> Lessons and Tradeoffs</h2>
 <div class="outline-text-2" id="text-3">
 <ol class="org-ol">
 <li>for email syncing,  I looked at <code>offlineimap</code> and <code>isync</code>.   Chose <code>isync</code> because it's reported to be faster,
@@ -443,7 +443,7 @@ gmail eventually cuts off (or maybe times out) socket connections when trying to
 Settled on 15k message cap for the gmail channel
 </p>
 
-<pre class="example" id="org098b1d9">
+<pre class="example" id="orgbc015ca">
 # .mbsyncrc
 
 Channel gmail
@@ -477,7 +477,7 @@ Multiple channels muddies the filesystem picture,  since different channels will
 For example:
 </p>
 
-<pre class="example" id="org83b231e">
+<pre class="example" id="orge11a2b4">
 ${MAILDIR}
 +- gmail
 |  +- .receipts
@@ -503,8 +503,8 @@ For example: to look at emails in <code>gmail/.receipts</code>,  use <code>folde
 </div>
 </div>
 
-<div id="outline-container-org74028ef" class="outline-2">
-<h2 id="org74028ef"><span class="section-number-2">4.</span> Next</h2>
+<div id="outline-container-org6a7b454" class="outline-2">
+<h2 id="org6a7b454"><span class="section-number-2">4.</span> Next</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 <a href="./cleanmbox.html">cleanmbox - script to automatically tidy offline email</a>
@@ -514,7 +514,7 @@ For example: to look at emails in <code>gmail/.receipts</code>,  use <code>folde
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-02-25 Sun 19:07</p>
+<p class="date">Created: 2024-09-08 Sun 18:01</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

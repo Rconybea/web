@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-06-19 Wed 19:31 -->
+<!-- 2024-09-08 Sun 18:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>emacs setup</title>
@@ -33,88 +33,88 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org11d2b1a">1. Introduction</a></li>
-<li><a href="#org50cd9c9">2. .emacs</a>
+<li><a href="#org6480a72">1. Introduction</a></li>
+<li><a href="#org078729c">2. .emacs</a>
 <ul>
-<li><a href="#orgbd3cc90">2.1. misc</a></li>
-<li><a href="#org364b44b">2.2. package bootstrapping</a></li>
-<li><a href="#org6a9313b">2.3. quality-of-life details</a>
+<li><a href="#org8afcbc8">2.1. misc</a></li>
+<li><a href="#orgaefc436">2.2. package bootstrapping</a></li>
+<li><a href="#org8deb53f">2.3. quality-of-life details</a>
 <ul>
-<li><a href="#org5679033">2.3.1. qol: display</a></li>
-<li><a href="#orgf9e7a7e">2.3.2. qol: yes-or-no</a></li>
-<li><a href="#orgaf09a2b">2.3.3. qol: nuke ctrl-Z</a></li>
-<li><a href="#orgc8402c4">2.3.4. qol: shortcut to bury current buffer</a></li>
-<li><a href="#org3cdf4e4">2.3.5. qol: navigation</a></li>
-<li><a href="#org01e04e5">2.3.6. qol: kill</a></li>
-<li><a href="#orgffe09a0">2.3.7. qol: query replace</a></li>
-<li><a href="#orgf47f3ab">2.3.8. qol: mouse-3 on macos</a></li>
-<li><a href="#org164b4ff">2.3.9. qol: mouse avoidance</a></li>
+<li><a href="#org58fb9eb">2.3.1. qol: display</a></li>
+<li><a href="#org5a35220">2.3.2. qol: yes-or-no</a></li>
+<li><a href="#orgf1d071b">2.3.3. qol: nuke ctrl-Z</a></li>
+<li><a href="#org58e89b6">2.3.4. qol: shortcut to bury current buffer</a></li>
+<li><a href="#org826b0bf">2.3.5. qol: navigation</a></li>
+<li><a href="#org065b334">2.3.6. qol: kill</a></li>
+<li><a href="#orgaadc22d">2.3.7. qol: query replace</a></li>
+<li><a href="#org931ad92">2.3.8. qol: mouse-3 on macos</a></li>
+<li><a href="#org4074f30">2.3.9. qol: mouse avoidance</a></li>
 </ul>
 </li>
-<li><a href="#orgf63869d">2.4. package: try</a></li>
-<li><a href="#orge3ea02c">2.5. package: which-key</a></li>
-<li><a href="#orgcd08050">2.6. backup file location</a></li>
-<li><a href="#org662ebc2">2.7. prefer ibuffer</a></li>
-<li><a href="#org3c44d44">2.8. package: surround</a></li>
-<li><a href="#orgd0e60a9">2.9. package: highlight</a></li>
-<li><a href="#org37e1840">2.10. track current directory reliably in <code>*shell*</code> buffers</a></li>
-<li><a href="#orga7e4dc2">2.11. dynamic abbreviations</a></li>
-<li><a href="#orga8faa8d">2.12. package: flycheck</a></li>
-<li><a href="#orgb29a0b7">2.13. package: ripgrep</a></li>
-<li><a href="#orgc9de211">2.14. completion assist</a>
+<li><a href="#orgf94f79a">2.4. package: try</a></li>
+<li><a href="#org823ce83">2.5. package: which-key</a></li>
+<li><a href="#orgc835348">2.6. backup file location</a></li>
+<li><a href="#org92ff874">2.7. prefer ibuffer</a></li>
+<li><a href="#orgf24d8f4">2.8. package: surround</a></li>
+<li><a href="#org1b687bf">2.9. package: highlight</a></li>
+<li><a href="#orgc4e43af">2.10. track current directory reliably in <code>*shell*</code> buffers</a></li>
+<li><a href="#org18f21f1">2.11. dynamic abbreviations</a></li>
+<li><a href="#org0ffdc18">2.12. package: flycheck</a></li>
+<li><a href="#org79017ce">2.13. package: ripgrep</a></li>
+<li><a href="#orgafa25e9">2.14. completion assist</a>
 <ul>
-<li><a href="#org32c4054">2.14.1. completion: ivy</a></li>
+<li><a href="#org7ed7961">2.14.1. completion: ivy</a></li>
 </ul>
 </li>
-<li><a href="#org1297487">2.15. C++</a>
+<li><a href="#orgd55c171">2.15. C++</a>
 <ul>
-<li><a href="#org5070965">2.15.1. c++: indenting + tabs</a></li>
-<li><a href="#org60c950f">2.15.2. c++: whitespace</a></li>
-<li><a href="#org460732a">2.15.3. cmake editing</a></li>
-<li><a href="#org978b0eb">2.15.4. c++ completion</a></li>
-<li><a href="#org1bf5c25">2.15.5. <b>compilation</b> buffer</a></li>
+<li><a href="#org49e6ed3">2.15.1. c++: indenting + tabs</a></li>
+<li><a href="#org305d9b9">2.15.2. c++: whitespace</a></li>
+<li><a href="#orgf448561">2.15.3. cmake editing</a></li>
+<li><a href="#orgd8b7897">2.15.4. c++ completion</a></li>
+<li><a href="#org335b57a">2.15.5. <b>compilation</b> buffer</a></li>
 </ul>
 </li>
-<li><a href="#org0275da3">2.16. Development</a>
+<li><a href="#orgba4f1be">2.16. Development</a>
 <ul>
-<li><a href="#org38a31a0">2.16.1. dev: snippets</a></li>
-<li><a href="#orgfb857b8">2.16.2. dev: treemacs</a></li>
-<li><a href="#org26712b6">2.16.3. dev: projectile</a></li>
-<li><a href="#org8676bbb">2.16.4. dev: treemacs+projectile integration</a></li>
-<li><a href="#org46f77c7">2.16.5. dev: language server protocol (LSP)</a></li>
-<li><a href="#orgedf69b4">2.16.6. dev: lsp+ivy integration</a></li>
-<li><a href="#org738e6f4">2.16.7. dev: git integration</a></li>
-<li><a href="#org69e495d">2.16.8. dev: nix mode</a></li>
-<li><a href="#orgc8856ef">2.16.9. dev: yaml mode</a></li>
+<li><a href="#org50ee6c8">2.16.1. dev: snippets</a></li>
+<li><a href="#org3359131">2.16.2. dev: treemacs</a></li>
+<li><a href="#org173395d">2.16.3. dev: projectile</a></li>
+<li><a href="#org0c5e370">2.16.4. dev: treemacs+projectile integration</a></li>
+<li><a href="#org4bfa839">2.16.5. dev: language server protocol (LSP)</a></li>
+<li><a href="#org346d38d">2.16.6. dev: lsp+ivy integration</a></li>
+<li><a href="#orgce6ba79">2.16.7. dev: git integration</a></li>
+<li><a href="#org3a13167">2.16.8. dev: nix mode</a></li>
+<li><a href="#orge217c37">2.16.9. dev: yaml mode</a></li>
 </ul>
 </li>
-<li><a href="#orgc1140a7">2.17. org-mode</a>
+<li><a href="#org7696bec">2.17. org-mode</a>
 <ul>
-<li><a href="#org7bd6425">2.17.1. org: publishing</a></li>
-<li><a href="#org2af347c">2.17.2. babel setup</a></li>
+<li><a href="#orgf72fa6b">2.17.1. org: publishing</a></li>
+<li><a href="#orgf39b006">2.17.2. babel setup</a></li>
 </ul>
 </li>
-<li><a href="#orgbb7f02b">2.18. email</a>
+<li><a href="#org2e1c095">2.18. email</a>
 <ul>
-<li><a href="#org8a0e497">2.18.1. incoming mail</a></li>
-<li><a href="#org762ad69">2.18.2. outgoing mail</a></li>
+<li><a href="#org087529d">2.18.1. incoming mail</a></li>
+<li><a href="#org85ed37a">2.18.2. outgoing mail</a></li>
 </ul>
 </li>
-<li><a href="#orgd09c5e9">2.19. eye candy: theme selection</a>
+<li><a href="#org8f75907">2.19. eye candy: theme selection</a>
 <ul>
-<li><a href="#org88580ef">2.19.1. eye candy: default font</a></li>
-<li><a href="#orgb781fc9">2.19.2. eye candy: initial window height</a></li>
+<li><a href="#org3e6e9ae">2.19.1. eye candy: default font</a></li>
+<li><a href="#org1d6099a">2.19.2. eye candy: initial window height</a></li>
 </ul>
 </li>
-<li><a href="#org93ce5c7">2.20. emacsclient</a></li>
+<li><a href="#org3609935">2.20. emacsclient</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org11d2b1a" class="outline-2">
-<h2 id="org11d2b1a"><span class="section-number-2">1.</span> Introduction</h2>
+<div id="outline-container-org6480a72" class="outline-2">
+<h2 id="org6480a72"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Roland Conybeare's curated emacs setup.
@@ -128,12 +128,12 @@ using this to streamline account setup on new hosts.
 </div>
 </div>
 
-<div id="outline-container-org50cd9c9" class="outline-2">
-<h2 id="org50cd9c9"><span class="section-number-2">2.</span> .emacs</h2>
+<div id="outline-container-org078729c" class="outline-2">
+<h2 id="org078729c"><span class="section-number-2">2.</span> .emacs</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgbd3cc90" class="outline-3">
-<h3 id="orgbd3cc90"><span class="section-number-3">2.1.</span> misc</h3>
+<div id="outline-container-org8afcbc8" class="outline-3">
+<h3 id="org8afcbc8"><span class="section-number-3">2.1.</span> misc</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Compatibility with some Common Lisp idioms
@@ -146,8 +146,8 @@ Compatibility with some Common Lisp idioms
 </div>
 </div>
 
-<div id="outline-container-org364b44b" class="outline-3">
-<h3 id="org364b44b"><span class="section-number-3">2.2.</span> package bootstrapping</h3>
+<div id="outline-container-orgaefc436" class="outline-3">
+<h3 id="orgaefc436"><span class="section-number-3">2.2.</span> package bootstrapping</h3>
 <div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #ffad29; font-weight: bold;">require</span> '<span style="color: #008b8b;">package</span>)
@@ -198,12 +198,12 @@ And some packages to autofetch
 </div>
 </div>
 
-<div id="outline-container-org6a9313b" class="outline-3">
-<h3 id="org6a9313b"><span class="section-number-3">2.3.</span> quality-of-life details</h3>
+<div id="outline-container-org8deb53f" class="outline-3">
+<h3 id="org8deb53f"><span class="section-number-3">2.3.</span> quality-of-life details</h3>
 <div class="outline-text-3" id="text-2-3">
 </div>
-<div id="outline-container-org5679033" class="outline-4">
-<h4 id="org5679033"><span class="section-number-4">2.3.1.</span> qol: display</h4>
+<div id="outline-container-org58fb9eb" class="outline-4">
+<h4 id="org58fb9eb"><span class="section-number-4">2.3.1.</span> qol: display</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">grab a little bit of extra screen real estate</span>
@@ -225,8 +225,8 @@ And some packages to autofetch
 </div>
 </div>
 
-<div id="outline-container-orgf9e7a7e" class="outline-4">
-<h4 id="orgf9e7a7e"><span class="section-number-4">2.3.2.</span> qol: yes-or-no</h4>
+<div id="outline-container-org5a35220" class="outline-4">
+<h4 id="org5a35220"><span class="section-number-4">2.3.2.</span> qol: yes-or-no</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">don't like having to type '</span><span style="color: #008b8b;">yes</span><span style="color: #74af68;">' or '</span><span style="color: #008b8b;">no</span><span style="color: #74af68;">';  '</span><span style="color: #008b8b;">y</span><span style="color: #74af68;">' or '</span><span style="color: #008b8b;">n</span><span style="color: #74af68;">' will do</span>
@@ -237,8 +237,8 @@ And some packages to autofetch
 </div>
 </div>
 
-<div id="outline-container-orgaf09a2b" class="outline-4">
-<h4 id="orgaf09a2b"><span class="section-number-4">2.3.3.</span> qol: nuke ctrl-Z</h4>
+<div id="outline-container-orgf1d071b" class="outline-4">
+<h4 id="orgf1d071b"><span class="section-number-4">2.3.3.</span> qol: nuke ctrl-Z</h4>
 <div class="outline-text-4" id="text-2-3-3">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">C-z bound to suspend frame is annoying,  because</span>
@@ -251,8 +251,8 @@ And some packages to autofetch
 </div>
 </div>
 
-<div id="outline-container-orgc8402c4" class="outline-4">
-<h4 id="orgc8402c4"><span class="section-number-4">2.3.4.</span> qol: shortcut to bury current buffer</h4>
+<div id="outline-container-org58e89b6" class="outline-4">
+<h4 id="org58e89b6"><span class="section-number-4">2.3.4.</span> qol: shortcut to bury current buffer</h4>
 <div class="outline-text-4" id="text-2-3-4">
 <div class="org-src-container">
 <pre class="src src-elisp">(global-set-key (kbd <span style="color: #e67128;">"C-x b"</span>) 'bury-buffer)
@@ -261,8 +261,8 @@ And some packages to autofetch
 </div>
 </div>
 
-<div id="outline-container-org3cdf4e4" class="outline-4">
-<h4 id="org3cdf4e4"><span class="section-number-4">2.3.5.</span> qol: navigation</h4>
+<div id="outline-container-org826b0bf" class="outline-4">
+<h4 id="org826b0bf"><span class="section-number-4">2.3.5.</span> qol: navigation</h4>
 <div class="outline-text-4" id="text-2-3-5">
 <div class="org-src-container">
 <pre class="src src-elisp">(global-set-key (kbd <span style="color: #e67128;">"C-x t"</span>) 'beginning-of-buffer)
@@ -285,8 +285,8 @@ And some packages to autofetch
 </div>
 </div>
 
-<div id="outline-container-org01e04e5" class="outline-4">
-<h4 id="org01e04e5"><span class="section-number-4">2.3.6.</span> qol: kill</h4>
+<div id="outline-container-org065b334" class="outline-4">
+<h4 id="org065b334"><span class="section-number-4">2.3.6.</span> qol: kill</h4>
 <div class="outline-text-4" id="text-2-3-6">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">instead of kill-region,</span>
@@ -315,8 +315,8 @@ without swallowing them.
 </div>
 </div>
 
-<div id="outline-container-orgffe09a0" class="outline-4">
-<h4 id="orgffe09a0"><span class="section-number-4">2.3.7.</span> qol: query replace</h4>
+<div id="outline-container-orgaadc22d" class="outline-4">
+<h4 id="orgaadc22d"><span class="section-number-4">2.3.7.</span> qol: query replace</h4>
 <div class="outline-text-4" id="text-2-3-7">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">M-x qr --&gt; M-x query-replace</span>
@@ -329,8 +329,8 @@ without swallowing them.
 </div>
 </div>
 
-<div id="outline-container-orgf47f3ab" class="outline-4">
-<h4 id="orgf47f3ab"><span class="section-number-4">2.3.8.</span> qol: mouse-3 on macos</h4>
+<div id="outline-container-org931ad92" class="outline-4">
+<h4 id="org931ad92"><span class="section-number-4">2.3.8.</span> qol: mouse-3 on macos</h4>
 <div class="outline-text-4" id="text-2-3-8">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">mouse-3 annoying on macbook 11.3</span>
@@ -342,8 +342,8 @@ without swallowing them.
 </div>
 </div>
 
-<div id="outline-container-org164b4ff" class="outline-4">
-<h4 id="org164b4ff"><span class="section-number-4">2.3.9.</span> qol: mouse avoidance</h4>
+<div id="outline-container-org4074f30" class="outline-4">
+<h4 id="org4074f30"><span class="section-number-4">2.3.9.</span> qol: mouse avoidance</h4>
 <div class="outline-text-4" id="text-2-3-9">
 <p>
 Don't let mouse icon obscure cursor
@@ -365,8 +365,8 @@ Make cursor and mouse easier to see
 </div>
 </div>
 
-<div id="outline-container-orgf63869d" class="outline-3">
-<h3 id="orgf63869d"><span class="section-number-3">2.4.</span> package: try</h3>
+<div id="outline-container-orgf94f79a" class="outline-3">
+<h3 id="orgf94f79a"><span class="section-number-3">2.4.</span> package: try</h3>
 <div class="outline-text-3" id="text-2-4">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">the '</span><span style="color: #008b8b;">try</span><span style="color: #74af68;">' package lets us try a package without permanently installing it.</span>
@@ -379,8 +379,8 @@ Make cursor and mouse easier to see
 </div>
 </div>
 
-<div id="outline-container-orge3ea02c" class="outline-3">
-<h3 id="orge3ea02c"><span class="section-number-3">2.5.</span> package: which-key</h3>
+<div id="outline-container-org823ce83" class="outline-3">
+<h3 id="org823ce83"><span class="section-number-3">2.5.</span> package: which-key</h3>
 <div class="outline-text-3" id="text-2-5">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">the '</span><span style="color: #008b8b;">which-key</span><span style="color: #74af68;">' package displays popup with key bindings following</span>
@@ -392,8 +392,8 @@ Make cursor and mouse easier to see
 </div>
 </div>
 
-<div id="outline-container-orgcd08050" class="outline-3">
-<h3 id="orgcd08050"><span class="section-number-3">2.6.</span> backup file location</h3>
+<div id="outline-container-orgc835348" class="outline-3">
+<h3 id="orgc835348"><span class="section-number-3">2.6.</span> backup file location</h3>
 <div class="outline-text-3" id="text-2-6">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">backup location</span>
@@ -422,8 +422,8 @@ Make cursor and mouse easier to see
 </div>
 </div>
 
-<div id="outline-container-org662ebc2" class="outline-3">
-<h3 id="org662ebc2"><span class="section-number-3">2.7.</span> prefer ibuffer</h3>
+<div id="outline-container-org92ff874" class="outline-3">
+<h3 id="org92ff874"><span class="section-number-3">2.7.</span> prefer ibuffer</h3>
 <div class="outline-text-3" id="text-2-7">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">----------------------------------------------------------------</span>
@@ -436,8 +436,8 @@ Make cursor and mouse easier to see
 </div>
 </div>
 
-<div id="outline-container-org3c44d44" class="outline-3">
-<h3 id="org3c44d44"><span class="section-number-3">2.8.</span> package: surround</h3>
+<div id="outline-container-orgf24d8f4" class="outline-3">
+<h3 id="orgf24d8f4"><span class="section-number-3">2.8.</span> package: surround</h3>
 <div class="outline-text-3" id="text-2-8">
 <p>
 Region selection based on matching parens
@@ -461,8 +461,8 @@ Region selection based on matching parens
 </div>
 </div>
 
-<div id="outline-container-orgd0e60a9" class="outline-3">
-<h3 id="orgd0e60a9"><span class="section-number-3">2.9.</span> package: highlight</h3>
+<div id="outline-container-org1b687bf" class="outline-3">
+<h3 id="org1b687bf"><span class="section-number-3">2.9.</span> package: highlight</h3>
 <div class="outline-text-3" id="text-2-9">
 <p>
 Manual highlighting
@@ -481,8 +481,8 @@ Manual highlighting
 </div>
 </div>
 
-<div id="outline-container-org37e1840" class="outline-3">
-<h3 id="org37e1840"><span class="section-number-3">2.10.</span> track current directory reliably in <code>*shell*</code> buffers</h3>
+<div id="outline-container-orgc4e43af" class="outline-3">
+<h3 id="orgc4e43af"><span class="section-number-3">2.10.</span> track current directory reliably in <code>*shell*</code> buffers</h3>
 <div class="outline-text-3" id="text-2-10">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">----------------------------------------------------------------</span>
@@ -535,8 +535,8 @@ Manual highlighting
 </div>
 
 
-<div id="outline-container-orga7e4dc2" class="outline-3">
-<h3 id="orga7e4dc2"><span class="section-number-3">2.11.</span> dynamic abbreviations</h3>
+<div id="outline-container-org18f21f1" class="outline-3">
+<h3 id="org18f21f1"><span class="section-number-3">2.11.</span> dynamic abbreviations</h3>
 <div class="outline-text-3" id="text-2-11">
 <p>
 For consciously correcting typos
@@ -551,8 +551,8 @@ For consciously correcting typos
 </div>
 </div>
 
-<div id="outline-container-orga8faa8d" class="outline-3">
-<h3 id="orga8faa8d"><span class="section-number-3">2.12.</span> package: flycheck</h3>
+<div id="outline-container-org0ffdc18" class="outline-3">
+<h3 id="org0ffdc18"><span class="section-number-3">2.12.</span> package: flycheck</h3>
 <div class="outline-text-3" id="text-2-12">
 <p>
 Flycheck runs in the background.  It automatically (and subtly) highlights syntax errors as you type.
@@ -580,8 +580,8 @@ Preferred over built-in flyspell.
 </div>
 </div>
 
-<div id="outline-container-orgb29a0b7" class="outline-3">
-<h3 id="orgb29a0b7"><span class="section-number-3">2.13.</span> package: ripgrep</h3>
+<div id="outline-container-org79017ce" class="outline-3">
+<h3 id="org79017ce"><span class="section-number-3">2.13.</span> package: ripgrep</h3>
 <div class="outline-text-3" id="text-2-13">
 <p>
 Projectile uses this automagically if available
@@ -628,12 +628,12 @@ Projectile uses this automagically if available
 </div>
 </div>
 
-<div id="outline-container-orgc9de211" class="outline-3">
-<h3 id="orgc9de211"><span class="section-number-3">2.14.</span> completion assist</h3>
+<div id="outline-container-orgafa25e9" class="outline-3">
+<h3 id="orgafa25e9"><span class="section-number-3">2.14.</span> completion assist</h3>
 <div class="outline-text-3" id="text-2-14">
 </div>
-<div id="outline-container-org32c4054" class="outline-4">
-<h4 id="org32c4054"><span class="section-number-4">2.14.1.</span> completion: ivy</h4>
+<div id="outline-container-org7ed7961" class="outline-4">
+<h4 id="org7ed7961"><span class="section-number-4">2.14.1.</span> completion: ivy</h4>
 <div class="outline-text-4" id="text-2-14-1">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">----------------------------------------------------------------</span>
@@ -684,12 +684,12 @@ Projectile uses this automagically if available
 </div>
 </div>
 
-<div id="outline-container-org1297487" class="outline-3">
-<h3 id="org1297487"><span class="section-number-3">2.15.</span> C++</h3>
+<div id="outline-container-orgd55c171" class="outline-3">
+<h3 id="orgd55c171"><span class="section-number-3">2.15.</span> C++</h3>
 <div class="outline-text-3" id="text-2-15">
 </div>
-<div id="outline-container-org5070965" class="outline-4">
-<h4 id="org5070965"><span class="section-number-4">2.15.1.</span> c++: indenting + tabs</h4>
+<div id="outline-container-org49e6ed3" class="outline-4">
+<h4 id="org49e6ed3"><span class="section-number-4">2.15.1.</span> c++: indenting + tabs</h4>
 <div class="outline-text-4" id="text-2-15-1">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">in general want to expand tabs,  + use 4 characters</span>
@@ -721,8 +721,8 @@ Projectile uses this automagically if available
 </div>
 </div>
 
-<div id="outline-container-org60c950f" class="outline-4">
-<h4 id="org60c950f"><span class="section-number-4">2.15.2.</span> c++: whitespace</h4>
+<div id="outline-container-org305d9b9" class="outline-4">
+<h4 id="org305d9b9"><span class="section-number-4">2.15.2.</span> c++: whitespace</h4>
 <div class="outline-text-4" id="text-2-15-2">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">will be using customized whitespace mode,  that just highlights trailing spaces</span>
@@ -757,8 +757,8 @@ Projectile uses this automagically if available
 </div>
 </div>
 
-<div id="outline-container-org460732a" class="outline-4">
-<h4 id="org460732a"><span class="section-number-4">2.15.3.</span> cmake editing</h4>
+<div id="outline-container-orgf448561" class="outline-4">
+<h4 id="orgf448561"><span class="section-number-4">2.15.3.</span> cmake editing</h4>
 <div class="outline-text-4" id="text-2-15-3">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">cmake mode</span>
@@ -774,8 +774,8 @@ Projectile uses this automagically if available
 </div>
 </div>
 
-<div id="outline-container-org978b0eb" class="outline-4">
-<h4 id="org978b0eb"><span class="section-number-4">2.15.4.</span> c++ completion</h4>
+<div id="outline-container-orgd8b7897" class="outline-4">
+<h4 id="orgd8b7897"><span class="section-number-4">2.15.4.</span> c++ completion</h4>
 <div class="outline-text-4" id="text-2-15-4">
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #ffad29; font-weight: bold;">use-package</span> <span style="color: #008b8b;">company</span>
@@ -791,8 +791,8 @@ Projectile uses this automagically if available
 </div>
 </div>
 
-<div id="outline-container-org1bf5c25" class="outline-4">
-<h4 id="org1bf5c25"><span class="section-number-4">2.15.5.</span> <b>compilation</b> buffer</h4>
+<div id="outline-container-org335b57a" class="outline-4">
+<h4 id="org335b57a"><span class="section-number-4">2.15.5.</span> <b>compilation</b> buffer</h4>
 <div class="outline-text-4" id="text-2-15-5">
 <p>
 For example,  to respond to <code>cmake</code> colored output
@@ -822,12 +822,12 @@ For example,  to respond to <code>cmake</code> colored output
 </div>
 </div>
 
-<div id="outline-container-org0275da3" class="outline-3">
-<h3 id="org0275da3"><span class="section-number-3">2.16.</span> Development</h3>
+<div id="outline-container-orgba4f1be" class="outline-3">
+<h3 id="orgba4f1be"><span class="section-number-3">2.16.</span> Development</h3>
 <div class="outline-text-3" id="text-2-16">
 </div>
-<div id="outline-container-org38a31a0" class="outline-4">
-<h4 id="org38a31a0"><span class="section-number-4">2.16.1.</span> dev: snippets</h4>
+<div id="outline-container-org50ee6c8" class="outline-4">
+<h4 id="org50ee6c8"><span class="section-number-4">2.16.1.</span> dev: snippets</h4>
 <div class="outline-text-4" id="text-2-16-1">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">snippets!</span>
@@ -868,8 +868,8 @@ For example,  to respond to <code>cmake</code> colored output
 </div>
 </div>
 
-<div id="outline-container-orgfb857b8" class="outline-4">
-<h4 id="orgfb857b8"><span class="section-number-4">2.16.2.</span> dev: treemacs</h4>
+<div id="outline-container-org3359131" class="outline-4">
+<h4 id="org3359131"><span class="section-number-4">2.16.2.</span> dev: treemacs</h4>
 <div class="outline-text-4" id="text-2-16-2">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">----------------------------------------------------------------</span>
@@ -894,8 +894,8 @@ For example,  to respond to <code>cmake</code> colored output
 </div>
 </div>
 
-<div id="outline-container-org26712b6" class="outline-4">
-<h4 id="org26712b6"><span class="section-number-4">2.16.3.</span> dev: projectile</h4>
+<div id="outline-container-org173395d" class="outline-4">
+<h4 id="org173395d"><span class="section-number-4">2.16.3.</span> dev: projectile</h4>
 <div class="outline-text-4" id="text-2-16-3">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">projectile</span>
@@ -939,8 +939,8 @@ For example,  to respond to <code>cmake</code> colored output
 </div>
 </div>
 
-<div id="outline-container-org8676bbb" class="outline-4">
-<h4 id="org8676bbb"><span class="section-number-4">2.16.4.</span> dev: treemacs+projectile integration</h4>
+<div id="outline-container-org0c5e370" class="outline-4">
+<h4 id="org0c5e370"><span class="section-number-4">2.16.4.</span> dev: treemacs+projectile integration</h4>
 <div class="outline-text-4" id="text-2-16-4">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">----------------------------------------------------------------</span>
@@ -957,8 +957,8 @@ For example,  to respond to <code>cmake</code> colored output
 </div>
 </div>
 
-<div id="outline-container-org46f77c7" class="outline-4">
-<h4 id="org46f77c7"><span class="section-number-4">2.16.5.</span> dev: language server protocol (LSP)</h4>
+<div id="outline-container-org4bfa839" class="outline-4">
+<h4 id="org4bfa839"><span class="section-number-4">2.16.5.</span> dev: language server protocol (LSP)</h4>
 <div class="outline-text-4" id="text-2-16-5">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">----------------------------------------------------------------</span>
@@ -1060,8 +1060,8 @@ For example,  to respond to <code>cmake</code> colored output
 </div>
 </div>
 
-<div id="outline-container-orgedf69b4" class="outline-4">
-<h4 id="orgedf69b4"><span class="section-number-4">2.16.6.</span> dev: lsp+ivy integration</h4>
+<div id="outline-container-org346d38d" class="outline-4">
+<h4 id="org346d38d"><span class="section-number-4">2.16.6.</span> dev: lsp+ivy integration</h4>
 <div class="outline-text-4" id="text-2-16-6">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">----------------------------------------------------------------</span>
@@ -1081,8 +1081,8 @@ For example,  to respond to <code>cmake</code> colored output
 </div>
 </div>
 
-<div id="outline-container-org738e6f4" class="outline-4">
-<h4 id="org738e6f4"><span class="section-number-4">2.16.7.</span> dev: git integration</h4>
+<div id="outline-container-orgce6ba79" class="outline-4">
+<h4 id="orgce6ba79"><span class="section-number-4">2.16.7.</span> dev: git integration</h4>
 <div class="outline-text-4" id="text-2-16-7">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">----------------------------------------------------------------</span>
@@ -1103,8 +1103,8 @@ For example,  to respond to <code>cmake</code> colored output
 </div>
 </div>
 
-<div id="outline-container-org69e495d" class="outline-4">
-<h4 id="org69e495d"><span class="section-number-4">2.16.8.</span> dev: nix mode</h4>
+<div id="outline-container-org3a13167" class="outline-4">
+<h4 id="org3a13167"><span class="section-number-4">2.16.8.</span> dev: nix mode</h4>
 <div class="outline-text-4" id="text-2-16-8">
 <p>
 Syntax highlighting in nix files
@@ -1120,8 +1120,8 @@ Syntax highlighting in nix files
 </div>
 </div>
 
-<div id="outline-container-orgc8856ef" class="outline-4">
-<h4 id="orgc8856ef"><span class="section-number-4">2.16.9.</span> dev: yaml mode</h4>
+<div id="outline-container-orge217c37" class="outline-4">
+<h4 id="orge217c37"><span class="section-number-4">2.16.9.</span> dev: yaml mode</h4>
 <div class="outline-text-4" id="text-2-16-9">
 <p>
 Syntax highlighting in yaml files
@@ -1138,12 +1138,12 @@ Syntax highlighting in yaml files
 </div>
 </div>
 
-<div id="outline-container-orgc1140a7" class="outline-3">
-<h3 id="orgc1140a7"><span class="section-number-3">2.17.</span> org-mode</h3>
+<div id="outline-container-org7696bec" class="outline-3">
+<h3 id="org7696bec"><span class="section-number-3">2.17.</span> org-mode</h3>
 <div class="outline-text-3" id="text-2-17">
 </div>
-<div id="outline-container-org7bd6425" class="outline-4">
-<h4 id="org7bd6425"><span class="section-number-4">2.17.1.</span> org: publishing</h4>
+<div id="outline-container-orgf72fa6b" class="outline-4">
+<h4 id="orgf72fa6b"><span class="section-number-4">2.17.1.</span> org: publishing</h4>
 <div class="outline-text-4" id="text-2-17-1">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">org-mode publishing</span>
@@ -1208,8 +1208,8 @@ Syntax highlighting in yaml files
 </div>
 </div>
 
-<div id="outline-container-org2af347c" class="outline-4">
-<h4 id="org2af347c"><span class="section-number-4">2.17.2.</span> babel setup</h4>
+<div id="outline-container-orgf39b006" class="outline-4">
+<h4 id="orgf39b006"><span class="section-number-4">2.17.2.</span> babel setup</h4>
 <div class="outline-text-4" id="text-2-17-2">
 <p>
 For literate programming &#x2013; execute code blocks, written in various languages, embedded in <code>.org</code> files
@@ -1304,12 +1304,12 @@ For <code>ditaa</code>, need some paths.  Nix makes these obscure, need to dig o
 </div>
 </div>
 
-<div id="outline-container-orgbb7f02b" class="outline-3">
-<h3 id="orgbb7f02b"><span class="section-number-3">2.18.</span> email</h3>
+<div id="outline-container-org2e1c095" class="outline-3">
+<h3 id="org2e1c095"><span class="section-number-3">2.18.</span> email</h3>
 <div class="outline-text-3" id="text-2-18">
 </div>
-<div id="outline-container-org8a0e497" class="outline-4">
-<h4 id="org8a0e497"><span class="section-number-4">2.18.1.</span> incoming mail</h4>
+<div id="outline-container-org087529d" class="outline-4">
+<h4 id="org087529d"><span class="section-number-4">2.18.1.</span> incoming mail</h4>
 <div class="outline-text-4" id="text-2-18-1">
 <p>
 Using <code>notmuch</code> for incoming mail (<code>notmuch</code> configured using <code>notmuch setup</code>)
@@ -1346,8 +1346,8 @@ Using <code>notmuch</code> for incoming mail (<code>notmuch</code> configured us
 </div>
 </div>
 
-<div id="outline-container-org762ad69" class="outline-4">
-<h4 id="org762ad69"><span class="section-number-4">2.18.2.</span> outgoing mail</h4>
+<div id="outline-container-org85ed37a" class="outline-4">
+<h4 id="org85ed37a"><span class="section-number-4">2.18.2.</span> outgoing mail</h4>
 <div class="outline-text-4" id="text-2-18-2">
 <div class="org-src-container">
 <pre class="src src-emacs_lisp">(require 'smtpmail)
@@ -1371,15 +1371,15 @@ Using <code>notmuch</code> for incoming mail (<code>notmuch</code> configured us
 Note: <code>smtpmail</code> also requires credentials in <code>~/.authinfo</code>:
 </p>
 
-<pre class="example" id="org3970c7a">
+<pre class="example" id="org9837d9f">
 machine smtp.gmail.com login rconybeare@gmail.com port 587 password somegoogleapppassword
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgd09c5e9" class="outline-3">
-<h3 id="orgd09c5e9"><span class="section-number-3">2.19.</span> eye candy: theme selection</h3>
+<div id="outline-container-org8f75907" class="outline-3">
+<h3 id="org8f75907"><span class="section-number-3">2.19.</span> eye candy: theme selection</h3>
 <div class="outline-text-3" id="text-2-19">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">----------------------------------------------------------------</span>
@@ -1390,8 +1390,8 @@ machine smtp.gmail.com login rconybeare@gmail.com port 587 password somegoogleap
 </div>
 </div>
 
-<div id="outline-container-org88580ef" class="outline-4">
-<h4 id="org88580ef"><span class="section-number-4">2.19.1.</span> eye candy: default font</h4>
+<div id="outline-container-org3e6e9ae" class="outline-4">
+<h4 id="org3e6e9ae"><span class="section-number-4">2.19.1.</span> eye candy: default font</h4>
 <div class="outline-text-4" id="text-2-19-1">
 <div class="org-src-container">
 <pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">----------------------------------------------------------------</span>
@@ -1418,8 +1418,8 @@ machine smtp.gmail.com login rconybeare@gmail.com port 587 password somegoogleap
 </div>
 </div>
 
-<div id="outline-container-orgb781fc9" class="outline-4">
-<h4 id="orgb781fc9"><span class="section-number-4">2.19.2.</span> eye candy: initial window height</h4>
+<div id="outline-container-org1d6099a" class="outline-4">
+<h4 id="org1d6099a"><span class="section-number-4">2.19.2.</span> eye candy: initial window height</h4>
 <div class="outline-text-4" id="text-2-19-2">
 <div class="org-src-container">
 <pre class="src src-elisp">(<span style="color: #ffad29; font-weight: bold;">defvar</span> <span style="color: #dbdb95;">target-frame-width</span> (+ 1 (* 2 135)))
@@ -1455,8 +1455,8 @@ machine smtp.gmail.com login rconybeare@gmail.com port 587 password somegoogleap
 </div>
 </div>
 
-<div id="outline-container-org93ce5c7" class="outline-3">
-<h3 id="org93ce5c7"><span class="section-number-3">2.20.</span> emacsclient</h3>
+<div id="outline-container-org3609935" class="outline-3">
+<h3 id="org3609935"><span class="section-number-3">2.20.</span> emacsclient</h3>
 <div class="outline-text-3" id="text-2-20">
 <p>
 <code>EDITOR=emacsclient</code> to adopt running emacs session when unix wants something edited.
@@ -1475,7 +1475,7 @@ For example when running <code>git commit</code> from shell.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-06-19 Wed 19:31</p>
+<p class="date">Created: 2024-09-08 Sun 18:01</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

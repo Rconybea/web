@@ -3,11 +3,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-01 Sun 16:17 -->
+<!-- 2024-09-08 Sun 18:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>black-scholes example</title>
-<meta name="author" content="roly-desktop-23" />
+<meta name="author" content="Roland Conybeare" />
 <meta name="generator" content="Org Mode" />
 <style>
   #content { max-width: 60em; margin: auto; }
@@ -267,26 +267,26 @@ org_html_manager.setup();  // activate after the parameters are set
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org465c996">1. Introduction</a>
+<li><a href="#orga1d31bf">1. Introduction</a>
 <ul>
-<li><a href="#orge4a28e0">1.1. Option pricing</a></li>
+<li><a href="#org9764852">1.1. Option pricing</a></li>
 </ul>
 </li>
-<li><a href="#orge5d924e">2. Demo</a></li>
-<li><a href="#orga711235">3. Prerequisites</a></li>
-<li><a href="#orga81bb1f">4. Procedure</a>
+<li><a href="#orgcb23ccc">2. Demo</a></li>
+<li><a href="#org43fef89">3. Prerequisites</a></li>
+<li><a href="#orgc4a2d74">4. Procedure</a>
 <ul>
-<li><a href="#org2f704d4">4.1. Cumulative normal distribution</a></li>
-<li><a href="#org353d36f">4.2. Black-Scholes call</a></li>
-<li><a href="#orgd512eb8">4.3. Insert html fragment to invoke our interactive javascript code</a></li>
+<li><a href="#orgfd3b5a4">4.1. Cumulative normal distribution</a></li>
+<li><a href="#org9f6220a">4.2. Black-Scholes call</a></li>
+<li><a href="#org6d4546a">4.3. Insert html fragment to invoke our interactive javascript code</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org465c996" class="outline-2">
-<h2 id="org465c996"><span class="section-number-2">1.</span> Introduction</h2>
+<div id="outline-container-orga1d31bf" class="outline-2">
+<h2 id="orga1d31bf"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 This is intended to be an interactive Black-Scholes option-pricing demonstration.
@@ -298,8 +298,8 @@ This is intended to be an interactive Black-Scholes option-pricing demonstration
 </ul>
 </div>
 
-<div id="outline-container-orge4a28e0" class="outline-3">
-<h3 id="orge4a28e0"><span class="section-number-3">1.1.</span> Option pricing</h3>
+<div id="outline-container-org9764852" class="outline-3">
+<h3 id="org9764852"><span class="section-number-3">1.1.</span> Option pricing</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The Black-Scholes formula for European call options is:
@@ -323,8 +323,8 @@ We also have greeks:
 </div>
 </div>
 
-<div id="outline-container-orge5d924e" class="outline-2">
-<h2 id="orge5d924e"><span class="section-number-2">2.</span> Demo</h2>
+<div id="outline-container-orgcb23ccc" class="outline-2">
+<h2 id="orgcb23ccc"><span class="section-number-2">2.</span> Demo</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The div element <code>#frame</code> will appear below this line:
@@ -337,8 +337,8 @@ The div element <code>#frame</code> will appear below this line:
 </div>
 </div>
 
-<div id="outline-container-orga711235" class="outline-2">
-<h2 id="orga711235"><span class="section-number-2">3.</span> Prerequisites</h2>
+<div id="outline-container-org43fef89" class="outline-2">
+<h2 id="org43fef89"><span class="section-number-2">3.</span> Prerequisites</h2>
 <div class="outline-text-2" id="text-3">
 <ol class="org-ol">
 <li><a href="d3/drag1/index.html">d3 example <i>#1</i></a> prerequisites (D3, webserver)</li>
@@ -347,7 +347,7 @@ The div element <code>#frame</code> will appear below this line:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh">ls -l $HOME/proj/public_html/org-howto/ext/jquery
+<pre class="src src-sh">ls -l $<span style="color: #dbdb95;">HOME</span>/proj/public_html/org-howto/ext/jquery
 </pre>
 </div>
 
@@ -359,19 +359,19 @@ total 88
 </div>
 </div>
 
-<div id="outline-container-orga81bb1f" class="outline-2">
-<h2 id="orga81bb1f"><span class="section-number-2">4.</span> Procedure</h2>
+<div id="outline-container-orgc4a2d74" class="outline-2">
+<h2 id="orgc4a2d74"><span class="section-number-2">4.</span> Procedure</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org2f704d4" class="outline-3">
-<h3 id="org2f704d4"><span class="section-number-3">4.1.</span> Cumulative normal distribution</h3>
+<div id="outline-container-orgfd3b5a4" class="outline-3">
+<h3 id="orgfd3b5a4"><span class="section-number-3">4.1.</span> Cumulative normal distribution</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 We use the ubiquitous polynomial approximation.
 Write <code>normal.js</code>
 </p>
 
-<pre class="example" id="org05748b7">
+<pre class="example" id="org30addea">
 !function()
 {
     /* e.g. N = normal(0,1)
@@ -411,14 +411,14 @@ Write <code>normal.js</code>
 </div>
 </div>
 
-<div id="outline-container-org353d36f" class="outline-3">
-<h3 id="org353d36f"><span class="section-number-3">4.2.</span> Black-Scholes call</h3>
+<div id="outline-container-org9f6220a" class="outline-3">
+<h3 id="org9f6220a"><span class="section-number-3">4.2.</span> Black-Scholes call</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 Write <code>blackscholes.js</code>
 </p>
 
-<pre class="example" id="org093f4d7">
+<pre class="example" id="org0e91db3">
 !function()
 {
     var blackscholes = {};
@@ -473,13 +473,13 @@ Write <code>blackscholes.js</code>
 </div>
 </div>
 
-<div id="outline-container-orgd512eb8" class="outline-3">
-<h3 id="orgd512eb8"><span class="section-number-3">4.3.</span> Insert html fragment to invoke our interactive javascript code</h3>
+<div id="outline-container-org6d4546a" class="outline-3">
+<h3 id="org6d4546a"><span class="section-number-3">4.3.</span> Insert html fragment to invoke our interactive javascript code</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 This also follows the same model we used in examples <a href="d3/drag3/index.html"><i>#3</i></a>, <a href="d3/drag4/index.html"><i>#4</i></a>, <a href="d3/drag5/index.html"><i>#5</i></a>.
 </p>
-<pre class="example" id="org7d5cd0f">
+<pre class="example" id="org7536db7">
 #+begin_html
 &lt;div id="frame"&gt;&lt;/div&gt;
 &lt;script type="text/javascript"&gt;
@@ -492,8 +492,8 @@ This also follows the same model we used in examples <a href="d3/drag3/index.htm
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: roly-desktop-23</p>
-<p class="date">Created: 2023-10-01 Sun 16:17</p>
+<p class="author">Author: Roland Conybeare</p>
+<p class="date">Created: 2024-09-08 Sun 18:01</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

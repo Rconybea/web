@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-06-19 Wed 19:34 -->
+<!-- 2024-09-08 Sun 18:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>xo libraries</title>
@@ -33,19 +33,19 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org44ae094">1. Xo</a></li>
-<li><a href="#org2024e9a">2. Python Libraries</a></li>
-<li><a href="#org35e67fe">3. C++ Libraries</a></li>
-<li><a href="#org9d765a3">4. External Dependencies</a></li>
-<li><a href="#org0312f09">5. Python Abstraction Tower</a></li>
-<li><a href="#org71a91d6">6. C++ Abstraction Tower</a></li>
-<li><a href="#orgae7e923">7. Size</a></li>
+<li><a href="#org2567b60">1. Xo</a></li>
+<li><a href="#orgf61ab00">2. Python Libraries</a></li>
+<li><a href="#orgadc3965">3. C++ Libraries</a></li>
+<li><a href="#orgc7c5882">4. External Dependencies</a></li>
+<li><a href="#org84f1eb3">5. Python Abstraction Tower</a></li>
+<li><a href="#orge3577b2">6. C++ Abstraction Tower</a></li>
+<li><a href="#org40206ae">7. Size</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org44ae094" class="outline-2">
-<h2 id="org44ae094"><span class="section-number-2">1.</span> Xo</h2>
+<div id="outline-container-org2567b60" class="outline-2">
+<h2 id="org2567b60"><span class="section-number-2">1.</span> Xo</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A set of integrated libraries for event-based simulation with stochastic processes.
@@ -59,8 +59,8 @@ kalman filters, stochastic processes, complex event processing, simulation, webs
 </div>
 </div>
 
-<div id="outline-container-org2024e9a" class="outline-2">
-<h2 id="org2024e9a"><span class="section-number-2">2.</span> Python Libraries</h2>
+<div id="outline-container-orgf61ab00" class="outline-2">
+<h2 id="orgf61ab00"><span class="section-number-2">2.</span> Python Libraries</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li><a href="https://github.com/rconybea/xo-pywebsock">xo-pywebsock</a> in-memory http server; can expose entirely-native publishing pipeline via websockets.</li>
@@ -76,8 +76,8 @@ kalman filters, stochastic processes, complex event processing, simulation, webs
 </div>
 </div>
 
-<div id="outline-container-org35e67fe" class="outline-2">
-<h2 id="org35e67fe"><span class="section-number-2">3.</span> C++ Libraries</h2>
+<div id="outline-container-orgadc3965" class="outline-2">
+<h2 id="orgadc3965"><span class="section-number-2">3.</span> C++ Libraries</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 http
@@ -144,8 +144,8 @@ build tools
 </div>
 </div>
 
-<div id="outline-container-org9d765a3" class="outline-2">
-<h2 id="org9d765a3"><span class="section-number-2">4.</span> External Dependencies</h2>
+<div id="outline-container-orgc7c5882" class="outline-2">
+<h2 id="orgc7c5882"><span class="section-number-2">4.</span> External Dependencies</h2>
 <div class="outline-text-2" id="text-4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -191,34 +191,34 @@ build tools
 </div>
 </div>
 
-<div id="outline-container-org0312f09" class="outline-2">
-<h2 id="org0312f09"><span class="section-number-2">5.</span> Python Abstraction Tower</h2>
+<div id="outline-container-org84f1eb3" class="outline-2">
+<h2 id="org84f1eb3"><span class="section-number-2">5.</span> Python Abstraction Tower</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Each python library <code>pyfoo</code> depends on similarly-named c++ library <code>foo</code>.
 </p>
 
 
-<div id="orgfc25111" class="figure">
+<div id="orgfd8dc16" class="figure">
 <p><img src="img/xo-py-overview.png" alt="xo-py-overview.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org71a91d6" class="outline-2">
-<h2 id="org71a91d6"><span class="section-number-2">6.</span> C++ Abstraction Tower</h2>
+<div id="outline-container-orge3577b2" class="outline-2">
+<h2 id="orge3577b2"><span class="section-number-2">6.</span> C++ Abstraction Tower</h2>
 <div class="outline-text-2" id="text-6">
 
-<div id="org4c10179" class="figure">
+<div id="org3508a10" class="figure">
 <p><img src="img/xo-overview.png" alt="xo-overview.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgae7e923" class="outline-2">
-<h2 id="orgae7e923"><span class="section-number-2">7.</span> Size</h2>
+<div id="outline-container-org40206ae" class="outline-2">
+<h2 id="org40206ae"><span class="section-number-2">7.</span> Size</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 (per <code>cloc</code>;  excludes comments.  Sizes as of 10jun2024)
@@ -384,7 +384,7 @@ Each python library <code>pyfoo</code> depends on similarly-named c++ library <c
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-06-19 Wed 19:34</p>
+<p class="date">Created: 2024-09-08 Sun 18:01</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

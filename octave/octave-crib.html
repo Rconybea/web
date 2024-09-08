@@ -3,11 +3,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-01 Sun 16:17 -->
+<!-- 2024-09-08 Sun 18:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>octave crib</title>
-<meta name="author" content="roly-desktop-23" />
+<meta name="author" content="Roland Conybeare" />
 <meta name="generator" content="Org Mode" />
 <style>
   #content { max-width: 60em; margin: auto; }
@@ -206,92 +206,92 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgaa3ea2d">1. Octave examples</a>
+<li><a href="#orgd1ec020">1. Octave examples</a>
 <ul>
-<li><a href="#orgb6469dd">1.1. start octave</a></li>
-<li><a href="#org0b44a2d">1.2. comments</a></li>
-<li><a href="#org6395916">1.3. directory commands from octave prompt</a></li>
-<li><a href="#orga653eef">1.4. run octave code</a></li>
-<li><a href="#orgeb133fb">1.5. define function</a></li>
-<li><a href="#org5ed9f11">1.6. for-loops</a></li>
+<li><a href="#org7e63787">1.1. start octave</a></li>
+<li><a href="#orgb9393e7">1.2. comments</a></li>
+<li><a href="#orgb5785fe">1.3. directory commands from octave prompt</a></li>
+<li><a href="#org52077bf">1.4. run octave code</a></li>
+<li><a href="#org7d5b91a">1.5. define function</a></li>
+<li><a href="#orgadef602">1.6. for-loops</a></li>
 </ul>
 </li>
-<li><a href="#org2a38bb5">2. Provenance</a></li>
+<li><a href="#org042804b">2. Provenance</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgaa3ea2d" class="outline-2">
-<h2 id="orgaa3ea2d"><span class="section-number-2">1.</span> Octave examples</h2>
+<div id="outline-container-orgd1ec020" class="outline-2">
+<h2 id="orgd1ec020"><span class="section-number-2">1.</span> Octave examples</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 this page gathers some octave examples
 </p>
 </div>
 
-<div id="outline-container-orgb6469dd" class="outline-3">
-<h3 id="orgb6469dd"><span class="section-number-3">1.1.</span> start octave</h3>
+<div id="outline-container-org7e63787" class="outline-3">
+<h3 id="org7e63787"><span class="section-number-3">1.1.</span> start octave</h3>
 <div class="outline-text-3" id="text-1-1">
-<pre class="example" id="org5c83dab">
+<pre class="example" id="org617cec7">
 $ octave
 octave&gt;
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org0b44a2d" class="outline-3">
-<h3 id="org0b44a2d"><span class="section-number-3">1.2.</span> comments</h3>
+<div id="outline-container-orgb9393e7" class="outline-3">
+<h3 id="orgb9393e7"><span class="section-number-3">1.2.</span> comments</h3>
 <div class="outline-text-3" id="text-1-2">
-<pre class="example" id="orgf769511">
+<pre class="example" id="orgc035e86">
 octave&gt; x=2 % everything after the % is ignored
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org6395916" class="outline-3">
-<h3 id="org6395916"><span class="section-number-3">1.3.</span> directory commands from octave prompt</h3>
+<div id="outline-container-orgb5785fe" class="outline-3">
+<h3 id="orgb5785fe"><span class="section-number-3">1.3.</span> directory commands from octave prompt</h3>
 <div class="outline-text-3" id="text-1-3">
-<pre class="example" id="org6183245">
+<pre class="example" id="org6157eda">
 octave&gt; pwd
 ans = /home/roland/proj/coursera/machine-learning-ex4
 </pre>
 
-<pre class="example" id="org41d637e">
+<pre class="example" id="orge2ca95c">
 octave&gt; ls
 ex4 ex4.pdf
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orga653eef" class="outline-3">
-<h3 id="orga653eef"><span class="section-number-3">1.4.</span> run octave code</h3>
+<div id="outline-container-org52077bf" class="outline-3">
+<h3 id="org52077bf"><span class="section-number-3">1.4.</span> run octave code</h3>
 <div class="outline-text-3" id="text-1-4">
-<pre class="example" id="orgff06e38">
+<pre class="example" id="orgb7472fc">
 octave&gt; run ex4/ex4.m
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgeb133fb" class="outline-3">
-<h3 id="orgeb133fb"><span class="section-number-3">1.5.</span> define function</h3>
+<div id="outline-container-org7d5b91a" class="outline-3">
+<h3 id="org7d5b91a"><span class="section-number-3">1.5.</span> define function</h3>
 <div class="outline-text-3" id="text-1-5">
-<pre class="example" id="org7f264d4">
+<pre class="example" id="org8391fa7">
 octave&gt; function f = f(x)
 f = 3*x^3 + 2;
 endfunction
 </pre>
 
-<pre class="example" id="org878492c">
+<pre class="example" id="org3cb24c3">
 octave&gt; f(2)
 ans = 26
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org5ed9f11" class="outline-3">
-<h3 id="org5ed9f11"><span class="section-number-3">1.6.</span> for-loops</h3>
+<div id="outline-container-orgadef602" class="outline-3">
+<h3 id="orgadef602"><span class="section-number-3">1.6.</span> for-loops</h3>
 <div class="outline-text-3" id="text-1-6">
-<pre class="example" id="org0362a8c">
+<pre class="example" id="org941c2a8">
 octave&gt; fib=ones(1,11);
 octave&gt; fib(1)=0;
 octave&gt; for i=3:11
@@ -300,7 +300,7 @@ octave&gt; endfor
 octave&gt; fib
 </pre>
 
-<pre class="example" id="orge208fc4">
+<pre class="example" id="org9f376cc">
 fib =
    0   1   1   2   3   5   8  13  21  34  55
 </pre>
@@ -308,8 +308,8 @@ fib =
 </div>
 </div>
 
-<div id="outline-container-org2a38bb5" class="outline-2">
-<h2 id="org2a38bb5"><span class="section-number-2">2.</span> Provenance</h2>
+<div id="outline-container-org042804b" class="outline-2">
+<h2 id="org042804b"><span class="section-number-2">2.</span> Provenance</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li><code>.org</code> source for this page is here: <a href="octave-crib-src.html">octave-crib-src.html</a></li>
@@ -319,8 +319,8 @@ fib =
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: roly-desktop-23</p>
-<p class="date">Created: 2023-10-01 Sun 16:17</p>
+<p class="author">Author: Roland Conybeare</p>
+<p class="date">Created: 2024-09-08 Sun 18:01</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

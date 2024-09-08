@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-06-23 Sun 13:54 -->
+<!-- 2024-09-08 Sun 18:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>[8jun2024] gcc: getting builtin defines</title>
@@ -35,14 +35,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org87f8f46">1. Problem</a></li>
-<li><a href="#org5de93bd">2. Solution</a></li>
+<li><a href="#org6c9f401">1. Problem</a></li>
+<li><a href="#orgf96fd8f">2. Solution</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org87f8f46" class="outline-2">
-<h2 id="org87f8f46"><span class="section-number-2">1.</span> Problem</h2>
+<div id="outline-container-org6c9f401" class="outline-2">
+<h2 id="org6c9f401"><span class="section-number-2">1.</span> Problem</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Want to know the set of builtin <code>#defines</code> provided by compiler,
@@ -56,8 +56,8 @@ got picked up with <code>-march=native</code> on my dev host.
 </div>
 </div>
 
-<div id="outline-container-org5de93bd" class="outline-2">
-<h2 id="org5de93bd"><span class="section-number-2">2.</span> Solution</h2>
+<div id="outline-container-orgf96fd8f" class="outline-2">
+<h2 id="orgf96fd8f"><span class="section-number-2">2.</span> Solution</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>stumbled on this stack overflow question
@@ -76,7 +76,7 @@ turns out to be an easy one-liner
 with output like
 </p>
 
-<pre class="example" id="orgbc96afc">
+<pre class="example" id="org6378fd7">
 #define _FORTIFY_SOURCE 3
 #define _LP64 1
 #define _STDC_PREDEF_H 1
@@ -108,7 +108,7 @@ to look at say SSE/AVX related instructions:
 </pre>
 </div>
 
-<pre class="example" id="org4a79ffc">
+<pre class="example" id="org5a5e9a2">
 #define __MMX_WITH_SSE__ 1
 #define __SSE2_MATH__ 1
 #define __SSE2__ 1
@@ -129,7 +129,7 @@ but with <code>-mavx512f</code>:
 with output:
 </p>
 
-<pre class="example" id="org2981621">
+<pre class="example" id="org080dab9">
 #define __AVX2__ 1
 #define __AVX512F__ 1
 #define __AVX__ 1
@@ -149,7 +149,7 @@ with output:
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-06-23 Sun 13:54</p>
+<p class="date">Created: 2024-09-08 Sun 18:01</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

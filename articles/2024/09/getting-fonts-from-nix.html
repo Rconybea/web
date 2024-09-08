@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-09-08 Sun 18:01 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>[9sep2024] fontconfig+nix: getting fonts via nix</title>
+<meta name="author" content="Roland Conybeare" />
+<meta name="description" content="Making nixpkgs fonts available from system fontconfig" />
+<meta name="keywords" content="fontconfig nixpkgs nix-env" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style>pre.src{background:#343131;color:white;} </style>
+<style>pre.example{background:#343131;color:white;} </style>
+<style> #content{max-width:1800px;}</style>
+<style> p{max-width:1800px;}</style>
+<style> li{max-width:1800px;}</style>
+<link rel="shortcut icon" type="image/x-icon" href="/web/img/favicon.ico" />
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href=""> UP </a>
+ |
+ <a accesskey="H" href="../../../index.html"> HOME </a>
+</div><div id="content" class="content">
+<h1 class="title">[9sep2024] fontconfig+nix: getting fonts via nix</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org6ebb014">1. Problem</a></li>
+<li><a href="#orgff7f9db">2. Strategy</a></li>
+<li><a href="#org81fdcf3">3. Investigation</a></li>
+<li><a href="#orgf533bfa">4. Solution</a>
+<ul>
+<li><a href="#org9a99fe5">4.1. Add fontconfig dir</a></li>
+<li><a href="#org57310ff">4.2. Tweak .emacs</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6ebb014" class="outline-2">
+<h2 id="org6ebb014"><span class="section-number-2">1.</span> Problem</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Setting up new desktop PC running windows 11 + WSL2 + nix.
+</p>
+
+<p>
+Invoking emacs from xo-nix2 flake (<a href="https://github.com/rconybea/xo-nix2/flake.nix">https://github.com/rconybea/xo-nix2/flake.nix</a>) reveals
+that emacs doesn't get inconsolata from nix as I thought &#x2013; <code>.emacs</code> complains that <code>Inconsolata</code>
+isn't available,  and reverts to some non-fixed-width font (probably Ubuntu Sans or something).
+</p>
+
+<p>
+Previous PC not immediately accessible (it's in NYC, and I'm writing this from Chicago);
+but from memory had installed an ubuntu package to make this work.
+</p>
+
+<p>
+Since I couldn't quickly find ubuntu package, looked into incorporating nixpkgs-provided fonts
+into my WSL2/ubuntu account setup.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgff7f9db" class="outline-2">
+<h2 id="orgff7f9db"><span class="section-number-2">2.</span> Strategy</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Want to use something like
+</p>
+
+<pre class="example" id="orgef895db">
+nix-env -i inconsolata-lgc
+</pre>
+
+<p>
+to make a font available.   This command populates <code>~/.nix-profile/share/fonts</code>,
+but need something more to get ubuntu to see them.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org81fdcf3" class="outline-2">
+<h2 id="org81fdcf3"><span class="section-number-2">3.</span> Investigation</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Arch linux wiki <a href="https://wiki.archlinux.org/title/Font_configuration">https://wiki.archlinux.org/title/Font_configuration</a> has good writeup on fonts.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf533bfa" class="outline-2">
+<h2 id="orgf533bfa"><span class="section-number-2">4.</span> Solution</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org9a99fe5" class="outline-3">
+<h3 id="org9a99fe5"><span class="section-number-3">4.1.</span> Add fontconfig dir</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Need to provide <code>.config/fontconfig/fonts.conf</code> :
+</p>
+
+<pre class="example" id="org3cbacd7">
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd"&gt;
+
+&lt;!--
+    After changing this file:
+    $ fc-cache -fv
+
+    List available fonts:
+    $ fc-list
+--&gt;
+
+&lt;fontconfig&gt;
+    &lt;!-- also pull in any fonts provided via nix package manager --&gt;
+    &lt;dir&gt;~/.nix-profile/share/fonts&lt;/dir&gt;
+
+    &lt;dir&gt;~/.local/share/fonts&lt;/dir&gt;
+&lt;/fontconfig&gt;
+</pre>
+
+<p>
+<code>fontconfig</code> already knows to look in this location
+</p>
+</div>
+</div>
+
+<div id="outline-container-org57310ff" class="outline-3">
+<h3 id="org57310ff"><span class="section-number-3">4.2.</span> Tweak .emacs</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+With this change,  add to <code>~/.emacs</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs_lisp">(set-frame-font "Inconsolata LGC 9" nil t)
+</pre>
+</div>
+
+<p>
+That's all!
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Roland Conybeare</p>
+<p class="date">Created: 2024-09-08 Sun 18:01</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

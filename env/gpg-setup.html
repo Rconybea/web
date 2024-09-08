@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-02-25 Sun 19:07 -->
+<!-- 2024-09-08 Sun 18:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>gpg setup</title>
@@ -33,18 +33,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org5f7f7ab">1. Introduction</a></li>
-<li><a href="#org47a376f">2. Links</a></li>
-<li><a href="#org3011019">3. Install GPG via Nix</a></li>
-<li><a href="#org131fb28">4. Generate Keypair</a></li>
-<li><a href="#orga3eaa03">5. Encrypt Secret</a></li>
-<li><a href="#org9e1424a">6. Decrypt Secret</a></li>
+<li><a href="#org1559b35">1. Introduction</a></li>
+<li><a href="#org4dfae20">2. Links</a></li>
+<li><a href="#org32f0fab">3. Install GPG via Nix</a></li>
+<li><a href="#orgab47be9">4. Generate Keypair</a></li>
+<li><a href="#orgde2d0cb">5. Encrypt Secret</a></li>
+<li><a href="#org78fb3aa">6. Decrypt Secret</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org5f7f7ab" class="outline-2">
-<h2 id="org5f7f7ab"><span class="section-number-2">1.</span> Introduction</h2>
+<div id="outline-container-org1559b35" class="outline-2">
+<h2 id="org1559b35"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Setting up GPG to avoid needing plaintext passwords in certain configuration files.
@@ -53,8 +53,8 @@ Originally introduced this when configuring <code>mbsync</code> for email setup.
 </div>
 </div>
 
-<div id="outline-container-org47a376f" class="outline-2">
-<h2 id="org47a376f"><span class="section-number-2">2.</span> Links</h2>
+<div id="outline-container-org4dfae20" class="outline-2">
+<h2 id="org4dfae20"><span class="section-number-2">2.</span> Links</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <a href="https://rzetterberg.github.io/yubikey-gpg-nixos.html">https://rzetterberg.github.io/yubikey-gpg-nixos.html</a> GPG+nixos setup with a Yubikey
@@ -62,23 +62,23 @@ Originally introduced this when configuring <code>mbsync</code> for email setup.
 </div>
 </div>
 
-<div id="outline-container-org3011019" class="outline-2">
-<h2 id="org3011019"><span class="section-number-2">3.</span> Install GPG via Nix</h2>
+<div id="outline-container-org32f0fab" class="outline-2">
+<h2 id="org32f0fab"><span class="section-number-2">3.</span> Install GPG via Nix</h2>
 <div class="outline-text-2" id="text-3">
-<pre class="example" id="org0b70759">
+<pre class="example" id="org76b0f3e">
 $ nix-env -i gnupg
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org131fb28" class="outline-2">
-<h2 id="org131fb28"><span class="section-number-2">4.</span> Generate Keypair</h2>
+<div id="outline-container-orgab47be9" class="outline-2">
+<h2 id="orgab47be9"><span class="section-number-2">4.</span> Generate Keypair</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Here (afaict) email address is the key-name for a signing authority
 </p>
 
-<pre class="example" id="org81784af">
+<pre class="example" id="orgde76921">
 $ gpg --gen-key
 Real username: Alice Exampleton
 Email address: replacewithsomething@somewhere.com
@@ -92,7 +92,7 @@ This will populate files under <code>~/.gnupg</code>
 View public keys:
 </p>
 
-<pre class="example" id="org96fe990">
+<pre class="example" id="org44aa388">
 $ gpg -k
 /home/roland/.gnupg/pubring.kbx
 -------------------------------
@@ -104,14 +104,14 @@ sub   rsa3072 2024-01-11 [E] [expires: 2026-01-10]
 </div>
 </div>
 
-<div id="outline-container-orga3eaa03" class="outline-2">
-<h2 id="orga3eaa03"><span class="section-number-2">5.</span> Encrypt Secret</h2>
+<div id="outline-container-orgde2d0cb" class="outline-2">
+<h2 id="orgde2d0cb"><span class="section-number-2">5.</span> Encrypt Secret</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Using this to encrypt an email server password:
 </p>
 
-<pre class="example" id="org5d2b180">
+<pre class="example" id="org539ed74">
 $ gpg --recipient replacewithsomething@somewhere.com -a -o .hushmail.gpg --encrypt
 replacewithpassword
 </pre>
@@ -120,7 +120,7 @@ replacewithpassword
 Resulting in encrypted file like:
 </p>
 
-<pre class="example" id="org9828110">
+<pre class="example" id="org9888c71">
 $ cat .hushmail.gpg
 -----BEGIN PGP MESSAGE-----
 
@@ -133,14 +133,14 @@ OlLUNkVxGMF3y2hM8sHNOtFKOW9I3qoViqCEufGJD8m/x9Ev9whgx59c20xSkGg=
 </div>
 </div>
 
-<div id="outline-container-org9e1424a" class="outline-2">
-<h2 id="org9e1424a"><span class="section-number-2">6.</span> Decrypt Secret</h2>
+<div id="outline-container-org78fb3aa" class="outline-2">
+<h2 id="org78fb3aa"><span class="section-number-2">6.</span> Decrypt Secret</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Recover secret like this:
 </p>
 
-<pre class="example" id="org85d51f7">
+<pre class="example" id="org6cd45f7">
 $ gpg -q --for-your-eyes-only --no-tty -d .hushmail.gpg
 replacewithpassword
 </pre>
@@ -149,7 +149,7 @@ replacewithpassword
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-02-25 Sun 19:07</p>
+<p class="date">Created: 2024-09-08 Sun 18:01</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

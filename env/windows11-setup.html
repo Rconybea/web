@@ -3,11 +3,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-07 Sat 18:54 -->
+<!-- 2024-09-08 Sun 18:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>windows11 setup</title>
-<meta name="author" content="roly-desktop-23" />
+<meta name="author" content="Roland Conybeare" />
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
 <link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
@@ -32,14 +32,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc2f99c2">1. Introduction</a>
+<li><a href="#orgc3e3e09">1. Introduction</a>
 <ul>
-<li><a href="#org36d90e6">1.1. Remap Keyboard</a></li>
-<li><a href="#org125092a">1.2. Setup OpenSSH</a>
+<li><a href="#org887e086">1.1. Remap Keyboard</a></li>
+<li><a href="#orgd711bf5">1.2. Setup OpenSSH</a>
 <ul>
-<li><a href="#org5bd5fca">1.2.1. SSH to windows</a></li>
-<li><a href="#orgefcf679">1.2.2. SSH to WSL2</a></li>
-<li><a href="#org41958a2">1.2.3. SSH from external host</a></li>
+<li><a href="#org3dd5a7b">1.2.1. SSH to windows</a></li>
+<li><a href="#orga6bf124">1.2.2. SSH to WSL2</a></li>
+<li><a href="#org296bc49">1.2.3. SSH from external host</a></li>
 </ul>
 </li>
 </ul>
@@ -48,22 +48,22 @@
 </div>
 </div>
 
-<div id="outline-container-orgc2f99c2" class="outline-2">
-<h2 id="orgc2f99c2"><span class="section-number-2">1.</span> Introduction</h2>
+<div id="outline-container-orgc3e3e09" class="outline-2">
+<h2 id="orgc3e3e09"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Notes on setup for my primary desktop
 </p>
 
 
-<div id="orge985e70" class="figure">
+<div id="org36690b1" class="figure">
 <p><img src="img/windows.svg" alt="windows.svg" class="org-svg" />
 </p>
 </div>
 </div>
 
-<div id="outline-container-org36d90e6" class="outline-3">
-<h3 id="org36d90e6"><span class="section-number-3">1.1.</span> Remap Keyboard</h3>
+<div id="outline-container-org887e086" class="outline-3">
+<h3 id="org887e086"><span class="section-number-3">1.1.</span> Remap Keyboard</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Use PowerToys (free from MS)
@@ -106,16 +106,16 @@ without the second mapping,  if caps lock gets enabled there's no easy way to ca
 </div>
 </div>
 
-<div id="outline-container-org125092a" class="outline-3">
-<h3 id="org125092a"><span class="section-number-3">1.2.</span> Setup OpenSSH</h3>
+<div id="outline-container-orgd711bf5" class="outline-3">
+<h3 id="orgd711bf5"><span class="section-number-3">1.2.</span> Setup OpenSSH</h3>
 <div class="outline-text-3" id="text-1-2">
 </div>
-<div id="outline-container-org5bd5fca" class="outline-4">
-<h4 id="org5bd5fca"><span class="section-number-4">1.2.1.</span> SSH to windows</h4>
+<div id="outline-container-org3dd5a7b" class="outline-4">
+<h4 id="org3dd5a7b"><span class="section-number-4">1.2.1.</span> SSH to windows</h4>
 <div class="outline-text-4" id="text-1-2-1">
 </div>
 <ol class="org-ol">
-<li><a id="org0bb9148"></a>Enable windows ssh server from system settings.<br />
+<li><a id="orgd667928"></a>Enable windows ssh server from system settings.<br />
 <div class="outline-text-5" id="text-1-2-1-1">
 <p>
 To verify running:
@@ -125,7 +125,7 @@ To verify running:
 open admin powershell
 </p>
 
-<pre class="example" id="org47b6ccc">
+<pre class="example" id="org29abdd7">
 &gt; Get-WindowsCapability -Online | Where-Object Name -like 'OpenSSH*'
 
 Name  : OpenSSH.Client~~~~0.0.1.0
@@ -143,7 +143,7 @@ above shows SSH server <b>not</b> running.
 enable SSH server (this takes a few minutes):
 </p>
 
-<pre class="example" id="org3401eaf">
+<pre class="example" id="org3597545">
 &gt; Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
 
 Path          :
@@ -155,7 +155,7 @@ RestartNeeded : False
 Start SSH service
 </p>
 
-<pre class="example" id="orgcfccc4e">
+<pre class="example" id="org75e22d7">
 &gt; Start-Service sshd
 </pre></li>
 
@@ -163,7 +163,7 @@ Start SSH service
 configure to start automatically on boot
 </p>
 
-<pre class="example" id="org004a303">
+<pre class="example" id="org9ed59ee">
 &gt; Set-Service -Name sshd -StartupType 'Automatic'
 </pre></li>
 
@@ -171,7 +171,7 @@ configure to start automatically on boot
 <code>ssh-agent</code> also needs assistance
 </p>
 
-<pre class="example" id="org45437e9">
+<pre class="example" id="org2c331de">
 &gt; Get-Service ssh-agent
 
 Status   Name                DisplayName
@@ -182,14 +182,14 @@ Stopped  ssh-agent           OpenSSH Authentication Agent
 <p>
 set it to start manually (whenever someone invokes <code>ssh-agent</code>)
 </p>
-<pre class="example" id="org51e946b">
+<pre class="example" id="orga03fc5d">
 &gt; Get-Service -Name ssh-agent | Set-Service -StartupType Manual
 </pre></li>
 </ol>
 </div>
 </li>
 
-<li><a id="orgc529219"></a>passwordless login<br />
+<li><a id="org2dca728"></a>passwordless login<br />
 <div class="outline-text-5" id="text-1-2-1-2">
 <ol class="org-ol">
 <li><p>
@@ -211,7 +211,7 @@ relax settings in
 <p>
 we want to uncomment a few disabled-by-default features:
 </p>
-<pre class="example" id="org9d361c5">
+<pre class="example" id="orgcf1908c">
 PubkeyAuthentication yes
 AllowAgentForwarding yes
 AllowTcpForwarding yes
@@ -222,8 +222,8 @@ AllowTcpForwarding yes
 </ol>
 </div>
 
-<div id="outline-container-orgefcf679" class="outline-4">
-<h4 id="orgefcf679"><span class="section-number-4">1.2.2.</span> SSH to WSL2</h4>
+<div id="outline-container-orga6bf124" class="outline-4">
+<h4 id="orga6bf124"><span class="section-number-4">1.2.2.</span> SSH to WSL2</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <p>
 in wsl2 shell:
@@ -234,7 +234,7 @@ in wsl2 shell:
 install openssh:
 </p>
 
-<pre class="example" id="orgaeeb5d1">
+<pre class="example" id="org8317ccf">
 $ sudo apt-get install openssh-server
 </pre></li>
 
@@ -242,7 +242,7 @@ $ sudo apt-get install openssh-server
 default config listens on port 22:
 </p>
 
-<pre class="example" id="org12415ab">
+<pre class="example" id="org802a4da">
 $ cat /etc/ssh/sshd_config | grep -i port
 #Port 22
 </pre>
@@ -252,7 +252,7 @@ listen on port 2022 instead,
 since <code>sshd</code> run by windows11 occupies port 22 already
 </p>
 
-<pre class="example" id="org02cd7db">
+<pre class="example" id="org3e56629">
 $ sudo sed -i -E 's:^#Port.*$:Port 2022:' /etc/ssh/sshd_config
 $ cat /etc/ssh/sshd_config | grep -i port
 #Port 2022
@@ -267,7 +267,7 @@ NOTE: relies on systemd.  older WSL2 (sometime before 2023) didn't have systemd,
 so might need to upgrade first
 </p>
 
-<pre class="example" id="org16c5b44">
+<pre class="example" id="org3e01dbe">
 $ sudo systemctl enable ssh
 Synchronizing state of ssh.service with SysV service script with /lib/systemd/systemd-sysv-install.
 $ sudo systemctl stop ssh    # in case already running,  perhaps on wrong port
@@ -277,7 +277,7 @@ $ sudo systemctl start ssh
 <p>
 should be able to see it running now
 </p>
-<pre class="example" id="org2262ef9">
+<pre class="example" id="orgdf655d2">
 $ ps -A | grep sshd
   20139 ?      00:00:00 sshd
 </pre>
@@ -285,7 +285,7 @@ $ ps -A | grep sshd
 <p>
 and verify listening on the right port
 </p>
-<pre class="example" id="orgbd24485">
+<pre class="example" id="orgc3fb194">
 $ netstat -a -n | grep tcp
 tcp        0      0 0.0.0.0:2022            0.0.0.0:*               LISTEN
 tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN
@@ -295,21 +295,21 @@ tcp6       0      0 :::2022                 :::*                    LISTEN
 <p>
 verify wsl2 can ssh to itself
 </p>
-<pre class="example" id="org87ba9f8">
+<pre class="example" id="orgba29204">
 $ ssh -p 2022 localhost
 </pre></li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-org41958a2" class="outline-4">
-<h4 id="org41958a2"><span class="section-number-4">1.2.3.</span> SSH from external host</h4>
+<div id="outline-container-org296bc49" class="outline-4">
+<h4 id="org296bc49"><span class="section-number-4">1.2.3.</span> SSH from external host</h4>
 <div class="outline-text-4" id="text-1-2-3">
 <p>
 in external host's <code>~/.ssh/ssh_config</code>:
 </p>
 
-<pre class="example" id="orgaed055b">
+<pre class="example" id="org54a67e4">
 # my windows desktop
 Host roly-desktop-23
   User Rcony
@@ -327,7 +327,7 @@ Host roly-desktop-23-wsl
 Then from external host:
 </p>
 
-<pre class="example" id="org00fc32c">
+<pre class="example" id="org7ea69c1">
 $ eval $(ssh-agent -s)
 $ ssh-add
 ..passphrase..
@@ -340,8 +340,8 @@ roland@roly-desktop-23:~$
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: roly-desktop-23</p>
-<p class="date">Created: 2023-10-07 Sat 18:54</p>
+<p class="author">Author: Roland Conybeare</p>
+<p class="date">Created: 2024-09-08 Sun 18:01</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
