@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-09-08 Sun 18:01 -->
+<!-- 2026-05-24 Sun 18:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>d3 draggable object example #7 &#x2013; parametric + tangent line + quadratic</title>
 <meta name="author" content="Roland Conybeare" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -233,23 +233,22 @@ org_html_manager.setup();  // activate after the parameters are set
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org566f2bd">1. Introduction</a></li>
-<li><a href="#org03cbdec">2. Demo</a></li>
-<li><a href="#org49ab5d2">3. Prerequisites</a></li>
-<li><a href="#orgb3d8a2e">4. Procedure</a>
+<li><a href="#orgfd92377">1. Introduction</a></li>
+<li><a href="#orgd196b70">2. Demo</a></li>
+<li><a href="#org113be6e">3. Prerequisites</a></li>
+<li><a href="#org980c804">4. Procedure</a>
 <ul>
-<li><a href="#org2a1a66b">4.1. provide axis styling</a></li>
-<li><a href="#org866bac0">4.2. add stylesheet link to <code>index.org</code> (this .org file)</a></li>
-<li><a href="#org774d6fb">4.3. extend <code>fxview.js</code></a></li>
-<li><a href="#org093c092">4.4. Insert html fragment to invoke our interactive javascript code</a></li>
+<li><a href="#org2ba217c">4.1. provide axis styling</a></li>
+<li><a href="#orge3ed8b5">4.2. add stylesheet link to <code>index.org</code> (this .org file)</a></li>
+<li><a href="#org5e37e1b">4.3. extend <code>fxview.js</code></a></li>
+<li><a href="#org0dde8f1">4.4. Insert html fragment to invoke our interactive javascript code</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-org566f2bd" class="outline-2">
-<h2 id="org566f2bd"><span class="section-number-2">1.</span> Introduction</h2>
+<div id="outline-container-orgfd92377" class="outline-2">
+<h2 id="orgfd92377"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 This page extends example <a href="d3/drag6/index.html"><i>#6</i></a>,  adding a quadratic approximation using 1<sup>st</sup> &amp; 2<sup>nd</sup> derivatives
@@ -260,9 +259,8 @@ This page extends example <a href="d3/drag6/index.html"><i>#6</i></a>,  adding a
 </dl>
 </div>
 </div>
-
-<div id="outline-container-org03cbdec" class="outline-2">
-<h2 id="org03cbdec"><span class="section-number-2">2.</span> Demo</h2>
+<div id="outline-container-orgd196b70" class="outline-2">
+<h2 id="orgd196b70"><span class="section-number-2">2.</span> Demo</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The div element <code>#frame</code> will appear below this line:
@@ -274,18 +272,16 @@ The div element <code>#frame</code> will appear below this line:
 </script>
 </div>
 </div>
-
-<div id="outline-container-org49ab5d2" class="outline-2">
-<h2 id="org49ab5d2"><span class="section-number-2">3.</span> Prerequisites</h2>
+<div id="outline-container-org113be6e" class="outline-2">
+<h2 id="org113be6e"><span class="section-number-2">3.</span> Prerequisites</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 As for examples <a href="../drag1/index.html"><i>#1</i></a>, <a href="file://drag2/index.html"><i>#2</i></a>, <a href="d3/drag3/index.html"><i>#3</i></a>, <a href="d3/drag4/index.html"><i>#4</i></a>, <a href="d3/drag5/index.html"><i>#5</i></a>
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgb3d8a2e" class="outline-2">
-<h2 id="orgb3d8a2e"><span class="section-number-2">4.</span> Procedure</h2>
+<div id="outline-container-org980c804" class="outline-2">
+<h2 id="org980c804"><span class="section-number-2">4.</span> Procedure</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Start with example <a href="d3/drag5/index.html"><i>#5</i></a>:  we will arrive at the following:
@@ -299,14 +295,13 @@ Start with example <a href="d3/drag5/index.html"><i>#5</i></a>:  we will arrive 
 <dt><a href="parametric-drag-example.js">parametric-drag-example.js</a></dt><dd>setup code (unchanged from <i>#5</i>)</dd>
 </dl>
 </div>
-
-<div id="outline-container-org2a1a66b" class="outline-3">
-<h3 id="org2a1a66b"><span class="section-number-3">4.1.</span> provide axis styling</h3>
+<div id="outline-container-org2ba217c" class="outline-3">
+<h3 id="org2ba217c"><span class="section-number-3">4.1.</span> provide axis styling</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Edit <code>css/drag6.css</code>:
 </p>
-<pre class="example" id="orgd7ca4f9">
+<pre class="example" id="org0db6e1f">
 .axis path,
 .axis line {
 fill: none;
@@ -320,28 +315,26 @@ font-size: 11px;
 </pre>
 </div>
 </div>
-
-<div id="outline-container-org866bac0" class="outline-3">
-<h3 id="org866bac0"><span class="section-number-3">4.2.</span> add stylesheet link to <code>index.org</code> (this .org file)</h3>
+<div id="outline-container-orge3ed8b5" class="outline-3">
+<h3 id="orge3ed8b5"><span class="section-number-3">4.2.</span> add stylesheet link to <code>index.org</code> (this .org file)</h3>
 <div class="outline-text-3" id="text-4-2">
-<pre class="example" id="orgebfa0c2">
+<pre class="example" id="org5074b02">
 ..
 #+html_head: &lt;link rel="stylesheet" type="text/css" href="drag6.css" /&gt;
 ..
 </pre>
 </div>
 </div>
-
-<div id="outline-container-org774d6fb" class="outline-3">
-<h3 id="org774d6fb"><span class="section-number-3">4.3.</span> extend <code>fxview.js</code></h3>
+<div id="outline-container-org5e37e1b" class="outline-3">
+<h3 id="org5e37e1b"><span class="section-number-3">4.3.</span> extend <code>fxview.js</code></h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 Add functions <code>fx_view.draw_x_axis</code>, <code>fx_view.draw_y_axis</code>
 </p>
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #74af68;">/* </span><span style="color: #74af68;">box :: Svg</span>
-<span style="color: #74af68;"> * xyscale :: Xyscale</span>
-<span style="color: #74af68;"> */</span>
+<pre class="src src-js"><span style="color: #74af68;">/* </span><span style="color: #74af68;">box :: Svg
+ * xyscale :: Xyscale
+</span><span style="color: #74af68;"> */</span>
 fx_view.draw_x_axis = <span style="color: #ffad29; font-weight: bold;">function</span>(<span style="color: #dbdb95;">box_pt</span>, <span style="color: #dbdb95;">box</span>, <span style="color: #dbdb95;">xyscale</span>)
 {
 <span style="color: #ffad29; font-weight: bold;">var</span> <span style="color: #dbdb95;">x_axis</span> = (d3.svg.axis()
@@ -358,9 +351,9 @@ fx_view.box.append(<span style="color: #e67128;">"svg:g"</span>)
 </pre>
 </div>
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #74af68;">/* </span><span style="color: #74af68;">box :: Svg</span>
-<span style="color: #74af68;"> * xyscale :: Xyscale</span>
-<span style="color: #74af68;"> */</span>
+<pre class="src src-js"><span style="color: #74af68;">/* </span><span style="color: #74af68;">box :: Svg
+ * xyscale :: Xyscale
+</span><span style="color: #74af68;"> */</span>
 fx_view.draw_y_axis = <span style="color: #ffad29; font-weight: bold;">function</span>(<span style="color: #dbdb95;">box_pt</span>, <span style="color: #dbdb95;">box</span>, <span style="color: #dbdb95;">xyscale</span>)
 {
 <span style="color: #ffad29; font-weight: bold;">var</span> <span style="color: #dbdb95;">y_axis</span> = (d3.svg.axis()
@@ -380,11 +373,11 @@ box.append(<span style="color: #e67128;">"svg:g"</span>)
 Call the new axis-creating functions from <code>fx_view.draw</code>:
 </p>
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #74af68;">/* </span><span style="color: #74af68;">parent_id :: string.  pass this to d3.select() to get selection for parent</span>
-<span style="color: #74af68;"> *   at which to attach svg box</span>
-<span style="color: #74af68;"> * box_pt :: Point.  size of svg bounding box</span>
-<span style="color: #74af68;"> * xyscale :: Xyscale</span>
-<span style="color: #74af68;"> */</span>
+<pre class="src src-js"><span style="color: #74af68;">/* </span><span style="color: #74af68;">parent_id :: string.  pass this to d3.select() to get selection for parent
+ *   at which to attach svg box
+ * box_pt :: Point.  size of svg bounding box
+ * xyscale :: Xyscale
+</span><span style="color: #74af68;"> */</span>
 fx_view.draw = <span style="color: #ffad29; font-weight: bold;">function</span>(<span style="color: #dbdb95;">parent_id</span>, <span style="color: #dbdb95;">box_pt</span>, <span style="color: #dbdb95;">target_pt_v</span>, <span style="color: #dbdb95;">xyscale</span>)
 {
 <span style="color: #74af68;">/* </span><span style="color: #74af68;">create an svg bounding box, to contain interactive drawing area</span><span style="color: #74af68;"> */</span>
@@ -410,13 +403,13 @@ fx_view.fx_update_select_circle(pt.find_closest(pt.scale_pt(0.5, box_pt),
 </div>
 </div>
 </div>
-<div id="outline-container-org093c092" class="outline-3">
-<h3 id="org093c092"><span class="section-number-3">4.4.</span> Insert html fragment to invoke our interactive javascript code</h3>
+<div id="outline-container-org0dde8f1" class="outline-3">
+<h3 id="org0dde8f1"><span class="section-number-3">4.4.</span> Insert html fragment to invoke our interactive javascript code</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 This also follows the same model we used in examples <a href="d3/drag3/index.html"><i>#3</i></a>, <a href="d3/drag4/index.html"><i>#4</i></a>, <a href="d3/drag5/index.html"><i>#5</i></a>.
 </p>
-<pre class="example" id="org9d6ef64">
+<pre class="example" id="org74dccea">
 #+begin_html
 &lt;div id="frame"&gt;&lt;/div&gt;
 &lt;script type="text/javascript"&gt;
@@ -430,7 +423,7 @@ This also follows the same model we used in examples <a href="d3/drag3/index.htm
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-09-08 Sun 18:01</p>
+<p class="date">Created: 2026-05-24 Sun 18:48</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

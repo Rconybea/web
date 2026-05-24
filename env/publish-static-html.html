@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-09-08 Sun 18:01 -->
+<!-- 2026-05-24 Sun 18:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>publishing static HTML</title>
@@ -32,22 +32,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb5e8e93">1. Publish Static HTML</a>
+<li><a href="#org25e5b2c">1. Publish Static HTML</a>
 <ul>
-<li><a href="#org8ca614f">1.1. base emacs configuration for publishing</a></li>
-<li><a href="#org651593a">1.2. setup for literate programming</a></li>
-<li><a href="#orgbb5ab14">1.3. HTML theme</a></li>
-<li><a href="#orgc6eb5ea">1.4. display HTML locally</a></li>
-<li><a href="#org96aaf8e">1.5. publish to github pages</a></li>
-<li><a href="#org746de39">1.6. package as docker container</a></li>
+<li><a href="#orgfd62daf">1.1. base emacs configuration for publishing</a></li>
+<li><a href="#org9330772">1.2. setup for literate programming</a></li>
+<li><a href="#org0d2d27e">1.3. HTML theme</a></li>
+<li><a href="#org6d7a1af">1.4. display HTML locally</a></li>
+<li><a href="#org9156f3b">1.5. publish to github pages</a></li>
+<li><a href="#orgc9162c3">1.6. package as docker container</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-orgb5e8e93" class="outline-2">
-<h2 id="orgb5e8e93"><span class="section-number-2">1.</span> Publish Static HTML</h2>
+<div id="outline-container-org25e5b2c" class="outline-2">
+<h2 id="org25e5b2c"><span class="section-number-2">1.</span> Publish Static HTML</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 In particular,  including this content.
@@ -58,9 +57,8 @@ Content formatted using <code>org-mode</code>.
 Maintaining public <code>.org</code> content here: <a href="https://github.com/Rconybea/org-howto">https://github.com/Rconybea/org-howto</a>
 </p>
 </div>
-
-<div id="outline-container-org8ca614f" class="outline-3">
-<h3 id="org8ca614f"><span class="section-number-3">1.1.</span> base emacs configuration for publishing</h3>
+<div id="outline-container-orgfd62daf" class="outline-3">
+<h3 id="orgfd62daf"><span class="section-number-3">1.1.</span> base emacs configuration for publishing</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 See also
@@ -71,15 +69,15 @@ See also
 <code>org-publish-project-alist</code> configures org trees for publishing:
 </p>
 <div class="org-src-container">
-<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">----------------------------------------------------------------</span>
-<span style="color: #74af68;">;; </span><span style="color: #74af68;">org-mode publishing</span>
-<span style="color: #74af68;">;;</span>
-(<span style="color: #ffad29; font-weight: bold;">require</span> '<span style="color: #008b8b;">ox-publish</span>)
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">----------------------------------------------------------------
+</span><span style="color: #74af68;">;; </span><span style="color: #74af68;">org-mode publishing
+</span><span style="color: #74af68;">;;</span><span style="color: #74af68;">
+</span>(<span style="color: #ffad29; font-weight: bold;">require</span> '<span style="color: #008b8b;">ox-publish</span>)
 
-<span style="color: #74af68;">;; </span><span style="color: #74af68;">publishing setup -- this is a kitchen sink -- it's intended to cover</span>
-<span style="color: #74af68;">;; </span><span style="color: #74af68;">everything we want org-mode to publish</span>
-<span style="color: #74af68;">;;</span>
-(<span style="color: #ffad29; font-weight: bold;">setq</span> org-publish-project-alist
+<span style="color: #74af68;">;; </span><span style="color: #74af68;">publishing setup -- this is a kitchen sink -- it's intended to cover
+</span><span style="color: #74af68;">;; </span><span style="color: #74af68;">everything we want org-mode to publish
+</span><span style="color: #74af68;">;;</span><span style="color: #74af68;">
+</span>(<span style="color: #ffad29; font-weight: bold;">setq</span> org-publish-project-alist
       '(
         (<span style="color: #e67128;">"org-howto"</span>
          <span style="color: #23d7d7;">:components</span> (<span style="color: #e67128;">"org-howto-notes"</span> <span style="color: #e67128;">"org-howto-static"</span>))
@@ -103,15 +101,15 @@ See also
          )
         )
 
-        <span style="color: #74af68;">; </span><span style="color: #74af68;">... additional org trees here ...</span>
-        )
+        <span style="color: #74af68;">; </span><span style="color: #74af68;">... additional org trees here ...
+</span>        )
 </pre>
 </div>
 
 <p>
 With this configuration
 </p>
-<pre class="example" id="orgd4a4df7">
+<pre class="example" id="orga85efbf">
 ~M-x org-publish-project org-howto~
 </pre>
 
@@ -120,10 +118,8 @@ generates HTML content in <code>~/proj/public_html/org-howto~</code>.
 </p>
 </div>
 </div>
-
-
-<div id="outline-container-org651593a" class="outline-3">
-<h3 id="org651593a"><span class="section-number-3">1.2.</span> setup for literate programming</h3>
+<div id="outline-container-org9330772" class="outline-3">
+<h3 id="org9330772"><span class="section-number-3">1.2.</span> setup for literate programming</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 <code>org-mode</code> can automate weaving together content prepared by other programs,
@@ -135,58 +131,58 @@ for example <code>graphviz</code>.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">----------------------------------------------------------------</span>
-<span style="color: #74af68;">;; </span><span style="color: #74af68;">org-mode babel setup</span>
-<span style="color: #74af68;">;; </span><span style="color: #74af68;">(execute dot/ditaa/bash/c++ etc. from .org code blocks)</span>
-<span style="color: #74af68;">;;</span>
-<span style="color: #74af68;">;; </span><span style="color: #74af68;">see</span>
-<span style="color: #74af68;">;;   </span><span style="color: #74af68;">[[https://orgmode.org/worg/org-contrib/babel/intro.html]]</span>
-<span style="color: #74af68;">;;   </span><span style="color: #74af68;">[[https://orgmode.org/worg/org-contrib/babel/languages/index.html]]</span>
-<span style="color: #74af68;">;;</span>
-<span style="color: #74af68;">;; </span><span style="color: #74af68;">code block:</span>
-<span style="color: #74af68;">;;   </span><span style="color: #74af68;">#+begin_src ${language} ${switches} ${headerarguments}</span>
-<span style="color: #74af68;">;;     </span><span style="color: #74af68;">${body}</span>
-<span style="color: #74af68;">;;   </span><span style="color: #74af68;">#+end_src</span>
-<span style="color: #74af68;">;;</span>
-<span style="color: #74af68;">;; </span><span style="color: #74af68;">use header argument</span>
-<span style="color: #74af68;">;;   </span><span style="color: #74af68;">:results output</span>
-<span style="color: #74af68;">;; </span><span style="color: #74af68;">to insert code-block output (i.e. contents of stdout) into .org file below code block</span>
-<span style="color: #74af68;">;;</span>
-<span style="color: #74af68;">;; </span><span style="color: #74af68;">use</span>
-<span style="color: #74af68;">;;   </span><span style="color: #74af68;">:results value</span>
-<span style="color: #74af68;">;; </span><span style="color: #74af68;">to just take value of last statement</span>
-<span style="color: #74af68;">;;</span>
-<span style="color: #74af68;">;; </span><span style="color: #74af68;">use</span>
-<span style="color: #74af68;">;;   </span><span style="color: #74af68;">:session</span>
-<span style="color: #74af68;">;; </span><span style="color: #74af68;">to share language sub-process across code-blocks.</span>
-<span style="color: #74af68;">;;</span>
-<span style="color: #74af68;">;; </span><span style="color: #74af68;">can use</span>
-<span style="color: #74af68;">;;   </span><span style="color: #74af68;">#+name: foo</span>
-<span style="color: #74af68;">;; </span><span style="color: #74af68;">to name an org-mode table;  then:</span>
-<span style="color: #74af68;">;;   </span><span style="color: #74af68;">#+begin_src ... :var myfreevar=foo</span>
-<span style="color: #74af68;">;;     </span><span style="color: #74af68;">...</span>
-<span style="color: #74af68;">;;   </span><span style="color: #74af68;">#+end_src</span>
-<span style="color: #74af68;">;; </span><span style="color: #74af68;">with body mentioning myfreevar;  .org will substitute foo</span>
-<span style="color: #74af68;">;;</span>
-<span style="color: #74af68;">;; </span><span style="color: #74af68;">can do inline coode block with</span>
-<span style="color: #74af68;">;;   </span><span style="color: #74af68;">src_&lt;${lang}&gt;{${code}} or src_&lt;${lang}[${args}]{${code}}</span>
-<span style="color: #74af68;">;; </span><span style="color: #74af68;">e.g.</span>
-<span style="color: #74af68;">;;   </span><span style="color: #74af68;">src_python[:session]{10*x}</span>
-<span style="color: #74af68;">;;</span>
-<span style="color: #74af68;">;; </span><span style="color: #74af68;">notes:</span>
-<span style="color: #74af68;">;;   </span><span style="color: #74af68;">[C-c C-v] org-babel prefix</span>
-<span style="color: #74af68;">;;   </span><span style="color: #74af68;">[C-c C-v b] -- evaluate code blocks in buffer</span>
-<span style="color: #74af68;">;;   </span><span style="color: #74af68;">[C-c C-v s] -- evaluate code blocks in subtree</span>
-<span style="color: #74af68;">;;   </span><span style="color: #74af68;">[C-c C-v e] -- evaluate code block at point</span>
-<span style="color: #74af68;">;;   </span><span style="color: #74af68;">[C-c '] M-x org-edit-src-code -- puts code block in new buffer with appropriate mode activated</span>
-<span style="color: #74af68;">;;   </span><span style="color: #74af68;">[C-c M-b p] M-x org-babel-expand-src-block -- show expanded code block prior to evaluation</span>
-<span style="color: #74af68;">;;   </span><span style="color: #74af68;">(org-babel-lob-ingest "path/to/file.org") to share code blogs as '</span><span style="color: #008b8b;">library</span><span style="color: #74af68;">'</span>
-
+<pre class="src src-elisp"><span style="color: #74af68;">;; </span><span style="color: #74af68;">----------------------------------------------------------------
+</span><span style="color: #74af68;">;; </span><span style="color: #74af68;">org-mode babel setup
+</span><span style="color: #74af68;">;; </span><span style="color: #74af68;">(execute dot/ditaa/bash/c++ etc. from .org code blocks)
+</span><span style="color: #74af68;">;;</span><span style="color: #74af68;">
+</span><span style="color: #74af68;">;; </span><span style="color: #74af68;">see
+</span><span style="color: #74af68;">;;   </span><span style="color: #74af68;">[[https://orgmode.org/worg/org-contrib/babel/intro.html]]
+</span><span style="color: #74af68;">;;   </span><span style="color: #74af68;">[[https://orgmode.org/worg/org-contrib/babel/languages/index.html]]
+</span><span style="color: #74af68;">;;</span><span style="color: #74af68;">
+</span><span style="color: #74af68;">;; </span><span style="color: #74af68;">code block:
+</span><span style="color: #74af68;">;;   </span><span style="color: #74af68;">#+begin_src ${language} ${switches} ${headerarguments}
+</span><span style="color: #74af68;">;;     </span><span style="color: #74af68;">${body}
+</span><span style="color: #74af68;">;;   </span><span style="color: #74af68;">#+end_src
+</span><span style="color: #74af68;">;;</span><span style="color: #74af68;">
+</span><span style="color: #74af68;">;; </span><span style="color: #74af68;">use header argument
+</span><span style="color: #74af68;">;;   </span><span style="color: #74af68;">:results output
+</span><span style="color: #74af68;">;; </span><span style="color: #74af68;">to insert code-block output (i.e. contents of stdout) into .org file below code block
+</span><span style="color: #74af68;">;;</span><span style="color: #74af68;">
+</span><span style="color: #74af68;">;; </span><span style="color: #74af68;">use
+</span><span style="color: #74af68;">;;   </span><span style="color: #74af68;">:results value
+</span><span style="color: #74af68;">;; </span><span style="color: #74af68;">to just take value of last statement
+</span><span style="color: #74af68;">;;</span><span style="color: #74af68;">
+</span><span style="color: #74af68;">;; </span><span style="color: #74af68;">use
+</span><span style="color: #74af68;">;;   </span><span style="color: #74af68;">:session
+</span><span style="color: #74af68;">;; </span><span style="color: #74af68;">to share language sub-process across code-blocks.
+</span><span style="color: #74af68;">;;</span><span style="color: #74af68;">
+</span><span style="color: #74af68;">;; </span><span style="color: #74af68;">can use
+</span><span style="color: #74af68;">;;   </span><span style="color: #74af68;">#+name: foo
+</span><span style="color: #74af68;">;; </span><span style="color: #74af68;">to name an org-mode table;  then:
+</span><span style="color: #74af68;">;;   </span><span style="color: #74af68;">#+begin_src ... :var myfreevar=foo
+</span><span style="color: #74af68;">;;     </span><span style="color: #74af68;">...
+</span><span style="color: #74af68;">;;   </span><span style="color: #74af68;">#+end_src
+</span><span style="color: #74af68;">;; </span><span style="color: #74af68;">with body mentioning myfreevar;  .org will substitute foo
+</span><span style="color: #74af68;">;;</span><span style="color: #74af68;">
+</span><span style="color: #74af68;">;; </span><span style="color: #74af68;">can do inline coode block with
+</span><span style="color: #74af68;">;;   </span><span style="color: #74af68;">src_&lt;${lang}&gt;{${code}} or src_&lt;${lang}[${args}]{${code}}
+</span><span style="color: #74af68;">;; </span><span style="color: #74af68;">e.g.
+</span><span style="color: #74af68;">;;   </span><span style="color: #74af68;">src_python[:session]{10*x}
+</span><span style="color: #74af68;">;;</span><span style="color: #74af68;">
+</span><span style="color: #74af68;">;; </span><span style="color: #74af68;">notes:
+</span><span style="color: #74af68;">;;   </span><span style="color: #74af68;">[C-c C-v] org-babel prefix
+</span><span style="color: #74af68;">;;   </span><span style="color: #74af68;">[C-c C-v b] -- evaluate code blocks in buffer
+</span><span style="color: #74af68;">;;   </span><span style="color: #74af68;">[C-c C-v s] -- evaluate code blocks in subtree
+</span><span style="color: #74af68;">;;   </span><span style="color: #74af68;">[C-c C-v e] -- evaluate code block at point
+</span><span style="color: #74af68;">;;   </span><span style="color: #74af68;">[C-c '] M-x org-edit-src-code -- puts code block in new buffer with appropriate mode activated
+</span><span style="color: #74af68;">;;   </span><span style="color: #74af68;">[C-c M-b p] M-x org-babel-expand-src-block -- show expanded code block prior to evaluation
+</span><span style="color: #74af68;">;;   </span><span style="color: #74af68;">(org-babel-lob-ingest "path/to/file.org") to share code blogs as '</span><span style="color: #008b8b;">library</span><span style="color: #74af68;">'
+</span>
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((ditaa . t) <span style="color: #74af68;">; </span><span style="color: #74af68;">ditaa</span>
-   (dot . t)  <span style="color: #74af68;">; </span><span style="color: #74af68;">graphviz [[https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-dot.html]] see also graphviz-dot-mode</span>
-   ))
+ '((ditaa . t) <span style="color: #74af68;">; </span><span style="color: #74af68;">ditaa
+</span>   (dot . t)  <span style="color: #74af68;">; </span><span style="color: #74af68;">graphviz [[https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-dot.html]] see also graphviz-dot-mode
+</span>   ))
 </pre>
 </div>
 
@@ -194,7 +190,7 @@ for example <code>graphviz</code>.
 Example <code>.org</code> content using graphviz:
 </p>
 
-<pre class="example" id="org7cd07e5">
+<pre class="example" id="org03f4f41">
 #+begin_src dot :file img/living-room-av/macmini.svg :exports results :cmdline -Tsvg
 digraph {
   size="4,4";
@@ -215,9 +211,8 @@ publishing (or using <code>C-c C-v b</code>) creates/updates file in <code>img/l
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgbb5ab14" class="outline-3">
-<h3 id="orgbb5ab14"><span class="section-number-3">1.3.</span> HTML theme</h3>
+<div id="outline-container-org0d2d27e" class="outline-3">
+<h3 id="org0d2d27e"><span class="section-number-3">1.3.</span> HTML theme</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 Using Fabrice Niessen's awesome readtheorg theme see <a href="https://github.com/fniessen/org-html-themes">org-html-themes</a>
@@ -232,9 +227,8 @@ Apply theme by including the following in each <code>.org</code> header:
 </div>
 </div>
 </div>
-
-<div id="outline-container-orgc6eb5ea" class="outline-3">
-<h3 id="orgc6eb5ea"><span class="section-number-3">1.4.</span> display HTML locally</h3>
+<div id="outline-container-org6d7a1af" class="outline-3">
+<h3 id="org6d7a1af"><span class="section-number-3">1.4.</span> display HTML locally</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 Once we have HTML in <code>~/proj/public_html/org-howto</code>,  can view it locally:
@@ -253,9 +247,8 @@ Caveat: builtin python webserver doesn't support https.
 </p>
 </div>
 </div>
-
-<div id="outline-container-org96aaf8e" class="outline-3">
-<h3 id="org96aaf8e"><span class="section-number-3">1.5.</span> publish to github pages</h3>
+<div id="outline-container-org9156f3b" class="outline-3">
+<h3 id="org9156f3b"><span class="section-number-3">1.5.</span> publish to github pages</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 To work with github pages,  We tweak the <code>.org</code> tree slightly:
@@ -274,7 +267,7 @@ When we publish <code>.org</code> tree to github pages, it appears at <a href="h
 <p>
 <code>.org</code> pages that want to use root-relative paths, prefix with <code>/web</code>:
 </p>
-<pre class="example" id="orgc6e9e5c">
+<pre class="example" id="orgf4f0cd1">
 #+infojs_opt: view:showall toc:nil ltoc:nil mouse:#ffc0c0 path:/web/ext/orginfo/org-info.js
 #+html_head: &lt;link rel="stylesheet" type="text/css" href="/web/css/notebook.css" /&gt;
 </pre>
@@ -289,9 +282,8 @@ Note that <code>org-publish</code> expands the <code>web</code> symlink,  so eve
 </p>
 </div>
 </div>
-
-<div id="outline-container-org746de39" class="outline-3">
-<h3 id="org746de39"><span class="section-number-3">1.6.</span> package as docker container</h3>
+<div id="outline-container-orgc9162c3" class="outline-3">
+<h3 id="orgc9162c3"><span class="section-number-3">1.6.</span> package as docker container</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 We can snapshot and serve generated html in a dedicated docker container with this <code>flake.nix</code>
@@ -302,8 +294,8 @@ We can snapshot and serve generated html in a dedicated docker container with th
 <pre class="src src-nix">{
   <span style="color: #dbdb95;">description</span> = <span style="color: #e67128;">"publish org-howto-derived html"</span>;
 
-  <span style="color: #74af68;"># dependencies of this flake</span>
-  <span style="color: #dbdb95;">inputs</span> = <span style="color: #ffad29; font-weight: bold;">rec</span> {
+  <span style="color: #74af68;"># dependencies of this flake
+</span>  <span style="color: #dbdb95;">inputs</span> = <span style="color: #ffad29; font-weight: bold;">rec</span> {
     <span style="color: #dbdb95;">nixpkgs.url</span> = <span style="color: #e67128;">"github:nixos/nixpkgs/23.05"</span>;
     <span style="color: #dbdb95;">org_howto_path</span> = {
       <span style="color: #dbdb95;">url</span> = <span style="color: #e67128;">"./org-howto"</span>;
@@ -316,21 +308,21 @@ We can snapshot and serve generated html in a dedicated docker container with th
       <span style="color: #dbdb95;">system</span> = <span style="color: #e67128;">"x86_64-linux"</span>;
       <span style="color: #dbdb95;">pkgs</span> = <span style="color: #23d7d7;">import</span> nixpkgs { <span style="color: #ffad29; font-weight: bold;">inherit</span> system; };
 
-      <span style="color: #74af68;"># creates shell script 'serve-org-howto'.</span>
-      <span style="color: #74af68;"># to use:</span>
-      <span style="color: #74af68;">#   $ cd ~/proj/public_html</span>
-      <span style="color: #74af68;"># A.</span>
-      <span style="color: #74af68;">#   $ nix build</span>
-      <span style="color: #74af68;">#   $ ./result/bin/serve-org-howto</span>
-      <span style="color: #74af68;"># B.</span>
-      <span style="color: #74af68;">#   $ nix run</span>
-      <span style="color: #74af68;">#</span>
-      <span style="color: #dbdb95;">serve_org_howto_deriv</span> = pkgs.writeShellScriptBin <span style="color: #e67128;">"serve-org-howto"</span> <span style="color: #e67128;">''</span>
-<span style="color: #e67128;">        </span><span style="color: #23d7d7;">${</span>pkgs.python3<span style="color: #23d7d7;">}</span><span style="color: #e67128;">/bin/python3 -m http.server 8080 --directory </span><span style="color: #23d7d7;">${</span>org_howto_path<span style="color: #23d7d7;">}</span>
-<span style="color: #e67128;">      ''</span>;
+      <span style="color: #74af68;"># creates shell script 'serve-org-howto'.
+</span>      <span style="color: #74af68;"># to use:
+</span>      <span style="color: #74af68;">#   $ cd ~/proj/public_html
+</span>      <span style="color: #74af68;"># A.
+</span>      <span style="color: #74af68;">#   $ nix build
+</span>      <span style="color: #74af68;">#   $ ./result/bin/serve-org-howto
+</span>      <span style="color: #74af68;"># B.
+</span>      <span style="color: #74af68;">#   $ nix run
+</span>      <span style="color: #74af68;">#
+</span>      <span style="color: #dbdb95;">serve_org_howto_deriv</span> = pkgs.writeShellScriptBin <span style="color: #e67128;">"serve-org-howto"</span> <span style="color: #e67128;">''
+        </span><span style="color: #23d7d7;">${</span>pkgs.python3<span style="color: #23d7d7;">}</span><span style="color: #e67128;">/bin/python3 -m http.server 8080 --directory </span><span style="color: #23d7d7;">${</span>org_howto_path<span style="color: #23d7d7;">}</span><span style="color: #e67128;">
+      ''</span>;
 
-      <span style="color: #74af68;"># builds custom docker image!</span>
-      <span style="color: #dbdb95;">serve_org_howto_docker_deriv</span> =
+      <span style="color: #74af68;"># builds custom docker image!
+</span>      <span style="color: #dbdb95;">serve_org_howto_docker_deriv</span> =
         <span style="color: #ffad29; font-weight: bold;">let</span>
           <span style="color: #dbdb95;">serve_org_howto</span> = self.packages.${system}.serve_org_howto;
         <span style="color: #ffad29; font-weight: bold;">in</span>
@@ -361,7 +353,7 @@ We can snapshot and serve generated html in a dedicated docker container with th
 <li><p>
 build docker container image using <code>~/proj/public_html/flake.nix</code>:
 </p>
-<pre class="example" id="org98cc2f5">
+<pre class="example" id="orgda8e10a">
 $ cd ~/proj/public_html
 $ nix build
 $ ls -ld result
@@ -371,14 +363,14 @@ $ ls -ld result
 <li><p>
 load image into docker
 </p>
-<pre class="example" id="org6a5cf28">
+<pre class="example" id="org02cef54">
 $ docker load &lt;./result
 </pre>
 
 <p>
 or send to some other host:
 </p>
-<pre class="example" id="orgc6c46a0">
+<pre class="example" id="orgf71b2ed">
 $ mycloudhost=...
 $ scp /nix/store/dck2rix8n8sx6wi0d4is0fq17c72ddqx-serve-org-howto.tar.gz root@${mycloudhost}
 $ ssh ${mycloudhost}
@@ -404,7 +396,7 @@ Docker image contains only python and our html tree,  so much smaller than typic
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-09-08 Sun 18:01</p>
+<p class="date">Created: 2026-05-24 Sun 18:48</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

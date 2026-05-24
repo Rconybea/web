@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-09-08 Sun 18:01 -->
+<!-- 2026-05-24 Sun 18:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>d3 draggable object example #5 &#x2013; parametric + tangent line</title>
 <meta name="author" content="Roland Conybeare" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -231,24 +231,23 @@ org_html_manager.setup();  // activate after the parameters are set
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgf899709">1. Introduction</a></li>
-<li><a href="#org216b5f3">2. Demo</a></li>
-<li><a href="#orga338cab">3. Prerequisites</a></li>
-<li><a href="#orga69fbcb">4. Procedure</a>
+<li><a href="#org542f27f">1. Introduction</a></li>
+<li><a href="#orge8c21d7">2. Demo</a></li>
+<li><a href="#orge98c32b">3. Prerequisites</a></li>
+<li><a href="#org880e9aa">4. Procedure</a>
 <ul>
-<li><a href="#org1fe77a7">4.1. Extend <code>fx.js</code></a></li>
-<li><a href="#orgba6be73">4.2. Upgrade <code>fx_view.draw</code></a></li>
-<li><a href="#org10b7891">4.3. Upgrade <code>parametric-drag-example.js</code></a></li>
-<li><a href="#org09af595">4.4. Load ~.js_ files in html header</a></li>
-<li><a href="#org8dfc24e">4.5. Insert html fragment to invoke our interactive javascript code</a></li>
+<li><a href="#orge32a78f">4.1. Extend <code>fx.js</code></a></li>
+<li><a href="#orgf54f0c1">4.2. Upgrade <code>fx_view.draw</code></a></li>
+<li><a href="#org7cacd58">4.3. Upgrade <code>parametric-drag-example.js</code></a></li>
+<li><a href="#org7ef77e2">4.4. Load ~.js_ files in html header</a></li>
+<li><a href="#orgb2fde95">4.5. Insert html fragment to invoke our interactive javascript code</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-orgf899709" class="outline-2">
-<h2 id="orgf899709"><span class="section-number-2">1.</span> Introduction</h2>
+<div id="outline-container-org542f27f" class="outline-2">
+<h2 id="org542f27f"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 This page extends example <i>#4</i> (<a href="../drag4/index.html">../drag4/index.html</a>),
@@ -261,9 +260,8 @@ so that we get smooth dragging behavior
 </dl>
 </div>
 </div>
-
-<div id="outline-container-org216b5f3" class="outline-2">
-<h2 id="org216b5f3"><span class="section-number-2">2.</span> Demo</h2>
+<div id="outline-container-orge8c21d7" class="outline-2">
+<h2 id="orge8c21d7"><span class="section-number-2">2.</span> Demo</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The div element <code>#frame</code> will appear below this line:
@@ -275,26 +273,23 @@ The div element <code>#frame</code> will appear below this line:
 </script>
 </div>
 </div>
-
-<div id="outline-container-orga338cab" class="outline-2">
-<h2 id="orga338cab"><span class="section-number-2">3.</span> Prerequisites</h2>
+<div id="outline-container-orge98c32b" class="outline-2">
+<h2 id="orge98c32b"><span class="section-number-2">3.</span> Prerequisites</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 As for examples <a href="../drag1/index.html"><i>#1</i></a>, <a href="file://drag2/index.html"><i>#2</i></a>, <a href="d3/drag3/index.html"><i>#3</i></a>, <a href="d3/drag4/index.html"><i>#4</i></a>
 </p>
 </div>
 </div>
-
-<div id="outline-container-orga69fbcb" class="outline-2">
-<h2 id="orga69fbcb"><span class="section-number-2">4.</span> Procedure</h2>
+<div id="outline-container-org880e9aa" class="outline-2">
+<h2 id="org880e9aa"><span class="section-number-2">4.</span> Procedure</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Start with example <a href="d3/drag4/index.html"><i>#4</i></a>: we will modify the files <a href="point.js">point.js</a>, <a href="fx.js">fx.js</a>, <a href="fx_view.js">fx_view.js</a>.
 </p>
 </div>
-
-<div id="outline-container-org1fe77a7" class="outline-3">
-<h3 id="org1fe77a7"><span class="section-number-3">4.1.</span> Extend <code>fx.js</code></h3>
+<div id="outline-container-orge32a78f" class="outline-3">
+<h3 id="orge32a78f"><span class="section-number-3">4.1.</span> Extend <code>fx.js</code></h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Add functions:
@@ -305,7 +300,7 @@ Add functions:
 <li><code>fx.linear_inverse_fn</code></li>
 </ul>
 
-<pre class="example" id="orgbfd1bc8">
+<pre class="example" id="orgc68f7e3">
 /* derivative f'(x) of fx.target_fn
  * x :: number
  * returns :: number
@@ -315,7 +310,7 @@ return x * (3 * x - 1.2);
 } /*target_deriv_fn*/
 </pre>
 
-<pre class="example" id="org0b27bb4">
+<pre class="example" id="org34d6082">
 /* the (linear) function of (x) that is
  * tangent to fx.target_fn at x0
  */
@@ -327,7 +322,7 @@ return function(x) { return fx0 + (x - x0) * dfx0; }
 } /*make_target_tangent_fn*/
 </pre>
 
-<pre class="example" id="orgc211dba">
+<pre class="example" id="org70173fb">
 /* inverse of fx.linear_fn:
  * given scale k, {offset_x, offset_y}
  * return function
@@ -343,15 +338,14 @@ return function(p) {
 </pre>
 </div>
 </div>
-
-<div id="outline-container-orgba6be73" class="outline-3">
-<h3 id="orgba6be73"><span class="section-number-3">4.2.</span> Upgrade <code>fx_view.draw</code></h3>
+<div id="outline-container-orgf54f0c1" class="outline-3">
+<h3 id="orgf54f0c1"><span class="section-number-3">4.2.</span> Upgrade <code>fx_view.draw</code></h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 Extend <code>fx_view.draw</code> to draw tangent function:
 </p>
 
-<pre class="example" id="org2352334">
+<pre class="example" id="orgd5cdf73">
 /* parent_id :: string.  pass this to d3.select() to get selection for parent
  *   at which to attach svg box
  * box_pt :: Point.  size of svg bounding box
@@ -396,15 +390,14 @@ fx_view.fx_update_select_circle(pt.find_closest(pt.scale_pt(0.5, box_pt),
 </pre>
 </div>
 </div>
-
-<div id="outline-container-org10b7891" class="outline-3">
-<h3 id="org10b7891"><span class="section-number-3">4.3.</span> Upgrade <code>parametric-drag-example.js</code></h3>
+<div id="outline-container-org7cacd58" class="outline-3">
+<h3 id="org7cacd58"><span class="section-number-3">4.3.</span> Upgrade <code>parametric-drag-example.js</code></h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 Extend <code>ex.start</code> to supply new conversion to <code>fx.draw</code>
 </p>
 
-<pre class="example" id="orgfd5fd5e">
+<pre class="example" id="orga5ce577">
 ex.screen2pt = fx.linear_inverse_fn(pt.sub_pt(pt.scale_pt(0.5, ex.box_pt),
                       fx.eval_fn(0.0) /*ctr_fx*/),
                 200.0 /*scale_factor*/);
@@ -415,15 +408,14 @@ fx_view.draw("#frame", ex.box_pt, ex.target_pt_v,
 </pre>
 </div>
 </div>
-
-<div id="outline-container-org09af595" class="outline-3">
-<h3 id="org09af595"><span class="section-number-3">4.4.</span> Load ~.js_ files in html header</h3>
+<div id="outline-container-org7ef77e2" class="outline-3">
+<h3 id="org7ef77e2"><span class="section-number-3">4.4.</span> Load ~.js_ files in html header</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 This step is identical to the similar step in example <i>#3</i>, example <i>#4</i>
 At the top of the <code>.org</code> file:
 </p>
-<pre class="example" id="org515fdc3">
+<pre class="example" id="org6a799d9">
 #+html_head: &lt;script type="text/javascript" src="/ext/d3/d3.js"&gt;&lt;/script&gt;
 #+html_head: &lt;script type="text/javascript" src="point.js"&gt;&lt;/script&gt;
 #+html_head: &lt;script type="text/javascript" src="fx.js"&gt;&lt;/script&gt;
@@ -432,14 +424,13 @@ At the top of the <code>.org</code> file:
 </pre>
 </div>
 </div>
-
-<div id="outline-container-org8dfc24e" class="outline-3">
-<h3 id="org8dfc24e"><span class="section-number-3">4.5.</span> Insert html fragment to invoke our interactive javascript code</h3>
+<div id="outline-container-orgb2fde95" class="outline-3">
+<h3 id="orgb2fde95"><span class="section-number-3">4.5.</span> Insert html fragment to invoke our interactive javascript code</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 This also follows the same model we used in example <i>#3</i>, example <i>#4</i>.
 </p>
-<pre class="example" id="org8aced08">
+<pre class="example" id="orgecade08">
 #+begin_html
 &lt;div id="frame"&gt;&lt;/div&gt;
 &lt;script type="text/javascript"&gt;
@@ -453,7 +444,7 @@ This also follows the same model we used in example <i>#3</i>, example <i>#4</i>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-09-08 Sun 18:01</p>
+<p class="date">Created: 2026-05-24 Sun 18:48</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

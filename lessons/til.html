@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-09-08 Sun 18:49 -->
+<!-- 2026-05-24 Sun 18:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Today I Learned - lessons from building a C++ development stack</title>
@@ -34,86 +34,1049 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org97c7afd">1. wsl (windows services for linux)</a></li>
-<li><a href="#org5a25305">2. cmake</a></li>
-<li><a href="#org74fc161">3. pybind11</a></li>
-<li><a href="#org327d4a5">4. lsp (language server process)</a></li>
-<li><a href="#org0823ccf">5. iostream</a></li>
-<li><a href="#org8404985">6. zlib</a></li>
-<li><a href="#org16db22f">7. gcc</a></li>
-<li><a href="#orge7c63fe">8. llvm</a></li>
+<li><a href="#org946a671">1. wsl (windows services for linux)</a></li>
+<li><a href="#org8adff36">2. git</a></li>
+<li><a href="#orgbb9b3f5">3. webhosting + forgejo + CI</a></li>
+<li><a href="#orgd98d3d4">4. cmake</a>
+<ul>
+<li><a href="#orgcfca726">4.1. inconsistent eigen package (25oct2023)</a>
+<ul>
+<li><a href="#org7214159">4.1.1. Setup</a></li>
+<li><a href="#orgc159a65">4.1.2. Problem</a></li>
+<li><a href="#org8fe41e2">4.1.3. Details</a></li>
+<li><a href="#orgf0a058f">4.1.4. Workaround</a></li>
+</ul>
+</li>
+<li><a href="#org2eba207">4.2. cmake handling of header-only library dependencies (7oct2023)</a>
+<ul>
+<li><a href="#orgee5b818">4.2.1. Update</a></li>
+<li><a href="#orga7b64df">4.2.2. Setup</a></li>
+<li><a href="#org93b33ba">4.2.3. Problem</a></li>
+<li><a href="#org7a76338">4.2.4. Workaround</a></li>
+</ul>
+</li>
+<li><a href="#org5cbefb7">4.3. pybind11 link difficulties with transitive library dependencies (7oct2023)</a>
+<ul>
+<li><a href="#org7fa5fe2">4.3.1. Setup</a></li>
+<li><a href="#orgc0d279f">4.3.2. Problem</a></li>
+<li><a href="#org3c36734">4.3.3. Workaround</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgde56ab2">5. lsp (language server process)</a>
+<ul>
+<li><a href="#org801756b">5.1. mysterious lsp complaints about iostream headers (22feb2024)</a>
+<ul>
+<li><a href="#org2764d04">5.1.1. Setup</a></li>
+<li><a href="#orgf94c5c5">5.1.2. Problem</a></li>
+<li><a href="#orgf18461e">5.1.3. Solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orga07a4ad">6. iostream</a>
+<ul>
+<li><a href="#orgf72365e">6.1. general api rant (25feb2024)</a>
+<ul>
+<li><a href="#org5b7c8ad">6.1.1. <code>istream.read()</code> doesn't report the number of bytes/chars read.</a></li>
+<li><a href="#org4d9764e">6.1.2. <code>istream.read(s, n)</code> expects always to read n chars.</a></li>
+<li><a href="#org81b949f">6.1.3. Iostream get isn't monotonic</a></li>
+<li><a href="#org818d343">6.1.4. Iostream position reporting isn't monotonic.</a></li>
+<li><a href="#orgc3895e0">6.1.5. Streambuf not responsible for eofbit.</a></li>
+<li><a href="#orgfcd4047">6.1.6. Stream position reporting from streambuf</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgd6a159b">7. zlib</a></li>
+<li><a href="#org65c1e50">8. gcc</a></li>
+<li><a href="#org3c7635d">9. llvm</a></li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-org97c7afd" class="outline-2">
-<h2 id="org97c7afd"><span class="section-number-2">1.</span> wsl (windows services for linux)</h2>
+<div id="outline-container-org946a671" class="outline-2">
+<h2 id="org946a671"><span class="section-number-2">1.</span> wsl (windows services for linux)</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
-<li>(Nov 2023) <a href="../articles/2023/11/x11-apps-wedged-after-wsl-update.html">x11 apps wedged after wsl update</a></li>
+<li>(Nov? 2023) <a href="../articles/2023/11/x11-apps-wedged-after-wsl-update.html">x11 apps wedged after wsl update</a></li>
+
 <li>(Sep 2024) <a href="../articles/2024/09/getting-fonts-from-nix.html">getting fonts from nix</a></li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-org5a25305" class="outline-2">
-<h2 id="org5a25305"><span class="section-number-2">2.</span> cmake</h2>
+<div id="outline-container-org8adff36" class="outline-2">
+<h2 id="org8adff36"><span class="section-number-2">2.</span> git</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
-<li>(Oct 2023) <a href="../articles/2023/10/inconsistent-eigen-package.html">inconsistent eigen package</a></li>
-<li>(Oct 2023) <a href="../articles/2023/10/cmake-headeronly-deps.html">cmake headeronly dependencies</a></li>
+<li>(May 2026) <a href="../articles/2026/05/git-subtree-bugfix.html">bugfix for git subtree</a></li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-org74fc161" class="outline-2">
-<h2 id="org74fc161"><span class="section-number-2">3.</span> pybind11</h2>
+<div id="outline-container-orgbb9b3f5" class="outline-2">
+<h2 id="orgbb9b3f5"><span class="section-number-2">3.</span> webhosting + forgejo + CI</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
-<li>(Oct 2023) <a href="../articles/2023/10/pybind11-transitive-deps.html">pybind11 transitive library deps</a></li>
+<li>(May 2026) <a href="../articles/2026/05/setup-forgejo-at-digital-ocean.html">forgejo setup</a></li>
+<li>(May 2026) <a href="../articles/2026/05/setup-forgejo-runner.html">forgejo runner setup)</a></li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-org327d4a5" class="outline-2">
-<h2 id="org327d4a5"><span class="section-number-2">4.</span> lsp (language server process)</h2>
+<div id="outline-container-orgd98d3d4" class="outline-2">
+<h2 id="orgd98d3d4"><span class="section-number-2">4.</span> cmake</h2>
 <div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-orgcfca726" class="outline-3">
+<h3 id="orgcfca726"><span class="section-number-3">4.1.</span> inconsistent eigen package (25oct2023)</h3>
+<div class="outline-text-3" id="text-4-1">
+</div>
+<div id="outline-container-org7214159" class="outline-4">
+<h4 id="org7214159"><span class="section-number-4">4.1.1.</span> Setup</h4>
+<div class="outline-text-4" id="text-4-1-1">
 <ul class="org-ul">
-<li>(Feb 2024) <a href="../articles/2024/02/lsp-complains-about-iostream-headers.html">mysterious lsp complaints about iostream headers</a></li>
+<li>library <a href="https://github.com/Rconybea/xo-kalmanfilter">xo-kalmanfilter</a> depends on eigen</li>
+<li>library <a href="https://github.com/Rconybea/xo-pykalmanfilter">xo-pykalmanfilter</a> depends on <code>xo-kalmanfilter</code></li>
+<li>the project <a href="https://github.com/Rconybea/xo">xo</a> incorporates both codebases (along with others) into single umbrella source tree (using git submodules).</li>
+<li>alternatively, can build+install libraries independently (in bottom-up dependency order),</li>
+</ul>
+
+<p>
+We call this last a 'vanilla build',  since it follows standard practice for installing 3rd-party libraries.
+In a so-called vanilla build,  we use cmake's <code>find_package()</code> support to acquire each dependency.
+In a vanilla build,  When cmake builds a library,  it obtains its dependencies from their final install location.
+</p>
+
+<p>
+Contrast this with the submodule build:  here,  when cmake build a library,  it obtains its dependencies from the build tree
+</p>
+</div>
+</div>
+<div id="outline-container-orgc159a65" class="outline-4">
+<h4 id="orgc159a65"><span class="section-number-4">4.1.2.</span> Problem</h4>
+<div class="outline-text-4" id="text-4-1-2">
+<ul class="org-ul">
+<li><p>
+submodule build works as expected;   compile flags include required <code>-Ipath/to/eigen/eigen3</code>,
+so c++ code like this compiles
+</p>
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #23d7d7;">#include</span> <span style="color: #e67128;">&lt;Eigen/Dense&gt;</span>
+</pre>
+</div></li>
+
+<li><p>
+vanilla build fails:
+when compiling xo-pykalmanfilter,  the header path for eigen is given as <code>-Ipath/to/eigen</code>
+instead of <code>-Ipath/to/eigen/eigen3</code>,  so now need this to compile instead:
+</p>
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #23d7d7;">#include</span> <span style="color: #e67128;">&lt;eigen3/Eigen/Dense&gt;</span>
+</pre>
+</div></li>
 </ul>
 </div>
 </div>
+<div id="outline-container-org8fe41e2" class="outline-4">
+<h4 id="org8fe41e2"><span class="section-number-4">4.1.3.</span> Details</h4>
+<div class="outline-text-4" id="text-4-1-3">
+<ul class="org-ul">
+<li><p>
+<code>xo-kalmanfilter</code> specifies eigen dependency in the approved manner:
+</p>
 
-<div id="outline-container-org0823ccf" class="outline-2">
-<h2 id="org0823ccf"><span class="section-number-2">5.</span> iostream</h2>
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #74af68;"># </span><span style="color: #74af68;">xo-kalmanfilter/src/kalmanfilter/CMakeLists.txt
+</span><span style="color: #00ede1; font-weight: bold;">set</span>(SELF_LIB xo_kalmanfilter)
+..
+<span style="color: #00ede1; font-weight: bold;">xo_external_target_dependency</span>(${<span style="color: #dbdb95;">SELF_LIB</span>} Eigen3 Eigen3::Eigen)
+</pre>
+</div>
+
+<p>
+which expands as if we had written:
+</p>
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #00ede1; font-weight: bold;">find_package</span>(Eigen3 CONFIG REQUIRED)
+<span style="color: #00ede1; font-weight: bold;">target_link_libraries</span>(${<span style="color: #dbdb95;">SELF_LIB</span>} PUBLIC Eigen3::Eigen)
+</pre>
+</div>
+
+<p>
+This works as expected in submodule build.
+In submodule build, codebases <code>xo-kalmanfilter</code> and <code>xo-pykalmanfilter</code> (amongst others) are incorporated
+into a single source tree:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #74af68;"># </span><span style="color: #74af68;">xo-sm2/CMakeLists.txt
+</span><span style="color: #00ede1; font-weight: bold;">set</span>(XO_SUBMODULE_BUILD True)
+..
+<span style="color: #00ede1; font-weight: bold;">add_subdirectory</span>(repo/xo-kalmanfilter)
+<span style="color: #00ede1; font-weight: bold;">add_subdirectory</span>(repo/xo-pykalmanfilter)
+</pre>
+</div></li>
+
+<li><p>
+<code>xo-pykalmanfilter</code> specifies <code>xo-kalmanfilter</code> dependency:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #74af68;"># </span><span style="color: #74af68;">xo-pykalmanfilter/src/pykalmanfilter/CMakeLists.txt
+</span><span style="color: #00ede1; font-weight: bold;">set</span>(SELF_LIB pykalmanfilter)
+..
+<span style="color: #00ede1; font-weight: bold;">xo_pybind11_dependency</span>(${<span style="color: #dbdb95;">SELF_LIB</span>} xo_kalmanfilter)
+</pre>
+</div>
+
+<p>
+which expands differently,  depending on build type.
+In submodule build,  as if we had written:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #00ede1; font-weight: bold;">target_include_directories</span>(${<span style="color: #dbdb95;">SELF_LIB</span>} PUBLIC $&lt;BUILD_INTERFACE:${<span style="color: #dbdb95;">CMAKE_SOURCE_DIR</span>}/repo/xo_kalmanfilter/include&gt;)
+<span style="color: #00ede1; font-weight: bold;">target_include_directories</span>(${<span style="color: #dbdb95;">SELF_LIB</span>} PUBLIC $&lt;BUILD_INTERFACE:${<span style="color: #dbdb95;">CMAKE_BINARY_DIR</span>}/repo/xo_kalmanfilter/include&gt;)
+<span style="color: #00ede1; font-weight: bold;">target_link_libraries</span>(${<span style="color: #dbdb95;">SELF_LIB</span>} PUBLIC xo_kalmanfilter)
+</pre>
+</div>
+
+<p>
+In vanilla build,  <code>xo_pybind11_dependency()</code> expands differently:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #00ede1; font-weight: bold;">find_package</span>(xo_kalmanfilter CONFIG REQUIRED)
+..
+<span style="color: #00ede1; font-weight: bold;">target_link_libraries</span>(${<span style="color: #dbdb95;">SELF_LIB</span>} PUBLIC xo_kalmanfilter)
+</pre>
+</div></li>
+
+<li><p>
+<code>xo-kalmanfilter</code> provides support for cmake <code>find_package()</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #74af68;"># </span><span style="color: #74af68;">xo-kalmanfilter/cmake/xo_kalmanfilterConfig.cmake.in
+</span>
+@PACKAGE_INIT@
+
+<span style="color: #00ede1; font-weight: bold;">include</span>(CMakeFindDependencyMacro)
+<span style="color: #00ede1; font-weight: bold;">find_dependency</span>(reactor)
+<span style="color: #00ede1; font-weight: bold;">find_dependency</span>(eigen3)
+
+<span style="color: #00ede1; font-weight: bold;">include</span>(<span style="color: #e67128;">"${</span><span style="color: #dbdb95;">CMAKE_CURRENT_LIST_DIR</span><span style="color: #e67128;">}/@PROJECT_NAME@Targets.cmake"</span>)
+<span style="color: #00ede1; font-weight: bold;">check_required_components</span>(<span style="color: #e67128;">"@PROJECT_NAME@"</span>)
+</pre>
+</div>
+
+<p>
+and generated <code>xo_kalmanfilterTargets.cmake</code> file contains:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #74af68;"># </span><span style="color: #74af68;">Create imported target xo_kalmanfilter
+</span><span style="color: #00ede1; font-weight: bold;">add_library</span>(xo_kalmanfilter SHARED IMPORTED)
+
+<span style="color: #00ede1; font-weight: bold;">set_target_properties</span>(xo_kalmanfilter PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES <span style="color: #e67128;">"${</span><span style="color: #dbdb95;">_IMPORT_PREFIX</span><span style="color: #e67128;">}/include;${</span><span style="color: #dbdb95;">_IMPORT_PREFIX</span><span style="color: #e67128;">}/include/xo/kalmanfilter"</span>
+  INTERFACE_LINK_LIBRARIES <span style="color: #e67128;">"reactor;Eigen3::Eigen"</span>
+)
+</pre>
+</div>
+
+<p>
+which.. doesn't look wrong :)
+</p>
+
+<p>
+Evidence points to an inconsistency in Eigen-provided cmake support, if not in cmake proper.
+</p></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf0a058f" class="outline-4">
+<h4 id="orgf0a058f"><span class="section-number-4">4.1.4.</span> Workaround</h4>
+<div class="outline-text-4" id="text-4-1-4">
+<p>
+It's sufficient to restate the eigen dependency in <code>xo-pykalmanfilter</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #74af68;"># </span><span style="color: #74af68;">xo_pykalmanfilter/src/pykalmanfilter/CMakeLists.txt
+</span><span style="color: #00ede1; font-weight: bold;">set</span>(SELF_LIB pykalmanfilter)
+...
+<span style="color: #00ede1; font-weight: bold;">xo_external_target_dependency</span>(${<span style="color: #dbdb95;">SELF_LIB</span>} Eigen3 Eigen3::Eigen)
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org2eba207" class="outline-3">
+<h3 id="org2eba207"><span class="section-number-3">4.2.</span> cmake handling of header-only library dependencies (7oct2023)</h3>
+<div class="outline-text-3" id="text-4-2">
+</div>
+<div id="outline-container-orgee5b818" class="outline-4">
+<h4 id="orgee5b818"><span class="section-number-4">4.2.1.</span> Update</h4>
+<div class="outline-text-4" id="text-4-2-1">
+<p>
+My original investigation mistaken.
+It turns out I didn't understand that cmake error from <code>target_link_libraries()</code>:
+</p>
+
+<pre class="example" id="org457c171">
+INTERFACE library can only be used with the INTERFACE keyword of target_link_libraries
+</pre>
+
+<p>
+applies to the <i>depended-on</i> library (3rd argument),  not the <i>depending</i> library (1st argument).
+</p>
+</div>
+</div>
+<div id="outline-container-orga7b64df" class="outline-4">
+<h4 id="orga7b64df"><span class="section-number-4">4.2.2.</span> Setup</h4>
+<div class="outline-text-4" id="text-4-2-2">
+<ul class="org-ul">
+<li>NOTE: also asked on stack overflow <a href="https://stackoverflow.com/questions/77251201/cmake-regular-shared-library-depending-on-a-header-only-interface-library">here</a></li>
+
+<li>cmake version 3.25.3</li>
+
+<li><p>
+Must introduce a header-only library like this:
+</p>
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #00ede1; font-weight: bold;">add_library</span>(foo INTERFACE)
+</pre>
+</div>
+<p>
+(instead of <code>add_library(foo SHARED)</code> or <code>add_library(foo STATIC)</code>)
+</p></li>
+
+<li><p>
+Must specify include directories for a header-only library like this:
+</p>
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #00ede1; font-weight: bold;">target_include_directories</span>(
+    foo INTERFACE
+    $&lt;INSTALL_INTERFACE:path/to/include&gt;
+    $&lt;BUILD_INTERFACE:${<span style="color: #dbdb95;">PROJECT_SOURCE_DIR</span>}/path/to/include&gt;)
+</pre>
+</div>
+
+<p>
+cmake enforces this explicitly;   gives error
+</p>
+<pre class="example" id="org40477ad">
+target_include_directories may only set INTERFACE properties on INTERFACE targets
+</pre></li>
+
+<li><p>
+Must specify dependency on a header-only library like this:
+</p>
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #00ede1; font-weight: bold;">target_link_libraries</span>(bar INTERFACE foo))
+</pre>
+</div>
+<p>
+(instead of <code>target_link_libraries(bar PUBLIC foo)</code>)
+</p>
+
+<p>
+cmake enforces this explicitly;   gives error
+</p>
+<pre class="example" id="org0593172">
+INTERFACE library can only be used with the INTERFACE keyword of target_link_libraries
+</pre></li>
+
+<li><p>
+Expected behavior:
+this is sufficient for compilation of <code>bar</code> to tell compiler about include paths for <code>foo</code>:
+</p>
+
+<pre class="example" id="org9137c61">
+gcc -Ipath/to/foo bar.cpp
+</pre>
+
+<p>
+This expectation is satisfied for regular non-INTERFACE libraries.
+</p></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org93b33ba" class="outline-4">
+<h4 id="org93b33ba"><span class="section-number-4">4.2.3.</span> Problem</h4>
+<div class="outline-text-4" id="text-4-2-3">
+<ul class="org-ul">
+<li>compilation fails to supply include paths for depended-on <code>foo</code> when compiling depending-on <code>bar</code>,
+if <code>bar</code> is a regular library</li>
+
+<li>predicted cause:
+<ol class="org-ol">
+<li>for an INTERFACE library,   cmake uses property <code>INTERFACE_INCLUDE_DIRECTORIES</code>;
+it does not populate <code>INCLUDE_DIRECTORIES</code>.</li>
+<li><code>target_link_libraries</code> when applied to a <code>STATIC</code> or <code>SHARED</code> target,  picks up
+the <code>INCLUDE_DIRECTORIES</code> property for the depended-on target,
+while ignoring the <code>INTERFACE_INCLUDE_DIRECTORIES</code> property.</li>
+</ol></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7a76338" class="outline-4">
+<h4 id="org7a76338"><span class="section-number-4">4.2.4.</span> Workaround</h4>
+<div class="outline-text-4" id="text-4-2-4">
+<ul class="org-ul">
+<li><p>
+when depending on a header-only library,  explictly incorporate depended-on <code>INTERFACE_INCLUDE_DIRECTORIES</code>
+to <code>INCLUDE_DIRECTORIES</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #ffad29; font-weight: bold;">macro</span>(dependency_headeronly target dep)
+    <span style="color: #00ede1; font-weight: bold;">target_link_libraries</span>(${<span style="color: #dbdb95;">target</span>} INTERFACE ${<span style="color: #dbdb95;">dep</span>})
+
+    <span style="color: #00ede1; font-weight: bold;">get_target_property</span>(dependency_headeronly__tmp ${<span style="color: #dbdb95;">dep</span>} INTERFACE_INCLUDE_DIRECTORIES)
+    <span style="color: #00ede1; font-weight: bold;">set_property</span>(
+        TARGET ${<span style="color: #dbdb95;">target</span>}
+        APPEND PROPERTY INCLUDE_DIRECTORIES ${<span style="color: #dbdb95;">dependency_headeronly__tmp</span>})
+<span style="color: #ffad29; font-weight: bold;">endmacro</span>()
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org5cbefb7" class="outline-3">
+<h3 id="org5cbefb7"><span class="section-number-3">4.3.</span> pybind11 link difficulties with transitive library dependencies (7oct2023)</h3>
+<div class="outline-text-3" id="text-4-3">
+</div>
+<div id="outline-container-org7fa5fe2" class="outline-4">
+<h4 id="org7fa5fe2"><span class="section-number-4">4.3.1.</span> Setup</h4>
+<div class="outline-text-4" id="text-4-3-1">
+<ul class="org-ul">
+<li>cmake version 3.25.3</li>
+<li>pybind11 version ???</li>
+<li>nix build (see <a href="https://github.com:rconybea/xo-nix2">https://github.com:rconybea/xo-nix2</a>)
+Consequences of nix build:
+<ul class="org-ul">
+<li>Each package installed to a separate directory &#x2013; no "common swimming pool" like <code>/usr/lib</code></li>
+<li>Implies install directory always distinct from any directory containing build inputs</li>
+<li>Tends to reveal oversights in toolchain,  as we'll see below</li>
+</ul></li>
+
+<li>pybind library (<code>xo-pyreflect</code>) with dependency on a separate library (<code>xo-reflect</code>),
+that in turn has secondary dependencies (<code>xo-refcnt</code>, <code>xo-indentlog</code>).
+Note that <code>xo-indentlog</code> is header-only.</li>
+
+<li><p>
+Expect this cmake script to work:
+</p>
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #00ede1; font-weight: bold;">find_package</span>(pybind11)
+<span style="color: #00ede1; font-weight: bold;">pybind11_add_module</span>(pyreflect pyreflect.cpp)
+
+<span style="color: #00ede1; font-weight: bold;">find_package</span>(reflect CONFIG REQUIRED)
+<span style="color: #00ede1; font-weight: bold;">target_link_libraries</span>(pyreflect PUBLIC reflect)
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc0d279f" class="outline-4">
+<h4 id="orgc0d279f"><span class="section-number-4">4.3.2.</span> Problem</h4>
+<div class="outline-text-4" id="text-4-3-2">
+<ul class="org-ul">
+<li><p>
+Instead, link fails.   Link line something like:
+</p>
+<pre class="example" id="org80265d8">
+g++ -fPIC ... -o pyreflect.cpython-311-x86_64-linux-gnu.so /path/to/libreflect.so -lrefcnt -lindentlog
+</pre>
+
+<p>
+Two problems here:
+</p>
+<ol class="org-ol">
+<li>directory containing <code>librefcnt.so</code> isn't on the link line (no <code>-L/path/to/refcnt/dir</code> for example).</li>
+<li><code>libindentlog.so</code> does not exist,  since <code>indentlog</code> is header-only</li>
+</ol></li>
+
+<li><p>
+Looked into intermediate outputs like <code>lib/cmake/reflectTargets.cmake</code>,  excerpt:
+</p>
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #00ede1; font-weight: bold;">set_target_properties</span>(reflect PROPERTIES
+    INTERFACE_INCLUDE_DIRECTORIES <span style="color: #e67128;">"${</span><span style="color: #dbdb95;">_IMPORT_PREFIX</span><span style="color: #e67128;">}/include"</span>
+    INTERFACE_LINK_LIBRARIES <span style="color: #e67128;">"indentlog;refcnt"</span>
+)
+</pre>
+</div>
+<p>
+It's not obvious how <code>xo_pyreflect</code> can know that <code>indentlog</code> is header-only,  while <code>refcnt</code> isn't
+(though could presumably extract the relevant libdir from <code>find_package()</code> with some work).
+</p></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3c36734" class="outline-4">
+<h4 id="org3c36734"><span class="section-number-4">4.3.3.</span> Workaround</h4>
+<div class="outline-text-4" id="text-4-3-3">
+<ul class="org-ul">
+<li><p>
+Recognize that <code>pyreflect</code> link shouldn't need <code>refcnt</code> on the link line,
+since <code>libreflect.so</code> has a <code>DT_NEEDED</code> entry for it.
+</p>
+
+<pre class="example" id="org33ff12d">
+$ readelf -d /path/to/libreflect.so
+
+Dynamic section at offset 0x17860 contains 34 entries:
+  Tag        Type                         Name/Value
+ 0x0000000000000001 (NEEDED)             Shared library: [librefcnt.so.1]
+...
+</pre></li>
+
+<li><p>
+When building <code>pyreflect</code>,  suppress transitive dependencies
+For example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #74af68;"># </span><span style="color: #74af68;">xo_cxx.cmake
+</span><span style="color: #ffad29; font-weight: bold;">macro</span>(xo_pybind11_dependency target dep)
+    <span style="color: #00ede1; font-weight: bold;">find_package</span>(${<span style="color: #dbdb95;">dep</span>} CONFIG REQUIRED)
+    <span style="color: #00ede1; font-weight: bold;">set_property</span>(TARGET ${<span style="color: #dbdb95;">dep</span>} PROPERTY INTERFACE_LINK_LIBRARIES <span style="color: #e67128;">""</span>)
+    <span style="color: #00ede1; font-weight: bold;">target_link_libraries</span>(${<span style="color: #dbdb95;">target</span>} PUBLIC ${<span style="color: #dbdb95;">dep</span>})
+<span style="color: #ffad29; font-weight: bold;">endmacro</span>()
+</pre>
+</div>
+
+<p>
+Then in <code>.cmake</code> for <code>pyreflect</code>,  something equivalent to:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #00ede1; font-weight: bold;">pybind11_add_module</span>(pyreflect pyreflect.cpp)
+<span style="color: #00ede1; font-weight: bold;">xo_pybind11_dependency</span>(pyreflect reflect)
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgde56ab2" class="outline-2">
+<h2 id="orgde56ab2"><span class="section-number-2">5.</span> lsp (language server process)</h2>
 <div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org801756b" class="outline-3">
+<h3 id="org801756b"><span class="section-number-3">5.1.</span> mysterious lsp complaints about iostream headers (22feb2024)</h3>
+<div class="outline-text-3" id="text-5-1">
+</div>
+<div id="outline-container-org2764d04" class="outline-4">
+<h4 id="org2764d04"><span class="section-number-4">5.1.1.</span> Setup</h4>
+<div class="outline-text-4" id="text-5-1-1">
 <ul class="org-ul">
-<li>(Feb 2024) <a href="../articles/2024/02/iostream-api-rant.html">iostream api rant</a></li>
+<li>working on bespoke streambuf implementation (cmake-examples/zstream/include/zstream/zstreambuf.hpp)</li>
 </ul>
 </div>
 </div>
+<div id="outline-container-orgf94c5c5" class="outline-4">
+<h4 id="orgf94c5c5"><span class="section-number-4">5.1.2.</span> Problem</h4>
+<div class="outline-text-4" id="text-5-1-2">
+<ul class="org-ul">
+<li>getting mysterious errors from flymake + emacs,  e.g. message "&lt;fstream&gt; not found"</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf18461e" class="outline-4">
+<h4 id="orgf18461e"><span class="section-number-4">5.1.3.</span> Solution</h4>
+<div class="outline-text-4" id="text-5-1-3">
+<ul class="org-ul">
+<li>Had discarded <code>cmake-examples/build</code> directory,  using <code>cmake-examples/.build</code> instead.
+This was to prevent build tree showing up when running <code>tree</code> in the <code>cmake-examples</code> directory</li>
 
-<div id="outline-container-org8404985" class="outline-2">
-<h2 id="org8404985"><span class="section-number-2">6.</span> zlib</h2>
+<li>Left <code>cmake-examples/compile_commands.json</code> as a broken symlink referring to old build directory</li>
+
+<li>This causes <code>lsp</code> understanding of compiler invocation to deteriorate as project acquires new files</li>
+
+<li>Fix by swinging symlink to <code>cmake-examples/.build/compile_commands.json</code>,  duh!</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orga07a4ad" class="outline-2">
+<h2 id="orga07a4ad"><span class="section-number-2">6.</span> iostream</h2>
 <div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-orgf72365e" class="outline-3">
+<h3 id="orgf72365e"><span class="section-number-3">6.1.</span> general api rant (25feb2024)</h3>
+<div class="outline-text-3" id="text-6-1">
+</div>
+<div id="outline-container-org5b7c8ad" class="outline-4">
+<h4 id="org5b7c8ad"><span class="section-number-4">6.1.1.</span> <code>istream.read()</code> doesn't report the number of bytes/chars read.</h4>
+<div class="outline-text-4" id="text-6-1-1">
+<p>
+Instead of:
+</p>
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #34cae2;">istream</span> &amp; <span style="color: #008b8b;">istream</span>::<span style="color: #00ede1; font-weight: bold;">read</span> (<span style="color: #34cae2;">char_type</span> * <span style="color: #dbdb95;">s</span>, <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">count</span>);
+</pre>
+</div>
+
+<p>
+I'd prefer signature
+</p>
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #34cae2;">istream</span> &amp; <span style="color: #008b8b;">istream</span>::<span style="color: #00ede1; font-weight: bold;">read</span> (<span style="color: #34cae2;">char_type</span> * <span style="color: #dbdb95;">s</span>, <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">count</span>, <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> * <span style="color: #dbdb95;">p_gcount</span>);
+</pre>
+</div>
+
+<p>
+Developers are expected to use.
+</p>
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #008b8b;">istream</span>::<span style="color: #00ede1; font-weight: bold;">gcount</span> () <span style="color: #ffad29; font-weight: bold;">const</span>;
+</pre>
+</div>
+
+<p>
+I think this is inferior,  since relies on state held by <code>istream</code>,
+that will be discarded on next read operation.
+</p>
+</div>
+</div>
+<div id="outline-container-org4d9764e" class="outline-4">
+<h4 id="org4d9764e"><span class="section-number-4">6.1.2.</span> <code>istream.read(s, n)</code> expects always to read n chars.</h4>
+<div class="outline-text-4" id="text-6-1-2">
+<p>
+It sets <code>failbit</code> if less than <code>n</code> chars read.
+</p>
+
+<p>
+Apparent alternatives are unsatisfactory:
+</p>
+
+<ol class="org-ol">
+<li><code>istream &amp; readsome(s, n)</code> isn't required to do any physical i/o;  instead reports what's available already in memory</li>
+<li><code>istream &amp; get(s, n, delim)</code> only reads up to first occurence of <code>delim</code>.</li>
+<li><code>istream &amp; get(s, n)</code> is just a convenience for <code>istream::get(s, n, '\n')</code>.</li>
+<li>could try writing a loop using combination of <code>istream::sync()</code>, <code>istream::readsome()</code>,  but that won't work if istream is actually unbuffered.</li>
+<li><code>istream s; s.rdbuf()-&gt;sgetn(s, n)</code> bypasses <code>istream</code> code for sentry object etc,  and can't set istream's <code>eofbit</code>.</li>
+</ol>
+
+<p>
+The following workaround is viable,  except that it will read one-byte-at-a-time if input alternates between bytes values <code>'\x0'</code> and <code>'\xff'</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #ffad29; font-weight: bold;">template</span>&lt;<span style="color: #ffad29; font-weight: bold;">typename</span> <span style="color: #34cae2;">istream</span>&gt;
+<span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span>
+<span style="color: #00ede1; font-weight: bold;">read_upto</span>(<span style="color: #34cae2;">istream</span> &amp; <span style="color: #dbdb95;">in</span>, <span style="color: #008b8b;">istream</span>::<span style="color: #34cae2;">char_type</span> * <span style="color: #dbdb95;">s</span>, <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">n</span>)
+{
+    <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">n_read</span> = 0;
+
+    <span style="color: #ffad29; font-weight: bold;">constexpr</span> <span style="color: #34cae2;">char</span> <span style="color: #dbdb95;">c_bits</span> = <span style="color: #e67128;">'\x0'</span>; <span style="color: #74af68;">/*</span><span style="color: #74af68;">any char value will do here</span><span style="color: #74af68;">*/</span>
+
+    <span style="color: #34cae2;">char</span> <span style="color: #dbdb95;">delim</span> = c_bits;
+
+    <span style="color: #ffad29; font-weight: bold;">for</span> (; in.good() &amp;&amp; !in.eof() &amp;&amp; (n_read &lt; n); delim = delim ^ <span style="color: #e67128;">'\xff'</span>) {
+        <span style="color: #74af68;">// </span><span style="color: #74af68;">each iteration alternates between {c_bits, ~c_bits} as delimiter,
+</span>        <span style="color: #74af68;">// </span><span style="color: #74af68;">so guarantees at least one byte progress every two iterations
+</span>
+        in.get(s, n, delim);
+
+        <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">nr</span> = in.gcount();
+        <span style="color: #ffad29; font-weight: bold;">if</span> (nr &gt; 0) {
+            n_read += nr;
+            s += nr;
+        }
+    }
+
+    <span style="color: #ffad29; font-weight: bold;">return</span> n_read;
+}
+</pre>
+</div>
+
+<p>
+I'd prefer to support this behavior (without the performance-accident-waiting-to-happen) directly from <code>istream</code>.
+</p>
+
+<p>
+Another strategy is to use <code>istream::peek()</code> to check for input and <code>istream::readsome()</code> to fetch it
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #ffad29; font-weight: bold;">template</span>&lt;<span style="color: #ffad29; font-weight: bold;">typename</span> <span style="color: #34cae2;">istream</span>&gt;
+<span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span>
+<span style="color: #00ede1; font-weight: bold;">read_upto</span>(<span style="color: #34cae2;">istream</span> &amp; <span style="color: #dbdb95;">in</span>, <span style="color: #008b8b;">istream</span>::<span style="color: #34cae2;">char_type</span> * <span style="color: #dbdb95;">s</span>, <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">n</span>)
+{
+    <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">n_read</span> = 0;
+
+    <span style="color: #ffad29; font-weight: bold;">while</span> (in.good() &amp;&amp; !in.eof() &amp;&amp; (n_read &lt; n))) {
+        in.peek();   <span style="color: #74af68;">/* </span><span style="color: #74af68;">ensure at least one byte available in streambuf</span><span style="color: #74af68;"> */</span>
+
+        <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">nr</span> = in.readsome(s + n_read, n - n_read);
+
+        n_read += nr;
+    }
+}
+</pre>
+</div>
+
+<p>
+This works if <code>streambuf</code> actually does buffering.   It may be very slow if <code>streambuf</code> is unbuffered.
+</p>
+
+<p>
+<code>istream::sentry</code> looks interesting,   but doesn't do any reading (except to possibly skip whitespace).
+</p>
+
+<p>
+gcc 12.2.0's implementation:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #ffad29; font-weight: bold;">template</span>&lt;<span style="color: #ffad29; font-weight: bold;">typename</span> <span style="color: #34cae2;">_CharT</span>, <span style="color: #ffad29; font-weight: bold;">typename</span> <span style="color: #34cae2;">_Traits</span>&gt;
+<span style="color: #008b8b;">basic_istream</span>&lt;<span style="color: #34cae2;">_CharT</span>, <span style="color: #34cae2;">_Traits</span>&gt;::<span style="color: #008b8b;">sentry</span>::
+<span style="color: #00ede1; font-weight: bold;">sentry</span>(<span style="color: #34cae2;">basic_istream</span>&lt;<span style="color: #34cae2;">_CharT</span>, <span style="color: #34cae2;">_Traits</span>&gt;&amp; <span style="color: #dbdb95;">__in</span>, <span style="color: #34cae2;">bool</span> <span style="color: #dbdb95;">__noskip</span>) : _M_ok(<span style="color: #008b8b;">false</span>)
+{
+    <span style="color: #008b8b;">ios_base</span>::<span style="color: #34cae2;">iostate</span> <span style="color: #dbdb95;">__err</span> = <span style="color: #008b8b;">ios_base</span>::goodbit;
+    <span style="color: #ffad29; font-weight: bold;">if</span> (__in.good())
+    {
+        __try
+        {
+            <span style="color: #ffad29; font-weight: bold;">if</span> (__in.tie())
+                __in.tie()-&gt;flush();
+            <span style="color: #ffad29; font-weight: bold;">if</span> (!__noskip &amp;&amp; <span style="color: #34cae2;">bool</span>(__in.flags() &amp; <span style="color: #008b8b;">ios_base</span>::skipws))
+            {
+                <span style="color: #ffad29; font-weight: bold;">const</span> <span style="color: #34cae2;">__int_type</span> <span style="color: #dbdb95;">__eof</span> = <span style="color: #008b8b;">traits_type</span>::eof();
+                <span style="color: #34cae2;">__streambuf_type</span>* <span style="color: #dbdb95;">__sb</span> = __in.rdbuf();
+                <span style="color: #34cae2;">__int_type</span> <span style="color: #dbdb95;">__c</span> = __sb-&gt;sgetc();
+
+                <span style="color: #ffad29; font-weight: bold;">const</span> <span style="color: #34cae2;">__ctype_type</span>&amp; <span style="color: #dbdb95;">__ct</span> = __check_facet(__in._M_ctype);
+                <span style="color: #ffad29; font-weight: bold;">while</span> (!<span style="color: #008b8b;">traits_type</span>::eq_int_type(__c, __eof)
+                       &amp;&amp; __ct.is(<span style="color: #008b8b;">ctype_base</span>::space,
+                                  <span style="color: #008b8b;">traits_type</span>::to_char_type(__c)))
+                    __c = __sb-&gt;snextc();
+
+                <span style="color: #74af68;">// </span><span style="color: #74af68;">_GLIBCXX_RESOLVE_LIB_DEFECTS
+</span>                <span style="color: #74af68;">// </span><span style="color: #74af68;">195. Should basic_istream::sentry's constructor ever
+</span>                <span style="color: #74af68;">// </span><span style="color: #74af68;">set eofbit?
+</span>                <span style="color: #ffad29; font-weight: bold;">if</span> (<span style="color: #008b8b;">traits_type</span>::eq_int_type(__c, __eof))
+                    __err |= <span style="color: #008b8b;">ios_base</span>::eofbit;                <span style="color: #74af68;">// </span><span style="color: #74af68;">(A)
+</span>            }
+        }
+        <span style="color: #dbdb95;">__catch</span>(<span style="color: #008b8b;">__cxxabiv1</span>::__forced_unwind&amp;)
+        {
+            __in._M_setstate(<span style="color: #008b8b;">ios_base</span>::badbit);
+            __throw_exception_again;
+        }
+        <span style="color: #34cae2;">__catch</span>(...)
+        { __in._M_setstate(<span style="color: #008b8b;">ios_base</span>::badbit); }
+    }
+
+    <span style="color: #ffad29; font-weight: bold;">if</span> (__in.good() &amp;&amp; __err == <span style="color: #008b8b;">ios_base</span>::goodbit)            <span style="color: #74af68;">// </span><span style="color: #74af68;">(B)
+</span>        _M_ok = <span style="color: #008b8b;">true</span>;
+    <span style="color: #ffad29; font-weight: bold;">else</span>
+    {
+        __err |= <span style="color: #008b8b;">ios_base</span>::failbit;                           <span style="color: #74af68;">// </span><span style="color: #74af68;">(C)
+</span>        __in.setstate(__err);
+    }
+}
+</pre>
+</div>
+
+<p>
+with
+</p>
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #ffad29; font-weight: bold;">template</span>&lt;<span style="color: #ffad29; font-weight: bold;">typename</span> <span style="color: #34cae2;">_Facet</span>&gt;
+<span style="color: #ffad29; font-weight: bold;">inline</span> <span style="color: #ffad29; font-weight: bold;">const</span> <span style="color: #34cae2;">_Facet</span>&amp;
+<span style="color: #00ede1; font-weight: bold;">__check_facet</span>(<span style="color: #ffad29; font-weight: bold;">const</span> <span style="color: #34cae2;">_Facet</span>* <span style="color: #dbdb95;">__f</span>)
+{
+    <span style="color: #ffad29; font-weight: bold;">if</span> (!__f)
+        __throw_bad_cast();
+    <span style="color: #ffad29; font-weight: bold;">return</span> *__f;
+}
+</pre>
+</div>
+
+<p>
+Note that if <code>__noskipws</code> is <code>false</code> and sentry encounters eof,
+then the line marked (A) executes &#x2013;&gt; test (B) fails &#x2013;&gt; (C) executes,
+flagging stream as in an 'unrecoverable error state'.
+The line (A) appears to be mandatory (in spite of the inline comment).
+</p>
+
+<p>
+From <a href="https://cppreference.com">https://cppreference.com</a>:
+</p>
+
+<blockquote>
+<p>
+explicit sentry( std::basic_istream&lt;CharT, Traits&gt;&amp; is, bool noskipws = false );
+</p>
+
+<p>
+Prepares the stream for formatted input.
+</p>
+
+<p>
+If is.good() is false, calls is.setstate(std::ios_base::failbit) and returns.
+Otherwise, if is.tie() is not a null pointer, calls is.tie()-&gt;flush() to synchronize the output sequence with external streams.
+This call can be suppressed if the put area of is.tie() is empty.
+The implementation may defer the call to flush() until a call of is.rdbuf()-&gt;underflow() occurs.
+If no such call occurs before the sentry object is destroyed, it may be eliminated entirely.
+</p>
+
+<p>
+If noskipws is zero and is.flags() &amp; std::ios_base::skipws is nonzero,
+the function extracts and discards all whitespace characters until the next available character is not a whitespace character
+(as determined by the currently imbued locale in is).
+If is.rdbuf()-&gt;sbumpc() or is.rdbuf()-&gt;sgetc() returns traits::eof(),
+the function calls setstate(std::ios_base::failbit | std::ios_base::eofbit)
+(which may throw std::ios_base::failure).
+</p>
+
+<p>
+Additional implementation-defined preparation may take place,
+which may call setstate(std::ios_base::failbit) (which may throw std::ios_base::failure).
+</p>
+
+<p>
+If after preparation is completed, is.good() == true, then any subsequent calls to operator bool will return true.
+</p>
+</blockquote>
+
+<p>
+However we can bypass this with <code>__noskip_</code> set to <code>true</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #ffad29; font-weight: bold;">template</span>&lt;<span style="color: #ffad29; font-weight: bold;">typename</span> <span style="color: #34cae2;">istream</span>&gt;
+<span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span>
+<span style="color: #00ede1; font-weight: bold;">read_upto</span>(<span style="color: #34cae2;">istream</span> &amp; <span style="color: #dbdb95;">in</span>, <span style="color: #008b8b;">istream</span>::<span style="color: #34cae2;">char_type</span> * <span style="color: #dbdb95;">s</span>, <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">n</span>)
+{
+    <span style="color: #008b8b;">istream</span>::<span style="color: #34cae2;">sentry</span> <span style="color: #dbdb95;">sentry</span>(in, <span style="color: #008b8b;">true</span> <span style="color: #74af68;">/*</span><span style="color: #74af68;">noskipws</span><span style="color: #74af68;">*/</span>);
+
+    <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">n_read</span> = 0;
+
+    <span style="color: #ffad29; font-weight: bold;">if</span> (sentry) {
+        <span style="color: #ffad29; font-weight: bold;">try</span> {
+            n_read = in.rdbuf()-&gt;sgetn(s, n);
+
+            in.setstate(<span style="color: #008b8b;">ios</span>::eofbit);
+        } <span style="color: #ffad29; font-weight: bold;">catch</span>(<span style="color: #008b8b;">__cxxabiv1</span>::__forced_unwind &amp;)  {
+            in.setstate(<span style="color: #008b8b;">ios</span>::failbit);
+            <span style="color: #ffad29; font-weight: bold;">throw</span>;
+        } <span style="color: #ffad29; font-weight: bold;">catch</span>(...) {
+            in.setstate(<span style="color: #008b8b;">ios</span>::failbit);
+        }
+    }
+
+    <span style="color: #ffad29; font-weight: bold;">return</span> n_read;
+}
+</pre>
+</div>
+
+<p>
+Another alternative would be to post-process <code>read()</code>, and clear <code>failbit</code> if set along with <code>eofbit</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #ffad29; font-weight: bold;">template</span>&lt;<span style="color: #ffad29; font-weight: bold;">typename</span> <span style="color: #34cae2;">istream</span>&gt;
+<span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span>
+<span style="color: #00ede1; font-weight: bold;">read_upto</span>(<span style="color: #34cae2;">istream</span> &amp; <span style="color: #dbdb95;">in</span>, <span style="color: #008b8b;">istream</span>::<span style="color: #34cae2;">char_type</span> * <span style="color: #dbdb95;">s</span>, <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">n</span>)
+    {
+        in.read(s, n);
+
+        <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">n_read</span> = in.gcount();
+
+        <span style="color: #ffad29; font-weight: bold;">if</span> ((n_read &lt; n) &amp;&amp; in.eof() &amp;&amp; in.fail()) {
+            <span style="color: #74af68;">/* </span><span style="color: #74af68;">clear failbit</span><span style="color: #74af68;"> */</span>
+            in.clear(in.rdstate() &amp; ~<span style="color: #008b8b;">std</span>::<span style="color: #008b8b;">ios</span>::failbit);
+        }
+
+        <span style="color: #ffad29; font-weight: bold;">return</span> n_read;
+    }
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org81b949f" class="outline-4">
+<h4 id="org81b949f"><span class="section-number-4">6.1.3.</span> Iostream get isn't monotonic</h4>
+<div class="outline-text-4" id="text-6-1-3">
+<p>
+<code>iostream.get(s, n, delim)</code> sets <code>failbit</code> if first character matches delim.
+</p>
+
+<p>
+This interferes with using <code>iostream.get</code> as building block for a longer i/o sequence;
+</p>
+
+<p>
+Tripped over this while writing <code>zstream.read_until</code> for my <code>cmake-examples</code> project:
+</p>
+
+<p>
+Instead of:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #00ede1; font-weight: bold;">read_until</span>(<span style="color: #34cae2;">char_type</span> * <span style="color: #dbdb95;">s</span>,
+                           <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">n</span>,
+                           <span style="color: #34cae2;">bool</span> <span style="color: #dbdb95;">check_delim_flag</span>,
+                           <span style="color: #34cae2;">char_type</span> <span style="color: #dbdb95;">delim</span>)
+    {
+        ...
+
+        <span style="color: #008b8b;">std</span>::streamsize nr = 0;
+
+        <span style="color: #ffad29; font-weight: bold;">this</span>-&gt;get(s, n, delim);
+        nr = <span style="color: #ffad29; font-weight: bold;">this</span>-&gt;gcount();
+
+        ...
+
+        <span style="color: #ffad29; font-weight: bold;">return</span> nr;
+    }
+</pre>
+</div>
+
+<p>
+We need carve-out:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #00ede1; font-weight: bold;">read_until</span>(<span style="color: #34cae2;">char_type</span> * <span style="color: #dbdb95;">s</span>,
+                           <span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">n</span>,
+                           <span style="color: #34cae2;">bool</span> <span style="color: #dbdb95;">check_delim_flag</span>,
+                           <span style="color: #34cae2;">char_type</span> <span style="color: #dbdb95;">delim</span>)
+    {
+        ...
+
+        <span style="color: #008b8b;">std</span>::streamsize nr = 0;
+
+        <span style="color: #34cae2;">int_type</span> <span style="color: #dbdb95;">nextc</span> = <span style="color: #ffad29; font-weight: bold;">this</span>-&gt;rdbuf_.sgetc();
+
+        <span style="color: #ffad29; font-weight: bold;">if</span> (nextc == <span style="color: #008b8b;">Traits</span>::to_int_type(delim)) {
+            nr = 0;
+        } <span style="color: #ffad29; font-weight: bold;">else</span> {
+            <span style="color: #ffad29; font-weight: bold;">this</span>-&gt;get(s, n, delim);
+
+            nr = <span style="color: #ffad29; font-weight: bold;">this</span>-&gt;gcount();
+        }
+
+        ...
+
+        <span style="color: #ffad29; font-weight: bold;">return</span> nr;
+    }
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org818d343" class="outline-4">
+<h4 id="org818d343"><span class="section-number-4">6.1.4.</span> Iostream position reporting isn't monotonic.</h4>
+<div class="outline-text-4" id="text-6-1-4">
+<p>
+<code>iostream.tellg()</code> and <code>iostream.putg()</code> report current position w.r.t.
+beginning of stream for input (get) and output (put) respectively.
+</p>
+
+<p>
+Unfortunately,  they are not monotonic,  and code like this is subtly broken:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #34cae2;">istream</span> &amp; <span style="color: #dbdb95;">input</span> = ...; <span style="color: #74af68;">// </span><span style="color: #74af68;">some binary stream
+</span><span style="color: #ffad29; font-weight: bold;">struct</span> <span style="color: #34cae2;">foo</span> <span style="color: #dbdb95;">part1</span>;
+<span style="color: #ffad29; font-weight: bold;">struct</span> <span style="color: #34cae2;">foo</span> <span style="color: #dbdb95;">part2</span>;
+
+<span style="color: #008b8b;">istream</span>::<span style="color: #34cae2;">pos_type</span> <span style="color: #dbdb95;">p0</span> = input.tellg();
+
+input &gt;&gt; part1 &gt;&gt; part2;
+
+<span style="color: #008b8b;">istream</span>::<span style="color: #34cae2;">pos_type</span> <span style="color: #dbdb95;">p1</span> = input.tellg();
+
+<span style="color: #008b8b;">istream</span>::<span style="color: #34cae2;">pos_type</span> <span style="color: #dbdb95;">n_read</span> = p1 - p0;
+</pre>
+</div>
+
+<p>
+If stream reaches end-of-file at the end of <code>part2</code>,  then in fact reading was successful,
+but <code>p1</code> will be <code>-1</code>,  and <code>n_read</code> will be nonsense.
+</p>
+
+<p>
+Presumably this is why <code>iostream.gcount()</code> exists:  otherwise there'd be no way to
+determine how many bytes/chars a preceding read obtained.
+</p>
+
+<p>
+A correct (but awkward and error-prone) implementation:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #34cae2;">istream</span> &amp; <span style="color: #dbdb95;">input</span> = ...;
+<span style="color: #ffad29; font-weight: bold;">struct</span> <span style="color: #34cae2;">foo</span> <span style="color: #dbdb95;">part1</span>;
+<span style="color: #ffad29; font-weight: bold;">struct</span> <span style="color: #34cae2;">foo</span> <span style="color: #dbdb95;">part2</span>;
+
+<span style="color: #008b8b;">std</span>::<span style="color: #34cae2;">streamsize</span> <span style="color: #dbdb95;">n_read</span> = 0;
+
+input &gt;&gt; part1;
+n_read += input.gcount();
+
+input &gt;&gt; part2;
+n_read += input.gcount();
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc3895e0" class="outline-4">
+<h4 id="orgc3895e0"><span class="section-number-4">6.1.5.</span> Streambuf not responsible for eofbit.</h4>
+<div class="outline-text-4" id="text-6-1-5">
+<p>
+<code>istream.eofbit</code> probably belongs in <code>streambuf</code>.
+<code>streambuf</code> has to recognize end-of-file anyway,  since it's responsible for physical I/O.
+It might as well record and report it.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfcd4047" class="outline-4">
+<h4 id="orgfcd4047"><span class="section-number-4">6.1.6.</span> Stream position reporting from streambuf</h4>
+<div class="outline-text-4" id="text-6-1-6">
+<p>
+It would be simpler for <code>streambuf</code> to support <code>istream::tellg()</code> and <code>istream::tellp()</code> directly instead of relying on <code>streambuf::seekoff()</code>.
+Argument here is that even for a non-seekable stream buffer,  it still makes sense to support <code>tellg()</code> and <code>tellp()</code>.
+This requires streambuf author to implement at least a restricted version of <code>streambuf::seekoff()</code>,
+which muddies the waters.
+</p>
+
+<p>
+(ed: switching to article-based format)
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd6a159b" class="outline-2">
+<h2 id="orgd6a159b"><span class="section-number-2">7.</span> zlib</h2>
+<div class="outline-text-2" id="text-7">
 <ul class="org-ul">
-<li>(Jan 2024) <a href="../articles/2024/01/zstream-isnt-moveable.html">zlib z_stream cannot be moved</a></li>
+<li>(Jan? 2024) <a href="../articles/2024/01/zstream-isnt-moveable.html">zlib z_stream cannot be moved</a></li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-org16db22f" class="outline-2">
-<h2 id="org16db22f"><span class="section-number-2">7.</span> gcc</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-org65c1e50" class="outline-2">
+<h2 id="org65c1e50"><span class="section-number-2">8.</span> gcc</h2>
+<div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li>(June 2024) <a href="../articles/2024/06/gcc-builtin-defines.html">get builtin preprocessor defines from gcc</a></li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-orge7c63fe" class="outline-2">
-<h2 id="orge7c63fe"><span class="section-number-2">8.</span> llvm</h2>
-<div class="outline-text-2" id="text-8">
+<div id="outline-container-org3c7635d" class="outline-2">
+<h2 id="org3c7635d"><span class="section-number-2">9.</span> llvm</h2>
+<div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li>(June 2024) <a href="../articles/2024/06/injecting-symbols-into-llvm-jit.html">injecting symbols into llvm jit</a></li>
 <li>(June 2024) <a href="../articles/2024/06/llvm-cpp-function-types.html">alloca and function pointers</a></li>
@@ -123,7 +1086,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-09-08 Sun 18:49</p>
+<p class="date">Created: 2026-05-24 Sun 18:48</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

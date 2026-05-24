@@ -1,0 +1,693 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-05-24 Sun 18:48 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>[23may2026] setting up forgjo runner on a cloud host</title>
+<meta name="author" content="Roland Conybeare" />
+<meta name="description" content="Setting up forgejo runner on a cloud host" />
+<meta name="keywords" content="fontconfig nixpkgs nix-env" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style>pre.src{background:#343131;color:white;} </style>
+<style>pre.example{background:#343131;color:white;} </style>
+<style> #content{max-width:1800px;}</style>
+<style> p{max-width:1800px;}</style>
+<style> li{max-width:1800px;}</style>
+<link rel="shortcut icon" type="image/x-icon" href="/web/img/favicon.ico" />
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href=""> UP </a>
+ |
+ <a accesskey="H" href="../../../index.html"> HOME </a>
+</div><div id="content" class="content">
+<h1 class="title">[23may2026] setting up forgjo runner on a cloud host</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org2b272fb">1. Problem</a></li>
+<li><a href="#org47566ee">2. Plan</a>
+<ul>
+<li><a href="#org31d026a">2.1. Forgejo Runner</a>
+<ul>
+<li><a href="#org85cc9df">2.1.1. Runtime environment for forgejo runner</a></li>
+<li><a href="#orgad008f5">2.1.2. Add runner to forgejo instance</a></li>
+<li><a href="#orgfa342d7">2.1.3. Configuration</a></li>
+<li><a href="#org2a6c4ba">2.1.4. Add user</a></li>
+<li><a href="#org4768980">2.1.5. Systemd setup (forgejo-runner)</a></li>
+<li><a href="#orgab8b105">2.1.6. Runtime environment for forgejo</a></li>
+<li><a href="#orgf1c4094">2.1.7. Systemd setup (Forgejo)</a></li>
+<li><a href="#orgaa37f07">2.1.8. Verify status</a></li>
+</ul>
+</li>
+<li><a href="#org8977634">2.2. Proxy Magic</a>
+<ul>
+<li><a href="#orgcaa199f">2.2.1. Certificates</a></li>
+<li><a href="#org9ed22b4">2.2.2. Nginx user</a></li>
+<li><a href="#orga57748d">2.2.3. Nginx</a></li>
+<li><a href="#org1908dc0">2.2.4. Runtime environment for nginx</a></li>
+<li><a href="#org9e71e78">2.2.5. Systemd setup (Nginx)</a></li>
+</ul>
+</li>
+<li><a href="#orge304d0f">2.3. Enable-on-boot</a></li>
+<li><a href="#orge933efa">2.4. Testing</a>
+<ul>
+<li><a href="#org582e3a1">2.4.1. Forgejo install (web)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2b272fb" class="outline-2">
+<h2 id="org2b272fb"><span class="section-number-2">1.</span> Problem</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Now that git hosting is up, would like to also run github actions.
+</p>
+
+<p>
+One advantage is we can setup a host runner so that we share the nix store
+between invocations
+</p>
+</div>
+</div>
+<div id="outline-container-org47566ee" class="outline-2">
+<h2 id="org47566ee"><span class="section-number-2">2.</span> Plan</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org31d026a" class="outline-3">
+<h3 id="org31d026a"><span class="section-number-3">2.1.</span> Forgejo Runner</h3>
+<div class="outline-text-3" id="text-2-1">
+</div>
+<div id="outline-container-org85cc9df" class="outline-4">
+<h4 id="org85cc9df"><span class="section-number-4">2.1.1.</span> Runtime environment for forgejo runner</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+We want to use nix for this:
+</p>
+
+<pre class="example" id="orge2e817c">
+# /etc/forgejo-runner/nix/flake.nix
+
+{
+  description = "Forgejo runner environment";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
+  };
+
+  outputs = { self, nixpkgs, flake-utils }:
+    flake-utils.lib.eachDefaultSystem (system :
+      let pkgs = nixpkgs.legacyPackages.${system};
+      in {
+        packages.default = pkgs.forgejo-runner;
+        apps.forgejo-runner = {
+          type = "app";
+          program = "${pkgs.forgejo-runner}/bin/forgejo-runner";
+        };
+        devShells.default = pkgs.mkShell {
+          buildInputs = [ pkgs.forgejo-runner ];
+        };
+      }
+    );
+}
+
+</pre>
+</div>
+</div>
+<div id="outline-container-orgad008f5" class="outline-4">
+<h4 id="orgad008f5"><span class="section-number-4">2.1.2.</span> Add runner to forgejo instance</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<p>
+Create runner on <a href="https://conybeare.us/git/admin/actions/runners">https://conybeare.us/git/admin/actions/runners</a>.
+There's a "create new runner" button.
+</p>
+
+<p>
+We call the new runner <code>vpn1-host</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfa342d7" class="outline-4">
+<h4 id="orgfa342d7"><span class="section-number-4">2.1.3.</span> Configuration</h4>
+<div class="outline-text-4" id="text-2-1-3">
+<p>
+Add config =/etc/forgejo-runner/config.yaml
+</p>
+
+<pre class="example" id="orgb26ab2e">
+
+server:
+  connections:
+    host-vpn1:
+      url: https://conybeare.us/git/
+      uuid: 16f1f804-2f00-43f2-8c40-9ce122fd3000
+      token: 9999999999999999999999999999999999999999
+
+runner:
+  labels:
+    - host
+  executor: host
+
+</pre>
+
+<p>
+Verify by starting runner manually
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ sudo (<span style="color: #23d7d7;">cd</span> /var/lib/forgejo-runner/nix &amp;&amp; nix run . -- daemon --config /etc/forgejo-runner/config.yaml)
+INFO[2026-05-23T18:26:30Z] Starting runner daemon
+INFO[2026-05-23T18:26:30Z] runner: vpn1-host, with version: v12.10.1, with labels: [host], ephemeral: false, declared successfully
+INFO[2026-05-23T18:26:30Z] [poller] launched
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2a6c4ba" class="outline-4">
+<h4 id="org2a6c4ba"><span class="section-number-4">2.1.4.</span> Add user</h4>
+<div class="outline-text-4" id="text-2-1-4">
+<div class="org-src-container">
+<pre class="src src-nil">$ sudo useradd --system --shell /bin/bash --home /var/lib/forgejo-runner forgejo-runner
+$ mkdir -p /var/lib/forgejo-runner
+$ chown -R forgejo-runner:forgejo-runner /var/lib/forgejo-runner
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org4768980" class="outline-4">
+<h4 id="org4768980"><span class="section-number-4">2.1.5.</span> Systemd setup (forgejo-runner)</h4>
+<div class="outline-text-4" id="text-2-1-5">
+<p>
+Create <code>/etc/systemd/system/forgejo-runner.service</code>:
+</p>
+
+<pre class="example" id="org33bd028">
+
+[Unit]
+Description=Forgejo Runner
+After=network.target forgejo.service
+
+[Service]
+Type=simple
+User=forgejo
+WorkingDirectory=/etc/forgejo-runner
+ExecStart=/nix/var/nix/profiles/default/bin/nix run \
+  /etc/forgejo-runner/nix#forgejo-runner -- daemon --config /etc/forgejo-runner/config.yaml
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
+
+</pre>
+
+<p>
+################################################################
+</p>
+
+<p>
+Add user
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ sudo useradd --system --shell /bin/false --home /var/lib/forgejo forgejo
+$ sudo mkdir -p /var/lib/forgejo /var/log/forgejo
+$ sudo mkdir -p /var/lib/forgejo/lfs
+$ sudo mkdir -p /var/lib/forgejo/gitea-repositories
+$ sudo chown -R forgejo:forgejo /var/lib/forgejo /var/log/foregejo
+</pre>
+</div>
+
+<p>
+Forgejo setup
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ sudo mkdir -p /etc/forgejo
+</pre>
+</div>
+
+<p>
+create <code>/etc/foregejo/app.ini</code>:
+</p>
+
+<pre class="example" id="org24e73ec">
+
+[server]
+ROOT_URL = https://conybeare.us/git
+APP_DATA_PATH = /var/lib/forgejo
+HTTP_ADDR = 127.0.0.1
+HTTP_PORT = 3000
+START_SSH_SERVER = true
+SSH_LISTEN_PORT = 2222
+SSH_USER = forgejo
+SSH_PORT = 2222
+
+[database]
+DB_TYPE = sqlite3
+PATH = /var/lib/forgejo/forgejo.db
+
+[repository]
+ROOT = /var/lib/forgejo/gitea-repositories
+
+[ui]
+DEFAULT_THEME = forgejo-dark
+INSTANCE_SLOGAN = Mad Science, all the way down
+
+[lfs]
+PATH = /var/lib/forgejo/lfs
+STORAGE_TYPE = local
+
+[log]
+ROOT_PATH = /var/log/forgejo
+MODE = file
+LEVEL = info
+
+[mailer]
+ENABLED = false
+
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-sh">
+$ sudo chown forgejo:forgejo /etc/forgejo/app.ini
+$ sudo chmod 600 /etc/forgejo/app.ini
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgab8b105" class="outline-4">
+<h4 id="orgab8b105"><span class="section-number-4">2.1.6.</span> Runtime environment for forgejo</h4>
+<div class="outline-text-4" id="text-2-1-6">
+<p>
+We want to use nix for this:
+</p>
+
+<pre class="example" id="org96d94ec">
+# /etc/forgejo/nix/flake.nix
+
+{
+  description = "Forgejo environment";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
+  };
+
+  outputs = { self, nixpkgs, flake-utils }:
+    flake-utils.lib.eachDefaultSystem (system :
+      let pkgs = nixpkgs.legacyPackages.${system};
+      in {
+        packages.default = pkgs.forgejo;
+        apps.forgejo = {
+          type = "app";
+          program = "${pkgs.forgejo}/bin/forgejo";
+        };
+        devShells.default = pkgs.mkShell {
+          buildInputs = [ pkgs.forgejo ];
+        };
+      }
+    );
+}
+
+</pre>
+
+<p>
+To verify syntax (will also fetch all the deps)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">
+$ nix flake show /etc/forgejo/nix
+$ ls /etc/forgejo/nix/flake.lock   <span style="color: #74af68;"># </span><span style="color: #74af68;">now pinned
+</span>
+</pre>
+</div>
+
+<p>
+Also turns out this environment applies to systemd starting foregejo.
+This doesn't get inherited by CI jobs.
+</p>
+
+<p>
+To make the second part easier, create a profile in the runner account
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">
+$ sudo -u forgejo-runner bash
+$ nix profile install nixpkgs#nodejs
+...
+$ ls /var/lib/forgego-runner/.nix-profile/bin
+corepack  node  npm  npx
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf1c4094" class="outline-4">
+<h4 id="orgf1c4094"><span class="section-number-4">2.1.7.</span> Systemd setup (Forgejo)</h4>
+<div class="outline-text-4" id="text-2-1-7">
+<pre class="example" id="org52fd958">
+
+[Unit]
+Description=Forgejo
+After=network.target
+
+[Service]
+Type=simple
+User=forgejo
+Group=forgejo
+WorkingDirectory=/var/lib/forgejo
+ExecStart=/nix/var/nix/profiles/default/bin/nix run /etc/forgejo/nix#forgejo -- -c /etc/forgejo/app.ini web
+Restart=always
+RestartSec=5
+
+Environment="HOME=/var/lib/forgejo"
+
+[Install]
+WantedBy=multi-user.target
+
+</pre>
+
+<p>
+then setup
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">
+$ sudo systemctl daemon-reload
+$ sudo systemctl enable forgejo
+$ sudo systemctl start forgejo
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgaa37f07" class="outline-4">
+<h4 id="orgaa37f07"><span class="section-number-4">2.1.8.</span> Verify status</h4>
+<div class="outline-text-4" id="text-2-1-8">
+<div class="org-src-container">
+<pre class="src src-sh">
+$ sudo systemctl status forgejo
+$ sudo journalctl -u forgejo -n 3
+May 18 02:16:21 vpn1 nix[1043231]: Listen: http://127.0.0.1:3000
+May 18 02:16:21 vpn1 nix[1043231]: AppURL(ROOT_URL): https://conybeare.us/
+May 18 02:16:21 vpn1 nix[1043231]: Starting new Web server: tcp:127.0.0.1:3000 on PID: 1043231
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org8977634" class="outline-3">
+<h3 id="org8977634"><span class="section-number-3">2.2.</span> Proxy Magic</h3>
+<div class="outline-text-3" id="text-2-2">
+</div>
+<div id="outline-container-orgcaa199f" class="outline-4">
+<h4 id="orgcaa199f"><span class="section-number-4">2.2.1.</span> Certificates</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<div class="org-src-container">
+<pre class="src src-sh">
+$ sudo /nix/var/nix/profiles/default/bin/nix run nixpkgs#certbot -- certonly --standalone -d conybeare.us
+$ tree /etc/letsencrypt
+/etc/letsencrypt/
+&#9500;&#9472;&#9472; accounts  [error opening dir]
+&#9500;&#9472;&#9472; archive  [error opening dir]
+&#9500;&#9472;&#9472; live  [error opening dir]
+&#9500;&#9472;&#9472; renewal
+&#9474;&#160;&#160; &#9492;&#9472;&#9472; conybeare.us.conf
+&#9492;&#9472;&#9472; renewal-hooks
+    &#9500;&#9472;&#9472; deploy
+    &#9500;&#9472;&#9472; post
+    &#9492;&#9472;&#9472; pre
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org9ed22b4" class="outline-4">
+<h4 id="org9ed22b4"><span class="section-number-4">2.2.2.</span> Nginx user</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+Add user
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ sudo useradd --system --shell /bin/false --home /var/cache/nginx nginx
+</pre>
+</div>
+
+<p>
+Also working directories
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ sudo mkdir -p /var/cache/nginx
+$ sudo chown nginx:nginx /var/cache/nginx
+$ sudo chmod 755 /var/cache/nginx
+
+$ sudo mkdir -p /var/log/nginx
+$ sudo chown nginx:nginx /var/log/nginx
+$ sudo chmod 755 /var/log/nginx
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orga57748d" class="outline-4">
+<h4 id="orga57748d"><span class="section-number-4">2.2.3.</span> Nginx</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+<code>/etc/nginx/nginx.conf</code>:
+</p>
+
+<pre class="example" id="org09b5ec6">
+
+events { }
+
+http {
+    server {
+        listen 80;
+        server_name conybeare.us:
+        return 301 https://$server_name$request_uri;
+    }
+
+    server {
+        listen 443 ssl http2;
+        server_name conybeare.us;
+
+        ssl_certificate /etc/letsencrypt/live/conybeare.us/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/conybeare.us/privkey.pem;
+
+        location /git/ {
+            proxy_pass http://127.0.0.1:3000/;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+    }
+}
+
+</pre>
+</div>
+</div>
+<div id="outline-container-org1908dc0" class="outline-4">
+<h4 id="org1908dc0"><span class="section-number-4">2.2.4.</span> Runtime environment for nginx</h4>
+<div class="outline-text-4" id="text-2-2-4">
+<p>
+Using nix again:
+</p>
+
+<p>
+<code>/etc/nginx/nix/flake.nix</code>:
+</p>
+
+<pre class="example" id="org1e02364">
+
+{
+  description = "Nginx environment";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
+  };
+
+  outputs = { self, nixpkgs, flake-utils }:
+    flake-utils.lib.eachDefaultSystem (system:
+      let pkgs = nixpkgs.legacyPackages.${system};
+      in {
+        packages.default = pkgs.nginx;
+        apps.nginx = {
+          type = "app";
+          program = "${pkgs.nginx}/bin/nginx";
+        };
+      }
+    );
+}
+
+</pre>
+
+<p>
+To verify syntax (and fetch deps)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">
+$ nix flake show /etc/nginx/nix
+$ ls /etc/nginx/nix/flake.lock
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org9e71e78" class="outline-4">
+<h4 id="org9e71e78"><span class="section-number-4">2.2.5.</span> Systemd setup (Nginx)</h4>
+<div class="outline-text-4" id="text-2-2-5">
+<p>
+<code>/etc/systemd/system/nginx.service</code>:
+</p>
+
+<pre class="example" id="orgc465230">
+
+[Unit]
+Description=Nginx
+After=network.target
+
+[Service]
+Type=forking
+# User=nginx # start as root, bind to ports 80/443; then drop to nginx user for workers
+ExecStart=/nix/var/nix/profiles/default/bin/nix run /etc/nginx/nix#nginx -- -c /etc/nginx/nginx.conf
+ExecReload=/nix/var/nix/profiles/default/bin/nix run /etc/nginx/nix#nginx -- -c /etc/nginx/nginx.conf -s reload
+ExecStop=/nix/var/nix/profiles/default/bin/nix run /etc/nginx/nix#nginx -- -s quit
+
+[Install]
+WantedBy=multi-user.target
+
+</pre>
+
+<p>
+then ssetup
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">
+$ sudo systemctl daemon-reload
+$ sudo systemctl restart nginx
+$ sudo systemctl status nginx
+
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ systemctl status nginx
+&#9679; nginx.service - Nginx
+     Loaded: loaded (/etc/systemd/system/nginx.service; disabled; preset: enabled)
+     Active: active (running) since Mon 2026-05-18 04:13:51 UTC; 4s ago
+    Process: 1045381 <span style="color: #dbdb95;">ExecStart</span>=/nix/var/nix/profiles/default/bin/nix run /etc/nginx/nix#nginx -- -c /etc/nginx/nginx.conf (<span style="color: #dbdb95;">code</span>=exited, <span style="color: #dbdb95;">status</span>=0/SUCCESS)
+   Main PID: 1045385 (nginx)
+      Tasks: 2 (limit: 9489)
+     Memory: 2.9M (peak: 145.4M)
+        CPU: 1.281s
+     CGroup: /system.slice/nginx.service
+             &#9500;&#9472;1045385 <span style="color: #e67128;">"nginx: master process /nix/store/6xi5jqgw6mqdvzk36285ywc17wnx1548-nginx-1.30.1/bin/nginx -c /etc/nginx/nginx.conf"</span>
+             &#9492;&#9472;1045386 <span style="color: #e67128;">"nginx: worker process"</span>
+
+May 18 04:13:50 vpn1 systemd[1]: Starting nginx.service - Nginx...
+May 18 04:13:51 vpn1 nix[1045381]: nginx: [warn] the <span style="color: #e67128;">"listen ... http2"</span> directive is deprecated, use the <span style="color: #e67128;">"http2"</span> directive instead<span style="color: #ffad29; font-weight: bold;"> in</span> /etc/nginx/nginx.conf:11
+May 18 04:13:51 vpn1 systemd[1]: Started nginx.service - Nginx.
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orge304d0f" class="outline-3">
+<h3 id="orge304d0f"><span class="section-number-3">2.3.</span> Enable-on-boot</h3>
+<div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+<pre class="src src-sh">$ sudo systemctl enable nginx forgejo
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge933efa" class="outline-3">
+<h3 id="orge933efa"><span class="section-number-3">2.4.</span> Testing</h3>
+<div class="outline-text-3" id="text-2-4">
+<div class="org-src-container">
+<pre class="src src-sh">
+$ curl  https://conybeare.us
+&lt;!DOCTYPE html&gt;
+&lt;html <span style="color: #dbdb95;">lang</span>=<span style="color: #e67128;">"en-US"</span> data-theme=<span style="color: #e67128;">"forgejo-auto"</span>&gt;
+...
+</pre>
+</div>
+</div>
+<div id="outline-container-org582e3a1" class="outline-4">
+<h4 id="org582e3a1"><span class="section-number-4">2.4.1.</span> Forgejo install (web)</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<p>
+Now setup forgejo by visiting <a href="https://conybeare.us">https://conybeare.us</a>
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Instance Slogan</td>
+<td class="org-left">It's mad science, all the way down</td>
+</tr>
+
+<tr>
+<td class="org-left">Repository root path</td>
+<td class="org-left"><code>/var/lib/forgejo/gitea-repositories</code></td>
+</tr>
+
+<tr>
+<td class="org-left">Git LFS root path</td>
+<td class="org-left"><code>/var/lib/forgejo/lfs</code></td>
+</tr>
+
+<tr>
+<td class="org-left">Log path</td>
+<td class="org-left"><code>/var/log/forgejo</code></td>
+</tr>
+
+<tr>
+<td class="org-left">Administrator Account</td>
+<td class="org-left">username, email, &#x2026;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Roland Conybeare</p>
+<p class="date">Created: 2026-05-24 Sun 18:48</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

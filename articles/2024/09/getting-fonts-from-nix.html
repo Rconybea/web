@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-09-08 Sun 18:01 -->
+<!-- 2026-05-24 Sun 18:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>[9sep2024] fontconfig+nix: getting fonts via nix</title>
@@ -35,21 +35,20 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org6ebb014">1. Problem</a></li>
-<li><a href="#orgff7f9db">2. Strategy</a></li>
-<li><a href="#org81fdcf3">3. Investigation</a></li>
-<li><a href="#orgf533bfa">4. Solution</a>
+<li><a href="#org81fac81">1. Problem</a></li>
+<li><a href="#org53be685">2. Strategy</a></li>
+<li><a href="#orgfaf9328">3. Investigation</a></li>
+<li><a href="#org0e67d1d">4. Solution</a>
 <ul>
-<li><a href="#org9a99fe5">4.1. Add fontconfig dir</a></li>
-<li><a href="#org57310ff">4.2. Tweak .emacs</a></li>
+<li><a href="#orga747d5b">4.1. Add fontconfig dir</a></li>
+<li><a href="#orgbc1f5b1">4.2. Tweak .emacs</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-org6ebb014" class="outline-2">
-<h2 id="org6ebb014"><span class="section-number-2">1.</span> Problem</h2>
+<div id="outline-container-org81fac81" class="outline-2">
+<h2 id="org81fac81"><span class="section-number-2">1.</span> Problem</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Setting up new desktop PC running windows 11 + WSL2 + nix.
@@ -72,15 +71,14 @@ into my WSL2/ubuntu account setup.
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgff7f9db" class="outline-2">
-<h2 id="orgff7f9db"><span class="section-number-2">2.</span> Strategy</h2>
+<div id="outline-container-org53be685" class="outline-2">
+<h2 id="org53be685"><span class="section-number-2">2.</span> Strategy</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Want to use something like
 </p>
 
-<pre class="example" id="orgef895db">
+<pre class="example" id="orga365a2d">
 nix-env -i inconsolata-lgc
 </pre>
 
@@ -90,28 +88,26 @@ but need something more to get ubuntu to see them.
 </p>
 </div>
 </div>
-
-<div id="outline-container-org81fdcf3" class="outline-2">
-<h2 id="org81fdcf3"><span class="section-number-2">3.</span> Investigation</h2>
+<div id="outline-container-orgfaf9328" class="outline-2">
+<h2 id="orgfaf9328"><span class="section-number-2">3.</span> Investigation</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Arch linux wiki <a href="https://wiki.archlinux.org/title/Font_configuration">https://wiki.archlinux.org/title/Font_configuration</a> has good writeup on fonts.
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgf533bfa" class="outline-2">
-<h2 id="orgf533bfa"><span class="section-number-2">4.</span> Solution</h2>
+<div id="outline-container-org0e67d1d" class="outline-2">
+<h2 id="org0e67d1d"><span class="section-number-2">4.</span> Solution</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org9a99fe5" class="outline-3">
-<h3 id="org9a99fe5"><span class="section-number-3">4.1.</span> Add fontconfig dir</h3>
+<div id="outline-container-orga747d5b" class="outline-3">
+<h3 id="orga747d5b"><span class="section-number-3">4.1.</span> Add fontconfig dir</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Need to provide <code>.config/fontconfig/fonts.conf</code> :
 </p>
 
-<pre class="example" id="org3cbacd7">
+<pre class="example" id="orgcc478f8">
 &lt;?xml version="1.0"?&gt;
 &lt;!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd"&gt;
 
@@ -136,9 +132,8 @@ Need to provide <code>.config/fontconfig/fonts.conf</code> :
 </p>
 </div>
 </div>
-
-<div id="outline-container-org57310ff" class="outline-3">
-<h3 id="org57310ff"><span class="section-number-3">4.2.</span> Tweak .emacs</h3>
+<div id="outline-container-orgbc1f5b1" class="outline-3">
+<h3 id="orgbc1f5b1"><span class="section-number-3">4.2.</span> Tweak .emacs</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 With this change,  add to <code>~/.emacs</code>:
@@ -158,7 +153,7 @@ That's all!
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-09-08 Sun 18:01</p>
+<p class="date">Created: 2026-05-24 Sun 18:48</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

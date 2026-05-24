@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-09-08 Sun 18:01 -->
+<!-- 2026-05-24 Sun 18:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>[2023] wsl update wedges x11 apps</title>
@@ -35,35 +35,32 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org1a3b3ae">1. TL;DR</a></li>
-<li><a href="#org4da287e">2. Setup</a></li>
-<li><a href="#orga94204b">3. Problem</a></li>
-<li><a href="#orgaad1a6f">4. Details</a></li>
-<li><a href="#orgea89a41">5. Solution</a></li>
+<li><a href="#orga31dd4e">1. TL;DR</a></li>
+<li><a href="#orge3d0463">2. Setup</a></li>
+<li><a href="#orgfc8e10c">3. Problem</a></li>
+<li><a href="#org0481203">4. Details</a></li>
+<li><a href="#orgcead001">5. Solution</a></li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-org1a3b3ae" class="outline-2">
-<h2 id="org1a3b3ae"><span class="section-number-2">1.</span> TL;DR</h2>
+<div id="outline-container-orga31dd4e" class="outline-2">
+<h2 id="orga31dd4e"><span class="section-number-2">1.</span> TL;DR</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 x11 linux apps wedged after WSL update 2.0.9.0
 </p>
 </div>
 </div>
-
-<div id="outline-container-org4da287e" class="outline-2">
-<h2 id="org4da287e"><span class="section-number-2">2.</span> Setup</h2>
+<div id="outline-container-orge3d0463" class="outline-2">
+<h2 id="orge3d0463"><span class="section-number-2">2.</span> Setup</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>PC rebooted overnight;   found it had installed WSL 2.0.9.0</li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-orga94204b" class="outline-2">
-<h2 id="orga94204b"><span class="section-number-2">3.</span> Problem</h2>
+<div id="outline-container-orgfc8e10c" class="outline-2">
+<h2 id="orgfc8e10c"><span class="section-number-2">3.</span> Problem</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>linux x11 apps unusable;  all seem to draw trash on screen in response to mouse events.
@@ -74,9 +71,8 @@ x11 linux apps wedged after WSL update 2.0.9.0
 </ul>
 </div>
 </div>
-
-<div id="outline-container-orgaad1a6f" class="outline-2">
-<h2 id="orgaad1a6f"><span class="section-number-2">4.</span> Details</h2>
+<div id="outline-container-org0481203" class="outline-2">
+<h2 id="org0481203"><span class="section-number-2">4.</span> Details</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>can see update history:
@@ -87,16 +83,15 @@ x11 linux apps wedged after WSL update 2.0.9.0
 </ul>
 </div>
 </div>
-
-<div id="outline-container-orgea89a41" class="outline-2">
-<h2 id="orgea89a41"><span class="section-number-2">5.</span> Solution</h2>
+<div id="outline-container-orgcead001" class="outline-2">
+<h2 id="orgcead001"><span class="section-number-2">5.</span> Solution</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><p>
 force WSL vm to shutdown + restart
 </p>
 
-<pre class="example" id="orgd8d5df8">
+<pre class="example" id="org7865ed8">
 PS C:\Users\Rcony&gt; wsl --shutdown
 PS C:\Users\Rcony&gt; wsl --user roland
 </pre>
@@ -110,7 +105,7 @@ Note: presumably wsl VM state is preserved across reboot,   since rebooting PC h
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-09-08 Sun 18:01</p>
+<p class="date">Created: 2026-05-24 Sun 18:48</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

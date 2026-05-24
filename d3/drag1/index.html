@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-09-08 Sun 18:01 -->
+<!-- 2026-05-24 Sun 18:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>d3 draggable object example #1 &#x2013; standalone</title>
 <meta name="author" content="Roland Conybeare" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -226,21 +226,20 @@ org_html_manager.setup();  // activate after the parameters are set
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org72dcb2e">1. Introduction</a></li>
-<li><a href="#orga157934">2. Try it here</a></li>
-<li><a href="#orge07eaf1">3. Prerequisites</a></li>
-<li><a href="#orgb928a69">4. Procedure</a>
+<li><a href="#orgd58e8fd">1. Introduction</a></li>
+<li><a href="#orgbacdd1d">2. Try it here</a></li>
+<li><a href="#orgbcc4dd8">3. Prerequisites</a></li>
+<li><a href="#orgf51b6ca">4. Procedure</a>
 <ul>
-<li><a href="#orgc31a7ec">4.1. Create skeleton html file</a></li>
-<li><a href="#orgacaf9e1">4.2. Create javascript file drag-example.js</a></li>
+<li><a href="#org8555b1d">4.1. Create skeleton html file</a></li>
+<li><a href="#orgfa62cd8">4.2. Create javascript file drag-example.js</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-org72dcb2e" class="outline-2">
-<h2 id="org72dcb2e"><span class="section-number-2">1.</span> Introduction</h2>
+<div id="outline-container-orgd58e8fd" class="outline-2">
+<h2 id="orgd58e8fd"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Creating a draggable object in d3.
@@ -253,18 +252,16 @@ Followed guide originally here (sadly now-broken link):
 </ul>
 </div>
 </div>
-
-<div id="outline-container-orga157934" class="outline-2">
-<h2 id="orga157934"><span class="section-number-2">2.</span> Try it here</h2>
+<div id="outline-container-orgbacdd1d" class="outline-2">
+<h2 id="orgbacdd1d"><span class="section-number-2">2.</span> Try it here</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li><a href="http:drag-example.html">http:drag-example.html</a></li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-orge07eaf1" class="outline-2">
-<h2 id="orge07eaf1"><span class="section-number-2">3.</span> Prerequisites</h2>
+<div id="outline-container-orgbcc4dd8" class="outline-2">
+<h2 id="orgbcc4dd8"><span class="section-number-2">3.</span> Prerequisites</h2>
 <div class="outline-text-2" id="text-3">
 <ol class="org-ol">
 <li>A directory tree <code>$HTTP_ROOT</code> that you can visit in a browser or serve via http.
@@ -288,7 +285,7 @@ total 336
 Optionally,  a webserver making <code>$HTTP_ROOT</code> available over http,
 for example:
 </p>
-<pre class="example" id="org84d013f">
+<pre class="example" id="org1f3761a">
 cd $HOME/Dropbox/public_html
 python -m SimpleHTTPServer 8080
 </pre></li>
@@ -300,19 +297,18 @@ we should be able to bring up <code>d3.js</code> in a browser here: <a href="htt
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgb928a69" class="outline-2">
-<h2 id="orgb928a69"><span class="section-number-2">4.</span> Procedure</h2>
+<div id="outline-container-orgf51b6ca" class="outline-2">
+<h2 id="orgf51b6ca"><span class="section-number-2">4.</span> Procedure</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgc31a7ec" class="outline-3">
-<h3 id="orgc31a7ec"><span class="section-number-3">4.1.</span> Create skeleton html file</h3>
+<div id="outline-container-org8555b1d" class="outline-3">
+<h3 id="org8555b1d"><span class="section-number-3">4.1.</span> Create skeleton html file</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 This is the file browser will load to deliver our example.
 Create <code>drag-example.html</code>.
 </p>
-<pre class="example" id="orgb8e667e">
+<pre class="example" id="org5e3a1db">
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;head&gt;
@@ -332,15 +328,14 @@ Create <code>drag-example.html</code>.
 </pre>
 </div>
 </div>
-
-<div id="outline-container-orgacaf9e1" class="outline-3">
-<h3 id="orgacaf9e1"><span class="section-number-3">4.2.</span> Create javascript file drag-example.js</h3>
+<div id="outline-container-orgfa62cd8" class="outline-3">
+<h3 id="orgfa62cd8"><span class="section-number-3">4.2.</span> Create javascript file drag-example.js</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 Create <code>drag-example.js</code>.
 This is where our <code>d3</code> code lives.
 </p>
-<pre class="example" id="orgbd6e604">
+<pre class="example" id="orge0bb732">
 !function() {
     var ex = {};
 
@@ -388,7 +383,7 @@ This is where our <code>d3</code> code lives.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-09-08 Sun 18:01</p>
+<p class="date">Created: 2026-05-24 Sun 18:48</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

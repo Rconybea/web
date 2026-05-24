@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-09-08 Sun 18:01 -->
+<!-- 2026-05-24 Sun 18:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>[23jun2024] llvm::FunctionType and IRBuilder::CreateAlloc</title>
@@ -35,27 +35,26 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga02c652">1. Introduction</a></li>
-<li><a href="#orgedf2bcb">2. TL;DR</a></li>
-<li><a href="#org77aed9e">3. Context</a></li>
-<li><a href="#orgcaf9bdd">4. LLVM Stack Allocation</a>
+<li><a href="#org7ccb57f">1. Introduction</a></li>
+<li><a href="#org545268a">2. TL;DR</a></li>
+<li><a href="#org31e2e9f">3. Context</a></li>
+<li><a href="#org62c9de4">4. LLVM Stack Allocation</a>
 <ul>
-<li><a href="#orgac3966e">4.1. Allocating Stack Space for a Value</a></li>
-<li><a href="#orgdea1cd7">4.2. Storing a Value to the Stack</a></li>
-<li><a href="#org530ebfd">4.3. Reading a Value from the Stack</a></li>
-<li><a href="#org239ef3a">4.4. Eliminating Stack Variables during Optimization</a></li>
+<li><a href="#org419638b">4.1. Allocating Stack Space for a Value</a></li>
+<li><a href="#org3590dad">4.2. Storing a Value to the Stack</a></li>
+<li><a href="#org2e75801">4.3. Reading a Value from the Stack</a></li>
+<li><a href="#org8a3870c">4.4. Eliminating Stack Variables during Optimization</a></li>
 </ul>
 </li>
-<li><a href="#org763dc10">5. Problem + Diagnosis</a></li>
-<li><a href="#org229f54c">6. Bugfix</a></li>
-<li><a href="#orgf0677c5">7. Postmorten</a></li>
-<li><a href="#org4918511">8. Conclusion</a></li>
+<li><a href="#org4629c7e">5. Problem + Diagnosis</a></li>
+<li><a href="#org9fa1fe0">6. Bugfix</a></li>
+<li><a href="#org02929bd">7. Postmorten</a></li>
+<li><a href="#org433a4fe">8. Conclusion</a></li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-orga02c652" class="outline-2">
-<h2 id="orga02c652"><span class="section-number-2">1.</span> Introduction</h2>
+<div id="outline-container-org7ccb57f" class="outline-2">
+<h2 id="org7ccb57f"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 I have a hobby/learning project <a href="https://github.com/Rconybea/xo-jit">xo-jit</a>,  jumping off from the content in the LLVM Kaleidoscope tutorial.
@@ -71,14 +70,13 @@ but ran into trouble introducing support for function types.
 <p>
 Example:
 </p>
-<pre class="example" id="orgafb06e8">
+<pre class="example" id="org3b889e3">
 define twice(f :: int(int), x :: int) { f(f(x)) }
 </pre>
 </div>
 </div>
-
-<div id="outline-container-orgedf2bcb" class="outline-2">
-<h2 id="orgedf2bcb"><span class="section-number-2">2.</span> TL;DR</h2>
+<div id="outline-container-org545268a" class="outline-2">
+<h2 id="org545268a"><span class="section-number-2">2.</span> TL;DR</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 We must rehearse the C-language distinction between function types and pointer-to-function types.
@@ -86,9 +84,8 @@ We must rehearse the C-language distinction between function types and pointer-t
 </p>
 </div>
 </div>
-
-<div id="outline-container-org77aed9e" class="outline-2">
-<h2 id="org77aed9e"><span class="section-number-2">3.</span> Context</h2>
+<div id="outline-container-org31e2e9f" class="outline-2">
+<h2 id="org31e2e9f"><span class="section-number-2">3.</span> Context</h2>
 <div class="outline-text-2" id="text-3">
 <ol class="org-ol">
 <li>I'm following Kaleidoscope's advice for satisfying LLVM IR's single-assignment requirement:
@@ -100,9 +97,8 @@ to automate type construction.</li>
 </ol>
 </div>
 </div>
-
-<div id="outline-container-orgcaf9bdd" class="outline-2">
-<h2 id="orgcaf9bdd"><span class="section-number-2">4.</span> LLVM Stack Allocation</h2>
+<div id="outline-container-org62c9de4" class="outline-2">
+<h2 id="org62c9de4"><span class="section-number-2">4.</span> LLVM Stack Allocation</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 For our variables,  this involves several steps:
@@ -115,9 +111,8 @@ For our variables,  this involves several steps:
 <li>Use optimizer pass to undo stack use</li>
 </ol>
 </div>
-
-<div id="outline-container-orgac3966e" class="outline-3">
-<h3 id="orgac3966e"><span class="section-number-3">4.1.</span> Allocating Stack Space for a Value</h3>
+<div id="outline-container-org419638b" class="outline-3">
+<h3 id="org419638b"><span class="section-number-3">4.1.</span> Allocating Stack Space for a Value</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 <b>xo-jit</b> code for creating a stack allocation uses <code>IRBuilder::CreateAlloc</code>.
@@ -168,9 +163,9 @@ to an <b>xo-reflect</b> <code>TypeDescr</code>:
 <pre class="src src-c++"><span style="color: #008b8b;">llvm</span>::<span style="color: #34cae2;">Type</span> *
 <span style="color: #00ede1; font-weight: bold;">td_to_llvm_type</span>(<span style="color: #008b8b;">xo</span>::<span style="color: #008b8b;">ref</span>::<span style="color: #34cae2;">brw</span>&lt;LlvmContext&gt; <span style="color: #dbdb95;">llvm_cx</span>, <span style="color: #34cae2;">TypeDescr</span> <span style="color: #dbdb95;">td</span>);
 
-<span style="color: #e67128;">/** obtain llvm representation for a function type with the same signature as</span>
-<span style="color: #e67128;"> *  that represented by </span><span style="color: #008b8b;">@p</span><span style="color: #e67128;"> fn_td</span>
-<span style="color: #e67128;"> **/</span>
+<span style="color: #e67128;">/** obtain llvm representation for a function type with the same signature as
+ *  that represented by </span><span style="color: #008b8b;">@p</span><span style="color: #e67128;"> fn_td
+ **/</span>
 <span style="color: #008b8b;">llvm</span>::<span style="color: #34cae2;">FunctionType</span> *
 <span style="color: #00ede1; font-weight: bold;">function_td_to_llvm_type</span>(<span style="color: #008b8b;">xo</span>::<span style="color: #008b8b;">ref</span>::<span style="color: #34cae2;">brw</span>&lt;LlvmContext&gt; <span style="color: #dbdb95;">llvm_cx</span>,
                          <span style="color: #34cae2;">TypeDescr</span> <span style="color: #dbdb95;">fn_td</span>)
@@ -236,9 +231,8 @@ to an <b>xo-reflect</b> <code>TypeDescr</code>:
 </div>
 </div>
 </div>
-
-<div id="outline-container-orgdea1cd7" class="outline-3">
-<h3 id="orgdea1cd7"><span class="section-number-3">4.2.</span> Storing a Value to the Stack</h3>
+<div id="outline-container-org3590dad" class="outline-3">
+<h3 id="org3590dad"><span class="section-number-3">4.2.</span> Storing a Value to the Stack</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 Once we have a stack allocation,   writing a value is simple
@@ -262,15 +256,14 @@ Once we have a stack allocation,   writing a value is simple
         ir_builder.CreateStore(&amp;arg, alloca);
     }
 
-    <span style="color: #74af68;">// </span><span style="color: #74af68;">codegen continues..</span>
-}
+    <span style="color: #74af68;">// </span><span style="color: #74af68;">codegen continues..
+</span>}
 </pre>
 </div>
 </div>
 </div>
-
-<div id="outline-container-org530ebfd" class="outline-3">
-<h3 id="org530ebfd"><span class="section-number-3">4.3.</span> Reading a Value from the Stack</h3>
+<div id="outline-container-org2e75801" class="outline-3">
+<h3 id="org2e75801"><span class="section-number-3">4.3.</span> Reading a Value from the Stack</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 Reading from stack allocation is also straightforward:
@@ -303,9 +296,8 @@ Reading from stack allocation is also straightforward:
 </div>
 </div>
 </div>
-
-<div id="outline-container-org239ef3a" class="outline-3">
-<h3 id="org239ef3a"><span class="section-number-3">4.4.</span> Eliminating Stack Variables during Optimization</h3>
+<div id="outline-container-org8a3870c" class="outline-3">
+<h3 id="org8a3870c"><span class="section-number-3">4.4.</span> Eliminating Stack Variables during Optimization</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 Excerpt from <code>IrPipeline</code> (<a href="https://github.com/Rconybea/xo-jit/blob/main/include/xo/jit/IrPipeline.hpp">.hpp</a> <a href="https://github.com/Rconybea/xo-jit/blob/main/src/jit/IrPipeline.cpp">.cpp</a>)
@@ -314,12 +306,12 @@ Excerpt from <code>IrPipeline</code> (<a href="https://github.com/Rconybea/xo-ji
 <div class="org-src-container">
 <pre class="src src-c++"><span style="color: #008b8b;">IrPipeline</span>::<span style="color: #00ede1; font-weight: bold;">IrPipeline</span>(<span style="color: #008b8b;">ref</span>::<span style="color: #34cae2;">rp</span>&lt;LlvmContext&gt; <span style="color: #dbdb95;">llvm_cx</span>)
 {
-    <span style="color: #74af68;">//</span><span style="color: #74af68;">...</span>
-
+    <span style="color: #74af68;">//</span><span style="color: #74af68;">...
+</span>
     <span style="color: #ffad29; font-weight: bold;">this</span>-&gt;llvm_fpmgr_ = make_unique&lt;<span style="color: #008b8b;">llvm</span>::FunctionPassManager&gt;();
 
-    <span style="color: #74af68;">// </span><span style="color: #74af68;">...</span>
-
+    <span style="color: #74af68;">// </span><span style="color: #74af68;">...
+</span>
     <span style="color: #e67128;">/** transform passes **/</span>
     <span style="color: #ffad29; font-weight: bold;">this</span>-&gt;llvm_fpmgr_-&gt;addPass(<span style="color: #008b8b;">llvm</span>::InstCombinePass());
 
@@ -330,16 +322,15 @@ Excerpt from <code>IrPipeline</code> (<a href="https://github.com/Rconybea/xo-ji
     <span style="color: #ffad29; font-weight: bold;">this</span>-&gt;llvm_fpmgr_-&gt;addPass(<span style="color: #008b8b;">llvm</span>::GVNPass());
     <span style="color: #ffad29; font-weight: bold;">this</span>-&gt;llvm_fpmgr_-&gt;addPass(<span style="color: #008b8b;">llvm</span>::SimplifyCFGPass());
 
-    <span style="color: #74af68;">// </span><span style="color: #74af68;">...</span>
-} <span style="color: #74af68;">/*</span><span style="color: #74af68;">ctor</span><span style="color: #74af68;">*/</span>
+    <span style="color: #74af68;">// </span><span style="color: #74af68;">...
+</span>} <span style="color: #74af68;">/*</span><span style="color: #74af68;">ctor</span><span style="color: #74af68;">*/</span>
 </pre>
 </div>
 </div>
 </div>
 </div>
-
-<div id="outline-container-org763dc10" class="outline-2">
-<h2 id="org763dc10"><span class="section-number-2">5.</span> Problem + Diagnosis</h2>
+<div id="outline-container-org4629c7e" class="outline-2">
+<h2 id="org4629c7e"><span class="section-number-2">5.</span> Problem + Diagnosis</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 When we try to invoke <code>MachPipeline::codegen_lambda_defn()</code> for a <code>xo::expr::Lambda</code>
@@ -350,7 +341,7 @@ that has a function type argument, llvm hangs.
 Session:
 </p>
 
-<pre class="example" id="orgceae4f9">
+<pre class="example" id="org6679951">
 bash-5.2$ gdb ./example/ex2_jit/xo_jit_ex2
 GNU gdb (GDB) 14.2
 Copyright (C) 2023 Free Software Foundation, Inc.
@@ -404,7 +395,7 @@ The debug log snippet <code>:var_type "double (*)(double)"</code> comes from <co
 The smoking gun (once you know..) is this snippet:
 </p>
 
-<pre class="example" id="org647fcfe">
+<pre class="example" id="org00af030">
 ex1 llvm_ircode:
 declare double @callit(double (double), double)
 </pre>
@@ -414,9 +405,8 @@ declare double @callit(double (double), double)
 </p>
 </div>
 </div>
-
-<div id="outline-container-org229f54c" class="outline-2">
-<h2 id="org229f54c"><span class="section-number-2">6.</span> Bugfix</h2>
+<div id="outline-container-org9fa1fe0" class="outline-2">
+<h2 id="org9fa1fe0"><span class="section-number-2">6.</span> Bugfix</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Check back soon..
@@ -428,9 +418,8 @@ pass pointers-to-functions instead of functions.
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgf0677c5" class="outline-2">
-<h2 id="orgf0677c5"><span class="section-number-2">7.</span> Postmorten</h2>
+<div id="outline-container-org02929bd" class="outline-2">
+<h2 id="org02929bd"><span class="section-number-2">7.</span> Postmorten</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 I spent longer grappling with this bug than I care to admit.
@@ -445,7 +434,7 @@ before the shoe dropped:
 I encountered bug working with a more complicated example &#x2013; nested lambdas
 </p>
 
-<pre class="example" id="org64f7099">
+<pre class="example" id="org19079c4">
 define pow4(x :: int) {
     define twice(f :: int-&gt;int, x :: int) { f(f(x)) }
     define sq(x :: int) { x*x })
@@ -480,9 +469,8 @@ I expect perhaps you can, though haven't encountered proof yet.
 </p>
 </div>
 </div>
-
-<div id="outline-container-org4918511" class="outline-2">
-<h2 id="org4918511"><span class="section-number-2">8.</span> Conclusion</h2>
+<div id="outline-container-org433a4fe" class="outline-2">
+<h2 id="org433a4fe"><span class="section-number-2">8.</span> Conclusion</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Chalk this up to occupational hazard of being at the wrong end of a learning curve;
@@ -503,7 +491,7 @@ Using gcc 13.2, LLVM 18.1.5, building on ubuntu (really WSL2-on-windows), with n
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-09-08 Sun 18:01</p>
+<p class="date">Created: 2026-05-24 Sun 18:48</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

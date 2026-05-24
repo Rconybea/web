@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-05-24 Sun 18:48 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="Roland Conybeare" />
+<meta name="description" content="bugfix for 'git subtree'" />
+<meta name="keywords" content="fontconfig nixpkgs nix-env" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style>pre.src{background:#343131;color:white;} </style>
+<style>pre.example{background:#343131;color:white;} </style>
+<style> #content{max-width:1800px;}</style>
+<style> p{max-width:1800px;}</style>
+<style> li{max-width:1800px;}</style>
+<link rel="shortcut icon" type="image/x-icon" href="/web/img/favicon.ico" />
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href=""> UP </a>
+ |
+ <a accesskey="H" href="../../../index.html"> HOME </a>
+</div><div id="content" class="content">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org8ae48e4">1. Problem</a></li>
+<li><a href="#org7d8ad7f">2. Diagnosis</a></li>
+<li><a href="#org441f017">3. Treatment</a></li>
+<li><a href="#org6715d32">4. Followup</a>
+<ul>
+<li><a href="#orgf3d2da3">4.1. xo-umbrella2 nix shells</a></li>
+<li><a href="#org6786a90">4.2. upstream git repo</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8ae48e4" class="outline-2">
+<h2 id="org8ae48e4"><span class="section-number-2">1.</span> Problem</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+We're using <code>git subtree</code> with <a href="https://conybeare.us/git/xo-umbrella2">xo-umbrella2</a>, to maintain independent satellite repos
+(such as <a href="https://conybeare.us/git/xo-indentlog">xo-indentlog</a>).
+</p>
+
+<p>
+Encountered unexpected error from <code>git subtree split</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ cd ~/proj/xo-umbrella2
+$ git subtree split --rejoin --prefix=xo-indentlog -b _dmeux/xo-indentlog
+fatal: cache for 624178f1932508a687d85ddea56d03998193207a already exists!
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ which git
+/home/roland/nixroot/nix/store/jwv5hg4kdb322qi0y9ss6xjx94bgxh8l-git-2.50.1/bin/git
+</pre>
+</div>
+
+<p>
+Initially puzzling, because the <code>624178</code> commit doesn't actually intersect the <code>xo-indentlog</code> prefix
+</p>
+</div>
+</div>
+<div id="outline-container-org7d8ad7f" class="outline-2">
+<h2 id="org7d8ad7f"><span class="section-number-2">2.</span> Diagnosis</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Make a copy of the subtree implementation, so we can modify it.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ mkdir -p /tmp/git-exec-real
+$ cp -r $(<span style="color: #fa8072;">git --exec-path</span>) /tmp/git-exec-real
+$ chmod -R u+w /tmp/git-exec-real
+</pre>
+</div>
+
+<p>
+Verify that it runs
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ <span style="color: #dbdb95;">GIT_EXEC_PATH</span>=/tmp/git-exec-real git subtree split --prefix=xo-indentlog -b _demux/xo-indentlog
+</pre>
+</div>
+
+<p>
+Find the error message in <code>/tmp/git-exec-real/git-subtree</code> (about line <code>337</code>).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">
+<span style="color: #74af68;"># </span><span style="color: #74af68;">Usage: cache_set OLDREV NEWREV
+</span><span style="color: #00ede1; font-weight: bold;">cache_set</span> () {
+    assert test $<span style="color: #dbdb95;">#</span> = 2
+    <span style="color: #dbdb95;">oldrev</span>=<span style="color: #e67128;">"$1"</span>
+    <span style="color: #dbdb95;">newrev</span>=<span style="color: #e67128;">"$2"</span>
+    <span style="color: #ffad29; font-weight: bold;">if </span><span style="color: #23d7d7;">test</span> <span style="color: #e67128;">"$oldrev"</span> != <span style="color: #e67128;">"latest_old"</span> &amp;&amp;
+        <span style="color: #23d7d7;">test</span> <span style="color: #e67128;">"$oldrev"</span> != <span style="color: #e67128;">"latest_new"</span> &amp;&amp;
+        <span style="color: #23d7d7;">test</span> -e <span style="color: #e67128;">"$cachedir/$oldrev"</span>
+    <span style="color: #ffad29; font-weight: bold;">then</span>
+        die <span style="color: #e67128;">"fatal: cache for $oldrev already exists!"</span>
+    <span style="color: #ffad29; font-weight: bold;">fi</span>
+    <span style="color: #23d7d7;">echo</span> <span style="color: #e67128;">"$newrev"</span> &gt;<span style="color: #e67128;">"$cachedir/$oldrev"</span>
+}
+
+</pre>
+</div>
+
+<p>
+add some diagnostics output
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">
+<span style="color: #74af68;"># </span><span style="color: #74af68;">Usage: cache_set OLDREV NEWREV
+</span><span style="color: #00ede1; font-weight: bold;">cache_set</span> () {
+    assert test $<span style="color: #dbdb95;">#</span> = 2
+    <span style="color: #dbdb95;">oldrev</span>=<span style="color: #e67128;">"$1"</span>
+    <span style="color: #dbdb95;">newrev</span>=<span style="color: #e67128;">"$2"</span>
+    <span style="color: #ffad29; font-weight: bold;">if </span><span style="color: #23d7d7;">test</span> <span style="color: #e67128;">"$oldrev"</span> != <span style="color: #e67128;">"latest_old"</span> &amp;&amp;
+            <span style="color: #23d7d7;">test</span> <span style="color: #e67128;">"$oldrev"</span> != <span style="color: #e67128;">"latest_new"</span> &amp;&amp;
+            <span style="color: #23d7d7;">test</span> -e <span style="color: #e67128;">"$cachedir/$oldrev"</span>
+    <span style="color: #ffad29; font-weight: bold;">then</span>
+        <span style="color: #23d7d7;">echo</span> <span style="color: #e67128;">"DEBUG: dup cache entry for $oldrev"</span> &gt;&amp;2
+        <span style="color: #23d7d7;">echo</span> <span style="color: #e67128;">"       newrev=$newrev"</span> &gt;&amp;2
+        <span style="color: #23d7d7;">echo</span> <span style="color: #e67128;">"       existing=$(</span><span style="color: #fa8072;">cat $cachedir/$oldrev</span><span style="color: #e67128;">)"</span> &gt;&amp;2
+        die <span style="color: #e67128;">"fatal: cache for $oldrev already exists!"</span>
+    <span style="color: #ffad29; font-weight: bold;">fi</span>
+    <span style="color: #23d7d7;">echo</span> <span style="color: #e67128;">"$newrev"</span> &gt;<span style="color: #e67128;">"$cachedir/$oldrev"</span>
+}
+
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ <span style="color: #dbdb95;">GIT_EXEC_PATH</span>=/tmp/git-exec-real git subtree split --prefix=xo-indentlog -b _demux/xo-indentlog
+DEBUG: dup cache entry for 624178f1932508a687d85ddea56d03998193207a
+       <span style="color: #dbdb95;">newrev</span>=624178f1932508a687d85ddea56d03998193207a
+       <span style="color: #dbdb95;">existing</span>=624178f1932508a687d85ddea56d03998193207a
+</pre>
+</div>
+
+<p>
+Well, that's provocative!  All 3 commits are the same!
+</p>
+
+<p>
+That's consistent with commit not having any changes that intersect with the <code>xo-indentlog/</code> prefix.
+</p>
+</div>
+</div>
+<div id="outline-container-org441f017" class="outline-2">
+<h2 id="org441f017"><span class="section-number-2">3.</span> Treatment</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Problem is that we have multiple merge commits in scope.
+In particular: merge commits created because: before running split for <code>xo-indentlog</code>,
+had run it for sibling <code>xo-cmake</code>.
+</p>
+
+<p>
+In any case obvious correction is to suppress the error when <code>git subtree split</code> arrives
+at the same commit on multiple paths. Edit <code>/tmp/git-exec-real/git-subtree</code> as shown:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">
+<span style="color: #74af68;"># </span><span style="color: #74af68;">Usage: cache_set OLDREV NEWREV
+</span><span style="color: #00ede1; font-weight: bold;">cache_set</span> () {
+    assert test $<span style="color: #dbdb95;">#</span> = 2
+    <span style="color: #dbdb95;">oldrev</span>=<span style="color: #e67128;">"$1"</span>
+    <span style="color: #dbdb95;">newrev</span>=<span style="color: #e67128;">"$2"</span>
+    <span style="color: #ffad29; font-weight: bold;">if </span><span style="color: #23d7d7;">test</span> <span style="color: #e67128;">"$oldrev"</span> != <span style="color: #e67128;">"latest_old"</span> &amp;&amp;
+        <span style="color: #23d7d7;">test</span> <span style="color: #e67128;">"$oldrev"</span> != <span style="color: #e67128;">"latest_new"</span> &amp;&amp;
+        <span style="color: #23d7d7;">test</span> -e <span style="color: #e67128;">"$cachedir/$oldrev"</span>
+    <span style="color: #ffad29; font-weight: bold;">then</span>
+        <span style="color: #dbdb95;">existing</span>=$(<span style="color: #fa8072;">cat "$cachedir/$oldrev"</span>)
+        <span style="color: #ffad29; font-weight: bold;">if </span><span style="color: #23d7d7;">test</span> <span style="color: #e67128;">"$existing"</span> = <span style="color: #e67128;">"$newrev"</span>
+        <span style="color: #ffad29; font-weight: bold;">then</span>
+            <span style="color: #74af68;"># </span><span style="color: #74af68;">same mapping
+</span>            <span style="color: #74af68;">#  </span><span style="color: #74af68;">-&gt; commit doesn't touch prefix
+</span>            <span style="color: #74af68;">#  </span><span style="color: #74af68;">-&gt; must not cache
+</span>            <span style="color: #ffad29; font-weight: bold;">return</span>
+        <span style="color: #ffad29; font-weight: bold;">else</span>
+            die <span style="color: #e67128;">"fatal: cache for $oldrev already exists!"</span>
+        <span style="color: #ffad29; font-weight: bold;">fi</span>
+    <span style="color: #ffad29; font-weight: bold;">fi</span>
+    <span style="color: #23d7d7;">echo</span> <span style="color: #e67128;">"$newrev"</span> &gt;<span style="color: #e67128;">"$cachedir/$oldrev"</span>
+}
+
+</pre>
+</div>
+
+<p>
+..and try out the patch:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ <span style="color: #dbdb95;">GIT_EXEC_PATH</span>=/tmp/git-exec-real git subtree split --prefix=xo-indentlog -b _demux/xo-indentlog
+...
+$
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org6715d32" class="outline-2">
+<h2 id="org6715d32"><span class="section-number-2">4.</span> Followup</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-orgf3d2da3" class="outline-3">
+<h3 id="orgf3d2da3"><span class="section-number-3">4.1.</span> xo-umbrella2 nix shells</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+To maintain this patch locally, add to nix shell setup for <code>xo-umbrella2</code>.
+</p>
+
+<p>
+Add <code>xo-umbrella2/patches/git-subtree-cache-fix.patch</code>:
+</p>
+
+<pre class="example" id="org8cf2b68">
+--- a/git-subtree
++++ b/git-subtree
+@@ -341,7 +341,13 @@ cache_set () {
+        if test "$oldrev" != "latest_old" &amp;&amp;
+                test "$oldrev" != "latest_new" &amp;&amp;
+                test -e "$cachedir/$oldrev"
+        then
+-               die "fatal: cache for $oldrev already exists!"
++               existing=$(cat "$cachedir/$oldrev")
++               if test "$existing" = "$newrev"
++               then
++                       return
++               else
++                       die "fatal: cache for $oldrev already exists!"
++               fi
+        fi
+        echo "$newrev" &gt;"$cachedir/$oldrev"
+}
+</pre>
+
+<p>
+Then modify <code>xo-umbrella2/default.nix</code> so it creates git with the patch applied.
+We don't add this as an overlay, since we don't need/want working nix packages to change.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nix"><span style="color: #ffad29; font-weight: bold;">let</span>
+  <span style="color: #dbdb95;">pkgs</span> = <span style="color: #23d7d7;">import</span> nixpkgs-patch {
+    <span style="color: #74af68;"># overlays..
+</span>  };
+
+  <span style="color: #74af68;"># bona fide bux in git 2.50.1
+</span>  <span style="color: #dbdb95;">patched-git</span> = pkgs.git.overrideAttrs (old: {
+      <span style="color: #dbdb95;">postInstall</span> = (old.postInstall <span style="color: #ffad29; font-weight: bold;">or</span> <span style="color: #e67128;">""</span>) + <span style="color: #e67128;">''
+        patch $out/libexec/git-core/git-subtree </span><span style="color: #23d7d7;">${</span><span style="color: #008b8b;">./patches/git-subtree-cache-fix.patch</span><span style="color: #23d7d7;">}</span><span style="color: #e67128;">
+      ''</span>;
+    });
+<span style="color: #ffad29; font-weight: bold;">in</span>
+<span style="color: #ffad29; font-weight: bold;">let</span>
+  <span style="color: #dbdb95;">devutils</span> = [
+    patched-git <span style="color: #74af68;"># instead of pkgs.git
+</span>    pkgs.catch2
+    <span style="color: #74af68;"># ..etc..
+</span>  ]
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org6786a90" class="outline-3">
+<h3 id="org6786a90"><span class="section-number-3">4.2.</span> upstream git repo</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+Clone git repo, and make a branch
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ cd ~/proj
+$ git clone https://githjub.com/git/git.git
+
+$ cd git
+$ git switch -c subtree-fix
+</pre>
+</div>
+
+<p>
+Script we need to modify is <code>contrib/subtree/git-subtree.sh</code>.
+Make parallel change similar to original patch + commit.
+</p>
+
+<p>
+Write a detailed commit message, since that's expected
+</p>
+
+<pre class="example" id="org35cd391">
+$ git log -1
+  commit 9117eabc9c55187fd6c0204063734b72979f2082 (HEAD -&gt; subtree-fix)
+  Author: Roland Conybeare &lt;rconybeare@gmail.com&gt;
+  Date:   Sun May 24 16:29:58 2026 -0400
+
+      subtree: fix cache_set failure on commit reachable by multiple paths
+
+      When splitting a subtree, committs that do not intersect prefix
+      receive identity mapping (oldrev -&gt; oldrev). If such commit
+      is reachable by multiple paths in the revision DAG, the cache_set()
+      function may be called twice for the same (oldrev -&gt; newrev) pair.
+
+      This triggers fatal error "cache for &lt;hash&gt; already exists"
+
+      Bugfix is to make cache_set() idempotent when the same
+      (oldrev -&gt; newrev) pair appears multiple times.
+
+      Signed-off-by: Roland Conybeare &lt;rconybeare@gmail.com&gt;
+
+</pre>
+
+<p>
+Follow git's contribution process.  Setup in <code>~/.gitconfig</code>
+</p>
+
+<pre class="example" id="orgf262218">
+[sendemail]
+    smtpserver = smtp.gmail.com
+    smtpserverport = 587
+    smtpencryption = tls
+    smtpuser = rconybeare@gmail.com
+</pre>
+
+<p>
+Get git to generate patch for us.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ cd ~/proj/git
+$ mkdir outbound
+$ git format-patch --cover-letter -o outbound/ --base=auto @{u}
+..edit the cover-letter patch...
+</pre>
+</div>
+
+<p>
+<code>outbound/0000-cover-letter.patch</code>:
+</p>
+
+<pre class="example" id="org56274d5">
+From 9117eabc9c55187fd6c0204063734b72979f2082 Mon Sep 17 00:00:00 2001
+From: Roland Conybeare &lt;rconybeare@gmail.com&gt;
+Date: Sun, 24 May 2026 16:50:26 -0400
+Subject: [PATCH 0/1] bugfix git subtree split
+
+I have a project that combines multiple independent repos
+into an unmbrella repo, relying on git subtree.
+Encountered a unrecoverable fatal error
+from 'git subtree split' with error
+
+    fatal: cache for &lt;hash&gt; already exists!
+
+Problem arises because history to be split contains merge commits
+that cause DAG traversal to consider the same umbrella commit on
+multiple paths. The fatal triggers when 'git subtree split' tries
+to cache the same commit twice; enclosed patch prunes these duplicate
+paths.
+
+Roland Conybeare (1):
+  subtree: fix cache_set failure on commit reachable by multiple paths
+
+ contrib/subtree/git-subtree.sh | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+
+base-commit: 6a4418c36d6bad69a599044b3cf49dcbd049cb45
+--
+2.50.1
+</pre>
+
+<p>
+Finally, send it:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ git send-email --to=git@vger.kernel.org outbound/*.patch
+...[y] to prompts...
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Roland Conybeare</p>
+<p class="date">Created: 2026-05-24 Sun 18:48</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

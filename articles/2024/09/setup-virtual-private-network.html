@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-05-24 Sun 18:48 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>[21sep2024] setting up VPN for ny/chicago</title>
+<meta name="author" content="Roland Conybeare" />
+<meta name="description" content="Setting up VPN between households" />
+<meta name="keywords" content="c++ gcc preprocessor" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style>pre.src{background:#343131;color:white;} </style>
+<style>pre.example{background:#343131;color:white;} </style>
+<style> #content{max-width:1800px;}</style>
+<style> p{max-width:1800px;}</style>
+<style> li{max-width:1800px;}</style>
+<link rel="shortcut icon" type="image/x-icon" href="/web/img/favicon.ico" />
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href=""> UP </a>
+ |
+ <a accesskey="H" href="../../../index.html"> HOME </a>
+</div><div id="content" class="content">
+<h1 class="title">[21sep2024] setting up VPN for ny/chicago</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgb4ea911">1. Project</a></li>
+<li><a href="#orga2d66e3">2. Strategy</a></li>
+<li><a href="#org8fa70da">3. Solution</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb4ea911" class="outline-2">
+<h2 id="orgb4ea911"><span class="section-number-2">1.</span> Project</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Want to setup VPN between NY and Chicago households.
+</p>
+
+<p>
+EDIT 25dec2024: Nothing wrong with these instructions, but wound up using Tailscale instead.
+Two major advantage of tailscale for vpn:
+</p>
+<ol class="org-ol">
+<li>vpn network topology is a mesh instead of a star.</li>
+</ol>
+<p>
+This means hosts communicate using the same pathways they would use if not using
+a vpn,  so network is more scalable and efficient.  See <a href="https://www.tailscale.com">https://www.tailscale.com</a>
+</p>
+<ol class="org-ol">
+<li>uses wireguard on each node for encryption. Code for wireguard is two orders of
+magnitude smaller than openvpn, so accordingly less likely to have security
+vulnerabilities.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orga2d66e3" class="outline-2">
+<h2 id="orga2d66e3"><span class="section-number-2">2.</span> Strategy</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Both locations using a Unifi router with dynamic IP address from internet provider.
+</p>
+
+<p>
+Will be following openvpn setup instructions here
+<a href="https://openvpn.net/community-resources/how-to/#openvpn-quickstart">https://openvpn.net/community-resources/how-to/#openvpn-quickstart</a>
+</p>
+
+<ol class="org-ol">
+<li><p>
+create digital ocean droplet, to get host with a static IP address
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">host</td>
+<td class="org-left">vpn1</td>
+</tr>
+
+<tr>
+<td class="org-left">datacenter</td>
+<td class="org-left">NYC3</td>
+</tr>
+
+<tr>
+<td class="org-left">ipv4</td>
+<td class="org-left">159.203.164.149</td>
+</tr>
+
+<tr>
+<td class="org-left">cost</td>
+<td class="org-left">$8/mo</td>
+</tr>
+
+<tr>
+<td class="org-left">provider website</td>
+<td class="org-left">www.digitalocean.com</td>
+</tr>
+</tbody>
+</table></li>
+
+<li><p>
+put ssh keys on <code>vpn1</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">ssh-copy-id root@159.203.164.149
+</pre>
+</div></li>
+
+<li><p>
+Install openvpn and easy-rsa2 on <code>vpn1</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">ssh root@159.203.164.149
+apt-get install openvpn    <span style="color: #74af68;"># </span><span style="color: #74af68;">version 2.6.9 on 22sep2024
+</span>atp-get install easy-rsa
+</pre>
+</div>
+
+<p>
+Also do the same on <code>roly-desktop-23</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">apt-get install openvpn    <span style="color: #74af68;"># </span><span style="color: #74af68;">version 2.5.9 on 22sep2024
+</span>atp-get install easy-rsa   <span style="color: #74af68;"># </span><span style="color: #74af68;">version 3.0.8-1ubuntu1</span>
+</pre>
+</div>
+
+<p>
+On <code>roly-desktop-23</code> looks like easy-rsa in <code>/usr/sharee/doc/easy-rsa</code>
+</p></li>
+</ol>
+
+<p>
+Next create public key infrastruture (PKI)
+openvpn instructions for using easy-rsa seem to be outdated.
+Following instructions at <a href="https://easy-rsa.readthedocs.io/en/latest">https://easy-rsa.readthedocs.io/en/latest</a>
+</p>
+
+<ol class="org-ol">
+<li><p>
+create easyrsa working directory
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">mkdir -p path/to/secrets &amp;&amp; <span style="color: #23d7d7;">cd</span> path/to/secrets
+make-cadir vpn-ca
+</pre>
+</div></li>
+
+<li><p>
+setup pki directory
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="color: #23d7d7;">cd</span> path/to/secrets
+./easyrsa init-pki
+</pre>
+</div>
+
+<p>
+pki/private :: private keys generated on this host
+pki/reqs :: certificate requests generated on this host
+</p>
+
+<p>
+Will be creating files:
+</p>
+
+<p>
+ca.crt - our own certificate authority's certificate (public proof-of-authority)
+index.txt - master database of all certificates issued by us
+serial - serial number, increment-only
+private/ca.key (private proof-of-authority &#x2013; SECURITY CRITICAL)
+certs_by_serial - all our signed certificates
+issued - issued certificates by <code>commonName</code>
+</p></li>
+
+<li><p>
+build a master certificate authority
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="color: #23d7d7;">cd</span> path/to/secrets
+./easyrsa build-ca
+</pre>
+</div>
+
+<p>
+Responding to prompts:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">passphrase</td>
+<td class="org-left"><b>*</b></td>
+</tr>
+
+<tr>
+<td class="org-left">common name</td>
+<td class="org-left">conybeare</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Resulting tree
+</p>
+
+<pre class="example" id="org262e1a0">
+cd path/to/secrets/vpn-ca/pki &amp;&amp; tree
+.
+├── ca.crt
+├── certs_by_serial
+├── index.txt
+├── index.txt.attr
+├── issued
+├── openssl-easyrsa.cnf
+├── private
+│   └── ca.key
+├── renewed
+│   ├── certs_by_serial
+│   ├── private_by_serial
+│   └── reqs_by_serial
+├── reqs
+├── revoked
+│   ├── certs_by_serial
+│   ├── private_by_serial
+│   └── reqs_by_serial
+├── safessl-easyrsa.cnf
+└── serial
+
+13 directories, 7 files
+</pre></li>
+
+<li><p>
+request a certificate
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="color: #23d7d7;">cd</span> path/to/secrets
+./easyrsa gen-req vpn1
+</pre>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">passphrase</td>
+<td class="org-left"><b>*</b></td>
+</tr>
+
+<tr>
+<td class="org-left">common name</td>
+<td class="org-left">vpn1</td>
+</tr>
+</tbody>
+</table></li>
+
+<li><p>
+sign certificate
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="color: #23d7d7;">cd</span> path/to/secrets
+./easyrsa sign-req server vpn1
+</pre>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">output</td>
+<td class="org-left"><code>vpn-ca/pki/issued/vpn1.crt</code></td>
+</tr>
+</tbody>
+</table></li>
+</ol>
+
+
+
+<p>
+COPYPASTA BELOW <code>==============================================================</code>
+</p>
+</div>
+</div>
+<div id="outline-container-org8fa70da" class="outline-2">
+<h2 id="org8fa70da"><span class="section-number-2">3.</span> Solution</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>stumbled on this stack overflow question
+<a href="https://stackoverflow.com/questions/28939652/how-to-detect-sse-sse2-avx-avx2-avx-512-avx-128-fma-kcvi-availability-at-compile">https://stackoverflow.com/questions/28939652/how-to-detect-sse-sse2-avx-avx2-avx-512-avx-128-fma-kcvi-availability-at-compile</a></li>
+
+<li><p>
+turns out to be an easy one-liner
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">gcc -dM -E - &lt; /dev/null | sort
+</pre>
+</div>
+
+<p>
+with output like
+</p>
+
+<pre class="example" id="org36d9631">
+#define _FORTIFY_SOURCE 3
+#define _LP64 1
+#define _STDC_PREDEF_H 1
+#define __ATOMIC_ACQUIRE 2
+#define __ATOMIC_ACQ_REL 4
+...
+</pre>
+
+<p>
+Here:
+</p>
+
+<ul class="org-ul">
+<li><code>-E</code> tells compiler to emit preprocessor output</li>
+<li><code>-dM</code> tells compiler to produce defines instead of preprocesed source code</li>
+<li><code>-</code> as last argument tells compiler to compile input from stdin.</li>
+</ul></li>
+
+<li><p>
+to look at say SSE/AVX related instructions:
+</p>
+
+<p>
+(using gcc 13.2 here)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">gcc -dM -E - &lt; /dev/null | egrep <span style="color: #e67128;">"SSE|AVX"</span> | sort
+</pre>
+</div>
+
+<pre class="example" id="org483507f">
+#define __MMX_WITH_SSE__ 1
+#define __SSE2_MATH__ 1
+#define __SSE2__ 1
+#define __SSE_MATH__ 1
+#define __SSE__ 1
+</pre>
+
+<p>
+but with <code>-mavx512f</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">gcc -mavx512f -dM -E - &lt; /dev/null | egrep <span style="color: #e67128;">"SSE|AVX"</span> | sort
+</pre>
+</div>
+
+<p>
+with output:
+</p>
+
+<pre class="example" id="orgf6b8166">
+#define __AVX2__ 1
+#define __AVX512F__ 1
+#define __AVX__ 1
+#define __MMX_WITH_SSE__ 1
+#define __SSE2_MATH__ 1
+#define __SSE2__ 1
+#define __SSE3__ 1
+#define __SSE4_1__ 1
+#define __SSE4_2__ 1
+#define __SSE_MATH__ 1
+#define __SSE__ 1
+#define __SSSE3__ 1
+</pre></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Roland Conybeare</p>
+<p class="date">Created: 2026-05-24 Sun 18:48</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

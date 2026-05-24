@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-09-08 Sun 18:01 -->
+<!-- 2026-05-24 Sun 18:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>[19jun2024] injecting symbols into llvm jit</title>
@@ -35,18 +35,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org89d51c5">1. Introduction</a></li>
-<li><a href="#orgdfba45a">2. TL;DR</a></li>
-<li><a href="#org9f27968">3. Context</a></li>
-<li><a href="#org0fb323d">4. Setup</a></li>
-<li><a href="#orgbaab4d0">5. Problem + Diagnosis</a></li>
-<li><a href="#org2358846">6. Workaround</a></li>
+<li><a href="#orgb62aee3">1. Introduction</a></li>
+<li><a href="#org0c254d6">2. TL;DR</a></li>
+<li><a href="#org917a3ac">3. Context</a></li>
+<li><a href="#org9024a86">4. Setup</a></li>
+<li><a href="#org3214dba">5. Problem + Diagnosis</a></li>
+<li><a href="#orgf9fbf48">6. Workaround</a></li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-org89d51c5" class="outline-2">
-<h2 id="org89d51c5"><span class="section-number-2">1.</span> Introduction</h2>
+<div id="outline-container-orgb62aee3" class="outline-2">
+<h2 id="orgb62aee3"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 I have a hobby/learning project <a href="https://github.com/Rconybea/xo-jit">xo-jit</a> jumping off from the content in the LLVM Kaleidoscope tutorial. <sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>
@@ -55,18 +54,16 @@ jit-compiled code invoked from a python REPL.
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgdfba45a" class="outline-2">
-<h2 id="orgdfba45a"><span class="section-number-2">2.</span> TL;DR</h2>
+<div id="outline-container-org0c254d6" class="outline-2">
+<h2 id="org0c254d6"><span class="section-number-2">2.</span> TL;DR</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 When binding a symbols for in-process jit, consider supplyin absolute address instead of symbol name.
 </p>
 </div>
 </div>
-
-<div id="outline-container-org9f27968" class="outline-2">
-<h2 id="org9f27968"><span class="section-number-2">3.</span> Context</h2>
+<div id="outline-container-org917a3ac" class="outline-2">
+<h2 id="org917a3ac"><span class="section-number-2">3.</span> Context</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>trying to make library functions callable from llvm-compiled functions.</li>
@@ -86,9 +83,8 @@ Using these libraries can from python:
 </ul>
 </div>
 </div>
-
-<div id="outline-container-org0fb323d" class="outline-2">
-<h2 id="org0fb323d"><span class="section-number-2">4.</span> Setup</h2>
+<div id="outline-container-org9024a86" class="outline-2">
+<h2 id="org9024a86"><span class="section-number-2">4.</span> Setup</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Libraries built with <code>CMAKE_INSTALL_PREFIX</code> set to <code>~/local2</code>.
@@ -110,16 +106,16 @@ Then from python:
 <span style="color: #ffad29; font-weight: bold;">from</span> xo_pyexpression <span style="color: #ffad29; font-weight: bold;">import</span> *
 <span style="color: #ffad29; font-weight: bold;">from</span> xo_pyjit <span style="color: #ffad29; font-weight: bold;">import</span> *
 
-<span style="color: #74af68;"># </span><span style="color: #74af68;">builing program like</span>
-<span style="color: #74af68;">#   </span><span style="color: #74af68;">lambda (x) : x * x</span>
-<span style="color: #74af68;"># </span><span style="color: #74af68;">with</span>
-<span style="color: #74af68;">#   </span><span style="color: #74af68;">x :: double</span>
-
+<span style="color: #74af68;"># </span><span style="color: #74af68;">builing program like
+</span><span style="color: #74af68;">#   </span><span style="color: #74af68;">lambda (x) : x * x
+</span><span style="color: #74af68;"># </span><span style="color: #74af68;">with
+</span><span style="color: #74af68;">#   </span><span style="color: #74af68;">x :: double
+</span>
 <span style="color: #dbdb95;">f64_t</span> = TypeDescr.lookup_by_name(<span style="color: #e67128;">'double'</span>)
 <span style="color: #dbdb95;">x</span> = make_var(<span style="color: #e67128;">'x'</span>, f64_t)
-<span style="color: #74af68;">#</span><span style="color: #74af68;">f = make_sin_pm()     # works</span>
-<span style="color: #dbdb95;">f</span> = make_mul_f64_pm()  <span style="color: #74af68;"># </span><span style="color: #74af68;">fails to resolve</span>
-<span style="color: #dbdb95;">c</span> = make_apply(f, [x, x])
+<span style="color: #74af68;">#</span><span style="color: #74af68;">f = make_sin_pm()     # works
+</span><span style="color: #dbdb95;">f</span> = make_mul_f64_pm()  <span style="color: #74af68;"># </span><span style="color: #74af68;">fails to resolve
+</span><span style="color: #dbdb95;">c</span> = make_apply(f, [x, x])
 <span style="color: #dbdb95;">lm</span> = make_lambda(<span style="color: #e67128;">'sq'</span>, [x], c)
 
 <span style="color: #dbdb95;">mp</span> = MachPipeline.make()
@@ -130,9 +126,8 @@ mp.machgen_current_model()
 </div>
 </div>
 </div>
-
-<div id="outline-container-orgbaab4d0" class="outline-2">
-<h2 id="orgbaab4d0"><span class="section-number-2">5.</span> Problem + Diagnosis</h2>
+<div id="outline-container-org3214dba" class="outline-2">
+<h2 id="org3214dba"><span class="section-number-2">5.</span> Problem + Diagnosis</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 All this appears to work,   however the llvm jit is lazy,  so at this point
@@ -152,7 +147,7 @@ we want to fetch corresponding symbol from the jit:
 <p>
 This step would fail with error
 </p>
-<pre class="example" id="org8ca1316">
+<pre class="example" id="org691bbe1">
 Unable to resolve symbol: mul_f64
 </pre>
 
@@ -160,7 +155,7 @@ Unable to resolve symbol: mul_f64
 Even though inspecting <code>libxo_jit.so</code> shows the symbol is present
 </p>
 
-<pre class="example" id="orga84606a">
+<pre class="example" id="org3237cb3">
 $ readelf -d ~/proj/local2/lib/libxo_jit.so | grep mul_f64
 ... D mul_f64 ...
 </pre>
@@ -170,8 +165,8 @@ We were relying on feature adopted from Kaleidoscope's JIT
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span style="color: #74af68;">// </span><span style="color: #74af68;">in xo/jit/Jit.hpp</span>
-
+<pre class="src src-C"><span style="color: #74af68;">// </span><span style="color: #74af68;">in xo/jit/Jit.hpp
+</span>
 dest_dynamic_lib_.addGenerator
     (cantFail(DynamicLibrarySearchGenerator::GetForCurrentProcess
               (data_layout_.getGlobalPrefix())));
@@ -194,9 +189,8 @@ sibling <b>xo</b> library (even when jamming the symbol into <code>libxo_jit.so<
 </ul>
 </div>
 </div>
-
-<div id="outline-container-org2358846" class="outline-2">
-<h2 id="org2358846"><span class="section-number-2">6.</span> Workaround</h2>
+<div id="outline-container-orgf9fbf48" class="outline-2">
+<h2 id="orgf9fbf48"><span class="section-number-2">6.</span> Workaround</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>Found <a href="https://stackoverflow.com/questions/57612173/llvm-jit-symbols-not-found">this article on stack overflow</a>:</li>
@@ -242,7 +236,7 @@ Using gcc 13.2, LLVM 18.1.5, building on ubuntu (really WSL2-on-windows), with n
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: Roland Conybeare</p>
-<p class="date">Created: 2024-09-08 Sun 18:01</p>
+<p class="date">Created: 2026-05-24 Sun 18:48</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
